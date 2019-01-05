@@ -48,10 +48,14 @@ var rangeNames = []string{
 }
 
 func main() {
+	// TODO: Better argument parsing.
+	// TODO: Add option to switch off header.
+	// TODO: Add option for TSV and/or JSON output.
 	if len(os.Args) < 2 {
 		fatal(errors.New("wrong arguments"))
 	}
 
+	// TODO: idea: add command to print/search emojis?
 	switch strings.ToLower(os.Args[1]) {
 	default:
 		fatal(errors.New("wrong arguments"))
@@ -59,11 +63,27 @@ func main() {
 	case "identify", "i":
 		identify(strings.Join(os.Args[2:], ""))
 
+	// TODO: stable output, ordered by code point (due to map it's not stable
+	// now).
 	case "search", "s":
+		if len(os.Args) < 3 {
+			fatal(errors.New("need search term"))
+		}
+
+		// TODO: don't print with 0 matches.
 		header()
-		q := strings.ToUpper(strings.Join(os.Args[2:], " "))
+		words := make([]string, len(os.Args)-2)
+		for i := range os.Args[2:] {
+			words[i] = strings.ToUpper(os.Args[i+2])
+		}
 		for cp, name := range uniData {
-			if strings.Contains(name, q) {
+			m := 0
+			for _, w := range words {
+				if strings.Contains(name, w) {
+					m++
+				}
+			}
+			if m == len(words) {
 				printEntry(cp, name)
 			}
 		}
@@ -125,6 +145,7 @@ func identify(in string) {
 		_, _ = fmt.Fprintf(os.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
+	// TODO: don't print with 0 matches.
 	header()
 	for _, c := range in {
 		find := fmt.Sprintf("%04X", c)
@@ -159,6 +180,7 @@ func inRange(c rune) string {
 	return ""
 }
 
+// TODO: check terminal size; don't print full descriptin if it doesn't fit.
 func printEntry(cp, name string) {
 	r, _ := strconv.ParseInt(cp, 16, 64)
 	rs := strconv.FormatInt(r, 10)
