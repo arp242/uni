@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -63,15 +64,12 @@ func main() {
 	case "identify", "i":
 		identify(strings.Join(os.Args[2:], ""))
 
-	// TODO: stable output, ordered by code point (due to map it's not stable
-	// now).
 	case "search", "s":
 		if len(os.Args) < 3 {
 			fatal(errors.New("need search term"))
 		}
 
-		// TODO: don't print with 0 matches.
-		header()
+		var out []string
 		words := make([]string, len(os.Args)-2)
 		for i := range os.Args[2:] {
 			words[i] = strings.ToUpper(os.Args[i+2])
@@ -84,8 +82,19 @@ func main() {
 				}
 			}
 			if m == len(words) {
-				printEntry(cp, name)
+				out = append(out, fmtEntry(cp, name))
 			}
+		}
+
+		if len(out) == 0 {
+			fmt.Println("no matches")
+			os.Exit(2)
+		}
+
+		header()
+		sort.Strings(out)
+		for _, o := range out {
+			fmt.Println(o)
 		}
 	}
 }
@@ -145,21 +154,20 @@ func identify(in string) {
 		_, _ = fmt.Fprintf(os.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
-	// TODO: don't print with 0 matches.
 	header()
 	for _, c := range in {
 		find := fmt.Sprintf("%04X", c)
 		m := false
 
 		if name := inRange(c); name != "" {
-			printEntry(find, name)
+			fmt.Println(fmtEntry(find, name))
 			m = true
 		}
 
 		if !m {
 			for cp, name := range uniData {
 				if cp == find {
-					printEntry(cp, name)
+					fmt.Println(fmtEntry(cp, name))
 					m = true
 					break
 				}
@@ -181,7 +189,7 @@ func inRange(c rune) string {
 }
 
 // TODO: check terminal size; don't print full descriptin if it doesn't fit.
-func printEntry(cp, name string) {
+func fmtEntry(cp, name string) string {
 	r, _ := strconv.ParseInt(cp, 16, 64)
 	rs := strconv.FormatInt(r, 10)
 	char := string(r)
@@ -205,7 +213,7 @@ func printEntry(cp, name string) {
 	line.WriteString(fmt.Sprintf("U+%s %s %s %s %s",
 		fill(cp, 5), fill(rs, 6), fill(asutf8(rune(r)), 11), fill(html, 10), name))
 
-	fmt.Println(line.String())
+	return line.String()
 }
 
 func asutf8(r rune) string {
