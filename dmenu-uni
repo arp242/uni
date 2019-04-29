@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# https://github.com/Carpetsmoker/uni
+
+uni -q p emoji |
+	dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+	grep -o "^'.'" |
+	tr -d "'" |
+	xclip -selection clipboard

@@ -47,7 +47,7 @@ func usage(err error) {
 		}
 	}
 
-	_, _ = fmt.Fprintf(out, `Usage: %s [-hrq] [ identify | search | print ]
+	_, _ = fmt.Fprintf(out, `Usage: %s [-hrq] [identify | search | print]
 
 Flags:
     -h      Show this help.
@@ -57,7 +57,7 @@ Flags:
             characters. Note control characters may mangle the output.
 
 Commands:
-    identify [ string string ... | file:#loc ]
+    identify [string string ... | file:#loc]
         Idenfity all the characters in the given strings. Pass a filename ending
         with :#loc to identify the characters at loc's byte (not character!)
         offset. This can be a range as :#start-end.
@@ -110,11 +110,11 @@ func main() {
 		usage(fmt.Errorf("unknown command: %q", args[0]))
 
 	case "identify", "i":
-		err = identify(getargs(args[1:]), quiet, raw)
+		err = identify(getargs(args[1:], quiet), quiet, raw)
 	case "search", "s":
-		err = search(getargs(args[1:]), quiet, raw)
+		err = search(getargs(args[1:], quiet), quiet, raw)
 	case "print", "p":
-		err = print(getargs(args[1:]), quiet, raw)
+		err = print(getargs(args[1:], quiet), quiet, raw)
 	}
 	if err == errNoMatches && quiet {
 		err = nil
@@ -126,12 +126,14 @@ func main() {
 }
 
 // Use commandline args or stdin.
-func getargs(args []string) []string {
+func getargs(args []string, quiet bool) []string {
 	if len(args) > 0 {
 		return args
 	}
 
-	fmt.Fprintf(os.Stderr, "uni: reading from stdin...\n")
+	if !quiet {
+		fmt.Fprintf(os.Stderr, "uni: reading from stdin...\n")
+	}
 	stdin, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		panic(fmt.Errorf("read stdin: %s", err))
@@ -188,6 +190,8 @@ func canonCat(cat string) string {
 func print(args []string, quiet, raw bool) error {
 	var out printer
 
+	// TODO: use this data:
+	// https://unicode.org/emoji/charts-12.0/full-emoji-list.html
 	rm := -1
 	for i, a := range args {
 		if canonCat(a) == "emoji" {
