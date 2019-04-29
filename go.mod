@@ -1,6 +1,3 @@
 module arp242.net/uni
 
-require (
-	github.com/mattn/go-isatty v0.0.7
-	golang.org/x/sys v0.0.0-20190425145619-16072639606e
-)
+require golang.org/x/sys v0.0.0-20190428183149-804c0c7841b5
