@@ -1,6 +1,16 @@
-`uni` prints Unicode information about strings.
+[![This project is considered experimental](https://img.shields.io/badge/Status-experimental-red.svg)](https://arp242.net/status/experimental)
 
-Install it with `go get arp242.net/uni`.
+`uni` queries the Unicode database from the commandline.
+
+There are three commands: `identify` to print Unicode information about a
+string, `search` to search for codepoints, and `print` to print groups of
+Unicode classes.
+
+Install it with `go get arp242.net/uni`, which will put the binary at
+`~/go/bin/uni`.
+
+Usage
+-----
 
 Identify a character:
 
@@ -86,3 +96,12 @@ Use standard shell quoting for more literal matches:
 	$ uni s 'rightwards black arrow'
 	     cpoint  dec    utf-8       html       name
 	'⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW
+
+The `print` command (shortcut `p`) can be used to print groups of characters:
+
+	$ uni print printable
+	[..]
+
+	$ uni p emoji
+	[..]
+
