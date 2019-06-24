@@ -74,8 +74,8 @@ Commands:
             Block        GeneralPunctuation
             all          Everything
             emoji        Alias for "Miscellaneous Symbols",
-                         "Emoticons", and "Supplemental Symbols and
-                         Pictographs" blocks
+                         "Emoticons", "Supplemental Symbols and
+                         Pictographs", and "Other Symbol" blocks
 
         Names are matched case insensitive. Spaces and commas are optional and
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
@@ -202,7 +202,8 @@ func print(args []string, quiet, raw bool) error {
 	if rm > -1 {
 		args = append(args[:rm], args[rm+1:]...)
 		args = append(args[:rm], append(
-			[]string{"Miscellaneous Symbols", "Emoticons", "Supplemental Symbols and Pictographs"},
+			// TODO: "Other Symbol" contains a lot of stuff that's not an emoji.
+			[]string{"Miscellaneous Symbols", "Emoticons", "Supplemental Symbols and Pictographs", "Other Symbol"},
 			args[rm:]...)...)
 	}
 
