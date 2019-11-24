@@ -143,7 +143,7 @@ func mkemojidata() (closeErr error) {
 					}
 
 					_, err = fp.WriteString(fmt.Sprintf("\t{[]uint32{0x%x}, `%s`},\n",
-						i, info.name))
+						i, strings.ToLower(info.name)))
 					if err != nil {
 						return err
 					}
