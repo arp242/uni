@@ -82,6 +82,7 @@ func mkemojidata() (closeErr error) {
 
 			codepoints := bytes.TrimSpace(bytes.Split(line, []byte(";"))[0])
 			if bytes.Contains(codepoints, []byte(" ")) {
+				// Multiple codepoints
 				name := bytes.Split(line, []byte(";"))[2]
 				name = name[:bytes.Index(name, []byte("#"))]
 				name = bytes.TrimSpace(name)
@@ -92,7 +93,9 @@ func mkemojidata() (closeErr error) {
 					if err != nil {
 						return err
 					}
-					cp = append(cp, fmt.Sprintf("0x%x", d))
+					if d != 0x200d {
+						cp = append(cp, fmt.Sprintf("0x%x", d))
+					}
 				}
 
 				_, err = fp.WriteString(fmt.Sprintf("\t{[]uint32{%s}, `%s`},\n",

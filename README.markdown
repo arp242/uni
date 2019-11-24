@@ -150,15 +150,15 @@ reason I wrote this. Some emojis are complex since there's more than one
 character.
 
     $ uni e all | grep firefighter
-    👨‍‍🚒‍ man firefighter
-    👨🏻‍‍‍🚒‍ man firefighter: light skin tone
-    👨🏼‍‍‍🚒‍ man firefighter: medium-light skin tone
-    👨🏽‍‍‍🚒‍ man firefighter: medium skin tone
-    👨🏾‍‍‍🚒‍ man firefighter: medium-dark skin tone
-    👨🏿‍‍‍🚒‍ man firefighter: dark skin tone
-    👩‍‍🚒‍ woman firefighter
-    👩🏻‍‍‍🚒‍ woman firefighter: light skin tone
-    👩🏼‍‍‍🚒‍ woman firefighter: medium-light skin tone
-    👩🏽‍‍‍🚒‍ woman firefighter: medium skin tone
-    👩🏾‍‍‍🚒‍ woman firefighter: medium-dark skin tone
-    👩🏿‍‍‍🚒‍ woman firefighter: dark skin tone
+    👨🚒‍ man firefighter
+    👨🏻‍🚒‍ man firefighter: light skin tone
+    👨🏼‍🚒‍ man firefighter: medium-light skin tone
+    👨🏽‍🚒‍ man firefighter: medium skin tone
+    👨🏾‍🚒‍ man firefighter: medium-dark skin tone
+    👨🏿‍🚒‍ man firefighter: dark skin tone
+    👩🚒‍ woman firefighter
+    👩🏻‍🚒‍ woman firefighter: light skin tone
+    👩🏼‍🚒‍ woman firefighter: medium-light skin tone
+    👩🏽‍🚒‍ woman firefighter: medium skin tone
+    👩🏾‍🚒‍ woman firefighter: medium-dark skin tone
+    👩🏿‍🚒‍ woman firefighter: dark skin tone
