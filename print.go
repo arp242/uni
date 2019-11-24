@@ -3,10 +3,29 @@ package main
 import (
 	"fmt"
 	"io"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
 	"unicode/utf8"
+
+	"arp242.net/uni/isatty"
+	"arp242.net/uni/terminal"
+)
+
+var (
+	isTerm    = isatty.IsTerminal(os.Stdout.Fd())
+	termWidth = func() int {
+		if !isTerm {
+			return 0
+		}
+
+		w, _, err := terminal.GetSize(int(os.Stdout.Fd()))
+		if err != nil || w < 50 {
+			return 0
+		}
+		return w
+	}()
 )
 
 type printer []char

@@ -1,10 +1,8 @@
-[![This project is considered experimental](https://img.shields.io/badge/Status-experimental-red.svg)](https://arp242.net/status/experimental)
-
 `uni` queries the Unicode database from the commandline.
 
-There are three commands: `identify` to print Unicode information about a
-string, `search` to search for codepoints, and `print` to print groups of
-Unicode classes.
+There are four commands: `identify` to print Unicode information about a string,
+`search` to search for codepoints, `print` to print groups of Unicode classes,
+and `emoji` to find emojis.
 
 Install it with `go get arp242.net/uni`, which will put the binary at
 `~/go/bin/uni`.
@@ -12,9 +10,9 @@ Install it with `go get arp242.net/uni`, which will put the binary at
 Integrations
 ------------
 
-There is a [dmenu](http://tools.suckless.org/dmenu) example script at
-[`dmenu-uni`](dmenu-uni). This can also be used with
-[rofi](https://github.com/davatorium/rofi) or similar programs.
+There is a [dmenu][dmenu] example script at [`dmenu-uni`](dmenu-uni). This can
+also be used with [rofi][rofi] or similar programs. Note that dmenu will *crash*
+when using a colour emoji font (such as Noto), this is [a bug in Xft][xft].
 
 You can add a `:UnicodeName` command to Vim with:
 
@@ -22,6 +20,10 @@ You can add a `:UnicodeName` command to Vim with:
             \ system('uni -q i',
             \      [strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)]
             \ )[:-2]
+
+[dmenu]: http://tools.suckless.org/dmenu
+[rofi]: https://github.com/davatorium/rofi
+[xft]: https://bugs.freedesktop.org/show_bug.cgi?id=107534
 
 Usage
 -----
@@ -142,3 +144,21 @@ Blocks:
     '│'  U+2502  9474   e2 94 82    &boxv;     BOX DRAWINGS LIGHT VERTICAL (Other_Symbol)
     '┃'  U+2503  9475   e2 94 83    &#x2503;   BOX DRAWINGS HEAVY VERTICAL (Other_Symbol)
     [..]
+
+And finally, there is the `emoji` command (shortcut: `e`), which is the real
+reason I wrote this. Some emojis are complex since there's more than one
+character.
+
+    $ uni e all | grep firefighter
+    👨‍‍🚒‍ man firefighter
+    👨🏻‍‍‍🚒‍ man firefighter: light skin tone
+    👨🏼‍‍‍🚒‍ man firefighter: medium-light skin tone
+    👨🏽‍‍‍🚒‍ man firefighter: medium skin tone
+    👨🏾‍‍‍🚒‍ man firefighter: medium-dark skin tone
+    👨🏿‍‍‍🚒‍ man firefighter: dark skin tone
+    👩‍‍🚒‍ woman firefighter
+    👩🏻‍‍‍🚒‍ woman firefighter: light skin tone
+    👩🏼‍‍‍🚒‍ woman firefighter: medium-light skin tone
+    👩🏽‍‍‍🚒‍ woman firefighter: medium skin tone
+    👩🏾‍‍‍🚒‍ woman firefighter: medium-dark skin tone
+    👩🏿‍‍‍🚒‍ woman firefighter: dark skin tone

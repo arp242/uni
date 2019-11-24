@@ -1,4 +1,4 @@
-//go:generate go run gen.go data.go
+//go:generate go run gen.go data.go gen_unidata.go
 
 // Command uni prints Unicode information about characters.
 package main // import "arp242.net/uni"
@@ -14,27 +14,12 @@ import (
 	"strings"
 	"unicode"
 	"unicode/utf8"
-
-	"arp242.net/uni/isatty"
-	"arp242.net/uni/terminal"
 )
 
 var (
-	isTerm       = isatty.IsTerminal(os.Stdout.Fd())
-	termWidth    = 0
 	errFlag      = errors.New("")
 	errNoMatches = errors.New("no matches")
 )
-
-func init() {
-	if !isTerm {
-		return
-	}
-	w, _, err := terminal.GetSize(int(os.Stdout.Fd()))
-	if err == nil && w > 50 {
-		termWidth = w
-	}
-}
 
 func usage(err error) {
 	out := os.Stdout
@@ -73,13 +58,18 @@ Commands:
             Category     PunctuationOther
             Block        GeneralPunctuation
             all          Everything
-            emoji        Alias for "Miscellaneous Symbols",
-                         "Emoticons", "Supplemental Symbols and
-                         Pictographs" blocks
 
         Names are matched case insensitive. Spaces and commas are optional and
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
         "Punctuation_other", and PunctuationOther are all identical.
+
+    emoji ident [ident ...]
+        Find emojis by keyword or group name:
+
+             flags 
+             all      Everything.
+
+        Note: emojis may consist of multiple codepoints!:w
 `, os.Args[0])
 
 	os.Exit(e)
@@ -92,12 +82,17 @@ func main() {
 		help  bool
 		raw   bool
 	)
+	// TODO: Output format; valid values are human (default), csv, tsv, json.
 	//flag.StringVar(&output, "o", "human", "")
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
 	flag.BoolVar(&raw, "r", false, "")
 	flag.Usage = func() { usage(errFlag) }
 	flag.Parse()
+
+	if help {
+		usage(nil)
+	}
 
 	args := flag.Args()
 	if len(args) == 0 {
@@ -108,13 +103,16 @@ func main() {
 	switch strings.ToLower(args[0]) {
 	default:
 		usage(fmt.Errorf("unknown command: %q", args[0]))
-
+	case "help", "h":
+		usage(nil)
 	case "identify", "i":
 		err = identify(getargs(args[1:], quiet), quiet, raw)
 	case "search", "s":
 		err = search(getargs(args[1:], quiet), quiet, raw)
 	case "print", "p":
 		err = print(getargs(args[1:], quiet), quiet, raw)
+	case "emoji", "e":
+		err = emoji(getargs(args[1:], quiet), quiet, raw)
 	}
 	if err == errNoMatches && quiet {
 		err = nil
@@ -178,34 +176,51 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-// TODO: improve.
-func canonCat(cat string) string {
-	cat = strings.Replace(cat, " ", "", -1)
-	cat = strings.Replace(cat, ",", "", -1)
-	cat = strings.Replace(cat, "_", "", -1)
-	cat = strings.ToLower(cat)
-	return cat
+// TODO:
+// - Figure out a good way to display modifiers ("man", "women", "skin tone").
+//   Probably best to record which emojis accept which modifiers, and then add
+//   flags to select them?
+//
+//   $ uni emoji -mod man,dark-skin-tone
+//
+// - Sort in more logical order.
+//
+// - Add more groups: "uni e flags", "uni e faces", etc.
+//
+// - Add some more keywords; right now finding the right emoji is a bit of a
+//   dark art as "smile" gives very few results, but "smiling" many more (should
+//   probably be flag).
+func emoji(args []string, quiet, raw bool) error {
+	out := []string{}
+	for _, a := range args {
+		a = strings.ToLower(a)
+
+		switch a {
+		case "all":
+			for _, e := range emojidata {
+
+				var c string
+				for i, cp := range e.codepoints {
+					c += fmt.Sprintf("%s", string(cp))
+					if i > 0 {
+						c += "\u200d"
+					}
+				}
+
+				out = append(out, fmt.Sprintf("%s %s", c,
+					strings.ToLower(e.name)))
+			}
+		}
+	}
+
+	for _, o := range out {
+		fmt.Println(o)
+	}
+	return nil
 }
 
 func print(args []string, quiet, raw bool) error {
 	var out printer
-
-	// TODO: use this data:
-	// https://unicode.org/emoji/charts-12.0/full-emoji-list.html
-	rm := -1
-	for i, a := range args {
-		if canonCat(a) == "emoji" {
-			rm = i
-			break
-		}
-	}
-	if rm > -1 {
-		args = append(args[:rm], args[rm+1:]...)
-		args = append(args[:rm], append(
-			// TODO: "Other Symbol" contains a lot of stuff that's not an emoji.
-			[]string{"Miscellaneous Symbols", "Emoticons", "Supplemental Symbols and Pictographs"},
-			args[rm:]...)...)
-	}
 
 	for _, a := range args {
 		canon := canonCat(a)
@@ -239,16 +254,38 @@ func print(args []string, quiet, raw bool) error {
 			continue
 		}
 
-		// U2042, U+2042
-		// TODO: support 2042
-		// TODO: support ranges
-		if strings.HasPrefix(canon, "u") {
-			canon = strings.TrimLeft(strings.TrimLeft(canon, "u"), "+")
-			info, ok := unidata[canon]
-			if !ok {
-				return fmt.Errorf("unknown codepoint: %q", a)
+		// U2042, U+2042, U+2042..U+2050, 2042..2050
+		if strings.HasPrefix(canon, "u") || strings.Contains(canon, "..") {
+			canon = strings.ToUpper(canon)
+
+			s := strings.Split(canon, "..")
+			switch len(s) {
+			case 1:
+				s = append(s, s[0])
+			case 2:
+				// Do nothing
+			default:
+				return fmt.Errorf("unknown ident: %q", a)
 			}
-			out = append(out, info)
+
+			start, err := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[0], "U"), "+"), 16, 64)
+			if err != nil {
+				return err
+			}
+			end, err := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[1], "U"), "+"), 16, 64)
+			if err != nil {
+				return err
+			}
+
+			for i := start; i <= end; i++ {
+				x := fmt.Sprintf("%X", i)
+				info, ok := unidata[x]
+				if !ok {
+					return fmt.Errorf("unknown codepoint: %q", x)
+				}
+				out = append(out, info)
+			}
+
 			continue
 		}
 

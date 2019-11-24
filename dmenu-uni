@@ -1,9 +1,14 @@
 #!/bin/sh
 #
-# https://github.com/Carpetsmoker/uni
+# https://github.com/arp242/uni
 
-uni -q p emoji |
+# uni -q p all |
+# 	dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+# 	grep -o "^'.'" |
+# 	tr -d "'" |
+# 	xclip -selection clipboard
+
+uni -q emoji all |
 	dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
-	grep -o "^'.'" |
-	tr -d "'" |
-	xclip -selection clipboard
+	cut -d' ' -f1 |
+ 	xclip -selection clipboard

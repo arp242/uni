@@ -1,8 +1,15 @@
 package main
 
+import "strings"
+
 type char struct {
 	width, cat uint8
 	codepoint  uint32
+	name       string
+}
+
+type emojiChar struct {
+	codepoints []uint32
 	name       string
 }
 
@@ -370,6 +377,15 @@ func init() {
 	for k := range blocks {
 		blockmap[canonCat(k)] = k
 	}
+}
+
+// TODO: improve.
+func canonCat(cat string) string {
+	cat = strings.Replace(cat, " ", "", -1)
+	cat = strings.Replace(cat, ",", "", -1)
+	cat = strings.Replace(cat, "_", "", -1)
+	cat = strings.ToLower(cat)
+	return cat
 }
 
 var (
