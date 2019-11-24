@@ -146,19 +146,18 @@ Blocks:
     [..]
 
 And finally, there is the `emoji` command (shortcut: `e`), which is the real
-reason I wrote this. Some emojis are complex since there's more than one
-character.
+reason I wrote this:
 
-    $ uni e all | grep firefighter
-    👨🚒‍ man firefighter
-    👨🏻‍🚒‍ man firefighter: light skin tone
-    👨🏼‍🚒‍ man firefighter: medium-light skin tone
-    👨🏽‍🚒‍ man firefighter: medium skin tone
-    👨🏾‍🚒‍ man firefighter: medium-dark skin tone
-    👨🏿‍🚒‍ man firefighter: dark skin tone
-    👩🚒‍ woman firefighter
-    👩🏻‍🚒‍ woman firefighter: light skin tone
-    👩🏼‍🚒‍ woman firefighter: medium-light skin tone
-    👩🏽‍🚒‍ woman firefighter: medium skin tone
-    👩🏾‍🚒‍ woman firefighter: medium-dark skin tone
-    👩🏿‍🚒‍ woman firefighter: dark skin tone
+    $ uni e firefighter
+    👨‍🚒 man firefighter
+    👨‍🏻‍🚒 man firefighter: light skin tone
+    👨‍🏼‍🚒 man firefighter: medium-light skin tone
+    👨‍🏽‍🚒 man firefighter: medium skin tone
+    👨‍🏾‍🚒 man firefighter: medium-dark skin tone
+    👨‍🏿‍🚒 man firefighter: dark skin tone
+    👩‍🚒 woman firefighter
+    👩‍🏻‍🚒 woman firefighter: light skin tone
+    👩‍🏼‍🚒 woman firefighter: medium-light skin tone
+    👩‍🏽‍🚒 woman firefighter: medium skin tone
+    👩‍🏾‍🚒 woman firefighter: medium-dark skin tone
+    👩‍🏿‍🚒 woman firefighter: dark skin tone

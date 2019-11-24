@@ -64,12 +64,12 @@ Commands:
         "Punctuation_other", and PunctuationOther are all identical.
 
     emoji ident [ident ...]
-        Find emojis by keyword or group name:
+        Find emojis by keyword or special keyword:
 
-             flags 
-             all      Everything.
+             all      Print Everything.
 
-        Note: emojis may consist of multiple codepoints!:w
+        Searching works the same as for the search command. Note: emojis may
+        consist of multiple codepoints!
 `, os.Args[0])
 
 	os.Exit(e)
@@ -194,22 +194,24 @@ func emoji(args []string, quiet, raw bool) error {
 	out := []string{}
 	for _, a := range args {
 		a = strings.ToLower(a)
+		if a == "all" {
+			a = ""
+		}
 
-		switch a {
-		case "all":
-			for _, e := range emojidata {
-
-				var c string
-				for i, cp := range e.codepoints {
-					c += fmt.Sprintf("%s", string(cp))
-					if i > 0 {
-						c += "\u200d"
-					}
-				}
-
-				out = append(out, fmt.Sprintf("%s %s", c,
-					strings.ToLower(e.name)))
+		for _, e := range emojidata {
+			if !strings.Contains(e.name, a) {
+				continue
 			}
+			var c string
+			for i, cp := range e.codepoints {
+				if i > 0 {
+					c += "\u200d"
+				}
+				c += fmt.Sprintf("%s", string(cp))
+			}
+
+			out = append(out, fmt.Sprintf("%s %s", c,
+				strings.ToLower(e.name)))
 		}
 	}
 
