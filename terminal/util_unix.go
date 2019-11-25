@@ -8,9 +8,7 @@
 
 package terminal // import "arp242.net/uni/terminal"
 
-import (
-	"golang.org/x/sys/unix"
-)
+import "golang.org/x/sys/unix"
 
 // GetSize returns the dimensions of the given terminal.
 func GetSize(fd int) (width, height int, err error) {

@@ -221,7 +221,7 @@ func emoji(args []string, quiet, raw bool) error {
 				if i > 0 {
 					c += "\u200d"
 				}
-				c += fmt.Sprintf("%s", string(cp))
+				c += fmt.Sprint(string(cp))
 			}
 
 			out = append(out, []string{c, e.name, e.group, e.subgroup})

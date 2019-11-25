@@ -8,9 +8,7 @@
 
 package terminal // import "arp242.net/uni/terminal"
 
-import (
-	"golang.org/x/sys/windows"
-)
+import "golang.org/x/sys/windows"
 
 // GetSize returns the visible dimensions of the given terminal.
 //

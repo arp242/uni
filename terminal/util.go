@@ -10,5 +10,5 @@ package terminal // import "arp242.net/uni/terminal"
 
 // GetSize returns the dimensions of the given terminal.
 func GetSize(fd int) (width, height int, err error) {
-	return 0, 0, nil
+	return 0, 0, nil // Not implemented.
 }
