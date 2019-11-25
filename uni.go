@@ -64,12 +64,13 @@ Commands:
         "Punctuation_other", and PunctuationOther are all identical.
 
     emoji ident [ident ...]
-        Find emojis by keyword or special keyword:
+        Print emojis by group name:
 
-             all      Print Everything.
+             all              Print Everything.
+             groups           Print all group and subgroup names.
+             <anything else>  Print all emojis in the group or subgroup.
 
-        Searching works the same as for the search command. Note: emojis may
-        consist of multiple codepoints!
+        Note: emojis may consist of multiple codepoints!
 `, os.Args[0])
 
 	os.Exit(e)
@@ -185,23 +186,36 @@ func search(args []string, quiet, raw bool) error {
 //
 // - Sort in more logical order.
 //
-// - Add more groups: "uni e flags", "uni e faces", etc.
-//
 // - Add some more keywords; right now finding the right emoji is a bit of a
 //   dark art as "smile" gives very few results, but "smiling" many more (should
 //   probably be flag).
+//
+// - Bring back search? Note: Searching doesn't behave like "uni s"
+//
+// - Maybe add flag to "uni s" to only print emojis?
 func emoji(args []string, quiet, raw bool) error {
-	out := []string{}
+	out := [][]string{}
+	cols := []int{4, 0, 0, 0}
 	for _, a := range args {
 		a = strings.ToLower(a)
-		if a == "all" {
+		switch a {
+		case "all":
 			a = ""
+		case "groups":
+			for _, g := range emojiGroups {
+				fmt.Println(g)
+				for _, sg := range emojiSubgroups[g] {
+					fmt.Println("   ", sg)
+				}
+			}
+			return nil
 		}
 
 		for _, e := range emojidata {
-			if !strings.Contains(e.name, a) {
+			if !strings.Contains(strings.ToLower(e.group), a) && !strings.Contains(strings.ToLower(e.subgroup), a) {
 				continue
 			}
+
 			var c string
 			for i, cp := range e.codepoints {
 				if i > 0 {
@@ -210,13 +224,29 @@ func emoji(args []string, quiet, raw bool) error {
 				c += fmt.Sprintf("%s", string(cp))
 			}
 
-			out = append(out, fmt.Sprintf("%s %s", c,
-				strings.ToLower(e.name)))
+			out = append(out, []string{c, e.name, e.group, e.subgroup})
+			if len(e.name) > cols[1] {
+				cols[1] = len(e.name)
+			}
+			if len(e.group) > cols[2] {
+				cols[2] = len(e.group)
+			}
+			if len(e.subgroup) > cols[3] {
+				cols[3] = len(e.subgroup)
+			}
 		}
 	}
 
+	// TODO: not always correctly aligned.
 	for _, o := range out {
-		fmt.Println(o)
+		for i, c := range o {
+			if i == 0 {
+				fmt.Print(c + " ")
+			} else {
+				fmt.Print(fill(c, cols[i]+2))
+			}
+		}
+		fmt.Println("")
 	}
 	return nil
 }

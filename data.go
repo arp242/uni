@@ -9,8 +9,8 @@ type char struct {
 }
 
 type emojiChar struct {
-	codepoints []uint32
-	name       string
+	codepoints            []uint32
+	name, group, subgroup string
 }
 
 const (

@@ -2,13 +2,34 @@
 #
 # https://github.com/arp242/uni
 
-# uni -q p all |
-# 	dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
-# 	grep -o "^'.'" |
-# 	tr -d "'" |
-# 	xclip -selection clipboard
+case "${1:-all}" in
+	# List all codepoints.
+	all)
+		uni -q p all |
+			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+			grep -o "^'.'" |
+			tr -d "'" |
+			xclip -selection clipboard
+		;;
 
-uni -q emoji all |
-	dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
-	cut -d' ' -f1 |
- 	xclip -selection clipboard
+	# List all emojis.
+	emoji)
+		uni -q emoji all |
+			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+			cut -d' ' -f1 |
+			xclip -selection clipboard
+		;;
+
+	# List common facial expressions, excluding flags, guitars, lobsters, map of
+	# Japan, and what-have-you.
+	emoji-common)
+		uni -q emoji smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture |
+			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+			cut -d' ' -f1 |
+			xclip -selection clipboard
+		;;
+
+	*)
+		echo >&2 "dmenu-uni: unknown '$1'"
+		;;
+esac
