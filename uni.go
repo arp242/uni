@@ -1,5 +1,3 @@
-//go:generate go run gen.go data.go gen_unidata.go
-
 // Command uni prints Unicode information about characters.
 package main // import "arp242.net/uni"
 
@@ -14,6 +12,8 @@ import (
 	"strings"
 	"unicode"
 	"unicode/utf8"
+
+	"arp242.net/uni/unidata"
 )
 
 var (
@@ -157,10 +157,10 @@ func search(args []string, quiet, raw bool) error {
 	for i := range args {
 		words[i] = strings.ToUpper(args[i])
 	}
-	for _, info := range unidata {
+	for _, info := range unidata.Unidata {
 		m := 0
 		for _, w := range words {
-			if strings.Contains(info.name, w) {
+			if strings.Contains(info.Name, w) {
 				m++
 			}
 		}
@@ -202,37 +202,37 @@ func emoji(args []string, quiet, raw bool) error {
 		case "all":
 			a = ""
 		case "groups":
-			for _, g := range emojiGroups {
+			for _, g := range unidata.EmojiGroups {
 				fmt.Println(g)
-				for _, sg := range emojiSubgroups[g] {
+				for _, sg := range unidata.EmojiSubgroups[g] {
 					fmt.Println("   ", sg)
 				}
 			}
 			return nil
 		}
 
-		for _, e := range emojidata {
-			if !strings.Contains(strings.ToLower(e.group), a) && !strings.Contains(strings.ToLower(e.subgroup), a) {
+		for _, e := range unidata.Emojidata {
+			if !strings.Contains(strings.ToLower(e.Group), a) && !strings.Contains(strings.ToLower(e.Subgroup), a) {
 				continue
 			}
 
 			var c string
-			for i, cp := range e.codepoints {
+			for i, cp := range e.Codepoints {
 				if i > 0 {
 					c += "\u200d"
 				}
 				c += fmt.Sprint(string(cp))
 			}
 
-			out = append(out, []string{c, e.name, e.group, e.subgroup})
-			if len(e.name) > cols[1] {
-				cols[1] = len(e.name)
+			out = append(out, []string{c, e.Name, e.Group, e.Subgroup})
+			if len(e.Name) > cols[1] {
+				cols[1] = len(e.Name)
 			}
-			if len(e.group) > cols[2] {
-				cols[2] = len(e.group)
+			if len(e.Group) > cols[2] {
+				cols[2] = len(e.Group)
 			}
-			if len(e.subgroup) > cols[3] {
-				cols[3] = len(e.subgroup)
+			if len(e.Subgroup) > cols[3] {
+				cols[3] = len(e.Subgroup)
 			}
 		}
 	}
@@ -255,20 +255,20 @@ func print(args []string, quiet, raw bool) error {
 	var out printer
 
 	for _, a := range args {
-		canon := canonCat(a)
+		canon := unidata.CanonCat(a)
 
 		// Print everything.
 		if canon == "all" {
-			for _, info := range unidata {
+			for _, info := range unidata.Unidata {
 				out = append(out, info)
 			}
 			continue
 		}
 
 		// Category name.
-		if cat, ok := catmap[canon]; ok {
-			for _, info := range unidata {
-				if info.cat == cat {
+		if cat, ok := unidata.Catmap[canon]; ok {
+			for _, info := range unidata.Unidata {
+				if info.Cat == cat {
 					out = append(out, info)
 				}
 			}
@@ -276,9 +276,9 @@ func print(args []string, quiet, raw bool) error {
 		}
 
 		// Block.
-		if bl, ok := blockmap[canon]; ok {
-			for cp := blocks[bl][0]; cp <= blocks[bl][1]; cp++ {
-				s, ok := unidata[fmt.Sprintf("%04X", cp)]
+		if bl, ok := unidata.Blockmap[canon]; ok {
+			for cp := unidata.Blocks[bl][0]; cp <= unidata.Blocks[bl][1]; cp++ {
+				s, ok := unidata.Unidata[fmt.Sprintf("%04X", cp)]
 				if ok {
 					out = append(out, s)
 				}
@@ -311,7 +311,7 @@ func print(args []string, quiet, raw bool) error {
 
 			for i := start; i <= end; i++ {
 				x := fmt.Sprintf("%X", i)
-				info, ok := unidata[x]
+				info, ok := unidata.Unidata[x]
 				if !ok {
 					return fmt.Errorf("unknown codepoint: %q", x)
 				}
@@ -389,14 +389,14 @@ func identify(ins []string, quiet, raw bool) error {
 		find := fmt.Sprintf("%04X", c)
 		m := false
 
-		if name := inRange(c); name != "" {
+		if name := unidata.InRange(c); name != "" {
 			// TODO: fill in width, category
-			out = append(out, char{0, 0, 0, name})
+			out = append(out, unidata.Char{0, 0, 0, name})
 			m = true
 		}
 
 		if !m {
-			for cp, info := range unidata {
+			for cp, info := range unidata.Unidata {
 				if cp == find {
 					out = append(out, info)
 					m = true
@@ -411,20 +411,6 @@ func identify(ins []string, quiet, raw bool) error {
 
 	out.Print(os.Stdout, quiet, raw)
 	return nil
-}
-
-// The UnicodeData.txt file doesn't list every character; some are included as a
-// range:
-//
-//   3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
-//   4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
-func inRange(c rune) string {
-	for i, r := range ranges {
-		if c >= r[0] && c <= r[1] {
-			return rangeNames[i]
-		}
-	}
-	return ""
 }
 
 func fmtChar(c rune, raw bool) string {

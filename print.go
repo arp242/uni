@@ -11,6 +11,7 @@ import (
 
 	"arp242.net/uni/isatty"
 	"arp242.net/uni/terminal"
+	"arp242.net/uni/unidata"
 )
 
 var (
@@ -28,7 +29,7 @@ var (
 	}()
 )
 
-type printer []char
+type printer []unidata.Char
 
 func (p printer) Print(fp io.Writer, quiet, raw bool) {
 	if len(p) == 0 {
@@ -48,36 +49,36 @@ func (p printer) Print(fp io.Writer, quiet, raw bool) {
 
 // TODO: add option to choose sorting order.
 func (p *printer) PrintSorted(fp io.Writer, quiet, raw bool) {
-	s := []char(*p)
-	sort.Slice(s, func(i int, j int) bool { return s[i].codepoint < s[j].codepoint })
+	s := []unidata.Char(*p)
+	sort.Slice(s, func(i int, j int) bool { return s[i].Codepoint < s[j].Codepoint })
 	p.Print(fp, quiet, raw)
 }
 
-func (p printer) fmtChar(b *strings.Builder, info char, raw bool) {
-	c := rune(info.codepoint)
+func (p printer) fmtChar(b *strings.Builder, info unidata.Char, raw bool) {
+	c := rune(info.Codepoint)
 
 	size := 44
 	b.WriteString(fmt.Sprintf("'%v' ", fmtChar(c, raw)))
-	if info.width != widthFullWidth && info.width != widthWide {
+	if info.Width != unidata.WidthFullWidth && info.Width != unidata.WidthWide {
 		size++
 		b.WriteString(" ")
 	}
 
-	name := fmt.Sprintf("%s (%s)", info.name, catnames[info.cat])
+	name := fmt.Sprintf("%s (%s)", info.Name, unidata.Catnames[info.Cat])
 	if isTerm && termWidth > 0 && len(name) > termWidth-size {
 		name = name[:termWidth-size] + "…"
 	}
 
 	b.WriteString(fmt.Sprintf("U+%s %s %s %s %s\n",
-		fill(fmt.Sprintf("%04X", info.codepoint), 5),
-		fill(strconv.FormatUint(uint64(info.codepoint), 10), 6),
+		fill(fmt.Sprintf("%04X", info.Codepoint), 5),
+		fill(strconv.FormatUint(uint64(info.Codepoint), 10), 6),
 		fill(p.utf8(c), 11),
-		fill(p.entity(c, info.codepoint), 10),
+		fill(p.entity(c, info.Codepoint), 10),
 		name))
 }
 
 func (p printer) entity(c rune, cp uint32) string {
-	html := entities[c]
+	html := unidata.Entities[c]
 	if html == "" {
 		html = fmt.Sprintf("#x%x", cp)
 	}

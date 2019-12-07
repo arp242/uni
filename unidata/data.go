@@ -1,73 +1,76 @@
-package main
+//go:generate go run gen.go
+
+// Package unidata contains information about Unicode characters.
+package unidata
 
 import "strings"
 
-type char struct {
-	width, cat uint8
-	codepoint  uint32
-	name       string
+type Char struct {
+	Width, Cat uint8
+	Codepoint  uint32
+	Name       string
 }
 
-type emojiChar struct {
-	codepoints            []uint32
-	name, group, subgroup string
+type EmojiChar struct {
+	Codepoints            []uint32
+	Name, Group, Subgroup string
 }
 
 const (
-	widthAmbiguous = uint8(iota) // Ambiguous, A
-	widthFullWidth               // FullWidth, F
-	widthHalfWidth               // Halfwidth, H
-	widthNarrow                  // Narrow, N
-	widthNeutral                 // Neutral (Not East Asian), Na
-	widthWide                    // Wide, W
+	WidthAmbiguous = uint8(iota) // Ambiguous, A
+	WidthFullWidth               // FullWidth, F
+	WidthHalfWidth               // Halfwidth, H
+	WidthNarrow                  // Narrow, N
+	WidthNeutral                 // Neutral (Not East Asian), Na
+	WidthWide                    // Wide, W
 )
 
 // http://www.unicode.org/reports/tr44/#General_Category_Values
 const (
-	catUppercaseLetter      = uint8(iota) // Lu – an uppercase letter
-	catLowercaseLetter                    // Ll – a lowercase letter
-	catTitlecaseLetter                    // Lt – a digraphic character, with first part uppercase
-	catCasedLetter                        // LC – Lu | Ll | Lt
-	catModifierLetter                     // Lm – a modifier letter
-	catOtherLetter                        // Lo – other letters, including syllables and ideographs
-	catLetter                             // L  – Lu | Ll | Lt | Lm | Lo
-	catNonspacingMark                     // Mn – a nonspacing combining mark (zero advance width)
-	catSpacingMark                        // Mc – a spacing combining mark (positive advance width)
-	catEnclosingMark                      // Me – an enclosing combining mark
-	catMark                               // M  – Mn | Mc | Me
-	catDecimalNumber                      // Nd – a decimal digit
-	catLetterNumber                       // Nl – a letterlike numeric character
-	catOtherNumber                        // No – a numeric character of other type
-	catNumber                             // N  – Nd | Nl | No
-	catConnectorPunctuation               // Pc – a connecting punctuation mark, like a tie
-	catDashPunctuation                    // Pd – a dash or hyphen punctuation mark
-	catOpenPunctuation                    // Ps – an opening punctuation mark (of a pair)
-	catClosePunctuation                   // Pe – a closing punctuation mark (of a pair)
-	catInitialPunctuation                 // Pi – an initial quotation mark
-	catFinalPunctuation                   // Pf – a final quotation mark
-	catOtherPunctuation                   // Po – a punctuation mark of other type
-	catPunctuation                        // P  – Pc | Pd | Ps | Pe | Pi | Pf | Po
-	catMathSymbol                         // Sm – a symbol of mathematical use
-	catCurrencySymbol                     // Sc – a currency sign
-	catModifierSymbol                     // Sk – a non-letterlike modifier symbol
-	catOtherSymbol                        // So – a symbol of other type
-	catSymbol                             // S  – Sm | Sc | Sk | So
-	catSpaceSeparator                     // Zs – a space character (of various non-zero widths)
-	catLineSeparator                      // Zl – U+2028 LINE SEPARATOR only
-	catParagraphSeparator                 // Zp – U+2029 PARAGRAPH SEPARATOR only
-	catSeparator                          // Z  – Zs | Zl | Zp
-	catControl                            // Cc – a C0 or C1 control code
-	catFormat                             // Cf – a format control character
-	catSurrogate                          // Cs – a surrogate code point
-	catPrivateUse                         // Co – a private-use character
-	catUnassigned                         // Cn – a reserved unassigned code point or a noncharacter
-	catOther                              // C  – Cc | Cf | Cs | Co | Cn
+	CatUppercaseLetter      = uint8(iota) // Lu – an uppercase letter
+	CatLowercaseLetter                    // Ll – a lowercase letter
+	CatTitlecaseLetter                    // Lt – a digraphic character, with first part uppercase
+	CatCasedLetter                        // LC – Lu | Ll | Lt
+	CatModifierLetter                     // Lm – a modifier letter
+	CatOtherLetter                        // Lo – other letters, including syllables and ideographs
+	CatLetter                             // L  – Lu | Ll | Lt | Lm | Lo
+	CatNonspacingMark                     // Mn – a nonspacing combining mark (zero advance width)
+	CatSpacingMark                        // Mc – a spacing combining mark (positive advance width)
+	CatEnclosingMark                      // Me – an enclosing combining mark
+	CatMark                               // M  – Mn | Mc | Me
+	CatDecimalNumber                      // Nd – a decimal digit
+	CatLetterNumber                       // Nl – a letterlike numeric character
+	CatOtherNumber                        // No – a numeric character of other type
+	CatNumber                             // N  – Nd | Nl | No
+	CatConnectorPunctuation               // Pc – a connecting punctuation mark, like a tie
+	CatDashPunctuation                    // Pd – a dash or hyphen punctuation mark
+	CatOpenPunctuation                    // Ps – an opening punctuation mark (of a pair)
+	CatClosePunctuation                   // Pe – a closing punctuation mark (of a pair)
+	CatInitialPunctuation                 // Pi – an initial quotation mark
+	CatFinalPunctuation                   // Pf – a final quotation mark
+	CatOtherPunctuation                   // Po – a punctuation mark of other type
+	CatPunctuation                        // P  – Pc | Pd | Ps | Pe | Pi | Pf | Po
+	CatMathSymbol                         // Sm – a symbol of mathematical use
+	CatCurrencySymbol                     // Sc – a currency sign
+	CatModifierSymbol                     // Sk – a non-letterlike modifier symbol
+	CatOtherSymbol                        // So – a symbol of other type
+	CatSymbol                             // S  – Sm | Sc | Sk | So
+	CatSpaceSeparator                     // Zs – a space character (of various non-zero widths)
+	CatLineSeparator                      // Zl – U+2028 LINE SEPARATOR only
+	CatParagraphSeparator                 // Zp – U+2029 PARAGRAPH SEPARATOR only
+	CatSeparator                          // Z  – Zs | Zl | Zp
+	CatControl                            // Cc – a C0 or C1 control code
+	CatFormat                             // Cf – a format control character
+	CatSurrogate                          // Cs – a surrogate code point
+	CatPrivateUse                         // Co – a private-use character
+	CatUnassigned                         // Cn – a reserved unassigned code point or a noncharacter
+	CatOther                              // C  – Cc | Cf | Cs | Co | Cn
 )
 
 // https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt
 // TODO: generate this from the data file.
 var (
-	blocks = map[string][]uint32{
+	Blocks = map[string][]uint32{
 		"Basic Latin":                           {0x0000, 0x007F},
 		"Latin-1 Supplement":                    {0x0080, 0x00FF},
 		"Latin Extended-A":                      {0x0100, 0x017F},
@@ -370,17 +373,17 @@ var (
 		"Supplementary Private Use Area-B": {0x100000, 0x10FFFF},
 	}
 
-	blockmap = make(map[string]string)
+	Blockmap = make(map[string]string)
 )
 
 func init() {
-	for k := range blocks {
-		blockmap[canonCat(k)] = k
+	for k := range Blocks {
+		Blockmap[CanonCat(k)] = k
 	}
 }
 
 // TODO: improve.
-func canonCat(cat string) string {
+func CanonCat(cat string) string {
 	cat = strings.Replace(cat, " ", "", -1)
 	cat = strings.Replace(cat, ",", "", -1)
 	cat = strings.Replace(cat, "_", "", -1)
@@ -389,196 +392,196 @@ func canonCat(cat string) string {
 }
 
 var (
-	catmap = map[string]uint8{
+	Catmap = map[string]uint8{
 		// Short-hand.
-		"Lu": catUppercaseLetter,
-		"Ll": catLowercaseLetter,
-		"Lt": catTitlecaseLetter,
-		"LC": catCasedLetter,
-		"Lm": catModifierLetter,
-		"Lo": catOtherLetter,
-		"L":  catLetter,
-		"Mn": catNonspacingMark,
-		"Mc": catSpacingMark,
-		"Me": catEnclosingMark,
-		"M":  catMark,
-		"Nd": catDecimalNumber,
-		"Nl": catLetterNumber,
-		"No": catOtherNumber,
-		"N":  catNumber,
-		"Pc": catConnectorPunctuation,
-		"Pd": catDashPunctuation,
-		"Ps": catOpenPunctuation,
-		"Pe": catClosePunctuation,
-		"Pi": catInitialPunctuation,
-		"Pf": catFinalPunctuation,
-		"Po": catOtherPunctuation,
-		"P":  catPunctuation,
-		"Sm": catMathSymbol,
-		"Sc": catCurrencySymbol,
-		"Sk": catModifierSymbol,
-		"So": catOtherSymbol,
-		"S":  catSymbol,
-		"Zs": catSpaceSeparator,
-		"Zl": catLineSeparator,
-		"Zp": catParagraphSeparator,
-		"Z":  catSeparator,
-		"Cc": catControl,
-		"Cf": catFormat,
-		"Cs": catSurrogate,
-		"Co": catPrivateUse,
-		"Cn": catUnassigned,
-		"C":  catOther,
+		"Lu": CatUppercaseLetter,
+		"Ll": CatLowercaseLetter,
+		"Lt": CatTitlecaseLetter,
+		"LC": CatCasedLetter,
+		"Lm": CatModifierLetter,
+		"Lo": CatOtherLetter,
+		"L":  CatLetter,
+		"Mn": CatNonspacingMark,
+		"Mc": CatSpacingMark,
+		"Me": CatEnclosingMark,
+		"M":  CatMark,
+		"Nd": CatDecimalNumber,
+		"Nl": CatLetterNumber,
+		"No": CatOtherNumber,
+		"N":  CatNumber,
+		"Pc": CatConnectorPunctuation,
+		"Pd": CatDashPunctuation,
+		"Ps": CatOpenPunctuation,
+		"Pe": CatClosePunctuation,
+		"Pi": CatInitialPunctuation,
+		"Pf": CatFinalPunctuation,
+		"Po": CatOtherPunctuation,
+		"P":  CatPunctuation,
+		"Sm": CatMathSymbol,
+		"Sc": CatCurrencySymbol,
+		"Sk": CatModifierSymbol,
+		"So": CatOtherSymbol,
+		"S":  CatSymbol,
+		"Zs": CatSpaceSeparator,
+		"Zl": CatLineSeparator,
+		"Zp": CatParagraphSeparator,
+		"Z":  CatSeparator,
+		"Cc": CatControl,
+		"Cf": CatFormat,
+		"Cs": CatSurrogate,
+		"Co": CatPrivateUse,
+		"Cn": CatUnassigned,
+		"C":  CatOther,
 
 		// Lower-case shorthand.
-		"lu": catUppercaseLetter,
-		"ll": catLowercaseLetter,
-		"lt": catTitlecaseLetter,
-		"lc": catCasedLetter,
-		"lm": catModifierLetter,
-		"lo": catOtherLetter,
-		"l":  catLetter,
-		"mn": catNonspacingMark,
-		"mc": catSpacingMark,
-		"me": catEnclosingMark,
-		"m":  catMark,
-		"nd": catDecimalNumber,
-		"nl": catLetterNumber,
-		"no": catOtherNumber,
-		"n":  catNumber,
-		"pc": catConnectorPunctuation,
-		"pd": catDashPunctuation,
-		"ps": catOpenPunctuation,
-		"pe": catClosePunctuation,
-		"pi": catInitialPunctuation,
-		"pf": catFinalPunctuation,
-		"po": catOtherPunctuation,
-		"p":  catPunctuation,
-		"sm": catMathSymbol,
-		"sc": catCurrencySymbol,
-		"sk": catModifierSymbol,
-		"so": catOtherSymbol,
-		"s":  catSymbol,
-		"zs": catSpaceSeparator,
-		"zl": catLineSeparator,
-		"zp": catParagraphSeparator,
-		"z":  catSeparator,
-		"cc": catControl,
-		"cf": catFormat,
-		"cs": catSurrogate,
-		"co": catPrivateUse,
-		"cn": catUnassigned,
-		"c":  catOther,
+		"lu": CatUppercaseLetter,
+		"ll": CatLowercaseLetter,
+		"lt": CatTitlecaseLetter,
+		"lc": CatCasedLetter,
+		"lm": CatModifierLetter,
+		"lo": CatOtherLetter,
+		"l":  CatLetter,
+		"mn": CatNonspacingMark,
+		"mc": CatSpacingMark,
+		"me": CatEnclosingMark,
+		"m":  CatMark,
+		"nd": CatDecimalNumber,
+		"nl": CatLetterNumber,
+		"no": CatOtherNumber,
+		"n":  CatNumber,
+		"pc": CatConnectorPunctuation,
+		"pd": CatDashPunctuation,
+		"ps": CatOpenPunctuation,
+		"pe": CatClosePunctuation,
+		"pi": CatInitialPunctuation,
+		"pf": CatFinalPunctuation,
+		"po": CatOtherPunctuation,
+		"p":  CatPunctuation,
+		"sm": CatMathSymbol,
+		"sc": CatCurrencySymbol,
+		"sk": CatModifierSymbol,
+		"so": CatOtherSymbol,
+		"s":  CatSymbol,
+		"zs": CatSpaceSeparator,
+		"zl": CatLineSeparator,
+		"zp": CatParagraphSeparator,
+		"z":  CatSeparator,
+		"cc": CatControl,
+		"cf": CatFormat,
+		"cs": CatSurrogate,
+		"co": CatPrivateUse,
+		"cn": CatUnassigned,
+		"c":  CatOther,
 
 		// Full names, underscores.
-		"uppercase_letter":      catUppercaseLetter,
-		"lowercase_letter":      catLowercaseLetter,
-		"titlecase_letter":      catTitlecaseLetter,
-		"cased_letter":          catCasedLetter,
-		"modifier_letter":       catModifierLetter,
-		"other_letter":          catOtherLetter,
-		"letter":                catLetter,
-		"nonspacing_mark":       catNonspacingMark,
-		"spacing_mark":          catSpacingMark,
-		"enclosing_mark":        catEnclosingMark,
-		"mark":                  catMark,
-		"decimal_number":        catDecimalNumber,
-		"letter_number":         catLetterNumber,
-		"other_number":          catOtherNumber,
-		"number":                catNumber,
-		"connector_punctuation": catConnectorPunctuation,
-		"dash_punctuation":      catDashPunctuation,
-		"open_punctuation":      catOpenPunctuation,
-		"close_punctuation":     catClosePunctuation,
-		"initial_punctuation":   catInitialPunctuation,
-		"final_punctuation":     catFinalPunctuation,
-		"other_punctuation":     catOtherPunctuation,
-		"punctuation":           catPunctuation,
-		"math_symbol":           catMathSymbol,
-		"currency_symbol":       catCurrencySymbol,
-		"modifier_symbol":       catModifierSymbol,
-		"other_symbol":          catOtherSymbol,
-		"symbol":                catSymbol,
-		"space_separator":       catSpaceSeparator,
-		"line_separator":        catLineSeparator,
-		"paragraph_separator":   catParagraphSeparator,
-		"separator":             catSeparator,
-		"control":               catControl,
-		"format":                catFormat,
-		"surrogate":             catSurrogate,
-		"private_use":           catPrivateUse,
-		"unassigned":            catUnassigned,
-		"other":                 catOther,
+		"uppercase_letter":      CatUppercaseLetter,
+		"lowercase_letter":      CatLowercaseLetter,
+		"titlecase_letter":      CatTitlecaseLetter,
+		"cased_letter":          CatCasedLetter,
+		"modifier_letter":       CatModifierLetter,
+		"other_letter":          CatOtherLetter,
+		"letter":                CatLetter,
+		"nonspacing_mark":       CatNonspacingMark,
+		"spacing_mark":          CatSpacingMark,
+		"enclosing_mark":        CatEnclosingMark,
+		"mark":                  CatMark,
+		"decimal_number":        CatDecimalNumber,
+		"letter_number":         CatLetterNumber,
+		"other_number":          CatOtherNumber,
+		"number":                CatNumber,
+		"connector_punctuation": CatConnectorPunctuation,
+		"dash_punctuation":      CatDashPunctuation,
+		"open_punctuation":      CatOpenPunctuation,
+		"close_punctuation":     CatClosePunctuation,
+		"initial_punctuation":   CatInitialPunctuation,
+		"final_punctuation":     CatFinalPunctuation,
+		"other_punctuation":     CatOtherPunctuation,
+		"punctuation":           CatPunctuation,
+		"math_symbol":           CatMathSymbol,
+		"currency_symbol":       CatCurrencySymbol,
+		"modifier_symbol":       CatModifierSymbol,
+		"other_symbol":          CatOtherSymbol,
+		"symbol":                CatSymbol,
+		"space_separator":       CatSpaceSeparator,
+		"line_separator":        CatLineSeparator,
+		"paragraph_separator":   CatParagraphSeparator,
+		"separator":             CatSeparator,
+		"control":               CatControl,
+		"format":                CatFormat,
+		"surrogate":             CatSurrogate,
+		"private_use":           CatPrivateUse,
+		"unassigned":            CatUnassigned,
+		"other":                 CatOther,
 
 		// Without underscore.
-		"uppercaseletter":      catUppercaseLetter,
-		"lowercaseletter":      catLowercaseLetter,
-		"titlecaseletter":      catTitlecaseLetter,
-		"casedletter":          catCasedLetter,
-		"modifierletter":       catModifierLetter,
-		"otherletter":          catOtherLetter,
-		"nonspacingmark":       catNonspacingMark,
-		"spacingmark":          catSpacingMark,
-		"enclosingmark":        catEnclosingMark,
-		"decimalnumber":        catDecimalNumber,
-		"letternumber":         catLetterNumber,
-		"othernumber":          catOtherNumber,
-		"connectorpunctuation": catConnectorPunctuation,
-		"dashpunctuation":      catDashPunctuation,
-		"openpunctuation":      catOpenPunctuation,
-		"closepunctuation":     catClosePunctuation,
-		"initialpunctuation":   catInitialPunctuation,
-		"finalpunctuation":     catFinalPunctuation,
-		"otherpunctuation":     catOtherPunctuation,
-		"mathsymbol":           catMathSymbol,
-		"currencysymbol":       catCurrencySymbol,
-		"modifiersymbol":       catModifierSymbol,
-		"othersymbol":          catOtherSymbol,
-		"spaceseparator":       catSpaceSeparator,
-		"lineseparator":        catLineSeparator,
-		"paragraphseparator":   catParagraphSeparator,
-		"privateuse":           catPrivateUse,
+		"uppercaseletter":      CatUppercaseLetter,
+		"lowercaseletter":      CatLowercaseLetter,
+		"titlecaseletter":      CatTitlecaseLetter,
+		"casedletter":          CatCasedLetter,
+		"modifierletter":       CatModifierLetter,
+		"otherletter":          CatOtherLetter,
+		"nonspacingmark":       CatNonspacingMark,
+		"spacingmark":          CatSpacingMark,
+		"enclosingmark":        CatEnclosingMark,
+		"decimalnumber":        CatDecimalNumber,
+		"letternumber":         CatLetterNumber,
+		"othernumber":          CatOtherNumber,
+		"connectorpunctuation": CatConnectorPunctuation,
+		"dashpunctuation":      CatDashPunctuation,
+		"openpunctuation":      CatOpenPunctuation,
+		"closepunctuation":     CatClosePunctuation,
+		"initialpunctuation":   CatInitialPunctuation,
+		"finalpunctuation":     CatFinalPunctuation,
+		"otherpunctuation":     CatOtherPunctuation,
+		"mathsymbol":           CatMathSymbol,
+		"currencysymbol":       CatCurrencySymbol,
+		"modifiersymbol":       CatModifierSymbol,
+		"othersymbol":          CatOtherSymbol,
+		"spaceseparator":       CatSpaceSeparator,
+		"lineseparator":        CatLineSeparator,
+		"paragraphseparator":   CatParagraphSeparator,
+		"privateuse":           CatPrivateUse,
 	}
 
-	catnames = map[uint8]string{
-		catUppercaseLetter:      "Uppercase_Letter",
-		catLowercaseLetter:      "Lowercase_Letter",
-		catTitlecaseLetter:      "Titlecase_Letter",
-		catCasedLetter:          "Cased_Letter",
-		catModifierLetter:       "Modifier_Letter",
-		catOtherLetter:          "Other_Letter",
-		catLetter:               "Letter",
-		catNonspacingMark:       "Nonspacing_Mark",
-		catSpacingMark:          "Spacing_Mark",
-		catEnclosingMark:        "Enclosing_Mark",
-		catMark:                 "Mark",
-		catDecimalNumber:        "Decimal_Number",
-		catLetterNumber:         "Letter_Number",
-		catOtherNumber:          "Other_Number",
-		catNumber:               "Number",
-		catConnectorPunctuation: "Connector_Punctuation",
-		catDashPunctuation:      "Dash_Punctuation",
-		catOpenPunctuation:      "Open_Punctuation",
-		catClosePunctuation:     "Close_Punctuation",
-		catInitialPunctuation:   "Initial_Punctuation",
-		catFinalPunctuation:     "Final_Punctuation",
-		catOtherPunctuation:     "Other_Punctuation",
-		catPunctuation:          "Punctuation",
-		catMathSymbol:           "Math_Symbol",
-		catCurrencySymbol:       "Currency_Symbol",
-		catModifierSymbol:       "Modifier_Symbol",
-		catOtherSymbol:          "Other_Symbol",
-		catSymbol:               "Symbol",
-		catSpaceSeparator:       "Space_Separator",
-		catLineSeparator:        "Line_Separator",
-		catParagraphSeparator:   "Paragraph_Separator",
-		catSeparator:            "Separator",
-		catControl:              "Control",
-		catFormat:               "Format",
-		catSurrogate:            "Surrogate",
-		catPrivateUse:           "Private_Use",
-		catUnassigned:           "Unassigned",
-		catOther:                "Other",
+	Catnames = map[uint8]string{
+		CatUppercaseLetter:      "Uppercase_Letter",
+		CatLowercaseLetter:      "Lowercase_Letter",
+		CatTitlecaseLetter:      "Titlecase_Letter",
+		CatCasedLetter:          "Cased_Letter",
+		CatModifierLetter:       "Modifier_Letter",
+		CatOtherLetter:          "Other_Letter",
+		CatLetter:               "Letter",
+		CatNonspacingMark:       "Nonspacing_Mark",
+		CatSpacingMark:          "Spacing_Mark",
+		CatEnclosingMark:        "Enclosing_Mark",
+		CatMark:                 "Mark",
+		CatDecimalNumber:        "Decimal_Number",
+		CatLetterNumber:         "Letter_Number",
+		CatOtherNumber:          "Other_Number",
+		CatNumber:               "Number",
+		CatConnectorPunctuation: "Connector_Punctuation",
+		CatDashPunctuation:      "Dash_Punctuation",
+		CatOpenPunctuation:      "Open_Punctuation",
+		CatClosePunctuation:     "Close_Punctuation",
+		CatInitialPunctuation:   "Initial_Punctuation",
+		CatFinalPunctuation:     "Final_Punctuation",
+		CatOtherPunctuation:     "Other_Punctuation",
+		CatPunctuation:          "Punctuation",
+		CatMathSymbol:           "Math_Symbol",
+		CatCurrencySymbol:       "Currency_Symbol",
+		CatModifierSymbol:       "Modifier_Symbol",
+		CatOtherSymbol:          "Other_Symbol",
+		CatSymbol:               "Symbol",
+		CatSpaceSeparator:       "Space_Separator",
+		CatLineSeparator:        "Line_Separator",
+		CatParagraphSeparator:   "Paragraph_Separator",
+		CatSeparator:            "Separator",
+		CatControl:              "Control",
+		CatFormat:               "Format",
+		CatSurrogate:            "Surrogate",
+		CatPrivateUse:           "Private_Use",
+		CatUnassigned:           "Unassigned",
+		CatOther:                "Other",
 	}
 )
 
@@ -619,3 +622,17 @@ var (
 		"<Plane 16 Private Use>",
 	}
 )
+
+// The UnicodeData.txt file doesn't list every character; some are included as a
+// range:
+//
+//   3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
+//   4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
+func InRange(c rune) string {
+	for i, r := range ranges {
+		if c >= r[0] && c <= r[1] {
+			return rangeNames[i]
+		}
+	}
+	return ""
+}
