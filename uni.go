@@ -158,7 +158,7 @@ func search(args []string, quiet, raw bool) error {
 	for i := range args {
 		words[i] = strings.ToUpper(args[i])
 	}
-	for _, info := range unidata.Unidata {
+	for _, info := range unidata.Codepoints {
 		m := 0
 		for _, w := range words {
 			if strings.Contains(info.Name, w) {
@@ -238,7 +238,7 @@ func emoji(args []string, quiet, raw bool) error {
 		}
 
 		found := false
-		for _, e := range unidata.Emojidata {
+		for _, e := range unidata.Emojis {
 			if !strings.Contains(strings.ToLower(e.Group), a) &&
 				!strings.Contains(strings.ToLower(e.Subgroup), a) {
 				continue
@@ -297,11 +297,11 @@ func print(args []string, quiet, raw bool) error {
 	var out printer
 
 	for _, a := range args {
-		canon := unidata.CanonCat(a)
+		canon := unidata.CanonicalCategory(a)
 
 		// Print everything.
 		if canon == "all" {
-			for _, info := range unidata.Unidata {
+			for _, info := range unidata.Codepoints {
 				out = append(out, info)
 			}
 			continue
@@ -309,7 +309,7 @@ func print(args []string, quiet, raw bool) error {
 
 		// Category name.
 		if cat, ok := unidata.Catmap[canon]; ok {
-			for _, info := range unidata.Unidata {
+			for _, info := range unidata.Codepoints {
 				if info.Cat == cat {
 					out = append(out, info)
 				}
@@ -320,7 +320,7 @@ func print(args []string, quiet, raw bool) error {
 		// Block.
 		if bl, ok := unidata.Blockmap[canon]; ok {
 			for cp := unidata.Blocks[bl][0]; cp <= unidata.Blocks[bl][1]; cp++ {
-				s, ok := unidata.Unidata[fmt.Sprintf("%04X", cp)]
+				s, ok := unidata.Codepoints[fmt.Sprintf("%04X", cp)]
 				if ok {
 					out = append(out, s)
 				}
@@ -352,7 +352,7 @@ func print(args []string, quiet, raw bool) error {
 			}
 
 			for i := start; i <= end; i++ {
-				info, ok := unidata.Find(rune(i))
+				info, ok := unidata.FindCodepoint(rune(i))
 				if !ok {
 					return fmt.Errorf("unknown codepoint: U+%.4X", i)
 				}
@@ -377,7 +377,7 @@ func identify(ins []string, quiet, raw bool) error {
 
 	var out printer
 	for _, c := range in {
-		info, ok := unidata.Find(c)
+		info, ok := unidata.FindCodepoint(c)
 		if !ok {
 			return fmt.Errorf("unknown codepoint: %.4X", c)
 		}

@@ -29,7 +29,7 @@ var (
 	}()
 )
 
-type printer []unidata.Char
+type printer []unidata.Codepoint
 
 func (p printer) Print(fp io.Writer, quiet, raw bool) {
 	if len(p) == 0 {
@@ -49,12 +49,12 @@ func (p printer) Print(fp io.Writer, quiet, raw bool) {
 
 // TODO: add option to choose sorting order.
 func (p *printer) PrintSorted(fp io.Writer, quiet, raw bool) {
-	s := []unidata.Char(*p)
+	s := []unidata.Codepoint(*p)
 	sort.Slice(s, func(i int, j int) bool { return s[i].Codepoint < s[j].Codepoint })
 	p.Print(fp, quiet, raw)
 }
 
-func (p printer) fmtChar(b *strings.Builder, info unidata.Char, raw bool) {
+func (p printer) fmtChar(b *strings.Builder, info unidata.Codepoint, raw bool) {
 	c := rune(info.Codepoint)
 
 	size := 44
