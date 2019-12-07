@@ -84,6 +84,7 @@ func main() {
 		raw   bool
 	)
 	// TODO: Output format; valid values are human (default), csv, tsv, json.
+	// TODO: Add option to configure columns.
 	//flag.StringVar(&output, "o", "human", "")
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
@@ -350,23 +351,29 @@ func fromFile(in string) string {
 	var seek, read int64
 	var err error
 
-	// Can be as :#42 or #42-50
+	// Can be as :#42, :#42-50, :#42-, and :#-42
 	if strings.Contains(x[1], "-") {
 		rng := strings.Split(x[1], "-")
-		seek, err = strconv.ParseInt(rng[0], 10, 32)
-		if err != nil {
-			return in
+		if rng[0] != "" {
+			seek, err = strconv.ParseInt(rng[0], 10, 32)
+			if err != nil {
+				return in
+			}
+		}
+		var to int64
+		if rng[1] != "" {
+			to, err = strconv.ParseInt(rng[1], 10, 32)
+			if err != nil {
+				return in
+			}
 		}
 
-		to, err := strconv.ParseInt(rng[1], 10, 32)
-		if err != nil {
-			return in
+		if to > 0 {
+			if seek > to {
+				return in
+			}
+			read = to - seek + 1
 		}
-
-		if to < seek {
-			return in
-		}
-		read = to - seek + 1
 	} else {
 		seek, err = strconv.ParseInt(x[1], 10, 32)
 		if err != nil {
@@ -380,6 +387,11 @@ func fromFile(in string) string {
 		return in
 	}
 
+	if read == 0 {
+		st, _ := fp.Stat()
+		read = st.Size() - seek
+	}
+
 	_, _ = fp.Seek(seek, io.SeekStart)
 	b := make([]byte, read)
 	_, _ = fp.Read(b)
@@ -388,7 +400,7 @@ func fromFile(in string) string {
 }
 
 func identify(ins []string, quiet, raw bool) error {
-	in := strings.Join(ins, "") // TODO: not needed. Loop instead.
+	in := strings.Join(ins, "")
 	if strings.Contains(in, ":#") {
 		in = fromFile(in)
 	}
