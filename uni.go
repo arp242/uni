@@ -60,12 +60,15 @@ Commands:
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
         "Punctuation_other", and PunctuationOther are all identical.
 
-    emoji ident [ident ...]
+    emoji [-tone tone] ident [ident ...]
         Print emojis by group name:
 
              all              Print Everything.
              groups           Print all group and subgroup names.
              <anything else>  Print all emojis in the group or subgroup.
+
+        The skin tone modifier is applied on supported emojies if -tone is
+        given. Supported tones: light, mediumlight, medium, mediumdark, dark.
 
         Note: emojis may consist of multiple codepoints!
 `, os.Args[0])
@@ -192,10 +195,31 @@ func search(args []string, quiet, raw bool) error {
 //
 // - Maybe add flag to "uni s" to only print emojis?
 func emoji(args []string, quiet, raw bool) error {
+	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
+	tone := subflag.String("tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
+	subflag.Parse(args)
+
+	switch *tone {
+	case "":
+	case "light":
+		*tone = "\U0001f3fb"
+	case "mediumlight":
+		*tone = "\U0001f3fc"
+	case "medium":
+		*tone = "\U0001f3fd"
+	case "mediumdark":
+		*tone = "\U0001f3fe"
+	case "dark":
+		*tone = "\U0001f3ff"
+	default:
+		fmt.Fprintf(os.Stderr, "%s: invalid skin tone: %q\n", os.Args[0], *tone)
+		flag.Usage()
+		os.Exit(55)
+	}
+
 	out := [][]string{}
 	cols := []int{4, 0, 0, 0}
-
-	for _, a := range args {
+	for _, a := range subflag.Args() {
 		a = strings.ToLower(a)
 		switch a {
 		case "all":
@@ -225,6 +249,10 @@ func emoji(args []string, quiet, raw bool) error {
 					c += "\u200d"
 				}
 				c += fmt.Sprint(string(cp))
+			}
+
+			if *tone != "" && e.SkinTones {
+				c += "\u200d" + *tone
 			}
 
 			out = append(out, []string{c, e.Name, e.Group, e.Subgroup})

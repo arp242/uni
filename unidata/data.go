@@ -17,6 +17,7 @@ type Char struct {
 type EmojiChar struct {
 	Codepoints            []uint32
 	Name, Group, Subgroup string
+	SkinTones             bool
 }
 
 const (
