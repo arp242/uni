@@ -148,3 +148,40 @@ Apply skin tone modifiers with `-tone`:
     🙏🏿 folded hands       People & Body  hands
     👐🏿 open hands         People & Body  hands
     🙌🏿 raising hands      People & Body  hands
+
+Alternatives
+------------
+
+### CLI/TUI
+
+- https://github.com/sindresorhus/emoj
+
+  Doesn't support emojis composed of multiple codepoints (e.g. FIREFIGHTER is
+  PERSON + FIRE TRUCK); quite slow for a CLI program: `emoj smiling` takes 1.8s
+  on my system. Not a fan of npm (has 1862 dependencies).
+
+- https://github.com/Fingel/tuimoji
+
+  Grouping could be better, doesn't support composed emojis, only interactive
+  TUI, feels kinda slow-ish especially when searching.
+
+### GUI
+
+- gnome-characters
+
+  Uses Gnome interface/window decorations, and won't work well with other WMs.
+  I also don't like the grouping/ordering it uses and it requires two clicks to
+  copy a character. Can't seem to insert character immediately.
+
+- gucharmap
+
+  Doesn't display emojis, just unicode blocks.
+
+- KCharSelect
+
+  Many KDE-specific dependencies (106M). Didn't try it.
+
+- https://github.com/Mange/rofi-emoji and https://github.com/fdw/rofimoji
+
+  Both are pretty similar to the dmenu/rofi integration of uni with some minor
+  differences, and seems to work well.
