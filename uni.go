@@ -421,16 +421,11 @@ func identify(ins []string, quiet, raw bool) error {
 		}
 
 		if !m {
-			for cp, info := range unidata.Unidata {
-				if cp == find {
-					out = append(out, info)
-					m = true
-					break
-				}
+			info, ok := unidata.Unidata[find]
+			if !ok {
+				return fmt.Errorf("identify: no match for %q\n", find)
 			}
-			if !m {
-				fmt.Printf("NO MATCH: %s\n", find)
-			}
+			out = append(out, info)
 		}
 	}
 
