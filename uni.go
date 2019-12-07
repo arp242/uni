@@ -178,22 +178,25 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-// TODO:
-// - Figure out a good way to display modifiers ("man", "women", "skin tone").
-//   Probably best to record which emojis accept which modifiers, and then add
-//   flags to select them?
+// TODO: treat man/women thing as modifier too; I don't really care much about
+// having "person shrugging", "man shrugging", and "women shrugging" all turn up
+// in the results for shrugging.
 //
-//   $ uni emoji -mod man,dark-skin-tone
+//   $ uni e                             # Default: show only "person" w/o skin modifiers.
+//   $ uni e -tone dark                  # Apply skin modifer.
 //
-// - Sort in more logical order.
+//   $ uni e -gender man                 # Show only "man" variants
+//   $ uni e -gender man,women           # Show both man and women, but not "person"
+//   $ uni e -gender man,women,person    # Show all.
 //
-// - Add some more keywords; right now finding the right emoji is a bit of a
-//   dark art as "smile" gives very few results, but "smiling" many more (should
-//   probably be flag).
+//   $ uni e -tone dark -gender women    # Show women and apply dark skin modifier.
 //
-// - Bring back search? Note: Searching doesn't behave like "uni s"
+// TODO: sort in more logical order, e.g. by group rather than the order in
+// which it appears. The generated file is sorted weird 🤔
 //
-// - Maybe add flag to "uni s" to only print emojis?
+// TODO: Bring back search? Note: Searching didn't behave like "uni s" (it
+// should). How do we disambiguate between "search text description" and "search
+// groups"?
 func emoji(args []string, quiet, raw bool) error {
 	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
 	tone := subflag.String("tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")

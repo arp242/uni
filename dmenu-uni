@@ -11,6 +11,12 @@ dmenu="dmenu -i"
 # Use Rofi insteaf
 #dmenu="rofi -dmenu"
 
+# Command to copy to clipboard
+copy="xclip -rmlastnl -selection clipboard"
+
+# Common emojis I use >99% of the time.
+common="smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture"
+
 case "${1:-all}" in
 	# List all codepoints.
 	all)
@@ -18,7 +24,7 @@ case "${1:-all}" in
 			$dmenu |
 			grep -o "^'.'" |
 			tr -d "'" |
-			xclip -selection clipboard
+			$copy
 		;;
 
 	# List all emojis.
@@ -26,16 +32,16 @@ case "${1:-all}" in
 		uni -q e all |
 			$dmenu |
 			cut -d' ' -f1 |
-			xclip -selection clipboard
+			$copy
 		;;
 
 	# List common facial expressions, excluding flags, guitars, lobsters, map of
 	# Japan, and what-have-you.
 	emoji-common)
-		uni -q e smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture |
+		uni -q e $common | 
 			$dmenu |
 			cut -d' ' -f1 |
-			xclip -selection clipboard
+			$copy
 		;;
 
 	*)
