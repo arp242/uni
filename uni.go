@@ -230,14 +230,14 @@ func emoji(args []string, quiet, raw bool) error {
 			}
 
 			out = append(out, []string{c, e.Name, e.Group, e.Subgroup})
-			if len(e.Name) > cols[1] {
-				cols[1] = len(e.Name)
+			if l := utf8.RuneCountInString(e.Name); l > cols[1] {
+				cols[1] = l
 			}
-			if len(e.Group) > cols[2] {
-				cols[2] = len(e.Group)
+			if l := utf8.RuneCountInString(e.Group); l > cols[2] {
+				cols[2] = l
 			}
-			if len(e.Subgroup) > cols[3] {
-				cols[3] = len(e.Subgroup)
+			if l := utf8.RuneCountInString(e.Subgroup); l > cols[3] {
+				cols[3] = l
 			}
 		}
 
@@ -246,7 +246,11 @@ func emoji(args []string, quiet, raw bool) error {
 		}
 	}
 
-	// TODO: not always correctly aligned.
+	// TODO: not always correctly aligned as some emojis are double-width and
+	// some are not. As far as I can tell, there is no good way to predict this
+	// as it will depend on the font. Unicode recommends "emoji presentation
+	// sequences behave as though they were East Asian Wide", but that's too
+	// simplistic too.
 	for _, o := range out {
 		for i, c := range o {
 			if i == 0 {

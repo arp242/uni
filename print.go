@@ -65,7 +65,7 @@ func (p printer) fmtChar(b *strings.Builder, info unidata.Char, raw bool) {
 	}
 
 	name := fmt.Sprintf("%s (%s)", info.Name, unidata.Catnames[info.Cat])
-	if isTerm && termWidth > 0 && len(name) > termWidth-size {
+	if isTerm && termWidth > 0 && utf8.RuneCountInString(name) > termWidth-size {
 		name = name[:termWidth-size] + "…"
 	}
 
@@ -92,8 +92,9 @@ func (p printer) utf8(r rune) string {
 }
 
 func fill(s string, n int) string {
-	if len(s) >= n {
+	l := utf8.RuneCountInString(s)
+	if l >= n {
 		return s
 	}
-	return s + strings.Repeat(" ", n-len(s))
+	return s + strings.Repeat(" ", n-l)
 }
