@@ -3,7 +3,10 @@
 // Package unidata contains information about Unicode characters.
 package unidata
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type Char struct {
 	Width, Cat uint8
@@ -623,16 +626,31 @@ var (
 	}
 )
 
-// The UnicodeData.txt file doesn't list every character; some are included as a
-// range:
-//
-//   3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
-//   4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
-func InRange(c rune) string {
+// Find a character.
+func Find(c rune) (Char, bool) {
+	info, ok := Unidata[fmt.Sprintf("%.4X", c)]
+	if ok {
+		return info, ok
+	}
+
+	// The UnicodeData.txt file doesn't list every character; some are included as a
+	// range:
+	//
+	//   3400;<CJK Ideograph Extension A, First>;Lo;0;L;;;;;N;;;;;
+	//   4DB5;<CJK Ideograph Extension A, Last>;Lo;0;L;;;;;N;;;;;
 	for i, r := range ranges {
 		if c >= r[0] && c <= r[1] {
-			return rangeNames[i]
+			info, ok := Unidata[fmt.Sprintf("%.4X", r[0])]
+			if !ok {
+				// Should never happen.
+				panic(fmt.Sprintf("Find: not found in Unidata: %#v", r[0]))
+			}
+
+			info.Codepoint = uint32(c)
+			info.Name = rangeNames[i]
+			return info, true
 		}
 	}
-	return ""
+
+	return Char{}, false
 }

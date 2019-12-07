@@ -321,10 +321,9 @@ func print(args []string, quiet, raw bool) error {
 			}
 
 			for i := start; i <= end; i++ {
-				x := fmt.Sprintf("%X", i)
-				info, ok := unidata.Unidata[x]
+				info, ok := unidata.Find(rune(i))
 				if !ok {
-					return fmt.Errorf("unknown codepoint: %q", x)
+					return fmt.Errorf("unknown codepoint: U+%.4X", i)
 				}
 				out = append(out, info)
 			}
@@ -347,22 +346,12 @@ func identify(ins []string, quiet, raw bool) error {
 
 	var out printer
 	for _, c := range in {
-		find := fmt.Sprintf("%04X", c)
-		m := false
-
-		if name := unidata.InRange(c); name != "" {
-			// TODO: fill in width, category
-			out = append(out, unidata.Char{0, 0, 0, name})
-			m = true
+		info, ok := unidata.Find(c)
+		if !ok {
+			return fmt.Errorf("unknown codepoint: %.4X", c)
 		}
 
-		if !m {
-			info, ok := unidata.Unidata[find]
-			if !ok {
-				return fmt.Errorf("identify: no match for %q\n", find)
-			}
-			out = append(out, info)
-		}
+		out = append(out, info)
 	}
 
 	out.Print(os.Stdout, quiet, raw)
