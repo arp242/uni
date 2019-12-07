@@ -136,7 +136,8 @@ func mkemojidata() (closeErr error) {
 			if err != nil {
 				return err
 			}
-			if d != 0x200d {
+			// Don't include ZWJ and presentation selector.
+			if d != 0x200d && d != 0xfe0f {
 				cp = append(cp, fmt.Sprintf("0x%x", d))
 			}
 		}
