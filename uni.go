@@ -196,6 +196,7 @@ func search(args []string, quiet, raw bool) error {
 func emoji(args []string, quiet, raw bool) error {
 	out := [][]string{}
 	cols := []int{4, 0, 0, 0}
+
 	for _, a := range args {
 		a = strings.ToLower(a)
 		switch a {
@@ -211,10 +212,14 @@ func emoji(args []string, quiet, raw bool) error {
 			return nil
 		}
 
+		found := false
 		for _, e := range unidata.Emojidata {
-			if !strings.Contains(strings.ToLower(e.Group), a) && !strings.Contains(strings.ToLower(e.Subgroup), a) {
+			if !strings.Contains(strings.ToLower(e.Group), a) &&
+				!strings.Contains(strings.ToLower(e.Subgroup), a) {
 				continue
 			}
+
+			found = true
 
 			var c string
 			for i, cp := range e.Codepoints {
@@ -234,6 +239,10 @@ func emoji(args []string, quiet, raw bool) error {
 			if len(e.Subgroup) > cols[3] {
 				cols[3] = len(e.Subgroup)
 			}
+		}
+
+		if !found {
+			return fmt.Errorf("no such emoji group or subgroup: %q", a)
 		}
 	}
 
