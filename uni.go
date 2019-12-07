@@ -191,9 +191,6 @@ func search(args []string, quiet, raw bool) error {
 //
 //   $ uni e -tone dark -gender women    # Show women and apply dark skin modifier.
 //
-// TODO: sort in more logical order, e.g. by group rather than the order in
-// which it appears. The generated file is sorted weird 🤔
-//
 // TODO: Bring back search? Note: Searching didn't behave like "uni s" (it
 // should). How do we disambiguate between "search text description" and "search
 // groups"?
