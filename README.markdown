@@ -44,35 +44,18 @@ Or an entire string. `i` is a shortcut for `identify`:
     'ł'  U+0142  322    c5 82       &lstrok;   LATIN SMALL LETTER L WITH STROKE
     'ø'  U+00F8  248    c3 b8       &oslash;   LATIN SMALL LETTER O WITH STROKE
 
-Identify byte offset from a file (useful for editor integration):
+It reads from stdin:
 
-    $ uni i 'README.markdown:#0'
-          cpoint  dec    utf-8       html       name
-     '`'  U+0060  96     60          &grave;    GRAVE ACCENT
-
-Or a range from a file:
-
-    $ uni i 'README.markdown:#0-4'
+    $ head -c5 README.markdown | uni i
+    uni: reading from stdin...
          cpoint  dec    utf-8       html       name
-    '`'  U+0060  96     60          &grave;    GRAVE ACCENT
-    'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U
-    'n'  U+006E  110    6e          &#x6e;     LATIN SMALL LETTER N
-    'i'  U+0069  105    69          &#x69;     LATIN SMALL LETTER I
-    '`'  U+0060  96     60          &grave;    GRAVE ACCENT
-
-Note that these are **byte** offsets, not *character* offsets:
-
-    $ uni i 'README.markdown:#130'
-    uni: WARNING: input string is not valid UTF-8
-         cpoint  dec    utf-8       html       name
-    '�'  U+FFFD  65533  ef bf bd    &#xfffd;   REPLACEMENT CHARACTER
-
-    $ uni i 'README.markdown:#130-132'
-         cpoint  dec    utf-8       html       name
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
+    '`'  U+0060  96     60          &grave;    GRAVE ACCENT (Modifier_Symbol)
+    'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U (Lowercase_Letter)
+    'n'  U+006E  110    6e          &#x6e;     LATIN SMALL LETTER N (Lowercase_Letter)
+    'i'  U+0069  105    69          &#x69;     LATIN SMALL LETTER I (Lowercase_Letter)
+    '`'  U+0060  96     60          &grave;    GRAVE ACCENT (Modifier_Symbol)
 
 Search description:
-
 
     $ uni search euro
          cpoint  dec    utf-8       html       name

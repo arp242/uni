@@ -5,7 +5,6 @@ import (
 	"errors"
 	"flag"
 	"fmt"
-	"io"
 	"io/ioutil"
 	"os"
 	"strconv"
@@ -32,7 +31,7 @@ func usage(err error) {
 		}
 	}
 
-	_, _ = fmt.Fprintf(out, `Usage: %s [-hrq] [identify | search | print]
+	_, _ = fmt.Fprintf(out, `Usage: %s [-hrq] [identify | search | print | emoji]
 
 Flags:
     -h      Show this help.
@@ -42,10 +41,8 @@ Flags:
             characters. Note control characters may mangle the output.
 
 Commands:
-    identify [string string ... | file:#loc]
-        Idenfity all the characters in the given strings. Pass a filename ending
-        with :#loc to identify the characters at loc's byte (not character!)
-        offset. This can be a range as :#start-end.
+    identify [string string ...]
+        Idenfity all the characters in the given strings.
 
     search word [word ...]
         Search description for any of the words.
@@ -342,69 +339,8 @@ func print(args []string, quiet, raw bool) error {
 	return nil
 }
 
-func fromFile(in string) string {
-	x := strings.Split(in, ":#")
-	if len(x) != 2 {
-		return in
-	}
-
-	var seek, read int64
-	var err error
-
-	// Can be as :#42, :#42-50, :#42-, and :#-42
-	if strings.Contains(x[1], "-") {
-		rng := strings.Split(x[1], "-")
-		if rng[0] != "" {
-			seek, err = strconv.ParseInt(rng[0], 10, 32)
-			if err != nil {
-				return in
-			}
-		}
-		var to int64
-		if rng[1] != "" {
-			to, err = strconv.ParseInt(rng[1], 10, 32)
-			if err != nil {
-				return in
-			}
-		}
-
-		if to > 0 {
-			if seek > to {
-				return in
-			}
-			read = to - seek + 1
-		}
-	} else {
-		seek, err = strconv.ParseInt(x[1], 10, 32)
-		if err != nil {
-			return in
-		}
-		read = 1
-	}
-
-	fp, err := os.Open(x[0])
-	if err != nil {
-		return in
-	}
-
-	if read == 0 {
-		st, _ := fp.Stat()
-		read = st.Size() - seek
-	}
-
-	_, _ = fp.Seek(seek, io.SeekStart)
-	b := make([]byte, read)
-	_, _ = fp.Read(b)
-
-	return string(b)
-}
-
 func identify(ins []string, quiet, raw bool) error {
 	in := strings.Join(ins, "")
-	if strings.Contains(in, ":#") {
-		in = fromFile(in)
-	}
-
 	if !utf8.ValidString(in) {
 		_, _ = fmt.Fprintf(os.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
