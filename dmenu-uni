@@ -2,11 +2,20 @@
 #
 # https://github.com/arp242/uni
 
+# Command to use.
+dmenu="dmenu -i"
+
+# Or adding some options:
+#dmenu="dmenu -x -i -l 20 -fn monospace:size=20 -sb #dddddd -sf #000000"
+
+# Use Rofi insteaf
+#dmenu="rofi -dmenu"
+
 case "${1:-all}" in
 	# List all codepoints.
 	all)
 		uni -q p all |
-			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+			$dmenu |
 			grep -o "^'.'" |
 			tr -d "'" |
 			xclip -selection clipboard
@@ -14,8 +23,8 @@ case "${1:-all}" in
 
 	# List all emojis.
 	emoji)
-		uni -q emoji all |
-			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+		uni -q e all |
+			$dmenu |
 			cut -d' ' -f1 |
 			xclip -selection clipboard
 		;;
@@ -23,8 +32,8 @@ case "${1:-all}" in
 	# List common facial expressions, excluding flags, guitars, lobsters, map of
 	# Japan, and what-have-you.
 	emoji-common)
-		uni -q emoji smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture |
-			dmenu -x -i -l 20 -fn 'monospace:size=20' -sb '#dddddd' -sf '#000000' |
+		uni -q e smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture |
+			$dmenu |
 			cut -d' ' -f1 |
 			xclip -selection clipboard
 		;;
