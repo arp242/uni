@@ -3,6 +3,8 @@
 // Package unidata contains information about Unicode characters.
 package unidata
 
+import "fmt"
+
 // Codepoint is a single codepoint.
 type Codepoint struct {
 	Width, Cat uint8
@@ -15,6 +17,18 @@ type Emoji struct {
 	Codepoints            []uint32
 	Name, Group, Subgroup string
 	SkinTones             bool
+}
+
+func (e Emoji) String() string {
+	var c string
+	for i, cp := range e.Codepoints {
+		if i > 0 {
+			c += "\u200d"
+		}
+		c += fmt.Sprint(string(cp))
+	}
+
+	return c
 }
 
 const (

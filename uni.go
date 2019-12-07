@@ -243,14 +243,7 @@ func emoji(args []string, quiet, raw bool) error {
 
 			found = true
 
-			var c string
-			for i, cp := range e.Codepoints {
-				if i > 0 {
-					c += "\u200d"
-				}
-				c += fmt.Sprint(string(cp))
-			}
-
+			c := e.String()
 			if *tone != "" && e.SkinTones {
 				c += "\u200d" + *tone
 			}
