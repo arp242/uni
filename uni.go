@@ -137,14 +137,20 @@ func getargs(args []string, quiet bool) []string {
 		return args
 	}
 
-	if !quiet {
-		// TODO: clear with \r? Hmm..
-		fmt.Fprintf(stderr, "uni: reading from stdin...\n")
+	// Print message so people aren't left waiting when typing "uni print". We
+	// don't print a newline and a \r later on, so you don't see it in actual
+	// pipe usage, just when it would "hang" uni.
+	if !quiet && isTerm {
+		fmt.Fprintf(stderr, "uni: reading from stdin...")
 	}
 	stdin, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		panic(fmt.Errorf("read stdin: %s", err))
 	}
+	if !quiet && isTerm {
+		fmt.Fprintf(stderr, "\r")
+	}
+
 	return strings.Split(strings.TrimRight(string(stdin), "\n"), "\n")
 }
 
