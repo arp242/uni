@@ -9,7 +9,7 @@ import (
 func FindCodepoint(c rune) (Codepoint, bool) {
 	info, ok := Codepoints[fmt.Sprintf("%.4X", c)]
 	if ok {
-		return info, ok
+		return info, true
 	}
 
 	// The UnicodeData.txt file doesn't list every character; some are included as a
@@ -21,8 +21,7 @@ func FindCodepoint(c rune) (Codepoint, bool) {
 		if c >= r[0] && c <= r[1] {
 			info, ok := Codepoints[fmt.Sprintf("%.4X", r[0])]
 			if !ok {
-				// Should never happen.
-				panic(fmt.Sprintf("FindCodepoint: %#v not found", r[0]))
+				panic(fmt.Sprintf("FindCodepoint: %#v not found; this should never happen", r[0]))
 			}
 
 			info.Codepoint = uint32(c)

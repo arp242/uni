@@ -82,14 +82,12 @@ func usage(err error) {
 
 func main() {
 	var (
-		//output string
 		quiet bool
 		help  bool
 		raw   bool
 	)
 	// TODO: Output format; valid values are human (default), csv, tsv, json.
 	// TODO: Add option to configure columns.
-	//flag.StringVar(&output, "o", "human", "")
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
 	flag.BoolVar(&raw, "r", false, "")
@@ -120,11 +118,11 @@ func main() {
 	case "emoji", "e":
 		err = emoji(getargs(args[1:], quiet), quiet, raw)
 	}
-	if err == errNoMatches && quiet {
-		err = nil
-	}
+
 	if err != nil {
-		fmt.Fprintf(stderr, "%s\n", err)
+		if !(err == errNoMatches && quiet) {
+			fmt.Fprintf(stderr, "%s\n", err)
+		}
 		exit(1)
 	}
 }
@@ -435,6 +433,7 @@ func print(args []string, quiet, raw bool) error {
 		}
 
 		// U2042, U+2042, U+2042..U+2050, 2042..2050
+		// TODO: Support 2042 and 2042..2050 as well
 		if strings.HasPrefix(canon, "u") || strings.Contains(canon, "..") {
 			canon = strings.ToUpper(canon)
 
