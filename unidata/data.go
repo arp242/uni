@@ -17,7 +17,14 @@ type Emoji struct {
 	Codepoints            []uint32
 	Name, Group, Subgroup string
 	SkinTones             bool
+	Genders               int
 }
+
+const (
+	GenderNone = 0
+	GenderSign = 1
+	GenderRole = 2
+)
 
 func (e Emoji) String() string {
 	var c string

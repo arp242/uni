@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/arp242.net/uni.svg?branch=master)](https://travis-ci.org/arp242.net/uni)
-[![codecov](https://codecov.io/gh/arp242.net/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242.net/uni)
+[![Build Status](https://travis-ci.org/arp242/uni.svg?branch=master)](https://travis-ci.org/arp242/uni)
+[![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
 [![GoDoc](https://godoc.org/github.com/arp242.net/uni?status.svg)](https://godoc.org/github.com/arp242.net/uni)
 
 `uni` queries the Unicode database from the commandline.
@@ -8,8 +8,14 @@ There are four commands: `identify` to print Unicode information about a string,
 `search` to search for codepoints, `print` to print groups of Unicode classes,
 and `emoji` to find emojis.
 
+It includes full support for Unicode 12.1 (May 2019) including full Emoji
+support (a surprisingly large amount of emoji pickers don't deal with emoji
+sequences very well).
+
 Install it with `go get arp242.net/uni`, which will put the binary at
-`~/go/bin/uni`.
+`~/go/bin/uni`. Re-generate the Unicode data with `go generate unidata`. Files
+are cached in `unidata/.cache`, so clear that if you want to update the files
+from remote.
 
 Integrations
 ------------
@@ -153,6 +159,21 @@ Apply skin tone modifiers with `-tone`:
     👐🏿 open hands         People & Body  hands
     🙌🏿 raising hands      People & Body  hands
 
+The default is to display all genders ("person", "man", "woman"), but this can
+be filtered with the `-gender` option:
+
+    $ uni e -gender man person-gesture
+    🙍‍♂️ man frowning      People & Body  person-gesture
+    🙎‍♂️ man pouting       People & Body  person-gesture
+    🙅‍♂️ man gesturing NO  People & Body  person-gesture
+    🙆‍♂️ man gesturing OK  People & Body  person-gesture
+    💁‍♂️ man tipping hand  People & Body  person-gesture
+    🙋‍♂️ man raising hand  People & Body  person-gesture
+    🧏‍♂️ deaf man          People & Body  person-gesture
+    🙇‍♂️ man bowing        People & Body  person-gesture
+    🤦‍♂️ man facepalming   People & Body  person-gesture
+    🤷‍♂️ man shrugging     People & Body  person-gesture
+
 Alternatives
 ------------
 
@@ -160,22 +181,25 @@ Alternatives
 
 - https://github.com/sindresorhus/emoj
 
-  Doesn't support emojis composed of multiple codepoints (e.g. FIREFIGHTER is
-  PERSON + FIRE TRUCK); quite slow for a CLI program: `emoj smiling` takes 1.8s
-  on my system. Not a fan of npm (has 1862 dependencies).
+  Doesn't support emojis sequences (e.g. MAN SHRUGGING is PERSON SHRUGGING +
+  MAN, FIREFIGHTER is PERSON + FIRE TRUCK, etc); quite slow for a CLI program
+  (`emoj smiling` takes 1.8s on my system, sometimes a lot longer), search
+  results are pretty bad (`shrug` returns unamused face, thinking face, eyes,
+  confused face, neutral face, tears of joy, and expressionless face ... but not
+  the shrugging emoji), not a fan of npm (has 1862 dependencies).
 
 - https://github.com/Fingel/tuimoji
 
-  Grouping could be better, doesn't support composed emojis, only interactive
+  Grouping could be better, doesn't support emojis sequences, only interactive
   TUI, feels kinda slow-ish especially when searching.
 
 ### GUI
 
 - gnome-characters
 
-  Uses Gnome interface/window decorations, and won't work well with other WMs.
-  I also don't like the grouping/ordering it uses and it requires two clicks to
-  copy a character. Can't seem to insert character immediately.
+  Uses Gnome interface/window decorations and won't work well with other WMs,
+  doesn't deal with emoji sequences, I don't like the grouping/ordering it uses,
+  requires two clicks to copy a character.
 
 - gucharmap
 
@@ -193,7 +217,7 @@ Alternatives
 - gtk3 emoji picker (Ctrl+; or Ctrl+. in gtk 3.93 or newer)
 
   Only works in GTK, doesn't work with `GTK_IM_MODULE=xim` (needed for compose
-  key), for some reasons the emojis look ugly, doesn't display composed emojis,
+  key), for some reasons the emojis look ugly, doesn't display emojis sequences,
   doesn't have a tooltip or other text description about what the emoji actually
   is, the variation selector doesn't seem to work (never displays skin tone?),
   doesn't work in Firefox.
@@ -204,8 +228,3 @@ Alternatives
 - Didn't investigate:
 
   - https://github.com/cassidyjames/ideogram
-
-
-https://gitlab.gnome.org/GNOME/gtk/blob/1e129c1dd2234be11b13481b2120484e2d255164/gtk/gtkemojichooser.c
-https://gitlab.gnome.org/GNOME/gtk/blob/master/NEWS#L117
-https://gitlab.gnome.org/GNOME/gtk/blob/master/NEWS#L292

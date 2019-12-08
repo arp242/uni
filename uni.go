@@ -27,14 +27,12 @@ var (
 	exit             = os.Exit
 )
 
-const usagetext = `Usage: %s [-hrq] [identify | search | print | emoji]
+const usagetext = `Usage: %s [-hrq] [help | identify | search | print | emoji]
 
 Flags:
-    -h      Show this help.
     -q      Quiet output; don't print header, "no matches", etc.
-    -r      "Raw" unprocessed output; default is to display graphical variants
-            for control characters and display ◌ (U+25CC) before combining
-            characters. Note control characters may mangle the output.
+    -r      "Raw" output instead of displaying graphical variants for control
+            characters and ◌ (U+25CC) before combining characters.
 
 Commands:
     identify [string string ...]
@@ -44,27 +42,30 @@ Commands:
         Search description for any of the words.
 
     print [ident ident ...]
-        Print characters by codepoint, category, or block, or special name:
+        Print characters by codepoint, category, or block:
 
-            Codepoint    U+2042, U+2042..U+2050
-            Category     OtherPunctuation, Po
-            Block        GeneralPunctuation
-            all          Everything
+            Codepoints             U+2042, U+2042..U+2050
+            Categories and Blocks  OtherPunctuation, Po, GeneralPunctuation
+            all                    Everything
 
-        Names are matched case insensitive. Spaces and commas are optional and
+        Names are matched case insensitive; spaces and commas are optional and
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
         "Punctuation_other", and PunctuationOther are all identical.
 
-    emoji [-tone tone] [word word ...]
+    emoji [-tone tone] [-gender gender,...] [word word ...]
         Print emojis by group name:
 
              all              Everything.
              groups           All group and subgroup names.
              <anything else>  Emojis matching the group or subgroup.
 
-        The skin tone modifier is applied on supported emojies if -tone is
-        given. Supported tones: light, mediumlight, medium, mediumdark, dark.
-        Note: emojis may consist of multiple codepoints!
+        -tone can be light, mediumlight, medium, mediumdark, dark.
+        -gender is a comma-separated list of person, man, or woman.
+
+        Note: output may contain unprintable character (U+200D and U+FE0F) which
+        may not survive a select and copy operation from text-based applications
+        such as terminals. It's recommended to copy to the clipboard directly
+        with e.g. xclip.
 `
 
 func usage(err error) {
@@ -191,21 +192,10 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-// TODO: treat man/women thing as modifier too; I don't really care much about
-// having "person shrugging", "man shrugging", and "women shrugging" all turn up
-// in the results for shrugging.
-//
-//   $ uni e                             # Default: show only "person" w/o skin modifiers.
-//   $ uni e -tone dark                  # Apply skin modifer.
-//
-//   $ uni e -gender man                 # Show only "man" variants
-//   $ uni e -gender man,women           # Show both man and women, but not "person"
-//   $ uni e -gender man,women,person    # Show all.
-//
-//   $ uni e -tone dark -gender women    # Show women and apply dark skin modifier.
 func emoji(args []string, quiet, raw bool) error {
 	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
 	tone := subflag.String("tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
+	gender := subflag.String("gender", "", "comma-separated list of genders to include (man, woman, person); default is all")
 	subflag.Parse(args)
 
 	switch *tone {
@@ -226,8 +216,37 @@ func emoji(args []string, quiet, raw bool) error {
 		exit(55)
 	}
 
+	genders := []string{"person", "man", "woman"}
+	if *gender != "" {
+		genders = strings.Split(*gender, ",")
+		for i, g := range genders {
+			switch g {
+			case "p", "people":
+				g = "person"
+			case "men", "m", "male":
+				g = "man"
+			case "women", "w", "female":
+				g = "woman"
+			}
+			genders[i] = g
+		}
+	}
+
 	out := [][]string{}
 	cols := []int{4, 0, 0, 0}
+	add := func(e unidata.Emoji, c string) {
+		out = append(out, []string{c, e.Name, e.Group, e.Subgroup})
+		if l := utf8.RuneCountInString(e.Name); l > cols[1] {
+			cols[1] = l
+		}
+		if l := utf8.RuneCountInString(e.Group); l > cols[2] {
+			cols[2] = l
+		}
+		if l := utf8.RuneCountInString(e.Subgroup); l > cols[3] {
+			cols[3] = l
+		}
+	}
+
 	for _, a := range subflag.Args() {
 		a = strings.ToLower(a)
 		switch a {
@@ -253,19 +272,77 @@ func emoji(args []string, quiet, raw bool) error {
 			found = true
 
 			c := e.String()
+
+			// 1F9D8                            # 🧘 E5.0 person in lotus position
+			// 1F9D8 1F3FF 200D 2642 FE0F       # 🧘🏿‍♂️ E5.0 man in lotus position: dark skin tone
+			//
+			// 1F9D1 200D 2695 FE0F             # 🧑‍⚕️ E12.1 health worker
+			// 1F9D1 1F3FF 200D 2695 FE0F       # 🧑🏿‍⚕️ E12.1 health worker: dark skin tone
+			// 1F468 200D 2695 FE0F             # 👨‍⚕️ E4.0 man health worker
+			// 1F468 1F3FF 200D 2695 FE0F       # 👨🏿‍⚕️ E4.0 man health worker: dark skin tone
+			//
+			// 1F470                            # 👰 E2.0 bride with veil
+			// 1F470 1F3FF                      # 👰🏻 E2.0 bride with veil: dark skin tone
+			//
+			// 1F575 FE0F                       # 🕵️ E2.0 detective
+			// 1F575 1F3FF                      # 🕵🏿 E2.0 detective: dark skin tone
+			// 1F575 FE0F 200D 2642 FE0F        # 🕵️‍♂️ E4.0 man detective
+			// 1F575 1F3FF 200D 2642 FE0F       # 🕵🏿‍♂️ E4.0 man detective: dark skin tone
 			if *tone != "" && e.SkinTones {
-				c += "\u200d" + *tone
+				var ns string
+				i := 0
+				for _, r := range c {
+					switch i {
+					case 0:
+						ns = string(r)
+					case 1:
+						ns += "\u200d" + *tone
+						fallthrough
+					default:
+						ns += string(r)
+					}
+					i++
+				}
+				c = ns
+				if i == 1 {
+					c += "\u200d" + *tone
+				}
 			}
 
-			out = append(out, []string{c, e.Name, e.Group, e.Subgroup})
-			if l := utf8.RuneCountInString(e.Name); l > cols[1] {
-				cols[1] = l
+			// No genders: append and stop here.
+			if e.Genders == unidata.GenderNone {
+				add(e, c)
+				continue
 			}
-			if l := utf8.RuneCountInString(e.Group); l > cols[2] {
-				cols[2] = l
-			}
-			if l := utf8.RuneCountInString(e.Subgroup); l > cols[3] {
-				cols[3] = l
+
+			for _, g := range genders {
+				if e.Genders == unidata.GenderSign {
+					switch g {
+					case "person":
+						add(e, c)
+					case "woman":
+						ee := e
+						ee.Name = strings.Replace(ee.Name, "person", "woman", 1)
+						add(ee, c+"\u200d\u2640\ufe0f")
+					case "man":
+						ee := e
+						ee.Name = strings.Replace(ee.Name, "person", "man", 1)
+						add(ee, c+"\u200d\u2642\ufe0f")
+					}
+				} else if e.Genders == unidata.GenderRole {
+					switch g {
+					case "person":
+						add(e, c)
+					case "woman":
+						ee := e
+						ee.Name = "woman " + ee.Name
+						add(ee, "\U0001f469"+c[4:])
+					case "man":
+						ee := e
+						ee.Name = "man " + ee.Name
+						add(ee, "\U0001f468"+c[4:])
+					}
+				}
 			}
 		}
 
