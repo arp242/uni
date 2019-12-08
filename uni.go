@@ -195,6 +195,8 @@ func search(args []string, quiet, raw bool) error {
 func emoji(args []string, quiet, raw bool) error {
 	var tone, gender, group string
 	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
+	// TODO: accept both singular and plurals here (-tone and -tones), which are
+	// treated identical.
 	subflag.StringVar(&tone, "tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
 	subflag.StringVar(&gender, "gender", "", "comma-separated list of genders to include (man, woman, person); default is all")
 	subflag.StringVar(&group, "groups", "", "comma-separated list of groups")
@@ -206,7 +208,7 @@ func emoji(args []string, quiet, raw bool) error {
 	groups := emojiGroups(group)
 
 	out := [][]string{}
-	cols := []int{4, 0, 0, 0}
+	cols := []int{4, 0, 0}
 	add := func(e unidata.Emoji, c string) {
 		out = append(out, []string{c, e.Name, e.Group, e.Subgroup})
 		if l := utf8.RuneCountInString(e.Name); l > cols[1] {
@@ -214,9 +216,6 @@ func emoji(args []string, quiet, raw bool) error {
 		}
 		if l := utf8.RuneCountInString(e.Group); l > cols[2] {
 			cols[2] = l
-		}
-		if l := utf8.RuneCountInString(e.Subgroup); l > cols[3] {
-			cols[3] = l
 		}
 	}
 
@@ -317,9 +316,12 @@ func emoji(args []string, quiet, raw bool) error {
 	// simplistic too.
 	for _, o := range out {
 		for i, c := range o {
-			if i == 0 {
+			switch i {
+			case 0:
 				fmt.Fprintf(stdout, c+" ")
-			} else {
+			case 3: // Last column
+				fmt.Fprintf(stdout, c)
+			default:
 				fmt.Fprint(stdout, fill(c, cols[i]+2))
 			}
 		}

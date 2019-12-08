@@ -1,21 +1,33 @@
 #!/bin/sh
 #
 # https://github.com/arp242/uni
+#
+# Usage:
+#
+#   dmenu-uni all            All codepoints, won't include ZWJ emoji sequences.
+#   dmenu-uni emoji          All emojis.
+#   dmenu-uni emoji-common   Common emojis
 
-# Command to use.
+# Command to use:
 dmenu="dmenu -i"
 
 # Or adding some options:
 #dmenu="dmenu -x -i -l 20 -fn monospace:size=20 -sb #dddddd -sf #000000"
 
-# Use Rofi insteaf
+# Use Rofi instead:
 #dmenu="rofi -dmenu"
 
-# Command to copy to clipboard
+# Command to copy to clipboard:
 copy="xclip -rmlastnl -selection clipboard"
 
-# Common emojis I use >99% of the time.
-common="smileys hand-fingers-open hand-fingers-partial hand-single-finger hand-fingers-closed hands body-parts person-gesture"
+# Common emojis I use >99% of the time:
+common="-groups smileys,hand-fingers-open,hand-fingers-partial,hand-single-finger,hand-fingers-closed,hands,body-parts,person-gesture"
+
+# Only include gender-neutral "person":
+#common="$common -gender person"
+
+# Set skin tone:
+#common="$common -tone mediumdark"
 
 case "${1:-all}" in
 	# List all codepoints.

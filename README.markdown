@@ -3,25 +3,28 @@
 
 `uni` queries the Unicode database from the commandline.
 
-There are four commands: `identify` to print Unicode information about a string,
-`search` to search for codepoints, `print` to print groups of Unicode classes,
-and `emoji` to find emojis.
+There are four commands: `identify` codepoints in a string, `search` for
+codepoints, `print` codepoints by class, block, or range, and `emoji` to find
+emojis.
 
 It includes full support for Unicode 12.1 (May 2019) including full Emoji
 support (a surprisingly large amount of emoji pickers don't deal with emoji
 sequences very well).
 
-Install it with `go get arp242.net/uni`, which will put the binary at
-`~/go/bin/uni`. Re-generate the Unicode data with `go generate unidata`. Files
-are cached in `unidata/.cache`, so clear that if you want to update the files
-from remote.
+There are binaries on the [releases][release] page, or compile from source with
+`go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`.
+
+[release]: https://github.com/arp242/uni/releases
 
 Integrations
 ------------
 
-There is a [dmenu][dmenu] example script at [`dmenu-uni`](dmenu-uni). This can
-also be used with [rofi][rofi] or similar programs. Note that dmenu will *crash*
-when using a colour emoji font (such as Noto), this is [a bug in Xft][xft].
+There is a [dmenu][dmenu] example script at [`dmenu-uni`](dmenu-uni), which also
+works well with [rofi][rofi] or similar programs. See the top of the script for
+some options you may want to frob with.
+
+Note that dmenu will *crash* when using a colour emoji font (such as Noto), this
+is [a bug in Xft][xft].
 
 You can add a `:UnicodeName` command to Vim with:
 
@@ -29,6 +32,20 @@ You can add a `:UnicodeName` command to Vim with:
             \ system('uni -q i',
             \      [strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)]
             \ )[:-2]
+
+Or if you want a slightly more complex version which also works on the visual
+selection:
+
+	command! -range UnicodeName
+				\  let s:save = @a
+				\| if <count> is# -1
+				\|   let @a = strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
+				\| else
+				\|   exe 'normal! gv"ay'
+				\| endif
+				\| echo system('uni -q i', @a)[:-2]
+				\| let @a = s:save
+				\| unlet s:save
 
 [dmenu]: http://tools.suckless.org/dmenu
 [rofi]: https://github.com/davatorium/rofi
@@ -43,7 +60,7 @@ Identify a character:
          cpoint  dec    utf-8      html       name
     '€'  U+20AC  8364   0xe282ac   &euro;     EURO SIGN
 
-Or an entire string. `i` is a shortcut for `identify`:
+Or a string; `i` is a shortcut for `identify`:
 
     $ uni i h€łłø
          cpoint  dec    utf-8       html       name
@@ -56,7 +73,6 @@ Or an entire string. `i` is a shortcut for `identify`:
 It reads from stdin:
 
     $ head -c5 README.markdown | uni i
-    uni: reading from stdin...
          cpoint  dec    utf-8       html       name
     '`'  U+0060  96     60          &grave;    GRAVE ACCENT (Modifier_Symbol)
     'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U (Lowercase_Letter)
@@ -140,7 +156,15 @@ Blocks:
 And finally, there is the `emoji` command (shortcut: `e`), which is the real
 reason I wrote this:
 
-    $ uni e hands
+	$ uni e cry
+	😢 crying face         Smileys & Emotion  face-concerned
+	😭 loudly crying face  Smileys & Emotion  face-concerned
+	😿 crying cat          Smileys & Emotion  cat-face
+	🔮 crystal ball        Activities         game
+
+Filter by group:
+
+    $ uni e -groups hands
     🤲 palms up together  People & Body  hands
     🤝 handshake          People & Body  hands
     👏 clapping hands     People & Body  hands
@@ -148,9 +172,15 @@ reason I wrote this:
     👐 open hands         People & Body  hands
     🙌 raising hands      People & Body  hands
 
+Group and search can be combined:
+
+	$ uni e -groups cat-face grin
+	😺 grinning cat                    Smileys & Emotion  cat-face
+	😸 grinning cat with smiling eyes  Smileys & Emotion  cat-face
+
 Apply skin tone modifiers with `-tone`:
 
-    $ uni e -tone dark hands
+    $ uni e -tone dark -groups hands
     🤲🏿 palms up together  People & Body  hands
     🤝 handshake          People & Body  hands    [doesn't support skin tone; it's displayed correct]
     👏🏿 clapping hands     People & Body  hands
@@ -158,11 +188,10 @@ Apply skin tone modifiers with `-tone`:
     👐🏿 open hands         People & Body  hands
     🙌🏿 raising hands      People & Body  hands
 
-
 The default is to display all genders ("person", "man", "woman"), but this can
 be filtered with the `-gender` option:
 
-    $ uni e -gender man person-gesture
+    $ uni e -gender man -groups person-gesture
     🙍‍♂️ man frowning      People & Body  person-gesture
     🙎‍♂️ man pouting       People & Body  person-gesture
     🙅‍♂️ man gesturing NO  People & Body  person-gesture
@@ -174,6 +203,9 @@ be filtered with the `-gender` option:
     🤦‍♂️ man facepalming   People & Body  person-gesture
     🤷‍♂️ man shrugging     People & Body  person-gesture
 
+Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
+dispay both the female and male variants (in that order), and `-tone light,dark`
+will display both a light and dark skin tone.
 
 Alternatives
 ------------
@@ -229,3 +261,10 @@ Alternatives
 - Didn't investigate:
 
   - https://github.com/cassidyjames/ideogram
+
+
+Development
+-----------
+
+Re-generate the Unicode data with `go generate unidata`. Files are cached in
+`unidata/.cache`, so clear that if you want to update the files from remote.
