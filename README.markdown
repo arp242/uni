@@ -19,37 +19,13 @@ There are binaries on the [releases][release] page, or compile from source with
 Integrations
 ------------
 
-There is a [dmenu][dmenu] example script at [`dmenu-uni`](dmenu-uni), which also
-works well with [rofi][rofi] or similar programs. See the top of the script for
-some options you may want to frob with.
+- [dmenu][dmenu] and [rofi][rofi] script at [`dmenu-uni`](dmenu-uni). See the
+  top of the script for some options you may want to frob with.
 
-Note that dmenu will *crash* when using a colour emoji font (such as Noto), this
-is [a bug in Xft][xft].
-
-You can add a `:UnicodeName` command to Vim with:
-
-    command! UnicodeName echo
-            \ system('uni -q i',
-            \      [strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)]
-            \ )[:-2]
-
-Or if you want a slightly more complex version which also works on the visual
-selection:
-
-	command! -range UnicodeName
-				\  let s:save = @a
-				\| if <count> is# -1
-				\|   let @a = strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
-				\| else
-				\|   exe 'normal! gv"ay'
-				\| endif
-				\| echo system('uni -q i', @a)[:-2]
-				\| let @a = s:save
-				\| unlet s:save
+- For a Vim command see [`uni.vim`][uni.vim]; just copy/paste it in your vimrc.
 
 [dmenu]: http://tools.suckless.org/dmenu
 [rofi]: https://github.com/davatorium/rofi
-[xft]: https://bugs.freedesktop.org/show_bug.cgi?id=107534
 
 Usage
 -----
@@ -128,6 +104,14 @@ groups of codepoints:
     $ uni print U+2042
          cpoint  dec    utf-8       html       name
     '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
+
+Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
+
+    $ uni print 2042..2044
+         cpoint  dec    utf-8       html       name
+    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
+    '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET (Other_Punctuation)
+    '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH (Math_Symbol)
 
 General category:
 

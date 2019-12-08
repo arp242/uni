@@ -7,6 +7,9 @@
 #   dmenu-uni all            All codepoints, won't include ZWJ emoji sequences.
 #   dmenu-uni emoji          All emojis.
 #   dmenu-uni emoji-common   Common emojis
+#
+# NOTE: dmenu will *crash* when using a colour emoji font, this is a bug in Xft:
+# https://bugs.freedesktop.org/show_bug.cgi?id=107534
 
 # Command to use:
 dmenu="dmenu -i"

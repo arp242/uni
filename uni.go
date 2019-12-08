@@ -87,7 +87,7 @@ func main() {
 		raw   bool
 	)
 	// TODO: Output format; valid values are human (default), csv, tsv, json.
-	// TODO: Add option to configure columns.
+	// TODO: Add option to configure displayed columns.
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
 	flag.BoolVar(&raw, "r", false, "")
@@ -435,41 +435,24 @@ func print(args []string, quiet, raw bool) error {
 		}
 
 		// U2042, U+2042, U+2042..U+2050, 2042..2050
-		// TODO: Support 2042 and 2042..2050 as well
-		if strings.HasPrefix(canon, "u") || strings.Contains(canon, "..") {
-			canon = strings.ToUpper(canon)
-
-			s := strings.Split(canon, "..")
-			switch len(s) {
-			case 1:
-				s = append(s, s[0])
-			case 2:
-				// Do nothing
-			default:
-				return fmt.Errorf("unknown ident: %q", a)
-			}
-
-			start, err := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[0], "U"), "+"), 16, 64)
-			if err != nil {
-				return err
-			}
-			end, err := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[1], "U"), "+"), 16, 64)
-			if err != nil {
-				return err
-			}
-
-			for i := start; i <= end; i++ {
-				info, ok := unidata.FindCodepoint(rune(i))
-				if !ok {
-					return fmt.Errorf("unknown codepoint: U+%.4X", i)
-				}
-				out = append(out, info)
-			}
-
-			continue
+		s := strings.Split(strings.ToUpper(canon), "..")
+		if len(s) == 1 {
+			s = append(s, s[0])
 		}
 
-		return fmt.Errorf("unknown identifier: %q", a)
+		start, err1 := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[0], "U"), "+"), 16, 64)
+		end, err2 := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[1], "U"), "+"), 16, 64)
+		if len(s) != 2 || err1 != nil || err2 != nil {
+			return fmt.Errorf("unknown identifier: %q", a)
+		}
+
+		for i := start; i <= end; i++ {
+			info, ok := unidata.FindCodepoint(rune(i))
+			if !ok {
+				return fmt.Errorf("unknown codepoint: U+%.4X", i)
+			}
+			out = append(out, info)
+		}
 	}
 
 	out.PrintSorted(stdout, quiet, raw)

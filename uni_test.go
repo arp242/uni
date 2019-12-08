@@ -74,23 +74,35 @@ func TestSearch(t *testing.T) {
 
 func TestPrint(t *testing.T) {
 	tests := []struct {
-		in        []string
-		want      string
-		wantLines int
+		in                  []string
+		want                string
+		wantLines, wantExit int
 	}{
-		{[]string{"-q", "p", "U+2042"}, "ASTERISM", 1},
-		{[]string{"-q", "p", "U+2042..U+2044"}, "ASTERISM", 3},
-		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1},
-		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 588},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 588},
-		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 32841},
+		{[]string{"-q", "p", "U+2042"}, "ASTERISM", 1, -1},
+		{[]string{"-q", "p", "2042"}, "ASTERISM", 1, -1},
+		{[]string{"-q", "p", "U+2042..U+2044"}, "ASTERISM", 3, -1},
+		{[]string{"-q", "p", "2042..2044"}, "ASTERISM", 3, -1},
+		{[]string{"-q", "p", "U+2042..2044"}, "ASTERISM", 3, -1},
+		{[]string{"-q", "p", "2042..U+2044"}, "ASTERISM", 3, -1},
+
+		{[]string{"p", ""}, `unknown identifier: ""`, 1, 1},
+		{[]string{"p", "nonsense"}, `unknown identifier: "nonsense"`, 1, 1},
+		{[]string{"p", "2042..xxx"}, `unknown identifier: "2042..xxx"`, 1, 1},
+		{[]string{"p", "xxx..xxx"}, `unknown identifier: "xxx..xxx"`, 1, 1},
+		{[]string{"p", "xxx..xxx"}, `unknown identifier: "xxx..xxx"`, 1, 1},
+		{[]string{"p", "9999999999"}, `unknown codepoint: U+9999999999`, 1, 1},
+
+		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
+		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 588, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 588, -1},
+		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 32841, -1},
 	}
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, -1)
+			outbuf, c := setup(t, tt.in, tt.wantExit)
 			defer c()
 
 			main()

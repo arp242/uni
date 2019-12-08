@@ -47,7 +47,6 @@ func (p printer) Print(fp io.Writer, quiet, raw bool) {
 	fmt.Fprint(fp, b.String())
 }
 
-// TODO: add option to choose sorting order.
 func (p *printer) PrintSorted(fp io.Writer, quiet, raw bool) {
 	s := []unidata.Codepoint(*p)
 	sort.Slice(s, func(i int, j int) bool { return s[i].Codepoint < s[j].Codepoint })
