@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"reflect"
 	"strings"
 	"testing"
 )
@@ -71,6 +72,8 @@ func TestPrint(t *testing.T) {
 	}{
 		{[]string{"U+2042"}, "ASTERISM", 1},
 		{[]string{"U+2042..U+2044"}, "ASTERISM", 3},
+		{[]string{"U+3402"}, "'㐂'", 1},
+		{[]string{"U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3},
 		{[]string{"OtherPunctuation"}, "ASTERISM", 588},
 		{[]string{"Po"}, "ASTERISM", 588},
 		{[]string{"GeneralPunctuation"}, "ASTERISM", 111},
@@ -96,11 +99,54 @@ func TestPrint(t *testing.T) {
 
 func TestEmoji(t *testing.T) {
 	tests := []struct {
-		in        []string
-		want      string
-		wantLines int
+		in   []string
+		want []string
 	}{
-		{[]string{"hands"}, "clapping", 6},
+		{[]string{"-groups", "hands"},
+			[]string{"👏", "🙌", "👐", "🤲", "🤝", "🙏"}},
+		{[]string{"-tone", "dark", "-groups", "hands"},
+			[]string{"👏Z🏿", "🙌Z🏿", "👐Z🏿", "🤲Z🏿", "🤝", "🙏Z🏿"}},
+
+		{[]string{"shrug"},
+			[]string{"🤷", "🤷Z♂S", "🤷Z♀S"}},
+		{[]string{"-gender", "m", "shrug"},
+			[]string{"🤷Z♂S"}},
+		{[]string{"-gender", "m", "-tone", "light", "shrug"},
+			// TODO: one ZWJ too many; still works fine though.
+			// 1F937 1F3FB 200D 2642 FE0F ; fully-qualified # 🤷🏻‍♂️ E4.0 man shrugging: light skin tone
+			[]string{"🤷Z🏻Z♂S"}},
+
+		{[]string{"farmer"},
+			[]string{"🧑Z🌾", "👨Z🌾", "👩Z🌾"}},
+		{[]string{"-gender", "f,m", "farmer"},
+			[]string{"👩Z🌾", "👨Z🌾"}},
+		{[]string{"-gender", "f", "-tone", "medium", "farmer"},
+			// TODO: one ZWJ too many
+			// 1F469 1F3FD 200D 1F33E ; fully-qualified # 👩🏽‍🌾 E4.0 woman farmer: medium skin tone
+			[]string{"👩Z🏽Z🌾"}},
+
+		{[]string{"-tone", "mediumlight", "bride"},
+			// TODO: one ZWJ too many
+			// 1F470 1F3FC ; fully-qualified # 👰🏼 E2.0 bride with veil: medium-light skin tone
+			[]string{"👰Z🏼"}},
+
+		// TODO: below all fail. Unicode is so inconsistent :-(
+
+		// 1F575 FE0F ; fully-qualified # 🕵️ E2.0 detective
+		//{[]string{"-gender", "p", "detective"},
+		//	[]string{"🕵S"}},
+
+		// 1F575 1F3FE ; fully-qualified # 🕵🏾 E2.0 detective: medium-dark skin tone
+		// {[]string{"-gender", "p", "-tone", "mediumdark", "detective"},
+		// 	[]string{"🕵🏾"}},
+
+		// 1F575 FE0F 200D 2642 FE0F ; fully-qualified # 🕵️‍♂️ E4.0 man detective
+		//{[]string{"-gender", "m", "detective"},
+		//	[]string{"🕵️SZ♂️S"}},
+
+		// 1F575 1F3FE 200D 2642 FE0F ; fully-qualified # 🕵🏾‍♂️ E4.0 man detective: medium-dark skin tone
+		//{[]string{"-gender", "m", "-tone", "mediumdark", "detective"},
+		//	[]string{"🕵🏾Z♂️S"}},
 	}
 
 	for _, tt := range tests {
@@ -109,12 +155,22 @@ func TestEmoji(t *testing.T) {
 			defer c()
 
 			main()
-			out := outbuf.String()
-			if lines := strings.Count(out, "\n"); lines != tt.wantLines {
-				t.Errorf("wrong # of lines\nout:  %d\nwant: %d", lines, tt.wantLines)
+			var out []string
+			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
+				out = append(out, strings.Split(line, " ")[0])
 			}
-			if !strings.Contains(out, tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+
+			for i := range tt.want {
+				tt.want[i] = strings.Replace(tt.want[i], "Z", "\u200d", -1)
+				tt.want[i] = strings.Replace(tt.want[i], "S", "\ufe0f", -1)
+			}
+
+			if !reflect.DeepEqual(out, tt.want) {
+				// U+FE0F is a somewhat elusive character that gets eaten and
+				// not displayed. Make sure it's displayed.
+				a := strings.Replace(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`, -1)
+				b := strings.Replace(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`, -1)
+				t.Errorf("wrong output\nout:  %s\nwant: %s", a, b)
 			}
 		})
 	}

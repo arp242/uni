@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/arp242/uni.svg?branch=master)](https://travis-ci.org/arp242/uni)
 [![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
-[![GoDoc](https://godoc.org/github.com/arp242.net/uni?status.svg)](https://godoc.org/github.com/arp242.net/uni)
 
 `uni` queries the Unicode database from the commandline.
 
@@ -153,11 +152,12 @@ Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark hands
     🤲🏿 palms up together  People & Body  hands
-    🤝 handshake          People & Body  hands
+    🤝 handshake          People & Body  hands    [doesn't support skin tone; it's displayed correct]
     👏🏿 clapping hands     People & Body  hands
     🙏🏿 folded hands       People & Body  hands
     👐🏿 open hands         People & Body  hands
     🙌🏿 raising hands      People & Body  hands
+
 
 The default is to display all genders ("person", "man", "woman"), but this can
 be filtered with the `-gender` option:
@@ -173,6 +173,7 @@ be filtered with the `-gender` option:
     🙇‍♂️ man bowing        People & Body  person-gesture
     🤦‍♂️ man facepalming   People & Body  person-gesture
     🤷‍♂️ man shrugging     People & Body  person-gesture
+
 
 Alternatives
 ------------
@@ -212,7 +213,7 @@ Alternatives
 - https://github.com/Mange/rofi-emoji and https://github.com/fdw/rofimoji
 
   Both are pretty similar to the dmenu/rofi integration of uni with some minor
-  differences, and seems to work well.
+  differences, and both seem to work well with no major issues.
 
 - gtk3 emoji picker (Ctrl+; or Ctrl+. in gtk 3.93 or newer)
 

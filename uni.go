@@ -52,13 +52,10 @@ Commands:
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
         "Punctuation_other", and PunctuationOther are all identical.
 
-    emoji [-tone tone] [-gender gender,...] [word word ...]
-        Print emojis by group name:
+    emoji [-tone tone] [-gender gender,...] [-groups word] [word word ...]
+        Search emojis. The special keyword "all" prints all emojis.
 
-             all              Everything.
-             groups           All group and subgroup names.
-             <anything else>  Emojis matching the group or subgroup.
-
+		-group is a comma-separated list of group and/or subgroup names.
         -tone can be light, mediumlight, medium, mediumdark, dark.
         -gender is a comma-separated list of person, man, or woman.
 
@@ -192,45 +189,23 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
+// TODO: also print "other keywords" from this list:
+// https://unicode.org/emoji/charts/emoji-list.html
+//
+// TODO: I don't like how "uni e farmer -gender m" doesn't work (flag needs to
+// be before search words).
 func emoji(args []string, quiet, raw bool) error {
+	var tone, gender, group string
 	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
-	tone := subflag.String("tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
-	gender := subflag.String("gender", "", "comma-separated list of genders to include (man, woman, person); default is all")
+	subflag.StringVar(&tone, "tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
+	subflag.StringVar(&gender, "gender", "", "comma-separated list of genders to include (man, woman, person); default is all")
+	subflag.StringVar(&group, "groups", "", "comma-separated list of groups")
 	subflag.Parse(args)
 
-	switch *tone {
-	case "":
-	case "light":
-		*tone = "\U0001f3fb"
-	case "mediumlight":
-		*tone = "\U0001f3fc"
-	case "medium":
-		*tone = "\U0001f3fd"
-	case "mediumdark":
-		*tone = "\U0001f3fe"
-	case "dark":
-		*tone = "\U0001f3ff"
-	default:
-		fmt.Fprintf(stderr, "uni: invalid skin tone: %q\n", *tone)
-		flag.Usage()
-		exit(55)
-	}
-
-	genders := []string{"person", "man", "woman"}
-	if *gender != "" {
-		genders = strings.Split(*gender, ",")
-		for i, g := range genders {
-			switch g {
-			case "p", "people":
-				g = "person"
-			case "men", "m", "male":
-				g = "man"
-			case "women", "w", "female":
-				g = "woman"
-			}
-			genders[i] = g
-		}
-	}
+	// TODO: allow multiple tones, like -gender
+	tone = emojiTone(tone)
+	genders := emojiGenders(gender)
+	groups := emojiGroups(group)
 
 	out := [][]string{}
 	cols := []int{4, 0, 0, 0}
@@ -247,48 +222,38 @@ func emoji(args []string, quiet, raw bool) error {
 		}
 	}
 
-	for _, a := range subflag.Args() {
+	subargs := subflag.Args()
+	if len(subargs) == 0 && len(groups) > 0 {
+		subargs = []string{""} // Imply all
+	}
+
+	for _, a := range subargs {
 		a = strings.ToLower(a)
 		switch a {
 		case "all":
 			a = ""
-		case "groups":
-			for _, g := range unidata.EmojiGroups {
-				fmt.Fprintln(stdout, g)
-				for _, sg := range unidata.EmojiSubgroups[g] {
-					fmt.Fprintln(stdout, "   ", sg)
-				}
-			}
-			return nil
 		}
 
-		found := false
 		for _, e := range unidata.Emojis {
-			if !strings.Contains(strings.ToLower(e.Group), a) &&
-				!strings.Contains(strings.ToLower(e.Subgroup), a) {
+			found := false
+			for _, g := range groups {
+				if strings.Contains(strings.ToLower(e.Group), g) ||
+					strings.Contains(strings.ToLower(e.Subgroup), g) {
+					found = true
+					break
+				}
+			}
+			if !found {
 				continue
 			}
 
-			found = true
+			if !strings.Contains(e.Name, a) { // TODO: work like search
+				continue
+			}
 
 			c := e.String()
 
-			// 1F9D8                            # 🧘 E5.0 person in lotus position
-			// 1F9D8 1F3FF 200D 2642 FE0F       # 🧘🏿‍♂️ E5.0 man in lotus position: dark skin tone
-			//
-			// 1F9D1 200D 2695 FE0F             # 🧑‍⚕️ E12.1 health worker
-			// 1F9D1 1F3FF 200D 2695 FE0F       # 🧑🏿‍⚕️ E12.1 health worker: dark skin tone
-			// 1F468 200D 2695 FE0F             # 👨‍⚕️ E4.0 man health worker
-			// 1F468 1F3FF 200D 2695 FE0F       # 👨🏿‍⚕️ E4.0 man health worker: dark skin tone
-			//
-			// 1F470                            # 👰 E2.0 bride with veil
-			// 1F470 1F3FF                      # 👰🏻 E2.0 bride with veil: dark skin tone
-			//
-			// 1F575 FE0F                       # 🕵️ E2.0 detective
-			// 1F575 1F3FF                      # 🕵🏿 E2.0 detective: dark skin tone
-			// 1F575 FE0F 200D 2642 FE0F        # 🕵️‍♂️ E4.0 man detective
-			// 1F575 1F3FF 200D 2642 FE0F       # 🕵🏿‍♂️ E4.0 man detective: dark skin tone
-			if *tone != "" && e.SkinTones {
+			if tone != "" && e.SkinTones {
 				var ns string
 				i := 0
 				for _, r := range c {
@@ -296,7 +261,7 @@ func emoji(args []string, quiet, raw bool) error {
 					case 0:
 						ns = string(r)
 					case 1:
-						ns += "\u200d" + *tone
+						ns += "\u200d" + tone
 						fallthrough
 					default:
 						ns += string(r)
@@ -305,7 +270,7 @@ func emoji(args []string, quiet, raw bool) error {
 				}
 				c = ns
 				if i == 1 {
-					c += "\u200d" + *tone
+					c += "\u200d" + tone
 				}
 			}
 
@@ -345,10 +310,6 @@ func emoji(args []string, quiet, raw bool) error {
 				}
 			}
 		}
-
-		if !found {
-			return fmt.Errorf("no such emoji group or subgroup: %q", a)
-		}
 	}
 
 	// TODO: not always correctly aligned as some emojis are double-width and
@@ -367,6 +328,75 @@ func emoji(args []string, quiet, raw bool) error {
 		fmt.Fprintln(stdout, "")
 	}
 	return nil
+}
+
+func emojiTone(t string) string {
+	switch t {
+	case "":
+		return ""
+	case "light":
+		return "\U0001f3fb"
+	case "mediumlight":
+		return "\U0001f3fc"
+	case "medium":
+		return "\U0001f3fd"
+	case "mediumdark":
+		return "\U0001f3fe"
+	case "dark":
+		return "\U0001f3ff"
+	}
+
+	fmt.Fprintf(stderr, "uni: invalid skin tone: %q\n", t)
+	flag.Usage()
+	exit(1)
+	return ""
+}
+
+func emojiGenders(g string) []string {
+	genders := []string{"person", "man", "woman"}
+	if g != "" {
+		genders = strings.Split(g, ",")
+		for i, g := range genders {
+			switch g {
+			case "p", "people":
+				g = "person"
+			case "men", "m", "male":
+				g = "man"
+			case "women", "w", "female", "f":
+				g = "woman"
+			}
+			genders[i] = g
+		}
+	}
+	return genders
+}
+
+func emojiGroups(group string) []string {
+	groups := strings.Split(strings.ToLower(group), ",")
+	for _, g := range groups {
+		found := false
+	outer:
+		for eg, subs := range unidata.EmojiSubgroups {
+			if strings.Contains(strings.ToLower(eg), g) {
+				found = true
+				break
+			}
+
+			for _, sg := range subs {
+				if strings.Contains(strings.ToLower(sg), g) {
+					found = true
+					break outer
+				}
+			}
+		}
+		if !found {
+			fmt.Fprintf(stderr, "uni: doesn't match any emoji group or subgroup: %q\n", g)
+			flag.Usage()
+			exit(1)
+		}
+	}
+
+	return groups
 }
 
 func print(args []string, quiet, raw bool) error {

@@ -26,6 +26,9 @@ const (
 	GenderRole = 2
 )
 
+// TODO: Some ZJW sequences contain too many ZJW joiners, e.g.:
+// 👩‍❤‍️‍💋‍👨
+// 👩‍❤️‍💋‍👨 E2.0 kiss: woman, man
 func (e Emoji) String() string {
 	var c string
 	for i, cp := range e.Codepoints {
