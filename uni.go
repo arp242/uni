@@ -138,6 +138,7 @@ func getargs(args []string, quiet bool) []string {
 	// pipe usage, just when it would "hang" uni.
 	if !quiet && isTerm {
 		fmt.Fprintf(stderr, "uni: reading from stdin...")
+		os.Stderr.Sync()
 	}
 	stdin, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
@@ -318,9 +319,9 @@ func emoji(args []string, quiet, raw bool) error {
 		for i, c := range o {
 			switch i {
 			case 0:
-				fmt.Fprintf(stdout, c+" ")
+				fmt.Fprint(stdout, c+" ")
 			case 3: // Last column
-				fmt.Fprintf(stdout, c)
+				fmt.Fprint(stdout, c)
 			default:
 				fmt.Fprint(stdout, fill(c, cols[i]+2))
 			}

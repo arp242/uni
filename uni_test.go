@@ -231,13 +231,3 @@ func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
 		}
 	}
 }
-
-func errorContains(out error, want string) bool {
-	if out == nil {
-		return want == ""
-	}
-	if want == "" {
-		return false
-	}
-	return strings.Contains(out.Error(), want)
-}
