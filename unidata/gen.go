@@ -126,8 +126,8 @@ func mkemojis() (closeErr error) {
 			// Skin tones
 			case 0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff:
 				tone = true
-			// ZWJ and presentation selector.
-			case 0x200d, 0xfe0f:
+			// ZWJ
+			case 0x200d:
 				// No nothing
 			default:
 				cp = append(cp, fmt.Sprintf("0x%x", d))

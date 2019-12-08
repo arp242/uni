@@ -185,3 +185,23 @@ Alternatives
 
   Both are pretty similar to the dmenu/rofi integration of uni with some minor
   differences, and seems to work well.
+
+- gtk3 emoji picker (Ctrl+; or Ctrl+. in gtk 3.93 or newer)
+
+  Only works in GTK, doesn't work with `GTK_IM_MODULE=xim` (needed for compose
+  key), for some reasons the emojis look ugly, doesn't display composed emojis,
+  doesn't have a tooltip or other text description about what the emoji actually
+  is, the variation selector doesn't seem to work (never displays skin tone?),
+  doesn't work in Firefox.
+
+  This is so broken on my system that it seems that I'm missing something for
+  this to work or something?
+
+- Didn't investigate:
+
+  - https://github.com/cassidyjames/ideogram
+
+
+https://gitlab.gnome.org/GNOME/gtk/blob/1e129c1dd2234be11b13481b2120484e2d255164/gtk/gtkemojichooser.c
+https://gitlab.gnome.org/GNOME/gtk/blob/master/NEWS#L117
+https://gitlab.gnome.org/GNOME/gtk/blob/master/NEWS#L292

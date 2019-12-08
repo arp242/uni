@@ -27,7 +27,6 @@ func (e Emoji) String() string {
 		}
 		c += fmt.Sprint(string(cp))
 	}
-
 	return c
 }
 
