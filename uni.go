@@ -5,6 +5,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"os"
 	"strconv"
@@ -20,18 +21,13 @@ var (
 	errNoMatches = errors.New("no matches")
 )
 
-func usage(err error) {
-	out := os.Stdout
-	e := 0
-	if err != nil {
-		out = os.Stderr
-		e = 1
-		if err != errFlag {
-			_, _ = fmt.Fprintf(out, "%s: error: %v\n", os.Args[0], err)
-		}
-	}
+var (
+	stdout io.Writer = os.Stdout
+	stderr io.Writer = os.Stderr
+	exit             = os.Exit
+)
 
-	_, _ = fmt.Fprintf(out, `Usage: %s [-hrq] [identify | search | print | emoji]
+const usagetext = `Usage: %s [-hrq] [identify | search | print | emoji]
 
 Flags:
     -h      Show this help.
@@ -44,15 +40,14 @@ Commands:
     identify [string string ...]
         Idenfity all the characters in the given strings.
 
-    search word [word ...]
+    search [word word ...]
         Search description for any of the words.
 
-    print ident [ident ...]
+    print [ident ident ...]
         Print characters by codepoint, category, or block, or special name:
 
-            Codepoint    U+2042
-            Range        U+2042..U+2050
-            Category     PunctuationOther
+            Codepoint    U+2042, U+2042..U+2050
+            Category     OtherPunctuation, Po
             Block        GeneralPunctuation
             all          Everything
 
@@ -60,20 +55,31 @@ Commands:
         can be replaced with an underscore. "Po", "po", "punction, OTHER",
         "Punctuation_other", and PunctuationOther are all identical.
 
-    emoji [-tone tone] ident [ident ...]
+    emoji [-tone tone] [word word ...]
         Print emojis by group name:
 
-             all              Print Everything.
-             groups           Print all group and subgroup names.
-             <anything else>  Print all emojis in the group or subgroup.
+             all              Everything.
+             groups           All group and subgroup names.
+             <anything else>  Emojis matching the group or subgroup.
 
         The skin tone modifier is applied on supported emojies if -tone is
         given. Supported tones: light, mediumlight, medium, mediumdark, dark.
-
         Note: emojis may consist of multiple codepoints!
-`, os.Args[0])
+`
 
-	os.Exit(e)
+func usage(err error) {
+	out := stdout
+	e := 0
+	if err != nil {
+		out = stderr
+		e = 1
+		if err != errFlag {
+			_, _ = fmt.Fprintf(out, "%s: error: %v\n", os.Args[0], err)
+		}
+	}
+
+	_, _ = fmt.Fprintf(out, usagetext, os.Args[0])
+	exit(e)
 }
 
 func main() {
@@ -120,8 +126,8 @@ func main() {
 		err = nil
 	}
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		fmt.Fprintf(stderr, "%s\n", err)
+		exit(1)
 	}
 }
 
@@ -132,13 +138,14 @@ func getargs(args []string, quiet bool) []string {
 	}
 
 	if !quiet {
-		fmt.Fprintf(os.Stderr, "uni: reading from stdin...\n")
+		// TODO: clear with \r? Hmm..
+		fmt.Fprintf(stderr, "uni: reading from stdin...\n")
 	}
 	stdin, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
 		panic(fmt.Errorf("read stdin: %s", err))
 	}
-	return strings.Split(string(stdin), "\n")
+	return strings.Split(strings.TrimRight(string(stdin), "\n"), "\n")
 }
 
 func search(args []string, quiet, raw bool) error {
@@ -174,7 +181,7 @@ func search(args []string, quiet, raw bool) error {
 		return errNoMatches
 	}
 
-	out.PrintSorted(os.Stdout, quiet, raw)
+	out.PrintSorted(stdout, quiet, raw)
 	return nil
 }
 
@@ -190,10 +197,6 @@ func search(args []string, quiet, raw bool) error {
 //   $ uni e -gender man,women,person    # Show all.
 //
 //   $ uni e -tone dark -gender women    # Show women and apply dark skin modifier.
-//
-// TODO: Bring back search? Note: Searching didn't behave like "uni s" (it
-// should). How do we disambiguate between "search text description" and "search
-// groups"?
 func emoji(args []string, quiet, raw bool) error {
 	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
 	tone := subflag.String("tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
@@ -212,9 +215,9 @@ func emoji(args []string, quiet, raw bool) error {
 	case "dark":
 		*tone = "\U0001f3ff"
 	default:
-		fmt.Fprintf(os.Stderr, "%s: invalid skin tone: %q\n", os.Args[0], *tone)
+		fmt.Fprintf(stderr, "uni: invalid skin tone: %q\n", *tone)
 		flag.Usage()
-		os.Exit(55)
+		exit(55)
 	}
 
 	out := [][]string{}
@@ -226,9 +229,9 @@ func emoji(args []string, quiet, raw bool) error {
 			a = ""
 		case "groups":
 			for _, g := range unidata.EmojiGroups {
-				fmt.Println(g)
+				fmt.Fprintln(stdout, g)
 				for _, sg := range unidata.EmojiSubgroups[g] {
-					fmt.Println("   ", sg)
+					fmt.Fprintln(stdout, "   ", sg)
 				}
 			}
 			return nil
@@ -273,12 +276,12 @@ func emoji(args []string, quiet, raw bool) error {
 	for _, o := range out {
 		for i, c := range o {
 			if i == 0 {
-				fmt.Print(c + " ")
+				fmt.Fprintf(stdout, c+" ")
 			} else {
-				fmt.Print(fill(c, cols[i]+2))
+				fmt.Fprint(stdout, fill(c, cols[i]+2))
 			}
 		}
-		fmt.Println("")
+		fmt.Fprintln(stdout, "")
 	}
 	return nil
 }
@@ -355,14 +358,14 @@ func print(args []string, quiet, raw bool) error {
 		return fmt.Errorf("unknown identifier: %q", a)
 	}
 
-	out.PrintSorted(os.Stdout, quiet, raw)
+	out.PrintSorted(stdout, quiet, raw)
 	return nil
 }
 
 func identify(ins []string, quiet, raw bool) error {
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
-		_, _ = fmt.Fprintf(os.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
+		_, _ = fmt.Fprintf(stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
 	var out printer
@@ -375,7 +378,7 @@ func identify(ins []string, quiet, raw bool) error {
 		out = append(out, info)
 	}
 
-	out.Print(os.Stdout, quiet, raw)
+	out.Print(stdout, quiet, raw)
 	return nil
 }
 

@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/arp242.net/uni.svg?branch=master)](https://travis-ci.org/arp242.net/uni)
+[![codecov](https://codecov.io/gh/arp242.net/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242.net/uni)
+[![GoDoc](https://godoc.org/github.com/arp242.net/uni?status.svg)](https://godoc.org/github.com/arp242.net/uni)
+
 `uni` queries the Unicode database from the commandline.
 
 There are four commands: `identify` to print Unicode information about a string,
