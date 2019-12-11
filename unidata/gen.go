@@ -168,44 +168,39 @@ func mkemojis() error {
 				} else {
 					gender = GenderSign
 				}
-
-			// Newer gendered emoji; combine "person", "man", or "women" with
-			// something related to that:
-			//
-			//   1F9D1 200D 2695 FE0F # 🧑‍⚕️ E12.1 health worker
-			//   1F468 200D 2695 FE0F # 👨‍⚕️ E4.0 man health worker
-			//   1F469 200D 2695 FE0F # 👩‍⚕️ E4.0 woman health worker
-			//
-			//   1F9D1                # 🧑 E5.0 person
-			//   1F468                # 👨 E2.0 man
-			//   1F469                # 👩 E2.0 woman
-			//
-			// Detect: kinda tricky as there is also:
-			//
-			// 1F9D1 200D 1F9B0                            # 🧑‍🦰 E12.1 person: red hair
-			// 1F9D1 200D 1F91D 200D 1F9D1                 # 🧑‍🤝‍🧑 E12.1 people holding hands
-			// 1F469 200D 2764 FE0F 200D 1F48B 200D 1F468  # 👩‍❤️‍💋‍👨 E2.0 kiss: woman, man
-			// 1F469 200D 1F469 200D 1F466 200D 1F466      # 👩‍👩‍👦‍👦 E2.0 family: woman, woman, boy, boy
-			//
-			// Detect:
-			// These only appear in the person-role and person-activity subgroups;
-			// the special cases only in family subgroup.
-			//case 0x1f468, 0x1f469:
-			//	if subgroup == "family" || len(splitCodepoints) == 1 {
-			//		cp = append(cp, fmt.Sprintf("0x%x", d))
-			//	} else {
-			//		fmt.Println(codepoints, name)
-			//		gender = GenderRole
-			//	}
-
 			default:
 				cp = append(cp, fmt.Sprintf("0x%x", d))
 			}
 		}
 
+		// This ignores combining the "holding hands" with different skin tone
+		// variants:
+		// 1F468 1F3FB 200D 1F91D 200D 1F468 1F3FF 👨🏻‍🤝‍👨🏿
+		// E12.1 men holding hands: light skin tone, dark skin tone
+		//
+		// There is no good way to select this with the current UX, and to be
+		// honest I don't think it's very important either.
+		if tone && strings.Contains(name, "holding hands") {
+			gender = 0
+			tone = false
+			continue
+		}
+
 		key := strings.Join(cp, ", ")
 
-		// TODO: use static list for now, as detecting this is kinda tricky.
+		// Newer gendered emoji; combine "person", "man", or "women" with
+		// something related to that:
+		//
+		//   1F9D1 200D 2695 FE0F # 🧑‍⚕️ E12.1 health worker
+		//   1F468 200D 2695 FE0F # 👨‍⚕️ E4.0 man health worker
+		//   1F469 200D 2695 FE0F # 👩‍⚕️ E4.0 woman health worker
+		//
+		//   1F9D1                # 🧑 E5.0 person
+		//   1F468                # 👨 E2.0 man
+		//   1F469                # 👩 E2.0 woman
+		//
+		// Detect: These only appear in the person-role and person-activity
+		// subgroups; the special cases only in family subgroup.
 		for _, g := range gendered {
 			if strings.HasPrefix(key, g) {
 				gender = GenderRole
@@ -237,14 +232,7 @@ func mkemojis() error {
 			continue
 		}
 
-		// This ignores combining the "holding hands" with different skin tone
-		// variants:
-		// 1F468 1F3FB 200D 1F91D 200D 1F468 1F3FF 👨🏻‍🤝‍👨🏿
-		// E12.1 men holding hands: light skin tone, dark skin tone
-		//
-		// There is no good way to select this with the current UX, and to be
-		// honest I don't think it's very important either.
-		if tone && strings.Count(name, "tone") == 1 {
+		if tone {
 			_, ok := emojis[key]
 			if !ok && cp[len(cp)-1] == "0xfe0f" {
 				key = strings.Join(cp[0:len(cp)-1], ", ")

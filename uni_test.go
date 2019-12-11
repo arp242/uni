@@ -177,10 +177,8 @@ func TestEmoji(t *testing.T) {
 			}
 
 			if !reflect.DeepEqual(out, tt.want) {
-				// U+FE0F is a somewhat elusive character that gets eaten and
-				// not displayed. Make sure it's displayed.
-				a := strings.Replace(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`, -1)
-				b := strings.Replace(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`, -1)
+				a := strings.ReplaceAll(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`)
+				b := strings.ReplaceAll(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`)
 				t.Errorf("wrong output\nout:  %s\nwant: %s", a, b)
 			}
 		})
@@ -188,16 +186,14 @@ func TestEmoji(t *testing.T) {
 }
 
 func TestAllEmoji(t *testing.T) {
-	// TODO: all the failing tests are with the "holding hands" bullshit.
-	t.Skip()
-
 	outbuf, c := setup(t, []string{"e", "-tone", "all", "all"}, -1)
 	defer c()
 
 	// grep -v '^#' unidata/.cache/emoji-test.txt |
 	//     grep fully-qualified |
+	//     grep -v 'holding hands.*tone' |
 	//     grep -Eo '# .+? E[0-9]' |
-	//     cut -d ' ' -f2|less
+	//     cut -d ' ' -f2 >| testdata/emojis
 	//
 	// double tones: 70
 	// family: 145
@@ -217,10 +213,19 @@ func TestAllEmoji(t *testing.T) {
 		t.Errorf("different length: want %d, got %d", len(wantEmojis), len(outEmojis))
 	}
 
+	// Still some \ufe0f issues
+	t.Skip()
+
 	// TODO: this shouldnt; be needed
 	sort.Strings(wantEmojis)
 	sort.Strings(outEmojis)
 
+	for i := range wantEmojis {
+		wantEmojis[i] = strings.ReplaceAll(wantEmojis[i], "\ufe0f", `\ufe0f`)
+	}
+	for i := range outEmojis {
+		outEmojis[i] = strings.ReplaceAll(outEmojis[i], "\ufe0f", `\ufe0f`)
+	}
 	if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
 		t.Error(d)
 	}

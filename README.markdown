@@ -245,6 +245,8 @@ Alternatives
 - Didn't investigate:
 
   - https://github.com/cassidyjames/ideogram
+  - https://github.com/OzymandiasTheGreat/emoji-keyboard
+  - https://github.com/rugk/awesome-emoji-picker
 
 
 Development
