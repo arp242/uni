@@ -3,8 +3,6 @@
 // Package unidata contains information about Unicode characters.
 package unidata
 
-import "fmt"
-
 // Codepoint is a single codepoint.
 type Codepoint struct {
 	Width, Cat uint8
@@ -31,11 +29,39 @@ const (
 // 👩‍❤️‍💋‍👨 E2.0 kiss: woman, man
 func (e Emoji) String() string {
 	var c string
-	for i, cp := range e.Codepoints {
-		if i > 0 {
-			c += "\u200d"
+
+	// Flags
+	// 1F1FF 1F1FC                                 # 🇿🇼 E2.0 flag: Zimbabwe
+	// 1F3F4 E0067 E0062 E0065 E006E E0067 E007F   # 🏴󠁧󠁢󠁥󠁮󠁧󠁿 E5.0 flag: England
+	if (e.Codepoints[0] >= 0x1f1e6 && e.Codepoints[0] <= 0x1f1ff) ||
+		(len(e.Codepoints) > 1 && e.Codepoints[1] == 0xe0067) {
+		for _, cp := range e.Codepoints {
+			c += string(cp)
 		}
-		c += fmt.Sprint(string(cp))
+		return c
+	}
+
+	// Keycap: join with 0xfe0f
+
+	for i, cp := range e.Codepoints {
+		c += string(cp)
+
+		// Don't add ZWJ as last item.
+		if i == len(e.Codepoints)-1 {
+			continue
+		}
+		switch e.Codepoints[i+1] {
+
+		// Never add ZWJ before variation selector or skin tone.
+		case 0xfe0f, 0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff:
+			continue
+
+		// Keycaps
+		case 0x20e3:
+			continue
+		}
+
+		c += "\u200d"
 	}
 	return c
 }
