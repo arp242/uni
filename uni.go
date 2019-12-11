@@ -17,7 +17,6 @@ import (
 )
 
 var (
-	errFlag      = errors.New("")
 	errNoMatches = errors.New("no matches")
 )
 
@@ -27,7 +26,7 @@ var (
 	exit             = os.Exit
 )
 
-const usagetext = `Usage: %s [-hrq] [help | identify | search | print | emoji]
+const usage = `Usage: uni [-hrq] [help | identify | search | print | emoji]
 
 Flags:
     -q      Quiet output; don't print header, "no matches", etc.
@@ -67,21 +66,6 @@ Commands:
         with e.g. xclip.
 `
 
-func usage(err error) {
-	out := stdout
-	e := 0
-	if err != nil {
-		out = stderr
-		e = 1
-		if err != errFlag {
-			_, _ = fmt.Fprintf(out, "%s: error: %v\n", os.Args[0], err)
-		}
-	}
-
-	_, _ = fmt.Fprintf(out, usagetext, os.Args[0])
-	exit(e)
-}
-
 func main() {
 	var (
 		quiet bool
@@ -93,24 +77,26 @@ func main() {
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
 	flag.BoolVar(&raw, "r", false, "")
-	flag.Usage = func() { usage(errFlag) }
+	flag.Usage = func() { fmt.Fprint(stdout, usage) }
 	flag.Parse()
 
 	if help {
-		usage(nil)
+		flag.Usage()
+		exit(0)
 	}
 
 	args := flag.Args()
 	if len(args) == 0 {
-		usage(errors.New("no command given"))
+		die("no command given")
 	}
 
 	var err error
 	switch strings.ToLower(args[0]) {
 	default:
-		usage(fmt.Errorf("unknown command: %q", args[0]))
+		die("unknown command: %q", args[0])
 	case "help", "h":
-		usage(nil)
+		flag.Usage()
+		exit(0)
 	case "identify", "i":
 		err = identify(getargs(args[1:], quiet), quiet, raw)
 	case "search", "s":
@@ -127,6 +113,11 @@ func main() {
 		}
 		exit(1)
 	}
+}
+
+func die(f string, a ...interface{}) {
+	fmt.Fprintf(stderr, f+"\n", a...)
+	exit(1)
 }
 
 // Use commandline args or stdin.
@@ -192,22 +183,44 @@ func search(args []string, quiet, raw bool) error {
 
 // TODO: also add option to search and/pr print by "other keywords" from this
 // list: https://unicode.org/emoji/charts/emoji-list.html
-//
-// TODO: I don't like how "uni e farmer -gender m" doesn't work (flag needs to
-// be before search words).
 func emoji(args []string, quiet, raw bool) error {
-	var tone, gender, group string
-	subflag := flag.NewFlagSet("emoji", flag.ExitOnError)
-	// TODO: accept both singular and plurals here (-tone and -tones), which are
-	// treated identical.
-	subflag.StringVar(&tone, "tone", "", "Skin tone; light, mediumlight, medium, mediumdark, or dark")
-	subflag.StringVar(&gender, "gender", "", "comma-separated list of genders to include (man, woman, person); default is all")
-	subflag.StringVar(&group, "groups", "", "comma-separated list of groups")
-	subflag.Parse(args)
+	var (
+		tone, gender, group string
+		subargs             []string
+		skip                bool
+	)
+
+	needarg := func(i int) string {
+		if i+2 > len(args) || len(args[i+1]) == 0 || args[i+1][0] == '-' {
+			die("uni: argument required for %s", args[i])
+		}
+		return args[i+1]
+	}
+	for i := range args {
+		if skip {
+			skip = false
+			continue
+		}
+		switch args[i] {
+		case "-t", "-tone", "-tones":
+			tone += needarg(i)
+			skip = true
+		case "-gender", "-genders":
+			gender += needarg(i)
+			skip = true
+		case "-g", "-group", "-groups":
+			group += needarg(i)
+			skip = true
+		default:
+			if len(args[i]) > 0 && args[i][0] == '-' {
+				die("uni: unknown option: %s", args[i])
+			}
+			subargs = append(subargs, args[i])
+		}
+	}
 
 	groups := parseEmojiGroups(group)
 
-	subargs := subflag.Args()
 	if len(subargs) == 0 && len(groups) > 0 {
 		subargs = []string{""} // Imply all
 	}
@@ -300,9 +313,7 @@ func applyTone(e unidata.Emoji, t string) []unidata.Emoji {
 	for i, t := range tones {
 		tcp, ok := tonemap[t]
 		if !ok {
-			fmt.Fprintf(stderr, "uni: invalid skin tone: %q\n", t)
-			flag.Usage()
-			exit(1)
+			die("uni: invalid skin tone: %q", t)
 		}
 
 		emojis[i] = unidata.Emoji{
@@ -410,9 +421,7 @@ func parseEmojiGroups(group string) []string {
 			}
 		}
 		if !found {
-			fmt.Fprintf(stderr, "uni: doesn't match any emoji group or subgroup: %q\n", g)
-			flag.Usage()
-			exit(1)
+			die("uni: doesn't match any emoji group or subgroup: %q", g)
 		}
 	}
 
@@ -482,7 +491,7 @@ func print(args []string, quiet, raw bool) error {
 func identify(ins []string, quiet, raw bool) error {
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
-		_, _ = fmt.Fprintf(stderr, "uni: WARNING: input string is not valid UTF-8\n")
+		fmt.Fprintf(stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
 	var out printer
