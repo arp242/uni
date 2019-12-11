@@ -14,6 +14,35 @@ import (
 	"zgo.at/ztest"
 )
 
+func TestCLI(t *testing.T) {
+	tests := []struct {
+		in   []string
+		want string
+	}{
+		{[]string{"xxx"}, "uni: unknown command"},
+		{[]string{""}, "uni: unknown command"},
+		{[]string{}, "uni: no command"},
+		{[]string{"e", "-t"}, "argument required for -t\n"},
+		{[]string{"e", "-t", "-g"}, "argument required for -t\n"},
+		{[]string{"e", "-x"}, "unknown option"},
+		{[]string{"e", "-t", "xx"}, "invalid skin"},
+		{[]string{"e", "-gender", "xx"}, "invalid gender"},
+		{[]string{"e", "-g", "xxsxxxx"}, "match"},
+	}
+
+	for _, tt := range tests {
+		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+			outbuf, c := setup(t, tt.in, 1)
+			defer c()
+
+			out := outbuf.String()
+			if !strings.Contains(out, tt.want) {
+				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+			}
+		})
+	}
+}
+
 func TestIdentify(t *testing.T) {
 	tests := []struct {
 		in   []string
@@ -100,6 +129,8 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "Po"}, "ASTERISM", 588, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
 		{[]string{"-q", "p", "all"}, "ASTERISM", 32841, -1},
+
+		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 	}
 
 	for _, tt := range tests {
@@ -159,6 +190,9 @@ func TestEmoji(t *testing.T) {
 			[]string{"🕵SZ♂S"}},
 		{[]string{"e", "-gender", "m", "-tone", "mediumdark", "detective"},
 			[]string{"🕵🏾Z♂S"}},
+
+		{[]string{"e", "zimbabwe", "#", "england"},
+			[]string{"🇿🇼", "#S⃣", "🏴󠁧󠁢󠁥󠁮󠁧󠁿"}},
 	}
 
 	for _, tt := range tests {
@@ -248,6 +282,9 @@ func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
 		if code != wantExit {
 			t.Fatalf("os.Exit(%d) called; want %d\n%s", code, wantExit, outbuf.String())
 		}
+
+		// Otherwise this doesn't stop execution inside the main program.
+		//t.SkipNow()
 	}
 
 	main()

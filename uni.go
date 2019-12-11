@@ -88,6 +88,7 @@ func main() {
 	args := flag.Args()
 	if len(args) == 0 {
 		die("no command given")
+		return
 	}
 
 	var err error
@@ -116,7 +117,7 @@ func main() {
 }
 
 func die(f string, a ...interface{}) {
-	fmt.Fprintf(stderr, f+"\n", a...)
+	fmt.Fprintf(stderr, "uni: "+f+"\n", a...)
 	exit(1)
 }
 
@@ -190,11 +191,11 @@ func emoji(args []string, quiet, raw bool) error {
 		skip                bool
 	)
 
-	needarg := func(i int) string {
+	needarg := func(i int) error {
 		if i+2 > len(args) || len(args[i+1]) == 0 || args[i+1][0] == '-' {
-			die("uni: argument required for %s", args[i])
+			return fmt.Errorf("argument required for %s", args[i])
 		}
-		return args[i+1]
+		return nil
 	}
 	for i := range args {
 		if skip {
@@ -203,17 +204,26 @@ func emoji(args []string, quiet, raw bool) error {
 		}
 		switch args[i] {
 		case "-t", "-tone", "-tones":
-			tone += needarg(i)
+			if err := needarg(i); err != nil {
+				return err
+			}
+			tone += args[i+1]
 			skip = true
 		case "-gender", "-genders":
-			gender += needarg(i)
+			if err := needarg(i); err != nil {
+				return err
+			}
+			gender += args[i+1]
 			skip = true
 		case "-g", "-group", "-groups":
-			group += needarg(i)
+			if err := needarg(i); err != nil {
+				return err
+			}
+			group += args[i+1]
 			skip = true
 		default:
 			if len(args[i]) > 0 && args[i][0] == '-' {
-				die("uni: unknown option: %s", args[i])
+				return fmt.Errorf("unknown option: %s", args[i])
 			}
 			subargs = append(subargs, args[i])
 		}
@@ -246,7 +256,7 @@ func emoji(args []string, quiet, raw bool) error {
 			if !found {
 				continue
 			}
-			if !strings.Contains(e.Name, a) {
+			if !strings.Contains(strings.ToLower(e.Name), a) {
 				continue
 			}
 
@@ -313,7 +323,7 @@ func applyTone(e unidata.Emoji, t string) []unidata.Emoji {
 	for i, t := range tones {
 		tcp, ok := tonemap[t]
 		if !ok {
-			die("uni: invalid skin tone: %q", t)
+			die("invalid skin tone: %q", t)
 		}
 
 		emojis[i] = unidata.Emoji{
@@ -352,6 +362,8 @@ func applyGender(emojis []unidata.Emoji, gender string) []unidata.Emoji {
 				g = "man"
 			case "women", "w", "female", "f":
 				g = "woman"
+			default:
+				die("invalid gender : %q", g)
 			}
 			genders[i] = g
 		}
@@ -423,7 +435,7 @@ func parseEmojiGroups(group string) []string {
 			}
 		}
 		if !found {
-			die("uni: doesn't match any emoji group or subgroup: %q", g)
+			die("doesn't match any emoji group or subgroup: %q", g)
 		}
 	}
 
@@ -500,7 +512,7 @@ func identify(ins []string, quiet, raw bool) error {
 	for _, c := range in {
 		info, ok := unidata.FindCodepoint(c)
 		if !ok {
-			return fmt.Errorf("unknown codepoint: %.4X", c)
+			return fmt.Errorf("unknown codepoint: %.4X", c) // Should never happen.
 		}
 
 		out = append(out, info)
