@@ -246,7 +246,7 @@ func emoji(args []string, quiet, raw bool) error {
 			if !found {
 				continue
 			}
-			if !strings.Contains(e.Name, a) { // TODO: work like search
+			if !strings.Contains(e.Name, a) {
 				continue
 			}
 
@@ -366,11 +366,13 @@ func applyGender(emojis []unidata.Emoji, gender string) []unidata.Emoji {
 
 		for _, g := range genders {
 			ee := e
+			ee.Codepoints = make([]uint32, len(ee.Codepoints))
+			copy(ee.Codepoints, e.Codepoints)
 
-			// Append male or female sign
-			//   1F937 1F3FD                   # 🤷🏽 E4.0 person shrugging: medium skin tone
-			//   1F937 1F3FB 200D 2642 FE0F    # 🤷🏻‍♂️ E4.0 man shrugging: light skin tone
 			if e.Genders == unidata.GenderSign {
+				// Append male or female sign
+				//   1F937 1F3FD                   # 🤷🏽 E4.0 person shrugging: medium skin tone
+				//   1F937 1F3FB 200D 2642 FE0F    # 🤷🏻‍♂️ E4.0 man shrugging: light skin tone
 				switch g {
 				case "woman":
 					ee.Name = strings.Replace(ee.Name, "person", "woman", 1)

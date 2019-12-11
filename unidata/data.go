@@ -24,9 +24,6 @@ const (
 	GenderRole = 2
 )
 
-// TODO: Some ZJW sequences contain too many ZJW joiners, e.g.:
-// 👩‍❤‍️‍💋‍👨
-// 👩‍❤️‍💋‍👨 E2.0 kiss: woman, man
 func (e Emoji) String() string {
 	var c string
 
@@ -41,8 +38,6 @@ func (e Emoji) String() string {
 		return c
 	}
 
-	// Keycap: join with 0xfe0f
-
 	for i, cp := range e.Codepoints {
 		c += string(cp)
 
@@ -50,13 +45,12 @@ func (e Emoji) String() string {
 		if i == len(e.Codepoints)-1 {
 			continue
 		}
-		switch e.Codepoints[i+1] {
 
+		switch e.Codepoints[i+1] {
 		// Never add ZWJ before variation selector or skin tone.
 		case 0xfe0f, 0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff:
 			continue
-
-		// Keycaps
+		// Keycap: join with 0xfe0f
 		case 0x20e3:
 			continue
 		}

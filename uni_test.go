@@ -188,6 +188,7 @@ func TestEmoji(t *testing.T) {
 }
 
 func TestAllEmoji(t *testing.T) {
+	// TODO: all the failing tests are with the "holding hands" bullshit.
 	t.Skip()
 
 	outbuf, c := setup(t, []string{"e", "-tone", "all", "all"}, -1)
@@ -216,35 +217,12 @@ func TestAllEmoji(t *testing.T) {
 		t.Errorf("different length: want %d, got %d", len(wantEmojis), len(outEmojis))
 	}
 
+	// TODO: this shouldnt; be needed
 	sort.Strings(wantEmojis)
 	sort.Strings(outEmojis)
 
-	for i := range wantEmojis {
-		wantEmojis[i] = strings.ReplaceAll(wantEmojis[i], "\u200d", "")
-		wantEmojis[i] = strings.ReplaceAll(wantEmojis[i], "\ufe0f", "")
-	}
-	for i := range outEmojis {
-		outEmojis[i] = strings.ReplaceAll(outEmojis[i], "\u200d", "")
-		outEmojis[i] = strings.ReplaceAll(outEmojis[i], "\ufe0f", "")
-	}
-
 	if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
 		t.Error(d)
-	}
-
-	return
-
-	for i := range wantEmojis {
-		if len(outEmojis) <= i {
-			break
-		}
-		if wantEmojis[i] != outEmojis[i] {
-			// U+FE0F is a somewhat elusive character that gets eaten and
-			// not displayed. Make sure it's displayed.
-			a := strings.Replace(fmt.Sprintf("%#v", wantEmojis[i]), "\ufe0f", `\ufe0f`, -1)
-			b := strings.Replace(fmt.Sprintf("%#v", outEmojis[i]), "\ufe0f", `\ufe0f`, -1)
-			t.Errorf("\nwant: %s\ngot:  %s", a, b)
-		}
 	}
 }
 
