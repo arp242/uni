@@ -7,9 +7,9 @@ There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
 emojis.
 
-It includes full support for Unicode 12.1 (May 2019) including full Emoji
-support (a surprisingly large amount of emoji pickers don't deal with emoji
-sequences very well).
+It includes full support for Unicode 12.1 (May 2019) with full Emoji support (a
+surprisingly large amount of emoji pickers don't deal with emoji sequences very
+well).
 
 There are binaries on the [releases][release] page, or compile from source with
 `go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`.
@@ -22,7 +22,7 @@ Integrations
 - [dmenu][dmenu] and [rofi][rofi] script at [`dmenu-uni`](dmenu-uni). See the
   top of the script for some options you may want to frob with.
 
-- For a Vim command see [`uni.vim`][uni.vim]; just copy/paste it in your vimrc.
+- For a Vim command see [`uni.vim`](/uni.vim); just copy/paste it in your vimrc.
 
 [dmenu]: http://tools.suckless.org/dmenu
 [rofi]: https://github.com/davatorium/rofi
@@ -38,23 +38,18 @@ Identify a character:
 
 Or a string; `i` is a shortcut for `identify`:
 
-    $ uni i h€łłø
+    $ uni i h€ý
          cpoint  dec    utf-8       html       name
     'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
-    'ł'  U+0142  322    c5 82       &lstrok;   LATIN SMALL LETTER L WITH STROKE
-    'ł'  U+0142  322    c5 82       &lstrok;   LATIN SMALL LETTER L WITH STROKE
-    'ø'  U+00F8  248    c3 b8       &oslash;   LATIN SMALL LETTER O WITH STROKE
+    'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE (Lowercase_Letter)
 
 It reads from stdin:
 
-    $ head -c5 README.markdown | uni i
+    $ head -c2 README.markdown | uni i
          cpoint  dec    utf-8       html       name
-    '`'  U+0060  96     60          &grave;    GRAVE ACCENT (Modifier_Symbol)
-    'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U (Lowercase_Letter)
-    'n'  U+006E  110    6e          &#x6e;     LATIN SMALL LETTER N (Lowercase_Letter)
-    'i'  U+0069  105    69          &#x69;     LATIN SMALL LETTER I (Lowercase_Letter)
-    '`'  U+0060  96     60          &grave;    GRAVE ACCENT (Modifier_Symbol)
+    '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
+    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
 Search description:
 
@@ -128,13 +123,9 @@ Blocks:
          cpoint  dec    utf-8       html       name
     '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW (Math_Symbol)
     '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW (Math_Symbol)
-    '→'  U+2192  8594   e2 86 92    &rarr;     RIGHTWARDS ARROW (Math_Symbol)
-    '↓'  U+2193  8595   e2 86 93    &darr;     DOWNWARDS ARROW (Math_Symbol)
     [..]
     '─'  U+2500  9472   e2 94 80    &boxh;     BOX DRAWINGS LIGHT HORIZONTAL (Other_Symbol)
     '━'  U+2501  9473   e2 94 81    &#x2501;   BOX DRAWINGS HEAVY HORIZONTAL (Other_Symbol)
-    '│'  U+2502  9474   e2 94 82    &boxv;     BOX DRAWINGS LIGHT VERTICAL (Other_Symbol)
-    '┃'  U+2503  9475   e2 94 83    &#x2503;   BOX DRAWINGS HEAVY VERTICAL (Other_Symbol)
     [..]
 
 And finally, there is the `emoji` command (shortcut: `e`), which is the real
@@ -188,8 +179,15 @@ be filtered with the `-gender` option:
     🤷‍♂️ man shrugging     People & Body  person-gesture
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
-dispay both the female and male variants (in that order), and `-tone light,dark`
-will display both a light and dark skin tone.
+display both the female and male variants (in that order), and `-tone
+light,dark` will display both a light and dark skin tone; use `all` to display
+all skin tones or genders:
+
+    $ uni e -tone light,dark -gender f,m shrug
+    🤷🏻‍♀️ woman shrugging: light skin tone  People & Body  person-gesture
+    🤷🏻‍♂️ man shrugging: light skin tone    People & Body  person-gesture
+    🤷🏿‍♀️ woman shrugging: dark skin tone   People & Body  person-gesture
+    🤷🏿‍♂️ man shrugging: dark skin tone     People & Body  person-gesture
 
 Alternatives
 ------------
@@ -242,11 +240,15 @@ Alternatives
   This is so broken on my system that it seems that I'm missing something for
   this to work or something?
 
+- https://github.com/rugk/awesome-emoji-picker
+
+  Only works in Firefox; takes a tad too long to open; doesn't support skin
+  tones.
+
 - Didn't investigate:
 
   - https://github.com/cassidyjames/ideogram
   - https://github.com/OzymandiasTheGreat/emoji-keyboard
-  - https://github.com/rugk/awesome-emoji-picker
 
 
 Development
