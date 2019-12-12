@@ -130,7 +130,7 @@ func getargs(args []string, quiet bool) []string {
 	// Print message so people aren't left waiting when typing "uni print". We
 	// don't print a newline and a \r later on, so you don't see it in actual
 	// pipe usage, just when it would "hang" uni.
-	if !quiet && isTerm {
+	if !quiet {
 		fmt.Fprintf(stderr, "uni: reading from stdin...")
 		os.Stderr.Sync()
 	}
@@ -138,7 +138,7 @@ func getargs(args []string, quiet bool) []string {
 	if err != nil {
 		panic(fmt.Errorf("read stdin: %s", err))
 	}
-	if !quiet && isTerm {
+	if !quiet {
 		fmt.Fprintf(stderr, "\r")
 	}
 
