@@ -34,14 +34,15 @@ Identify a character:
 
     $ uni identify €
          cpoint  dec    utf-8      html       name
-    '€'  U+20AC  8364   0xe282ac   &euro;     EURO SIGN
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
 
 Or a string; `i` is a shortcut for `identify`:
 
     $ uni i h€ý
+
          cpoint  dec    utf-8       html       name
-    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
+    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H (Lowercase_Letter)
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
     'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE (Lowercase_Letter)
 
 It reads from stdin:
@@ -68,30 +69,23 @@ Search description:
 The `s` command is a shortcut for `search`. Multiple words are matched
 individually:
 
-    $ uni s earth globe
+    $ uni s globe earth
          cpoint  dec    utf-8       html       name
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
     '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
 
-    $ uni s globe earth
-          cpoint  dec    utf-8       html       name
-    '🌍'  U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
-    '🌎'  U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS
-    '🌏'  U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA
-
 Use standard shell quoting for more literal matches:
 
     $ uni s rightwards black arrow
          cpoint  dec    utf-8       html       name
-    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW
-    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD
-    '➥'  U+27A5  10149  e2 9e a5    &#x27a5;   HEAVY BLACK CURVED DOWNWARDS AND RIGHTWARDS ARROW
+    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW (Other_Symbol)
+    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD (Other_Symbol)
     [..]
 
     $ uni s 'rightwards black arrow'
          cpoint  dec    utf-8       html       name
-    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW
+    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW (Other_Symbol)
 
 The `print` command (shortcut `p`) can be used to print specific codepoints or
 groups of codepoints:
@@ -112,9 +106,9 @@ General category:
 
     $ uni p Po
          cpoint  dec    utf-8       html       name
+         cpoint  dec    utf-8       html       name
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
     '"'  U+0022  34     22          &quot;     QUOTATION MARK (Other_Punctuation)
-    '#'  U+0023  35     23          &num;      NUMBER SIGN (Other_Punctuation)
     [..]
 
 Blocks:
