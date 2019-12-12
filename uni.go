@@ -356,11 +356,11 @@ func applyGender(emojis []unidata.Emoji, gender string) []unidata.Emoji {
 		genders = strings.Split(gender, ",")
 		for i, g := range genders {
 			switch g {
-			case "p", "people":
+			case "person", "p", "people":
 				g = "person"
-			case "men", "m", "male":
+			case "man", "men", "m", "male":
 				g = "man"
-			case "women", "w", "female", "f":
+			case "woman", "women", "w", "female", "f":
 				g = "woman"
 			default:
 				die("invalid gender : %q", g)
