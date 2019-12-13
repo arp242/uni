@@ -245,6 +245,9 @@ Alternatives
   - https://github.com/OzymandiasTheGreat/emoji-keyboard
   - https://github.com/salty-horse/ibus-uniemoji
   - https://fcitx-im.org/wiki/Unicode
+  - http://kassiopeia.juls.savba.sk/~garabik/software/unicode/
+  - https://billposer.org/Software/unidesc.html
+  - https://github.com/NoraCodes/charpicker (rofi)
 
 
 Development

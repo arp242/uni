@@ -4,3 +4,14 @@
 - Add -format option to configure columns.
 - Add option to search and/or print by "other keywords" from CLDR. Maybe also
   allow :cool: and such?
+- Allow copying to clipboard. From HN comment
+  https://news.ycombinator.com/item?id=21780608
+
+   > `echo -n "$selected_symbol" | xclip -i`
+   >
+   > And then fake a middle click to insert in the current application:
+   >
+   > `xdotool click 2`o
+
+  Also maybe send as direct input (xdotool can do this, but is apparently not
+  reliable across all apps/characters).
