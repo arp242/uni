@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/arp242/uni.svg?branch=master)](https://travis-ci.org/arp242/uni)
 [![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
+[![Run on repl.it](https://repl.it/badge/github/arp242/uni)](https://repl.it/github/arp242/uni)
 
 `uni` queries the Unicode database from the commandline.
 
