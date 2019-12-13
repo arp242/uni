@@ -13,6 +13,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
+	"arp242.net/uni/isatty"
 	"arp242.net/uni/unidata"
 )
 
@@ -127,10 +128,12 @@ func getargs(args []string, quiet bool) []string {
 		return args
 	}
 
+	interactive := isatty.IsTerminal(os.Stdin.Fd())
+
 	// Print message so people aren't left waiting when typing "uni print". We
 	// don't print a newline and a \r later on, so you don't see it in actual
 	// pipe usage, just when it would "hang" uni.
-	if !quiet {
+	if !quiet && interactive {
 		fmt.Fprintf(stderr, "uni: reading from stdin...")
 		os.Stderr.Sync()
 	}
@@ -138,7 +141,7 @@ func getargs(args []string, quiet bool) []string {
 	if err != nil {
 		panic(fmt.Errorf("read stdin: %s", err))
 	}
-	if !quiet {
+	if !quiet && interactive {
 		fmt.Fprintf(stderr, "\r")
 	}
 
