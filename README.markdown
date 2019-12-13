@@ -239,10 +239,12 @@ Alternatives
   Only works in Firefox; takes a tad too long to open; doesn't support skin
   tones.
 
-- Didn't investigate:
+- Didn't investigate (yet):
 
   - https://github.com/cassidyjames/ideogram
   - https://github.com/OzymandiasTheGreat/emoji-keyboard
+  - https://github.com/salty-horse/ibus-uniemoji
+  - https://fcitx-im.org/wiki/Unicode
 
 
 Development

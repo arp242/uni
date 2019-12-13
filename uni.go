@@ -73,8 +73,6 @@ func main() {
 		help  bool
 		raw   bool
 	)
-	// TODO: Output format; valid values are human (default), csv, tsv, json.
-	// TODO: Add option to configure displayed columns.
 	flag.BoolVar(&quiet, "q", false, "")
 	flag.BoolVar(&help, "h", false, "")
 	flag.BoolVar(&raw, "r", false, "")
@@ -185,8 +183,6 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-// TODO: also add option to search and/pr print by "other keywords" from this
-// list: https://unicode.org/emoji/charts/emoji-list.html
 func emoji(args []string, quiet, raw bool) error {
 	var (
 		tone, gender, group string
