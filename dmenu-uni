@@ -20,6 +20,9 @@ dmenu="dmenu -i"
 # Use Rofi instead:
 #dmenu="rofi -dmenu"
 
+# Use fzf instead:
+#dmenu="fzf"
+
 # Command to copy to clipboard:
 copy="xclip -rmlastnl -selection clipboard"
 
