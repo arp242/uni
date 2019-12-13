@@ -19,13 +19,15 @@ There are binaries on the [releases][release] page, or compile from source with
 Integrations
 ------------
 
-- [dmenu][dmenu] and [rofi][rofi] script at [`dmenu-uni`](dmenu-uni). See the
-  top of the script for some options you may want to frob with.
+- [dmenu][dmenu], [rofi][rofi], and [fzf][fzf] script at
+  [`dmenu-uni`](/dmenu-uni). See the top of the script for some options you may
+  want to frob with.
 
 - For a Vim command see [`uni.vim`](/uni.vim); just copy/paste it in your vimrc.
 
 [dmenu]: http://tools.suckless.org/dmenu
 [rofi]: https://github.com/davatorium/rofi
+[fzf]: https://github.com/junegunn/fzf
 
 Usage
 -----
