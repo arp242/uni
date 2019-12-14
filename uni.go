@@ -56,7 +56,7 @@ Commands:
         Search emojis. The special keyword "all" prints all emojis.
 
 		-group   comma-separated list of group and/or subgroup names.
-        -tone    comma-separated list o f light, mediumlight, medium,
+        -tone    comma-separated list of light, mediumlight, medium,
 		         mediumdark, dark. Default is to include none.
         -gender  comma-separated list of person, man, or woman.
 		         Default is to include all.
