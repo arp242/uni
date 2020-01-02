@@ -115,13 +115,13 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "2042..2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "U+2042..2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "2042..U+2044"}, "ASTERISM", 3, -1},
+		{[]string{"p", "9999999999"}, `CODEPOINT NOT IN UNICODE`, 2, -1},
 
 		{[]string{"p", ""}, `unknown identifier: ""`, 1, 1},
 		{[]string{"p", "nonsense"}, `unknown identifier: "nonsense"`, 1, 1},
 		{[]string{"p", "2042..xxx"}, `unknown identifier: "2042..xxx"`, 1, 1},
 		{[]string{"p", "xxx..xxx"}, `unknown identifier: "xxx..xxx"`, 1, 1},
 		{[]string{"p", "xxx..xxx"}, `unknown identifier: "xxx..xxx"`, 1, 1},
-		{[]string{"p", "9999999999"}, `unknown codepoint: U+9999999999`, 1, 1},
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
