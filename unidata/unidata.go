@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+const UnknownCodepoint = "CODEPOINT NOT IN UNICODE"
+
 // FindCodepoint finds a codepoint
 func FindCodepoint(c rune) (Codepoint, bool) {
 	info, ok := Codepoints[fmt.Sprintf("%.4X", c)]
@@ -30,7 +32,7 @@ func FindCodepoint(c rune) (Codepoint, bool) {
 		}
 	}
 
-	return Codepoint{}, false
+	return Codepoint{Codepoint: uint32(c), Name: UnknownCodepoint}, false
 }
 
 // CanonicalCategory transforms a category name to the canonical representation.

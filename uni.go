@@ -489,10 +489,7 @@ func print(args []string, quiet, raw bool) error {
 		}
 
 		for i := start; i <= end; i++ {
-			info, ok := unidata.FindCodepoint(rune(i))
-			if !ok {
-				return fmt.Errorf("unknown codepoint: U+%.4X", i)
-			}
+			info, _ := unidata.FindCodepoint(rune(i))
 			out = append(out, info)
 		}
 	}
