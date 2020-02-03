@@ -10,8 +10,6 @@ import (
 	"sort"
 	"strings"
 	"testing"
-
-	"zgo.at/ztest"
 )
 
 func TestCLI(t *testing.T) {
@@ -260,9 +258,12 @@ func TestAllEmoji(t *testing.T) {
 	for i := range outEmojis {
 		outEmojis[i] = strings.ReplaceAll(outEmojis[i], "\ufe0f", `\ufe0f`)
 	}
-	if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
-		t.Error(d)
+	if !reflect.DeepEqual(outEmojis, wantEmojis) {
+		t.Errorf("emoji lists not equal\nout:  %v\nwant: %v", outEmojis, wantEmojis)
 	}
+	//if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
+	//	t.Error(d)
+	//}
 }
 
 func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
