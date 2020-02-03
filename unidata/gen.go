@@ -471,6 +471,11 @@ func fetch(url string) ([]byte, error) {
 		return ioutil.ReadFile(file)
 	}
 
+	err := os.MkdirAll("./.cache", 0777)
+	if err != nil {
+		return nil, fmt.Errorf("cannot create cache directory: %s", err)
+	}
+
 	client := http.Client{Timeout: 60 * time.Second}
 	resp, err := client.Get(url)
 	if err != nil {
