@@ -508,7 +508,7 @@ func identify(ins []string, quiet, raw bool) error {
 	for _, c := range in {
 		info, ok := unidata.FindCodepoint(c)
 		if !ok {
-			return fmt.Errorf("unknown codepoint: %.4X", c) // Should never happen.
+			return fmt.Errorf("unknown codepoint: U+%.4X", c) // Should never happen.
 		}
 
 		out = append(out, info)

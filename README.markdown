@@ -252,6 +252,7 @@ Alternatives
   - https://github.com/salty-horse/ibus-uniemoji
   - https://fcitx-im.org/wiki/Unicode
   - http://kassiopeia.juls.savba.sk/~garabik/software/unicode/
+    https://github.com/garabik/unicode (same?)
   - https://billposer.org/Software/unidesc.html
   - https://github.com/NoraCodes/charpicker (rofi)
 
