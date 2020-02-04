@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<title>uni WebAssembly demo</title>
 	<style>
 		.light, .light input { background-color: #fff;     color: #252525; }
 		.dark,  .dark  input { background-color: #252525;  color: #fff; }
@@ -14,10 +15,10 @@
 	</style>
 </head>
 <body class="light">
-	<pre id="output">uni WASM demo; <a href="https://github.com/arp242/uni">homepage</a>. Type <code>help</code> for usage; the <a href="https://github.com/arp242/uni/#usage">README</a> has more examples</a>
+	<pre id="output">uni WebAssembly demo; <a href="https://github.com/arp242/uni">homepage</a>. Type <code>help</code> for usage; the <a href="https://github.com/arp242/uni/#usage">README</a> has more examples.</a>
 
 </pre>
-	<div><span>$ uni&nbsp;</span><input id="input"></div>
+	<div><span>$ uni&nbsp;</span><input id="input" disabled placeholder="Loading WebAssembly binary..."></div>
 	<p>
 		Color schemes:
 		<button class="light">Light</button>
@@ -39,7 +40,11 @@
 			set_output(window.output);
 
 			fetch('main.wasm').then(response => response.arrayBuffer()).then(function(bin) {
+				window.input.placeholder = 'Ready!';
+				window.input.disabled = false;
+
 				readline('uni', window.output, window.input, function(cmd) {
+					window.input.placeholder = '';
 					const go = new Go();
 					go.argv = cmd;
 					go.exit = (code) => {

@@ -11,11 +11,14 @@ It includes full support for Unicode 12.1 (May 2019) with full Emoji support (a
 surprisingly large amount of emoji pickers don't deal with emoji sequences very
 well).
 
+[Try it in your browser!][uni-wasm]
+
 There are binaries on the [releases][release] page, or compile from source with
 `go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`.
 
 There is also a [homebrew formula][homebrew] and [FreeBSD port][freebsd].
 
+[uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
 [homebrew]: https://formulae.brew.sh/formula/uni
 [freebsd]: https://www.freshports.org/textproc/uni
