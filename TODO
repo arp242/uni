@@ -1,4 +1,3 @@
-- uni p < a        →  doesn't split on spaces (should it? 🤔)
 - Add -output option to control output format.
 - Add -format option to configure columns.
 - Add option to search and/or print by "other keywords" from CLDR. Maybe also

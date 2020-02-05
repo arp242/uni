@@ -142,7 +142,11 @@ func getargs(args []string, quiet bool) []string {
 		fmt.Fprintf(stderr, "\r")
 	}
 
-	return strings.Split(strings.TrimRight(string(stdin), "\n"), "\n")
+	var words []string
+	for _, l := range strings.Split(strings.TrimRight(string(stdin), "\n"), "\n") {
+		words = append(words, strings.Split(l, " ")...)
+	}
+	return words
 }
 
 func search(args []string, quiet, raw bool) error {
