@@ -211,6 +211,10 @@ Alternatives
   Grouping could be better, doesn't support emojis sequences, only interactive
   TUI, feels kinda slow-ish especially when searching.
 
+- https://github.com/philpennock/character
+
+  More or less similar to uni, but very different CLI.
+
 ### GUI
 
 - gnome-characters
