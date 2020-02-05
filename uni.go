@@ -8,7 +8,6 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
-	"strconv"
 	"strings"
 	"unicode"
 	"unicode/utf8"
@@ -44,7 +43,7 @@ Commands:
     print [ident ident ...]
         Print characters by codepoint, category, or block:
 
-            Codepoints             U+2042, U+2042..U+2050
+            Codepoints             U+2042, U+2042..U+2050, 0x20, 0o40, 0b100000
             Categories and Blocks  OtherPunctuation, Po, GeneralPunctuation
             all                    Everything
 
@@ -55,11 +54,11 @@ Commands:
     emoji [-tone tone,..] [-gender gender,..] [-groups word] [word word ...]
         Search emojis. The special keyword "all" prints all emojis.
 
-		-group   comma-separated list of group and/or subgroup names.
+        -group   comma-separated list of group and/or subgroup names.
         -tone    comma-separated list of light, mediumlight, medium,
-		         mediumdark, dark. Default is to include none.
+                 mediumdark, dark. Default is to include none.
         -gender  comma-separated list of person, man, or woman.
-		         Default is to include all.
+                 Default is to include all.
 
         Note: output may contain unprintable character (U+200D and U+FE0F) which
         may not survive a select and copy operation from text-based applications
@@ -476,18 +475,16 @@ func print(args []string, quiet, raw bool) error {
 			continue
 		}
 
-		// U2042, U+2042, U+2042..U+2050, 2042..2050
-		s := strings.Split(strings.ToUpper(canon), "..")
+		// U2042, U+2042, U+2042..U+2050, 2042..2050, 0x2041, etc.
+		s := strings.Split(canon, "..")
 		if len(s) == 1 {
 			s = append(s, s[0])
 		}
-
-		start, err1 := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[0], "U"), "+"), 16, 64)
-		end, err2 := strconv.ParseInt(strings.TrimLeft(strings.TrimLeft(s[1], "U"), "+"), 16, 64)
+		start, err1 := unidata.ToCodepoint(s[0])
+		end, err2 := unidata.ToCodepoint(s[1])
 		if len(s) != 2 || err1 != nil || err2 != nil {
 			return fmt.Errorf("unknown identifier: %q", a)
 		}
-
 		for i := start; i <= end; i++ {
 			info, _ := unidata.FindCodepoint(rune(i))
 			out = append(out, info)

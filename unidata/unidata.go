@@ -2,6 +2,7 @@ package unidata
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -33,6 +34,27 @@ func FindCodepoint(c rune) (Codepoint, bool) {
 	}
 
 	return Codepoint{Codepoint: uint32(c), Name: UnknownCodepoint}, false
+}
+
+// ToCodepoint converts a human input string to a codepoint.
+//
+// The input can be as U+41, U+0041, U41, 0x41, 0o101, 0b1000001
+func ToCodepoint(s string) (int64, error) {
+	s = strings.ToUpper(s)
+	var base = 16
+	switch {
+	case strings.HasPrefix(s, "0X"), strings.HasPrefix(s, "U+"):
+		s = s[2:]
+	case strings.HasPrefix(s, "U"):
+		s = s[1:]
+	case strings.HasPrefix(s, "0O"):
+		s = s[2:]
+		base = 8
+	case strings.HasPrefix(s, "0B"):
+		s = s[2:]
+		base = 2
+	}
+	return strconv.ParseInt(s, base, 64)
 }
 
 // CanonicalCategory transforms a category name to the canonical representation.
