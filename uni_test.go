@@ -115,6 +115,7 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "2042..U+2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "0x2042..0o20104"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "0b10000001000010..0o20104"}, "ASTERISM", 3, -1},
+		{[]string{"-q", "p", "0b10000001000010-0o20104"}, "ASTERISM", 3, -1},
 		{[]string{"p", "9999999999"}, `CODEPOINT NOT IN UNICODE`, 2, -1},
 
 		{[]string{"p", ""}, `unknown identifier: ""`, 1, 1},

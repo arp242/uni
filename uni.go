@@ -476,9 +476,14 @@ func print(args []string, quiet, raw bool) error {
 		}
 
 		// U2042, U+2042, U+2042..U+2050, 2042..2050, 0x2041, etc.
-		s := strings.Split(canon, "..")
-		if len(s) == 1 {
-			s = append(s, s[0])
+		var s []string
+		switch {
+		case strings.Contains(canon, ".."):
+			s = strings.SplitN(canon, "..", 2)
+		case strings.Contains(canon, "-"):
+			s = strings.SplitN(canon, "-", 2)
+		default:
+			s = []string{canon, canon}
 		}
 		start, err1 := unidata.ToCodepoint(s[0])
 		end, err2 := unidata.ToCodepoint(s[1])
