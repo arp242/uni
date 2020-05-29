@@ -126,10 +126,10 @@ func TestPrint(t *testing.T) {
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 588, -1},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 588, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 593, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 593, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 32841, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 33797, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 	}
@@ -179,9 +179,6 @@ func TestEmoji(t *testing.T) {
 			[]string{"👩Z🌾", "👨Z🌾"}},
 		{[]string{"e", "-gender", "f", "-tone", "medium", "farmer"},
 			[]string{"👩🏽Z🌾"}},
-
-		{[]string{"e", "-tone", "mediumlight", "bride"},
-			[]string{"👰🏼"}},
 
 		{[]string{"e", "-gender", "p", "detective"},
 			[]string{"🕵S"}},

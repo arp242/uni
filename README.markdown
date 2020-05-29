@@ -111,10 +111,12 @@ Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
     '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET (Other_Punctuation)
     '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH (Math_Symbol)
 
+You can also use hex, octal, and binary numbers: `0x2024`, `0o20102`, or
+`0b10000001000010`.
+
 General category:
 
     $ uni p Po
-         cpoint  dec    utf-8       html       name
          cpoint  dec    utf-8       html       name
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
     '"'  U+0022  34     22          &quot;     QUOTATION MARK (Other_Punctuation)
