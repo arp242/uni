@@ -16,12 +16,15 @@ well).
 There are binaries on the [releases][release] page, or compile from source with
 `go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`.
 
-There is also a [homebrew formula][homebrew] and [FreeBSD port][freebsd].
+Packages:
+
+- [Arch Linux](https://aur.archlinux.org/packages/uni/)
+- [FreeBSD](https://www.freshports.org/textproc/uni)
+- [Homebrew](https://formulae.brew.sh/formula/uni)
+- [Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
-[homebrew]: https://formulae.brew.sh/formula/uni
-[freebsd]: https://www.freshports.org/textproc/uni
 
 Integrations
 ------------
