@@ -41,17 +41,18 @@ Integrations
 
 Usage
 -----
+*Note: the alignment is slightly off for some entries due to the way GitHub
+renders wide characters; in terminals it should be aligned correctly.*
 
 Identify a character:
 
     $ uni identify €
-         cpoint  dec    utf-8      html       name
+         cpoint  dec    utf-8       html       name
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
 
 Or a string; `i` is a shortcut for `identify`:
 
     $ uni i h€ý
-
          cpoint  dec    utf-8       html       name
     'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H (Lowercase_Letter)
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
@@ -197,6 +198,12 @@ all skin tones or genders:
     🤷🏿‍♀️ woman shrugging: dark skin tone   People & Body  person-gesture
     🤷🏿‍♂️ man shrugging: dark skin tone     People & Body  person-gesture
 
+Development
+-----------
+
+Re-generate the Unicode data with `go generate unidata`. Files are cached in
+`unidata/.cache`, so clear that if you want to update the files from remote.
+
 Alternatives
 ------------
 
@@ -257,20 +264,15 @@ Alternatives
   Only works in Firefox; takes a tad too long to open; doesn't support skin
   tones.
 
-- Didn't investigate (yet):
+### Didn't investigate (yet)
 
-  - https://github.com/cassidyjames/ideogram
-  - https://github.com/OzymandiasTheGreat/emoji-keyboard
-  - https://github.com/salty-horse/ibus-uniemoji
-  - https://fcitx-im.org/wiki/Unicode
-  - http://kassiopeia.juls.savba.sk/~garabik/software/unicode/
-    https://github.com/garabik/unicode (same?)
-  - https://billposer.org/Software/unidesc.html
-  - https://github.com/NoraCodes/charpicker (rofi)
+Some alternatives people have suggested that I haven't looked at; make an issue
+or email me if you know of any others.
 
-
-Development
------------
-
-Re-generate the Unicode data with `go generate unidata`. Files are cached in
-`unidata/.cache`, so clear that if you want to update the files from remote.
+- https://github.com/cassidyjames/ideogram
+- https://github.com/OzymandiasTheGreat/emoji-keyboard
+- https://github.com/salty-horse/ibus-uniemoji
+- https://fcitx-im.org/wiki/Unicode
+- http://kassiopeia.juls.savba.sk/~garabik/software/unicode/ and https://github.com/garabik/unicode (same?)
+- https://billposer.org/Software/unidesc.html
+- https://github.com/NoraCodes/charpicker (rofi)
