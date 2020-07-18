@@ -19,11 +19,12 @@
 	<div><span>$ uni&nbsp;</span><input id="input" disabled placeholder="Loading WebAssembly binary..."></div>
 	<p>uni WebAssembly demo; <a href="https://github.com/arp242/uni">homepage</a>, <a href="https://www.arp242.net/wasm-cli.html">details</a>. Type <code>help</code> for usage; the <a href="https://github.com/arp242/uni/#usage">README</a> has more examples.</a></p>
 
-	<p>Colour schemes:
+	<p>
 		<button class="light">Light</button>
 		<button class="dark">Dark</button>
 		<button class="sepia">Sepia</button>
-		| Up/down arrows to cycle history, ^L to clear the screen.</p>
+		· <button class="permalink">Permalink to last command</button>
+		· Up/down arrows to cycle history, ^L to clear the screen.</p>
 
 	<script src="wasm_exec.js"></script>
 	<script src="term.js"></script>
@@ -58,16 +59,53 @@
 	</script>
 
 	<script>
-		if (location.hash !== '')
-			document.body.className = location.hash.substr(1);
+		if (location.hash !== '') {
+			location.hash.substr(1).split(',').forEach((i) => {
+				i = decodeURIComponent(i)
+				if (i.indexOf('color:') === 0)
+					return document.body.className = i.substr(6)
+				if (i.indexOf('run:') === 0) {
+					input.value = i.substr(4)
+
+					var event = document.createEvent('KeyboardEvent')
+					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 13, 0)
+					// Keep trying until everything is loaded and the event is actually handled
+					var t = setInterval(function() {
+						if (!input.dispatchEvent(event))  // Returns false when handled, not an error (loljs)
+							clearInterval(t)
+					}, 10)
+				}
+			})
+			if (document.body.className !== '')
+				location.hash = 'color:' + document.body.className
+		}
 
 		document.querySelectorAll('button').forEach((elem) => {
 			elem.addEventListener('click', (e) => {
-				e.preventDefault();
-				document.body.className = elem.className;
-				location.hash = elem.className;
-				input.focus();
-			});
+				e.preventDefault()
+
+				if (elem.className == 'permalink') {
+					var event = document.createEvent('KeyboardEvent')
+					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 38, 0)
+					input.dispatchEvent(event)
+					var cmd = input.value
+
+					var event = document.createEvent('KeyboardEvent')
+					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 40, 0)
+					input.dispatchEvent(event)
+
+					if (cmd === '')
+						return alert('No command yet')
+
+					var loc = location + ''
+					alert(loc + (location.hash.length > 1 ? ',' : '#') + encodeURIComponent('run:' + cmd))
+					return input.focus()
+				}
+
+				document.body.className = elem.className
+				location.hash = 'color:' + elem.className
+				input.focus()
+			})
 		});
 	</script>
 </body>
