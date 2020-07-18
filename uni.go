@@ -3,17 +3,16 @@ package main // import "arp242.net/uni"
 
 import (
 	"errors"
-	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 	"unicode"
 	"unicode/utf8"
 
-	"arp242.net/uni/isatty"
 	"arp242.net/uni/unidata"
+	"zgo.at/zli"
+	"zgo.at/zstd/zstring"
 )
 
 var (
@@ -29,124 +28,142 @@ var (
 const usage = `Usage: uni [-hrq] [help | identify | search | print | emoji]
 
 Flags:
-    -q      Quiet output; don't print header, "no matches", etc.
-    -r      "Raw" output instead of displaying graphical variants for control
-            characters and ◌ (U+25CC) before combining characters.
+    -q, -quiet     Quiet output; don't print header, "no matches", etc.
+    -r, -raw       Don't use graphical variants for control characters and don't
+                   add ◌ (U+25CC) before combining characters.
 
 Commands:
-    identify [string string ...]
-        Idenfity all the characters in the given strings.
+    identify [string..]    Idenfity all the characters in the given strings.
+    search   [word..]      Search description for any of the words.
+    print    [ident..]     Print characters by codepoint, category, or block.
 
-    search [word word ...]
-        Search description for any of the words.
+                           Codepoints             U+2042, 0x20, 0o40, 0b100000
+                           Range                  U+2042..U+2050, 0o101..0x5a
+                           Categories and Blocks  OtherPunctuation, Po, GeneralPunctuation
+                           all                    Everything
 
-    print [ident ident ...]
-        Print characters by codepoint, category, or block:
+    emoji [..] [query..]   Search emojis.
 
-            Codepoints             U+2042, U+2042..U+2050, 0x20, 0o40, 0b100000
-            Categories and Blocks  OtherPunctuation, Po, GeneralPunctuation
-            all                    Everything
+                           The query parameters are matched on the emoji name.
+                           Parameters prefixed with "group:" or "g:" are matched
+                           on the emoji group name. Use "all" to show all
+                           emojis. The query parameters are AND'd together.
 
-        Names are matched case insensitive; spaces and commas are optional and
-        can be replaced with an underscore. "Po", "po", "punction, OTHER",
-        "Punctuation_other", and PunctuationOther are all identical.
+                           Modifier flags, both accept a comma-separated list:
+                               -tone    light, mediumlight, medium, mediumdark, dark
+                               -gender  person, man, woman.
+                           Default is to include no skin tones and the "person" gender.
 
-    emoji [-tone tone,..] [-gender gender,..] [-groups word] [word word ...]
-        Search emojis. The special keyword "all" prints all emojis.
-
-        -group   comma-separated list of group and/or subgroup names.
-        -tone    comma-separated list of light, mediumlight, medium,
-                 mediumdark, dark. Default is to include none.
-        -gender  comma-separated list of person, man, or woman.
-                 Default is to include all.
-
-        Note: output may contain unprintable character (U+200D and U+FE0F) which
-        may not survive a select and copy operation from text-based applications
-        such as terminals. It's recommended to copy to the clipboard directly
-        with e.g. xclip.
+                           Note: emojis may not be accurately copied by select &
+                           copy in terminals. It's recommended to copy to the
+                           clipboard directly with e.g. xclip.
 `
 
 func main() {
+	flag := zli.NewFlags(os.Args)
 	var (
-		quiet bool
-		help  bool
-		raw   bool
+		quietF = flag.Bool(false, "q", "quiet")
+		help   = flag.Bool(false, "h", "help")
+		rawF   = flag.Bool(false, "r", "raw")
+		tone   = flag.String("", "t", "tone", "tones")
+		gender = flag.String("person", "g", "gender", "genders")
 	)
-	flag.BoolVar(&quiet, "q", false, "")
-	flag.BoolVar(&help, "h", false, "")
-	flag.BoolVar(&raw, "r", false, "")
-	flag.Usage = func() { fmt.Fprint(stdout, usage) }
-	flag.Parse()
-
-	if help {
-		flag.Usage()
-		exit(0)
-	}
-
-	args := flag.Args()
-	if len(args) == 0 {
-		die("no command given")
+	err := flag.Parse()
+	if err != nil {
+		zli.Fatal(err)
 		return
 	}
 
-	var err error
-	switch strings.ToLower(args[0]) {
-	default:
-		die("unknown command: %q", args[0])
-	case "help", "h":
-		flag.Usage()
-		exit(0)
-	case "identify", "i":
-		err = identify(getargs(args[1:], quiet), quiet, raw)
-	case "search", "s":
-		err = search(getargs(args[1:], quiet), quiet, raw)
-	case "print", "p":
-		err = print(getargs(args[1:], quiet), quiet, raw)
-	case "emoji", "e":
-		err = emoji(getargs(args[1:], quiet), quiet, raw)
+	if help.Set() {
+		fmt.Print(usage)
+		zli.Exit(0)
 	}
 
+	cmd := strings.ToLower(flag.Shift())
+	if cmd == "" {
+		fmt.Print(usage)
+		zli.Exit(0)
+	}
+	if cmd == "h" || cmd == "help" {
+		fmt.Print(usage)
+		zli.Exit(0)
+	}
+
+	quiet := quietF.Set()
+	raw := rawF.Set()
+	args := flag.Args
+	args, err = zli.ArgsOrInput(args, quiet)
+	if err != nil {
+		zli.Fatal(err)
+		return
+	}
+	switch cmd {
+	default:
+		zli.Fatal("unknown command")
+	case "identify", "i":
+		err = identify(args, quiet, raw)
+	case "search", "s":
+		err = search(args, quiet, raw)
+	case "print", "p":
+		err = print(args, quiet, raw)
+	case "emoji", "e":
+		err = emoji(args, quiet, raw, parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
+	}
 	if err != nil {
 		if !(err == errNoMatches && quiet) {
-			fmt.Fprintf(stderr, "%s\n", err)
+			zli.Fatal(err)
 		}
-		exit(1)
+		zli.Exit(1)
 	}
 }
 
-func die(f string, a ...interface{}) {
-	fmt.Fprintf(stderr, "uni: "+f+"\n", a...)
-	exit(1)
+func parseToneFlag(tone string) []string {
+	if tone == "" {
+		return nil
+	}
+
+	var allTones = []string{"none", "light", "mediumlight", "medium", "mediumdark", "dark"}
+	if tone == "all" {
+		tone = strings.Join(allTones, ",")
+	}
+
+	var tones []string
+	for _, t := range zstring.Fields(tone, ",") {
+		if !zstring.Contains(allTones, t) {
+			zli.Fatal("invalid skin tone: %q", tone)
+			return nil
+		}
+		tones = append(tones, t)
+	}
+
+	return tones
 }
 
-// Use commandline args or stdin.
-func getargs(args []string, quiet bool) []string {
-	if len(args) > 0 {
-		return args
+func parseGenderFlag(gender string) []string {
+	if gender == "" {
+		return nil
 	}
 
-	interactive := isatty.IsTerminal(os.Stdin.Fd())
-
-	// Print message so people aren't left waiting when typing "uni print". We
-	// don't print a newline and a \r later on, so you don't see it in actual
-	// pipe usage, just when it would "hang" uni.
-	if !quiet && interactive {
-		fmt.Fprintf(stderr, "uni: reading from stdin...")
-		os.Stderr.Sync()
-	}
-	stdin, err := ioutil.ReadAll(os.Stdin)
-	if err != nil {
-		panic(fmt.Errorf("read stdin: %s", err))
-	}
-	if !quiet && interactive {
-		fmt.Fprintf(stderr, "\r")
+	if gender == "all" {
+		gender = "person,man,woman"
 	}
 
-	var words []string
-	for _, l := range strings.Split(strings.TrimRight(string(stdin), "\n"), "\n") {
-		words = append(words, strings.Split(l, " ")...)
+	var genders []string
+	for _, g := range zstring.Fields(gender, ",") {
+		switch g {
+		case "person", "p", "people":
+			g = "person"
+		case "man", "men", "m", "male":
+			g = "man"
+		case "woman", "women", "w", "female", "f":
+			g = "woman"
+		default:
+			zli.Fatal("invalid gender: %q", gender)
+		}
+		genders = append(genders, g)
 	}
-	return words
+
+	return genders
 }
 
 func search(args []string, quiet, raw bool) error {
@@ -186,83 +203,34 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-func emoji(args []string, quiet, raw bool) error {
+func emoji(args []string, quiet, raw bool, tones, genders []string) error {
 	var (
-		tone, gender, group string
-		subargs             []string
-		skip                bool
+		out  = [][]string{}
+		cols = []int{4, 0, 0}
 	)
-
-	needarg := func(i int) error {
-		if i+2 > len(args) || len(args[i+1]) == 0 || args[i+1][0] == '-' {
-			return fmt.Errorf("argument required for %s", args[i])
-		}
-		return nil
-	}
-	for i := range args {
-		if skip {
-			skip = false
-			continue
-		}
-		switch args[i] {
-		case "-t", "-tone", "-tones":
-			if err := needarg(i); err != nil {
-				return err
-			}
-			tone += args[i+1]
-			skip = true
-		case "-gender", "-genders":
-			if err := needarg(i); err != nil {
-				return err
-			}
-			gender += args[i+1]
-			skip = true
-		case "-g", "-group", "-groups":
-			if err := needarg(i); err != nil {
-				return err
-			}
-			group += args[i+1]
-			skip = true
-		default:
-			if len(args[i]) > 0 && args[i][0] == '-' {
-				return fmt.Errorf("unknown option: %s", args[i])
-			}
-			subargs = append(subargs, args[i])
-		}
-	}
-
-	groups := parseEmojiGroups(group)
-
-	if len(subargs) == 0 && len(groups) > 0 {
-		subargs = []string{""} // Imply all
-	}
-
-	out := [][]string{}
-	cols := []int{4, 0, 0}
-	for _, a := range subargs {
+	for _, a := range args {
 		a = strings.ToLower(a)
-		switch a {
-		case "all":
-			a = ""
+		group := strings.HasPrefix(a, "g:") || strings.HasPrefix(a, "group:")
+		if group {
+			a = strings.TrimPrefix(strings.TrimPrefix(a, "group:"), "g:")
 		}
 
+		// TODO: needs to be AND, not OR.
 		for _, e := range unidata.Emojis {
-			found := false
-			for _, g := range groups {
-				if strings.Contains(strings.ToLower(e.Group), g) ||
-					strings.Contains(strings.ToLower(e.Subgroup), g) {
-					found = true
-					break
+			switch {
+			case group:
+				if !strings.Contains(strings.ToLower(e.Group), a) && !strings.Contains(strings.ToLower(e.Subgroup), a) {
+					continue
+				}
+			case a == "all":
+				// Do nothing.
+			default:
+				if !strings.Contains(strings.ToLower(e.Name), a) {
+					continue
 				}
 			}
-			if !found {
-				continue
-			}
-			if !strings.Contains(strings.ToLower(e.Name), a) {
-				continue
-			}
 
-			for _, ee := range applyGender(applyTone(e, tone), gender) {
+			for _, ee := range applyGenders(applyTones(e, tones), genders) {
 				out = append(out, []string{ee.String(), ee.Name, ee.Group, ee.Subgroup})
 				if l := utf8.RuneCountInString(ee.Name); l > cols[1] {
 					cols[1] = l
@@ -287,7 +255,7 @@ func emoji(args []string, quiet, raw bool) error {
 			case 3: // Last column
 				fmt.Fprint(stdout, c)
 			default:
-				fmt.Fprint(stdout, fill(c, cols[i]+2))
+				fmt.Fprint(stdout, zstring.AlignLeft(c, cols[i]+2))
 			}
 		}
 		fmt.Fprintln(stdout, "")
@@ -304,71 +272,32 @@ var tonemap = map[string]uint32{
 	"dark":        0x1f3ff,
 }
 
-func applyTone(e unidata.Emoji, t string) []unidata.Emoji {
-	if !e.SkinTones || t == "" {
+// Skintone always comes after the base emoji and doesn't required a ZWJ.
+func applyTones(e unidata.Emoji, tones []string) []unidata.Emoji {
+	if !e.SkinTones || len(tones) == 0 {
 		return []unidata.Emoji{e}
 	}
 
-	if t == "all" {
-		t = "none,light,mediumlight,medium,mediumdark,dark"
-	}
-
-	tones := strings.Split(t, ",")
 	emojis := make([]unidata.Emoji, len(tones))
-	// Skintone always comes after the base emoji:
-	//   1F937 1F3FD                   # 🤷🏽 E4.0 person shrugging: medium skin tone
-	//   1F937 1F3FB 200D 2642 FE0F    # 🤷🏻‍♂️ E4.0 man shrugging: light skin tone
-	//   1F9D1 200D 1F692              # 🧑‍🚒 E12.1 firefighter
-	//   1F9D1 1F3FB 200D 1F692        # 🧑🏻‍🚒 E12.1 firefighter: light skin tone
-	//   1F469 200D 1F692              # 👩‍🚒 E4.0 woman firefighter
-	//   1F469 1F3FB 200D 1F692        # 👩🏻‍🚒 E4.0 woman firefighter: light skin tone
 	for i, t := range tones {
-		tcp, ok := tonemap[t]
-		if !ok {
-			die("invalid skin tone: %q", t)
-		}
+		emojis[i] = e // This makes a copy, but beware of directly modifying lists as they're pointers.
 
-		emojis[i] = unidata.Emoji{
-			Codepoints: e.Codepoints,
-			Name:       e.Name,
-			Group:      e.Group,
-			Subgroup:   e.Subgroup,
-			SkinTones:  e.SkinTones,
-			Genders:    e.Genders,
-		}
-
-		if tcp > 0 {
+		if tcp := tonemap[t]; tcp > 0 {
+			emojis[i].Name += fmt.Sprintf(": %s skin tone", t)
 			emojis[i].Codepoints = append(append([]uint32{e.Codepoints[0]}, tcp), e.Codepoints[1:]...)
 			l := len(emojis[i].Codepoints) - 1
 			if emojis[i].Codepoints[l] == 0xfe0f {
 				emojis[i].Codepoints = emojis[i].Codepoints[:l]
 			}
-
-			emojis[i].Name += fmt.Sprintf(": %s skin tone", t)
 		}
-
 	}
 
 	return emojis
 }
 
-func applyGender(emojis []unidata.Emoji, gender string) []unidata.Emoji {
-	genders := []string{"person", "man", "woman"}
-	if gender != "" {
-		genders = strings.Split(gender, ",")
-		for i, g := range genders {
-			switch g {
-			case "person", "p", "people":
-				g = "person"
-			case "man", "men", "m", "male":
-				g = "man"
-			case "woman", "women", "w", "female", "f":
-				g = "woman"
-			default:
-				die("invalid gender : %q", g)
-			}
-			genders[i] = g
-		}
+func applyGenders(emojis []unidata.Emoji, genders []string) []unidata.Emoji {
+	if len(genders) == 0 {
+		return emojis
 	}
 
 	var ret []unidata.Emoji
@@ -437,7 +366,7 @@ func parseEmojiGroups(group string) []string {
 			}
 		}
 		if !found {
-			die("doesn't match any emoji group or subgroup: %q", g)
+			zli.Fatal("doesn't match any emoji group or subgroup: %q", g)
 		}
 	}
 

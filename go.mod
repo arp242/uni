@@ -2,4 +2,7 @@ module arp242.net/uni
 
 go 1.12
 
-require golang.org/x/sys v0.0.0-20191120155948-bd437916bb0e
+require (
+	zgo.at/zli v0.0.0-20200718165953-a296adb8b5dc
+	zgo.at/zstd v0.0.0-20200718162456-59acc347bdcf
+)

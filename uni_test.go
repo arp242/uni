@@ -10,6 +10,8 @@ import (
 	"sort"
 	"strings"
 	"testing"
+
+	"zgo.at/zli"
 )
 
 func TestCLI(t *testing.T) {
@@ -18,14 +20,14 @@ func TestCLI(t *testing.T) {
 		want string
 	}{
 		{[]string{"xxx"}, "uni: unknown command"},
-		{[]string{""}, "uni: unknown command"},
-		{[]string{}, "uni: no command"},
-		{[]string{"e", "-t"}, "argument required for -t\n"},
-		{[]string{"e", "-t", "-g"}, "argument required for -t\n"},
-		{[]string{"e", "-x"}, "unknown option"},
+		//{[]string{""}, "uni: unknown command"},
+		//{[]string{}, "Show this help"},
+		{[]string{"e", "-t"}, "testuni: -t: needs an argument"},
+		{[]string{"e", "-t", "-g"}, `testuni: invalid skin tone: "-g"`},
+		{[]string{"e", "-x"}, `testuni: unknown flag: "-x"`},
 		{[]string{"e", "-t", "xx"}, "invalid skin"},
 		{[]string{"e", "-gender", "xx"}, "invalid gender"},
-		{[]string{"e", "-g", "xxsxxxx"}, "match"},
+		{[]string{"e", "-g", "xxsxxxx"}, `invalid gender: "xxsxxxx"`},
 	}
 
 	for _, tt := range tests {
@@ -161,12 +163,14 @@ func TestEmoji(t *testing.T) {
 		//{[]string{"e", "-groups", "person", "all"},
 		//[]string{}},
 
-		{[]string{"e", "-groups", "hands"},
+		{[]string{"e", "group:hands"},
 			[]string{"👏", "🙌", "👐", "🤲", "🤝", "🙏"}},
-		{[]string{"e", "-tone", "dark", "-groups", "hands"},
+		{[]string{"e", "-tone", "dark", "g:hands"},
 			[]string{"👏🏿", "🙌🏿", "👐🏿", "🤲🏿", "🤝", "🙏🏿"}},
 
 		{[]string{"e", "shrug"},
+			[]string{"🤷"}},
+		{[]string{"e", "shrug", "-gender", "all"},
 			[]string{"🤷", "🤷Z♂S", "🤷Z♀S"}},
 		{[]string{"e", "-gender", "m", "shrug"},
 			[]string{"🤷Z♂S"}},
@@ -174,6 +178,8 @@ func TestEmoji(t *testing.T) {
 			[]string{"🤷🏻Z♂S"}},
 
 		{[]string{"e", "farmer"},
+			[]string{"🧑Z🌾"}},
+		{[]string{"e", "farmer", "-gender", "all"},
 			[]string{"🧑Z🌾", "👨Z🌾", "👩Z🌾"}},
 		{[]string{"e", "-gender", "f,m", "farmer"},
 			[]string{"👩Z🌾", "👨Z🌾"}},
@@ -218,7 +224,7 @@ func TestEmoji(t *testing.T) {
 }
 
 func TestAllEmoji(t *testing.T) {
-	outbuf, c := setup(t, []string{"e", "-tone", "all", "all"}, -1)
+	outbuf, c := setup(t, []string{"e", "-gender", "all", "-tone", "all", "all"}, -1)
 	defer c()
 
 	// grep -v '^#' unidata/.cache/emoji-test.txt |
@@ -270,6 +276,8 @@ func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
 	outbuf := new(bytes.Buffer)
 	stdout = outbuf
 	stderr = outbuf
+	zli.Stdout = outbuf
+	zli.Stderr = outbuf
 
 	os.Args = append([]string{"testuni"}, args...)
 	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
@@ -287,6 +295,7 @@ func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
 		// Otherwise this doesn't stop execution inside the main program.
 		//t.SkipNow()
 	}
+	zli.Exit = exit
 
 	main()
 
@@ -294,6 +303,10 @@ func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
 		stdout = os.Stdout
 		stderr = os.Stderr
 		exit = os.Exit
+
+		zli.Stdout = os.Stdout
+		zli.Stderr = os.Stderr
+		zli.Exit = os.Exit
 
 		if wantExit > -1 && !exitRan {
 			t.Fatalf("os.Exit() not called")

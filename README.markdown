@@ -1,27 +1,33 @@
 [![Build Status](https://travis-ci.org/arp242/uni.svg?branch=master)](https://travis-ci.org/arp242/uni)
 [![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
 
-`uni` queries the Unicode database from the commandline.
+`uni` queries the Unicode database from the commandline. It supports Unicode 13
+(March 2020) including almost-complete<sup>\*</sup> Emoji support.
 
 There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
 emojis.
 
-It includes full support for Unicode 13 (March 2020) with full Emoji support (a
-surprisingly large amount of emoji pickers don't deal with emoji sequences very
-well).
-
-[Try it in your browser!][uni-wasm]
-
 There are binaries on the [releases][release] page, or compile from source with
-`go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`.
-
+`go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`. You can
+also [run it in your browser][uni-wasm].<br>
 Packages:
+[Arch Linux](https://aur.archlinux.org/packages/uni/) ·
+[FreeBSD](https://www.freshports.org/textproc/uni) ·
+[Homebrew](https://formulae.brew.sh/formula/uni) ·
+[Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
 
-- [Arch Linux](https://aur.archlinux.org/packages/uni/)
-- [FreeBSD](https://www.freshports.org/textproc/uni)
-- [Homebrew](https://formulae.brew.sh/formula/uni)
-- [Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
+Readme Index:
+[Integrations](#integrations) ·
+[Usage](#usage) ·
+[ChangeLog](#changelog) ·
+[Development](#development) ·
+[Alternatives](#alternatives)
+
+<sup>\*: the part that doesn't work is the complex "family emojis", which can
+consist of a bunch of codepoints like "family of man, woman, boy, girl" or "man
+kissing man"; supporting that would complicate the CLI quite a lot and is IMO
+not worth it.</sup>
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
@@ -140,15 +146,15 @@ Blocks:
 And finally, there is the `emoji` command (shortcut: `e`), which is the real
 reason I wrote this:
 
-	$ uni e cry
-	😢 crying face         Smileys & Emotion  face-concerned
-	😭 loudly crying face  Smileys & Emotion  face-concerned
-	😿 crying cat          Smileys & Emotion  cat-face
-	🔮 crystal ball        Activities         game
+    $ uni e cry
+    😢 crying face         Smileys & Emotion  face-concerned
+    😭 loudly crying face  Smileys & Emotion  face-concerned
+    😿 crying cat          Smileys & Emotion  cat-face
+    🔮 crystal ball        Activities         game
 
 Filter by group:
 
-    $ uni e -groups hands
+    $ uni e group:hands
     🤲 palms up together  People & Body  hands
     🤝 handshake          People & Body  hands
     👏 clapping hands     People & Body  hands
@@ -156,11 +162,11 @@ Filter by group:
     👐 open hands         People & Body  hands
     🙌 raising hands      People & Body  hands
 
-Group and search can be combined:
+Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
-	$ uni e -groups cat-face grin
-	😺 grinning cat                    Smileys & Emotion  cat-face
-	😸 grinning cat with smiling eyes  Smileys & Emotion  cat-face
+    $ uni e g:cat-face grin
+    😺 grinning cat                    Smileys & Emotion  cat-face
+    😸 grinning cat with smiling eyes  Smileys & Emotion  cat-face
 
 Apply skin tone modifiers with `-tone`:
 
@@ -172,8 +178,8 @@ Apply skin tone modifiers with `-tone`:
     👐🏿 open hands         People & Body  hands
     🙌🏿 raising hands      People & Body  hands
 
-The default is to display all genders ("person", "man", "woman"), but this can
-be filtered with the `-gender` option:
+The default is to display only the gender-neutral "person", but this can be
+changed with the `-gender` option:
 
     $ uni e -gender man -groups person-gesture
     🙍‍♂️ man frowning      People & Body  person-gesture
@@ -197,6 +203,35 @@ all skin tones or genders:
     🤷🏻‍♂️ man shrugging: light skin tone    People & Body  person-gesture
     🤷🏿‍♀️ woman shrugging: dark skin tone   People & Body  person-gesture
     🤷🏿‍♂️ man shrugging: dark skin tone     People & Body  person-gesture
+
+
+ChangeLog
+---------
+
+### master branch
+
+- Replace `uni emoji -group group1,group2` syntax with `uni emoji group:group1
+  group:group2`. This is more flexible and will allow adding more query syntax
+  later.
+
+- Default for `-gender` is now `-person` instead of `all`.
+
+### v1.1.1 (2020-05-31)
+
+- Fix tests of v1.1.0, requested by a packager. No changes other than this.
+
+### v1.1.0 (2020-03-17)
+
+- Update Unicode data from 12.1 to 13.0.
+
+- `print` command supports codepoints as hex (`0xff`), octal (`0o42`), and
+  binary (`0b1001`).
+
+- A few very small bugfixes.
+
+### v1.0.0 (2019-12-12)
+
+- Initial release
 
 Development
 -----------

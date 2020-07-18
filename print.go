@@ -9,19 +9,19 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"arp242.net/uni/isatty"
-	"arp242.net/uni/terminal"
 	"arp242.net/uni/unidata"
+	"zgo.at/zli"
+	"zgo.at/zstd/zstring"
 )
 
 var (
-	isTerm    = isatty.IsTerminal(os.Stdout.Fd())
+	isTerm    = zli.IsTerminal(os.Stdout.Fd())
 	termWidth = func() int {
 		if !isTerm {
 			return 0
 		}
 
-		w, _, err := terminal.GetSize(int(os.Stdout.Fd()))
+		w, _, err := zli.TerminalSize(os.Stdout.Fd())
 		if err != nil || w < 50 {
 			return 0
 		}
@@ -69,10 +69,10 @@ func (p printer) fmtChar(b *strings.Builder, info unidata.Codepoint, raw bool) {
 	}
 
 	b.WriteString(fmt.Sprintf("U+%s %s %s %s %s\n",
-		fill(fmt.Sprintf("%04X", info.Codepoint), 5),
-		fill(strconv.FormatUint(uint64(info.Codepoint), 10), 6),
-		fill(p.utf8(c), 11),
-		fill(p.entity(c, info.Codepoint), 10),
+		zstring.AlignLeft(fmt.Sprintf("%04X", info.Codepoint), 5),
+		zstring.AlignLeft(strconv.FormatUint(uint64(info.Codepoint), 10), 6),
+		zstring.AlignLeft(p.utf8(c), 11),
+		zstring.AlignLeft(p.entity(c, info.Codepoint), 10),
 		name))
 }
 
@@ -88,12 +88,4 @@ func (p printer) utf8(r rune) string {
 	buf := make([]byte, 4)
 	n := utf8.EncodeRune(buf, r)
 	return fmt.Sprintf("% x", buf[:n])
-}
-
-func fill(s string, n int) string {
-	l := utf8.RuneCountInString(s)
-	if l >= n {
-		return s
-	}
-	return s + strings.Repeat(" ", n-l)
 }

@@ -27,10 +27,10 @@ dmenu="dmenu -i"
 copy="xclip -rmlastnl -selection clipboard"
 
 # Common emojis I use >99% of the time:
-common="-groups smileys,hand-fingers-open,hand-fingers-partial,hand-single-finger,hand-fingers-closed,hands,body-parts,person-gesture"
+common="g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-finger g:hand-fingers-closed g:hands g:body-parts g:person-gesture"
 
-# Only include gender-neutral "person":
-#common="$common -gender person"
+# Display onlt the male variants:
+#common="$common -gender male"
 
 # Set skin tone:
 #common="$common -tone mediumdark"
