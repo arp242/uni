@@ -1,5 +1,4 @@
 - Add -output option to control output format.
-- Add -format option to configure columns.
 - Add option to search and/or print by "other keywords" from CLDR. Maybe also
   allow :cool: and such?
 - Allow copying to clipboard. From HN comment

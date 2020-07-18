@@ -33,6 +33,7 @@ Flags:
     -r, -raw       Don't use graphical variants for control characters and don't
                    add ◌ (U+25CC) before combining characters.
     -p, -no-pager  Don't output to $PAGER.
+    -f, -format    Output format; see README for details.
 
 Commands:
     identify [string..]    Idenfity all the characters in the given strings.
@@ -70,6 +71,7 @@ func main() {
 		noPager = flag.Bool(false, "p", "no-pager")
 		tone    = flag.String("", "t", "tone", "tones")
 		gender  = flag.String("person", "g", "gender", "genders")
+		formatF = flag.String("", "format", "f")
 	)
 	err := flag.Parse()
 	if err != nil {
@@ -99,6 +101,7 @@ func main() {
 
 	quiet := quietF.Set()
 	raw := rawF.Set()
+	format := formatF.String()
 	args := flag.Args
 	args, err = zli.ArgsOrInput(args, quiet)
 	if err != nil {
@@ -109,13 +112,13 @@ func main() {
 	default:
 		zli.Fatal("unknown command")
 	case "identify", "i":
-		err = identify(args, quiet, raw)
+		err = identify(args, format, quiet, raw)
 	case "search", "s":
-		err = search(args, quiet, raw)
+		err = search(args, format, quiet, raw)
 	case "print", "p":
-		err = print(args, quiet, raw)
+		err = print(args, format, quiet, raw)
 	case "emoji", "e":
-		err = emoji(args, quiet, raw, parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
+		err = emoji(args, format, quiet, raw, parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
 	}
 	if err != nil {
 		if !(err == errNoMatches && quiet) {
@@ -174,7 +177,7 @@ func parseGenderFlag(gender string) []string {
 	return genders
 }
 
-func search(args []string, quiet, raw bool) error {
+func search(args []string, format string, quiet, raw bool) error {
 	var na []string
 	for _, a := range args {
 		if a != "" {
@@ -207,11 +210,13 @@ func search(args []string, quiet, raw bool) error {
 		return errNoMatches
 	}
 
-	out.PrintSorted(stdout, quiet, raw)
+	out.PrintSorted(stdout, format, quiet, raw)
 	return nil
 }
 
-func emoji(args []string, quiet, raw bool, tones, genders []string) error {
+// TODO: figure out how to deal with the -format here; should probably make the
+// printer accept Emoji as well as Codepoint? Or merge the two?
+func emoji(args []string, format string, quiet, raw bool, tones, genders []string) error {
 	var (
 		out  = [][]string{}
 		cols = []int{4, 0, 0}
@@ -223,7 +228,6 @@ func emoji(args []string, quiet, raw bool, tones, genders []string) error {
 			a = strings.TrimPrefix(strings.TrimPrefix(a, "group:"), "g:")
 		}
 
-		// TODO: needs to be AND, not OR.
 		for _, e := range unidata.Emojis {
 			switch {
 			case group:
@@ -381,7 +385,7 @@ func parseEmojiGroups(group string) []string {
 	return groups
 }
 
-func print(args []string, quiet, raw bool) error {
+func print(args []string, format string, quiet, raw bool) error {
 	var out printer
 
 	for _, a := range args {
@@ -437,11 +441,11 @@ func print(args []string, quiet, raw bool) error {
 		}
 	}
 
-	out.PrintSorted(stdout, quiet, raw)
+	out.PrintSorted(stdout, format, quiet, raw)
 	return nil
 }
 
-func identify(ins []string, quiet, raw bool) error {
+func identify(ins []string, format string, quiet, raw bool) error {
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
 		fmt.Fprintf(stderr, "uni: WARNING: input string is not valid UTF-8\n")
@@ -457,7 +461,7 @@ func identify(ins []string, quiet, raw bool) error {
 		out = append(out, info)
 	}
 
-	out.Print(stdout, quiet, raw)
+	out.Print(stdout, format, quiet, raw)
 	return nil
 }
 

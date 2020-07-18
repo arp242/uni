@@ -20,6 +20,7 @@ Packages:
 Readme Index:
 [Integrations](#integrations) ·
 [Usage](#usage) ·
+[Output format](#output-format) ·
 [ChangeLog](#changelog) ·
 [Development](#development) ·
 [Alternatives](#alternatives)
@@ -204,6 +205,34 @@ all skin tones or genders:
     🤷🏿‍♀️ woman shrugging: dark skin tone   People & Body  person-gesture
     🤷🏿‍♂️ man shrugging: dark skin tone     People & Body  person-gesture
 
+Output format
+-------------
+
+You can use the `-format` or `-f` flag to control the output format.
+Placeholders are in the form of `%(name)` or `%(name flags)`.
+
+Flags:
+
+	%(name l:5)   Left-align and pad with 5 spaces.
+	%(name r:5)   Right-align and pad with 5 spaces.
+	%(name q)     Quote the content, excluding any padding.
+	%(name t)     Trim this column if it's longer than the screen width.
+
+Placeholders:
+
+	%(char)          The literal character: ⁂
+	%(wide_padding)  Space for non-wide characters, blank for wide characers (for alignment).
+	%(cpoint)        As codepoint: U+2042
+	%(hex)           As hex: 2042
+	%(dec)           As decimal: 8258
+	%(utf8)          As UTF-8: e2 81 82
+	%(html)          HTML entity: &#x2042;
+	%(name)          Code point name: ASTERISM
+	%(cat)           Category: Other_Punctuation
+
+The default is:
+
+    %(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))
 
 ChangeLog
 ---------
