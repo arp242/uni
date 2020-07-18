@@ -2,6 +2,7 @@
 package main // import "arp242.net/uni"
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -31,6 +32,7 @@ Flags:
     -q, -quiet     Quiet output; don't print header, "no matches", etc.
     -r, -raw       Don't use graphical variants for control characters and don't
                    add ◌ (U+25CC) before combining characters.
+    -p, -no-pager  Don't output to $PAGER.
 
 Commands:
     identify [string..]    Idenfity all the characters in the given strings.
@@ -62,11 +64,12 @@ Commands:
 func main() {
 	flag := zli.NewFlags(os.Args)
 	var (
-		quietF = flag.Bool(false, "q", "quiet")
-		help   = flag.Bool(false, "h", "help")
-		rawF   = flag.Bool(false, "r", "raw")
-		tone   = flag.String("", "t", "tone", "tones")
-		gender = flag.String("person", "g", "gender", "genders")
+		quietF  = flag.Bool(false, "q", "quiet")
+		help    = flag.Bool(false, "h", "help")
+		rawF    = flag.Bool(false, "r", "raw")
+		noPager = flag.Bool(false, "p", "no-pager")
+		tone    = flag.String("", "t", "tone", "tones")
+		gender  = flag.String("person", "g", "gender", "genders")
 	)
 	err := flag.Parse()
 	if err != nil {
@@ -77,6 +80,11 @@ func main() {
 	if help.Set() {
 		fmt.Print(usage)
 		zli.Exit(0)
+	}
+
+	if !noPager.Set() {
+		stdout = new(bytes.Buffer)
+		defer zli.Pager(stdout.(*bytes.Buffer))
 	}
 
 	cmd := strings.ToLower(flag.Shift())

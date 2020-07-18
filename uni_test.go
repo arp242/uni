@@ -41,6 +41,12 @@ func TestCLI(t *testing.T) {
 			}
 		})
 	}
+
+	t.Run("usage", func(t *testing.T) {
+		if strings.Contains(usage, "\t") {
+			t.Errorf("usage text contains tabs")
+		}
+	})
 }
 
 func TestIdentify(t *testing.T) {

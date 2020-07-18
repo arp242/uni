@@ -216,6 +216,9 @@ ChangeLog
 
 - Default for `-gender` is now `-person` instead of `all`.
 
+- Output to `$PAGER` for interactive terminals by default. Use `-no-pager` or
+  `-p` to disable.
+
 ### v1.1.1 (2020-05-31)
 
 - Fix tests of v1.1.0, requested by a packager. No changes other than this.
