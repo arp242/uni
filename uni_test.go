@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"flag"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -32,12 +30,20 @@ func TestCLI(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, 1)
-			defer c()
+			exit, _, out, reset := zli.Test()
+			defer reset()
+			os.Args = append([]string{"testuni"}, tt.in...)
 
-			out := outbuf.String()
-			if !strings.Contains(out, tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+			func() {
+				defer exit.Recover()
+				main()
+			}()
+
+			if !strings.Contains(out.String(), tt.want) {
+				t.Errorf("wrong output\nout:  %q\nwant: %q", out.String(), tt.want)
+			}
+			if *exit != 1 {
+				t.Errorf("wrong exit: %d", *exit)
 			}
 		})
 	}
@@ -55,21 +61,26 @@ func TestIdentify(t *testing.T) {
 		want string
 	}{
 		{[]string{"i", ""}, ""},
-
 		{[]string{"i", "a"}, "SMALL LETTER A"},
-
-		// Make sure it uses the lower-case and short variant.
-		{[]string{"i", `"`}, "&quot;"},
+		{[]string{"i", `"`}, "&quot;"}, // Make sure it uses the lower-case and short variant.
 	}
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, -1)
-			defer c()
+			exit, _, out, reset := zli.Test()
+			defer reset()
+			os.Args = append([]string{"testuni"}, tt.in...)
 
-			out := outbuf.String()
-			if !strings.Contains(out, tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+			func() {
+				defer exit.Recover()
+				main()
+			}()
+
+			if !strings.Contains(out.String(), tt.want) {
+				t.Errorf("wrong output\nout:  %q\nwant: %q", out.String(), tt.want)
+			}
+			if *exit != -1 {
+				t.Errorf("wrong exit: %d", *exit)
 			}
 		})
 	}
@@ -95,8 +106,17 @@ func TestSearch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, tt.wantExit)
-			defer c()
+			exit, _, outbuf, reset := zli.Test()
+			defer reset()
+			os.Args = append([]string{"testuni"}, tt.in...)
+
+			func() {
+				defer exit.Recover()
+				main()
+			}()
+			if int(*exit) != tt.wantExit {
+				t.Fatalf("wrong exit: %d", *exit)
+			}
 
 			out := outbuf.String()
 			if lines := strings.Count(out, "\n"); lines != tt.wantLines {
@@ -144,8 +164,18 @@ func TestPrint(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, tt.wantExit)
-			defer c()
+			exit, _, outbuf, reset := zli.Test()
+			defer reset()
+			os.Args = append([]string{"testuni"}, tt.in...)
+
+			func() {
+				defer exit.Recover()
+				main()
+			}()
+
+			if int(*exit) != tt.wantExit {
+				t.Fatalf("wrong exit: %d", *exit)
+			}
 
 			out := outbuf.String()
 			if lines := strings.Count(out, "\n"); lines != tt.wantLines {
@@ -207,8 +237,11 @@ func TestEmoji(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
-			outbuf, c := setup(t, tt.in, -1)
-			defer c()
+			_, _, outbuf, reset := zli.Test()
+			defer reset()
+			os.Args = append([]string{"testuni"}, tt.in...)
+
+			main()
 
 			var out []string
 			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
@@ -230,8 +263,14 @@ func TestEmoji(t *testing.T) {
 }
 
 func TestAllEmoji(t *testing.T) {
-	outbuf, c := setup(t, []string{"e", "-gender", "all", "-tone", "all", "all"}, -1)
-	defer c()
+	exit, _, outbuf, reset := zli.Test()
+	defer reset()
+	os.Args = append([]string{"testuni"}, []string{"e", "-gender", "all", "-tone", "all", "all"}...)
+
+	func() {
+		defer exit.Recover()
+		main()
+	}()
 
 	// grep -v '^#' unidata/.cache/emoji-test.txt |
 	//     grep fully-qualified |
@@ -276,46 +315,4 @@ func TestAllEmoji(t *testing.T) {
 	//if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
 	//	t.Error(d)
 	//}
-}
-
-func setup(t *testing.T, args []string, wantExit int) (fmt.Stringer, func()) {
-	outbuf := new(bytes.Buffer)
-	stdout = outbuf
-	stderr = outbuf
-	zli.Stdout = outbuf
-	zli.Stderr = outbuf
-
-	os.Args = append([]string{"testuni"}, args...)
-	flag.CommandLine = flag.NewFlagSet(os.Args[0], flag.ExitOnError)
-
-	exitRan := false
-	exit = func(code int) {
-		exitRan = true
-		if wantExit == -1 {
-			t.Fatalf("os.Exit(%d) called\n%s", code, outbuf.String())
-		}
-		if code != wantExit {
-			t.Fatalf("os.Exit(%d) called; want %d\n%s", code, wantExit, outbuf.String())
-		}
-
-		// Otherwise this doesn't stop execution inside the main program.
-		//t.SkipNow()
-	}
-	zli.Exit = exit
-
-	main()
-
-	return outbuf, func() {
-		stdout = os.Stdout
-		stderr = os.Stderr
-		exit = os.Exit
-
-		zli.Stdout = os.Stdout
-		zli.Stderr = os.Stderr
-		zli.Exit = os.Exit
-
-		if wantExit > -1 && !exitRan {
-			t.Fatalf("os.Exit() not called")
-		}
-	}
 }

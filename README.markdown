@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
 
 `uni` queries the Unicode database from the commandline. It supports Unicode 13
-(March 2020) including almost-complete<sup>\*</sup> Emoji support.
+(March 2020) and has good support for emojis.
 
 There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
@@ -23,11 +23,6 @@ Readme Index:
 [ChangeLog](#changelog) ·
 [Development](#development) ·
 [Alternatives](#alternatives)
-
-<sup>\*: the part that doesn't work is the complex "family emojis", which can
-consist of a bunch of codepoints like "family of man, woman, boy, girl" or "man
-kissing man"; supporting that would complicate the CLI quite a lot and is IMO
-not worth it.</sup>
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
@@ -216,8 +211,7 @@ ChangeLog
 
 - Default for `-gender` is now `-person` instead of `all`.
 
-- Output to `$PAGER` for interactive terminals by default. Use `-no-pager` or
-  `-p` to disable.
+- Add option to output to `$PAGER` with `-p` or `-pager`.
 
 ### v1.1.1 (2020-05-31)
 

@@ -2,10 +2,8 @@
 package main // import "arp242.net/uni"
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
-	"io"
 	"os"
 	"strings"
 	"unicode"
@@ -20,19 +18,13 @@ var (
 	errNoMatches = errors.New("no matches")
 )
 
-var (
-	stdout io.Writer = os.Stdout
-	stderr io.Writer = os.Stderr
-	exit             = os.Exit
-)
-
 const usage = `Usage: uni [-hrq] [help | identify | search | print | emoji]
 
 Flags:
     -q, -quiet     Quiet output; don't print header, "no matches", etc.
     -r, -raw       Don't use graphical variants for control characters and don't
                    add ◌ (U+25CC) before combining characters.
-    -p, -no-pager  Don't output to $PAGER.
+    -p, -pager     Output to $PAGER.
 
 Commands:
     identify [string..]    Idenfity all the characters in the given strings.
@@ -64,27 +56,23 @@ Commands:
 func main() {
 	flag := zli.NewFlags(os.Args)
 	var (
-		quietF  = flag.Bool(false, "q", "quiet")
-		help    = flag.Bool(false, "h", "help")
-		rawF    = flag.Bool(false, "r", "raw")
-		noPager = flag.Bool(false, "p", "no-pager")
-		tone    = flag.String("", "t", "tone", "tones")
-		gender  = flag.String("person", "g", "gender", "genders")
+		quietF = flag.Bool(false, "q", "quiet")
+		help   = flag.Bool(false, "h", "help")
+		rawF   = flag.Bool(false, "r", "raw")
+		pager  = flag.Bool(false, "p", "pager")
+		tone   = flag.String("", "t", "tone", "tones")
+		gender = flag.String("person", "g", "gender", "genders")
 	)
 	err := flag.Parse()
-	if err != nil {
-		zli.Fatal(err)
-		return
-	}
+	zli.F(err)
 
 	if help.Set() {
 		fmt.Print(usage)
 		zli.Exit(0)
 	}
 
-	if !noPager.Set() {
-		stdout = new(bytes.Buffer)
-		defer zli.Pager(stdout.(*bytes.Buffer))
+	if pager.Set() {
+		defer zli.PagerStdout()()
 	}
 
 	cmd := strings.ToLower(flag.Shift())
@@ -100,14 +88,12 @@ func main() {
 	quiet := quietF.Set()
 	raw := rawF.Set()
 	args := flag.Args
-	args, err = zli.ArgsOrInput(args, quiet)
-	if err != nil {
-		zli.Fatal(err)
-		return
-	}
+	args, err = zli.InputOrArgs(args, " \t\n", quiet)
+	zli.F(err)
+
 	switch cmd {
 	default:
-		zli.Fatal("unknown command")
+		zli.Fatalf("unknown command")
 	case "identify", "i":
 		err = identify(args, quiet, raw)
 	case "search", "s":
@@ -119,7 +105,7 @@ func main() {
 	}
 	if err != nil {
 		if !(err == errNoMatches && quiet) {
-			zli.Fatal(err)
+			zli.Fatalf(err)
 		}
 		zli.Exit(1)
 	}
@@ -138,8 +124,7 @@ func parseToneFlag(tone string) []string {
 	var tones []string
 	for _, t := range zstring.Fields(tone, ",") {
 		if !zstring.Contains(allTones, t) {
-			zli.Fatal("invalid skin tone: %q", tone)
-			return nil
+			zli.Fatalf("invalid skin tone: %q", tone)
 		}
 		tones = append(tones, t)
 	}
@@ -166,7 +151,7 @@ func parseGenderFlag(gender string) []string {
 		case "woman", "women", "w", "female", "f":
 			g = "woman"
 		default:
-			zli.Fatal("invalid gender: %q", gender)
+			zli.Fatalf("invalid gender: %q", gender)
 		}
 		genders = append(genders, g)
 	}
@@ -207,7 +192,7 @@ func search(args []string, quiet, raw bool) error {
 		return errNoMatches
 	}
 
-	out.PrintSorted(stdout, quiet, raw)
+	out.PrintSorted(zli.Stdout, quiet, raw)
 	return nil
 }
 
@@ -223,7 +208,6 @@ func emoji(args []string, quiet, raw bool, tones, genders []string) error {
 			a = strings.TrimPrefix(strings.TrimPrefix(a, "group:"), "g:")
 		}
 
-		// TODO: needs to be AND, not OR.
 		for _, e := range unidata.Emojis {
 			switch {
 			case group:
@@ -259,14 +243,14 @@ func emoji(args []string, quiet, raw bool, tones, genders []string) error {
 		for i, c := range o {
 			switch i {
 			case 0:
-				fmt.Fprint(stdout, c+" ")
+				fmt.Fprint(zli.Stdout, c+" ")
 			case 3: // Last column
-				fmt.Fprint(stdout, c)
+				fmt.Fprint(zli.Stdout, c)
 			default:
-				fmt.Fprint(stdout, zstring.AlignLeft(c, cols[i]+2))
+				fmt.Fprint(zli.Stdout, zstring.AlignLeft(c, cols[i]+2))
 			}
 		}
-		fmt.Fprintln(stdout, "")
+		fmt.Fprintln(zli.Stdout, "")
 	}
 	return nil
 }
@@ -374,7 +358,7 @@ func parseEmojiGroups(group string) []string {
 			}
 		}
 		if !found {
-			zli.Fatal("doesn't match any emoji group or subgroup: %q", g)
+			zli.Fatalf("doesn't match any emoji group or subgroup: %q", g)
 		}
 	}
 
@@ -437,14 +421,14 @@ func print(args []string, quiet, raw bool) error {
 		}
 	}
 
-	out.PrintSorted(stdout, quiet, raw)
+	out.PrintSorted(zli.Stdout, quiet, raw)
 	return nil
 }
 
 func identify(ins []string, quiet, raw bool) error {
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
-		fmt.Fprintf(stderr, "uni: WARNING: input string is not valid UTF-8\n")
+		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
 	var out printer
@@ -453,11 +437,9 @@ func identify(ins []string, quiet, raw bool) error {
 		if !ok {
 			return fmt.Errorf("unknown codepoint: U+%.4X", c) // Should never happen.
 		}
-
 		out = append(out, info)
 	}
-
-	out.Print(stdout, quiet, raw)
+	out.Print(zli.Stdout, quiet, raw)
 	return nil
 }
 
