@@ -274,7 +274,7 @@ func TestAllEmoji(t *testing.T) {
 
 	// grep -v '^#' unidata/.cache/emoji-test.txt |
 	//     grep fully-qualified |
-	//     grep -v 'holding hands.*tone' |
+	//     grep -Ev '(holding hands|kiss:|couple with heart).*tone' |
 	//     grep -Eo '# .+? E[0-9]' |
 	//     cut -d ' ' -f2 >| testdata/emojis
 	//
