@@ -33,13 +33,13 @@ func (e Emoji) String() string {
 	if (e.Codepoints[0] >= 0x1f1e6 && e.Codepoints[0] <= 0x1f1ff) ||
 		(len(e.Codepoints) > 1 && e.Codepoints[1] == 0xe0067) {
 		for _, cp := range e.Codepoints {
-			c += string(cp)
+			c += string(rune(cp))
 		}
 		return c
 	}
 
 	for i, cp := range e.Codepoints {
-		c += string(cp)
+		c += string(rune(cp))
 
 		// Don't add ZWJ as last item.
 		if i == len(e.Codepoints)-1 {
