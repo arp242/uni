@@ -163,15 +163,23 @@ func mkemojis() error {
 			}
 		}
 
-		// This ignores combining the "holding hands" with different skin tone
-		// variants:
+		// This ignores combining the "holding hands" and "kissing" with
+		// different skin tone variants:
+		//
 		// 1F468 1F3FB 200D 1F91D 200D 1F468 1F3FF 👨🏻‍🤝‍👨🏿
 		// E12.1 men holding hands: light skin tone, dark skin tone
 		//
-		// There is no good way to select this with the current UX, and to be
-		// honest I don't think it's very important either.
+		// 1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FF 🧑🏻‍❤️‍💋‍🧑🏿
+		// E13.1 kiss: person, person, light skin tone, dark skin tone
+		//
+		// There is no good way to select this with the current UX/flagset, and
+		// to be honest I don't think it's very important either.
 		if tone && strings.Contains(name, "holding hands") {
 			gender = 0
+			tone = false
+			continue
+		}
+		if tone && (strings.Contains(name, "kiss:") || strings.Contains(name, "couple with heart")) {
 			tone = false
 			continue
 		}

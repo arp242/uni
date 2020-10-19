@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/arp242/uni.svg?branch=master)](https://travis-ci.org/arp242/uni)
-[![codecov](https://codecov.io/gh/arp242/uni/branch/master/graph/badge.svg)](https://codecov.io/gh/arp242/uni)
 
-`uni` queries the Unicode database from the commandline. It supports Unicode 13
-(March 2020) and has good support for emojis.
+`uni` queries the Unicode database from the commandline. It supports Unicode
+13.1 (September 2020) and has good support for emojis.
 
 There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
@@ -205,11 +204,22 @@ ChangeLog
 
 ### master branch
 
-- Replace `uni emoji -group group1,group2` syntax with `uni emoji group:group1
-  group:group2`. This is more flexible and will allow adding more query syntax
-  later.
+- Remove the `-group` flag in favour of `group:name` syntax; this is more
+  flexible and will allow adding more query syntax later.
 
-- Default for `-gender` is now `-person` instead of `all`.
+      uni emoji -group groupname,othergroup              Old syntax
+      uni emoji -group groupname,othergroup smile        Old syntax
+
+      uni emoji group:groupname group:othergroup         New syntax
+      uni emoji group:groupname group:othergroup smile   New syntax
+
+      uni emoji g:groupname g:othergroup                 Can use shorter g: instead of group:
+
+- Default for `-gender` is now `person` instead of `all`; including all genders
+  by default isn't all that useful, and the gender-neutral "person" should be a
+  fine default for most.
+
+- Update to Unicode 13.1
 
 - Add option to output to `$PAGER` with `-p` or `-pager`.
 
