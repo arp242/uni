@@ -1,15 +1,6 @@
-language: go
-go:
-  - 1.12.x
-  - 1.13.x
-go_import_path: arp242.net/uni
-notifications:
-  email: false
-install:
-script: |
-  export GO111MODULE=on
-  go test -race \
-    -coverprofile=coverage.txt \
-    -coverpkg=./... \
-    ./...
-  bash <(curl -s https://codecov.io/bash)
+language:       'go'
+go:             ['1.15.x']
+go_import_path: 'arp242.net/uni'
+env:            ['GO111MODULE=on']
+notifications:  {email: false}
+script:         'go test -race ./...'
