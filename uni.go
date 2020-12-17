@@ -16,9 +16,10 @@ import (
 
 var (
 	errNoMatches = errors.New("no matches")
+	version      = "git"
 )
 
-const usage = `Usage: uni [-hrq] [help | identify | search | print | emoji]
+const usage = `Usage: uni [-hrq] [help | version | identify | search | print | emoji]
 
 Flags:
     -q, -quiet     Quiet output; don't print header, "no matches", etc.
@@ -56,18 +57,23 @@ Commands:
 func main() {
 	flag := zli.NewFlags(os.Args)
 	var (
-		quietF = flag.Bool(false, "q", "quiet")
-		help   = flag.Bool(false, "h", "help")
-		rawF   = flag.Bool(false, "r", "raw")
-		pager  = flag.Bool(false, "p", "pager")
-		tone   = flag.String("", "t", "tone", "tones")
-		gender = flag.String("person", "g", "gender", "genders")
+		quietF   = flag.Bool(false, "q", "quiet")
+		help     = flag.Bool(false, "h", "help")
+		versionF = flag.Bool(false, "v", "version")
+		rawF     = flag.Bool(false, "r", "raw")
+		pager    = flag.Bool(false, "p", "pager")
+		tone     = flag.String("", "t", "tone", "tones")
+		gender   = flag.String("person", "g", "gender", "genders")
 	)
 	err := flag.Parse()
 	zli.F(err)
 
 	if help.Set() {
 		fmt.Print(usage)
+		zli.Exit(0)
+	}
+	if versionF.Set() {
+		fmt.Println(version)
 		zli.Exit(0)
 	}
 
@@ -82,6 +88,10 @@ func main() {
 	}
 	if cmd == "h" || cmd == "help" {
 		fmt.Print(usage)
+		zli.Exit(0)
+	}
+	if cmd == "v" || cmd == "version" {
+		fmt.Println(version)
 		zli.Exit(0)
 	}
 
