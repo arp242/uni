@@ -11,23 +11,16 @@
 # NOTE: dmenu will *crash* when using a colour emoji font, this is a bug in Xft:
 # https://bugs.freedesktop.org/show_bug.cgi?id=107534
 
-# Command to use:
-dmenu="dmenu -i"
-
-# Or adding some options:
-#dmenu="dmenu -x -i -l 20 -fn monospace:size=20 -sb #dddddd -sf #000000"
-
-# Use Rofi instead:
-#dmenu="rofi -dmenu"
-
-# Use fzf instead:
-#dmenu="fzf"
+dmenu="dmenu -i"                                   # Command to use
+#dmenu="dmenu -x -i -l 20 -fn monospace:size=20"   # Adding some options
+#dmenu="rofi -dmenu"                               # Use Rofi instead
+#dmenu="fzf"                                       # Use fzf instead
 
 # Command to copy to clipboard:
 copy="xclip -rmlastnl -selection clipboard"
 
 # Common emojis I use >99% of the time:
-common="g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-finger g:hand-fingers-closed g:hands g:body-parts g:person-gesture"
+common="-or g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-finger g:hand-fingers-closed g:hands g:body-parts g:person-gesture"
 
 # Display onlt the male variants:
 #common="$common -gender male"
@@ -36,33 +29,9 @@ common="g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-finge
 #common="$common -tone mediumdark"
 
 case "${1:-all}" in
-	# List all codepoints.
-	all)
-		uni -q p all |
-			$dmenu |
-			grep -o "^'.'" |
-			tr -d "'" |
-			$copy
-		;;
-
-	# List all emojis.
-	emoji)
-		uni -q e all |
-			$dmenu |
-			cut -d' ' -f1 |
-			$copy
-		;;
-
-	# List common facial expressions, excluding flags, guitars, lobsters, map of
-	# Japan, and what-have-you.
-	emoji-common)
-		uni -q e $common | 
-			$dmenu |
-			cut -d' ' -f1 |
-			$copy
-		;;
-
-	*)
-		echo >&2 "dmenu-uni: unknown '$1'"
-		;;
+	all)           uni -q p all     | $dmenu | grep -o "^'.'" | tr -d "'" | $copy ;;
+	emoji)         uni -q e all     | $dmenu | cut -f1 | $copy ;;
+	emoji-common)  uni -q e $common | $dmenu | cut -f1 | $copy ;;
+	*)             uni -q e $@      | $dmenu | cut -f1 | $copy ;;
+	#*)             echo >&2 "dmenu-uni: unknown '$1'" ;;
 esac

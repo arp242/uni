@@ -13,3 +13,4 @@
 
   Also maybe send as direct input (xdotool can do this, but is apparently not
   reliable across all apps/characters).
+- Variation selectors.

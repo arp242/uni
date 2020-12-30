@@ -19,17 +19,40 @@ var (
 	version      = "git"
 )
 
-const usage = `Usage: uni [-hrq] [help | version | identify | search | print | emoji]
+var usageShort = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
+Usage: %(prog) [help | version | identify | search | print | emoji] [-qrpao] 
+
+Flags:
+    -q, -quiet     Quiet output.
+    -r, -raw       Don't use graphical variants or add combining characters.
+    -p, -pager     Output to $PAGER.
+    -o, -or        Use "or" when searching instead of "and".
+
+Commands:
+    identify       Idenfity all the characters in the given strings.
+    search         Search description for any of the words.
+    print          Print characters by codepoint, category, or block.
+    emoji          Search emojis.
+
+Use "%(prog) help" for a more detailed help.
+`)
+
+var usage = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
+Usage: %(prog) [help | version | identify | search | print | emoji] [-qrpao]
 
 Flags:
     -q, -quiet     Quiet output; don't print header, "no matches", etc.
-    -r, -raw       Don't use graphical variants for control characters and don't
-                   add ◌ (U+25CC) before combining characters.
+    -r, -raw       Don't use graphical variants for control characters and
+                   don't add ◌ (U+25CC) before combining characters.
     -p, -pager     Output to $PAGER.
+    -o, -or        Use "or" when searching: only match if all parameters match,
+                   instead of anything where at least one matches.
 
 Commands:
     identify [string..]    Idenfity all the characters in the given strings.
-    search   [word..]      Search description for any of the words.
+
+    search   [query..]     Search description for any of the words.
+
     print    [ident..]     Print characters by codepoint, category, or block.
 
                            Codepoints             U+2042, 0x20, 0o40, 0b100000
@@ -52,7 +75,7 @@ Commands:
                            Note: emojis may not be accurately copied by select &
                            copy in terminals. It's recommended to copy to the
                            clipboard directly with e.g. xclip.
-`
+`)
 
 func main() {
 	flag := zli.NewFlags(os.Args)
@@ -62,37 +85,39 @@ func main() {
 		versionF = flag.Bool(false, "v", "version")
 		rawF     = flag.Bool(false, "r", "raw")
 		pager    = flag.Bool(false, "p", "pager")
+		or       = flag.Bool(false, "o", "or")
 		tone     = flag.String("", "t", "tone", "tones")
 		gender   = flag.String("person", "g", "gender", "genders")
 	)
 	err := flag.Parse()
 	zli.F(err)
 
-	if help.Set() {
-		fmt.Print(usage)
-		zli.Exit(0)
-	}
 	if versionF.Set() {
 		fmt.Println(version)
-		zli.Exit(0)
+		return
 	}
 
 	if pager.Set() {
 		defer zli.PagerStdout()()
 	}
 
+	if help.Set() {
+		fmt.Fprint(zli.Stdout, usage)
+		return
+	}
+
 	cmd := strings.ToLower(flag.Shift())
 	if cmd == "" {
-		fmt.Print(usage)
-		zli.Exit(0)
+		fmt.Fprint(zli.Stdout, usageShort)
+		return
 	}
 	if cmd == "h" || cmd == "help" {
-		fmt.Print(usage)
-		zli.Exit(0)
+		fmt.Fprint(zli.Stdout, usage)
+		return
 	}
 	if cmd == "v" || cmd == "version" {
 		fmt.Println(version)
-		zli.Exit(0)
+		return
 	}
 
 	quiet := quietF.Set()
@@ -107,11 +132,11 @@ func main() {
 	case "identify", "i":
 		err = identify(args, quiet, raw)
 	case "search", "s":
-		err = search(args, quiet, raw)
+		err = search(args, quiet, raw, or.Bool())
 	case "print", "p":
 		err = print(args, quiet, raw)
 	case "emoji", "e":
-		err = emoji(args, quiet, raw, parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
+		err = emoji(args, quiet, raw, or.Bool(), parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
 	}
 	if err != nil {
 		if !(err == errNoMatches && quiet) {
@@ -169,7 +194,7 @@ func parseGenderFlag(gender string) []string {
 	return genders
 }
 
-func search(args []string, quiet, raw bool) error {
+func search(args []string, quiet, raw, or bool) error {
 	var na []string
 	for _, a := range args {
 		if a != "" {
@@ -181,19 +206,23 @@ func search(args []string, quiet, raw bool) error {
 		return errors.New("search: need search term")
 	}
 
-	var out printer
-	words := make([]string, len(args))
 	for i := range args {
-		words[i] = strings.ToUpper(args[i])
+		args[i] = strings.ToUpper(args[i])
 	}
+
+	var out printer
 	for _, info := range unidata.Codepoints {
 		m := 0
-		for _, w := range words {
-			if strings.Contains(info.Name, w) {
+		for _, a := range args {
+			if strings.Contains(info.Name, a) {
+				if or {
+					out = append(out, info)
+					break
+				}
 				m++
 			}
 		}
-		if m == len(words) {
+		if !or && m == len(args) {
 			out = append(out, info)
 		}
 	}
@@ -206,61 +235,92 @@ func search(args []string, quiet, raw bool) error {
 	return nil
 }
 
-func emoji(args []string, quiet, raw bool, tones, genders []string) error {
-	var (
-		out  = [][]string{}
-		cols = []int{4, 0, 0}
-	)
+func emoji(args []string, quiet, raw, or bool, tones, genders []string) error {
+	type matchArg struct {
+		group bool
+		text  string
+	}
+	var matchArgs = make([]matchArg, 0, len(args))
 	for _, a := range args {
-		a = strings.ToLower(a)
+		a := strings.ToLower(a)
 		group := strings.HasPrefix(a, "g:") || strings.HasPrefix(a, "group:")
 		if group {
 			a = strings.TrimPrefix(strings.TrimPrefix(a, "group:"), "g:")
 		}
+		matchArgs = append(matchArgs, matchArg{text: a, group: group})
+	}
 
-		for _, e := range unidata.Emojis {
+	all := zstring.Contains(args, "all")
+	if all {
+		args = []string{"all"}
+	}
+
+	out := make([]unidata.Emoji, 0, 16)
+	for _, e := range unidata.Emojis {
+		m := 0
+		for _, a := range matchArgs {
+			var match bool
 			switch {
-			case group:
-				if !strings.Contains(strings.ToLower(e.Group), a) && !strings.Contains(strings.ToLower(e.Subgroup), a) {
-					continue
-				}
-			case a == "all":
-				// Do nothing.
+			case a.group:
+				match = strings.Contains(strings.ToLower(e.Group), a.text) || strings.Contains(strings.ToLower(e.Subgroup), a.text)
 			default:
-				if !strings.Contains(strings.ToLower(e.Name), a) {
-					continue
-				}
+				match = strings.Contains(strings.ToLower(e.Name), a.text)
 			}
-
-			for _, ee := range applyGenders(applyTones(e, tones), genders) {
-				out = append(out, []string{ee.String(), ee.Name, ee.Group, ee.Subgroup})
-				if l := utf8.RuneCountInString(ee.Name); l > cols[1] {
-					cols[1] = l
+			if match {
+				if or {
+					out = append(out, e)
+					break
 				}
-				if l := utf8.RuneCountInString(ee.Group); l > cols[2] {
-					cols[2] = l
-				}
+				m++
 			}
+		}
+		if all || (!or && m == len(matchArgs)) {
+			out = append(out, applyGenders(applyTones(e, tones), genders)...)
 		}
 	}
 
-	// TODO: not always correctly aligned as some emojis are double-width and
-	// some are not. As far as I can tell, there is no good way to predict this
-	// as it will depend on the font. Unicode recommends "emoji presentation
-	// sequences behave as though they were East Asian Wide", but that's too
-	// simplistic too.
-	for _, o := range out {
-		for i, c := range o {
-			switch i {
-			case 0:
-				fmt.Fprint(zli.Stdout, c+" ")
-			case 3: // Last column
-				fmt.Fprint(zli.Stdout, c)
-			default:
-				fmt.Fprint(zli.Stdout, zstring.AlignLeft(c, cols[i]+2))
-			}
+	if len(out) == 0 {
+		return errNoMatches
+	}
+
+	colSize := []int{0, 0}
+	for _, e := range out {
+		if len(e.Name) > colSize[0] {
+			colSize[0] = len(e.Name)
 		}
-		fmt.Fprintln(zli.Stdout, "")
+		if len(e.Group) > colSize[1] {
+			colSize[1] = len(e.Group)
+		}
+	}
+	colSize[0] += 2
+	colSize[1] += 2
+
+	// Alignment with spaces is tricky, as some emojis are double-width and some
+	// are not. As far as I can tell, there is no good way to predict this as it
+	// will depend on the font. Unicode recommends "emoji presentation sequences
+	// behave as though they were East Asian Wide", but that's too simplistic
+	// too. So use a tab character for this, which aligns correctly, even though
+	// it adds some unnecessary whitespace.
+	//
+	// Don't do this when piping, since dmenu doesn't display tabs well :-/ This
+	// seems like a problem in Xft as near as I can determine.
+	tab := "\t"
+	if !zli.IsTerminal(os.Stdout.Fd()) {
+		tab = "    "
+	}
+
+	if !quiet {
+		fmt.Fprintf(zli.Stdout, "  %s%s%s%s\n", tab,
+			zstring.AlignLeft("name", colSize[0]),
+			zstring.AlignLeft("group", colSize[1]),
+			"subgroup")
+	}
+
+	for _, e := range out {
+		fmt.Fprintf(zli.Stdout, "%s%s%s%s%s\n", e.String(), tab,
+			zstring.AlignLeft(e.Name, colSize[0]),
+			zstring.AlignLeft(e.Group, colSize[1]),
+			e.Subgroup)
 	}
 	return nil
 }

@@ -9,14 +9,15 @@ emojis.
 
 There are binaries on the [releases][release] page, or compile from source with
 `go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`. You can
-also [run it in your browser][uni-wasm].<br>
+also [run it in your browser][uni-wasm].
+
 Packages:
 [Arch Linux](https://aur.archlinux.org/packages/uni/) ·
 [FreeBSD](https://www.freshports.org/textproc/uni) ·
 [Homebrew](https://formulae.brew.sh/formula/uni) ·
 [Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
 
-Readme Index:
+README index:
 [Integrations](#integrations) ·
 [Usage](#usage) ·
 [ChangeLog](#changelog) ·
@@ -44,7 +45,7 @@ Usage
 *Note: the alignment is slightly off for some entries due to the way GitHub
 renders wide characters; in terminals it should be aligned correctly.*
 
-Identify a character:
+**Identify** a character:
 
     $ uni identify €
          cpoint  dec    utf-8       html       name
@@ -65,7 +66,7 @@ It reads from stdin:
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
-Search description:
+**Search** description:
 
     $ uni search euro
          cpoint  dec    utf-8       html       name
@@ -88,7 +89,7 @@ individually:
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
     '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
 
-Use standard shell quoting for more literal matches:
+Use shell quoting for more literal matches:
 
     $ uni s rightwards black arrow
          cpoint  dec    utf-8       html       name
@@ -100,8 +101,18 @@ Use standard shell quoting for more literal matches:
          cpoint  dec    utf-8       html       name
     '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW (Other_Symbol)
 
-The `print` command (shortcut `p`) can be used to print specific codepoints or
-groups of codepoints:
+Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
+
+    $ uni s -o globe earth
+         cpoint  dec    utf-8       html       name
+    '⏚'  U+23DA  9178   e2 8f 9a    &#x23da;   EARTH GROUND (Other_Symbol)
+    '☷'  U+2637  9783   e2 98 b7    &#x2637;   TRIGRAM FOR EARTH (Other_Symbol)
+    [..]
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
+    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
+    [..]
+
+**Print** specific codepoints or groups of codepoints:
 
     $ uni print U+2042
          cpoint  dec    utf-8       html       name
@@ -137,7 +148,7 @@ Blocks:
     '━'  U+2501  9473   e2 94 81    &#x2501;   BOX DRAWINGS HEAVY HORIZONTAL (Other_Symbol)
     [..]
 
-And finally, there is the `emoji` command (shortcut: `e`), which is the real
+And finally, there is the **`emoji`** command (shortcut: `e`), which is the real
 reason I wrote this:
 
     $ uni e cry
@@ -161,6 +172,11 @@ Group and search can be combined, and `group:` can be abbreviated to `g:`:
     $ uni e g:cat-face grin
     😺 grinning cat                    Smileys & Emotion  cat-face
     😸 grinning cat with smiling eyes  Smileys & Emotion  cat-face
+
+Like with `search`, use `-or` to OR the parameters together instead of AND:
+
+    $ uni e 
+    TODO
 
 Apply skin tone modifiers with `-tone`:
 
@@ -202,24 +218,36 @@ all skin tones or genders:
 ChangeLog
 ---------
 
-### master branch
+### v2.0.0 (unreleased)
+
+This changes some flags and semantics; if you use the `dmenu-uni` script with
+dmenu or fzf, then you'll need to update that to.
 
 - Remove the `-group` flag in favour of `group:name` syntax; this is more
   flexible and will allow adding more query syntax later.
 
-      uni emoji -group groupname,othergroup              Old syntax
-      uni emoji -group groupname,othergroup smile        Old syntax
+      uni emoji -group groupname,othergroup                  Old syntax
+      uni emoji -group groupname,othergroup smile            Old syntax
 
-      uni emoji group:groupname group:othergroup         New syntax
-      uni emoji group:groupname group:othergroup smile   New syntax
+      uni emoji -or group:groupname group:othergroup         New syntax
+      uni emoji -or group:groupname group:othergroup smile   New syntax
 
-      uni emoji g:groupname g:othergroup                 Can use shorter g: instead of group:
+      uni emoji -or g:groupname g:othergroup                 Can use shorter g: instead of group:
 
 - Default for `-gender` is now `person` instead of `all`; including all genders
   by default isn't all that useful, and the gender-neutral "person" should be a
+  fine default for most, just as the skin colour-neutral "yellow" is probably a
   fine default for most.
 
-- Update to Unicode 13.1
+- Add new `-or`/`-o` flag. The default for `search` and `emoji` is to show
+  everything where at least one query parameter matches; with this flag it only
+  shows those where everything matches.
+
+- Show a short terse help when using just `uni`, and a more detailed help on
+  `uni help`. I hate it when programs print 5 pages of text to my terminal when
+  I didn't ask for it.
+
+- Update Unicode data to 13.1.
 
 - Add option to output to `$PAGER` with `-p` or `-pager`.
 

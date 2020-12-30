@@ -1,7 +1,6 @@
 golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae h1:Ih9Yo4hSPImZOpfGuA4bR/ORKTAbhZo2AbWNRCnevdo=
 golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-zgo.at/zli v0.0.0-20200720092526-fc42a2a7fefe h1:8l6FJDs3Nzli5ejcvSVz3TvHERtkAjcJ7tFCtCh7m2w=
-zgo.at/zli v0.0.0-20200720092526-fc42a2a7fefe/go.mod h1:iCNHeIhEG9nQZsmEvf1BDpnQXvbYbUDvokRSwB434M8=
-zgo.at/zstd v0.0.0-20200718162456-59acc347bdcf h1:dhQM09Sj1jIPc08ev5k/RtPdPYqqHMNutZzST+K7MRE=
-zgo.at/zstd v0.0.0-20200718162456-59acc347bdcf/go.mod h1:wSF/3tBbAJVo+RYk5CTMmSN2xxyy4C+qTb5fN4WP9iA=
-zgo.at/ztest v0.0.0-20200316134318-cfad86d80b41/go.mod h1:xGKONSdBgBNBcHRbi+yY9xFSre7ip8gRsQBS9QW/J2I=
+zgo.at/zli v0.0.0-20201230084248-ca997f720e5a h1:8AN6FyGjtx+2VDB39RaUeHTV3NHW0Zo+svA6NBFll6U=
+zgo.at/zli v0.0.0-20201230084248-ca997f720e5a/go.mod h1:iCNHeIhEG9nQZsmEvf1BDpnQXvbYbUDvokRSwB434M8=
+zgo.at/zstd v0.0.0-20201227165557-c822e638e28c h1:+ez1p/Tzy4RntMK7q855+/sEpczcQqPWqztMjZYVYLc=
+zgo.at/zstd v0.0.0-20201227165557-c822e638e28c/go.mod h1:bQqcOgaRPCBT7lZ52Ksg9GF1xwi0L97E3AyvW3oGJYE=

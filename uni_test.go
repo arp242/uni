@@ -100,6 +100,8 @@ func TestSearch(t *testing.T) {
 		{[]string{"-q", "s", "floral", "bullet"}, "HEART", 2, -1},
 		{[]string{"-q", "s", "rightwards arrow", "heavy"}, "HEAVY", 16, -1},
 
+		{[]string{"-qo", "s", "floral", "bullet"}, "WHITE BULLET", 15, -1},
+
 		{[]string{"s", "nomatch_nomatch"}, "no matches", 1, 1},
 		{[]string{"-q", "s", "nomatch_nomatch"}, "", 0, 1},
 	}
@@ -199,40 +201,40 @@ func TestEmoji(t *testing.T) {
 		//{[]string{"e", "-groups", "person", "all"},
 		//[]string{}},
 
-		{[]string{"e", "group:hands"},
+		{[]string{"e", "-q", "group:hands"},
 			[]string{"👏", "🙌", "👐", "🤲", "🤝", "🙏"}},
-		{[]string{"e", "-tone", "dark", "g:hands"},
+		{[]string{"e", "-q", "-tone", "dark", "g:hands"},
 			[]string{"👏🏿", "🙌🏿", "👐🏿", "🤲🏿", "🤝", "🙏🏿"}},
 
-		{[]string{"e", "shrug"},
+		{[]string{"e", "-q", "shrug"},
 			[]string{"🤷"}},
-		{[]string{"e", "shrug", "-gender", "all"},
+		{[]string{"e", "-q", "shrug", "-gender", "all"},
 			[]string{"🤷", "🤷Z♂S", "🤷Z♀S"}},
-		{[]string{"e", "-gender", "m", "shrug"},
+		{[]string{"e", "-q", "-gender", "m", "shrug"},
 			[]string{"🤷Z♂S"}},
-		{[]string{"e", "-gender", "m", "-tone", "light", "shrug"},
+		{[]string{"e", "-q", "-gender", "m", "-tone", "light", "shrug"},
 			[]string{"🤷🏻Z♂S"}},
 
-		{[]string{"e", "farmer"},
+		{[]string{"e", "-q", "farmer"},
 			[]string{"🧑Z🌾"}},
-		{[]string{"e", "farmer", "-gender", "all"},
+		{[]string{"e", "-q", "farmer", "-gender", "all"},
 			[]string{"🧑Z🌾", "👨Z🌾", "👩Z🌾"}},
-		{[]string{"e", "-gender", "f,m", "farmer"},
+		{[]string{"e", "-q", "-gender", "f,m", "farmer"},
 			[]string{"👩Z🌾", "👨Z🌾"}},
-		{[]string{"e", "-gender", "f", "-tone", "medium", "farmer"},
+		{[]string{"e", "-q", "-gender", "f", "-tone", "medium", "farmer"},
 			[]string{"👩🏽Z🌾"}},
 
-		{[]string{"e", "-gender", "p", "detective"},
+		{[]string{"e", "-q", "-gender", "p", "detective"},
 			[]string{"🕵S"}},
-		{[]string{"e", "-gender", "p", "-tone", "mediumdark", "detective"},
+		{[]string{"e", "-q", "-gender", "p", "-tone", "mediumdark", "detective"},
 			[]string{"🕵🏾"}},
-		{[]string{"e", "-gender", "m", "detective"},
+		{[]string{"e", "-q", "-gender", "m", "detective"},
 			[]string{"🕵SZ♂S"}},
-		{[]string{"e", "-gender", "m", "-tone", "mediumdark", "detective"},
+		{[]string{"e", "-q", "-gender", "m", "-tone", "mediumdark", "detective"},
 			[]string{"🕵🏾Z♂S"}},
 
-		{[]string{"e", "zimbabwe", "#", "england"},
-			[]string{"🇿🇼", "#S⃣", "🏴󠁧󠁢󠁥󠁮󠁧󠁿"}},
+		{[]string{"e", "-qo", "zimbabwe", "#", "england"},
+			[]string{"#S⃣", "🇿🇼", "🏴󠁧󠁢󠁥󠁮󠁧󠁿"}},
 	}
 
 	for _, tt := range tests {
@@ -265,7 +267,7 @@ func TestEmoji(t *testing.T) {
 func TestAllEmoji(t *testing.T) {
 	exit, _, outbuf, reset := zli.Test()
 	defer reset()
-	os.Args = append([]string{"testuni"}, []string{"e", "-gender", "all", "-tone", "all", "all"}...)
+	os.Args = append([]string{"testuni"}, []string{"e", "-q", "-gender", "all", "-tone", "all", "all"}...)
 
 	func() {
 		defer exit.Recover()
@@ -293,7 +295,7 @@ func TestAllEmoji(t *testing.T) {
 	}
 
 	if len(outEmojis) != len(wantEmojis) {
-		t.Errorf("different length: want %d, got %d", len(wantEmojis), len(outEmojis))
+		t.Errorf("all: wrong length: want %d, got %d", len(wantEmojis), len(outEmojis))
 	}
 
 	// Still some \ufe0f issues
