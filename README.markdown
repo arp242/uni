@@ -279,7 +279,8 @@ you'll need to update that to.
   everything where all query parameters match ("AND"); with this flag it shows
   everything where at least one parameter matches ("OR").
 
-- Add new `-format` flag to control which columns to output; see `uni help` for
+- Add new `-format`/`-f` flag to control which columns to output and column
+  width. You can now also print X11 keysyms and Vim digraphs. See `uni help` for
   details.
 
 - Show a short terse help when using just `uni`, and a more detailed help on
