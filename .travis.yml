@@ -1,6 +1,0 @@
-language:       'go'
-go:             ['1.15.x']
-go_import_path: 'arp242.net/uni'
-env:            ['GO111MODULE=on']
-notifications:  {email: false}
-script:         'go test -race ./...'

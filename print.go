@@ -294,7 +294,7 @@ func keysym(c rune) string {
 	if !ok {
 		return "(none)"
 	}
-	return s[0]
+	return strings.Join(s, " ")
 }
 
 func htmlEntity(c rune, cp uint32) string {

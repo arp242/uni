@@ -1,13 +1,12 @@
 package unidata
 
-// /usr/include/X11/keysymdef.h
+// KeySyms is a list of all X11 keysyms.
 //
-// grep '^#define XK.*/\* U+' /usr/include/X11/keysymdef.h |
-//   awk '{ print($5, $2) }' |
-//   sed 's/^U+/0x/; s/ /: "/; s/$/",/'
+//     grep '^#define XK.*/\* U+' /usr/include/X11/keysymdef.h |
+//       awk '{ print($5, $2) }' |
+//       sed 's/^U+/\t0x/; s/ /: {"/; s/$/"},/; s/XK_//'
 //
-// TODO: a few duplicates I manually removed as some codepoints have more than
-// one keysym; need to rewrite this to a []string.
+// TODO: need to manually merge the duplicates; should write proper script.
 //
 // Note: all the actual constants are prefixed with XK_; but we don't add them
 // here as not all usages of them use them either (i.e. in XCompose).
@@ -163,7 +162,7 @@ var KeySyms = map[rune][]string{
 	0x00D5: {"Otilde"},
 	0x00D6: {"Odiaeresis"},
 	0x00D7: {"multiply"},
-	0x00D8: {"Oslash"},
+	0x00D8: {"Oslash", "Ooblique"},
 	0x00D9: {"Ugrave"},
 	0x00DA: {"Uacute"},
 	0x00DB: {"Ucircumflex"},
@@ -195,7 +194,7 @@ var KeySyms = map[rune][]string{
 	0x00F5: {"otilde"},
 	0x00F6: {"odiaeresis"},
 	0x00F7: {"division"},
-	0x00F8: {"oslash"},
+	0x00F8: {"oslash", "ooblique"},
 	0x00F9: {"ugrave"},
 	0x00FA: {"uacute"},
 	0x00FB: {"ucircumflex"},
@@ -495,7 +494,7 @@ var KeySyms = map[rune][]string{
 	0x06AF: {"Arabic_gaf"},
 	0x06BA: {"Arabic_noon_ghunna"},
 	0x06BE: {"Arabic_heh_doachashmee"},
-	0x06CC: {"Farsi_yeh"},
+	0x06CC: {"Farsi_yeh", "Arabic_farsi_yeh"},
 	0x06D2: {"Arabic_yeh_baree"},
 	0x06C1: {"Arabic_heh_goal"},
 	0x0492: {"Cyrillic_GHE_bar"},
@@ -655,7 +654,7 @@ var KeySyms = map[rune][]string{
 	0x0398: {"Greek_THETA"},
 	0x0399: {"Greek_IOTA"},
 	0x039A: {"Greek_KAPPA"},
-	0x039B: {"Greek_LAMDA"},
+	0x039B: {"Greek_LAMDA", "Greek_LAMBDA"},
 	0x039C: {"Greek_MU"},
 	0x039D: {"Greek_NU"},
 	0x039E: {"Greek_XI"},
@@ -679,7 +678,7 @@ var KeySyms = map[rune][]string{
 	0x03B8: {"Greek_theta"},
 	0x03B9: {"Greek_iota"},
 	0x03BA: {"Greek_kappa"},
-	0x03BB: {"Greek_lamda"},
+	0x03BB: {"Greek_lamda", "Greek_lambda"},
 	0x03BC: {"Greek_mu"},
 	0x03BD: {"Greek_nu"},
 	0x03BE: {"Greek_xi"},
@@ -720,14 +719,14 @@ var KeySyms = map[rune][]string{
 	0x21D4: {"ifonlyif"},
 	0x21D2: {"implies"},
 	0x2261: {"identical"},
-	0x221A: {"radical"},
+	0x221A: {"radical", "squareroot"},
 	0x2282: {"includedin"},
 	0x2283: {"includes"},
 	0x2229: {"intersection"},
 	0x222A: {"union"},
 	0x2227: {"logicaland"},
 	0x2228: {"logicalor"},
-	0x2202: {"partialderivative"},
+	0x2202: {"partialderivative", "partdifferential"},
 	0x0192: {"function"},
 	0x2190: {"leftarrow"},
 	0x2191: {"uparrow"},
@@ -931,12 +930,12 @@ var KeySyms = map[rune][]string{
 	0x0E58: {"Thai_lekpaet"},
 	0x0E59: {"Thai_lekkao"},
 	0x0587: {"Armenian_ligature_ew"},
-	0x0589: {"Armenian_full_stop"},
-	0x055D: {"Armenian_separation_mark"},
-	0x058A: {"Armenian_hyphen"},
-	0x055C: {"Armenian_exclam"},
-	0x055B: {"Armenian_accent"},
-	0x055E: {"Armenian_question"},
+	0x0589: {"Armenian_full_stop", "Armenian_verjaket"},
+	0x055D: {"Armenian_separation_mark", "Armenian_but"},
+	0x058A: {"Armenian_hyphen", "Armenian_yentamna"},
+	0x055C: {"Armenian_exclam", "Armenian_amanak"},
+	0x055B: {"Armenian_accent", "Armenian_shesht"},
+	0x055E: {"Armenian_question", "Armenian_paruyk"},
 	0x0531: {"Armenian_AYB"},
 	0x0561: {"Armenian_ayb"},
 	0x0532: {"Armenian_BEN"},
@@ -1192,6 +1191,7 @@ var KeySyms = map[rune][]string{
 	0x2086: {"sixsubscript"},
 	0x2087: {"sevensubscript"},
 	0x2088: {"eightsubscript"},
+	0x2089: {"ninesubscript"},
 	0x2205: {"emptyset"},
 	0x2208: {"elementof"},
 	0x2209: {"notelementof"},
