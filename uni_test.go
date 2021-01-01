@@ -29,7 +29,7 @@ func TestCLI(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, out, reset := zli.Test()
 			defer reset()
 			os.Args = append([]string{"testuni"}, tt.in...)
@@ -66,7 +66,7 @@ func TestIdentify(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, out, reset := zli.Test()
 			defer reset()
 			os.Args = append([]string{"testuni"}, tt.in...)
@@ -107,7 +107,7 @@ func TestSearch(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, outbuf, reset := zli.Test()
 			defer reset()
 			os.Args = append([]string{"testuni"}, tt.in...)
@@ -165,7 +165,7 @@ func TestPrint(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, outbuf, reset := zli.Test()
 			defer reset()
 			os.Args = append([]string{"testuni"}, tt.in...)
@@ -238,7 +238,7 @@ func TestEmoji(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		t.Run(fmt.Sprintf("%v", tt.in), func(t *testing.T) {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			_, _, outbuf, reset := zli.Test()
 			defer reset()
 			os.Args = append([]string{"testuni"}, tt.in...)
@@ -247,6 +247,7 @@ func TestEmoji(t *testing.T) {
 
 			var out []string
 			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
+				line = strings.ReplaceAll(line, "\t", " ")
 				out = append(out, strings.Split(line, " ")[0])
 			}
 

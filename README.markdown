@@ -148,60 +148,81 @@ Blocks:
     '━'  U+2501  9473   e2 94 81    &#x2501;   BOX DRAWINGS HEAVY HORIZONTAL (Other_Symbol)
     [..]
 
+You can use `-format` to control what's being displayed, for example the X11
+keysym:
+
+    % uni i -q -f '%(cpoint) %(name): %(keysym)' €
+    U+20AC EURO SIGN: EuroSign
+
+See `uni help` for more details on the `-format` flag.
+
 And finally, there is the **`emoji`** command (shortcut: `e`), which is the real
 reason I wrote this:
 
     $ uni e cry
-    😢 crying face         Smileys & Emotion  face-concerned
-    😭 loudly crying face  Smileys & Emotion  face-concerned
-    😿 crying cat          Smileys & Emotion  cat-face
-    🔮 crystal ball        Activities         game
+      	name                group              subgroup
+    😢	crying face         Smileys & Emotion  face-concerned
+    😭	loudly crying face  Smileys & Emotion  face-concerned
+    😿	crying cat          Smileys & Emotion  cat-face
+    🔮	crystal ball        Activities         game
 
-Filter by group:
+Search by group:
 
     $ uni e group:hands
-    🤲 palms up together  People & Body  hands
-    🤝 handshake          People & Body  hands
-    👏 clapping hands     People & Body  hands
-    🙏 folded hands       People & Body  hands
-    👐 open hands         People & Body  hands
-    🙌 raising hands      People & Body  hands
+      	name               group          subgroup
+    👏	clapping hands     People & Body  hands
+    🙌	raising hands      People & Body  hands
+    👐	open hands         People & Body  hands
+    🤲	palms up together  People & Body  hands
+    🤝	handshake          People & Body  hands
+    🙏	folded hands       People & Body  hands
 
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
     $ uni e g:cat-face grin
-    😺 grinning cat                    Smileys & Emotion  cat-face
-    😸 grinning cat with smiling eyes  Smileys & Emotion  cat-face
+      	name                            group              subgroup
+    😺	grinning cat                    Smileys & Emotion  cat-face
+    😸	grinning cat with smiling eyes  Smileys & Emotion  cat-face
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
-    $ uni e 
-    TODO
+    $ uni e -or g:face-glasses g:face-hat
+      	name                          group              subgroup
+    🤠	cowboy hat face               Smileys & Emotion  face-hat
+    🥳	partying face                 Smileys & Emotion  face-hat
+    🥸 	disguised face                Smileys & Emotion  face-hat
+    😎	smiling face with sunglasses  Smileys & Emotion  face-glasses
+    🤓	nerd face                     Smileys & Emotion  face-glasses
+    🧐	face with monocle             Smileys & Emotion  face-glasses
 
 Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark -groups hands
-    🤲🏿 palms up together  People & Body  hands
-    🤝 handshake          People & Body  hands    [doesn't support skin tone; it's displayed correct]
-    👏🏿 clapping hands     People & Body  hands
-    🙏🏿 folded hands       People & Body  hands
-    👐🏿 open hands         People & Body  hands
-    🙌🏿 raising hands      People & Body  hands
+
+     	name                               group          subgroup
+    👏🏿	clapping hands: dark skin tone     People & Body  hands
+    🙌🏿	raising hands: dark skin tone      People & Body  hands
+    👐🏿	open hands: dark skin tone         People & Body  hands
+    🤲🏿	palms up together: dark skin tone  People & Body  hands
+    🤝	handshake                          People & Body  hands
+    🙏🏿	folded hands: dark skin tone       People & Body  hands
 
 The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
-    $ uni e -gender man -groups person-gesture
-    🙍‍♂️ man frowning      People & Body  person-gesture
-    🙎‍♂️ man pouting       People & Body  person-gesture
-    🙅‍♂️ man gesturing NO  People & Body  person-gesture
-    🙆‍♂️ man gesturing OK  People & Body  person-gesture
-    💁‍♂️ man tipping hand  People & Body  person-gesture
-    🙋‍♂️ man raising hand  People & Body  person-gesture
-    🧏‍♂️ deaf man          People & Body  person-gesture
-    🙇‍♂️ man bowing        People & Body  person-gesture
-    🤦‍♂️ man facepalming   People & Body  person-gesture
-    🤷‍♂️ man shrugging     People & Body  person-gesture
+    $ uni e -gender man g:person-gesture
+
+       	name              group          subgroup
+    🙍♂️	man frowning      People & Body  person-gesture
+    🙎♂️	man pouting       People & Body  person-gesture
+    🙅♂️	man gesturing NO  People & Body  person-gesture
+    🙆♂️	man gesturing OK  People & Body  person-gesture
+    💁♂️	man tipping hand  People & Body  person-gesture
+    🙋♂️	man raising hand  People & Body  person-gesture
+    🧏♂️	deaf man          People & Body  person-gesture
+    🙇♂️	man bowing        People & Body  person-gesture
+    🤦♂️	man facepalming   People & Body  person-gesture
+    🤷♂️	man shrugging     People & Body  person-gesture
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants (in that order), and `-tone
@@ -209,19 +230,36 @@ light,dark` will display both a light and dark skin tone; use `all` to display
 all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-    🤷🏻‍♀️ woman shrugging: light skin tone  People & Body  person-gesture
-    🤷🏻‍♂️ man shrugging: light skin tone    People & Body  person-gesture
-    🤷🏿‍♀️ woman shrugging: dark skin tone   People & Body  person-gesture
-    🤷🏿‍♂️ man shrugging: dark skin tone     People & Body  person-gesture
 
+         	name                              group          subgroup
+    🤷🏻♀️	woman shrugging: light skin tone  People & Body  person-gesture
+    🤷🏻♂️	man shrugging: light skin tone    People & Body  person-gesture
+    🤷🏿♀️	woman shrugging: dark skin tone   People & Body  person-gesture
+    🤷🏿♂️	man shrugging: dark skin tone     People & Body  person-gesture
+
+Like `print` and `identify`, you can use `-format`:
+
+    $ uni e g:cat-face -q -format '%(name): %(emoji)'
+    grinning cat: 😺
+    grinning cat with smiling eyes: 😸
+    cat with tears of joy: 😹
+    smiling cat with heart-eyes: 😻
+    cat with wry smile: 😼
+    kissing cat: 😽
+    weary cat: 🙀
+    crying cat: 😿
+    pouting cat: 😾
+
+See `uni help` for more details on the `-format` flag.
 
 ChangeLog
 ---------
 
 ### v2.0.0 (unreleased)
 
-This changes some flags and semantics; if you use the `dmenu-uni` script with
-dmenu or fzf, then you'll need to update that to.
+This changes some flags, semantics, and defaults in **incompatible** ways, hence
+the bump to 2.0. If you use the `dmenu-uni` script with dmenu or fzf, then
+you'll need to update that to.
 
 - Remove the `-group` flag in favour of `group:name` syntax; this is more
   flexible and will allow adding more query syntax later.
@@ -240,8 +278,11 @@ dmenu or fzf, then you'll need to update that to.
   fine default for most.
 
 - Add new `-or`/`-o` flag. The default for `search` and `emoji` is to show
-  everything where at least one query parameter matches; with this flag it only
-  shows those where everything matches.
+  everything where all query parameters match ("AND"); with this flag it shows
+  everything where at least one parameter matches ("OR").
+
+- Add new `-format` flag to control which columns to output; see `uni help` for
+  details.
 
 - Show a short terse help when using just `uni`, and a more detailed help on
   `uni help`. I hate it when programs print 5 pages of text to my terminal when
@@ -249,7 +290,10 @@ dmenu or fzf, then you'll need to update that to.
 
 - Update Unicode data to 13.1.
 
-- Add option to output to `$PAGER` with `-p` or `-pager`.
+- Add option to output to `$PAGER` with `-p` or `-pager`. This isn't done
+  automatically (I don't really like it when programs throw me in a pager), but
+  you can define a shell alias (`alias uni='uni -p'`) if you want it by default
+  since flags can be both before or after the command.
 
 ### v1.1.1 (2020-05-31)
 

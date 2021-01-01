@@ -1,5 +1,4 @@
 #!/bin/sh
-#
 # https://github.com/arp242/uni
 #
 # Usage:
@@ -30,8 +29,8 @@ common="-or g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-f
 
 case "${1:-all}" in
 	all)           uni -q p all     | $dmenu | grep -o "^'.'" | tr -d "'" | $copy ;;
-	emoji)         uni -q e all     | $dmenu | cut -f1 | $copy ;;
-	emoji-common)  uni -q e $common | $dmenu | cut -f1 | $copy ;;
-	*)             uni -q e $@      | $dmenu | cut -f1 | $copy ;;
+	emoji)         uni -q e all     | $dmenu | cut -d ' ' -f1 | $copy ;;
+	emoji-common)  uni -q e $common | $dmenu | cut -d ' ' -f1 | $copy ;;
+	*)             uni -q e $@      | $dmenu | cut -d ' ' -f1 | $copy ;;
 	#*)             echo >&2 "dmenu-uni: unknown '$1'" ;;
 esac

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+e=0
+set -x
+
+go test -race ./... || e=1
+
+# Make sure it at least compiles on macOS, Windows, and arm64
+trap 'rm -f uni uni.exe' EXIT
+GOOS=darwin  go build || e=1
+GOOS=windows go build || e=1
+GOARCH=arm64 go build || e=1
+
+exit $e
