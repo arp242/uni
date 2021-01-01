@@ -197,7 +197,7 @@ func main() {
 		if cmd == "emoji" || cmd == "e" {
 			format = "%(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup)"
 		} else {
-			format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t)"
+			format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
 		}
 	}
 
@@ -276,7 +276,7 @@ func identify(ins []string, format string, quiet, raw bool) error {
 		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
-	f := NewFormat(zli.Stdout, format, !quiet)
+	f := NewFormat(format, !quiet)
 	for _, c := range in {
 		info, ok := unidata.FindCodepoint(c)
 		if !ok {
@@ -285,7 +285,7 @@ func identify(ins []string, format string, quiet, raw bool) error {
 
 		f.Line(toLine(info, raw))
 	}
-	f.Flush()
+	f.Print(zli.Stdout)
 	return nil
 }
 
@@ -306,7 +306,7 @@ func search(args []string, format string, quiet, raw, or bool) error {
 	}
 
 	found := false
-	f := NewFormat(zli.Stdout, format, !quiet)
+	f := NewFormat(format, !quiet)
 	for _, info := range unidata.Codepoints {
 		m := 0
 		for _, a := range args {
@@ -329,14 +329,12 @@ func search(args []string, format string, quiet, raw, or bool) error {
 		return errNoMatches
 	}
 
-	f.Flush()
-	// TODO
-	// out.PrintSorted(zli.Stdout, quiet, raw)
+	f.Print(zli.Stdout)
 	return nil
 }
 
 func print(args []string, format string, quiet, raw bool) error {
-	f := NewFormat(zli.Stdout, format, !quiet)
+	f := NewFormat(format, !quiet)
 	for _, a := range args {
 		canon := unidata.CanonicalCategory(a)
 
@@ -390,9 +388,7 @@ func print(args []string, format string, quiet, raw bool) error {
 		}
 	}
 
-	f.Flush()
-	// TODO
-	// out.PrintSorted(zli.Stdout, quiet, raw)
+	f.Print(zli.Stdout)
 	return nil
 }
 
@@ -444,25 +440,24 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 		return errNoMatches
 	}
 
-	f := NewFormat(zli.Stdout, format, !quiet)
+	f := NewFormat(format, !quiet)
 	for _, e := range out {
-		f.Line(map[string]func() string{
-			"emoji":    func() string { return e.String() },
-			"name":     func() string { return e.Name },
-			"group":    func() string { return e.Group },
-			"subgroup": func() string { return e.Subgroup },
+		f.Line(map[string]string{
+			"emoji":    e.String(),
+			"name":     e.Name,
+			"group":    e.Group,
+			"subgroup": e.Subgroup,
+			"tab":      tabOrSpace(),
 			"cpoint": func() string {
 				cp := make([]string, 0, len(e.Codepoints))
 				for _, c := range e.String() { // String() inserts ZWJ and whatnot
 					cp = append(cp, fmt.Sprintf("U+%04X", c))
 				}
 				return strings.Join(cp, " ")
-			},
-			"tab": tabOrSpace,
+			}(),
 		})
 	}
-	f.Flush()
-
+	f.Print(zli.Stdout)
 	return nil
 }
 
