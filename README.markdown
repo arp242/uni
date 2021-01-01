@@ -211,18 +211,17 @@ The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
     $ uni e -gender man g:person-gesture
-
-       	name              group          subgroup
-    🙍♂️	man frowning      People & Body  person-gesture
-    🙎♂️	man pouting       People & Body  person-gesture
-    🙅♂️	man gesturing NO  People & Body  person-gesture
-    🙆♂️	man gesturing OK  People & Body  person-gesture
-    💁♂️	man tipping hand  People & Body  person-gesture
-    🙋♂️	man raising hand  People & Body  person-gesture
-    🧏♂️	deaf man          People & Body  person-gesture
-    🙇♂️	man bowing        People & Body  person-gesture
-    🤦♂️	man facepalming   People & Body  person-gesture
-    🤷♂️	man shrugging     People & Body  person-gesture
+     	name              group          subgroup
+    🙍‍♂️	man frowning      People & Body  person-gesture
+    🙎‍♂️	man pouting       People & Body  person-gesture
+    🙅‍♂️	man gesturing NO  People & Body  person-gesture
+    🙆‍♂️	man gesturing OK  People & Body  person-gesture
+    💁‍♂️	man tipping hand  People & Body  person-gesture
+    🙋‍♂️	man raising hand  People & Body  person-gesture
+    🧏‍♂️	deaf man          People & Body  person-gesture
+    🙇‍♂️	man bowing        People & Body  person-gesture
+    🤦‍♂️	man facepalming   People & Body  person-gesture
+    🤷‍♂️	man shrugging     People & Body  person-gesture
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants (in that order), and `-tone
@@ -230,12 +229,11 @@ light,dark` will display both a light and dark skin tone; use `all` to display
 all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-
-         	name                              group          subgroup
-    🤷🏻♀️	woman shrugging: light skin tone  People & Body  person-gesture
-    🤷🏻♂️	man shrugging: light skin tone    People & Body  person-gesture
-    🤷🏿♀️	woman shrugging: dark skin tone   People & Body  person-gesture
-    🤷🏿♂️	man shrugging: dark skin tone     People & Body  person-gesture
+     	name                              group          subgroup
+    🤷🏻‍♀️	woman shrugging: light skin tone  People & Body  person-gesture
+    🤷🏻‍♂️	man shrugging: light skin tone    People & Body  person-gesture
+    🤷🏿‍♀️	woman shrugging: dark skin tone   People & Body  person-gesture
+    🤷🏿‍♂️	man shrugging: dark skin tone     People & Body  person-gesture
 
 Like `print` and `identify`, you can use `-format`:
 

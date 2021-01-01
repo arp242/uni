@@ -132,10 +132,11 @@ Format:
 
     Placeholders for emoji:
 
-        %(emoji)       The emoji itself              🤷
-        %(name)        Emoji name                    person shrugging
+        %(emoji)       The emoji itself              🧑‍🚒
+        %(name)        Emoji name                    firefighter
         %(group)       Emoji group                   People & Body
-        %(subgroup)    Emoji subgroup                person-gesture
+        %(subgroup)    Emoji subgroup                person-role
+        %(cpoint)      Codepoints                    U+1F9D1 U+200D U+1F692
 
         The default is:
         %(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup)
@@ -450,7 +451,14 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 			"name":     func() string { return e.Name },
 			"group":    func() string { return e.Group },
 			"subgroup": func() string { return e.Subgroup },
-			"tab":      tabOrSpace,
+			"cpoint": func() string {
+				cp := make([]string, 0, len(e.Codepoints))
+				for _, c := range e.String() { // String() inserts ZWJ and whatnot
+					cp = append(cp, fmt.Sprintf("U+%04X", c))
+				}
+				return strings.Join(cp, " ")
+			},
+			"tab": tabOrSpace,
 		})
 	}
 	f.Flush()
