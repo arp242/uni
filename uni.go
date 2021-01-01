@@ -121,6 +121,7 @@ Format:
         %(html)          HTML entity                 &check;
         %(xml)           XML entity                  &#x2713;
         %(keysym)        X11 keysym; can be blank    checkmark
+        %(digraph)       Vim Digraph; can be blan    OK
         %(name)          Code point name             CHECK MARK
         %(cat)           Category                    Other_Symbol
         %(wide_padding)  Blank for wide characters,

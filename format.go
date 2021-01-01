@@ -265,6 +265,7 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 		"html":         htmlEntity(c, info.Codepoint),
 		"xml":          fmt.Sprintf("#x%x", info.Codepoint),
 		"keysym":       keysym(c),
+		"digraph":      unidata.Digraphs[c],
 		"name":         info.Name,
 		"cat":          unidata.Catnames[info.Cat],
 	}
