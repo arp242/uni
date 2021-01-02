@@ -1,5 +1,7 @@
+//go:generate go run gen.go
+
 // Command uni prints Unicode information about characters.
-package main // import "arp242.net/uni"
+package main
 
 import (
 	"errors"
@@ -139,7 +141,7 @@ Format:
                          alignment
 
         The default is:
-        %(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t)
+        %(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))
 
     Placeholders for emoji:
 
@@ -152,7 +154,7 @@ Format:
         %(cldr_full)   Full CLDR data                   firefighter, firetruck
 
         The default is:
-        %(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup l:auto)  %(cldr t)
+        %(emoji)%(tab)%(name l:auto)  (%(cldr t))
 `)
 
 func main() {
@@ -208,7 +210,7 @@ func main() {
 	format := formatF.String()
 	if !formatF.Set() {
 		if cmd == "emoji" || cmd == "e" {
-			format = "%(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup l:auto)  %(cldr t)"
+			format = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
 		} else {
 			format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
 		}
@@ -341,7 +343,7 @@ func search(args []string, format string, quiet, raw, or bool) error {
 	if !found {
 		return errNoMatches
 	}
-
+	f.SortNum("dec")
 	f.Print(zli.Stdout)
 	return nil
 }
@@ -400,7 +402,7 @@ func print(args []string, format string, quiet, raw bool) error {
 			f.Line(toLine(info, raw))
 		}
 	}
-
+	f.SortNum("dec")
 	f.Print(zli.Stdout)
 	return nil
 }

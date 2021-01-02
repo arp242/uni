@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode"
@@ -163,8 +164,35 @@ func (f *Format) Line(columns map[string]string) error {
 	return nil
 }
 
+// Sort by column.
+func (f *Format) Sort(col string) {
+	coli := 0
+	for i, c := range f.cols {
+		if c.name == col {
+			coli = i
+			break
+		}
+	}
+	sort.Slice(f.lines, func(i, j int) bool { return f.lines[i][coli] < f.lines[j][coli] })
+}
+
+func (f *Format) SortNum(col string) {
+	coli := 0
+	for i, c := range f.cols {
+		if c.name == col {
+			coli = i
+			break
+		}
+	}
+	sort.Slice(f.lines, func(i, j int) bool {
+		a, _ := strconv.Atoi(f.lines[i][coli])
+		b, _ := strconv.Atoi(f.lines[j][coli])
+		return a < b
+	})
+}
+
 func (f *Format) Print(out io.Writer) {
-	for _, l := range f.lines {
+	for lineno, l := range f.lines {
 		line := f.format
 
 		// TODO: we can probably make this a bit faster by getting the text
@@ -172,14 +200,14 @@ func (f *Format) Print(out io.Writer) {
 		// (1.5s for "uni p all"), partly because we do all of this twice.
 		for i, text := range l {
 			m := f.re.FindAllString(line, 1)
-			line = strings.Replace(line, m[0], f.fmtPlaceholder(i, text, 0), 1)
+			line = strings.Replace(line, m[0], f.fmtPlaceholder(i, lineno, text, 0), 1)
 		}
 
 		// This line is too long and we want to trim: reformat the lot.
 		// TODO: this can be a bit more efficient: we know the column widths and
 		// text already, but this is easier.
 		if f.ntrim > 0 && zstring.TabWidth(line) > termWidth {
-			tooLongBy := zstring.TabWidth(line) - termWidth // 46
+			tooLongBy := zstring.TabWidth(line) - termWidth
 			var t = make([]int, len(f.cols))
 			for i, text := range l {
 				if f.cols[i].trim {
@@ -191,7 +219,7 @@ func (f *Format) Print(out io.Writer) {
 			line = f.format
 			for i, text := range l {
 				m := f.re.FindAllString(line, 1)
-				line = strings.Replace(line, m[0], f.fmtPlaceholder(i, text, trim[i]-1), 1)
+				line = strings.Replace(line, m[0], f.fmtPlaceholder(i, lineno, text, trim[i]-1), 1)
 			}
 		}
 
@@ -218,12 +246,11 @@ func nratio(sub int, nums ...int) []int {
 	return nums
 }
 
-func (f *Format) fmtPlaceholder(i int, text string, applyTrim int) string {
+func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) string {
 	c := f.cols[i]
 
 	if c.quote {
-		if f.printHeader {
-			f.printHeader = false
+		if f.printHeader && lineno == 0 {
 			text = " " + text + "  " // TODO: why two spaces?
 		} else {
 			text = "'" + text + "'"
@@ -281,6 +308,7 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 // Don't do this when piping, since dmenu doesn't display tabs well :-/ This
 // seems like a problem in Xft as near as I can determine.
 func tabOrSpace() string {
+	return "\t"
 	if zli.IsTerminal(os.Stdout.Fd()) {
 		return "\t"
 	}
