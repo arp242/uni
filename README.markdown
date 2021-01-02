@@ -269,7 +269,7 @@ See `uni help` for more details on the `-format` flag.
 ChangeLog
 ---------
 
-### v2.0.0 (unreleased)
+### v2.0.0 (2021-01-03)
 
 This changes some flags, semantics, and defaults in **incompatible** ways, hence
 the bump to 2.0. If you use the `dmenu-uni` script with dmenu or fzf, then
