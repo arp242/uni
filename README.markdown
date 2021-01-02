@@ -160,68 +160,88 @@ And finally, there is the **`emoji`** command (shortcut: `e`), which is the real
 reason I wrote this:
 
     $ uni e cry
-      	name                group              subgroup
-    😢	crying face         Smileys & Emotion  face-concerned
-    😭	loudly crying face  Smileys & Emotion  face-concerned
-    😿	crying cat          Smileys & Emotion  cat-face
-    🔮	crystal ball        Activities         game
+     	name                group              subgroup        cldr
+    😢	crying face         Smileys & Emotion  face-concerned  sad, tear
+    😭	loudly crying face  Smileys & Emotion  face-concerned  sad, sob, tear
+    😿	crying cat          Smileys & Emotion  cat-face        face, sad, tear
+    🔮	crystal ball        Activities         game            fairy tale, fantasy, fortune, tool
 
-Search by group:
+By default both the name and CLDR data are searched; the CLDR data is a list of
+keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
+
+    $ uni e smile
+     	name                             group              subgroup        cldr
+    😃	grinning face with big eyes      Smileys & Emotion  face-smiling    mouth, open, smile
+    😄	grinning face with smiling eyes  Smileys & Emotion  face-smiling    mouth, open, smile
+    😁	beaming face with smiling eyes   Smileys & Emotion  face-smiling    grin, smile
+    [..]
+
+    $ uni e name:smile
+     	name                group              subgroup  cldr
+    😼	cat with wry smile  Smileys & Emotion  cat-face  face, ironic
+
+As you can see, the CLDR is pretty useful, as "smile" only gives one result as
+most emojis use "smiling".
+
+Prefix with `group:` to search by group:
 
     $ uni e group:hands
-      	name               group          subgroup
-    👏	clapping hands     People & Body  hands
-    🙌	raising hands      People & Body  hands
-    👐	open hands         People & Body  hands
-    🤲	palms up together  People & Body  hands
-    🤝	handshake          People & Body  hands
-    🙏	folded hands       People & Body  hands
+     	name               group          subgroup  cldr
+    👏	clapping hands     People & Body  hands     
+    🙌	raising hands      People & Body  hands     celebration, gesture, hooray, raised
+    👐	open hands         People & Body  hands     
+    🤲	palms up together  People & Body  hands     prayer
+    🤝	handshake          People & Body  hands     agreement, meeting
+    🙏	folded hands       People & Body  hands     ask, high 5, high five, please, pray, thanks
 
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
     $ uni e g:cat-face grin
-      	name                            group              subgroup
-    😺	grinning cat                    Smileys & Emotion  cat-face
-    😸	grinning cat with smiling eyes  Smileys & Emotion  cat-face
+     	name                            group              subgroup  cldr
+    😺	grinning cat                    Smileys & Emotion  cat-face  face, mouth, open, smile
+    😸	grinning cat with smiling eyes  Smileys & Emotion  cat-face  face, smile
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
     $ uni e -or g:face-glasses g:face-hat
-      	name                          group              subgroup
-    🤠	cowboy hat face               Smileys & Emotion  face-hat
-    🥳	partying face                 Smileys & Emotion  face-hat
-    🥸 	disguised face                Smileys & Emotion  face-hat
-    😎	smiling face with sunglasses  Smileys & Emotion  face-glasses
-    🤓	nerd face                     Smileys & Emotion  face-glasses
-    🧐	face with monocle             Smileys & Emotion  face-glasses
+     	name                          group              subgroup      cldr
+    🤠	cowboy hat face               Smileys & Emotion  face-hat      cowgirl
+    🥳	partying face                 Smileys & Emotion  face-hat      celebration, hat, horn
+    🥸 	disguised face                Smileys & Emotion  face-hat      glasses, incognito, nose
+    😎	smiling face with sunglasses  Smileys & Emotion  face-glasses  bright, cool
+    🤓	nerd face                     Smileys & Emotion  face-glasses  geek
+    🧐	face with monocle             Smileys & Emotion  face-glasses  stuffy
 
 Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark -groups hands
+     	name                               group          subgroup  cldr
+    👏🏿	clapping hands: dark skin tone     People & Body  hands     
+    🙌🏿	raising hands: dark skin tone      People & Body  hands     celebration, gesture, hooray, raised
+    👐🏿	open hands: dark skin tone         People & Body  hands     
+    🤲🏿	palms up together: dark skin tone  People & Body  hands     prayer
+    🤝	handshake                          People & Body  hands     agreement, meeting
+    🙏🏿	folded hands: dark skin tone       People & Body  hands     ask, high 5, high five, please, pray, thanks
 
-     	name                               group          subgroup
-    👏🏿	clapping hands: dark skin tone     People & Body  hands
-    🙌🏿	raising hands: dark skin tone      People & Body  hands
-    👐🏿	open hands: dark skin tone         People & Body  hands
-    🤲🏿	palms up together: dark skin tone  People & Body  hands
-    🤝	handshake                          People & Body  hands
-    🙏🏿	folded hands: dark skin tone       People & Body  hands
+For some reason the handshake emoji doesn't support skin tones; so the above
+output is correct.
 
 The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
+
     $ uni e -gender man g:person-gesture
-     	name              group          subgroup
-    🙍‍♂️	man frowning      People & Body  person-gesture
-    🙎‍♂️	man pouting       People & Body  person-gesture
-    🙅‍♂️	man gesturing NO  People & Body  person-gesture
-    🙆‍♂️	man gesturing OK  People & Body  person-gesture
-    💁‍♂️	man tipping hand  People & Body  person-gesture
-    🙋‍♂️	man raising hand  People & Body  person-gesture
-    🧏‍♂️	deaf man          People & Body  person-gesture
-    🙇‍♂️	man bowing        People & Body  person-gesture
-    🤦‍♂️	man facepalming   People & Body  person-gesture
-    🤷‍♂️	man shrugging     People & Body  person-gesture
+     	name              group          subgroup        cldr
+    🙍‍♂️	man frowning      People & Body  person-gesture  gesture, person frowning
+    🙎‍♂️	man pouting       People & Body  person-gesture  gesture, person pouting
+    🙅‍♂️	man gesturing NO  People & Body  person-gesture  forbidden, gesture, hand, person gesturing NO, prohibited
+    🙆‍♂️	man gesturing OK  People & Body  person-gesture  gesture, hand, person gesturing OK
+    💁‍♂️	man tipping hand  People & Body  person-gesture  help, information, person tipping hand, sassy
+    🙋‍♂️	man raising hand  People & Body  person-gesture  gesture, happy, person raising hand, raised
+    🧏‍♂️	deaf man          People & Body  person-gesture  accessibility, deaf person, ear, hear
+    🙇‍♂️	man bowing        People & Body  person-gesture  apology, gesture, person bowing, sorry
+    🤦‍♂️	man facepalming   People & Body  person-gesture  disbelief, exasperation, person facepalming
+    🤷‍♂️	man shrugging     People & Body  person-gesture  doubt, ignorance, indifference, person shrugging
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants (in that order), and `-tone
@@ -229,11 +249,11 @@ light,dark` will display both a light and dark skin tone; use `all` to display
 all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-     	name                              group          subgroup
-    🤷🏻‍♀️	woman shrugging: light skin tone  People & Body  person-gesture
-    🤷🏻‍♂️	man shrugging: light skin tone    People & Body  person-gesture
-    🤷🏿‍♀️	woman shrugging: dark skin tone   People & Body  person-gesture
-    🤷🏿‍♂️	man shrugging: dark skin tone     People & Body  person-gesture
+     	name                              group          subgroup        cldr
+    🤷🏻‍♀️	woman shrugging: light skin tone  People & Body  person-gesture  doubt, ignorance, indifference, person shrugging
+    🤷🏻‍♂️	man shrugging: light skin tone    People & Body  person-gesture  doubt, ignorance, indifference, person shrugging
+    🤷🏿‍♀️	woman shrugging: dark skin tone   People & Body  person-gesture  doubt, ignorance, indifference, person shrugging
+    🤷🏿‍♂️	man shrugging: dark skin tone     People & Body  person-gesture  doubt, ignorance, indifference, person shrugging
 
 Like `print` and `identify`, you can use `-format`:
 
