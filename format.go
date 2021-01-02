@@ -55,7 +55,7 @@ type Format struct {
 	printHeader bool
 }
 
-func NewFormat(format string, printHeader bool) Format {
+func NewFormat(format string, printHeader bool, knownCols ...string) (*Format, error) {
 	var (
 		reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
 		f          = Format{format: format, printHeader: printHeader}
@@ -63,7 +63,7 @@ func NewFormat(format string, printHeader bool) Format {
 	for _, m := range reFindCols.FindAllString(format, -1) {
 		err := f.processColumn(m)
 		if err != nil {
-			panic(err)
+			return nil, fmt.Errorf("-format flag: %w", err)
 		}
 	}
 
@@ -72,6 +72,9 @@ func NewFormat(format string, printHeader bool) Format {
 	cols := make([]string, 0, len(f.cols))
 	h := map[string]string{}
 	for _, c := range f.cols {
+		if !zstring.Contains(knownCols, c.name) {
+			return nil, fmt.Errorf("-format flag: unknown placeholder: %q", c.name)
+		}
 		cols = append(cols, c.name)
 		h[c.name] = c.name
 	}
@@ -88,7 +91,7 @@ func NewFormat(format string, printHeader bool) Format {
 	// TODO: is this actually faster than just .*?
 	// TODO: don't really need to use regexp for this; can just scan for "%(name".
 	f.re = regexp.MustCompile(`%\((` + strings.Join(cols, "|") + `)(?: .+?)?\)`)
-	return f
+	return &f, nil
 }
 
 func (f *Format) processColumn(line string) error {
@@ -104,7 +107,7 @@ func (f *Format) processColumn(line string) error {
 	for _, flag := range strings.Split(s[1], " ") {
 		switch {
 		default:
-			return fmt.Errorf("unknown flag: %q", f)
+			return fmt.Errorf("unknown flag %q in %q", flag, line)
 		case flag == "":
 			continue
 		case flag == "q":
@@ -115,16 +118,12 @@ func (f *Format) processColumn(line string) error {
 		case flag[0] == 'l' || flag[0] == 'r':
 			n := strings.Split(flag, ":")
 			if len(n) != 2 {
-				return fmt.Errorf("need width after :")
+				return fmt.Errorf("need width after : for %q", line)
 			}
 
-			switch flag[0] {
-			case 'l':
-				col.align = alignLeft
-			case 'r':
+			col.align = alignLeft
+			if flag[0] == 'r' {
 				col.align = alignRight
-			default:
-				return fmt.Errorf("error")
 			}
 
 			if n[1] == "auto" {
@@ -137,7 +136,7 @@ func (f *Format) processColumn(line string) error {
 				var err error
 				col.width, err = strconv.Atoi(n[1])
 				if err != nil {
-					return fmt.Errorf("%s", err)
+					return fmt.Errorf(`width needs to be a number or "auto" in %q`, line)
 				}
 			}
 		}
@@ -148,8 +147,6 @@ func (f *Format) processColumn(line string) error {
 }
 
 // Add a new line.
-//
-// TODO: check if colums match with f.cols
 func (f *Format) Line(columns map[string]string) error {
 	line := make([]string, len(f.cols))
 	for i, c := range f.cols {
@@ -281,6 +278,9 @@ func (f *Format) String() string {
 	return b.String()
 }
 
+var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "utf8", "html",
+	"xml", "keysym", "digraph", "name", "cat"}
+
 func toLine(info unidata.Codepoint, raw bool) map[string]string {
 	c := rune(info.Codepoint)
 	return map[string]string{
@@ -308,7 +308,6 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 // Don't do this when piping, since dmenu doesn't display tabs well :-/ This
 // seems like a problem in Xft as near as I can determine.
 func tabOrSpace() string {
-	return "\t"
 	if zli.IsTerminal(os.Stdout.Fd()) {
 		return "\t"
 	}

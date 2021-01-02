@@ -47,6 +47,10 @@ Usage: %(prog) [command] [flags]
 uni queries the unicode database. https://github.com/arp242/uni
 
 Flags:
+    Flags can appear anywhere; "uni search euro -q" and "uni -q search euro"
+    are identical. Use "uni search -- -q" if you want to search for "-q". This
+    also applies to flags specific to a command (e.g. "-gender" for "emoji").
+
     -q, -quiet     Quiet output; don't print header, "no matches", etc.
     -r, -raw       Don't use graphical variants for control characters and
                    don't add ◌ (U+25CC) before combining characters.
@@ -80,9 +84,9 @@ Commands:
 
                      You can use <prefix>:query to search in specific fields:
 
-                        group: g:    Group and subgroup
-                        name:  n:    Emoji name
-                        cldr:  c:    CLDR data
+                       group: g:    Group and subgroup
+                       name:  n:    Emoji name
+                       cldr:  c:    CLDR data
 
                      The query parameters are AND'd together, so this:
 
@@ -125,20 +129,19 @@ Format:
                          with tabs.
 
     Placeholders for identify, search, and print:
-        %(char)          The literal character       ✓
-        %(cpoint)        As codepoint                U+2713
-        %(hex)           As hex                      2713
-        %(dec)           As decimal                  10003
-        %(utf8)          As UTF-8                    e2 9c 93
-        %(html)          HTML entity                 &check;
-        %(xml)           XML entity                  &#x2713;
-        %(keysym)        X11 keysym; can be blank    checkmark
-        %(digraph)       Vim Digraph; can be blan    OK
-        %(name)          Code point name             CHECK MARK
-        %(cat)           Category                    Other_Symbol
+        %(char)          The literal character          ✓
+        %(cpoint)        As codepoint                   U+2713
+        %(hex)           As hex                         2713
+        %(dec)           As decimal                     10003
+        %(utf8)          As UTF-8                       e2 9c 93
+        %(html)          HTML entity                    &check;
+        %(xml)           XML entity                     &#x2713;
+        %(keysym)        X11 keysym; can be blank       checkmark
+        %(digraph)       Vim Digraph; can be blank      OK
+        %(name)          Code point name                CHECK MARK
+        %(cat)           Category                       Other_Symbol
         %(wide_padding)  Blank for wide characters,
-                         space otherwise. Helps with
-                         alignment
+                         space otherwise; for alignment
 
         The default is:
         %(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))
@@ -187,16 +190,18 @@ func main() {
 		return
 	}
 
-	cmd := strings.ToLower(flag.Shift())
-	if cmd == "" {
+	cmd := flag.ShiftCommand("identify", "print", "search", "emoji", "help", "version")
+	switch cmd { // These commands don't read from stdin.
+	case zli.CommandNoneGiven:
 		fmt.Fprint(zli.Stdout, usageShort)
 		return
-	}
-	if cmd == "h" || cmd == "help" {
+	case zli.CommandUnknown:
+		zli.Fatalf("unknown command")
+		return
+	case "help":
 		fmt.Fprint(zli.Stdout, usage)
 		return
-	}
-	if cmd == "v" || cmd == "version" {
+	case "version":
 		fmt.Println(version)
 		return
 	}
@@ -209,23 +214,20 @@ func main() {
 
 	format := formatF.String()
 	if !formatF.Set() {
-		if cmd == "emoji" || cmd == "e" {
+		format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
+		if cmd == "emoji" {
 			format = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
-		} else {
-			format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
 		}
 	}
 
 	switch cmd {
-	default:
-		zli.Fatalf("unknown command")
-	case "identify", "i":
+	case "identify":
 		err = identify(args, format, quiet, raw)
-	case "search", "s":
+	case "search":
 		err = search(args, format, quiet, raw, or.Bool())
-	case "print", "p":
+	case "print":
 		err = print(args, format, quiet, raw)
-	case "emoji", "e":
+	case "emoji":
 		err = emoji(args, format, quiet, raw, or.Bool(),
 			parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
 	}
@@ -291,7 +293,10 @@ func identify(ins []string, format string, quiet, raw bool) error {
 		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
-	f := NewFormat(format, !quiet)
+	f, err := NewFormat(format, !quiet, knownColumns...)
+	if err != nil {
+		return err
+	}
 	for _, c := range in {
 		info, ok := unidata.FindCodepoint(c)
 		if !ok {
@@ -321,7 +326,10 @@ func search(args []string, format string, quiet, raw, or bool) error {
 	}
 
 	found := false
-	f := NewFormat(format, !quiet)
+	f, err := NewFormat(format, !quiet, knownColumns...)
+	if err != nil {
+		return err
+	}
 	for _, info := range unidata.Codepoints {
 		m := 0
 		for _, a := range args {
@@ -349,7 +357,10 @@ func search(args []string, format string, quiet, raw, or bool) error {
 }
 
 func print(args []string, format string, quiet, raw bool) error {
-	f := NewFormat(format, !quiet)
+	f, err := NewFormat(format, !quiet, knownColumns...)
+	if err != nil {
+		return err
+	}
 	for _, a := range args {
 		canon := unidata.CanonicalCategory(a)
 
@@ -462,7 +473,11 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 		return errNoMatches
 	}
 
-	f := NewFormat(format, !quiet)
+	f, err := NewFormat(format, !quiet, "emoji", "name", "group", "subgroup",
+		"tab", "cldr", "cldr_full", "cpoint")
+	if err != nil {
+		return err
+	}
 	for _, e := range out {
 		f.Line(map[string]string{
 			"emoji":    e.String(),

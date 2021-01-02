@@ -5,7 +5,10 @@ import (
 )
 
 func BenchmarkFormat(b *testing.B) {
-	f := NewFormat("%(a) %(b l:auto) %(c)", false)
+	f, err := NewFormat("%(a) %(b l:auto) %(c)", false)
+	if err != nil {
+		b.Fatal(err)
+	}
 	b.ReportAllocs()
 	b.ResetTimer()
 	for n := 0; n < b.N; n++ {

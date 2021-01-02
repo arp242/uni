@@ -60,7 +60,7 @@ Or a string; `i` is a shortcut for `identify`:
 It reads from stdin:
 
     $ head -c2 README.markdown | uni i
-         cpoint  dec    utf-8       html       name
+         cpoint  dec    utf-8       html       name (cat)
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
@@ -264,6 +264,7 @@ Like `print` and `identify`, you can use `-format`:
     pouting cat: 😾
 
 See `uni help` for more details on the `-format` flag.
+
 
 ChangeLog
 ---------
