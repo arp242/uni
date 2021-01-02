@@ -283,6 +283,9 @@ you'll need to update that to.
   width. You can now also print X11 keysyms and Vim digraphs. See `uni help` for
   details.
 
+- Include CLDR data for emojis, which is search by default if you use `uni e
+  <someting>`. You can use `uni e name:x` to search for the name specifically.
+
 - Show a short terse help when using just `uni`, and a more detailed help on
   `uni help`. I hate it when programs print 5 pages of text to my terminal when
   I didn't ask for it.

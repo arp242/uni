@@ -5,6 +5,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -28,14 +29,9 @@ func main() {
 		return
 	}
 
-	err = run("codepoints")
-	zli.F(err)
-
-	err = run("entities")
-	zli.F(err)
-
-	err = run("emojis")
-	zli.F(err)
+	zli.F(run("codepoints"))
+	zli.F(run("entities"))
+	zli.F(run("emojis"))
 }
 
 func run(which string) error {
@@ -56,14 +52,35 @@ func write(fp io.Writer, s string, args ...interface{}) {
 	zli.F(err)
 }
 
-func close(fp io.Closer) {
-	err := fp.Close()
+func close(fp io.Closer) { zli.F(fp.Close()) }
+
+func readCLDR() map[string][]string {
+	d, err := fetch("https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotations/en.xml")
 	zli.F(err)
+
+	var cldr struct {
+		Annotations []struct {
+			CP    string `xml:"cp,attr"`
+			Type  string `xml:"type,attr"`
+			Names string `xml:",innerxml"`
+		} `xml:"annotations>annotation"`
+	}
+	zli.F(xml.Unmarshal(d, &cldr))
+
+	out := make(map[string][]string)
+	for _, a := range cldr.Annotations {
+		if a.Type != "tts" {
+			out[a.CP] = strings.Split(a.Names, " | ")
+		}
+	}
+	return out
 }
 
 func mkemojis() error {
 	text, err := fetch("https://unicode.org/Public/emoji/latest/emoji-test.txt")
 	zli.F(err)
+
+	cldr := readCLDR()
 
 	fp, err := os.Create("emojis.go")
 	zli.F(err)
@@ -251,13 +268,35 @@ func mkemojis() error {
 		order = append(order, key)
 	}
 
-	write(fp, "var Emojis = []Emoji{\n")
-	for _, k := range order {
+	// We should really parse it like this in the above loop, but I don't feel
+	// like rewriting all of this, and this makes adding cldr easier.
+	emo := make([]unidata.Emoji, len(order))
+	for i, k := range order {
 		e := emojis[k]
-		write(fp, "\t{[]uint32{%s}, `%s`, `%s`, `%s`, %s, %s},\n",
-			e[0], e[1], e[2], e[3], e[4], e[5])
+
+		g, _ := strconv.Atoi(e[5])
+		var cp []uint32
+		for _, c := range strings.Split(e[0], ", ") {
+			n, err := strconv.ParseUint(c[2:], 16, 32)
+			zli.F(err)
+			cp = append(cp, uint32(n))
+		}
+
+		emo[i] = unidata.Emoji{
+			Codepoints: cp,
+			Name:       e[1],
+			Group:      e[2],
+			Subgroup:   e[3],
+			SkinTones:  e[4] == "true",
+			Genders:    g,
+		}
+		emo[i].CLDR = cldr[strings.ReplaceAll(strings.ReplaceAll(emo[i].String(), "\ufe0f", ""), "\ufe0e", "")]
 	}
 
+	write(fp, "var Emojis = []Emoji{\n")
+	for _, e := range emo {
+		write(fp, "\t%s,\n", fmt.Sprintf("%#v", e)[13:])
+	}
 	write(fp, "}\n\n")
 	write(fp, "var EmojiGroups = %#v\n\n", groups)
 	write(fp, "var EmojiSubgroups = %#v\n\n", subgroups)

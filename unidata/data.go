@@ -6,14 +6,15 @@ package unidata
 // Codepoint is a single codepoint.
 type Codepoint struct {
 	Width, Cat uint8
-	Codepoint  uint32
+	Codepoint  uint32 // TODO: why uint32 and not rune? Hmm
 	Name       string
 }
 
 // Emoji is an emoji sequence.
 type Emoji struct {
-	Codepoints            []uint32
+	Codepoints            []uint32 // TODO: why uint32 and not rune?
 	Name, Group, Subgroup string
+	CLDR                  []string
 	SkinTones             bool
 	Genders               int
 }

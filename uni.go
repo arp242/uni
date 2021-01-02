@@ -69,18 +69,28 @@ Commands:
 
     emoji [query]    Search emojis.
 
-                     The query is matched on the emoji name; parameters
-                     prefixed with "group:" or "g:" are matched on the group
-                     and subgroup names.
+                     The query is matched on the emoji name and CLDR data.
 
-                     Use "all" to show all emojis.
+                     The CLDR data is a list of keywords. For example 🙏
+                     (folded hands) contains "ask, high 5, high five, please,
+                     pray, thanks", which represents the various scenarios in
+                     which it's used.
+
+                     You can use <prefix>:query to search in specific fields:
+
+                        group: g:    Group and subgroup
+                        name:  n:    Emoji name
+                        cldr:  c:    CLDR data
 
                      The query parameters are AND'd together, so this:
+
                        uni emoji smiling g:cat-face
 
                      Will match everything in the cat-face group with smiling
                      in the name. Use the -or flag to change this to "cat-face
                      group OR smiling in the name".
+
+                     Use "all" to show all emojis.
 
                      Modifier flags, both accept a comma-separated list:
 
@@ -133,14 +143,16 @@ Format:
 
     Placeholders for emoji:
 
-        %(emoji)       The emoji itself              🧑‍🚒
-        %(name)        Emoji name                    firefighter
-        %(group)       Emoji group                   People & Body
-        %(subgroup)    Emoji subgroup                person-role
-        %(cpoint)      Codepoints                    U+1F9D1 U+200D U+1F692
+        %(emoji)       The emoji itself                 🧑‍🚒
+        %(name)        Emoji name                       firefighter
+        %(group)       Emoji group                      People & Body
+        %(subgroup)    Emoji subgroup                   person-role
+        %(cpoint)      Codepoints                       U+1F9D1 U+200D U+1F692
+        %(cldr)        CLDR data, w/o duplicating name  firetruck
+        %(cldr_full)   Full CLDR data                   firefighter, firetruck
 
         The default is:
-        %(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup)
+        %(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup l:auto)  %(cldr t)
 `)
 
 func main() {
@@ -196,7 +208,7 @@ func main() {
 	format := formatF.String()
 	if !formatF.Set() {
 		if cmd == "emoji" || cmd == "e" {
-			format = "%(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup)"
+			format = "%(emoji)%(tab)%(name l:auto)  %(group l:auto)  %(subgroup l:auto)  %(cldr t)"
 		} else {
 			format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
 		}
@@ -396,6 +408,7 @@ func print(args []string, format string, quiet, raw bool) error {
 func emoji(args []string, format string, quiet, raw, or bool, tones, genders []string) error {
 	type matchArg struct {
 		group bool
+		name  bool
 		text  string
 	}
 	var (
@@ -409,7 +422,11 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 			if group {
 				a = strings.TrimPrefix(strings.TrimPrefix(a, "group:"), "g:")
 			}
-			matchArgs = append(matchArgs, matchArg{text: a, group: group})
+			name := strings.HasPrefix(a, "n:") || strings.HasPrefix(a, "name:")
+			if name {
+				a = strings.TrimPrefix(strings.TrimPrefix(a, "name:"), "n:")
+			}
+			matchArgs = append(matchArgs, matchArg{text: a, group: group, name: name})
 		}
 	}
 
@@ -421,15 +438,17 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 			switch {
 			case a.group:
 				match = strings.Contains(strings.ToLower(e.Group), a.text) || strings.Contains(strings.ToLower(e.Subgroup), a.text)
-			default:
+			case a.name:
 				match = strings.Contains(strings.ToLower(e.Name), a.text)
+			default:
+				match = strings.Contains(strings.ToLower(e.Name), a.text) || zstring.Contains(e.CLDR, a.text)
 			}
 			if match {
+				m++
 				if or {
 					out = append(out, e)
 					break
 				}
-				m++
 			}
 		}
 		if all || (!or && m == len(matchArgs)) {
@@ -449,6 +468,18 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 			"group":    e.Group,
 			"subgroup": e.Subgroup,
 			"tab":      tabOrSpace(),
+			"cldr": func() string {
+				// Remove words that duplicate what's already in the name; it's
+				// kind of pointless.
+				cldr := make([]string, 0, len(e.CLDR))
+				for _, c := range e.CLDR {
+					if !strings.Contains(e.Name, c) {
+						cldr = append(cldr, c)
+					}
+				}
+				return strings.Join(cldr, ", ")
+			}(),
+			"cldr_full": strings.Join(e.CLDR, ", "),
 			"cpoint": func() string {
 				cp := make([]string, 0, len(e.Codepoints))
 				for _, c := range e.String() { // String() inserts ZWJ and whatnot
