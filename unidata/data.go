@@ -72,44 +72,45 @@ const (
 
 // http://www.unicode.org/reports/tr44/#General_Category_Values
 const (
-	CatUppercaseLetter      = uint8(iota) // Lu – an uppercase letter
-	CatLowercaseLetter                    // Ll – a lowercase letter
-	CatTitlecaseLetter                    // Lt – a digraphic character, with first part uppercase
-	CatCasedLetter                        // LC – Lu | Ll | Lt
-	CatModifierLetter                     // Lm – a modifier letter
-	CatOtherLetter                        // Lo – other letters, including syllables and ideographs
-	CatLetter                             // L  – Lu | Ll | Lt | Lm | Lo
-	CatNonspacingMark                     // Mn – a nonspacing combining mark (zero advance width)
-	CatSpacingMark                        // Mc – a spacing combining mark (positive advance width)
-	CatEnclosingMark                      // Me – an enclosing combining mark
-	CatMark                               // M  – Mn | Mc | Me
-	CatDecimalNumber                      // Nd – a decimal digit
-	CatLetterNumber                       // Nl – a letterlike numeric character
-	CatOtherNumber                        // No – a numeric character of other type
-	CatNumber                             // N  – Nd | Nl | No
-	CatConnectorPunctuation               // Pc – a connecting punctuation mark, like a tie
-	CatDashPunctuation                    // Pd – a dash or hyphen punctuation mark
-	CatOpenPunctuation                    // Ps – an opening punctuation mark (of a pair)
-	CatClosePunctuation                   // Pe – a closing punctuation mark (of a pair)
-	CatInitialPunctuation                 // Pi – an initial quotation mark
-	CatFinalPunctuation                   // Pf – a final quotation mark
-	CatOtherPunctuation                   // Po – a punctuation mark of other type
-	CatPunctuation                        // P  – Pc | Pd | Ps | Pe | Pi | Pf | Po
-	CatMathSymbol                         // Sm – a symbol of mathematical use
-	CatCurrencySymbol                     // Sc – a currency sign
-	CatModifierSymbol                     // Sk – a non-letterlike modifier symbol
-	CatOtherSymbol                        // So – a symbol of other type
-	CatSymbol                             // S  – Sm | Sc | Sk | So
-	CatSpaceSeparator                     // Zs – a space character (of various non-zero widths)
-	CatLineSeparator                      // Zl – U+2028 LINE SEPARATOR only
-	CatParagraphSeparator                 // Zp – U+2029 PARAGRAPH SEPARATOR only
-	CatSeparator                          // Z  – Zs | Zl | Zp
-	CatControl                            // Cc – a C0 or C1 control code
-	CatFormat                             // Cf – a format control character
-	CatSurrogate                          // Cs – a surrogate code point
-	CatPrivateUse                         // Co – a private-use character
-	CatUnassigned                         // Cn – a reserved unassigned code point or a noncharacter
-	CatOther                              // C  – Cc | Cf | Cs | Co | Cn
+	CatUnknown              = uint8(iota)
+	CatUppercaseLetter      // Lu – an uppercase letter
+	CatLowercaseLetter      // Ll – a lowercase letter
+	CatTitlecaseLetter      // Lt – a digraphic character, with first part uppercase
+	CatCasedLetter          // LC – Lu | Ll | Lt
+	CatModifierLetter       // Lm – a modifier letter
+	CatOtherLetter          // Lo – other letters, including syllables and ideographs
+	CatLetter               // L  – Lu | Ll | Lt | Lm | Lo
+	CatNonspacingMark       // Mn – a nonspacing combining mark (zero advance width)
+	CatSpacingMark          // Mc – a spacing combining mark (positive advance width)
+	CatEnclosingMark        // Me – an enclosing combining mark
+	CatMark                 // M  – Mn | Mc | Me
+	CatDecimalNumber        // Nd – a decimal digit
+	CatLetterNumber         // Nl – a letterlike numeric character
+	CatOtherNumber          // No – a numeric character of other type
+	CatNumber               // N  – Nd | Nl | No
+	CatConnectorPunctuation // Pc – a connecting punctuation mark, like a tie
+	CatDashPunctuation      // Pd – a dash or hyphen punctuation mark
+	CatOpenPunctuation      // Ps – an opening punctuation mark (of a pair)
+	CatClosePunctuation     // Pe – a closing punctuation mark (of a pair)
+	CatInitialPunctuation   // Pi – an initial quotation mark
+	CatFinalPunctuation     // Pf – a final quotation mark
+	CatOtherPunctuation     // Po – a punctuation mark of other type
+	CatPunctuation          // P  – Pc | Pd | Ps | Pe | Pi | Pf | Po
+	CatMathSymbol           // Sm – a symbol of mathematical use
+	CatCurrencySymbol       // Sc – a currency sign
+	CatModifierSymbol       // Sk – a non-letterlike modifier symbol
+	CatOtherSymbol          // So – a symbol of other type
+	CatSymbol               // S  – Sm | Sc | Sk | So
+	CatSpaceSeparator       // Zs – a space character (of various non-zero widths)
+	CatLineSeparator        // Zl – U+2028 LINE SEPARATOR only
+	CatParagraphSeparator   // Zp – U+2029 PARAGRAPH SEPARATOR only
+	CatSeparator            // Z  – Zs | Zl | Zp
+	CatControl              // Cc – a C0 or C1 control code
+	CatFormat               // Cf – a format control character
+	CatSurrogate            // Cs – a surrogate code point
+	CatPrivateUse           // Co – a private-use character
+	CatUnassigned           // Cn – a reserved unassigned code point or a noncharacter
+	CatOther                // C  – Cc | Cf | Cs | Co | Cn
 )
 
 // https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt

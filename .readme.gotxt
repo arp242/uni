@@ -54,7 +54,7 @@ Or a string; `i` is a shortcut for `identify`:
 It reads from stdin:
 
     $ head -c2 README.markdown | uni i
-         cpoint  dec    utf-8       html       name
+         cpoint  dec    utf-8       html       name (cat)
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
@@ -158,7 +158,7 @@ See `uni help` for more details on the `-format` flag.
 ChangeLog
 ---------
 
-### v2.0.0 (unreleased)
+### v2.0.0 (2021-01-03)
 
 This changes some flags, semantics, and defaults in **incompatible** ways, hence
 the bump to 2.0. If you use the `dmenu-uni` script with dmenu or fzf, then
