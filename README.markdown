@@ -5,9 +5,15 @@ There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
 emojis.
 
-There are binaries on the [releases][release] page, or compile from source with
-`go get arp242.net/uni`, which will put the binary at `~/go/bin/uni`. You can
-also [run it in your browser][uni-wasm].
+There are binaries on the [releases][release] page, or compile from source with:
+
+	$ git clone https://github.com/arp242/uni
+	$ cd uni
+	$ go build
+
+which will give you a `./uni` binary.
+
+You can also [run it in your browser][uni-wasm].
 
 Packages:
 [Arch Linux](https://aur.archlinux.org/packages/uni/) ·
@@ -298,8 +304,8 @@ you'll need to update that to.
   width. You can now also print X11 keysyms and Vim digraphs. See `uni help` for
   details.
 
-- Include CLDR data for emojis, which is search by default if you use `uni e
-  <someting>`. You can use `uni e name:x` to search for the name specifically.
+- Include CLDR data for emojis, which is searched by default if you use `uni e
+  <something>`. You can use `uni e name:x` to search for the name specifically.
 
 - Show a short terse help when using just `uni`, and a more detailed help on
   `uni help`. I hate it when programs print 5 pages of text to my terminal when

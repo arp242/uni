@@ -307,6 +307,8 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 //
 // Don't do this when piping, since dmenu doesn't display tabs well :-/ This
 // seems like a problem in Xft as near as I can determine.
+//
+// TODO: make this an option; -expandtab or some such.
 func tabOrSpace() string {
 	if zli.IsTerminal(os.Stdout.Fd()) {
 		return "\t"
