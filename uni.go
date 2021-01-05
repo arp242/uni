@@ -100,8 +100,18 @@ Commands:
 
                      Modifier flags, both accept a comma-separated list:
 
-                         -gender  person, man, woman.
-                         -tone    light, mediumlight, medium, mediumdark, dark
+                        -g, -gender   Set the gender:
+                                        p, person, people
+                                        m, man, men, male
+                                        f, female, w, woman, women
+
+                        -t, -tone     Set the skin tone modifier:
+                                        n,  none
+                                        l,  light
+                                        ml, mediumlight, medium-light
+                                        m,  medium
+                                        md, mediumdark, medium-dark
+                                        d,  dark
 
                      Use "all" to include all combinations; the default is to
                      include no skin tones and the "person' gender.
@@ -243,20 +253,30 @@ func parseToneFlag(tone string) []string {
 	if tone == "" {
 		return nil
 	}
-
-	var allTones = []string{"none", "light", "mediumlight", "medium", "mediumdark", "dark"}
 	if tone == "all" {
-		tone = strings.Join(allTones, ",")
+		tone = "none,light,mediumlight, medium, mediumdark,dark"
 	}
 
 	var tones []string
 	for _, t := range zstring.Fields(tone, ",") {
-		if !zstring.Contains(allTones, t) {
+		switch t {
+		case "none", "n":
+			t = "none"
+		case "l", "light":
+			t = "light"
+		case "ml", "mediumlight", "medium-light", "medium_light":
+			t = "mediumlight"
+		case "m", "medium":
+			t = "medium"
+		case "md", "mediumdark", "medium-dark", "medium_dark":
+			t = "mediumdark"
+		case "d", "dark":
+			t = "dark"
+		default:
 			zli.Fatalf("invalid skin tone: %q", tone)
 		}
 		tones = append(tones, t)
 	}
-
 	return tones
 }
 
@@ -264,7 +284,6 @@ func parseGenderFlag(gender string) []string {
 	if gender == "" {
 		return nil
 	}
-
 	if gender == "all" {
 		gender = "person,man,woman"
 	}
@@ -283,7 +302,6 @@ func parseGenderFlag(gender string) []string {
 		}
 		genders = append(genders, g)
 	}
-
 	return genders
 }
 
