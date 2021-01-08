@@ -236,6 +236,11 @@ Alternatives
 
 ### CLI/TUI
 
+- https://github.com/philpennock/character
+
+  More or less similar to uni, but very different CLI, and has some additional
+  features. Seems pretty good.
+
 - https://github.com/sindresorhus/emoj
 
   Doesn't support emojis sequences (e.g. MAN SHRUGGING is PERSON SHRUGGING +
@@ -250,9 +255,9 @@ Alternatives
   Grouping could be better, doesn't support emojis sequences, only interactive
   TUI, feels kinda slow-ish especially when searching.
 
-- https://github.com/philpennock/character
+- https://github.com/pemistahl/chr
 
-  More or less similar to uni, but very different CLI.
+  Only deals with codepoints, not emojis.
 
 ### GUI
 
