@@ -22,11 +22,16 @@ Packages:
 [Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
 
 README index:
-[Integrations](#integrations) ·
-[Usage](#usage) ·
-[ChangeLog](#changelog) ·
-[Development](#development) ·
-[Alternatives](#alternatives)
+- [Integrations](#integrations)
+- [Usage](#usage)
+  - [Identify](#identify)
+  - [Search](#search)
+  - [Print](#identify)
+  - [Emoji](#emoji)
+  - [JSON](#json)
+- [ChangeLog](#changelog)
+- [Development](#development)
+- [Alternatives](#alternatives)
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
@@ -49,11 +54,13 @@ Usage
 *Note: the alignment is slightly off for some entries due to the way GitHub
 renders wide characters; in terminals it should be aligned correctly.*
 
-**Identify** a character:
+### Identify
+
+Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
 {{example "identify" "€"}}
 
-Or a string; `i` is a shortcut for `identify`:
+`i` is a shortcut for `identify`:
 
 {{example "i" "h€ý"}}
 
@@ -64,7 +71,18 @@ It reads from stdin:
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
-**Search** description:
+You can use `-quiet` (or `-q`) to suppress the header, and `-format` (of `-f`)
+to control the output format, for example you may want to generate a codepoint
+to X11 keysym mapping:
+
+{{example "i" "-q" "-f" "0x%(hex): \"%(keysym)\", // %(name)" "h€ý"}}
+
+See `uni help` for more details on the `-format` flag; this flag can also be
+added to other commands.
+
+### Search
+
+Search description:
 
 {{example "search" "euro"}}
 
@@ -83,7 +101,9 @@ Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
 {{example "s" "-o" "globe" "milk"}}
 
-**Print** specific codepoints or groups of codepoints:
+### Print
+
+Print specific codepoints or groups of codepoints:
 
 {{example "print" "U+2042"}}
 
@@ -102,15 +122,9 @@ Blocks:
 
 {{trim 5 (example "p" "arrows" "box drawing")}}
 
-You can use `-format` to control what's being displayed, for example the X11
-keysym:
+### Emoji
 
-{{example "i" "-q" "-f" "%(cpoint) %(name): %(keysym)" "€"}}
-
-See `uni help` for more details on the `-format` flag.
-
-And finally, there is the **`emoji`** command (shortcut: `e`), which is the real
-reason I wrote this:
+The emoji command (shortcut: e is is the real reason I wrote this:
 
 {{example "e" "cry"}}
 
@@ -161,8 +175,43 @@ Like `print` and `identify`, you can use `-format`:
 
 See `uni help` for more details on the `-format` flag.
 
+### JSON
+
+With `-json` or `-j` you can output the data as JSON:
+
+{{example "i" "-json" "h€ý"}}
+
+All the columns listed in `-f` will be included; you can use `-f all` to include
+all columns:
+
+{{example "i" "-json" "-f" "all" "h€ý"}}
+
+This also works for the `emoji` command:
+
+{{example "e" "-json" "-f" "all" "kissing cat"}}
+
+All values are always a string, even numerical values. This makes things a bit
+easier/consistent as JSON doesn't support hex literals and such. Use `jq` or
+some other tool if you want to process the data further.
+
+
 ChangeLog
 ---------
+
+### v2.1.0 (unreleased)
+
+- Refactor the arp242.net/uni/unidata package to be more useful for other use
+  cases. This isn't really relevant for `uni` users as such, but if you want to
+  get information about codepoints or emojis then this package is a nice
+  addition to the standard library's `unicode` package.
+
+- Can now output as JSON with `-j` or `-json`.
+
+- `-format all` is a special value to include all columns uni knows about. This
+  is useful especially in combination with `-json`.
+
+- Add `%(block)`, `%(plane)`, `%(width)`, `%(utf16be)`, `%(utf16le)`, and
+  `%(json) to `-f`.
 
 ### v2.0.0 (2021-01-03)
 

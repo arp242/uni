@@ -22,11 +22,16 @@ Packages:
 [Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
 
 README index:
-[Integrations](#integrations) ·
-[Usage](#usage) ·
-[ChangeLog](#changelog) ·
-[Development](#development) ·
-[Alternatives](#alternatives)
+- [Integrations](#integrations)
+- [Usage](#usage)
+  - [Identify](#identify)
+  - [Search](#search)
+  - [Print](#identify)
+  - [Emoji](#emoji)
+  - [JSON](#json)
+- [ChangeLog](#changelog)
+- [Development](#development)
+- [Alternatives](#alternatives)
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
@@ -49,13 +54,15 @@ Usage
 *Note: the alignment is slightly off for some entries due to the way GitHub
 renders wide characters; in terminals it should be aligned correctly.*
 
-**Identify** a character:
+### Identify
+
+Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
     $ uni identify €
          cpoint  dec    utf8        html       name (cat)
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
 
-Or a string; `i` is a shortcut for `identify`:
+`i` is a shortcut for `identify`:
 
     $ uni i h€ý
          cpoint  dec    utf8        html       name (cat)
@@ -70,7 +77,21 @@ It reads from stdin:
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
-**Search** description:
+You can use `-quiet` (or `-q`) to suppress the header, and `-format` (of `-f`)
+to control the output format, for example you may want to generate a codepoint
+to X11 keysym mapping:
+
+    $ uni i -q -f '0x%(hex): "%(keysym)", // %(name)' h€ý
+    0x68: "h", // LATIN SMALL LETTER H
+    0x20ac: "EuroSign", // EURO SIGN
+    0xfd: "yacute", // LATIN SMALL LETTER Y WITH ACUTE
+
+See `uni help` for more details on the `-format` flag; this flag can also be
+added to other commands.
+
+### Search
+
+Search description:
 
     $ uni search euro
          cpoint  dec    utf8        html       name (cat)
@@ -116,7 +137,9 @@ Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
     '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS (Other_Symbol)
     '🥛' U+1F95B 129371 f0 9f a5 9b &#x1f95b;  GLASS OF MILK (Other_Symbol)
 
-**Print** specific codepoints or groups of codepoints:
+### Print
+
+Print specific codepoints or groups of codepoints:
 
     $ uni print U+2042
          cpoint  dec    utf8        html       name (cat)
@@ -151,16 +174,9 @@ Blocks:
     '↓'  U+2193  8595   e2 86 93    &darr;     DOWNWARDS ARROW (Math_Symbol)
     [..]
 
-You can use `-format` to control what's being displayed, for example the X11
-keysym:
+### Emoji
 
-    $ uni i -q -f '%(cpoint) %(name): %(keysym)' €
-    U+20AC EURO SIGN: EuroSign
-
-See `uni help` for more details on the `-format` flag.
-
-And finally, there is the **`emoji`** command (shortcut: `e`), which is the real
-reason I wrote this:
+The emoji command (shortcut: e is is the real reason I wrote this:
 
     $ uni e cry
     	name                (cldr)
@@ -271,6 +287,115 @@ Like `print` and `identify`, you can use `-format`:
 
 See `uni help` for more details on the `-format` flag.
 
+### JSON
+
+With `-json` or `-j` you can output the data as JSON:
+
+    $ uni i -json h€ý
+    [{
+    	"cat": "Lowercase_Letter",
+    	"char": "h",
+    	"cpoint": "U+0068",
+    	"dec": "104",
+    	"html": "&#x68;",
+    	"name": "LATIN SMALL LETTER H",
+    	"utf8": "68"
+    }, {
+    	"cat": "Currency_Symbol",
+    	"char": "€",
+    	"cpoint": "U+20AC",
+    	"dec": "8364",
+    	"html": "&euro;",
+    	"name": "EURO SIGN",
+    	"utf8": "e2 82 ac"
+    }, {
+    	"cat": "Lowercase_Letter",
+    	"char": "ý",
+    	"cpoint": "U+00FD",
+    	"dec": "253",
+    	"html": "&yacute;",
+    	"name": "LATIN SMALL LETTER Y WITH ACUTE",
+    	"utf8": "c3 bd"
+    }]
+
+All the columns listed in `-f` will be included; you can use `-f all` to include
+all columns:
+
+    $ uni i -json -f all h€ý
+    [{
+    	"block": "Basic Latin",
+    	"cat": "Lowercase_Letter",
+    	"char": "h",
+    	"cpoint": "U+0068",
+    	"dec": "104",
+    	"digraph": "h",
+    	"hex": "68",
+    	"html": "&#x68;",
+    	"json": "\\u0068",
+    	"keysym": "h",
+    	"name": "LATIN SMALL LETTER H",
+    	"plane": "Basic Multilingual Plane",
+    	"utf16be": "00 68",
+    	"utf16le": "68 00",
+    	"utf8": "68",
+    	"width": "neutral",
+    	"xml": "&#x68;"
+    }, {
+    	"block": "Currency Symbols",
+    	"cat": "Currency_Symbol",
+    	"char": "€",
+    	"cpoint": "U+20AC",
+    	"dec": "8364",
+    	"digraph": "=e",
+    	"hex": "20ac",
+    	"html": "&euro;",
+    	"json": "\\u20AC",
+    	"keysym": "EuroSign",
+    	"name": "EURO SIGN",
+    	"plane": "Basic Multilingual Plane",
+    	"utf16be": "20 AC",
+    	"utf16le": "AC 20",
+    	"utf8": "e2 82 ac",
+    	"width": "ambiguous",
+    	"xml": "&#x20ac;"
+    }, {
+    	"block": "Latin-1 Supplement",
+    	"cat": "Lowercase_Letter",
+    	"char": "ý",
+    	"cpoint": "U+00FD",
+    	"dec": "253",
+    	"digraph": "y'",
+    	"hex": "fd",
+    	"html": "&yacute;",
+    	"json": "\\u00FD",
+    	"keysym": "yacute",
+    	"name": "LATIN SMALL LETTER Y WITH ACUTE",
+    	"plane": "Basic Multilingual Plane",
+    	"utf16be": "00 FD",
+    	"utf16le": "FD 00",
+    	"utf8": "c3 bd",
+    	"width": "narrow",
+    	"xml": "&#xfd;"
+    }]
+
+This also works for the `emoji` command:
+
+    $ uni e -json -f all 'kissing cat'
+    [{
+    	"cldr": "eye, face",
+    	"cldr_full": "cat, eye, face, kiss, kissing cat",
+    	"cpoint": "U+1F63D",
+    	"emoji": "😽",
+    	"group": "Smileys & Emotion",
+    	"name": "kissing cat",
+    	"subgroup": "cat-face"
+    }]
+
+All values are always a string, even numerical values. This makes things a bit
+easier/consistent as JSON doesn't support hex literals and such. Use `jq` or
+some other tool if you want to process the data further.
+
+
 ChangeLog
 ---------
 
@@ -281,15 +406,13 @@ ChangeLog
   get information about codepoints or emojis then this package is a nice
   addition to the standard library's `unicode` package.
 
-  See godoc for some more details: https://pkg.go.dev/arp242.net/uni/unidata
-
 - Can now output as JSON with `-j` or `-json`.
 
 - `-format all` is a special value to include all columns uni knows about. This
   is useful especially in combination with `-json`.
 
-- Add `%(block)`, `%(plane)`, and `%(width)` to `-f`.
-
+- Add `%(block)`, `%(plane)`, `%(width)`, `%(utf16be)`, `%(utf16le)`, and
+  `%(json) to `-f`.
 
 ### v2.0.0 (2021-01-03)
 
@@ -385,7 +508,6 @@ Alternatives
 - https://github.com/pemistahl/chr
 
   Only deals with codepoints, not emojis.
-
 
 ### GUI
 

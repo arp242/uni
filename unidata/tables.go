@@ -10,12 +10,12 @@ const (
 )
 
 var WidthNames = map[uint8]string{
-	WidthAmbiguous: "Ambiguous",
-	WidthFullWidth: "FullWidth",
-	WidthHalfWidth: "Halfwidth",
-	WidthNarrow:    "Narrow",
-	WidthNeutral:   "Neutral",
-	WidthWide:      "Wide",
+	WidthAmbiguous: "ambiguous",
+	WidthFullWidth: "full",
+	WidthHalfWidth: "half",
+	WidthNarrow:    "narrow",
+	WidthNeutral:   "neutral",
+	WidthWide:      "wide",
 }
 
 // http://www.unicode.org/reports/tr44/#General_Category_Values

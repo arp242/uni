@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"unicode"
+	"unicode/utf16"
 	"unicode/utf8"
 )
 
@@ -141,8 +142,33 @@ func (c Codepoint) UTF8() string {
 	return fmt.Sprintf("% x", buf[:n])
 }
 
+func (c Codepoint) UTF16(bigEndian bool) string {
+	var p []byte
+	if c.Codepoint <= 0xffff {
+		p = []byte{byte(c.Codepoint % 256), byte(c.Codepoint >> 8)}
+		if bigEndian {
+			p[1], p[0] = p[0], p[1]
+		}
+	} else {
+		a, b := utf16.EncodeRune(c.Codepoint)
+		p = []byte{byte(a % 256), byte(a >> 8), byte(b % 256), byte(b >> 8)}
+		if bigEndian {
+			p[1], p[0], p[3], p[2] = p[0], p[1], p[2], p[3]
+		}
+	}
+	return fmt.Sprintf(`% X`, p)
+}
+
 func (c Codepoint) XMLEntity() string {
 	return "&#x" + strconv.FormatInt(int64(c.Codepoint), 16) + ";"
+}
+
+func (c Codepoint) JSON() string {
+	u := strings.ReplaceAll(c.UTF16(true), " ", "")
+	if len(u) == 4 {
+		return `\u` + u
+	}
+	return `\u` + u[:4] + `\u` + u[4:]
 }
 
 func (c Codepoint) HTMLEntity() string {

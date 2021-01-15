@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"zgo.at/zli"
+	"zgo.at/zstd/ztest"
 )
 
 func TestCLI(t *testing.T) {
@@ -319,4 +320,38 @@ func TestAllEmoji(t *testing.T) {
 	//if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
 	//	t.Error(d)
 	//}
+}
+
+func TestJSON(t *testing.T) {
+	_, _, outbuf, reset := zli.Test()
+	defer reset()
+
+	os.Args = append([]string{"testuni"}, "i", "€", "-f=all", "-j")
+	main()
+
+	want := ` [{
+	"block": "Currency Symbols",
+	"cat": "Currency_Symbol",
+	"char": "€",
+	"cpoint": "U+20AC",
+	"dec": "8364",
+	"digraph": "=e",
+	"hex": "20ac",
+	"html": "&euro;",
+	"json": "\\u20AC",
+	"keysym": "EuroSign",
+	"name": "EURO SIGN",
+	"plane": "Basic Multilingual Plane",
+	"utf16be": "20 AC",
+	"utf16le": "AC 20",
+	"utf8": "e2 82 ac",
+	"width": "ambiguous",
+	"xml": "&#x20ac;"
+}]
+`
+	got := outbuf.String()
+
+	if d := ztest.Diff(want, got); d != "" {
+		t.Error(d)
+	}
 }

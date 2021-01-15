@@ -152,8 +152,11 @@ Format:
         %(hex)           As hex                         2713
         %(dec)           As decimal                     10003
         %(utf8)          As UTF-8                       e2 9c 93
+        %(utf16le)       As UTF-16 LE (Windows)         13 27
+        %(utf16be)       As UTF-16 BE                   27 13
         %(html)          HTML entity                    &check;
         %(xml)           XML entity                     &#x2713;
+        %(json)          JSON escape                    \u2713
         %(keysym)        X11 keysym; can be blank       checkmark
         %(digraph)       Vim Digraph; can be blank      OK
         %(name)          Code point name                CHECK MARK
@@ -242,7 +245,8 @@ func main() {
 		}
 	}
 	if formatF.String() == "all" {
-		format = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto) %(utf8 l:auto) %(html l:auto) %(xml l:auto)" +
+		format = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
+			" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 			" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
 		if cmd == "emoji" {
 			format = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"

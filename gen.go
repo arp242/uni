@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	os.Setenv("README", "yes")
 	tpl := template.New("").Funcs(template.FuncMap{
 		"trim": func(n int, lines string) string {
 			s := strings.SplitN(lines, "\n", n+2)

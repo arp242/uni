@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -189,6 +190,11 @@ func (f *Format) SortNum(col string) {
 }
 
 func (f *Format) printJSON(out io.Writer) {
+	buf := new(bytes.Buffer)
+	enc := json.NewEncoder(buf)
+	enc.SetEscapeHTML(false)
+	enc.SetIndent("", "\t")
+
 	out.Write([]byte("["))
 	for i, l := range f.lines {
 		m := make(map[string]string, len(f.cols))
@@ -199,8 +205,12 @@ func (f *Format) printJSON(out io.Writer) {
 			m[c.name] = l[j]
 		}
 
-		j, _ := json.MarshalIndent(m, "", "\t")
-		out.Write(j)
+		enc.Encode(m)
+		out.Write(bytes.TrimSpace(buf.Bytes())) // Adds \n at end.
+		buf.Reset()
+
+		// j, _ := json.MarshalIndent(m, "", "\t")
+		// out.Write(j)
 		if i != len(f.lines)-1 {
 			out.Write([]byte(", "))
 		}
@@ -303,11 +313,12 @@ func (f *Format) String() string {
 	return b.String()
 }
 
-var knownColumns = []string{"char", "wide_padding", "cpoint", "dec",
-	"hex", "utf8", "html", "xml", "keysym", "digraph", "name", "cat", "block",
-	"plane", "width"}
+var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
+	"utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym", "digraph",
+	"name", "cat", "block", "plane", "width"}
 
 func toLine(info unidata.Codepoint, raw bool) map[string]string {
+	// TODO: would be better to include only the columns that are actually used.
 	return map[string]string{
 		"char":         info.Repr(raw),
 		"wide_padding": widePadding(info),
@@ -315,8 +326,11 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 		"dec":          info.Format(10),
 		"hex":          info.Format(16),
 		"utf8":         info.UTF8(),
+		"utf16be":      info.UTF16(true),
+		"utf16le":      info.UTF16(false),
 		"html":         info.HTMLEntity(),
 		"xml":          info.XMLEntity(),
+		"json":         info.JSON(),
 		"keysym":       info.KeySym,
 		"digraph":      info.Digraph,
 		"name":         info.Name,
@@ -339,6 +353,9 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 //
 // TODO: make this an option; -expandtab or some such.
 func tabOrSpace() string {
+	if os.Getenv("README") != "" { // Temporary hack for README generation.
+		return "\t"
+	}
 	if zli.IsTerminal(os.Stdout.Fd()) {
 		return "\t"
 	}
