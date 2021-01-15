@@ -1,4 +1,6 @@
-package unidata
+// +build generate
+
+package main
 
 // https://tools.ietf.org/html/rfc1345
 // grep -v 'ISO-IR' rfc1345.txt |
@@ -9,7 +11,7 @@ package unidata
 // =e for 0x20ac €
 // =R and =P for 0x20bd (rouble sign)
 
-var Digraphs = map[rune]string{
+var digraphs = map[rune]string{
 	0x20ac: `=e`,
 	0x20bd: `=R`,
 

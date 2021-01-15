@@ -274,6 +274,23 @@ See `uni help` for more details on the `-format` flag.
 ChangeLog
 ---------
 
+### v2.1.0 (unreleased)
+
+- Refactor the arp242.net/uni/unidata package to be more useful for other use
+  cases. This isn't really relevant for `uni` users as such, but if you want to
+  get information about codepoints or emojis then this package is a nice
+  addition to the standard library's `unicode` package.
+
+  See godoc for some more details: https://pkg.go.dev/arp242.net/uni/unidata
+
+- Can now output as JSON with `-j` or `-json`.
+
+- `-format all` is a special value to include all columns uni knows about. This
+  is useful especially in combination with `-json`.
+
+- Add `%(block)`, `%(plane)`, and `%(width)` to `-f`.
+
+
 ### v2.0.0 (2021-01-03)
 
 This changes some flags, semantics, and defaults in **incompatible** ways, hence

@@ -1,4 +1,6 @@
-package unidata
+// +build generate
+
+package main
 
 // KeySyms is a list of all X11 keysyms.
 //
@@ -10,7 +12,7 @@ package unidata
 //
 // Note: all the actual constants are prefixed with XK_; but we don't add them
 // here as not all usages of them use them either (i.e. in XCompose).
-var KeySyms = map[rune][]string{
+var keysyms = map[rune][]string{
 	0x0020: {"space"},
 	0x0021: {"exclam"},
 	0x0022: {"quotedbl"},

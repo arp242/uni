@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"math"
@@ -9,8 +10,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"unicode"
-	"unicode/utf8"
 
 	"arp242.net/uni/unidata"
 	"zgo.at/zli"
@@ -51,14 +50,15 @@ type Format struct {
 	lines     [][]string     // Processed lines, to be printed.
 	autoalign []int          // Max line lengths for autoalign.
 	ntrim     int            // Number of columns with "trim"
+	json      bool           // Print as JSON.
 
 	printHeader bool
 }
 
-func NewFormat(format string, printHeader bool, knownCols ...string) (*Format, error) {
+func NewFormat(format string, asJSON, printHeader bool, knownCols ...string) (*Format, error) {
 	var (
 		reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
-		f          = Format{format: format, printHeader: printHeader}
+		f          = Format{format: format, printHeader: printHeader, json: asJSON}
 	)
 	for _, m := range reFindCols.FindAllString(format, -1) {
 		err := f.processColumn(m)
@@ -84,7 +84,7 @@ func NewFormat(format string, printHeader bool, knownCols ...string) (*Format, e
 	h["tab"] = tabOrSpace()
 	h["wide_padding"] = " "
 
-	if printHeader {
+	if printHeader && !asJSON {
 		f.Line(h)
 	}
 
@@ -188,7 +188,32 @@ func (f *Format) SortNum(col string) {
 	})
 }
 
+func (f *Format) printJSON(out io.Writer) {
+	out.Write([]byte("["))
+	for i, l := range f.lines {
+		m := make(map[string]string, len(f.cols))
+		for j, c := range f.cols {
+			if c.name == "wide_padding" || c.name == "tab" {
+				continue
+			}
+			m[c.name] = l[j]
+		}
+
+		j, _ := json.MarshalIndent(m, "", "\t")
+		out.Write(j)
+		if i != len(f.lines)-1 {
+			out.Write([]byte(", "))
+		}
+	}
+	out.Write([]byte("]\n"))
+}
+
 func (f *Format) Print(out io.Writer) {
+	if f.json {
+		f.printJSON(out)
+		return
+	}
+
 	for lineno, l := range f.lines {
 		line := f.format
 
@@ -278,23 +303,27 @@ func (f *Format) String() string {
 	return b.String()
 }
 
-var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "utf8", "html",
-	"xml", "keysym", "digraph", "name", "cat"}
+var knownColumns = []string{"char", "wide_padding", "cpoint", "dec",
+	"hex", "utf8", "html", "xml", "keysym", "digraph", "name", "cat", "block",
+	"plane", "width"}
 
 func toLine(info unidata.Codepoint, raw bool) map[string]string {
-	c := rune(info.Codepoint)
 	return map[string]string{
-		"char":         fmtChar(c, raw),
+		"char":         info.Repr(raw),
 		"wide_padding": widePadding(info),
-		"cpoint":       fmt.Sprintf("U+%04X", info.Codepoint),
-		"dec":          strconv.FormatUint(uint64(info.Codepoint), 10),
-		"utf8":         utf8Bytes(c),
-		"html":         htmlEntity(c, info.Codepoint),
-		"xml":          fmt.Sprintf("#x%x", info.Codepoint),
-		"keysym":       keysym(c),
-		"digraph":      unidata.Digraphs[c],
+		"cpoint":       info.FormatCodepoint(),
+		"dec":          info.Format(10),
+		"hex":          info.Format(16),
+		"utf8":         info.UTF8(),
+		"html":         info.HTMLEntity(),
+		"xml":          info.XMLEntity(),
+		"keysym":       info.KeySym,
+		"digraph":      info.Digraph,
 		"name":         info.Name,
-		"cat":          unidata.Catnames[info.Cat],
+		"cat":          info.Category(),
+		"block":        info.Block(),
+		"plane":        info.Plane(),
+		"width":        info.WidthName(),
 	}
 }
 
@@ -321,55 +350,4 @@ func widePadding(info unidata.Codepoint) string {
 		return " "
 	}
 	return ""
-}
-
-func keysym(c rune) string {
-	s, ok := unidata.KeySyms[c]
-	if !ok {
-		return "(none)"
-	}
-	return strings.Join(s, " ")
-}
-
-func htmlEntity(c rune, cp uint32) string {
-	html := unidata.Entities[c]
-	if html == "" {
-		html = fmt.Sprintf("#x%x", cp)
-	}
-	return "&" + html + ";"
-}
-
-func utf8Bytes(c rune) string {
-	buf := make([]byte, 4)
-	n := utf8.EncodeRune(buf, c)
-	return fmt.Sprintf("% x", buf[:n])
-}
-
-func fmtChar(c rune, raw bool) string {
-	if raw {
-		return string(c)
-	}
-
-	// Display combining characters with ◌.
-	if unicode.In(c, unicode.Mn, unicode.Mc, unicode.Me) {
-		return "\u25cc" + string(c)
-	}
-
-	switch {
-	case unicode.IsControl(c):
-		switch {
-		case c < 0x20: // C0; use "Control Pictures" block
-			c += 0x2400
-		case c == 0x7f: // DEL
-			c = 0x2421
-		// No control pictures for C1 or anything else, use "open box".
-		default:
-			c = 0x2423
-		}
-	// "Other, Format" category except the soft hyphen and spaces.
-	case !unicode.IsPrint(c) && c != 0x00ad && !unicode.In(c, unicode.Zs):
-		c = 0xfffd
-	}
-
-	return string(c)
 }

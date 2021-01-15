@@ -1,65 +1,4 @@
-//go:generate go run gen.go
-
-// Package unidata contains information about Unicode characters.
 package unidata
-
-// Codepoint is a single codepoint.
-type Codepoint struct {
-	Width, Cat uint8
-	Codepoint  uint32 // TODO: why uint32 and not rune? Hmm
-	Name       string
-}
-
-// Emoji is an emoji sequence.
-type Emoji struct {
-	Codepoints            []uint32 // TODO: why uint32 and not rune?
-	Name, Group, Subgroup string
-	CLDR                  []string
-	SkinTones             bool
-	Genders               int
-}
-
-const (
-	GenderNone = 0
-	GenderSign = 1
-	GenderRole = 2
-)
-
-func (e Emoji) String() string {
-	var c string
-
-	// Flags
-	// 1F1FF 1F1FC                                 # 🇿🇼 E2.0 flag: Zimbabwe
-	// 1F3F4 E0067 E0062 E0065 E006E E0067 E007F   # 🏴󠁧󠁢󠁥󠁮󠁧󠁿 E5.0 flag: England
-	if (e.Codepoints[0] >= 0x1f1e6 && e.Codepoints[0] <= 0x1f1ff) ||
-		(len(e.Codepoints) > 1 && e.Codepoints[1] == 0xe0067) {
-		for _, cp := range e.Codepoints {
-			c += string(rune(cp))
-		}
-		return c
-	}
-
-	for i, cp := range e.Codepoints {
-		c += string(rune(cp))
-
-		// Don't add ZWJ as last item.
-		if i == len(e.Codepoints)-1 {
-			continue
-		}
-
-		switch e.Codepoints[i+1] {
-		// Never add ZWJ before variation selector or skin tone.
-		case 0xfe0f, 0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff:
-			continue
-		// Keycap: join with 0xfe0f
-		case 0x20e3:
-			continue
-		}
-
-		c += "\u200d"
-	}
-	return c
-}
 
 const (
 	WidthAmbiguous = uint8(iota) // Ambiguous, A
@@ -69,6 +8,15 @@ const (
 	WidthNeutral                 // Neutral (Not East Asian), Na
 	WidthWide                    // Wide, W
 )
+
+var WidthNames = map[uint8]string{
+	WidthAmbiguous: "Ambiguous",
+	WidthFullWidth: "FullWidth",
+	WidthHalfWidth: "Halfwidth",
+	WidthNarrow:    "Narrow",
+	WidthNeutral:   "Neutral",
+	WidthWide:      "Wide",
+}
 
 // http://www.unicode.org/reports/tr44/#General_Category_Values
 const (
@@ -113,10 +61,23 @@ const (
 	CatOther                // C  – Cc | Cf | Cs | Co | Cn
 )
 
+var Planes = map[string][2]rune{
+	"Basic Multilingual Plane":              {0, 0xFFFF},
+	"Supplementary Multilingual Plane":      {0x10000, 0x1FFFF},
+	"Supplementary Ideographic Plane":       {0x20000, 0x2FFFF},
+	"Tertiary Ideographic Plane":            {0x30000, 0x3FFFF},
+	"Unassigned":                            {0x40000, 0xDFFFF},
+	"Supplementary Special-purpose Plane":   {0xE0000, 0xEFFFF},
+	"Supplementary Private Use Area planes": {0xF0000, 0x10FFFF},
+}
+
+//Plane 0 	Plane 1 	Plane 2 	Plane 3 	Planes 4–13 	Plane 14 	Planes 15–16
+//0000–​FFFF 	10000–​1FFFF 	20000–​2FFFF 	30000–​3FFFF 	40000–​DFFFF 	E0000–​EFFFF 	F0000–​10FFFF
+
 // https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt
 // TODO: generate this from the data file.
 var (
-	Blocks = map[string][]uint32{
+	Blocks = map[string][2]rune{
 		"Basic Latin":                           {0x0000, 0x007F},
 		"Latin-1 Supplement":                    {0x0080, 0x00FF},
 		"Latin Extended-A":                      {0x0100, 0x017F},

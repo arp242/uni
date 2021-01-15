@@ -31,9 +31,10 @@ Flags:
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
     -f, -format    Output format.
+    -j, -json      Output as JSON.
 
 Commands:
-    identify       Idenfity all the characters in the given strings.
+    identify       Identity all the characters in the given strings.
     search         Search description for any of the words.
     print          Print characters by codepoint, category, or block.
     emoji          Search emojis.
@@ -58,7 +59,10 @@ Flags:
     -o, -or        Use "or" when searching: only match if all parameters match,
                    instead of anything where at least one matches.
     -c, -columns   Select columns to print.
-    -f, -format    Output format.
+    -f, -format    Output format; see Format section below for details.
+    -j, -json      Output as JSON; the columns listed in -format are included,
+                   ignoring formatting flags. Use "-format all" to include all
+                   columns.
 
 Commands:
     identify [text]  Idenfity all the characters in the given strings.
@@ -125,6 +129,10 @@ Format:
     are in the form of %(name) or %(name flags), where "name" is a column name
     and "flags" are some flags to control how it's printed.
 
+    The special value "all" includes all columns; this is useful especially
+    with -json if you want to get all information uni knows about a codepoint
+    or emoji.
+
     Flags:
         %(name l:5)     Left-align and pad with 5 spaces
         %(name l:auto)  Left-align and pad to the longest value
@@ -149,7 +157,10 @@ Format:
         %(keysym)        X11 keysym; can be blank       checkmark
         %(digraph)       Vim Digraph; can be blank      OK
         %(name)          Code point name                CHECK MARK
-        %(cat)           Category                       Other_Symbol
+        %(cat)           Category name                  Other_Symbol
+        %(block)         Block name                     Dingbats
+        %(plane)         Plane name                     Basic Multilingual Plane
+        %(width)         Character width                Narrow
         %(wide_padding)  Blank for wide characters,
                          space otherwise; for alignment
 
@@ -180,6 +191,7 @@ func main() {
 		pager    = flag.Bool(false, "p", "pager")
 		or       = flag.Bool(false, "o", "or")
 		formatF  = flag.String("", "format", "f")
+		jsonF    = flag.Bool(false, "json", "j")
 		tone     = flag.String("", "t", "tone", "tones")
 		gender   = flag.String("person", "g", "gender", "genders")
 	)
@@ -229,16 +241,23 @@ func main() {
 			format = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
 		}
 	}
+	if formatF.String() == "all" {
+		format = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto) %(utf8 l:auto) %(html l:auto) %(xml l:auto)" +
+			" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
+		if cmd == "emoji" {
+			format = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
+		}
+	}
 
 	switch cmd {
 	case "identify":
-		err = identify(args, format, quiet, raw)
+		err = identify(args, format, quiet, raw, jsonF.Bool())
 	case "search":
-		err = search(args, format, quiet, raw, or.Bool())
+		err = search(args, format, quiet, raw, jsonF.Bool(), or.Bool())
 	case "print":
-		err = print(args, format, quiet, raw)
+		err = print(args, format, quiet, raw, jsonF.Bool())
 	case "emoji":
-		err = emoji(args, format, quiet, raw, or.Bool(),
+		err = emoji(args, format, quiet, raw, jsonF.Bool(), or.Bool(),
 			parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
 	}
 	if err != nil {
@@ -305,18 +324,18 @@ func parseGenderFlag(gender string) []string {
 	return genders
 }
 
-func identify(ins []string, format string, quiet, raw bool) error {
+func identify(ins []string, format string, quiet, raw, asJSON bool) error {
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
 		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
-	f, err := NewFormat(format, !quiet, knownColumns...)
+	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
 	if err != nil {
 		return err
 	}
 	for _, c := range in {
-		info, ok := unidata.FindCodepoint(c)
+		info, ok := unidata.Find(c)
 		if !ok {
 			return fmt.Errorf("unknown codepoint: U+%.4X", c) // Should never happen.
 		}
@@ -327,7 +346,7 @@ func identify(ins []string, format string, quiet, raw bool) error {
 	return nil
 }
 
-func search(args []string, format string, quiet, raw, or bool) error {
+func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 	var na []string
 	for _, a := range args {
 		if a != "" {
@@ -344,7 +363,7 @@ func search(args []string, format string, quiet, raw, or bool) error {
 	}
 
 	found := false
-	f, err := NewFormat(format, !quiet, knownColumns...)
+	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
 	if err != nil {
 		return err
 	}
@@ -374,8 +393,8 @@ func search(args []string, format string, quiet, raw, or bool) error {
 	return nil
 }
 
-func print(args []string, format string, quiet, raw bool) error {
-	f, err := NewFormat(format, !quiet, knownColumns...)
+func print(args []string, format string, quiet, raw, asJSON bool) error {
+	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
 	if err != nil {
 		return err
 	}
@@ -403,7 +422,7 @@ func print(args []string, format string, quiet, raw bool) error {
 		// Block.
 		if bl, ok := unidata.Blockmap[canon]; ok {
 			for cp := unidata.Blocks[bl][0]; cp <= unidata.Blocks[bl][1]; cp++ {
-				s, ok := unidata.Codepoints[fmt.Sprintf("%04X", cp)]
+				s, ok := unidata.Codepoints[cp]
 				if ok {
 					f.Line(toLine(s, raw))
 				}
@@ -411,7 +430,7 @@ func print(args []string, format string, quiet, raw bool) error {
 			continue
 		}
 
-		// U2042, U+2042, U+2042..U+2050, 2042..2050, 0x2041, etc.
+		// U2042, U+2042, U+2042..U+2050, 2042..2050, 2042-2050, 0x2041, etc.
 		var s []string
 		switch {
 		case strings.Contains(canon, ".."):
@@ -421,13 +440,18 @@ func print(args []string, format string, quiet, raw bool) error {
 		default:
 			s = []string{canon, canon}
 		}
-		start, err1 := unidata.ToCodepoint(s[0])
-		end, err2 := unidata.ToCodepoint(s[1])
-		if len(s) != 2 || err1 != nil || err2 != nil {
-			return fmt.Errorf("unknown identifier: %q", a)
+
+		start, err := unidata.ToRune(s[0])
+		if err != nil {
+			return fmt.Errorf("invalid codepoint: %s", err)
 		}
+		end, err := unidata.ToRune(s[1])
+		if err != nil {
+			return fmt.Errorf("invalid codepoint: %s", err)
+		}
+
 		for i := start; i <= end; i++ {
-			info, _ := unidata.FindCodepoint(rune(i))
+			info, _ := unidata.Find(i)
 			f.Line(toLine(info, raw))
 		}
 	}
@@ -436,7 +460,7 @@ func print(args []string, format string, quiet, raw bool) error {
 	return nil
 }
 
-func emoji(args []string, format string, quiet, raw, or bool, tones, genders []string) error {
+func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, genders []string) error {
 	type matchArg struct {
 		group bool
 		name  bool
@@ -491,7 +515,7 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 		return errNoMatches
 	}
 
-	f, err := NewFormat(format, !quiet, "emoji", "name", "group", "subgroup",
+	f, err := NewFormat(format, asJSON, !quiet, "emoji", "name", "group", "subgroup",
 		"tab", "cldr", "cldr_full", "cpoint")
 	if err != nil {
 		return err
@@ -528,7 +552,7 @@ func emoji(args []string, format string, quiet, raw, or bool, tones, genders []s
 	return nil
 }
 
-var tonemap = map[string]uint32{
+var tonemap = map[string]rune{
 	"none":        0,
 	"light":       0x1f3fb,
 	"mediumlight": 0x1f3fc,
@@ -549,7 +573,7 @@ func applyTones(e unidata.Emoji, tones []string) []unidata.Emoji {
 
 		if tcp := tonemap[t]; tcp > 0 {
 			emojis[i].Name += fmt.Sprintf(": %s skin tone", t)
-			emojis[i].Codepoints = append(append([]uint32{e.Codepoints[0]}, tcp), e.Codepoints[1:]...)
+			emojis[i].Codepoints = append(append([]rune{e.Codepoints[0]}, tcp), e.Codepoints[1:]...)
 			l := len(emojis[i].Codepoints) - 1
 			if emojis[i].Codepoints[l] == 0xfe0f {
 				emojis[i].Codepoints = emojis[i].Codepoints[:l]
@@ -574,7 +598,7 @@ func applyGenders(emojis []unidata.Emoji, genders []string) []unidata.Emoji {
 
 		for _, g := range genders {
 			ee := e
-			ee.Codepoints = make([]uint32, len(ee.Codepoints))
+			ee.Codepoints = make([]rune, len(ee.Codepoints))
 			copy(ee.Codepoints, e.Codepoints)
 
 			if e.Genders == unidata.GenderSign {
@@ -584,10 +608,10 @@ func applyGenders(emojis []unidata.Emoji, genders []string) []unidata.Emoji {
 				switch g {
 				case "woman":
 					ee.Name = strings.Replace(ee.Name, "person", "woman", 1)
-					ee.Codepoints = append(ee.Codepoints, []uint32{0x2640, 0xfe0f}...)
+					ee.Codepoints = append(ee.Codepoints, []rune{0x2640, 0xfe0f}...)
 				case "man":
 					ee.Name = strings.Replace(ee.Name, "person", "man", 1)
-					ee.Codepoints = append(ee.Codepoints, []uint32{0x2642, 0xfe0f}...)
+					ee.Codepoints = append(ee.Codepoints, []rune{0x2642, 0xfe0f}...)
 				}
 			} else if e.Genders == unidata.GenderRole {
 				// Replace first "person" with "man" or "woman".
@@ -598,10 +622,10 @@ func applyGenders(emojis []unidata.Emoji, genders []string) []unidata.Emoji {
 				switch g {
 				case "woman":
 					ee.Name = "woman " + ee.Name
-					ee.Codepoints = append([]uint32{0x1f469}, ee.Codepoints[1:]...)
+					ee.Codepoints = append([]rune{0x1f469}, ee.Codepoints[1:]...)
 				case "man":
 					ee.Name = "man " + ee.Name
-					ee.Codepoints = append([]uint32{0x1f468}, ee.Codepoints[1:]...)
+					ee.Codepoints = append([]rune{0x1f468}, ee.Codepoints[1:]...)
 				}
 			}
 

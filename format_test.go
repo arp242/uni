@@ -5,7 +5,7 @@ import (
 )
 
 func BenchmarkFormat(b *testing.B) {
-	f, err := NewFormat("%(a) %(b l:auto) %(c)", false)
+	f, err := NewFormat("%(a) %(b l:auto) %(c)", false, false)
 	if err != nil {
 		b.Fatal(err)
 	}
