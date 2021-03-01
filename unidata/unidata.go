@@ -1,4 +1,4 @@
-//go:generate go run -tags generate ./gen
+//go:generate go run ./gen.go
 
 // Package unidata contains information about Unicode characters.
 package unidata
@@ -13,11 +13,44 @@ import (
 	"unicode/utf8"
 )
 
-// var Codepoints map[rune]Codepoint
-
 const UnknownCodepoint = "CODEPOINT NOT IN UNICODE"
 
-// Find a codepoint
+const (
+	GenderNone = 0
+	GenderSign = 1
+	GenderRole = 2
+)
+
+// Codepoint is a single codepoint.
+type Codepoint struct {
+	Codepoint rune
+	Width     uint8
+	Cat       uint8
+	Name      string
+	Digraph   string
+	HTML      string
+	KeySym    string // TODO: []string?
+}
+
+// Emoji is an emoji sequence.
+type Emoji struct {
+	Codepoints      []rune
+	Name            string
+	Group, Subgroup int
+	CLDR            []string
+	SkinTones       bool
+	Genders         int
+}
+
+func (e Emoji) GroupName() string {
+	return EmojiGroups[e.Group]
+}
+
+func (e Emoji) SubgroupName() string {
+	return EmojiSubgroups[e.GroupName()][e.Subgroup]
+}
+
+// Find a codepoint.
 func Find(cp rune) (Codepoint, bool) {
 	info, ok := Codepoints[cp]
 	if ok {
@@ -85,17 +118,6 @@ func CanonicalCategory(cat string) string {
 	cat = strings.Replace(cat, "_", "", -1)
 	cat = strings.ToLower(cat)
 	return cat
-}
-
-// Codepoint is a single codepoint.
-type Codepoint struct {
-	Codepoint rune
-	Width     uint8
-	Cat       uint8
-	Name      string
-	Digraph   string
-	HTML      string
-	KeySym    string // TODO: []string?
 }
 
 func (c Codepoint) String() string {
@@ -208,21 +230,6 @@ func (c Codepoint) Repr(raw bool) string {
 
 	return string(cp)
 }
-
-// Emoji is an emoji sequence.
-type Emoji struct {
-	Codepoints            []rune
-	Name, Group, Subgroup string
-	CLDR                  []string
-	SkinTones             bool
-	Genders               int
-}
-
-const (
-	GenderNone = 0
-	GenderSign = 1
-	GenderRole = 2
-)
 
 func (e Emoji) String() string {
 	var c string

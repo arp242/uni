@@ -71,11 +71,8 @@ var Planes = map[string][2]rune{
 	"Supplementary Private Use Area planes": {0xF0000, 0x10FFFF},
 }
 
-//Plane 0 	Plane 1 	Plane 2 	Plane 3 	Planes 4–13 	Plane 14 	Planes 15–16
-//0000–​FFFF 	10000–​1FFFF 	20000–​2FFFF 	30000–​3FFFF 	40000–​DFFFF 	E0000–​EFFFF 	F0000–​10FFFF
-
+// TODO: generate this from the data file:
 // https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt
-// TODO: generate this from the data file.
 var (
 	Blocks = map[string][2]rune{
 		"Basic Latin":                           {0x0000, 0x007F},

@@ -496,11 +496,13 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 			var match bool
 			switch {
 			case a.group:
-				match = strings.Contains(strings.ToLower(e.Group), a.text) || strings.Contains(strings.ToLower(e.Subgroup), a.text)
+				match = strings.Contains(strings.ToLower(e.GroupName()), a.text) ||
+					strings.Contains(strings.ToLower(e.SubgroupName()), a.text)
 			case a.name:
 				match = strings.Contains(strings.ToLower(e.Name), a.text)
 			default:
-				match = strings.Contains(strings.ToLower(e.Name), a.text) || zstring.Contains(e.CLDR, a.text)
+				match = strings.Contains(strings.ToLower(e.Name), a.text) ||
+					zstring.Contains(e.CLDR, a.text)
 			}
 			if match {
 				m++
@@ -528,8 +530,8 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 		f.Line(map[string]string{
 			"emoji":    e.String(),
 			"name":     e.Name,
-			"group":    e.Group,
-			"subgroup": e.Subgroup,
+			"group":    e.GroupName(),
+			"subgroup": e.SubgroupName(),
 			"tab":      tabOrSpace(),
 			"cldr": func() string {
 				// Remove words that duplicate what's already in the name; it's
