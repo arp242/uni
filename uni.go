@@ -30,6 +30,7 @@ Flags:
     -r, -raw       Don't use graphical variants or add combining characters.
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
+    -c, -columns   Select columns to print.
     -f, -format    Output format.
     -j, -json      Output as JSON.
 
