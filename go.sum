@@ -1,6 +1,9 @@
-golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae h1:Ih9Yo4hSPImZOpfGuA4bR/ORKTAbhZo2AbWNRCnevdo=
-golang.org/x/sys v0.0.0-20200625212154-ddb9806d33ae/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
-zgo.at/zli v0.0.0-20210102181013-33768b083e81 h1:sU7ikPg5evetx2ewkxx6EgNw38mYNNyqUxiK2Tm54dw=
-zgo.at/zli v0.0.0-20210102181013-33768b083e81/go.mod h1:iCNHeIhEG9nQZsmEvf1BDpnQXvbYbUDvokRSwB434M8=
-zgo.at/zstd v0.0.0-20210225153322-0b0ac4d9c4b3 h1:24NscAZNkgP8dxWqtrGSykxln2Ew5Bkabw0RXGVAB68=
-zgo.at/zstd v0.0.0-20210225153322-0b0ac4d9c4b3/go.mod h1:bQqcOgaRPCBT7lZ52Ksg9GF1xwi0L97E3AyvW3oGJYE=
+golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20210315160823-c6e025ad8005 h1:pDMpM2zh2MT0kHy037cKlSby2nEhD50SYqwQk76Nm40=
+golang.org/x/sys v0.0.0-20210315160823-c6e025ad8005/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/term v0.0.0-20210317153231-de623e64d2a6 h1:EC6+IGYTjPpRfv9a2b/6Puw0W+hLtAhkV1tPsXhutqs=
+golang.org/x/term v0.0.0-20210317153231-de623e64d2a6/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
+zgo.at/zli v0.0.0-20210330134141-b5f2a73532d6 h1:gt3Pih5WXe7zD3PGVaM1KTA0j0k+/99DQAdVMLPRrYY=
+zgo.at/zli v0.0.0-20210330134141-b5f2a73532d6/go.mod h1:C1P7MoX7i/tpZHE5i2ODqZ/ensWWs4+qhkt7hz0lrfU=
+zgo.at/zstd v0.0.0-20210322015326-ca7824321150 h1:Cho/3jDZ0/a5W8xLBWQp96DYe3d7GLuGHOQMIV+o+/E=
+zgo.at/zstd v0.0.0-20210322015326-ca7824321150/go.mod h1:sQqrTxBwKW0nlwcOg9RxXB8ikY+NBciJnJRPOq/gEuY=

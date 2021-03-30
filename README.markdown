@@ -399,12 +399,7 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
-### v2.1.0 (unreleased)
-
-- Refactor the arp242.net/uni/unidata package to be more useful for other use
-  cases. This isn't really relevant for `uni` users as such, but if you want to
-  get information about codepoints or emojis then this package is a nice
-  addition to the standard library's `unicode` package.
+### v2.1.0 (2021-03-30)
 
 - Can now output as JSON with `-j` or `-json`.
 
@@ -413,6 +408,11 @@ ChangeLog
 
 - Add `%(block)`, `%(plane)`, `%(width)`, `%(utf16be)`, `%(utf16le)`, and
   `%(json) to `-f`.
+
+- Refactor the arp242.net/uni/unidata package to be more useful for other use
+  cases. This isn't really relevant for `uni` users as such, but if you want to
+  get information about codepoints or emojis then this package is a nice
+  addition to the standard library's `unicode` package.
 
 ### v2.0.0 (2021-01-03)
 

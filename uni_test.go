@@ -31,8 +31,7 @@ func TestCLI(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
-			exit, _, out, reset := zli.Test()
-			defer reset()
+			exit, _, out := zli.Test(t)
 			os.Args = append([]string{"testuni"}, tt.in...)
 
 			func() {
@@ -68,8 +67,7 @@ func TestIdentify(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
-			exit, _, out, reset := zli.Test()
-			defer reset()
+			exit, _, out := zli.Test(t)
 			os.Args = append([]string{"testuni"}, tt.in...)
 
 			func() {
@@ -109,8 +107,7 @@ func TestSearch(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
-			exit, _, outbuf, reset := zli.Test()
-			defer reset()
+			exit, _, outbuf := zli.Test(t)
 			os.Args = append([]string{"testuni"}, tt.in...)
 
 			func() {
@@ -168,8 +165,7 @@ func TestPrint(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
-			exit, _, outbuf, reset := zli.Test()
-			defer reset()
+			exit, _, outbuf := zli.Test(t)
 			os.Args = append([]string{"testuni"}, tt.in...)
 
 			func() {
@@ -241,8 +237,7 @@ func TestEmoji(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
-			_, _, outbuf, reset := zli.Test()
-			defer reset()
+			_, _, outbuf := zli.Test(t)
 			os.Args = append([]string{"testuni"}, tt.in...)
 
 			main()
@@ -268,8 +263,7 @@ func TestEmoji(t *testing.T) {
 }
 
 func TestAllEmoji(t *testing.T) {
-	exit, _, outbuf, reset := zli.Test()
-	defer reset()
+	exit, _, outbuf := zli.Test(t)
 	os.Args = append([]string{"testuni"}, []string{"e", "-q", "-gender", "all", "-tone", "all", "all"}...)
 
 	func() {
@@ -323,8 +317,7 @@ func TestAllEmoji(t *testing.T) {
 }
 
 func TestJSON(t *testing.T) {
-	_, _, outbuf, reset := zli.Test()
-	defer reset()
+	_, _, outbuf := zli.Test(t)
 
 	os.Args = append([]string{"testuni"}, "i", "€", "-f=all", "-j")
 	main()
