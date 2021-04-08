@@ -175,6 +175,10 @@ func (f *Format) Sort(col string) {
 }
 
 func (f *Format) SortNum(col string) {
+	if len(f.cols) == 0 {
+		return
+	}
+
 	coli := 0
 	for i, c := range f.cols {
 		if c.name == col {
