@@ -5,21 +5,16 @@ There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
 emojis.
 
-There are binaries on the [releases][release] page, or compile from source with:
+There are binaries on the [releases][release] page, and [packages][pkg] for a
+number of platforms. You can also [run it in your browser][uni-wasm].
+
+Compile from source with:
 
 	$ git clone https://github.com/arp242/uni
 	$ cd uni
 	$ go build
 
-which will give you a `./uni` binary.
-
-You can also [run it in your browser][uni-wasm].
-
-Packages:
-[Arch Linux](https://aur.archlinux.org/packages/uni/) ·
-[FreeBSD](https://www.freshports.org/textproc/uni) ·
-[Homebrew](https://formulae.brew.sh/formula/uni) ·
-[Void Linux](https://github.com/void-linux/void-packages/tree/master/srcpkgs/uni)
+which will give you a `uni` binary.
 
 README index:
 - [Integrations](#integrations)
@@ -35,6 +30,7 @@ README index:
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
 [release]: https://github.com/arp242/uni/releases
+[pkg]: https://repology.org/project/uni/versions
 
 Integrations
 ------------
@@ -176,7 +172,7 @@ Blocks:
 
 ### Emoji
 
-The emoji command (shortcut: e is is the real reason I wrote this:
+The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
     	name                (cldr)

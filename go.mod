@@ -1,4 +1,4 @@
-module arp242.net/uni
+module arp242.net/uni/v2
 
 go 1.13
 
