@@ -12,7 +12,7 @@ import (
 	"strconv"
 	"strings"
 
-	"arp242.net/uni/unidata"
+	"arp242.net/uni/v2/unidata"
 	"zgo.at/zli"
 	"zgo.at/zstd/zstring"
 )
