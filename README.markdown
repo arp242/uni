@@ -16,6 +16,11 @@ Compile from source with:
 
 which will give you a `uni` binary.
 
+Or with `go install`:
+
+    $ go install arp242.net/uni/v2
+
+
 README index:
 - [Integrations](#integrations)
 - [Usage](#usage)
@@ -394,6 +399,13 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### v2.2.0 (2021-06-05)
+
+- Make proper use of the `/v2` import path so that `go get` and `go install`
+  work. (#26)
+
+- Don't panic if `-f` doesn't contain any formatting characters.
 
 ### v2.1.0 (2021-03-30)
 
