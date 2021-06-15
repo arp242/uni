@@ -16,11 +16,6 @@ Compile from source with:
 
 which will give you a `uni` binary.
 
-Or with `go install`:
-
-    $ go install arp242.net/uni/v2
-
-
 README index:
 - [Integrations](#integrations)
 - [Usage](#usage)
@@ -399,6 +394,16 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### v2.2.1 (2021-06-15)
+
+- You can now use `uni p 0d40` to get U+28 by decimal.
+
+  `uni print 40` interprets the `40` as hex instead of decimal, and there was no
+  way to get a codepoint by decimal number. Since codepoints are much more more
+  common than decimals, leaving off the `U+` and `U` is a useful shortcut I'd
+  like to keep. AFAIK there isn't really a standard(-ish) was to explicitly
+  indicate a number is a decimal, so this is probably the closest.
 
 ### v2.2.0 (2021-06-05)
 

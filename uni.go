@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"unicode/utf8"
 
@@ -72,7 +73,8 @@ Commands:
 
     print [query]    Print characters by codepoint, category, or block.
 
-                       Codepoints             U+2042, 0x20, 0o40, 0b100000
+                       Codepoints             U+20, U20, 0x20, 0d32 (decimal),
+                                              0o40, 0b100000
                        Range                  U+2042..U+2050, 0o101..0x5a
                        Categories and Blocks  OtherPunctuation, Po,
                                               GeneralPunctuation
@@ -444,6 +446,19 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			s = strings.SplitN(canon, "-", 2)
 		default:
 			s = []string{canon, canon}
+		}
+
+		// ToRune interperts "40" as base 16; add 0d for decimals.
+		if strings.HasPrefix(strings.ToUpper(s[0]), "0D") {
+			// Let ToRune deal with any errors.
+			if n, err := strconv.ParseInt(s[0][2:], 10, 10); err == nil {
+				s[0] = strconv.FormatInt(n, 16)
+			}
+		}
+		if strings.HasPrefix(strings.ToUpper(s[1]), "0D") {
+			if n, err := strconv.ParseInt(s[1][2:], 10, 10); err == nil {
+				s[1] = strconv.FormatInt(n, 16)
+			}
 		}
 
 		start, err := unidata.ToRune(s[0])

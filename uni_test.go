@@ -147,6 +147,9 @@ func TestPrint(t *testing.T) {
 		{[]string{"p", "9999999999"}, `out of range: "9999999999"`, 1, 1},
 		{[]string{"p", "99999"}, `CODEPOINT NOT IN UNICODE`, 2, -1},
 
+		{[]string{"-q", "p", "0d90"}, "CAPITAL LETTER Z", 1, -1},
+		{[]string{"-q", "p", "0D90"}, "CAPITAL LETTER Z", 1, -1},
+
 		{[]string{"p", ""}, `invalid codepoint: not a number or codepoint: ""`, 1, 1},
 		{[]string{"p", "nonsense"}, `invalid codepoint: not a number or codepoint: "nonsense"`, 1, 1},
 		{[]string{"p", "2042..xxx"}, `invalid codepoint: not a number or codepoint: "xxx"`, 1, 1},
