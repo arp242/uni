@@ -12,3 +12,12 @@ command! -range UnicodeName
 " Simpler version which works on the current character only:
 " command! UnicodeName echo
 "         \ system('uni -q i', [strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)])[:-2]
+
+" Vim9Script version:
+" command -range UnicodeName {
+"     | var save = @a
+"     | if <count> == -1  | @a = strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
+"     | else              | exe 'normal! gv"ay' | endif
+"     | echo system('uni -q i', @a)[: -2]
+"     | @a = save
+"     | }
