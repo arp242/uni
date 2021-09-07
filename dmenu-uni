@@ -28,7 +28,7 @@ common="-or g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-f
 #common="$common -tone mediumdark"
 
 case "${1:-all}" in
-	all)           uni -q p all     | $dmenu | grep -o "^'.'" | tr -d "'" | $copy ;;
+	all)           uni -q p all     | $dmenu | sed "s/^'\(.\)'.*$/\1/" | $copy ;;
 	emoji)         uni -q e all     | $dmenu | cut -d ' ' -f1 | $copy ;;
 	emoji-common)  uni -q e $common | $dmenu | cut -d ' ' -f1 | $copy ;;
 	*)             uni -q e $@      | $dmenu | cut -d ' ' -f1 | $copy ;;
