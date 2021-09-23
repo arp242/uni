@@ -78,6 +78,13 @@ Commands:
                        Range                  U+2042..U+2050, 0o101..0x5a
                        Categories and Blocks  OtherPunctuation, Po,
                                               GeneralPunctuation
+                       UTF-8                  UTF-8 byte sequence, optionally
+                                              separated by any combination of
+                                              '0x', '-', '_', or spaces:
+                                                utf8:e282ac
+                                                utf8:0xe20x820xac
+                                                'utf8:e2 82 ac'
+                                                'utf8:0xe2 0x82 0xac'
                        all                    Everything
 
     emoji [query]    Search emojis.
@@ -400,12 +407,47 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 	return nil
 }
 
+var utfClean = strings.NewReplacer("0x", "", " ", "", "_", "", "-", "")
+
 func print(args []string, format string, quiet, raw, asJSON bool) error {
 	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
 	if err != nil {
 		return err
 	}
 	for _, a := range args {
+		a = strings.ToLower(a)
+
+		// UTF-8
+		if strings.HasPrefix(a, "utf8:") {
+			a = a[5:]
+
+			seq := utfClean.Replace(a)
+			if len(seq)%2 == 1 {
+				seq = "0" + seq
+			}
+
+			byt := make([]byte, 0, len(seq)/2)
+			for i := 0; len(seq) > i; i += 2 {
+				b, err := strconv.ParseUint(seq[i:i+2], 16, 8)
+				if err != nil {
+					return fmt.Errorf("invalid UTF-8 sequence %q: %q is not a hex number",
+						a, seq[i:i+2])
+				}
+				byt = append(byt, byte(b))
+			}
+
+			r, s := utf8.DecodeRune(byt)
+			if r == utf8.RuneError {
+				return fmt.Errorf("invalid UTF-8 sequence: %q", a)
+			}
+			if s != len(byt) {
+				return fmt.Errorf("multiple characters in sequence %q", a)
+			}
+
+			f.Line(toLine(unidata.Codepoints[r], raw))
+			continue
+		}
+
 		canon := unidata.CanonicalCategory(a)
 
 		// Print everything.

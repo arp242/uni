@@ -164,6 +164,14 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "all"}, "ASTERISM", 34626, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
+
+		// UTF-8
+		{[]string{"-q", "p", "utf8:75"}, "'u'", 1, -1},
+		{[]string{"-q", "p", "UTF8:75"}, "'u'", 1, -1},
+		{[]string{"-q", "p", "utf8:e282ac"}, "'€'", 1, -1},
+		{[]string{"-q", "p", "utf8:e2 82 ac"}, "'€'", 1, -1},
+		{[]string{"-q", "p", "utf8:0xe20x820xac"}, "'€'", 1, -1},
+		{[]string{"-q", "p", "utf8:0xE2 0x82 0xAC"}, "'€'", 1, -1},
 	}
 
 	for _, tt := range tests {
@@ -177,7 +185,7 @@ func TestPrint(t *testing.T) {
 			}()
 
 			if int(*exit) != tt.wantExit {
-				t.Fatalf("wrong exit: %d", *exit)
+				t.Fatalf("exit %d: %s", *exit, outbuf.String())
 			}
 
 			out := outbuf.String()
@@ -336,12 +344,12 @@ func TestJSON(t *testing.T) {
 	"digraph": "=e",
 	"hex": "20ac",
 	"html": "&euro;",
-	"json": "\\u20AC",
+	"json": "\\u20ac",
 	"keysym": "EuroSign",
 	"name": "EURO SIGN",
 	"plane": "Basic Multilingual Plane",
-	"utf16be": "20 AC",
-	"utf16le": "AC 20",
+	"utf16be": "20 ac",
+	"utf16le": "ac 20",
 	"utf8": "e2 82 ac",
 	"width": "ambiguous",
 	"xml": "&#x20ac;"

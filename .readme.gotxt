@@ -194,6 +194,22 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
+### v2.3.0 (unreleased)
+
+- Update to Unicode 14.0.
+
+- UTF-16 and JSON are printed as lower case, just like UTF-8 was. Upper-case is
+  used only for codepoints (i.e. U+00AC).
+
+- `uni print` can now print from UTF-8 byte sequence; for example to print the €
+  sign:
+
+      uni p utf8:e282ac
+      uni p 'utf8:e2 82 ac'
+      uni p 'utf8:0xe2 0x82 0xac'
+
+  Bytes can optionally be separated by any combination of `0x`, `-`, `_`, or spaces.
+
 ### v2.2.1 (2021-06-15)
 
 - You can now use `uni p 0d40` to get U+28 by decimal.

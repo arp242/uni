@@ -178,7 +178,7 @@ func (c Codepoint) UTF16(bigEndian bool) string {
 			p[1], p[0], p[3], p[2] = p[0], p[1], p[2], p[3]
 		}
 	}
-	return fmt.Sprintf(`% X`, p)
+	return fmt.Sprintf(`% x`, p)
 }
 
 func (c Codepoint) XMLEntity() string {
