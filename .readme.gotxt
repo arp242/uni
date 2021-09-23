@@ -1,5 +1,5 @@
 `uni` queries the Unicode database from the commandline. It supports Unicode
-13.1 (September 2020) and has good support for emojis.
+14.0 (September 2021) and has good support for emojis.
 
 There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find

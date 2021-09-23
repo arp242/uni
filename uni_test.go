@@ -158,10 +158,10 @@ func TestPrint(t *testing.T) {
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 593, -1},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 593, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 605, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 605, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 33797, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 34626, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 	}
@@ -203,9 +203,9 @@ func TestEmoji(t *testing.T) {
 		//[]string{}},
 
 		{[]string{"e", "-q", "group:hands"},
-			[]string{"👏", "🙌", "👐", "🤲", "🤝", "🙏"}},
+			[]string{"👏", "🙌", "🫶", "👐", "🤲", "🤝", "🙏"}},
 		{[]string{"e", "-q", "-tone", "dark", "g:hands"},
-			[]string{"👏🏿", "🙌🏿", "👐🏿", "🤲🏿", "🤝", "🙏🏿"}},
+			[]string{"👏🏿", "🙌🏿", "🫶🏿", "👐🏿", "🤲🏿", "🤝", "🙏🏿"}},
 
 		{[]string{"e", "-q", "shrug"},
 			[]string{"🤷"}},
@@ -274,14 +274,16 @@ func TestAllEmoji(t *testing.T) {
 		main()
 	}()
 
-	// grep -v '^#' unidata/.cache/emoji-test.txt |
-	//     grep fully-qualified |
-	//     grep -Ev '(holding hands|kiss:|couple with heart).*tone' |
-	//     grep -Eo '# .+? E[0-9]' |
-	//     cut -d ' ' -f2 >| testdata/emojis
-	//
-	// double tones: 70
-	// family: 145
+	/*
+		grep -v '^#' unidata/.cache/emoji-test.txt |
+		    grep fully-qualified |
+		    grep -Ev '(holding hands|handshake|kiss:|couple with heart).*tone' |
+		    grep -Eo '# .+? E[0-9]' |
+		    cut -d ' ' -f2 >| testdata/emojis
+
+		double tones: 70
+		family: 145
+	*/
 	w, err := ioutil.ReadFile("./testdata/emojis")
 	if err != nil {
 		t.Fatal(err)

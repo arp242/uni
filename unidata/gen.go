@@ -1,3 +1,4 @@
+//go:build generate
 // +build generate
 
 package main
@@ -73,7 +74,7 @@ func readCLDR() map[string][]string {
 }
 
 func mkemojis() error {
-	text, err := fetch("https://unicode.org/Public/emoji/latest/emoji-test.txt")
+	text, err := fetch("https://unicode.org/Public/emoji/14.0/emoji-test.txt")
 	zli.F(err)
 
 	cldr := readCLDR()
@@ -176,18 +177,32 @@ func mkemojis() error {
 			}
 		}
 
-		// This ignores combining the "holding hands" and "kissing" with
-		// different skin tone variants:
+		// This ignores combining the "holding hands", "handshake", and
+		// "kissing" with different skin tone variants, where you can select a
+		// different tone for each side (i.e. hand or person):
 		//
-		// 1F468 1F3FB 200D 1F91D 200D 1F468 1F3FF 👨🏻‍🤝‍👨🏿
-		// E12.1 men holding hands: light skin tone, dark skin tone
+		//   1F468 1F3FB 200D 1F91D 200D 1F468 1F3FF 👨🏻‍🤝‍👨🏿
+		//   E12.1 men holding hands: light skin tone, dark skin tone
 		//
-		// 1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FF 🧑🏻‍❤️‍💋‍🧑🏿
-		// E13.1 kiss: person, person, light skin tone, dark skin tone
+		//   1F9D1 1F3FB 200D 2764 FE0F 200D 1F48B 200D 1F9D1 1F3FF 🧑🏻‍❤️‍💋‍🧑🏿
+		//   E13.1 kiss: person, person, light skin tone, dark skin tone
 		//
-		// There is no good way to select this with the current UX/flagset, and
-		// to be honest I don't think it's very important either.
-		if tone && strings.Contains(name, "holding hands") {
+		// There is no good way to select this with the current UX/flagset; and
+		// to be honest I don't think it's very important either, so just skip
+		// it for now.
+		//
+		// TODO: I guess the best way to fix this is to allow multiple values
+		// for -t and -g:
+		//
+		//   uni e handshake -t dark            Both hands dark
+		//   uni e handshake -t dark -t light   Left hand dark, right hand light
+		//
+		// Actually, I'd change it and make multiple -t and -g flags print
+		// multiple variants (like "-t light,dark" does now), and then change
+		// the meaning of "-t light,dark" to the above to select multiple
+		// variants in the same emoji. That makes more sense, but is not a
+		// backwards-compatible change. Guess we can do it for uni 3.0.
+		if tone && (strings.Contains(name, "holding hands") || strings.Contains(name, "handshake")) {
 			gender = 0
 			tone = false
 			continue
