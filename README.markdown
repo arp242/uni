@@ -395,7 +395,7 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
-### v2.3.0 (unreleased)
+### v2.3.0 (2021-10-05)
 
 - Update to Unicode 14.0.
 
