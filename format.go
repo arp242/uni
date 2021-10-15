@@ -13,6 +13,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"arp242.net/termtext"
 	"arp242.net/uni/v2/unidata"
 	"zgo.at/zli"
 	"zgo.at/zstd/zstring"
@@ -160,7 +161,7 @@ func (f *Format) Line(columns map[string]string) error {
 	for i, c := range f.cols {
 		line[i] = columns[c.name]
 		if c.width == alignAuto {
-			if l := zstring.TabWidth(columns[c.name]); l > f.autoalign[i] {
+			if l := termtext.Width(columns[c.name]); l > f.autoalign[i] {
 				f.autoalign[i] = l
 			}
 		}
@@ -251,12 +252,12 @@ func (f *Format) Print(out io.Writer) {
 		// This line is too long and we want to trim: reformat the lot.
 		// TODO: this can be a bit more efficient: we know the column widths and
 		// text already, but this is easier.
-		if f.ntrim > 0 && zstring.TabWidth(line) > termWidth {
-			tooLongBy := zstring.TabWidth(line) - termWidth
+		if f.ntrim > 0 && termtext.Width(line) > termWidth {
+			tooLongBy := termtext.Width(line) - termWidth
 			var t = make([]int, len(f.cols))
 			for i, text := range l {
 				if f.cols[i].trim {
-					t[i] = zstring.TabWidth(text)
+					t[i] = termtext.Width(text)
 				}
 			}
 			trim := nratio(tooLongBy, t...)
