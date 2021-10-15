@@ -336,6 +336,7 @@ func TestJSON(t *testing.T) {
 	main()
 
 	want := ` [{
+	"bin": "10000010101100",
 	"block": "Currency Symbols",
 	"cat": "Currency_Symbol",
 	"char": "€",
@@ -347,6 +348,7 @@ func TestJSON(t *testing.T) {
 	"json": "\\u20ac",
 	"keysym": "EuroSign",
 	"name": "EURO SIGN",
+	"oct": "20254",
 	"plane": "Basic Multilingual Plane",
 	"utf16be": "20 ac",
 	"utf16le": "ac 20",

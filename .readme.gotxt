@@ -10,9 +10,9 @@ number of platforms. You can also [run it in your browser][uni-wasm].
 
 Compile from source with:
 
-	$ git clone https://github.com/arp242/uni
-	$ cd uni
-	$ go build
+    $ git clone https://github.com/arp242/uni
+    $ cd uni
+    $ go build
 
 which will give you a `uni` binary.
 
@@ -193,6 +193,9 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### Next
+- Add `oct` and `bin` flags for `-f` to print a codepoint as octal or binary.
 
 ### v2.3.0 (2021-10-05)
 

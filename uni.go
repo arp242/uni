@@ -160,6 +160,8 @@ Format:
         %(char)          The literal character          ✓
         %(cpoint)        As codepoint                   U+2713
         %(hex)           As hex                         2713
+        %(oct)           As octal                       23423
+        %(bin)           As binary (little-endian)      10011100010011
         %(dec)           As decimal                     10003
         %(utf8)          As UTF-8                       e2 9c 93
         %(utf16le)       As UTF-16 LE (Windows)         13 27
@@ -256,6 +258,7 @@ func main() {
 	}
 	if formatF.String() == "all" {
 		format = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
+			" %(oct l:auto) %(bin l:auto)" +
 			" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 			" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
 		if cmd == "emoji" {

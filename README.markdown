@@ -10,9 +10,9 @@ number of platforms. You can also [run it in your browser][uni-wasm].
 
 Compile from source with:
 
-	$ git clone https://github.com/arp242/uni
-	$ cd uni
-	$ go build
+    $ git clone https://github.com/arp242/uni
+    $ cd uni
+    $ go build
 
 which will give you a `uni` binary.
 
@@ -175,11 +175,12 @@ Blocks:
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
-    	name                (cldr)
-    😢	crying face         (sad, tear)
-    😭	loudly crying face  (sad, sob, tear)
-    😿	crying cat          (face, sad, tear)
-    🔮	crystal ball        (fairy tale, fantasy, fortune, tool)
+    	name                     (cldr)
+    🥹	face holding back tears  (angry, cry, proud, resist, sad)
+    😢	crying face              (sad, tear)
+    😭	loudly crying face       (sad, sob, tear)
+    😿	crying cat               (face, sad, tear)
+    🔮	crystal ball             (fairy tale, fantasy, fortune, tool)
 
 By default both the name and CLDR data are searched; the CLDR data is a list of
 keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
@@ -203,6 +204,7 @@ Prefix with `group:` to search by group:
     	name               (cldr)
     👏	clapping hands     ()
     🙌	raising hands      (celebration, gesture, hooray, raised)
+    🫶	heart hands        (love)
     👐	open hands         ()
     🤲	palms up together  (prayer)
     🤝	handshake          (agreement, meeting)
@@ -232,6 +234,7 @@ Apply skin tone modifiers with `-tone`:
     	name                               (cldr)
     👏🏿	clapping hands: dark skin tone     ()
     🙌🏿	raising hands: dark skin tone      (celebration, gesture, hooray, raised)
+    🫶🏿	heart hands: dark skin tone        (love)
     👐🏿	open hands: dark skin tone         ()
     🤲🏿	palms up together: dark skin tone  (prayer)
     🤝	handshake                          (agreement, meeting)
@@ -345,12 +348,12 @@ all columns:
     	"digraph": "=e",
     	"hex": "20ac",
     	"html": "&euro;",
-    	"json": "\\u20AC",
+    	"json": "\\u20ac",
     	"keysym": "EuroSign",
     	"name": "EURO SIGN",
     	"plane": "Basic Multilingual Plane",
-    	"utf16be": "20 AC",
-    	"utf16le": "AC 20",
+    	"utf16be": "20 ac",
+    	"utf16le": "ac 20",
     	"utf8": "e2 82 ac",
     	"width": "ambiguous",
     	"xml": "&#x20ac;"
@@ -363,12 +366,12 @@ all columns:
     	"digraph": "y'",
     	"hex": "fd",
     	"html": "&yacute;",
-    	"json": "\\u00FD",
+    	"json": "\\u00fd",
     	"keysym": "yacute",
     	"name": "LATIN SMALL LETTER Y WITH ACUTE",
     	"plane": "Basic Multilingual Plane",
-    	"utf16be": "00 FD",
-    	"utf16le": "FD 00",
+    	"utf16be": "00 fd",
+    	"utf16le": "fd 00",
     	"utf8": "c3 bd",
     	"width": "narrow",
     	"xml": "&#xfd;"
@@ -394,6 +397,9 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### Next
+- Add `oct` and `bin` flags for `-f` to print a codepoint as octal or binary.
 
 ### v2.3.0 (2021-10-05)
 
