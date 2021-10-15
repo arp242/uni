@@ -11,6 +11,8 @@ import (
 	"unicode"
 	"unicode/utf16"
 	"unicode/utf8"
+
+	"zgo.at/zstd/zstring"
 )
 
 const UnknownCodepoint = "CODEPOINT NOT IN UNICODE"
@@ -81,21 +83,40 @@ func Find(cp rune) (Codepoint, bool) {
 // ToRune converts a human input string to a rune.
 //
 // The input can be as U+41, U+0041, U41, 0x41, 0o101, 0b1000001
+//
+// if strings.HasPrefix(strings.ToUpper(s[0]), "0D") {
+// 	// Let ToRune deal with any errors.
+// 	if n, err := strconv.ParseInt(s[0][2:], 10, 10); err == nil {
+// 		s[0] = strconv.FormatInt(n, 16)
+// 	}
+// }
+// if strings.HasPrefix(strings.ToUpper(s[1]), "0D") {
+// 	if n, err := strconv.ParseInt(s[1][2:], 10, 10); err == nil {
+// 		s[1] = strconv.FormatInt(n, 16)
+// 	}
+// }
 func ToRune(s string) (rune, error) {
 	os := s
 	s = strings.ToUpper(s)
 	var base = 16
 	switch {
-	case strings.HasPrefix(s, "0X"), strings.HasPrefix(s, "U+"):
+	case zstring.HasPrefixes(s, "0X", "U+"):
 		s = s[2:]
-	case strings.HasPrefix(s, "U"):
-		s = s[1:]
+	case strings.HasPrefix(s, "0D"):
+		s = s[2:]
+		base = 10
 	case strings.HasPrefix(s, "0O"):
 		s = s[2:]
 		base = 8
 	case strings.HasPrefix(s, "0B"):
 		s = s[2:]
 		base = 2
+
+	case zstring.HasPrefixes(s, "X", "U"):
+		s = s[1:]
+	case strings.HasPrefix(s, "O"):
+		s = s[1:]
+		base = 8
 	}
 	i, err := strconv.ParseInt(s, base, 32)
 	if err != nil {

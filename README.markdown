@@ -411,6 +411,10 @@ ChangeLog
 - Add `f` format flag to change the full character with alignment; e.g.
   `%(bin r:auto f:0)` will print zeros on the left.
 
+- Allow using just `o123` for an octal number (instead of `0o123`). We can't do
+  this for binary and decimal numbers (since `b` and `d` are valid
+  hexidecimals), but no reason not to do it for `o`.
+
 ### v2.3.0 (2021-10-05)
 
 - Update to Unicode 14.0.

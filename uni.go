@@ -504,19 +504,6 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			s = []string{canon, canon}
 		}
 
-		// ToRune interperts "40" as base 16; add 0d for decimals.
-		if strings.HasPrefix(strings.ToUpper(s[0]), "0D") {
-			// Let ToRune deal with any errors.
-			if n, err := strconv.ParseInt(s[0][2:], 10, 10); err == nil {
-				s[0] = strconv.FormatInt(n, 16)
-			}
-		}
-		if strings.HasPrefix(strings.ToUpper(s[1]), "0D") {
-			if n, err := strconv.ParseInt(s[1][2:], 10, 10); err == nil {
-				s[1] = strconv.FormatInt(n, 16)
-			}
-		}
-
 		start, err := unidata.ToRune(s[0])
 		if err != nil {
 			return fmt.Errorf("invalid codepoint: %s", err)
