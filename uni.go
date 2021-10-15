@@ -149,6 +149,8 @@ Format:
         %(name r:5)     Right-align and pad with 5 spaces
         %(name q)       Quote with single quotes, excluding any padding
         %(name t)       Trim this column if it's longer than the screen width
+        %(name f:C)     Fill this column with character C; especially useful for
+                        numbers: %(bin r:auto f:0)
 
     Placeholders that work for all commands:
         %(tab)           A literal tab when outputting to a terminal, or four
@@ -180,7 +182,7 @@ Format:
                          space otherwise; for alignment
 
         The default is:
-        %(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))
+        `+defaultFormat+`
 
     Placeholders for emoji:
 
@@ -193,8 +195,19 @@ Format:
         %(cldr_full)   Full CLDR data                   firefighter, firetruck
 
         The default is:
-        %(emoji)%(tab)%(name l:auto)  (%(cldr t))
+        `+defaultEmojiFormat+`
 `)
+
+const (
+	defaultFormat = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
+	allFormat     = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
+		" %(oct l:auto) %(bin l:auto)" +
+		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
+		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
+
+	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
+	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
+)
 
 func main() {
 	flag := zli.NewFlags(os.Args)
@@ -251,18 +264,16 @@ func main() {
 
 	format := formatF.String()
 	if !formatF.Set() {
-		format = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
+		format = defaultFormat
 		if cmd == "emoji" {
-			format = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
+			format = defaultEmojiFormat
 		}
 	}
+
 	if formatF.String() == "all" {
-		format = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
-			" %(oct l:auto) %(bin l:auto)" +
-			" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
-			" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
+		format = allFormat
 		if cmd == "emoji" {
-			format = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
+			format = allEmojiFormat
 		}
 	}
 

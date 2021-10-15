@@ -322,6 +322,7 @@ all columns:
 
     $ uni i -json -f all h€ý
     [{
+    	"bin": "1101000",
     	"block": "Basic Latin",
     	"cat": "Lowercase_Letter",
     	"char": "h",
@@ -333,6 +334,7 @@ all columns:
     	"json": "\\u0068",
     	"keysym": "h",
     	"name": "LATIN SMALL LETTER H",
+    	"oct": "150",
     	"plane": "Basic Multilingual Plane",
     	"utf16be": "00 68",
     	"utf16le": "68 00",
@@ -340,6 +342,7 @@ all columns:
     	"width": "neutral",
     	"xml": "&#x68;"
     }, {
+    	"bin": "10000010101100",
     	"block": "Currency Symbols",
     	"cat": "Currency_Symbol",
     	"char": "€",
@@ -351,6 +354,7 @@ all columns:
     	"json": "\\u20ac",
     	"keysym": "EuroSign",
     	"name": "EURO SIGN",
+    	"oct": "20254",
     	"plane": "Basic Multilingual Plane",
     	"utf16be": "20 ac",
     	"utf16le": "ac 20",
@@ -358,6 +362,7 @@ all columns:
     	"width": "ambiguous",
     	"xml": "&#x20ac;"
     }, {
+    	"bin": "11111101",
     	"block": "Latin-1 Supplement",
     	"cat": "Lowercase_Letter",
     	"char": "ý",
@@ -369,6 +374,7 @@ all columns:
     	"json": "\\u00fd",
     	"keysym": "yacute",
     	"name": "LATIN SMALL LETTER Y WITH ACUTE",
+    	"oct": "375",
     	"plane": "Basic Multilingual Plane",
     	"utf16be": "00 fd",
     	"utf16le": "fd 00",
@@ -399,7 +405,11 @@ ChangeLog
 ---------
 
 ### Next
+
 - Add `oct` and `bin` flags for `-f` to print a codepoint as octal or binary.
+
+- Add `f` format flag to change the full character with alignment; e.g.
+  `%(bin r:auto f:0)` will print zeros on the left.
 
 ### v2.3.0 (2021-10-05)
 

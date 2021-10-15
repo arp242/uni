@@ -11,6 +11,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 
 	"arp242.net/uni/v2/unidata"
 	"zgo.at/zli"
@@ -42,6 +43,7 @@ type column struct {
 	align int
 	trim  bool
 	quote bool
+	fill  rune
 }
 
 type Format struct {
@@ -105,7 +107,7 @@ func (f *Format) processColumn(line string) error {
 		return nil
 	}
 
-	for _, flag := range strings.Split(s[1], " ") {
+	for _, flag := range s[1:] {
 		switch {
 		default:
 			return fmt.Errorf("unknown flag %q in %q", flag, line)
@@ -113,6 +115,11 @@ func (f *Format) processColumn(line string) error {
 			continue
 		case flag == "q":
 			col.quote = true
+		case flag[0] == 'f':
+			if utf8.RuneCountInString(flag) != 3 {
+				return fmt.Errorf("need exactly one character after f: for %q", line)
+			}
+			col.fill = []rune(flag[2:])[0]
 		case flag == "t":
 			f.ntrim++
 			col.trim = true
@@ -171,7 +178,9 @@ func (f *Format) Sort(col string) {
 			break
 		}
 	}
-	sort.Slice(f.lines, func(i, j int) bool { return f.lines[i][coli] < f.lines[j][coli] })
+	sort.Slice(f.lines, func(i, j int) bool {
+		return f.lines[i][coli] < f.lines[j][coli]
+	})
 }
 
 func (f *Format) SortNum(col string) {
@@ -302,6 +311,11 @@ func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) strin
 		text = zstring.AlignLeft(text, w)
 	case alignRight:
 		text = zstring.AlignRight(text, w)
+	}
+	if c.fill > 0 {
+		if !f.printHeader || lineno > 0 {
+			text = strings.ReplaceAll(text, " ", string(c.fill))
+		}
 	}
 
 	if c.trim && applyTrim > 0 {

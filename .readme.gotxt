@@ -195,7 +195,11 @@ ChangeLog
 ---------
 
 ### Next
+
 - Add `oct` and `bin` flags for `-f` to print a codepoint as octal or binary.
+
+- Add `f` format flag to change the full character with alignment; e.g.
+  `%(bin r:auto f:0)` will print zeros on the left.
 
 ### v2.3.0 (2021-10-05)
 
