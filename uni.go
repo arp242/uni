@@ -36,7 +36,7 @@ Flags:
     -j, -json      Output as JSON.
 
 Commands:
-    identify       Identity all the characters in the given strings.
+    identify       Identify all the characters in the given strings.
     search         Search description for any of the words.
     print          Print characters by codepoint, category, or block.
     emoji          Search emojis.
@@ -67,7 +67,7 @@ Flags:
                    columns.
 
 Commands:
-    identify [text]  Idenfity all the characters in the given strings.
+    identify [text]  Identify all the characters in the given strings.
 
     search [query]   Search description for any of the words.
 
