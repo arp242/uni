@@ -19,7 +19,7 @@ import (
 	"strings"
 	"time"
 
-	"arp242.net/uni/v2/unidata"
+	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
 )
 

@@ -1,3 +1,4 @@
+//go:build go_run_only
 // +build go_run_only
 
 package main
@@ -42,7 +43,7 @@ func main() {
 	tpl, err := tpl.ParseFiles(".readme.gotxt")
 	zli.F(err)
 
-	fp, err := os.Create("README.markdown")
+	fp, err := os.Create("README.md")
 	zli.F(err)
 
 	zli.F(tpl.ExecuteTemplate(fp, ".readme.gotxt", nil))

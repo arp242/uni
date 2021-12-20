@@ -13,8 +13,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"arp242.net/termtext"
-	"arp242.net/uni/v2/unidata"
+	"zgo.at/termtext"
+	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
 	"zgo.at/zstd/zstring"
 )

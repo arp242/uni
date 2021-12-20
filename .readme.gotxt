@@ -150,8 +150,12 @@ Apply skin tone modifiers with `-tone`:
 
 {{example "e" "-tone" "dark" "g:hands"}}
 
-For some reason the handshake emoji doesn't support skin tones; so the above
-output is correct.
+The "heart hands" may not show as it's very recent. The handshake emoji supports
+setting individual skin tones per hand since Unicode 14, but this isn't
+supported, mostly because I can't really really think a good CLI interface for
+setting this without breaking compatibility (there are some other emojis too,
+like "holding hands" and "kissing" where you can set both the gender and skin
+tone of both sides individually). Maybe for uni v3 someday.
 
 The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
@@ -196,9 +200,11 @@ ChangeLog
 
 ### Next
 
+- Update import path to `zgo.at/uni/v2`.
+
 - Add `oct` and `bin` flags for `-f` to print a codepoint as octal or binary.
 
-- Add `f` format flag to change the full character with alignment; e.g.
+- Add `f` format flag to change the fill character with alignment; e.g.
   `%(bin r:auto f:0)` will print zeros on the left.
 
 - Allow using just `o123` for an octal number (instead of `0o123`). We can't do
