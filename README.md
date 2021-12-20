@@ -408,7 +408,7 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
-### Next
+### v2.4.0 (2021-12-20)
 
 - Update import path to `zgo.at/uni/v2`.
 
