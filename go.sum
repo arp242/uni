@@ -6,9 +6,9 @@ golang.org/x/sys v0.0.0-20201119102817-f84b799fce68 h1:nxC68pudNYkKU6jWhgrqdreuF
 golang.org/x/sys v0.0.0-20201119102817-f84b799fce68/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/term v0.0.0-20210317153231-de623e64d2a6 h1:EC6+IGYTjPpRfv9a2b/6Puw0W+hLtAhkV1tPsXhutqs=
 golang.org/x/term v0.0.0-20210317153231-de623e64d2a6/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
-zgo.at/termtext v0.0.0-20211028051427-f6235ebe8320 h1:LHcG+zqj4nFUDwiLiXs+8pbU8zII88Hpjh/+8HnvkPc=
-zgo.at/termtext v0.0.0-20211028051427-f6235ebe8320/go.mod h1:P0jvULwo8z82ad7+WR6vg5vTy86dqvbOmR3bT3NlYvc=
-zgo.at/zli v0.0.0-20211215141047-76dae1509b03 h1:x8eqGxlYcqFkwd7zk77uZ9JoEiS6cxSWQbqFb8PqoW4=
-zgo.at/zli v0.0.0-20211215141047-76dae1509b03/go.mod h1:pWkBHZ5qoEmvSDbFYdQMAKaRMEuAtdUKb21k/OOYOJw=
-zgo.at/zstd v0.0.0-20211220090423-fa07dcab58f8 h1:abnHztdyE684SC5ctbWuJh0UQV6aumkFMS1T4/5rla8=
-zgo.at/zstd v0.0.0-20211220090423-fa07dcab58f8/go.mod h1:sQqrTxBwKW0nlwcOg9RxXB8ikY+NBciJnJRPOq/gEuY=
+zgo.at/termtext v1.0.0 h1:txd+nH8FKVGVIFThcztZwT9cFKuoeNt2w3S6OcQTXpA=
+zgo.at/termtext v1.0.0/go.mod h1:P0jvULwo8z82ad7+WR6vg5vTy86dqvbOmR3bT3NlYvc=
+zgo.at/zli v0.0.0-20220403205001-4b79e9073ba8 h1:XrHSedKZ2q12qdYURJ9goSWwJP2NjpIZ97p9UqAysS0=
+zgo.at/zli v0.0.0-20220403205001-4b79e9073ba8/go.mod h1:pWkBHZ5qoEmvSDbFYdQMAKaRMEuAtdUKb21k/OOYOJw=
+zgo.at/zstd v0.0.0-20220413140508-6078fed48e39 h1:vru0q7GNi2PmYOFxGm1cUIr0mRcuav7HYviuUtMvYNs=
+zgo.at/zstd v0.0.0-20220413140508-6078fed48e39/go.mod h1:KYkLDHZN6APaRYHlL+hpwBJW/g9w+MLmXi4MKE5YteY=

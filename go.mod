@@ -3,9 +3,9 @@ module zgo.at/uni/v2
 go 1.17
 
 require (
-	zgo.at/termtext v0.0.0-20211028051427-f6235ebe8320
-	zgo.at/zli v0.0.0-20211215141047-76dae1509b03
-	zgo.at/zstd v0.0.0-20211220090423-fa07dcab58f8
+	zgo.at/termtext v1.0.0
+	zgo.at/zli v0.0.0-20220403205001-4b79e9073ba8
+	zgo.at/zstd v0.0.0-20220413140508-6078fed48e39
 )
 
 require (

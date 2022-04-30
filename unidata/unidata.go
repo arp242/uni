@@ -3,12 +3,15 @@
 // Package unidata contains information about Unicode characters.
 package unidata
 
+// NOTE: do not use the unicode package; it usually takes a while before the
+// tables in there are updated. (unicode/utf8 and unicode/utf16 are fine, as
+// they just deal with the byte encodings)
+
 import (
 	"errors"
 	"fmt"
 	"strconv"
 	"strings"
-	"unicode"
 	"unicode/utf16"
 	"unicode/utf8"
 
@@ -27,12 +30,14 @@ const (
 type Codepoint struct {
 	Codepoint rune
 	Width     uint8
-	Cat       uint8
+	Cat       Category
 	Name      string
 	Digraph   string
 	HTML      string
 	KeySym    string // TODO: []string?
 }
+
+type Category uint8
 
 // Emoji is an emoji sequence.
 type Emoji struct {
@@ -154,10 +159,12 @@ func (c Codepoint) WidthName() string {
 	return WidthNames[c.Width]
 }
 
+// Category gets the category name.
 func (c Codepoint) Category() string {
 	return Catnames[c.Cat]
 }
 
+// Block gets the block name.
 func (c Codepoint) Block() string {
 	for b, r := range Blocks {
 		if c.Codepoint >= r[0] && c.Codepoint <= r[1] {
@@ -167,12 +174,16 @@ func (c Codepoint) Block() string {
 	return ""
 }
 
+// UTF8 gets the UTF-8 representation as hexidecimal, with spaces between the
+// bytes.
 func (c Codepoint) UTF8() string {
 	buf := make([]byte, 4)
 	n := utf8.EncodeRune(buf, c.Codepoint)
 	return fmt.Sprintf("% x", buf[:n])
 }
 
+// UTF16 gets the UTF-16 representation as hexidecimal, with spaces between the
+// bytes.
 func (c Codepoint) UTF16(bigEndian bool) string {
 	var p []byte
 	if c.Codepoint <= 0xffff {
@@ -209,20 +220,70 @@ func (c Codepoint) HTMLEntity() string {
 	return c.XMLEntity()
 }
 
+// in reports if this codepoint is in the given category.
+//
+// TODO: this is a bit ugly; we should generate this data better.
+func (c Codepoint) in(cats ...Category) bool {
+	for _, cat := range cats {
+		if c.Cat == cat {
+			return true
+		}
+
+		t := false
+		switch cat {
+		case CatCasedLetter: // LC – Lu | Ll | Lt
+			t = c.Cat == CatUppercaseLetter || c.Cat == CatLowercaseLetter || c.Cat == CatTitlecaseLetter
+		case CatLetter: // L  – Lu | Ll | Lt | Lm | Lo
+			t = c.Cat == CatUppercaseLetter || c.Cat == CatLowercaseLetter ||
+				c.Cat == CatTitlecaseLetter || c.Cat == CatModifierLetter || c.Cat == CatOtherLetter
+		case CatMark: // M  – Mn | Mc | Me
+			t = c.Cat == CatNonspacingMark || c.Cat == CatSpacingMark || c.Cat == CatEnclosingMark
+		case CatNumber: // N  – Nd | Nl | No
+			t = c.Cat == CatDecimalNumber || c.Cat == CatLetterNumber || c.Cat == CatOtherNumber
+		case CatPunctuation: // P  – Pc | Pd | Ps | Pe | Pi | Pf | Po
+			t = c.Cat == CatConnectorPunctuation || c.Cat == CatDashPunctuation || c.Cat == CatOpenPunctuation ||
+				c.Cat == CatClosePunctuation || c.Cat == CatInitialPunctuation || c.Cat == CatFinalPunctuation ||
+				c.Cat == CatOtherPunctuation
+		case CatSymbol: // S  – Sm | Sc | Sk | So
+			t = c.Cat == CatMathSymbol || c.Cat == CatCurrencySymbol || c.Cat == CatModifierSymbol ||
+				c.Cat == CatOtherSymbol
+		case CatSeparator: // Z  – Zs | Zl | Zp
+			t = c.Cat == CatSpaceSeparator || c.Cat == CatLineSeparator || c.Cat == CatParagraphSeparator
+		case CatOther: // C  – Cc | Cf | Cs | Co | Cn
+			t = c.Cat == CatControl || c.Cat == CatFormat || c.Cat == CatSurrogate ||
+				c.Cat == CatPrivateUse || c.Cat == CatUnassigned
+		}
+		if t {
+			return true
+		}
+	}
+	return false
+}
+
+func (c Codepoint) isControl() bool {
+	return c.Cat == CatControl
+}
+
+func (c Codepoint) isPrint() bool {
+	if c.isControl() {
+		return false
+	}
+	return c.in(CatLetter, CatMark, CatNumber, CatPunctuation, CatSymbol)
+}
+
 func (c Codepoint) Repr(raw bool) string {
 	if raw {
 		return string(c.Codepoint)
 	}
 
-	cp := c.Codepoint
-
 	// Display combining characters with ◌.
-	if unicode.In(cp, unicode.Mn, unicode.Mc, unicode.Me) {
-		return "\u25cc" + string(cp)
+	if c.Cat == CatNonspacingMark || c.Cat == CatSpacingMark || c.Cat == CatEnclosingMark {
+		return "\u25cc" + string(c.Codepoint)
 	}
 
+	cp := c.Codepoint
 	switch {
-	case unicode.IsControl(cp):
+	case c.isControl():
 		switch {
 		case cp < 0x20: // C0; use "Control Pictures" block
 			cp += 0x2400
@@ -233,7 +294,7 @@ func (c Codepoint) Repr(raw bool) string {
 			cp = 0x2423
 		}
 	// "Other, Format" category except the soft hyphen and spaces.
-	case !unicode.IsPrint(cp) && cp != 0x00ad && !unicode.In(cp, unicode.Zs):
+	case !c.isPrint() && cp != 0x00ad && c.Cat != CatSpaceSeparator:
 		cp = 0xfffd
 	}
 
