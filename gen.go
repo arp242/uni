@@ -18,7 +18,7 @@ func main() {
 	tpl := template.New("").Funcs(template.FuncMap{
 		"trim": func(n int, lines string) string {
 			s := strings.SplitN(lines, "\n", n+2)
-			return strings.Join(s[:len(s)-1], "\n") + "\n    [..]"
+			return strings.Join(s[:len(s)-1], "\n") + "\n    …"
 		},
 		"example": func(args ...string) (string, error) {
 			o, err := exec.Command("uni", args...).CombinedOutput()

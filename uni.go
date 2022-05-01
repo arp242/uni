@@ -31,7 +31,6 @@ Flags:
     -r, -raw       Don't use graphical variants or add combining characters.
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
-    -c, -columns   Select columns to print.
     -f, -format    Output format.
     -j, -json      Output as JSON.
 
@@ -58,9 +57,8 @@ Flags:
     -r, -raw       Don't use graphical variants for control characters and
                    don't add ◌ (U+25CC) before combining characters.
     -p, -pager     Output to $PAGER.
-    -o, -or        Use "or" when searching: only match if all parameters match,
-                   instead of anything where at least one matches.
-    -c, -columns   Select columns to print.
+    -o, -or        Use "or" when searching: print if at least one parameter
+                   matches, instead of only when all parameters match.
     -f, -format    Output format; see Format section below for details.
     -j, -json      Output as JSON; the columns listed in -format are included,
                    ignoring formatting flags. Use "-format all" to include all
@@ -128,7 +126,7 @@ Commands:
                                         d,  dark
 
                      Use "all" to include all combinations; the default is to
-                     include no skin tones and the "person' gender.
+                     include no skin tones and the "person" gender.
 
                      Note: emojis may not be accurately copied by select & copy
                      in terminals. It's recommended to copy to the clipboard
@@ -296,60 +294,58 @@ func main() {
 	}
 }
 
-func parseToneFlag(tone string) []string {
+func parseToneFlag(tone string) unidata.EmojiModifier {
 	if tone == "" {
-		return nil
+		return 0
 	}
 	if tone == "all" {
-		tone = "none,light,mediumlight, medium, mediumdark,dark"
+		tone = "none,light,mediumlight,medium,mediumdark,dark"
 	}
 
-	var tones []string
+	var m unidata.EmojiModifier
 	for _, t := range zstring.Fields(tone, ",") {
 		switch t {
 		case "none", "n":
-			t = "none"
+			m |= unidata.ModNone
 		case "l", "light":
-			t = "light"
+			m |= unidata.ModLight
 		case "ml", "mediumlight", "medium-light", "medium_light":
-			t = "mediumlight"
+			m |= unidata.ModMediumLight
 		case "m", "medium":
-			t = "medium"
+			m |= unidata.ModMedium
 		case "md", "mediumdark", "medium-dark", "medium_dark":
-			t = "mediumdark"
+			m |= unidata.ModMediumDark
 		case "d", "dark":
-			t = "dark"
+			m |= unidata.ModDark
 		default:
 			zli.Fatalf("invalid skin tone: %q", tone)
 		}
-		tones = append(tones, t)
 	}
-	return tones
+	return m
 }
 
-func parseGenderFlag(gender string) []string {
+func parseGenderFlag(gender string) unidata.EmojiModifier {
 	if gender == "" {
-		return nil
+		return 0
 	}
 	if gender == "all" {
 		gender = "person,man,woman"
 	}
 
-	var genders []string
+	var m unidata.EmojiModifier
 	for _, g := range zstring.Fields(gender, ",") {
 		switch g {
 		case "person", "p", "people":
-			g = "person"
+			m |= unidata.ModPerson
 		case "man", "men", "m", "male":
-			g = "man"
+			m |= unidata.ModMale
 		case "woman", "women", "w", "female", "f":
-			g = "woman"
+			m |= unidata.ModFemale
 		default:
 			zli.Fatalf("invalid gender: %q", gender)
 		}
-		genders = append(genders, g)
 	}
-	return genders
+	return m
 }
 
 func identify(ins []string, format string, quiet, raw, asJSON bool) error {
@@ -521,7 +517,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 	return nil
 }
 
-func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, genders []string) error {
+func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, genders unidata.EmojiModifier) error {
 	type matchArg struct {
 		group bool
 		name  bool
@@ -553,8 +549,8 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 			var match bool
 			switch {
 			case a.group:
-				match = strings.Contains(strings.ToLower(e.GroupName()), a.text) ||
-					strings.Contains(strings.ToLower(e.SubgroupName()), a.text)
+				match = strings.Contains(strings.ToLower(e.Group().String()), a.text) ||
+					strings.Contains(strings.ToLower(e.Subgroup().String()), a.text)
 			case a.name:
 				match = strings.Contains(strings.ToLower(e.Name), a.text)
 			default:
@@ -587,8 +583,8 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 		f.Line(map[string]string{
 			"emoji":    e.String(),
 			"name":     e.Name,
-			"group":    e.GroupName(),
-			"subgroup": e.SubgroupName(),
+			"group":    e.Group().String(),
+			"subgroup": e.Subgroup().String(),
 			"tab":      tabOrSpace(),
 			"cldr": func() string {
 				// Remove words that duplicate what's already in the name; it's
@@ -615,112 +611,37 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 	return nil
 }
 
-var tonemap = map[string]rune{
-	"none":        0,
-	"light":       0x1f3fb,
-	"mediumlight": 0x1f3fc,
-	"medium":      0x1f3fd,
-	"mediumdark":  0x1f3fe,
-	"dark":        0x1f3ff,
-}
-
-// Skintone always comes after the base emoji and doesn't required a ZWJ.
-func applyTones(e unidata.Emoji, tones []string) []unidata.Emoji {
-	if !e.SkinTones || len(tones) == 0 {
-		return []unidata.Emoji{e}
-	}
-
-	emojis := make([]unidata.Emoji, len(tones))
-	for i, t := range tones {
-		emojis[i] = e // This makes a copy, but beware of directly modifying lists as they're pointers.
-
-		if tcp := tonemap[t]; tcp > 0 {
-			emojis[i].Name += fmt.Sprintf(": %s skin tone", t)
-			emojis[i].Codepoints = append(append([]rune{e.Codepoints[0]}, tcp), e.Codepoints[1:]...)
-			l := len(emojis[i].Codepoints) - 1
-			if emojis[i].Codepoints[l] == 0xfe0f {
-				emojis[i].Codepoints = emojis[i].Codepoints[:l]
-			}
+func applyAll(e unidata.Emoji, mod unidata.EmojiModifier) []unidata.Emoji {
+	emojis := make([]unidata.Emoji, 0, 1)
+	i := unidata.EmojiModifier(1)
+	for i <= unidata.ModDark {
+		if mod&i != 0 {
+			emojis = append(emojis, e.With(i))
 		}
+		i <<= 1
 	}
-
 	return emojis
 }
 
-func applyGenders(emojis []unidata.Emoji, genders []string) []unidata.Emoji {
-	if len(genders) == 0 {
+func applyTones(e unidata.Emoji, mod unidata.EmojiModifier) []unidata.Emoji {
+	if !e.Skintones() || mod == 0 {
+		return []unidata.Emoji{e}
+	}
+	return applyAll(e, mod)
+}
+
+func applyGenders(emojis []unidata.Emoji, mod unidata.EmojiModifier) []unidata.Emoji {
+	if mod == 0 {
 		return emojis
 	}
 
 	var ret []unidata.Emoji
 	for _, e := range emojis {
-		if e.Genders == unidata.GenderNone {
+		if !e.Genders() {
 			ret = append(ret, e)
 			continue
 		}
-
-		for _, g := range genders {
-			ee := e
-			ee.Codepoints = make([]rune, len(ee.Codepoints))
-			copy(ee.Codepoints, e.Codepoints)
-
-			if e.Genders == unidata.GenderSign {
-				// Append male or female sign
-				//   1F937 1F3FD                   # 🤷🏽 E4.0 person shrugging: medium skin tone
-				//   1F937 1F3FB 200D 2642 FE0F    # 🤷🏻‍♂️ E4.0 man shrugging: light skin tone
-				switch g {
-				case "woman":
-					ee.Name = strings.Replace(ee.Name, "person", "woman", 1)
-					ee.Codepoints = append(ee.Codepoints, []rune{0x2640, 0xfe0f}...)
-				case "man":
-					ee.Name = strings.Replace(ee.Name, "person", "man", 1)
-					ee.Codepoints = append(ee.Codepoints, []rune{0x2642, 0xfe0f}...)
-				}
-			} else if e.Genders == unidata.GenderRole {
-				// Replace first "person" with "man" or "woman".
-				//   1F9D1 200D 1F692              # 🧑‍🚒 E12.1 firefighter
-				//   1F9D1 1F3FB 200D 1F692        # 🧑🏻‍🚒 E12.1 firefighter: light skin tone
-				//   1F469 200D 1F692              # 👩‍🚒 E4.0 woman firefighter
-				//   1F469 1F3FB 200D 1F692        # 👩🏻‍🚒 E4.0 woman firefighter: light skin tone
-				switch g {
-				case "woman":
-					ee.Name = "woman " + ee.Name
-					ee.Codepoints = append([]rune{0x1f469}, ee.Codepoints[1:]...)
-				case "man":
-					ee.Name = "man " + ee.Name
-					ee.Codepoints = append([]rune{0x1f468}, ee.Codepoints[1:]...)
-				}
-			}
-
-			ret = append(ret, ee)
-		}
+		ret = append(ret, applyAll(e, mod)...)
 	}
-
 	return ret
-}
-
-func parseEmojiGroups(group string) []string {
-	groups := strings.Split(strings.ToLower(group), ",")
-	for _, g := range groups {
-		found := false
-	outer:
-		for eg, subs := range unidata.EmojiSubgroups {
-			if strings.Contains(strings.ToLower(eg), g) {
-				found = true
-				break
-			}
-
-			for _, sg := range subs {
-				if strings.Contains(strings.ToLower(sg), g) {
-					found = true
-					break outer
-				}
-			}
-		}
-		if !found {
-			zli.Fatalf("doesn't match any emoji group or subgroup: %q", g)
-		}
-	}
-
-	return groups
 }

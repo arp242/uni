@@ -95,7 +95,7 @@ Use shell quoting for more literal matches:
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
-{{example "s" "-o" "globe" "milk"}}
+{{example "s" "-o" "globe" "milky"}}
 
 ### Print
 
@@ -163,9 +163,8 @@ changed with the `-gender` option:
 {{example "e" "-gender" "man" "g:person-gesture"}}
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
-display both the female and male variants (in that order), and `-tone
-light,dark` will display both a light and dark skin tone; use `all` to display
-all skin tones or genders:
+display both the female and male variants, and `-tone light,dark` will display
+both a light and dark skin tone; use `all` to display all skin tones or genders:
 
 {{example "e" "-tone" "light,dark" "-gender" "f,m" "shrug"}}
 

@@ -20,6 +20,7 @@ import (
 	"strings"
 	"time"
 
+	"zgo.at/termtext"
 	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
 	"zgo.at/zstd/zstring"
@@ -260,6 +261,54 @@ func mkblocks() error {
 	return nil
 }
 
+// Copy from unidata; need access to unexported stuff
+type Emoji struct {
+	Codepoints []rune
+	Name       string
+	Group      unidata.EmojiGroup
+	Subgroup   unidata.EmojiSubgroup
+	CLDR       []string
+	SkinTones  bool
+	Genders    int
+}
+
+// Copy from unidata; need access to unexported stuff
+func (e Emoji) String() string {
+	var c string
+
+	// Flags
+	// 1F1FF 1F1FC                                 # 🇿🇼 E2.0 flag: Zimbabwe
+	// 1F3F4 E0067 E0062 E0065 E006E E0067 E007F   # 🏴󠁧󠁢󠁥󠁮󠁧󠁿 E5.0 flag: England
+	if (e.Codepoints[0] >= 0x1f1e6 && e.Codepoints[0] <= 0x1f1ff) ||
+		(len(e.Codepoints) > 1 && e.Codepoints[1] == 0xe0067) {
+		for _, cp := range e.Codepoints {
+			c += string(rune(cp))
+		}
+		return c
+	}
+
+	for i, cp := range e.Codepoints {
+		c += string(rune(cp))
+
+		// Don't add ZWJ as last item.
+		if i == len(e.Codepoints)-1 {
+			continue
+		}
+
+		switch e.Codepoints[i+1] {
+		// Never add ZWJ before variation selector or skin tone.
+		case 0xfe0f, 0x1f3fb, 0x1f3fc, 0x1f3fd, 0x1f3fe, 0x1f3ff:
+			continue
+		// Keycap: join with 0xfe0f
+		case 0x20e3:
+			continue
+		}
+
+		c += "\u200d"
+	}
+	return c
+}
+
 func mkemojis() error {
 	text, err := fetch("https://unicode.org/Public/emoji/14.0/emoji-test.txt")
 	zli.F(err)
@@ -279,6 +328,7 @@ func mkemojis() error {
 		group, subgroup string
 		groups          []string
 		subgroups       = make(map[string][]string)
+		subgroups2      []string
 	)
 	for _, line := range strings.Split(string(text), "\n") {
 		// Groups are listed as a comment, but we want to preserve them.
@@ -292,6 +342,7 @@ func mkemojis() error {
 		if strings.HasPrefix(line, "# subgroup: ") {
 			subgroup = line[strings.Index(line, ":")+2:]
 			subgroups[group] = append(subgroups[group], subgroup)
+			subgroups2 = append(subgroups2, subgroup)
 			continue
 		}
 
@@ -468,7 +519,7 @@ func mkemojis() error {
 
 	// We should really parse it like this in the above loop, but I don't feel
 	// like rewriting all of this, and this makes adding cldr easier.
-	emo := make([]unidata.Emoji, len(order))
+	emo := make([]Emoji, len(order))
 	for i, k := range order {
 		e := emojis[k]
 
@@ -487,37 +538,81 @@ func mkemojis() error {
 				break
 			}
 		}
-		for i, g := range subgroups[e[2]] {
+		for i, g := range subgroups2 {
 			if g == e[3] {
 				subgroupID = i
 				break
 			}
 		}
 
-		emo[i] = unidata.Emoji{
+		emo[i] = Emoji{
 			Codepoints: cp,
 			Name:       e[1],
-			Group:      groupID,
-			Subgroup:   subgroupID,
+			Group:      unidata.EmojiGroup(groupID),
+			Subgroup:   unidata.EmojiSubgroup(subgroupID),
 			SkinTones:  e[4] == "true",
 			Genders:    g,
 		}
 		emo[i].CLDR = cldr[strings.ReplaceAll(strings.ReplaceAll(emo[i].String(), "\ufe0f", ""), "\ufe0e", "")]
 	}
 
-	write(fp, "var EmojiGroups = []string{\n")
+	mkconst := func(n string) string {
+		dash := zstring.IndexAll(n, "-")
+		for i := len(dash) - 1; i >= 0; i-- {
+			d := dash[i]
+			n = n[:d] + string(n[d+1]^0x20) + n[d+2:]
+		}
+		return "Emoji" + zstring.UpperFirst(strings.ReplaceAll(n, " & ", "And"))
+	}
+
+	write(fp, "// Emoji groups.\nconst (\n")
+	write(fp, "\t%s = EmojiGroup(iota)\n", mkconst(groups[0]))
+	for _, g := range groups[1:] {
+		write(fp, "\t%s\n", mkconst(g))
+	}
+	write(fp, ")\n\n")
+
+	write(fp, `// EmojiGroups is a list of all emoji groups.
+var EmojiGroups = map[EmojiGroup]struct{
+	Name      string
+	Subgroups []EmojiSubgroup
+}{
+`)
 	for _, g := range groups {
-		write(fp, "\t%#v,\n", g)
+		var sg []string
+		for _, s := range subgroups[g] {
+			sg = append(sg, mkconst(s))
+		}
+		write(fp, "\t%s: {%q, []EmojiSubgroup{\n\t\t%s}},\n", mkconst(g), g,
+			termtext.WordWrap(strings.Join(sg, ", "), 100, "\t\t"))
 	}
 	write(fp, "}\n\n")
 
-	write(fp, "var EmojiSubgroups = map[string][]string{\n")
+	write(fp, "// Emoji subgroups.\nconst (\n")
+	first := true
 	for _, g := range groups {
-		write(fp, "\t%#v: []string{\n", g)
 		for _, sg := range subgroups[g] {
-			write(fp, "\t\t%#v,\n", sg)
+			if first {
+				write(fp, "\t%s = EmojiSubgroup(iota)\n", mkconst(sg))
+				first = false
+			} else {
+				write(fp, "\t%s\n", mkconst(sg))
+			}
 		}
-		write(fp, "\t},\n")
+	}
+	write(fp, ")\n\n")
+
+	write(fp, `// EmojiSubgroups is a list of all emoji subgroups.
+var EmojiSubgroups = map[EmojiSubgroup]struct{
+	Group EmojiGroup
+	Name  string
+}{
+`)
+	for _, g := range groups {
+		for _, sg := range subgroups[g] {
+			write(fp, "\t%s: {%s, %q},", mkconst(sg), mkconst(g), sg)
+			write(fp, "\n")
+		}
 	}
 	write(fp, "}\n\n")
 
@@ -529,8 +624,8 @@ func mkemojis() error {
 		}
 		cp = cp[:len(cp)-2]
 
-		//                   CP   Name Grp  Sgr  CLDR sk  gnd
-		write(fp, "\t{[]rune{%s}, %#v, %#v, %#v, %#v, %t, %d},\n",
+		//                   CP   Name Grp Sgr CLDR sk  gnd
+		write(fp, "\t{[]rune{%s}, %q,  %d, %d, %#v, %t, %d},\n",
 			cp, e.Name, e.Group, e.Subgroup, e.CLDR, e.SkinTones, e.Genders)
 	}
 	write(fp, "}\n\n")

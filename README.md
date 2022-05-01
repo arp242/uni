@@ -116,7 +116,7 @@ Use shell quoting for more literal matches:
          cpoint  dec    utf8        html       name (cat)
     '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW (Other_Symbol)
     '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD (Other_Symbol)
-    [..]
+    …
 
     $ uni s 'rightwards black arrow'
          cpoint  dec    utf8        html       name (cat)
@@ -124,14 +124,13 @@ Use shell quoting for more literal matches:
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
-    $ uni s -o globe milk
+    $ uni s -o globe milky
          cpoint  dec    utf8        html       name (cat)
     '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY (Other_Symbol)
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
     '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
     '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS (Other_Symbol)
-    '🥛' U+1F95B 129371 f0 9f a5 9b &#x1f95b;  GLASS OF MILK (Other_Symbol)
 
 ### Print
 
@@ -158,7 +157,7 @@ General category:
          cpoint  dec    utf8        html       name (cat)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
     '"'  U+0022  34     22          &quot;     QUOTATION MARK (Other_Punctuation)
-    [..]
+    …
 
 Blocks:
 
@@ -168,7 +167,7 @@ Blocks:
     '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW (Math_Symbol)
     '→'  U+2192  8594   e2 86 92    &rarr;     RIGHTWARDS ARROW (Math_Symbol)
     '↓'  U+2193  8595   e2 86 93    &darr;     DOWNWARDS ARROW (Math_Symbol)
-    [..]
+    …
 
 ### Emoji
 
@@ -189,7 +188,7 @@ keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
     	name                             (cldr)
     😃	grinning face with big eyes      (mouth, open, smile)
     😄	grinning face with smiling eyes  (mouth, open, smile)
-    [..]
+    …
 
     $ uni e name:smile
     	name                (cldr)
@@ -264,9 +263,8 @@ changed with the `-gender` option:
     🤷‍♂️	man shrugging     (doubt, ignorance, indifference, person shrugging)
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
-display both the female and male variants (in that order), and `-tone
-light,dark` will display both a light and dark skin tone; use `all` to display
-all skin tones or genders:
+display both the female and male variants, and `-tone light,dark` will display
+both a light and dark skin tone; use `all` to display all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
     	name                              (cldr)
@@ -407,6 +405,11 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### 2.5.0 (unreleased)
+
+- Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
+  some operations would fail on codepoints added in Unicode 14.
 
 ### v2.4.0 (2021-12-20)
 

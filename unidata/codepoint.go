@@ -212,6 +212,9 @@ func (c Codepoint) UTF8() []byte {
 }
 
 // UTF16 gets the UTF-16 representation of this codepoint.
+//
+// The default is to use Little-Endian encoding (which is what Windows uses);
+// set bigEndian to use Big-Endian encoding.
 func (c Codepoint) UTF16(bigEndian bool) []byte {
 	var p []byte
 	if c.Codepoint <= 0xffff {
