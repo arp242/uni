@@ -27,9 +27,6 @@ type (
 		width    Width    // Unicode width.
 		category Category // Codepoint category.
 		name     string   // Codepoint name.
-		digraph  string   // Digraph sequence.
-		html     string   // HTML entity name; may be blank.
-		keysym   string   // X11 KeySym
 	}
 
 	Width    uint8  // Unicode width
@@ -247,14 +244,14 @@ func (c Codepoint) XML() string { return "&#x" + strconv.FormatInt(int64(c.Codep
 // HTML formats the codepoint as an HTML entity, prefering a symbolic name if it
 // exists (e.g. &amp; instead of &#x26;)
 func (c Codepoint) HTML() string {
-	if c.html != "" {
-		return "&" + c.html + ";"
+	if h := htmlEntities[c.Codepoint]; h != "" {
+		return "&" + h + ";"
 	}
 	return c.XML()
 }
 
 // KeySym gets the X11 keysym name.
-func (c Codepoint) KeySym() string { return c.keysym }
+func (c Codepoint) KeySym() string { return keysyms[c.Codepoint] }
 
 // Digraph gets the digraph sequence.
 //
@@ -263,7 +260,7 @@ func (c Codepoint) KeySym() string { return c.keysym }
 //
 //   =e    €   U+20AC EURO SIGN
 //   =R    ₽   U+20BD RUBLE SIGN
-func (c Codepoint) Digraph() string { return c.digraph }
+func (c Codepoint) Digraph() string { return digraphs[c.Codepoint] }
 
 // in reports if this codepoint is in the given category.
 //

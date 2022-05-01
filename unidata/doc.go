@@ -5,11 +5,11 @@
 // knows about emojis.
 //
 // The downside is that this package is a bit slower, uses more memory, and
-// increases the binary size by about 3.5M.
+// increases the binary size by about 2M.
 //
 //   main      1127K     738K stripped
 //   unicode   1229K     824K stripped
-//   unidata   4978K    4485K stripped
+//   unidata   3455K    2964K stripped
 //
 // It should still be plenty fast enough for most use cases.
 //

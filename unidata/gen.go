@@ -585,10 +585,18 @@ func mkcodepoints() error {
 		keysyms  = loadkeysyms()
 	)
 
+	type mapCp struct {
+		cp rune
+		v  string
+	}
+
 	var (
-		ranges     = make([][2]rune, 0, 16)
-		rangeNames = make([]string, 0, 16)
-		codepoints = make([]string, 0, 32768)
+		ranges      = make([][2]rune, 0, 16)
+		rangeNames  = make([]string, 0, 16)
+		codepoints  = make([]string, 0, 32768)
+		mapEnts     = make([]mapCp, 0, 128)
+		mapDigraphs = make([]mapCp, 0, 128)
+		mapKeysyms  = make([]mapCp, 0, 128)
 	)
 	for _, line := range bytes.Split(text, []byte("\n")) {
 		if p := bytes.Index(line, []byte("#")); p > -1 {
@@ -630,18 +638,20 @@ func mkcodepoints() error {
 			}
 		}
 
-		entitiy := entities[cp]
-		digraph := digraphs[cp]
-		keysym := ""
+		if e, ok := entities[cp]; ok {
+			mapEnts = append(mapEnts, mapCp{cp, e})
+		}
+		if d, ok := digraphs[cp]; ok {
+			mapDigraphs = append(mapDigraphs, mapCp{cp, d})
+		}
 		if _, ok := keysyms[cp]; ok {
-			keysym = keysyms[cp][0]
+			mapKeysyms = append(mapKeysyms, mapCp{cp, keysyms[cp][0]})
 		}
 
 		codepoints = append(codepoints, fmt.Sprintf(
-			//          CP     Wid    Cat Name Vim HTML Enti KSym
-			"\t0x%x: {0x%[1]x, %d, %d, %#v, %#v, %#v, %#v},\n",
-			//cp, widths[cp], unidata.Catmap[string(s[2])], string(name), digraph, entitiy, keysym)
-			cp, widths[cp], catmap[string(s[2])], string(name), digraph, entitiy, keysym))
+			//        CP       Wid Cat Name
+			"\t0x%x: {0x%[1]x, %d, %d, %#v},\n",
+			cp, widths[cp], catmap[string(s[2])], string(name)))
 	}
 
 	fp, err := os.Create("gen_codepoints.go")
@@ -667,8 +677,27 @@ var codepointRanges = []struct {
 	for _, c := range codepoints {
 		write(fp, "%s", c)
 	}
+	write(fp, "}\n\n")
 
-	write(fp, "}\n")
+	write(fp, "var htmlEntities = map[rune]string{\n")
+	for _, m := range mapEnts {
+		write(fp, "\t0x%02x: %q,\n", m.cp, m.v)
+	}
+	write(fp, "}\n\n")
+
+	write(fp, "var keysyms = map[rune]string{\n")
+	for _, m := range mapKeysyms {
+		write(fp, "\t0x%02x: %q,\n", m.cp, m.v)
+	}
+	write(fp, "}\n\n")
+
+	write(fp, "var digraphs = map[rune]string{\n")
+	for _, m := range mapDigraphs {
+		write(fp, "\t0x%02x: %q,\n", m.cp, m.v)
+	}
+	write(fp, "}\n\n")
+
+	_, _, _ = mapKeysyms, mapEnts, mapDigraphs
 	return nil
 }
 
@@ -757,9 +786,9 @@ func loadentities() map[rune]string {
 	for i, j := 0, len(sorted)-1; i < j; i, j = i+1, j-1 {
 		sorted[i], sorted[j] = sorted[j], sorted[i]
 	}
-	sort.Slice(sorted, func(i, j int) bool {
-		return len(sorted[i]) < len(sorted[j])
-	})
+	// sort.Slice(sorted, func(i, j int) bool {
+	// 	return len(sorted[i]) < len(sorted[j])
+	// })
 
 	entities := make(map[rune]string)
 	var seen []rune
