@@ -339,26 +339,26 @@ var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 func toLine(info unidata.Codepoint, raw bool) map[string]string {
 	// TODO: would be better to include only the columns that are actually used.
 	return map[string]string{
-		"char":         info.Repr(raw),
+		"char":         map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],
 		"wide_padding": widePadding(info),
 		"cpoint":       info.FormatCodepoint(),
 		"dec":          info.Format(10),
 		"hex":          info.Format(16),
 		"oct":          info.Format(8),
 		"bin":          info.Format(2),
-		"utf8":         info.UTF8(),
-		"utf16be":      info.UTF16(true),
-		"utf16le":      info.UTF16(false),
-		"html":         info.HTMLEntity(),
-		"xml":          info.XMLEntity(),
+		"utf8":         fmt.Sprintf("% x", info.UTF8()),
+		"utf16be":      fmt.Sprintf("% x", info.UTF16(true)),
+		"utf16le":      fmt.Sprintf("% x", info.UTF16(false)),
+		"html":         info.HTML(),
+		"xml":          info.XML(),
 		"json":         info.JSON(),
-		"keysym":       info.KeySym,
-		"digraph":      info.Digraph,
-		"name":         info.Name,
-		"cat":          info.Category(),
-		"block":        info.Block(),
-		"plane":        info.Plane(),
-		"width":        info.WidthName(),
+		"keysym":       info.KeySym(),
+		"digraph":      info.Digraph(),
+		"name":         info.Name(),
+		"cat":          info.Category().String(),
+		"block":        info.Block().String(),
+		"plane":        info.Plane().String(),
+		"width":        info.Width().String(),
 	}
 }
 
@@ -384,7 +384,7 @@ func tabOrSpace() string {
 }
 
 func widePadding(info unidata.Codepoint) string {
-	if info.Width != unidata.WidthFullWidth && info.Width != unidata.WidthWide {
+	if info.Width() != unidata.WidthFullWidth && info.Width() != unidata.WidthWide {
 		return " "
 	}
 	return ""

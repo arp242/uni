@@ -398,7 +398,7 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 	for _, info := range unidata.Codepoints {
 		m := 0
 		for _, a := range args {
-			if strings.Contains(info.Name, a) {
+			if strings.Contains(info.Name(), a) {
 				if or {
 					found = true
 					f.Line(toLine(info, raw))
@@ -462,10 +462,8 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			continue
 		}
 
-		canon := unidata.CanonicalCategory(a)
-
 		// Print everything.
-		if canon == "all" {
+		if strings.ToLower(a) == "all" {
 			for _, info := range unidata.Codepoints {
 				f.Line(toLine(info, raw))
 			}
@@ -473,9 +471,9 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 		}
 
 		// Category name.
-		if cat, ok := unidata.Catmap[canon]; ok {
+		if cat, ok := unidata.FindCategory(a); ok {
 			for _, info := range unidata.Codepoints {
-				if info.Cat == cat {
+				if info.Category() == cat {
 					f.Line(toLine(info, raw))
 				}
 			}
@@ -483,8 +481,8 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 		}
 
 		// Block.
-		if bl, ok := unidata.Blockmap[canon]; ok {
-			for cp := unidata.Blocks[bl][0]; cp <= unidata.Blocks[bl][1]; cp++ {
+		if bl, ok := unidata.FindBlock(a); ok {
+			for cp := unidata.Blocks[bl].Range[0]; cp <= unidata.Blocks[bl].Range[1]; cp++ {
 				s, ok := unidata.Codepoints[cp]
 				if ok {
 					f.Line(toLine(s, raw))
@@ -496,24 +494,24 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 		// U2042, U+2042, U+2042..U+2050, 2042..2050, 2042-2050, 0x2041, etc.
 		var s []string
 		switch {
-		case strings.Contains(canon, ".."):
-			s = strings.SplitN(canon, "..", 2)
-		case strings.Contains(canon, "-"):
-			s = strings.SplitN(canon, "-", 2)
+		case strings.Contains(a, ".."):
+			s = strings.SplitN(a, "..", 2)
+		case strings.Contains(a, "-"):
+			s = strings.SplitN(a, "-", 2)
 		default:
-			s = []string{canon, canon}
+			s = []string{a, a}
 		}
 
-		start, err := unidata.ToRune(s[0])
+		start, err := unidata.FromString(s[0])
 		if err != nil {
-			return fmt.Errorf("invalid codepoint: %s", err)
+			return fmt.Errorf("invalid codepoint: %s", errors.Unwrap(err))
 		}
-		end, err := unidata.ToRune(s[1])
+		end, err := unidata.FromString(s[1])
 		if err != nil {
-			return fmt.Errorf("invalid codepoint: %s", err)
+			return fmt.Errorf("invalid codepoint: %s", errors.Unwrap(err))
 		}
 
-		for i := start; i <= end; i++ {
+		for i := start.Codepoint; i <= end.Codepoint; i++ {
 			info, _ := unidata.Find(i)
 			f.Line(toLine(info, raw))
 		}
