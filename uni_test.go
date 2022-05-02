@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -363,4 +364,34 @@ func TestJSON(t *testing.T) {
 	if d := ztest.Diff(want, got); d != "" {
 		t.Error(d)
 	}
+}
+
+func BenchmarkUni(b *testing.B) {
+	zli.Stdout = new(bytes.Buffer)
+
+	b.Run("print all", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "all"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
+	b.Run("print all json", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "all", "-j"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
+
+	b.Run("print all columns", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "all", "-f", "all"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
+	b.Run("print all columns json", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "all", "-f", "all", "-j"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
 }
