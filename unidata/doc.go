@@ -1,3 +1,5 @@
+//go:generate ./gen/gen.zsh
+
 // Package unidata contains information about the Unicode database.
 //
 // This is an alternative to Go's unicode package in stdlib and provides some
@@ -5,13 +7,8 @@
 // knows about emojis.
 //
 // The downside is that this package is a bit slower, uses more memory, and
-// increases the binary size by about 2M.
-//
-//   main      1127K     738K stripped
-//   unicode   1229K     824K stripped
-//   unidata   3455K    2964K stripped
-//
-// It should still be plenty fast enough for most use cases.
+// increases the binary size by about 2M. It should still be plenty fast enough
+// for most use cases.
 //
 // This is updated to Unicode 14.0 (September 2021).
 //

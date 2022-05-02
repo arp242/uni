@@ -236,7 +236,7 @@ Apply skin tone modifiers with `-tone`:
     🫶🏿	heart hands: dark skin tone        (love)
     👐🏿	open hands: dark skin tone         ()
     🤲🏿	palms up together: dark skin tone  (prayer)
-    🤝	handshake                          (agreement, meeting)
+    🤝🏿	handshake: dark skin tone          (agreement, meeting)
     🙏🏿	folded hands: dark skin tone       (ask, high 5, high five, please, pray, thanks)
 
 The "heart hands" may not show as it's very recent. The handshake emoji supports
@@ -250,28 +250,26 @@ The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
     $ uni e -gender man g:person-gesture
-    	name              (cldr)
-    🙍‍♂️	man frowning      (gesture, person frowning)
-    🙎‍♂️	man pouting       (gesture, person pouting)
-    🙅‍♂️	man gesturing NO  (forbidden, gesture, hand, person gesturing NO, prohibited)
-    🙆‍♂️	man gesturing OK  (gesture, hand, person gesturing OK)
-    💁‍♂️	man tipping hand  (help, information, person tipping hand, sassy)
-    🙋‍♂️	man raising hand  (gesture, happy, person raising hand, raised)
-    🧏‍♂️	deaf man          (accessibility, deaf person, ear, hear)
-    🙇‍♂️	man bowing        (apology, gesture, person bowing, sorry)
-    🤦‍♂️	man facepalming   (disbelief, exasperation, person facepalming)
-    🤷‍♂️	man shrugging     (doubt, ignorance, indifference, person shrugging)
+    	name                 (cldr)
+    🙍	person frowning      (gesture)
+    🙎	person pouting       (gesture)
+    🙅	person gesturing NO  (forbidden, gesture, hand, prohibited)
+    🙆	person gesturing OK  (gesture, hand)
+    💁	person tipping hand  (help, information, sassy)
+    🙋	person raising hand  (gesture, happy, raised)
+    🧏	deaf person          (accessibility, ear, hear)
+    🙇	person bowing        (apology, gesture, sorry)
+    🤦	person facepalming   (disbelief, exasperation)
+    🤷	person shrugging     (doubt, ignorance, indifference)
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants, and `-tone light,dark` will display
 both a light and dark skin tone; use `all` to display all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-    	name                              (cldr)
-    🤷🏻‍♀️	woman shrugging: light skin tone  (doubt, ignorance, indifference, person shrugging)
-    🤷🏻‍♂️	man shrugging: light skin tone    (doubt, ignorance, indifference, person shrugging)
-    🤷🏿‍♀️	woman shrugging: dark skin tone   (doubt, ignorance, indifference, person shrugging)
-    🤷🏿‍♂️	man shrugging: dark skin tone     (doubt, ignorance, indifference, person shrugging)
+    	name                               (cldr)
+    🤷🏻	person shrugging: light skin tone  (doubt, ignorance, indifference)
+    🤷🏿	person shrugging: dark skin tone   (doubt, ignorance, indifference)
 
 Like `print` and `identify`, you can use `-format`:
 
@@ -538,6 +536,7 @@ Development
 
 Re-generate the Unicode data with `go generate unidata`. Files are cached in
 `unidata/.cache`, so clear that if you want to update the files from remote.
+This requires zsh and GNU awk (gawk)
 
 Alternatives
 ------------

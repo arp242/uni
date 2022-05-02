@@ -1,5 +1,3 @@
-//go:generate go run ./gen.go
-
 package unidata
 
 import (
@@ -9,8 +7,6 @@ import (
 	"strings"
 	"unicode/utf16"
 	"unicode/utf8"
-
-	"zgo.at/zstd/zstring"
 )
 
 type (
@@ -92,7 +88,7 @@ func FromString(s string) (Codepoint, error) {
 	s = strings.ToUpper(s)
 	var base = 16
 	switch {
-	case zstring.HasPrefixes(s, "0X", "U+"):
+	case strings.HasPrefix(s, "0X") || strings.HasPrefix(s, "U+"):
 		s = s[2:]
 	case strings.HasPrefix(s, "0D"):
 		s = s[2:]
@@ -104,7 +100,7 @@ func FromString(s string) (Codepoint, error) {
 		s = s[2:]
 		base = 2
 
-	case zstring.HasPrefixes(s, "X", "U"):
+	case strings.HasPrefix(s, "X") || strings.HasPrefix(s, "U"):
 		s = s[1:]
 	case strings.HasPrefix(s, "O"):
 		s = s[1:]

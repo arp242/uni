@@ -329,6 +329,7 @@ Development
 
 Re-generate the Unicode data with `go generate unidata`. Files are cached in
 `unidata/.cache`, so clear that if you want to update the files from remote.
+This requires zsh and GNU awk (gawk)
 
 Alternatives
 ------------
