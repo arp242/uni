@@ -51,19 +51,21 @@ type Format struct {
 	format    string         // Format string: %(..)
 	re        *regexp.Regexp // Cached regexp for format.
 	cols      []column       // Columns we know about.
-	lines     [][]string     // Processed lines, to be printed.
-	autoalign []int          // Max line lengths for autoalign.
-	ntrim     int            // Number of columns with "trim"
-	json      bool           // Print as JSON.
+	colNames  []string
+	lines     [][]string // Processed lines, to be printed.
+	autoalign []int      // Max line lengths for autoalign.
+	ntrim     int        // Number of columns with "trim"
+	json      bool       // Print as JSON.
 
 	printHeader bool
 }
 
+var (
+	reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
+)
+
 func NewFormat(format string, asJSON, printHeader bool, knownCols ...string) (*Format, error) {
-	var (
-		reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
-		f          = Format{format: format, printHeader: printHeader, json: asJSON}
-	)
+	f := Format{format: format, printHeader: printHeader, json: asJSON}
 	for _, m := range reFindCols.FindAllString(format, -1) {
 		err := f.processColumn(m)
 		if err != nil {
@@ -252,8 +254,9 @@ func (f *Format) Print(out io.Writer) {
 		// This line is too long and we want to trim: reformat the lot.
 		// TODO: this can be a bit more efficient: we know the column widths and
 		// text already, but this is easier.
-		if f.ntrim > 0 && termtext.Width(line) > termWidth {
-			tooLongBy := termtext.Width(line) - termWidth
+		w := termtext.Width(line)
+		if f.ntrim > 0 && w > termWidth {
+			tooLongBy := w - termWidth
 			var t = make([]int, len(f.cols))
 			for i, text := range l {
 				if f.cols[i].trim {
@@ -336,31 +339,105 @@ var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"oct", "bin", "utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym",
 	"digraph", "name", "cat", "block", "plane", "width", "props"}
 
-func toLine(info unidata.Codepoint, raw bool) map[string]string {
-	// TODO: would be better to include only the columns that are actually used.
-	return map[string]string{
-		"char":         map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],
-		"wide_padding": widePadding(info),
-		"cpoint":       info.FormatCodepoint(),
-		"dec":          info.Format(10),
-		"hex":          info.Format(16),
-		"oct":          info.Format(8),
-		"bin":          info.Format(2),
-		"utf8":         fmt.Sprintf("% x", info.UTF8()),
-		"utf16be":      fmt.Sprintf("% x", info.UTF16(true)),
-		"utf16le":      fmt.Sprintf("% x", info.UTF16(false)),
-		"html":         info.HTML(),
-		"xml":          info.XML(),
-		"json":         info.JSON(),
-		"keysym":       info.KeySym(),
-		"digraph":      info.Digraph(),
-		"name":         info.Name(),
-		"cat":          info.Category().String(),
-		"block":        info.Block().String(),
-		"plane":        info.Plane().String(),
-		"width":        info.Width().String(),
-		"props":        info.Properties().String(),
+func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
+	if len(f.cols) == len(knownColumns) { // Optimize printing all columns.
+		return map[string]string{
+			"char":         map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],
+			"wide_padding": widePadding(info),
+			"cpoint":       info.FormatCodepoint(),
+			"dec":          info.Format(10),
+			"hex":          info.Format(16),
+			"oct":          info.Format(8),
+			"bin":          info.Format(2),
+			"utf8":         fmt.Sprintf("% x", info.UTF8()),
+			"utf16be":      fmt.Sprintf("% x", info.UTF16(true)),
+			"utf16le":      fmt.Sprintf("% x", info.UTF16(false)),
+			"html":         info.HTML(),
+			"xml":          info.XML(),
+			"json":         info.JSON(),
+			"keysym":       info.KeySym(),
+			"digraph":      info.Digraph(),
+			"name":         info.Name(),
+			"cat":          info.Category().String(),
+			"block":        info.Block().String(),
+			"plane":        info.Plane().String(),
+			"width":        info.Width().String(),
+			"props":        info.Properties().String(),
+		}
 	}
+
+	if f.colNames == nil {
+		f.colNames = make([]string, len(f.cols))
+		for _, c := range f.cols {
+			f.colNames = append(f.colNames, c.name)
+		}
+	}
+
+	cols := make(map[string]string)
+	if zstring.Contains(f.colNames, "char") {
+		cols["char"] = map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw]
+	}
+	if zstring.Contains(f.colNames, "wide_padding") {
+		cols["wide_padding"] = widePadding(info)
+	}
+	if zstring.Contains(f.colNames, "cpoint") {
+		cols["cpoint"] = info.FormatCodepoint()
+	}
+	if zstring.Contains(f.colNames, "dec") {
+		cols["dec"] = info.Format(10)
+	}
+	if zstring.Contains(f.colNames, "hex") {
+		cols["hex"] = info.Format(16)
+	}
+	if zstring.Contains(f.colNames, "oct") {
+		cols["oct"] = info.Format(8)
+	}
+	if zstring.Contains(f.colNames, "bin") {
+		cols["bin"] = info.Format(2)
+	}
+	if zstring.Contains(f.colNames, "utf8") {
+		cols["utf8"] = fmt.Sprintf("% x", info.UTF8())
+	}
+	if zstring.Contains(f.colNames, "utf16be") {
+		cols["utf16be"] = fmt.Sprintf("% x", info.UTF16(true))
+	}
+	if zstring.Contains(f.colNames, "utf16le") {
+		cols["utf16le"] = fmt.Sprintf("% x", info.UTF16(false))
+	}
+	if zstring.Contains(f.colNames, "html") {
+		cols["html"] = info.HTML()
+	}
+	if zstring.Contains(f.colNames, "xml") {
+		cols["xml"] = info.XML()
+	}
+	if zstring.Contains(f.colNames, "json") {
+		cols["json"] = info.JSON()
+	}
+	if zstring.Contains(f.colNames, "keysym") {
+		cols["keysym"] = info.KeySym()
+	}
+	if zstring.Contains(f.colNames, "digraph") {
+		cols["digraph"] = info.Digraph()
+	}
+	if zstring.Contains(f.colNames, "name") {
+		cols["name"] = info.Name()
+	}
+	if zstring.Contains(f.colNames, "cat") {
+		cols["cat"] = info.Category().String()
+	}
+	if zstring.Contains(f.colNames, "block") {
+		cols["block"] = info.Block().String()
+	}
+	if zstring.Contains(f.colNames, "plane") {
+		cols["plane"] = info.Plane().String()
+	}
+	if zstring.Contains(f.colNames, "width") {
+		cols["width"] = info.Width().String()
+	}
+	if zstring.Contains(f.colNames, "props") {
+		cols["props"] = info.Properties().String()
+	}
+	return cols
 }
 
 // Alignment with spaces is tricky, as some emojis are double-width and some are

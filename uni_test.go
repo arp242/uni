@@ -369,6 +369,19 @@ func TestJSON(t *testing.T) {
 func BenchmarkUni(b *testing.B) {
 	zli.Stdout = new(bytes.Buffer)
 
+	b.Run("print one", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "20ac"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
+	b.Run("print three", func(b *testing.B) {
+		os.Args = []string{"uni", "p", "20ac", "20ad", "20ae"}
+		for n := 0; n < b.N; n++ {
+			main()
+		}
+	})
+
 	b.Run("print all", func(b *testing.B) {
 		os.Args = []string{"uni", "p", "all"}
 		for n := 0; n < b.N; n++ {

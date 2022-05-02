@@ -366,7 +366,7 @@ func identify(ins []string, format string, quiet, raw, asJSON bool) error {
 			return fmt.Errorf("unknown codepoint: U+%.4X", c) // Should never happen.
 		}
 
-		f.Line(toLine(info, raw))
+		f.Line(f.toLine(info, raw))
 	}
 	f.Print(zli.Stdout)
 	return nil
@@ -399,7 +399,7 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 			if strings.Contains(info.Name(), a) {
 				if or {
 					found = true
-					f.Line(toLine(info, raw))
+					f.Line(f.toLine(info, raw))
 					break
 				}
 				m++
@@ -407,7 +407,7 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 		}
 		if !or && m == len(args) {
 			found = true
-			f.Line(toLine(info, raw))
+			f.Line(f.toLine(info, raw))
 		}
 	}
 
@@ -456,14 +456,14 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 				return fmt.Errorf("multiple characters in sequence %q", a)
 			}
 
-			f.Line(toLine(unidata.Codepoints[r], raw))
+			f.Line(f.toLine(unidata.Codepoints[r], raw))
 			continue
 		}
 
 		// Print everything.
 		if strings.ToLower(a) == "all" {
 			for _, info := range unidata.Codepoints {
-				f.Line(toLine(info, raw))
+				f.Line(f.toLine(info, raw))
 			}
 			continue
 		}
@@ -472,7 +472,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 		if cat, ok := unidata.FindCategory(a); ok {
 			for _, info := range unidata.Codepoints {
 				if info.Category() == cat {
-					f.Line(toLine(info, raw))
+					f.Line(f.toLine(info, raw))
 				}
 			}
 			continue
@@ -483,7 +483,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			for cp := unidata.Blocks[bl].Range[0]; cp <= unidata.Blocks[bl].Range[1]; cp++ {
 				s, ok := unidata.Codepoints[cp]
 				if ok {
-					f.Line(toLine(s, raw))
+					f.Line(f.toLine(s, raw))
 				}
 			}
 			continue
@@ -495,7 +495,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 				for cp := pp[0]; cp <= pp[1]; cp++ {
 					s, ok := unidata.Codepoints[cp]
 					if ok {
-						f.Line(toLine(s, raw))
+						f.Line(f.toLine(s, raw))
 					}
 				}
 			}
@@ -524,7 +524,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 
 		for i := start.Codepoint; i <= end.Codepoint; i++ {
 			info, _ := unidata.Find(i)
-			f.Line(toLine(info, raw))
+			f.Line(f.toLine(info, raw))
 		}
 	}
 	f.SortNum("dec")
