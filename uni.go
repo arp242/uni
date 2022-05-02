@@ -174,6 +174,7 @@ Format:
         %(name)          Code point name                CHECK MARK
         %(cat)           Category name                  Other_Symbol
         %(block)         Block name                     Dingbats
+        %(props)         Properties, separated by ,     Pattern Syntax
         %(plane)         Plane name                     Basic Multilingual Plane
         %(width)         Character width                Narrow
         %(wide_padding)  Blank for wide characters,
@@ -201,7 +202,8 @@ const (
 	allFormat     = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
-		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)"
+		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
+		" %(props l:auto)"
 
 	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
 	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
@@ -482,6 +484,19 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 				s, ok := unidata.Codepoints[cp]
 				if ok {
 					f.Line(toLine(s, raw))
+				}
+			}
+			continue
+		}
+
+		// Properties
+		if p, ok := unidata.FindProperty(a); ok {
+			for _, pp := range unidata.Properties[p].Ranges {
+				for cp := pp[0]; cp <= pp[1]; cp++ {
+					s, ok := unidata.Codepoints[cp]
+					if ok {
+						f.Line(toLine(s, raw))
+					}
 				}
 			}
 			continue

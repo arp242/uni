@@ -334,7 +334,7 @@ func (f *Format) String() string {
 
 var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"oct", "bin", "utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym",
-	"digraph", "name", "cat", "block", "plane", "width"}
+	"digraph", "name", "cat", "block", "plane", "width", "props"}
 
 func toLine(info unidata.Codepoint, raw bool) map[string]string {
 	// TODO: would be better to include only the columns that are actually used.
@@ -359,6 +359,7 @@ func toLine(info unidata.Codepoint, raw bool) map[string]string {
 		"block":        info.Block().String(),
 		"plane":        info.Plane().String(),
 		"width":        info.Width().String(),
+		"props":        info.Properties().String(),
 	}
 }
 

@@ -3,40 +3,44 @@
 setopt no_unset pipefail
 cd $0:P:h:h
 
-# TODO: add casefolding
-# https://unicode.org/Public/13.0.0/ucd/CaseFolding.txt
-# CaseFold []rune
-# 
-# TODO: add properties:
-# https://unicode.org/Public/13.0.0/ucd/PropList.txt
-# "uni p dash" should print all dashes.
-# 
-# 
 # TODO: add "confusable" information from
-# https://www.unicode.org/Public/idna/13.0.0/
-# and/or
 # https://www.unicode.org/Public/security/13.0.0/
-# 
-# 
+# https://www.unicode.org/reports/tr39/
+
 # TODO: add "alias" information from
-# https://unicode.org/Public/13.0.0/ucd/NamesList.txt
-# This is generated from other sources, but I can't really find where it gts
-# that "x (modifier letter prime - 02B9)" from.
-# 
-# 0027 APOSTROPHE
-#     = apostrophe-quote (1.0)
-#     = APL quote
-#     * neutral (vertical) glyph with mixed usage
-#     * 2019 is preferred for apostrophe
-#     * preferred characters in English for paired quotation marks are 2018 & 2019
-#     * 05F3 is preferred for geresh when writing Hebrew
-#     x (modifier letter prime - 02B9)
-#     x (modifier letter apostrophe - 02BC)
-#     x (modifier letter vertical line - 02C8)
-#     x (combining acute accent - 0301)
-#     x (hebrew punctuation geresh - 05F3)
-#     x (prime - 2032)
-#     x (latin small letter saltillo - A78C)
+# https://www.unicode.org/Public/UCD/latest/ucd/NamesList.txt
+# https://www.unicode.org/Public/UCD/latest/ucd/NamesList.html
+# https://www.unicode.org/versions/Unicode14.0.0/ch24.pdf
+#
+# Format:
+#    <codepoint>\t<description>
+#    \t= alias
+#    \t* comments/see also
+#    \tx cross-reference
+#    \t# comment(?)
+#
+# Example:
+#
+#   00B2 SUPERSCRIPT TWO
+#       = squared
+#       * other superscript digit characters: 2070-2079
+#       x (superscript one - 00B9)
+#       # <super> 0032
+#
+#   0027 APOSTROPHE
+#       = apostrophe-quote (1.0)
+#       = APL quote
+#       * neutral (vertical) glyph with mixed usage
+#       * 2019 is preferred for apostrophe
+#       * preferred characters in English for paired quotation marks are 2018 & 2019
+#       * 05F3 is preferred for geresh when writing Hebrew
+#       x (modifier letter prime - 02B9)
+#       x (modifier letter apostrophe - 02BC)
+#       x (modifier letter vertical line - 02C8)
+#       x (combining acute accent - 0301)
+#       x (hebrew punctuation geresh - 05F3)
+#       x (prime - 2032)
+#       x (latin small letter saltillo - A78C)
 
 get() { [[ -f .cache/$1:t ]] || curl -sL $1 >.cache/$1:t; }
 mk() {
@@ -52,16 +56,19 @@ mk() {
 
 mkdir -p .cache
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
+get 'https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt'
+get 'https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt'
-get 'https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt'
 get 'https://www.unicode.org/Public/emoji/14.0/emoji-test.txt'
+
 get 'https://html.spec.whatwg.org/entities.json'
 get 'https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/raw/master/include/X11/keysymdef.h'
 get 'https://tools.ietf.org/rfc/rfc1345.txt'
 get 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotations/en.xml'
 
 # export LC_ALL=C
+mk props      '.cache/PropList.txt'
 mk blocks     '.cache/Blocks.txt'
 mk cats       '.cache/PropertyValueAliases.txt'
 mk emojis     '.cache/emoji-test.txt'

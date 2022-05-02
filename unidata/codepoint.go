@@ -20,21 +20,34 @@ type (
 		// at some point.
 		//
 		// Note: don't change the order without changing gen_codepoints.go
-		width    Width    // Unicode width.
-		category Category // Codepoint category.
-		name     string   // Codepoint name.
+		width    Width
+		category Category
+		name     string
 	}
 
-	Width    uint8  // Unicode width
-	Plane    uint8  // Unicode plane
-	Category uint8  // Unicode category
-	Block    uint16 // Unicode block
+	Width        uint8      // Unicode width
+	Plane        uint8      // Unicode plane
+	Category     uint8      // Unicode category
+	Block        uint16     // Unicode block
+	Property     uint8      // Unicode property
+	PropertyList []Property // Unicode property
 )
 
 func (w Width) String() string    { return Widths[w] }
 func (c Category) String() string { return Categories[c].Name }
 func (p Plane) String() string    { return Planes[p].Name }
 func (b Block) String() string    { return Blocks[b].Name }
+func (p Property) String() string { return Properties[p].Name }
+func (p PropertyList) String() string {
+	var b strings.Builder
+	for i, pp := range p {
+		if i > 0 {
+			b.WriteString(", ")
+		}
+		b.WriteString(Properties[pp].Name)
+	}
+	return b.String()
+}
 
 // FindBlock finds a block by name.
 func FindBlock(name string) (Block, bool) {
@@ -46,6 +59,12 @@ func FindBlock(name string) (Block, bool) {
 func FindCategory(name string) (Category, bool) {
 	c, ok := catmap[nameKey(name)]
 	return c, ok
+}
+
+// FindProperty finds a property by name.
+func FindProperty(name string) (Property, bool) {
+	p, ok := propmap[nameKey(name)]
+	return p, ok
 }
 
 // Find a Codepoint for this rune.
@@ -188,6 +207,19 @@ func (c Codepoint) Block() Block {
 		}
 	}
 	return BlockUnknown
+}
+
+// Properties gets the unicode properties for this codepoint.
+func (c Codepoint) Properties() PropertyList {
+	all := make(PropertyList, 0, 1)
+	for k, v := range Properties {
+		for _, r := range v.Ranges {
+			if c.Codepoint >= r[0] && c.Codepoint <= r[1] {
+				all = append(all, k)
+			}
+		}
+	}
+	return all
 }
 
 // FormatCodepoint formats the codepoint in Unicode notation.

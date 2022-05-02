@@ -24,6 +24,14 @@ var blockmap = func() map[string]Block {
 	return b
 }()
 
+var propmap = func() map[string]Property {
+	b := make(map[string]Property)
+	for k, v := range Properties {
+		b[nameKey(v.Name)] = k
+	}
+	return b
+}()
+
 // namekey → Category
 var catmap = map[string]Category{
 	// Short-hand.
