@@ -336,6 +336,7 @@ all columns:
     	"name": "LATIN SMALL LETTER H",
     	"oct": "150",
     	"plane": "Basic Multilingual Plane",
+    	"props": "",
     	"utf16be": "00 68",
     	"utf16le": "68 00",
     	"utf8": "68",
@@ -356,6 +357,7 @@ all columns:
     	"name": "EURO SIGN",
     	"oct": "20254",
     	"plane": "Basic Multilingual Plane",
+    	"props": "",
     	"utf16be": "20 ac",
     	"utf16le": "ac 20",
     	"utf8": "e2 82 ac",
@@ -376,6 +378,7 @@ all columns:
     	"name": "LATIN SMALL LETTER Y WITH ACUTE",
     	"oct": "375",
     	"plane": "Basic Multilingual Plane",
+    	"props": "",
     	"utf16be": "00 fd",
     	"utf16le": "fd 00",
     	"utf8": "c3 bd",
@@ -405,6 +408,11 @@ ChangeLog
 ---------
 
 ### 2.5.0 (unreleased)
+
+- Add support for properties; they can be displayed with `%(props)` in
+  `-format`, and printed with `uni print` (e.g. `uni print dash`).
+
+- Add `uni list` command, to list categories, blocks, and properties.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
   some operations would fail on codepoints added in Unicode 14.

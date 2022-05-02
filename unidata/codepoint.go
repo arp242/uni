@@ -49,22 +49,66 @@ func (p PropertyList) String() string {
 	return b.String()
 }
 
+var mName = strings.NewReplacer(
+	"&", "",
+	" ", "",
+	"-", "",
+	"_", "",
+)
+
+func matchName(s string) string { return strings.ToLower(mName.Replace(s)) }
+
 // FindBlock finds a block by name.
 func FindBlock(name string) (Block, bool) {
-	b, ok := blockmap[nameKey(name)]
-	return b, ok
+	var (
+		match = matchName(name)
+		found Block
+	)
+	for k, b := range Blocks {
+		if strings.HasPrefix(matchName(b.Name), match) {
+			if found > 0 {
+				return 0, false
+			}
+			found = k
+		}
+	}
+
+	return found, found > 0
 }
 
 // FindCategory finds a category by name.
 func FindCategory(name string) (Category, bool) {
-	c, ok := catmap[nameKey(name)]
-	return c, ok
+	var (
+		match = matchName(name)
+		found Category
+	)
+	for k, b := range Categories {
+		if strings.HasPrefix(matchName(b.Name), match) || matchName(b.ShortName) == match {
+			if found > 0 {
+				return 0, false
+			}
+			found = k
+		}
+	}
+
+	return found, found > 0
 }
 
 // FindProperty finds a property by name.
 func FindProperty(name string) (Property, bool) {
-	p, ok := propmap[nameKey(name)]
-	return p, ok
+	var (
+		match = matchName(name)
+		found Property
+	)
+	for k, b := range Properties {
+		if strings.HasPrefix(matchName(b.Name), match) {
+			if found > 0 {
+				return 0, false
+			}
+			found = k
+		}
+	}
+	return found, found > 0
 }
 
 // Find a Codepoint for this rune.

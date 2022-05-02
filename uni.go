@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"unicode/utf8"
@@ -35,6 +36,7 @@ Flags:
     -j, -json      Output as JSON.
 
 Commands:
+    list           List blocks, categories, or properties.
     identify       Identify all the characters in the given strings.
     search         Search description for any of the words.
     print          Print characters by codepoint, category, or block.
@@ -65,6 +67,9 @@ Flags:
                    columns.
 
 Commands:
+    list [query]     List an overview of blocks, categories, or properties.
+                     Every name can be abbreviated (i.e. "b")
+
     identify [text]  Identify all the characters in the given strings.
 
     search [query]   Search description for any of the words.
@@ -74,8 +79,6 @@ Commands:
                        Codepoints             U+20, U20, 0x20, 0d32 (decimal),
                                               0o40, 0b100000
                        Range                  U+2042..U+2050, 0o101..0x5a
-                       Categories and Blocks  OtherPunctuation, Po,
-                                              GeneralPunctuation
                        UTF-8                  UTF-8 byte sequence, optionally
                                               separated by any combination of
                                               '0x', '-', '_', or spaces:
@@ -83,6 +86,9 @@ Commands:
                                                 utf8:0xe20x820xac
                                                 'utf8:e2 82 ac'
                                                 'utf8:0xe2 0x82 0xac'
+                       Categories             Po, OtherPunctuation
+                       Blocks                 'Box Drawing', boxdrawing, box
+                       Property               'ASCII Hex Digit', ascii
                        all                    Everything
 
     emoji [query]    Search emojis.
@@ -240,7 +246,7 @@ func main() {
 		return
 	}
 
-	cmd := flag.ShiftCommand("identify", "print", "search", "emoji", "help", "version")
+	cmd := flag.ShiftCommand("list", "identify", "print", "search", "emoji", "help", "version")
 	switch cmd { // These commands don't read from stdin.
 	case zli.CommandNoneGiven:
 		fmt.Fprint(zli.Stdout, usageShort)
@@ -278,6 +284,8 @@ func main() {
 	}
 
 	switch cmd {
+	case "list":
+		err = list(args, quiet, jsonF.Bool())
 	case "identify":
 		err = identify(args, format, quiet, raw, jsonF.Bool())
 	case "search":
@@ -348,6 +356,200 @@ func parseGenderFlag(gender string) unidata.EmojiModifier {
 		}
 	}
 	return m
+}
+
+// TODO: move to zli; this is a copy of ShiftCommand() basically.
+func match(input string, cmds ...string) string {
+	input = strings.ToLower(input)
+	if len(cmds) == 0 {
+		return input
+	}
+
+	var found string
+	for _, c := range cmds {
+		if c == input {
+			return input
+		}
+
+		if strings.HasPrefix(c, input) {
+			if found != "" {
+				return zli.CommandAmbiguous
+			}
+
+			if i := strings.IndexRune(c, '='); i > -1 { // Alias
+				c = c[i+1:]
+			}
+			found = c
+		}
+	}
+
+	if found == "" {
+		return zli.CommandUnknown
+	}
+	return found
+}
+
+func list(ls []string, quiet, asJSON bool) error {
+	if len(ls) == 0 {
+		ls = []string{"blocks"}
+	}
+
+	for _, l := range ls {
+		cmd := match(l, "blocks", "categories", "properties")
+
+		switch cmd {
+		case zli.CommandUnknown:
+			zli.Fatalf("unknown: %q", l)
+		case zli.CommandAmbiguous:
+			zli.Fatalf("ambiguous: %q", l)
+
+		// TODO: essentially the same code is repeated 3 times; this sucks.
+		case "blocks":
+			order := make([]struct {
+				Range [2]rune
+				Name  string
+			}, 0, len(unidata.Blocks))
+			for _, b := range unidata.Blocks {
+				order = append(order, b)
+			}
+
+			// TODO: add -order flag; grouping by start codepoint isn't
+			// neccisarily all that useful.
+			// Allow by name, too, and assigned, and maybe also grouping
+			// logically (alphabets, symbols, CJK, control, etc.)
+			sort.Slice(order, func(i, j int) bool { return order[i].Range[0] < order[j].Range[0] })
+
+			assign := make(map[string]int)
+			for k := range unidata.Codepoints {
+				for _, b := range order {
+					if k >= b.Range[0] && k <= b.Range[1] {
+						assign[b.Name]++
+					}
+				}
+			}
+
+			if asJSON {
+				fmt.Fprintln(zli.Stdout, "[")
+				for i, b := range order {
+					fmt.Fprintf(zli.Stdout, "\t"+`{"from": "0x%02X", "to": "0x%02X", "assigned": "%d", "name": %q}`,
+						b.Range[0], b.Range[1], assign[b.Name], b.Name)
+					if i != len(order)-1 {
+						fmt.Fprint(zli.Stdout, ",")
+					}
+					fmt.Fprint(zli.Stdout, "\n")
+				}
+				fmt.Fprintln(zli.Stdout, "]")
+				return nil
+			}
+
+			if !quiet {
+				fmt.Fprintln(zli.Stdout, "  From      To   Assigned  Name")
+			}
+			for _, b := range order {
+				fmt.Fprintf(zli.Stdout, "% 7X % 7X  %8d  %s\n",
+					b.Range[0], b.Range[1], assign[b.Name], b.Name)
+			}
+
+		case "categories":
+			order := make([]struct {
+				ShortName, Name string
+				Include         []unidata.Category
+				Const           unidata.Category
+			}, 0, len(unidata.Categories))
+			for k, c := range unidata.Categories {
+				order = append(order, struct {
+					ShortName, Name string
+					Include         []unidata.Category
+					Const           unidata.Category
+				}{c.ShortName, c.Name, c.Include, k})
+			}
+			sort.Slice(order, func(i, j int) bool {
+				return order[i].Const < order[j].Const
+			})
+
+			assign := make(map[unidata.Category]int)
+			for _, cp := range unidata.Codepoints {
+				for _, c := range order {
+					if cp.Category() == c.Const {
+						assign[c.Const]++
+					}
+				}
+			}
+
+			if asJSON {
+				fmt.Fprintln(zli.Stdout, "[")
+				for i, b := range order {
+					// TODO: add composed
+					fmt.Fprintf(zli.Stdout, "\t"+`{"short": %q, "name": %q, "assigned": %d}`,
+						b.ShortName, b.Name, assign[b.Const])
+					if i != len(order)-1 {
+						fmt.Fprint(zli.Stdout, ",")
+					}
+					fmt.Fprint(zli.Stdout, "\n")
+				}
+				fmt.Fprintln(zli.Stdout, "]")
+				return nil
+			}
+
+			if !quiet {
+				fmt.Fprintf(zli.Stdout, "%-5s  %-26s  %8s  %s\n", "Short", "Long", "Assigned", "Composed of")
+			}
+			for _, c := range order {
+				fmt.Fprintf(zli.Stdout, "%-5s  %-26s  %8d  ", c.ShortName, c.Name, assign[c.Const])
+				if len(c.Include) > 0 {
+					var in []string
+					for _, i := range c.Include {
+						in = append(in, unidata.Categories[i].ShortName)
+					}
+					fmt.Fprintf(zli.Stdout, "%s", strings.Join(in, " | "))
+				}
+				fmt.Fprintln(zli.Stdout)
+			}
+
+		case "properties":
+			order := make([]struct {
+				Name   string
+				Ranges [][2]rune
+			}, 0, len(unidata.Properties))
+			for _, p := range unidata.Properties {
+				order = append(order, p)
+			}
+			sort.Slice(order, func(i, j int) bool { return order[i].Name < order[j].Name })
+
+			assign := make(map[string]int)
+			for _, cp := range unidata.Codepoints {
+				for _, p := range cp.Properties() {
+					for _, c := range order {
+						if p.String() == c.Name {
+							assign[c.Name]++
+						}
+					}
+				}
+			}
+
+			if asJSON {
+				fmt.Fprintln(zli.Stdout, "[")
+				for i, b := range order {
+					fmt.Fprintf(zli.Stdout, "\t"+`{"name": %q, "assigned": %d}`,
+						b.Name, assign[b.Name])
+					if i != len(order)-1 {
+						fmt.Fprint(zli.Stdout, ",")
+					}
+					fmt.Fprint(zli.Stdout, "\n")
+				}
+				fmt.Fprintln(zli.Stdout, "]")
+				return nil
+			}
+
+			if !quiet {
+				fmt.Fprintf(zli.Stdout, "%-36s  %s\n", "Name", "Assigned")
+			}
+			for _, p := range order {
+				fmt.Fprintf(zli.Stdout, "%-36s  %d\n", p.Name, assign[p.Name])
+			}
+		}
+	}
+	return nil
 }
 
 func identify(ins []string, format string, quiet, raw, asJSON bool) error {
@@ -469,6 +671,7 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 		}
 
 		// Category name.
+		// TODO: print that we matched a category, block, or property
 		if cat, ok := unidata.FindCategory(a); ok {
 			for _, info := range unidata.Codepoints {
 				if info.Category() == cat {
