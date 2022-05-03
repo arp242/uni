@@ -73,11 +73,11 @@ It reads from stdin:
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
-You can use `-quiet` (or `-q`) to suppress the header, and `-format` (of `-f`)
+You can use `-compact` (or `-c`) to suppress the header, and `-format` (or `-f`)
 to control the output format, for example you may want to generate a codepoint
 to X11 keysym mapping:
 
-    $ uni i -q -f '0x%(hex): "%(keysym)", // %(name)' h€ý
+    $ uni i -c -f '0x%(hex): "%(keysym)", // %(name)' h€ý
     0x68: "h", // LATIN SMALL LETTER H
     0x20ac: "EuroSign", // EURO SIGN
     0xfd: "yacute", // LATIN SMALL LETTER Y WITH ACUTE
@@ -169,8 +169,29 @@ Blocks:
     '↓'  U+2193  8595   e2 86 93    &darr;     DOWNWARDS ARROW (Math_Symbol)
     …
 
-### Emoji
+Print as table, and with a shorter name:
 
+    $ uni p -table box
+             0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
+           ┌────────────────────────────────────────────────
+    U+250x │ ─  ━  │  ┃  ┄  ┅  ┆  ┇  ┈  ┉  ┊  ┋  ┌  ┍  ┎  ┏ 
+           │
+    U+251x │ ┐  ┑  ┒  ┓  └  ┕  ┖  ┗  ┘  ┙  ┚  ┛  ├  ┝  ┞  ┟ 
+           │
+    U+252x │ ┠  ┡  ┢  ┣  ┤  ┥  ┦  ┧  ┨  ┩  ┪  ┫  ┬  ┭  ┮  ┯ 
+           │
+    U+253x │ ┰  ┱  ┲  ┳  ┴  ┵  ┶  ┷  ┸  ┹  ┺  ┻  ┼  ┽  ┾  ┿ 
+           │
+    U+254x │ ╀  ╁  ╂  ╃  ╄  ╅  ╆  ╇  ╈  ╉  ╊  ╋  ╌  ╍  ╎  ╏ 
+           │
+    U+255x │ ═  ║  ╒  ╓  ╔  ╕  ╖  ╗  ╘  ╙  ╚  ╛  ╜  ╝  ╞  ╟ 
+           │
+    U+256x │ ╠  ╡  ╢  ╣  ╤  ╥  ╦  ╧  ╨  ╩  ╪  ╫  ╬  ╭  ╮  ╯ 
+           │
+    U+257x │ ╰  ╱  ╲  ╳  ╴  ╵  ╶  ╷  ╸  ╹  ╺  ╻  ╼  ╽  ╾  ╿ 
+           │
+
+### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
@@ -273,7 +294,7 @@ both a light and dark skin tone; use `all` to display all skin tones or genders:
 
 Like `print` and `identify`, you can use `-format`:
 
-    $ uni e g:cat-face -q -format '%(name): %(emoji)'
+    $ uni e g:cat-face -c -format '%(name): %(emoji)'
     grinning cat: 😺
     grinning cat with smiling eyes: 😸
     cat with tears of joy: 😹
@@ -412,7 +433,14 @@ ChangeLog
 - Add support for properties; they can be displayed with `%(props)` in
   `-format`, and printed with `uni print` (e.g. `uni print dash`).
 
+- Add `-table` / `-t` to show codepoints in a table.
+
 - Add `uni list` command, to list categories, blocks, and properties.
+
+- Change `-q`/`-quiet` to `-c`/`-compact`; `-json` will print as minified if
+  given, and `-table` will include less padding.
+
+  -q is still accepted as a backwards-compatible alias.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
   some operations would fail on codepoints added in Unicode 14.

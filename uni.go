@@ -22,18 +22,30 @@ var (
 	version      = "git"
 )
 
+// TODO: new -table/-t flag conflicts with -tone/-t
+//
+// Maybe use a different name? I can't really think of any :-/
+//
+// Could add new -a/-as flag:
+//
+//   -as table
+//   -as json
+//   -as list
+//
+// And accept -json as alias for -as json.
 var usageShort = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
 Usage: %(prog) [command] [flags]
 
 uni queries the unicode database. https://github.com/arp242/uni
 
 Flags:
-    -q, -quiet     Quiet output.
+    -c, -compact   More compact output.
     -r, -raw       Don't use graphical variants or add combining characters.
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
     -f, -format    Output format.
     -j, -json      Output as JSON.
+    -t, -table     Output as table.
 
 Commands:
     list           List blocks, categories, or properties.
@@ -51,11 +63,14 @@ Usage: %(prog) [command] [flags]
 uni queries the unicode database. https://github.com/arp242/uni
 
 Flags:
-    Flags can appear anywhere; "uni search euro -q" and "uni -q search euro"
-    are identical. Use "uni search -- -q" if you want to search for "-q". This
+    Flags can appear anywhere; "uni search euro -c" and "uni -c search euro"
+    are identical. Use "uni search -- -c" if you want to search for "-c". This
     also applies to flags specific to a command (e.g. "-gender" for "emoji").
 
-    -q, -quiet     Quiet output; don't print header, "no matches", etc.
+    -c, -compact   More compact output; don't print header, "no matches", etc.
+                   For -json it will use minified output, and for -table it will
+                   have less padding.
+    -q, -quiet     Backwards-compatible alias for -c/-compact.
     -r, -raw       Don't use graphical variants for control characters and
                    don't add ◌ (U+25CC) before combining characters.
     -p, -pager     Output to $PAGER.
@@ -65,6 +80,8 @@ Flags:
     -j, -json      Output as JSON; the columns listed in -format are included,
                    ignoring formatting flags. Use "-format all" to include all
                    columns.
+    -t, -table     Output as table; instead of listing the codepoints on every
+                   line use a table. This ignores the -format flag.
 
 Commands:
     list [query]     List an overview of blocks, categories, or properties.
@@ -218,7 +235,7 @@ const (
 func main() {
 	flag := zli.NewFlags(os.Args)
 	var (
-		quietF   = flag.Bool(false, "q", "quiet")
+		compact  = flag.Bool(false, "c", "compact", "q", "quiet")
 		help     = flag.Bool(false, "h", "help")
 		versionF = flag.Bool(false, "v", "version")
 		rawF     = flag.Bool(false, "r", "raw")
@@ -226,6 +243,7 @@ func main() {
 		or       = flag.Bool(false, "o", "or")
 		formatF  = flag.String("", "format", "f")
 		jsonF    = flag.Bool(false, "json", "j")
+		tbl      = flag.Bool(false, "table", "t")
 		tone     = flag.String("", "t", "tone", "tones")
 		gender   = flag.String("person", "g", "gender", "genders")
 	)
@@ -246,14 +264,16 @@ func main() {
 		return
 	}
 
-	cmd := flag.ShiftCommand("list", "identify", "print", "search", "emoji", "help", "version")
-	switch cmd { // These commands don't read from stdin.
-	case zli.CommandNoneGiven:
-		fmt.Fprint(zli.Stdout, usageShort)
-		return
-	case zli.CommandUnknown:
-		zli.Fatalf("unknown command")
-		return
+	cmd, err := flag.ShiftCommand("list", "identify", "print", "search", "emoji", "help", "version")
+	switch cmd {
+	case "":
+		if errors.As(err, &zli.ErrCommandNoneGiven{}) {
+			fmt.Fprint(zli.Stdout, usageShort)
+			return
+		}
+		zli.F(err)
+
+	// These commands don't read from stdin.
 	case "help":
 		fmt.Fprint(zli.Stdout, usage)
 		return
@@ -262,7 +282,12 @@ func main() {
 		return
 	}
 
-	quiet := quietF.Set()
+	if jsonF.Set() && tbl.Set() {
+		zli.Fatalf("can't set both -json and -table")
+	}
+
+	as := parseAsFlags(compact, jsonF, tbl)
+	quiet := compact.Set()
 	raw := rawF.Set()
 	args := flag.Args
 	args, err = zli.InputOrArgs(args, " \t\n", quiet)
@@ -285,15 +310,15 @@ func main() {
 
 	switch cmd {
 	case "list":
-		err = list(args, quiet, jsonF.Bool())
+		err = list(args, as)
 	case "identify":
-		err = identify(args, format, quiet, raw, jsonF.Bool())
+		err = identify(args, format, raw, as)
 	case "search":
-		err = search(args, format, quiet, raw, jsonF.Bool(), or.Bool())
+		err = search(args, format, raw, as, or.Bool())
 	case "print":
-		err = print(args, format, quiet, raw, jsonF.Bool())
+		err = print(args, format, raw, as)
 	case "emoji":
-		err = emoji(args, format, quiet, raw, jsonF.Bool(), or.Bool(),
+		err = emoji(args, format, raw, as, or.Bool(),
 			parseToneFlag(tone.String()), parseGenderFlag(gender.String()))
 	}
 	if err != nil {
@@ -301,6 +326,30 @@ func main() {
 			zli.Fatalf(err)
 		}
 		zli.Exit(1)
+	}
+}
+
+type fb interface {
+	Set() bool
+	Bool() bool
+}
+
+func parseAsFlags(compact, jsonF, tbl fb) printAs {
+	switch {
+	case jsonF.Set():
+		if compact.Set() {
+			return printAsJSONCompact
+		}
+		return printAsJSON
+	case tbl.Set():
+		if compact.Set() {
+			return printAsTableCompact
+		}
+		return printAsTable
+	case compact.Set():
+		return printAsListCompact
+	default:
+		return printAsList
 	}
 }
 
@@ -358,50 +407,55 @@ func parseGenderFlag(gender string) unidata.EmojiModifier {
 	return m
 }
 
-// TODO: move to zli; this is a copy of ShiftCommand() basically.
-func match(input string, cmds ...string) string {
+// TODO: move to zli or zstd; this is a copy of ShiftCommand() basically.
+//
+// Actually, f.StringMatch(...) might make sense, since this is a string value.
+func match(input string, cmds ...string) (string, error) {
 	input = strings.ToLower(input)
 	if len(cmds) == 0 {
-		return input
+		return input, nil
 	}
 
-	var found string
+	var found []string
 	for _, c := range cmds {
 		if c == input {
-			return input
+			return input, nil
 		}
 
 		if strings.HasPrefix(c, input) {
-			if found != "" {
-				return zli.CommandAmbiguous
-			}
-
 			if i := strings.IndexRune(c, '='); i > -1 { // Alias
 				c = c[i+1:]
 			}
-			found = c
+			found = append(found, c)
 		}
 	}
 
-	if found == "" {
-		return zli.CommandUnknown
+	switch len(found) {
+	case 0:
+		return "", zli.ErrCommandUnknown(input)
+	case 1:
+		return found[0], nil
+	default:
+		return "", zli.ErrCommandAmbiguous{Cmd: input, Opts: found}
 	}
-	return found
 }
 
-func list(ls []string, quiet, asJSON bool) error {
+func list(ls []string, as printAs) error {
+	var (
+		asJSON = (as == printAsJSON || as == printAsJSONCompact)
+		quiet  = as == printAsListCompact
+	)
+
 	if len(ls) == 0 {
 		ls = []string{"blocks"}
 	}
 
 	for _, l := range ls {
-		cmd := match(l, "blocks", "categories", "properties")
+		cmd, err := match(l, "blocks", "categories", "properties")
 
 		switch cmd {
-		case zli.CommandUnknown:
-			zli.Fatalf("unknown: %q", l)
-		case zli.CommandAmbiguous:
-			zli.Fatalf("ambiguous: %q", l)
+		case "":
+			zli.F(err)
 
 		// TODO: essentially the same code is repeated 3 times; this sucks.
 		case "blocks":
@@ -552,16 +606,23 @@ func list(ls []string, quiet, asJSON bool) error {
 	return nil
 }
 
-func identify(ins []string, format string, quiet, raw, asJSON bool) error {
+func identify(ins []string, format string, raw bool, as printAs) error {
+	var (
+	//asJSON = (as == printAsJSON || as == printAsJSONCompact)
+	//asTbl  = (as == printAsTable || as == printAsTableCompact)
+	//quiet  = as == printAsListCompact
+	)
+
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
 		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
 	}
 
-	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
+	f, err := NewFormat(format, as, knownColumns...)
 	if err != nil {
 		return err
 	}
+
 	for _, c := range in {
 		info, ok := unidata.Find(c)
 		if !ok {
@@ -574,7 +635,7 @@ func identify(ins []string, format string, quiet, raw, asJSON bool) error {
 	return nil
 }
 
-func search(args []string, format string, quiet, raw, asJSON, or bool) error {
+func search(args []string, format string, raw bool, as printAs, or bool) error {
 	var na []string
 	for _, a := range args {
 		if a != "" {
@@ -591,10 +652,11 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 	}
 
 	found := false
-	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
+	f, err := NewFormat(format, as, knownColumns...)
 	if err != nil {
 		return err
 	}
+
 	for _, info := range unidata.Codepoints {
 		m := 0
 		for _, a := range args {
@@ -623,8 +685,8 @@ func search(args []string, format string, quiet, raw, asJSON, or bool) error {
 
 var utfClean = strings.NewReplacer("0x", "", " ", "", "_", "", "-", "")
 
-func print(args []string, format string, quiet, raw, asJSON bool) error {
-	f, err := NewFormat(format, asJSON, !quiet, knownColumns...)
+func print(args []string, format string, raw bool, as printAs) error {
+	f, err := NewFormat(format, as, knownColumns...)
 	if err != nil {
 		return err
 	}
@@ -672,6 +734,25 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 
 		// Category name.
 		// TODO: print that we matched a category, block, or property
+		//
+		// TODO: some names conflict; for example:
+		//   property: "Dash"
+		//   category: Dash_Punctuation
+		// Should probably add a unidata.Find(), which finds "any of" and can
+		// detect disambigs.
+		//
+		// var (
+		//   cat, catOk = unidata.FindCategory(a)
+		//   bl, blOk   = unidata.FindBlock(a)
+		//   p, pOk     = unidata.FindProperty(a); ok {
+		//)
+		// if zbool.One(catOk, blOk, pOk) {
+		//    err
+		// }
+		// if catOk {
+		//   ..
+		// }
+		// ..
 		if cat, ok := unidata.FindCategory(a); ok {
 			for _, info := range unidata.Codepoints {
 				if info.Category() == cat {
@@ -680,7 +761,6 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			}
 			continue
 		}
-
 		// Block.
 		if bl, ok := unidata.FindBlock(a); ok {
 			for cp := unidata.Blocks[bl].Range[0]; cp <= unidata.Blocks[bl].Range[1]; cp++ {
@@ -691,7 +771,6 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 			}
 			continue
 		}
-
 		// Properties
 		if p, ok := unidata.FindProperty(a); ok {
 			for _, pp := range unidata.Properties[p].Ranges {
@@ -735,7 +814,12 @@ func print(args []string, format string, quiet, raw, asJSON bool) error {
 	return nil
 }
 
-func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, genders unidata.EmojiModifier) error {
+func emoji(args []string, format string, raw bool, as printAs, or bool, tones, genders unidata.EmojiModifier) error {
+	if as == printAsTable || as == printAsTableCompact {
+		// TODO: it should
+		return errors.New("-table doesn't work with emoji")
+	}
+
 	type matchArg struct {
 		group bool
 		name  bool
@@ -792,7 +876,7 @@ func emoji(args []string, format string, quiet, raw, asJSON, or bool, tones, gen
 		return errNoMatches
 	}
 
-	f, err := NewFormat(format, asJSON, !quiet, "emoji", "name", "group", "subgroup",
+	f, err := NewFormat(format, as, "emoji", "name", "group", "subgroup",
 		"tab", "cldr", "cldr_full", "cpoint")
 	if err != nil {
 		return err

@@ -13,6 +13,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
+	"github.com/mattn/go-runewidth"
 	"zgo.at/termtext"
 	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
@@ -49,23 +50,38 @@ type column struct {
 
 type Format struct {
 	format    string         // Format string: %(..)
+	as        printAs        // How to print (list, table, json)
 	re        *regexp.Regexp // Cached regexp for format.
 	cols      []column       // Columns we know about.
 	colNames  []string
 	lines     [][]string // Processed lines, to be printed.
 	autoalign []int      // Max line lengths for autoalign.
 	ntrim     int        // Number of columns with "trim"
-	json      bool       // Print as JSON.
 
-	printHeader bool
+	tblData []map[string]string
 }
 
-var (
-	reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
+var reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
+
+type printAs uint8
+
+const (
+	printAsList = printAs(iota)
+	printAsJSON
+	printAsTable
+	printAsListCompact
+	printAsJSONCompact
+	printAsTableCompact
 )
 
-func NewFormat(format string, asJSON, printHeader bool, knownCols ...string) (*Format, error) {
-	f := Format{format: format, printHeader: printHeader, json: asJSON}
+func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) {
+	f := Format{format: format, as: as}
+
+	if as == printAsTable || as == printAsTableCompact {
+		// Don't need all the rest of the logic.
+		return &f, nil
+	}
+
 	for _, m := range reFindCols.FindAllString(format, -1) {
 		err := f.processColumn(m)
 		if err != nil {
@@ -90,7 +106,7 @@ func NewFormat(format string, asJSON, printHeader bool, knownCols ...string) (*F
 	h["tab"] = tabOrSpace()
 	h["wide_padding"] = " "
 
-	if printHeader && !asJSON {
+	if as == printAsList {
 		f.Line(h)
 	}
 
@@ -99,6 +115,9 @@ func NewFormat(format string, asJSON, printHeader bool, knownCols ...string) (*F
 	f.re = regexp.MustCompile(`%\((` + strings.Join(cols, "|") + `)(?: .+?)?\)`)
 	return &f, nil
 }
+
+func (f *Format) tbl() bool  { return f.as == printAsTable || f.as == printAsTableCompact }
+func (f *Format) json() bool { return f.as == printAsJSON || f.as == printAsJSONCompact }
 
 func (f *Format) processColumn(line string) error {
 	s := zstring.Fields(line[2:len(line)-1], " ") // name, flags
@@ -159,6 +178,11 @@ func (f *Format) processColumn(line string) error {
 
 // Add a new line.
 func (f *Format) Line(columns map[string]string) error {
+	if f.tbl() {
+		f.tblData = append(f.tblData, columns)
+		return nil
+	}
+
 	line := make([]string, len(f.cols))
 	for i, c := range f.cols {
 		line[i] = columns[c.name]
@@ -209,7 +233,9 @@ func (f *Format) printJSON(out io.Writer) {
 	buf := new(bytes.Buffer)
 	enc := json.NewEncoder(buf)
 	enc.SetEscapeHTML(false)
-	enc.SetIndent("", "\t")
+	if f.as != printAsJSONCompact {
+		enc.SetIndent("", "\t")
+	}
 
 	out.Write([]byte("["))
 	for i, l := range f.lines {
@@ -234,9 +260,101 @@ func (f *Format) printJSON(out io.Writer) {
 	out.Write([]byte("]\n"))
 }
 
+// -table
+// -table compact
+//
+// TODO: fails; uni search euro -t
+//       Doesn't start at 0
+//
+//func (f *Format) printTbl(codepoints ...unidata.Codepoint) {
+func (f *Format) printTbl(out io.Writer) {
+	sort.Slice(f.tblData, func(i, j int) bool {
+		return f.tblData[i]["cpoint"] < f.tblData[j]["cpoint"]
+	})
+
+	var (
+		wide   = false
+		tblMap = make(map[string]string)
+		head   = 4
+	)
+	for _, r := range f.tblData {
+		if r["width"] == "wide" {
+			wide = true
+		}
+		tblMap[r["cpoint"]] = r["char"]
+		if []rune(r["char"])[0] > 0xffff {
+			head = 5
+		}
+	}
+
+	h := strings.Repeat(" ", head)
+	if wide {
+		fmt.Println(h + "     0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F")
+		fmt.Println(h + "   ┌" + strings.Repeat("─", 64))
+	} else {
+		fmt.Println(h + "     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F")
+		fmt.Println(h + "   ┌" + strings.Repeat("─", 48))
+	}
+
+	start, err := strconv.ParseInt(f.tblData[0]["cpoint"][2:], 16, 32)
+	zli.F(err)
+	end, err := strconv.ParseInt(f.tblData[len(f.tblData)-1]["cpoint"][2:], 16, 32)
+	zli.F(err)
+
+	var (
+		row   = ""
+		blank = 0
+		didel = false
+	)
+	// TODO: color cells that weren't in the selection, or maybe use some
+	// codepoints for that. Also color unassigned cells.
+	// TODO: output block name to the right.
+	for i := start; i <= end; i++ {
+		cp := fmt.Sprintf("U+%0"+strconv.Itoa(head)+"X", i)
+
+		cp1 := fmt.Sprintf("U+%04X", i)
+		char, ok := tblMap[cp1]
+		if !ok {
+			blank++
+			char = " "
+		}
+
+		if strings.HasSuffix(cp, "0") {
+			row += fmt.Sprintf("%sx │", strings.TrimSuffix(cp, "0"))
+		}
+
+		// If some chars are wide bit this one isn't, need to add space here.
+		row += fmt.Sprintf(" %s ", char)
+		if wide && runewidth.RuneWidth([]rune(char)[0]) == 1 {
+			row += " "
+		}
+		if strings.HasSuffix(cp, "F") || i == end {
+			if blank < 16 {
+				fmt.Print(row)
+				fmt.Print("\n")
+				if f.as != printAsTableCompact {
+					fmt.Println(h + "   │")
+				}
+				didel = false
+			} else if !didel {
+				//fmt.Println(h + "   │ …")
+				fmt.Println(h + " … │")
+				didel = true
+			}
+
+			row = ""
+			blank = 0
+		}
+	}
+}
+
 func (f *Format) Print(out io.Writer) {
-	if f.json {
+	if f.json() {
 		f.printJSON(out)
+		return
+	}
+	if f.tbl() {
+		f.printTbl(out)
 		return
 	}
 
@@ -299,7 +417,7 @@ func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) strin
 	c := f.cols[i]
 
 	if c.quote {
-		if f.printHeader && lineno == 0 {
+		if f.as != printAsListCompact && lineno == 0 {
 			text = " " + text + "  " // TODO: why two spaces?
 		} else {
 			text = "'" + text + "'"
@@ -317,7 +435,7 @@ func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) strin
 		text = zstring.AlignRight(text, w)
 	}
 	if c.fill > 0 {
-		if !f.printHeader || lineno > 0 {
+		if f.as == printAsListCompact || lineno > 0 {
 			text = strings.ReplaceAll(text, " ", string(c.fill))
 		}
 	}
@@ -340,6 +458,14 @@ var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"digraph", "name", "cat", "block", "plane", "width", "props"}
 
 func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
+	if f.tbl() {
+		return map[string]string{
+			"char":   map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],
+			"width":  info.Width().String(),
+			"cpoint": info.FormatCodepoint(),
+		}
+	}
+
 	if len(f.cols) == len(knownColumns) { // Optimize printing all columns.
 		return map[string]string{
 			"char":         map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],

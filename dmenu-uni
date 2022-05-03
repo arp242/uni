@@ -28,9 +28,9 @@ common="-or g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-f
 #common="$common -tone mediumdark"
 
 case "${1:-all}" in
-	all)           uni -q p all     | $dmenu | grep -o "^'.'" | tr -d "'" | $copy ;;
-	emoji)         uni -q e all     | $dmenu | cut -d ' ' -f1 | $copy ;;
-	emoji-common)  uni -q e $common | $dmenu | cut -d ' ' -f1 | $copy ;;
-	*)             uni -q e $@      | $dmenu | cut -d ' ' -f1 | $copy ;;
+	all)           uni -c p all     | $dmenu | grep -o "^'.'" | tr -d "'" | $copy ;;
+	emoji)         uni -c e all     | $dmenu | cut -d ' ' -f1 | $copy ;;
+	emoji-common)  uni -c e $common | $dmenu | cut -d ' ' -f1 | $copy ;;
+	*)             uni -c e $@      | $dmenu | cut -d ' ' -f1 | $copy ;;
 	#*)             echo >&2 "dmenu-uni: unknown '$1'" ;;
 esac

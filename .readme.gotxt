@@ -67,11 +67,11 @@ It reads from stdin:
     '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
 
-You can use `-quiet` (or `-q`) to suppress the header, and `-format` (of `-f`)
+You can use `-compact` (or `-c`) to suppress the header, and `-format` (or `-f`)
 to control the output format, for example you may want to generate a codepoint
 to X11 keysym mapping:
 
-{{example "i" "-q" "-f" "0x%(hex): \"%(keysym)\", // %(name)" "h€ý"}}
+{{example "i" "-c" "-f" "0x%(hex): \"%(keysym)\", // %(name)" "h€ý"}}
 
 See `uni help` for more details on the `-format` flag; this flag can also be
 added to other commands.
@@ -118,8 +118,11 @@ Blocks:
 
 {{trim 5 (example "p" "arrows" "box drawing")}}
 
-### Emoji
+Print as table, and with a shorter name:
 
+{{example "p" "-table" "box"}}
+
+### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
 {{example "e" "cry"}}
@@ -170,7 +173,7 @@ both a light and dark skin tone; use `all` to display all skin tones or genders:
 
 Like `print` and `identify`, you can use `-format`:
 
-{{example "e" "g:cat-face" "-q" "-format" "%(name): %(emoji)"}}
+{{example "e" "g:cat-face" "-c" "-format" "%(name): %(emoji)"}}
 
 See `uni help` for more details on the `-format` flag.
 
@@ -202,7 +205,14 @@ ChangeLog
 - Add support for properties; they can be displayed with `%(props)` in
   `-format`, and printed with `uni print` (e.g. `uni print dash`).
 
+- Add `-table` / `-t` to show codepoints in a table.
+
 - Add `uni list` command, to list categories, blocks, and properties.
+
+- Change `-q`/`-quiet` to `-c`/`-compact`; `-json` will print as minified if
+  given, and `-table` will include less padding.
+
+  -q is still accepted as a backwards-compatible alias.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
   some operations would fail on codepoints added in Unicode 14.

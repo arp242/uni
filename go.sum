@@ -8,7 +8,7 @@ golang.org/x/term v0.0.0-20220411215600-e5f449aeb171 h1:EH1Deb8WZJ0xc0WK//leUHXc
 golang.org/x/term v0.0.0-20220411215600-e5f449aeb171/go.mod h1:jbD1KX2456YbFQfuXm/mYQcufACuNUgVhRMnK/tPxf8=
 zgo.at/termtext v1.0.0 h1:txd+nH8FKVGVIFThcztZwT9cFKuoeNt2w3S6OcQTXpA=
 zgo.at/termtext v1.0.0/go.mod h1:P0jvULwo8z82ad7+WR6vg5vTy86dqvbOmR3bT3NlYvc=
-zgo.at/zli v0.0.0-20220501195129-6f455d326bf8 h1:jXvLOWaD6gjcn7a+V+WejGdKPpxdAjRkpNAsO++wMRw=
-zgo.at/zli v0.0.0-20220501195129-6f455d326bf8/go.mod h1:6nYv5thziHp9CMVzGbQV4qeA9hMJSj7uJ8WLgD4BtVs=
+zgo.at/zli v0.0.0-20220503115514-715dad1d8932 h1:EFW3nb70hfgtyE4Y905SUvi5wcaUNX+a5Gc1Ofi/GKg=
+zgo.at/zli v0.0.0-20220503115514-715dad1d8932/go.mod h1:6nYv5thziHp9CMVzGbQV4qeA9hMJSj7uJ8WLgD4BtVs=
 zgo.at/zstd v0.0.0-20220413140508-6078fed48e39 h1:vru0q7GNi2PmYOFxGm1cUIr0mRcuav7HYviuUtMvYNs=
 zgo.at/zstd v0.0.0-20220413140508-6078fed48e39/go.mod h1:KYkLDHZN6APaRYHlL+hpwBJW/g9w+MLmXi4MKE5YteY=
