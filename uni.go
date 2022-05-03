@@ -22,17 +22,6 @@ var (
 	version      = "git"
 )
 
-// TODO: new -table/-t flag conflicts with -tone/-t
-//
-// Maybe use a different name? I can't really think of any :-/
-//
-// Could add new -a/-as flag:
-//
-//   -as table
-//   -as json
-//   -as list
-//
-// And accept -json as alias for -as json.
 var usageShort = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
 Usage: %(prog) [command] [flags]
 
@@ -44,8 +33,7 @@ Flags:
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
     -f, -format    Output format.
-    -j, -json      Output as JSON.
-    -t, -table     Output as table.
+    -a, -as        How to print the results: list (default), json, or table.
 
 Commands:
     list           List blocks, categories, or properties.
@@ -68,20 +56,25 @@ Flags:
     also applies to flags specific to a command (e.g. "-gender" for "emoji").
 
     -c, -compact   More compact output; don't print header, "no matches", etc.
-                   For -json it will use minified output, and for -table it will
+                   For json it will use minified output, and for table it will
                    have less padding.
-    -q, -quiet     Backwards-compatible alias for -c/-compact.
     -r, -raw       Don't use graphical variants for control characters and
                    don't add ◌ (U+25CC) before combining characters.
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching: print if at least one parameter
                    matches, instead of only when all parameters match.
     -f, -format    Output format; see Format section below for details.
-    -j, -json      Output as JSON; the columns listed in -format are included,
-                   ignoring formatting flags. Use "-format all" to include all
-                   columns.
-    -t, -table     Output as table; instead of listing the codepoints on every
-                   line use a table. This ignores the -format flag.
+    -a, -as        How to print the results: list (default), json, or table.
+
+                     json   The columns listed in -format are included, ignoring
+                            formatting flags. Use "-format all" to include all
+                            columns.
+
+                     table  Output as table; instead of listing the codepoints
+                            on every line use a table. This ignores the -format
+                            flag.
+    -q, -quiet     Backwards-compatible alias for -c/-compact.
+    -j, -json      Backwards-compatible alias for -as json
 
 Commands:
     list [query]     List an overview of blocks, categories, or properties.
@@ -91,22 +84,51 @@ Commands:
 
     search [query]   Search description for any of the words.
 
-    print [query]    Print characters by codepoint, category, or block.
+    print [query]    Print characters.
 
-                       Codepoints             U+20, U20, 0x20, 0d32 (decimal),
-                                              0o40, 0b100000
-                       Range                  U+2042..U+2050, 0o101..0x5a
-                       UTF-8                  UTF-8 byte sequence, optionally
-                                              separated by any combination of
-                                              '0x', '-', '_', or spaces:
-                                                utf8:e282ac
-                                                utf8:0xe20x820xac
-                                                'utf8:e2 82 ac'
-                                                'utf8:0xe2 0x82 0xac'
-                       Categories             Po, OtherPunctuation
-                       Blocks                 'Box Drawing', boxdrawing, box
-                       Property               'ASCII Hex Digit', ascii
-                       all                    Everything
+                     The query can be any of the following:
+
+                       Codepoint   Specific codepoint, as:
+                                     hex      U+20, U20, 0x20
+                                     decimal  0d32
+                                     octal    0o40
+                                     binary   0b100000
+
+                       Range       Range of codepoints, as "start-end" or
+                                   "start..end", using the same notation as
+                                   Codepoints. For example:
+
+                                      U+2042..U+2050
+                                      '0o101 - 0x5a'
+
+                       UTF-8       UTF-8 byte sequence, optionally separated by
+                                   any combination of '0x', '-', '_', or spaces.
+                                   For example these are all U+20AC (€):
+
+                                     utf8:e282ac
+                                     utf8:0xe20x820xac
+                                     'utf8:e2 82 ac'
+                                     utf8:0xe2-0x82_0xac
+
+                       Category    Prefix with "category:", "cat:", or "c:".
+                                   Both the long as short name can be used.
+
+                       Block       Prefix with "block:" or "b:".
+
+                       Property    Prefix with "property:", "prop:", or "p:".
+
+                       all         Everything
+
+                    The category, block, and property can be abbreviated, and
+                    non-letter characters can be omitted. These are all
+                    identical:
+
+                      block:'Block Drawing'     block:box
+                      cat:Dash_Punctuation      cat:dashpunctuation
+
+                    If nothing of the above matches it will try to find by
+                    block, category, or property, giving an error if more than
+                    one matches.
 
     emoji [query]    Search emojis.
 
@@ -161,7 +183,7 @@ Format:
     and "flags" are some flags to control how it's printed.
 
     The special value "all" includes all columns; this is useful especially
-    with -json if you want to get all information uni knows about a codepoint
+    with json if you want to get all information uni knows about a codepoint
     or emoji.
 
     Flags:
@@ -241,11 +263,11 @@ func main() {
 		rawF     = flag.Bool(false, "r", "raw")
 		pager    = flag.Bool(false, "p", "pager")
 		or       = flag.Bool(false, "o", "or")
-		formatF  = flag.String("", "format", "f")
-		jsonF    = flag.Bool(false, "json", "j")
-		tbl      = flag.Bool(false, "table", "t")
+		formatF  = flag.String(defaultFormat, "format", "f")
 		tone     = flag.String("", "t", "tone", "tones")
 		gender   = flag.String("person", "g", "gender", "genders")
+		asF      = flag.String("list", "-a", "as")
+		jsonF    = flag.Bool(false, "json", "j")
 	)
 	err := flag.Parse()
 	zli.F(err)
@@ -282,23 +304,18 @@ func main() {
 		return
 	}
 
-	if jsonF.Set() && tbl.Set() {
-		zli.Fatalf("can't set both -json and -table")
-	}
-
-	as := parseAsFlags(compact, jsonF, tbl)
-	quiet := compact.Set()
-	raw := rawF.Set()
-	args := flag.Args
+	var (
+		as    = parseAsFlags(compact, asF, jsonF)
+		quiet = compact.Set()
+		raw   = rawF.Set()
+		args  = flag.Args
+	)
 	args, err = zli.InputOrArgs(args, " \t\n", quiet)
 	zli.F(err)
 
 	format := formatF.String()
-	if !formatF.Set() {
-		format = defaultFormat
-		if cmd == "emoji" {
-			format = defaultEmojiFormat
-		}
+	if !formatF.Set() && cmd == "emoji" {
+		format = defaultEmojiFormat
 	}
 
 	if formatF.String() == "all" {
@@ -333,24 +350,35 @@ type fb interface {
 	Set() bool
 	Bool() bool
 }
+type fs interface {
+	Set() bool
+	String() string
+}
 
-func parseAsFlags(compact, jsonF, tbl fb) printAs {
-	switch {
-	case jsonF.Set():
+func parseAsFlags(compact fb, asF fs, jsonF fb) printAs {
+	if jsonF.Set() {
 		if compact.Set() {
 			return printAsJSONCompact
 		}
 		return printAsJSON
-	case tbl.Set():
-		if compact.Set() {
-			return printAsTableCompact
-		}
-		return printAsTable
-	case compact.Set():
-		return printAsListCompact
-	default:
-		return printAsList
 	}
+
+	var as printAs
+	switch asF.String() {
+	default:
+		zli.Fatalf("unknown value for -as: %q", asF.String())
+	case "l", "list":
+		as = printAsList
+	case "j", "json":
+		as = printAsJSON
+	case "t", "tbl", "table":
+		as = printAsTable
+	}
+
+	if compact.Set() {
+		as++
+	}
+	return as
 }
 
 func parseToneFlag(tone string) unidata.EmojiModifier {
@@ -440,14 +468,14 @@ func match(input string, cmds ...string) (string, error) {
 	}
 }
 
+// TODO: this is essentially the same code repeated 3 times; this sucks.
+//
+// TODO: add -order flag; grouping by start codepoint isn't neccisarily all that
+// useful. Allow by name, too, and assigned, and maybe also grouping logically
+// (alphabets, symbols, CJK, control, etc.)
 func list(ls []string, as printAs) error {
-	var (
-		asJSON = (as == printAsJSON || as == printAsJSONCompact)
-		quiet  = as == printAsListCompact
-	)
-
-	if len(ls) == 0 {
-		ls = []string{"blocks"}
+	if as == printAsTable || as == printAsTableCompact {
+		zli.Fatalf("can't use -as table with the list command")
 	}
 
 	for _, l := range ls {
@@ -457,7 +485,6 @@ func list(ls []string, as printAs) error {
 		case "":
 			zli.F(err)
 
-		// TODO: essentially the same code is repeated 3 times; this sucks.
 		case "blocks":
 			order := make([]struct {
 				Range [2]rune
@@ -466,11 +493,6 @@ func list(ls []string, as printAs) error {
 			for _, b := range unidata.Blocks {
 				order = append(order, b)
 			}
-
-			// TODO: add -order flag; grouping by start codepoint isn't
-			// neccisarily all that useful.
-			// Allow by name, too, and assigned, and maybe also grouping
-			// logically (alphabets, symbols, CJK, control, etc.)
 			sort.Slice(order, func(i, j int) bool { return order[i].Range[0] < order[j].Range[0] })
 
 			assign := make(map[string]int)
@@ -482,27 +504,20 @@ func list(ls []string, as printAs) error {
 				}
 			}
 
-			if asJSON {
-				fmt.Fprintln(zli.Stdout, "[")
-				for i, b := range order {
-					fmt.Fprintf(zli.Stdout, "\t"+`{"from": "0x%02X", "to": "0x%02X", "assigned": "%d", "name": %q}`,
-						b.Range[0], b.Range[1], assign[b.Name], b.Name)
-					if i != len(order)-1 {
-						fmt.Fprint(zli.Stdout, ",")
-					}
-					fmt.Fprint(zli.Stdout, "\n")
-				}
-				fmt.Fprintln(zli.Stdout, "]")
-				return nil
-			}
+			f, err := NewFormat("%(from r:auto)  %(to r:auto)  %(assigned l:auto)  %(name l:auto)",
+				as, "from", "to", "assigned", "name")
+			zli.F(err)
 
-			if !quiet {
-				fmt.Fprintln(zli.Stdout, "  From      To   Assigned  Name")
-			}
+			fmtCp := map[bool]string{true: "%X", false: "% 7X"}[f.json()]
 			for _, b := range order {
-				fmt.Fprintf(zli.Stdout, "% 7X % 7X  %8d  %s\n",
-					b.Range[0], b.Range[1], assign[b.Name], b.Name)
+				f.Line(map[string]string{
+					"from":     fmt.Sprintf(fmtCp, b.Range[0]),
+					"to":       fmt.Sprintf(fmtCp, b.Range[0]),
+					"assigned": strconv.Itoa(assign[b.Name]),
+					"name":     b.Name,
+				})
 			}
+			f.Print(zli.Stdout)
 
 		case "categories":
 			order := make([]struct {
@@ -517,9 +532,7 @@ func list(ls []string, as printAs) error {
 					Const           unidata.Category
 				}{c.ShortName, c.Name, c.Include, k})
 			}
-			sort.Slice(order, func(i, j int) bool {
-				return order[i].Const < order[j].Const
-			})
+			sort.Slice(order, func(i, j int) bool { return order[i].Const < order[j].Const })
 
 			assign := make(map[unidata.Category]int)
 			for _, cp := range unidata.Codepoints {
@@ -527,38 +540,36 @@ func list(ls []string, as printAs) error {
 					if cp.Category() == c.Const {
 						assign[c.Const]++
 					}
-				}
-			}
-
-			if asJSON {
-				fmt.Fprintln(zli.Stdout, "[")
-				for i, b := range order {
-					// TODO: add composed
-					fmt.Fprintf(zli.Stdout, "\t"+`{"short": %q, "name": %q, "assigned": %d}`,
-						b.ShortName, b.Name, assign[b.Const])
-					if i != len(order)-1 {
-						fmt.Fprint(zli.Stdout, ",")
-					}
-					fmt.Fprint(zli.Stdout, "\n")
-				}
-				fmt.Fprintln(zli.Stdout, "]")
-				return nil
-			}
-
-			if !quiet {
-				fmt.Fprintf(zli.Stdout, "%-5s  %-26s  %8s  %s\n", "Short", "Long", "Assigned", "Composed of")
-			}
-			for _, c := range order {
-				fmt.Fprintf(zli.Stdout, "%-5s  %-26s  %8d  ", c.ShortName, c.Name, assign[c.Const])
-				if len(c.Include) > 0 {
-					var in []string
 					for _, i := range c.Include {
+						if cp.Category() == i {
+							assign[c.Const]++
+						}
+					}
+				}
+			}
+
+			f, err := NewFormat("%(short l:auto)  %(name l:auto)  %(assigned r:auto)  %(composed-of l:auto)",
+				as, "short", "name", "assigned", "composed-of")
+			zli.F(err)
+
+			for _, b := range order {
+				comp := ""
+				if len(b.Include) > 0 {
+					var in []string
+					for _, i := range b.Include {
 						in = append(in, unidata.Categories[i].ShortName)
 					}
-					fmt.Fprintf(zli.Stdout, "%s", strings.Join(in, " | "))
+					comp = strings.Join(in, " | ")
 				}
-				fmt.Fprintln(zli.Stdout)
+
+				f.Line(map[string]string{
+					"short":       b.ShortName,
+					"name":        b.Name,
+					"assigned":    strconv.Itoa(assign[b.Const]),
+					"composed-of": comp,
+				})
 			}
+			f.Print(zli.Stdout)
 
 		case "properties":
 			order := make([]struct {
@@ -581,38 +592,23 @@ func list(ls []string, as printAs) error {
 				}
 			}
 
-			if asJSON {
-				fmt.Fprintln(zli.Stdout, "[")
-				for i, b := range order {
-					fmt.Fprintf(zli.Stdout, "\t"+`{"name": %q, "assigned": %d}`,
-						b.Name, assign[b.Name])
-					if i != len(order)-1 {
-						fmt.Fprint(zli.Stdout, ",")
-					}
-					fmt.Fprint(zli.Stdout, "\n")
-				}
-				fmt.Fprintln(zli.Stdout, "]")
-				return nil
-			}
+			f, err := NewFormat("%(name l:auto)  %(assigned r:auto)",
+				as, "name", "assigned")
+			zli.F(err)
 
-			if !quiet {
-				fmt.Fprintf(zli.Stdout, "%-36s  %s\n", "Name", "Assigned")
+			for _, b := range order {
+				f.Line(map[string]string{
+					"assigned": strconv.Itoa(assign[b.Name]),
+					"name":     b.Name,
+				})
 			}
-			for _, p := range order {
-				fmt.Fprintf(zli.Stdout, "%-36s  %d\n", p.Name, assign[p.Name])
-			}
+			f.Print(zli.Stdout)
 		}
 	}
 	return nil
 }
 
 func identify(ins []string, format string, raw bool, as printAs) error {
-	var (
-	//asJSON = (as == printAsJSON || as == printAsJSONCompact)
-	//asTbl  = (as == printAsTable || as == printAsTableCompact)
-	//quiet  = as == printAsListCompact
-	)
-
 	in := strings.Join(ins, "")
 	if !utf8.ValidString(in) {
 		fmt.Fprintf(zli.Stderr, "uni: WARNING: input string is not valid UTF-8\n")
@@ -685,6 +681,16 @@ func search(args []string, format string, raw bool, as printAs, or bool) error {
 
 var utfClean = strings.NewReplacer("0x", "", " ", "", "_", "", "-", "")
 
+func nbools(bools ...bool) int {
+	n := 0
+	for _, b := range bools {
+		if b {
+			n++
+		}
+	}
+	return n
+}
+
 func print(args []string, format string, raw bool, as printAs) error {
 	f, err := NewFormat(format, as, knownColumns...)
 	if err != nil {
@@ -732,37 +738,77 @@ func print(args []string, format string, raw bool, as printAs) error {
 			continue
 		}
 
+		// Find by block, category, or property.
+		var (
+			catOk, blOk, pOk bool
+			cat              unidata.Category
+			bl               unidata.Block
+			p                unidata.Property
+		)
+		switch {
+		case zstring.HasPrefixes(a, "block:", "b:"):
+			a = a[strings.IndexByte(a, ':')+1:]
+			bl, blOk = unidata.FindBlock(a)
+			if !blOk {
+				zli.Fatalf("unknown or ambiguous block: %q", a)
+			}
+		case zstring.HasPrefixes(a, "category:", "cat:"):
+			a = a[strings.IndexByte(a, ':')+1:]
+			cat, catOk = unidata.FindCategory(a)
+			if !catOk {
+				zli.Fatalf("unknown or ambiguous category: %q", a)
+			}
+		case zstring.HasPrefixes(a, "property:", "prop:", "p:"):
+			a = a[strings.IndexByte(a, ':')+1:]
+			p, pOk = unidata.FindProperty(a)
+			if !pOk {
+				zli.Fatalf("unknown or ambiguous property: %q", a)
+			}
+		default:
+			cat, catOk = unidata.FindCategory(a)
+			bl, blOk = unidata.FindBlock(a)
+			p, pOk = unidata.FindProperty(a)
+			if nbools(catOk, blOk, pOk) > 1 {
+				opt := make([]string, 0, 3)
+				if catOk {
+					opt = append(opt, fmt.Sprintf("Category(%q)", cat))
+				}
+				if blOk {
+					opt = append(opt, fmt.Sprintf("Block(%q)", bl))
+				}
+				if pOk {
+					opt = append(opt, fmt.Sprintf("Property(%q)", p))
+				}
+				zli.Fatalf("%q matched multiple options:\n\t%s\nPrefix with 'block:', 'category:', or 'property:'",
+					a, strings.Join(opt, ", "))
+			}
+		}
+
 		// Category name.
-		// TODO: print that we matched a category, block, or property
-		//
-		// TODO: some names conflict; for example:
-		//   property: "Dash"
-		//   category: Dash_Punctuation
-		// Should probably add a unidata.Find(), which finds "any of" and can
-		// detect disambigs.
-		//
-		// var (
-		//   cat, catOk = unidata.FindCategory(a)
-		//   bl, blOk   = unidata.FindBlock(a)
-		//   p, pOk     = unidata.FindProperty(a); ok {
-		//)
-		// if zbool.One(catOk, blOk, pOk) {
-		//    err
-		// }
-		// if catOk {
-		//   ..
-		// }
-		// ..
-		if cat, ok := unidata.FindCategory(a); ok {
+		if catOk {
+			cc := unidata.Categories[cat]
+			if as == printAsList || as == printAsTable {
+				fmt.Fprintf(zli.Stdout, "Showing category %s (%s)\n", cc.ShortName, cc.Name)
+			}
+
 			for _, info := range unidata.Codepoints {
 				if info.Category() == cat {
 					f.Line(f.toLine(info, raw))
+				}
+				for _, incl := range cc.Include {
+					if info.Category() == incl {
+						f.Line(f.toLine(info, raw))
+					}
 				}
 			}
 			continue
 		}
 		// Block.
-		if bl, ok := unidata.FindBlock(a); ok {
+		if blOk {
+			if as == printAsList || as == printAsTable {
+				fmt.Fprintf(zli.Stdout, "Showing block %s\n", bl)
+			}
+
 			for cp := unidata.Blocks[bl].Range[0]; cp <= unidata.Blocks[bl].Range[1]; cp++ {
 				s, ok := unidata.Codepoints[cp]
 				if ok {
@@ -772,7 +818,11 @@ func print(args []string, format string, raw bool, as printAs) error {
 			continue
 		}
 		// Properties
-		if p, ok := unidata.FindProperty(a); ok {
+		if pOk {
+			if as == printAsList || as == printAsTable {
+				fmt.Fprintf(zli.Stdout, "Showing property %s\n", p)
+			}
+
 			for _, pp := range unidata.Properties[p].Ranges {
 				for cp := pp[0]; cp <= pp[1]; cp++ {
 					s, ok := unidata.Codepoints[cp]
@@ -794,6 +844,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 		default:
 			s = []string{a, a}
 		}
+		s[0], s[1] = strings.TrimSpace(s[0]), strings.TrimSpace(s[1])
 
 		start, err := unidata.FromString(s[0])
 		if err != nil {
@@ -802,6 +853,9 @@ func print(args []string, format string, raw bool, as printAs) error {
 		end, err := unidata.FromString(s[1])
 		if err != nil {
 			return fmt.Errorf("invalid codepoint: %s", errors.Unwrap(err))
+		}
+		if start.Codepoint > end.Codepoint {
+			zli.Fatalf("end of range %q is lower than start %q", s[1], s[0])
 		}
 
 		for i := start.Codepoint; i <= end.Codepoint; i++ {

@@ -120,7 +120,11 @@ Blocks:
 
 Print as table, and with a shorter name:
 
-{{example "p" "-table" "box"}}
+{{example "p" "-as" "table" "box"}}
+
+Or more compact table:
+
+{{example "p" "-as" "table" "box" "-compact"}}
 
 ### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
@@ -179,18 +183,18 @@ See `uni help` for more details on the `-format` flag.
 
 ### JSON
 
-With `-json` or `-j` you can output the data as JSON:
+With `-as json` or `-as j` you can output the data as JSON:
 
-{{example "i" "-json" "h€ý"}}
+{{example "i" "-as" "json" "h€ý"}}
 
 All the columns listed in `-f` will be included; you can use `-f all` to include
 all columns:
 
-{{example "i" "-json" "-f" "all" "h€ý"}}
+{{example "i" "-as" "json" "-f" "all" "h€ý"}}
 
 This also works for the `emoji` command:
 
-{{example "e" "-json" "-f" "all" "kissing cat"}}
+{{example "e" "-as" "json" "-f" "all" "kissing cat"}}
 
 All values are always a string, even numerical values. This makes things a bit
 easier/consistent as JSON doesn't support hex literals and such. Use `jq` or
@@ -205,14 +209,22 @@ ChangeLog
 - Add support for properties; they can be displayed with `%(props)` in
   `-format`, and printed with `uni print` (e.g. `uni print dash`).
 
-- Add `-table` / `-t` to show codepoints in a table.
-
 - Add `uni list` command, to list categories, blocks, and properties.
 
-- Change `-q`/`-quiet` to `-c`/`-compact`; `-json` will print as minified if
-  given, and `-table` will include less padding.
+- Allow explicitly selecting a block, category, or property in `print` with
+  `block:name` (`b:name`), `category:name` (`cat:name`, `c:name`), or
+  `property:name` (`prop:name`, `p:name`).
 
-  -q is still accepted as a backwards-compatible alias.
+  Also print an error if a string without prefix matched more than one group
+  (i.e. `uni p dash` matches both the property `Dash` and category
+  `Dash_Punctuation`).
+
+- Add table layout with `-as table`. Also change `-json`/`-j` to `-as json` or
+  `-as j`. The `-json` flag is still accepted as an alias for compatibility.
+
+- Change `-q`/`-quiet` to `-c`/`-compact`; `-as json` will print as minified if
+  given, and `-as table` will include less padding. `-q` is still accepted as an
+  alias for compatibility.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
   some operations would fail on codepoints added in Unicode 14.

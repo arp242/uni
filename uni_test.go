@@ -231,7 +231,7 @@ func TestEmoji(t *testing.T) {
 			[]string{"🧑Z🌾", "👨Z🌾", "👩Z🌾"}},
 		{[]string{"e", "-q", "-gender", "f,m", "farmer"},
 			[]string{"👨Z🌾", "👩Z🌾"}},
-		{[]string{"e", "-q", "-gender", "f", "-tone", "medium", "farmer"},
+		{[]string{"e", "-q", "-gender", "f", "-t", "medium", "farmer"},
 			[]string{"👩🏽Z🌾"}},
 
 		{[]string{"e", "-q", "-gender", "p", "detective"},

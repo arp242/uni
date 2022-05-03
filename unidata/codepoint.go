@@ -62,53 +62,76 @@ func matchName(s string) string { return strings.ToLower(mName.Replace(s)) }
 func FindBlock(name string) (Block, bool) {
 	var (
 		match = matchName(name)
-		found Block
+		found []Block
 	)
 	for k, b := range Blocks {
+		if matchName(b.Name) == match {
+			return k, true
+		}
+
 		if strings.HasPrefix(matchName(b.Name), match) {
-			if found > 0 {
-				return 0, false
-			}
-			found = k
+			found = append(found, k)
 		}
 	}
 
-	return found, found > 0
+	switch len(found) {
+	case 0:
+		return 0, false
+	case 1:
+		return found[0], true
+	default:
+		return 0, false // TODO: print what we found
+	}
 }
 
 // FindCategory finds a category by name.
 func FindCategory(name string) (Category, bool) {
 	var (
 		match = matchName(name)
-		found Category
+		found []Category
 	)
 	for k, b := range Categories {
+		if matchName(b.Name) == match || matchName(b.ShortName) == match {
+			return k, true
+		}
 		if strings.HasPrefix(matchName(b.Name), match) || matchName(b.ShortName) == match {
-			if found > 0 {
-				return 0, false
-			}
-			found = k
+			found = append(found, k)
 		}
 	}
 
-	return found, found > 0
+	switch len(found) {
+	case 0:
+		return 0, false
+	case 1:
+		return found[0], true
+	default:
+		return 0, false // TODO: print what we found
+	}
 }
 
 // FindProperty finds a property by name.
 func FindProperty(name string) (Property, bool) {
 	var (
 		match = matchName(name)
-		found Property
+		found []Property
 	)
 	for k, b := range Properties {
+		if matchName(b.Name) == match {
+			return k, true
+		}
 		if strings.HasPrefix(matchName(b.Name), match) {
-			if found > 0 {
-				return 0, false
-			}
-			found = k
+			found = append(found, k)
 		}
 	}
-	return found, found > 0
+
+	switch len(found) {
+	case 0:
+		return 0, false
+	case 1:
+		return found[0], true
+	default:
+		return 0, false // TODO: print what we found
+	}
 }
 
 // Find a Codepoint for this rune.

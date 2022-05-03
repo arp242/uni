@@ -55,13 +55,13 @@ renders wide characters; in terminals it should be aligned correctly.*
 Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
     $ uni identify €
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
 
 `i` is a shortcut for `identify`:
 
     $ uni i h€ý
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H (Lowercase_Letter)
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
     'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE (Lowercase_Letter)
@@ -90,7 +90,7 @@ added to other commands.
 Search description:
 
     $ uni search euro
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN (Currency_Symbol)
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
     '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON (Other_Symbol)
@@ -105,7 +105,7 @@ The `s` command is a shortcut for `search`. Multiple words are matched
 individually:
 
     $ uni s globe earth
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
     '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
@@ -113,19 +113,19 @@ individually:
 Use shell quoting for more literal matches:
 
     $ uni s rightwards black arrow
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW (Other_Symbol)
     '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD (Other_Symbol)
     …
 
     $ uni s 'rightwards black arrow'
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW (Other_Symbol)
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
     $ uni s -o globe milky
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY (Other_Symbol)
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
@@ -137,13 +137,13 @@ Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 Print specific codepoints or groups of codepoints:
 
     $ uni print U+2042
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
 
 Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
 
     $ uni print 2042..2044
-         cpoint  dec    utf8        html       name (cat)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
     '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET (Other_Punctuation)
     '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH (Math_Symbol)
@@ -154,48 +154,63 @@ You can also use hex, octal, and binary numbers: `0x2024`, `0o20102`, or
 General category:
 
     $ uni p Po
-         cpoint  dec    utf8        html       name (cat)
+    Showing category Po (Other_Punctuation)
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
-    '"'  U+0022  34     22          &quot;     QUOTATION MARK (Other_Punctuation)
     …
 
 Blocks:
 
     $ uni p arrows 'box drawing'
-         cpoint  dec    utf8        html       name (cat)
+    Showing block Arrows
+    Showing block Box Drawing
+         CPoint  Dec    UTF8        HTML       Name (Cat)
     '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW (Math_Symbol)
     '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW (Math_Symbol)
-    '→'  U+2192  8594   e2 86 92    &rarr;     RIGHTWARDS ARROW (Math_Symbol)
-    '↓'  U+2193  8595   e2 86 93    &darr;     DOWNWARDS ARROW (Math_Symbol)
     …
 
 Print as table, and with a shorter name:
 
-    $ uni p -table box
-             0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
-           ┌────────────────────────────────────────────────
-    U+250x │ ─  ━  │  ┃  ┄  ┅  ┆  ┇  ┈  ┉  ┊  ┋  ┌  ┍  ┎  ┏ 
+    $ uni p -as table box
+    Showing block Box Drawing
+             0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+           ┌────────────────────────────────────────────────────────────────
+    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏  
            │
-    U+251x │ ┐  ┑  ┒  ┓  └  ┕  ┖  ┗  ┘  ┙  ┚  ┛  ├  ┝  ┞  ┟ 
+    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟  
            │
-    U+252x │ ┠  ┡  ┢  ┣  ┤  ┥  ┦  ┧  ┨  ┩  ┪  ┫  ┬  ┭  ┮  ┯ 
+    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯  
            │
-    U+253x │ ┰  ┱  ┲  ┳  ┴  ┵  ┶  ┷  ┸  ┹  ┺  ┻  ┼  ┽  ┾  ┿ 
+    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿  
            │
-    U+254x │ ╀  ╁  ╂  ╃  ╄  ╅  ╆  ╇  ╈  ╉  ╊  ╋  ╌  ╍  ╎  ╏ 
+    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏  
            │
-    U+255x │ ═  ║  ╒  ╓  ╔  ╕  ╖  ╗  ╘  ╙  ╚  ╛  ╜  ╝  ╞  ╟ 
+    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟  
            │
-    U+256x │ ╠  ╡  ╢  ╣  ╤  ╥  ╦  ╧  ╨  ╩  ╪  ╫  ╬  ╭  ╮  ╯ 
+    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯  
            │
-    U+257x │ ╰  ╱  ╲  ╳  ╴  ╵  ╶  ╷  ╸  ╹  ╺  ╻  ╼  ╽  ╾  ╿ 
+    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿  
            │
+
+Or more compact table:
+
+    $ uni p -as table box -compact
+             0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
+           ┌────────────────────────────────────────────────────────────────
+    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏  
+    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟  
+    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯  
+    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿  
+    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏  
+    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟  
+    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯  
+    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿  
 
 ### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
-    	name                     (cldr)
+    	Name                     (Cldr)
     🥹	face holding back tears  (angry, cry, proud, resist, sad)
     😢	crying face              (sad, tear)
     😭	loudly crying face       (sad, sob, tear)
@@ -206,13 +221,13 @@ By default both the name and CLDR data are searched; the CLDR data is a list of
 keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
 
     $ uni e smile
-    	name                             (cldr)
+    	Name                             (Cldr)
     😃	grinning face with big eyes      (mouth, open, smile)
     😄	grinning face with smiling eyes  (mouth, open, smile)
     …
 
     $ uni e name:smile
-    	name                (cldr)
+    	Name                (Cldr)
     😼	cat with wry smile  (face, ironic)
 
 As you can see, the CLDR is pretty useful, as "smile" only gives one result as
@@ -221,7 +236,7 @@ most emojis use "smiling".
 Prefix with `group:` to search by group:
 
     $ uni e group:hands
-    	name               (cldr)
+    	Name               (Cldr)
     👏	clapping hands     ()
     🙌	raising hands      (celebration, gesture, hooray, raised)
     🫶	heart hands        (love)
@@ -233,14 +248,14 @@ Prefix with `group:` to search by group:
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
     $ uni e g:cat-face grin
-    	name                            (cldr)
+    	Name                            (Cldr)
     😺	grinning cat                    (face, mouth, open, smile)
     😸	grinning cat with smiling eyes  (face, smile)
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
     $ uni e -or g:face-glasses g:face-hat
-    	name                          (cldr)
+    	Name                          (Cldr)
     🤠	cowboy hat face               (cowgirl)
     🥳	partying face                 (celebration, hat, horn)
     🥸	disguised face                (glasses, incognito, nose)
@@ -251,13 +266,13 @@ Like with `search`, use `-or` to OR the parameters together instead of AND:
 Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark g:hands
-    	name                               (cldr)
+    	Name                               (Cldr)
     👏🏿	clapping hands: dark skin tone     ()
     🙌🏿	raising hands: dark skin tone      (celebration, gesture, hooray, raised)
     🫶🏿	heart hands: dark skin tone        (love)
     👐🏿	open hands: dark skin tone         ()
     🤲🏿	palms up together: dark skin tone  (prayer)
-    🤝🏿	handshake: dark skin tone          (agreement, meeting)
+    🤝	handshake                          (agreement, meeting)
     🙏🏿	folded hands: dark skin tone       (ask, high 5, high five, please, pray, thanks)
 
 The "heart hands" may not show as it's very recent. The handshake emoji supports
@@ -271,26 +286,28 @@ The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
     $ uni e -gender man g:person-gesture
-    	name                 (cldr)
-    🙍	person frowning      (gesture)
-    🙎	person pouting       (gesture)
-    🙅	person gesturing NO  (forbidden, gesture, hand, prohibited)
-    🙆	person gesturing OK  (gesture, hand)
-    💁	person tipping hand  (help, information, sassy)
-    🙋	person raising hand  (gesture, happy, raised)
-    🧏	deaf person          (accessibility, ear, hear)
-    🙇	person bowing        (apology, gesture, sorry)
-    🤦	person facepalming   (disbelief, exasperation)
-    🤷	person shrugging     (doubt, ignorance, indifference)
+    	Name              (Cldr)
+    🙍‍♂️	man frowning      (gesture, person frowning)
+    🙎‍♂️	man pouting       (gesture, person pouting)
+    🙅‍♂️	man gesturing NO  (forbidden, gesture, hand, person gesturing NO, prohibited)
+    🙆‍♂️	man gesturing OK  (gesture, hand, person gesturing OK)
+    💁‍♂️	man tipping hand  (help, information, person tipping hand, sassy)
+    🙋‍♂️	man raising hand  (gesture, happy, person raising hand, raised)
+    🧏‍♂️	deaf man          (accessibility, deaf person, ear, hear)
+    🙇‍♂️	man bowing        (apology, gesture, person bowing, sorry)
+    🤦‍♂️	man facepalming   (disbelief, exasperation, person facepalming)
+    🤷‍♂️	man shrugging     (doubt, ignorance, indifference, person shrugging)
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants, and `-tone light,dark` will display
 both a light and dark skin tone; use `all` to display all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-    	name                               (cldr)
-    🤷🏻	person shrugging: light skin tone  (doubt, ignorance, indifference)
-    🤷🏿	person shrugging: dark skin tone   (doubt, ignorance, indifference)
+    	Name                              (Cldr)
+    🤷🏻‍♂️	man shrugging: light skin tone    (doubt, ignorance, indifference, person shrugging)
+    🤷🏻‍♀️	woman shrugging: light skin tone  (doubt, ignorance, indifference, person shrugging)
+    🤷🏿‍♂️	man shrugging: dark skin tone     (doubt, ignorance, indifference, person shrugging)
+    🤷🏿‍♀️	woman shrugging: dark skin tone   (doubt, ignorance, indifference, person shrugging)
 
 Like `print` and `identify`, you can use `-format`:
 
@@ -309,9 +326,9 @@ See `uni help` for more details on the `-format` flag.
 
 ### JSON
 
-With `-json` or `-j` you can output the data as JSON:
+With `-as json` or `-as j` you can output the data as JSON:
 
-    $ uni i -json h€ý
+    $ uni i -as json h€ý
     [{
     	"cat": "Lowercase_Letter",
     	"char": "h",
@@ -341,7 +358,7 @@ With `-json` or `-j` you can output the data as JSON:
 All the columns listed in `-f` will be included; you can use `-f all` to include
 all columns:
 
-    $ uni i -json -f all h€ý
+    $ uni i -as json -f all h€ý
     [{
     	"bin": "1101000",
     	"block": "Basic Latin",
@@ -409,7 +426,7 @@ all columns:
 
 This also works for the `emoji` command:
 
-    $ uni e -json -f all 'kissing cat'
+    $ uni e -as json -f all 'kissing cat'
     [{
     	"cldr": "eye, face",
     	"cldr_full": "cat, eye, face, kiss, kissing cat",
@@ -433,14 +450,22 @@ ChangeLog
 - Add support for properties; they can be displayed with `%(props)` in
   `-format`, and printed with `uni print` (e.g. `uni print dash`).
 
-- Add `-table` / `-t` to show codepoints in a table.
-
 - Add `uni list` command, to list categories, blocks, and properties.
 
-- Change `-q`/`-quiet` to `-c`/`-compact`; `-json` will print as minified if
-  given, and `-table` will include less padding.
+- Allow explicitly selecting a block, category, or property in `print` with
+  `block:name` (`b:name`), `category:name` (`cat:name`, `c:name`), or
+  `property:name` (`prop:name`, `p:name`).
 
-  -q is still accepted as a backwards-compatible alias.
+  Also print an error if a string without prefix matched more than one group
+  (i.e. `uni p dash` matches both the property `Dash` and category
+  `Dash_Punctuation`).
+
+- Add table layout with `-as table`. Also change `-json`/`-j` to `-as json` or
+  `-as j`. The `-json` flag is still accepted as an alias for compatibility.
+
+- Change `-q`/`-quiet` to `-c`/`-compact`; `-as json` will print as minified if
+  given, and `-as table` will include less padding. `-q` is still accepted as an
+  alias for compatibility.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
   some operations would fail on codepoints added in Unicode 14.

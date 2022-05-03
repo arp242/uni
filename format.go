@@ -20,17 +20,20 @@ import (
 	"zgo.at/zstd/zstring"
 )
 
-var termWidth = func() int {
-	if !zli.IsTerminal(os.Stdout.Fd()) {
-		return 0
-	}
+var (
+	isTerm    = zli.IsTerminal(os.Stdout.Fd())
+	termWidth = func() int {
+		if !isTerm {
+			return 0
+		}
 
-	w, _, err := zli.TerminalSize(os.Stdout.Fd())
-	if err != nil || w < 50 {
-		return 0
-	}
-	return w
-}()
+		w, _, err := zli.TerminalSize(os.Stdout.Fd())
+		if err != nil || w < 50 {
+			return 0
+		}
+		return w
+	}()
+)
 
 const (
 	alignNone = iota
@@ -58,7 +61,8 @@ type Format struct {
 	autoalign []int      // Max line lengths for autoalign.
 	ntrim     int        // Number of columns with "trim"
 
-	tblData []map[string]string
+	//tblData  []map[string]string
+	tblData []unidata.Codepoint
 }
 
 var reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
@@ -66,13 +70,26 @@ var reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
 type printAs uint8
 
 const (
+	// Keep compact regular + 1
 	printAsList = printAs(iota)
-	printAsJSON
-	printAsTable
 	printAsListCompact
+	printAsJSON
 	printAsJSONCompact
+	printAsTable
 	printAsTableCompact
 )
+
+func header(h string) string {
+	h = strings.ReplaceAll(h, "-", " ")
+	switch h {
+	case "utf8", "utf16", "utf16le", "utf16be", "html", "xml", "json":
+		return strings.ToUpper(h)
+	case "cpoint":
+		return "CPoint"
+	default:
+		return zstring.UpperFirst(h)
+	}
+}
 
 func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) {
 	f := Format{format: format, as: as}
@@ -98,7 +115,12 @@ func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) 
 			return nil, fmt.Errorf("-format flag: unknown placeholder: %q", c.name)
 		}
 		cols = append(cols, c.name)
-		h[c.name] = c.name
+
+		if f.json() {
+			h[c.name] = c.name
+		} else {
+			h[c.name] = header(c.name)
+		}
 	}
 
 	h["emoji"] = ""
@@ -178,8 +200,8 @@ func (f *Format) processColumn(line string) error {
 
 // Add a new line.
 func (f *Format) Line(columns map[string]string) error {
-	if f.tbl() {
-		f.tblData = append(f.tblData, columns)
+	if f.tbl() { // Don't need to do anything.
+		//f.tblData = append(f.tblData, columns)
 		return nil
 	}
 
@@ -251,8 +273,6 @@ func (f *Format) printJSON(out io.Writer) {
 		out.Write(bytes.TrimSpace(buf.Bytes())) // Adds \n at end.
 		buf.Reset()
 
-		// j, _ := json.MarshalIndent(m, "", "\t")
-		// out.Write(j)
 		if i != len(f.lines)-1 {
 			out.Write([]byte(", "))
 		}
@@ -260,29 +280,22 @@ func (f *Format) printJSON(out io.Writer) {
 	out.Write([]byte("]\n"))
 }
 
-// -table
-// -table compact
-//
-// TODO: fails; uni search euro -t
-//       Doesn't start at 0
-//
-//func (f *Format) printTbl(codepoints ...unidata.Codepoint) {
 func (f *Format) printTbl(out io.Writer) {
 	sort.Slice(f.tblData, func(i, j int) bool {
-		return f.tblData[i]["cpoint"] < f.tblData[j]["cpoint"]
+		return f.tblData[i].Codepoint < f.tblData[j].Codepoint
 	})
 
 	var (
 		wide   = false
-		tblMap = make(map[string]string)
+		tblMap = make(map[rune]string)
 		head   = 4
 	)
-	for _, r := range f.tblData {
-		if r["width"] == "wide" {
+	for _, c := range f.tblData {
+		if w := c.Width(); w == unidata.WidthFullWidth || w == unidata.WidthWide || w == unidata.WidthAmbiguous {
 			wide = true
 		}
-		tblMap[r["cpoint"]] = r["char"]
-		if []rune(r["char"])[0] > 0xffff {
+		tblMap[c.Codepoint] = c.Display()
+		if c.Codepoint > 0xffff {
 			head = 5
 		}
 	}
@@ -296,34 +309,34 @@ func (f *Format) printTbl(out io.Writer) {
 		fmt.Println(h + "   ┌" + strings.Repeat("─", 48))
 	}
 
-	start, err := strconv.ParseInt(f.tblData[0]["cpoint"][2:], 16, 32)
-	zli.F(err)
-	end, err := strconv.ParseInt(f.tblData[len(f.tblData)-1]["cpoint"][2:], 16, 32)
-	zli.F(err)
+	start, end := f.tblData[0].Codepoint, f.tblData[len(f.tblData)-1].Codepoint
+	start -= start % 16 /// Make sure we start at column 0
 
 	var (
 		row   = ""
 		blank = 0
 		didel = false
 	)
-	// TODO: color cells that weren't in the selection, or maybe use some
-	// codepoints for that. Also color unassigned cells.
-	// TODO: output block name to the right.
 	for i := start; i <= end; i++ {
 		cp := fmt.Sprintf("U+%0"+strconv.Itoa(head)+"X", i)
-
-		cp1 := fmt.Sprintf("U+%04X", i)
-		char, ok := tblMap[cp1]
-		if !ok {
+		char, ok := tblMap[i]
+		if _, has := unidata.Codepoints[i]; !has { /// Not assigned
+			if isTerm {
+				char = zli.Colorize(" ", zli.Color256(254).Bg())
+			} else {
+				char = "·"
+			}
+		} else if !ok { /// Not in selection.
 			blank++
-			char = " "
+			char = zli.Colorize("·", zli.Color256(249))
 		}
 
 		if strings.HasSuffix(cp, "0") {
 			row += fmt.Sprintf("%sx │", strings.TrimSuffix(cp, "0"))
 		}
 
-		// If some chars are wide bit this one isn't, need to add space here.
+		// Need to add space for alignment if some codepoints are wide but this
+		// one isn't.
 		row += fmt.Sprintf(" %s ", char)
 		if wide && runewidth.RuneWidth([]rune(char)[0]) == 1 {
 			row += " "
@@ -337,7 +350,6 @@ func (f *Format) printTbl(out io.Writer) {
 				}
 				didel = false
 			} else if !didel {
-				//fmt.Println(h + "   │ …")
 				fmt.Println(h + " … │")
 				didel = true
 			}
@@ -459,11 +471,8 @@ var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 
 func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	if f.tbl() {
-		return map[string]string{
-			"char":   map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw],
-			"width":  info.Width().String(),
-			"cpoint": info.FormatCodepoint(),
-		}
+		f.tblData = append(f.tblData, info)
+		return nil
 	}
 
 	if len(f.cols) == len(knownColumns) { // Optimize printing all columns.
@@ -581,7 +590,7 @@ func tabOrSpace() string {
 	if os.Getenv("README") != "" { // Temporary hack for README generation.
 		return "\t"
 	}
-	if zli.IsTerminal(os.Stdout.Fd()) {
+	if isTerm {
 		return "\t"
 	}
 	return "    "
