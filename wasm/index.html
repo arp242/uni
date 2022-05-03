@@ -68,7 +68,7 @@
 					input.value = i.substr(4)
 
 					var event = document.createEvent('KeyboardEvent')
-					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 13, 0)
+					event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 13, 0)
 					// Keep trying until everything is loaded and the event is actually handled
 					var t = setInterval(function() {
 						if (!input.dispatchEvent(event))  // Returns false when handled, not an error (loljs)
@@ -86,12 +86,12 @@
 
 				if (elem.className == 'permalink') {
 					var event = document.createEvent('KeyboardEvent')
-					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 38, 0)
+					event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 38, 0)
 					input.dispatchEvent(event)
 					var cmd = input.value
 
 					var event = document.createEvent('KeyboardEvent')
-					event.initKeyEvent('keydown', true, true, window, false, false, false, false, 40, 0)
+					event.initKeyboardEvent('keydown', true, true, window, false, false, false, false, 40, 0)
 					input.dispatchEvent(event)
 
 					if (cmd === '')

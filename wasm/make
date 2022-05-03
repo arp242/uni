@@ -1,3 +1,12 @@
 #!/bin/sh
+set -euC
 
-cd ../ && GOOS=js GOARCH=wasm go build -ldflags="" -o wasm/main.wasm
+tag=$(git tag | tail -n1)
+commit_info=$(git log -n1 --format=' %h %cd' --date='format:%Y-%m-%d')
+
+# TODO: this fails:
+# Uncaught (in promise) TypeError: import object field 'wasi_snapshot_preview1' is not an Object
+
+cd ../
+export GOOS=js GOARCH=wasm
+go build -ldflags="-w -s -X \"main.version=$tag$commit_info\"" -o wasm/main.wasm

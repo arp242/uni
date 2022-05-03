@@ -4,7 +4,7 @@
 		// Write stdout to terminal.
 		let outputBuf = '';
 		const decoder = new TextDecoder("utf-8");
-		global.fs.writeSync = (fd, buf) => {
+		globalThis.fs.writeSync = (fd, buf) => {
 			outputBuf += decoder.decode(buf);
 			const nl = outputBuf.lastIndexOf("\n");
 			if (nl != -1) {
@@ -20,7 +20,7 @@
 	window.readline = function(progname, output, input, cb) {
 		var hist = [], hist_index = 0, reading_stdin = false;
 
-		global.fs.read = (fd, buffer, offset, length, position, callback) => {
+		globalThis.fs.read = (fd, buffer, offset, length, position, callback) => {
 			reading_stdin = true;
 			output.innerText += 'reading from stdin...\n'
 		};
