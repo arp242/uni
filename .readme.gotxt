@@ -207,7 +207,7 @@ ChangeLog
 ### 2.5.0 (unreleased)
 
 - Add support for properties; they can be displayed with `%(props)` in
-  `-format`, and printed with `uni print` (e.g. `uni print dash`).
+  `-format`, and selected in `print` (e.g. `uni print dash`).
 
 - Add `uni list` command, to list categories, blocks, and properties.
 
@@ -227,7 +227,8 @@ ChangeLog
   alias for compatibility.
 
 - Don't use the Go stdlib `unicode` package; since this is a Unicode 13 database
-  some operations would fail on codepoints added in Unicode 14.
+  and some operations would fail on codepoints added in Unicode 14 due to the
+  mismatch.
 
 ### v2.4.0 (2021-12-20)
 

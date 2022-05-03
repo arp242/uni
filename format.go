@@ -61,7 +61,6 @@ type Format struct {
 	autoalign []int      // Max line lengths for autoalign.
 	ntrim     int        // Number of columns with "trim"
 
-	//tblData  []map[string]string
 	tblData []unidata.Codepoint
 }
 

@@ -28,12 +28,12 @@ Usage: %(prog) [command] [flags]
 uni queries the unicode database. https://github.com/arp242/uni
 
 Flags:
+    -f, -format    Output format.
+    -a, -as        How to print the results: list (default), json, or table.
     -c, -compact   More compact output.
     -r, -raw       Don't use graphical variants or add combining characters.
     -p, -pager     Output to $PAGER.
     -o, -or        Use "or" when searching instead of "and".
-    -f, -format    Output format.
-    -a, -as        How to print the results: list (default), json, or table.
 
 Commands:
     list           List blocks, categories, or properties.
@@ -42,7 +42,7 @@ Commands:
     print          Print characters by codepoint, category, or block.
     emoji          Search emojis.
 
-Use "%(prog) help" for a more detailed help.
+Use "%(prog) help" or "%(prog) -h" for a more detailed help.
 `)
 
 var usage = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
@@ -52,47 +52,51 @@ uni queries the unicode database. https://github.com/arp242/uni
 
 Flags:
     Flags can appear anywhere; "uni search euro -c" and "uni -c search euro"
-    are identical. Use "uni search -- -c" if you want to search for "-c". This
-    also applies to flags specific to a command (e.g. "-gender" for "emoji").
+    are identical. Use "uni search -- -c" if you want to search for "-c".
 
-    -c, -compact   More compact output; don't print header, "no matches", etc.
-                   For json it will use minified output, and for table it will
-                   have less padding.
-    -r, -raw       Don't use graphical variants for control characters and
-                   don't add ◌ (U+25CC) before combining characters.
-    -p, -pager     Output to $PAGER.
-    -o, -or        Use "or" when searching: print if at least one parameter
-                   matches, instead of only when all parameters match.
-    -f, -format    Output format; see Format section below for details.
+    -f, -format    Columns to print and their formatting; see Format section
+                   below for details.
+
     -a, -as        How to print the results: list (default), json, or table.
 
-                     json   The columns listed in -format are included, ignoring
-                            formatting flags. Use "-format all" to include all
-                            columns.
+                     json    The columns listed in -format are included,
+                             ignoring formatting flags. Use "-format all" to
+                             include all columns.
+                     table   Output as table; instead of listing the codepoints
+                             on every line use a table. This ignores the
+                             -format flag.
 
-                     table  Output as table; instead of listing the codepoints
-                            on every line use a table. This ignores the -format
-                            flag.
+    -c, -compact   More compact output; don't print header, "no matches", etc.
+                   For json output it uses minified output, and for table it
+                   has less padding.
+
+    -r, -raw       Don't use graphical variants for control characters and
+                   don't add ◌ (U+25CC) before combining characters.
+
+    -p, -pager     Output to $PAGER.
+
+    -o, -or        Use "or" when searching: print if at least one parameter
+                   matches, instead of only when all parameters match.
+
     -q, -quiet     Backwards-compatible alias for -c/-compact.
     -j, -json      Backwards-compatible alias for -as json
 
 Commands:
     list [query]     List an overview of blocks, categories, or properties.
-                     Every name can be abbreviated (i.e. "b")
+                     Every name can be abbreviated (i.e. "b" for "block"). Use
+                     "all" to show everything.
 
-    identify [text]  Identify all the characters in the given strings.
+    identify [text]  Identify all the characters in the given arguments.
 
     search [query]   Search description for any of the words.
 
-    print [query]    Print characters.
+    print [query]    Print characters. The query can be any of the following:
 
-                     The query can be any of the following:
-
-                       Codepoint   Specific codepoint, as:
-                                     hex      U+20, U20, 0x20
-                                     decimal  0d32
-                                     octal    0o40
-                                     binary   0b100000
+                       Codepoint   Specific codepoint, in number formats:
+                                     hexadecimal   U+20, U20, 0x20, x20
+                                     decimal       0d32
+                                     octal         0o40, o40
+                                     binary        0b100000
 
                        Range       Range of codepoints, as "start-end" or
                                    "start..end", using the same notation as
@@ -117,22 +121,23 @@ Commands:
 
                        Property    Prefix with "property:", "prop:", or "p:".
 
-                       all         Everything
+                       all         All codepoints we know about.
 
                     The category, block, and property can be abbreviated, and
-                    non-letter characters can be omitted. These are all
-                    identical:
+                    non-letter characters can be omitted. These are identical:
 
-                      block:'Block Drawing'     block:box
-                      cat:Dash_Punctuation      cat:dashpunctuation
+                        block:'Block Drawing'     block:box
+
+                    As are these:
+
+                        cat:Dash_Punctuation      cat:dashpunctuation
 
                     If nothing of the above matches it will try to find by
                     block, category, or property, giving an error if more than
                     one matches.
 
-    emoji [query]    Search emojis.
-
-                     The query is matched on the emoji name and CLDR data.
+    emoji [query]    Search emojis. The query is matched on the emoji name and
+                     CLDR data.
 
                      The CLDR data is a list of keywords. For example 🙏
                      (folded hands) contains "ask, high 5, high five, please,
@@ -141,13 +146,13 @@ Commands:
 
                      You can use <prefix>:query to search in specific fields:
 
-                       group: g:    Group and subgroup
-                       name:  n:    Emoji name
-                       cldr:  c:    CLDR data
+                         group: g:    Group and subgroup
+                         name:  n:    Emoji name
+                         cldr:  c:    CLDR data
 
                      The query parameters are AND'd together, so this:
 
-                       uni emoji smiling g:cat-face
+                         uni emoji smiling g:cat-face
 
                      Will match everything in the cat-face group with smiling
                      in the name. Use the -or flag to change this to "cat-face
@@ -157,18 +162,18 @@ Commands:
 
                      Modifier flags, both accept a comma-separated list:
 
-                        -g, -gender   Set the gender:
-                                        p, person, people
-                                        m, man, men, male
-                                        f, female, w, woman, women
+                         -g, -gender   Set the gender:
+                                           p, person, people
+                                           m, man, men, male
+                                           f, female, w, woman, women
 
-                        -t, -tone     Set the skin tone modifier:
-                                        n,  none
-                                        l,  light
-                                        ml, mediumlight, medium-light
-                                        m,  medium
-                                        md, mediumdark, medium-dark
-                                        d,  dark
+                         -t, -tone     Set the skin tone modifier:
+                                           n,  none
+                                           l,  light
+                                           ml, mediumlight, medium-light
+                                           m,  medium
+                                           md, mediumdark, medium-dark
+                                           d,  dark
 
                      Use "all" to include all combinations; the default is to
                      include no skin tones and the "person" gender.
@@ -192,8 +197,8 @@ Format:
         %(name r:5)     Right-align and pad with 5 spaces
         %(name q)       Quote with single quotes, excluding any padding
         %(name t)       Trim this column if it's longer than the screen width
-        %(name f:C)     Fill this column with character C; especially useful for
-                        numbers: %(bin r:auto f:0)
+        %(name f:C)     Fill this column with character C; especially useful
+                        for numbers: %(bin r:auto f:0)
 
     Placeholders that work for all commands:
         %(tab)           A literal tab when outputting to a terminal, or four
@@ -202,26 +207,26 @@ Format:
                          with tabs.
 
     Placeholders for identify, search, and print:
-        %(char)          The literal character          ✓
-        %(cpoint)        As codepoint                   U+2713
-        %(hex)           As hex                         2713
-        %(oct)           As octal                       23423
-        %(bin)           As binary (little-endian)      10011100010011
-        %(dec)           As decimal                     10003
-        %(utf8)          As UTF-8                       e2 9c 93
-        %(utf16le)       As UTF-16 LE (Windows)         13 27
-        %(utf16be)       As UTF-16 BE                   27 13
-        %(html)          HTML entity                    &check;
-        %(xml)           XML entity                     &#x2713;
-        %(json)          JSON escape                    \u2713
-        %(keysym)        X11 keysym; can be blank       checkmark
-        %(digraph)       Vim Digraph; can be blank      OK
-        %(name)          Code point name                CHECK MARK
-        %(cat)           Category name                  Other_Symbol
-        %(block)         Block name                     Dingbats
-        %(props)         Properties, separated by ,     Pattern Syntax
-        %(plane)         Plane name                     Basic Multilingual Plane
-        %(width)         Character width                Narrow
+        %(char)          The literal character         ✓
+        %(cpoint)        As codepoint                  U+2713
+        %(hex)           As hex                        2713
+        %(oct)           As octal                      23423
+        %(bin)           As binary (little-endian)     10011100010011
+        %(dec)           As decimal                    10003
+        %(utf8)          As UTF-8                      e2 9c 93
+        %(utf16le)       As UTF-16 LE (Windows)        13 27
+        %(utf16be)       As UTF-16 BE                  27 13
+        %(html)          HTML entity                   &check;
+        %(xml)           XML entity                    &#x2713;
+        %(json)          JSON escape                   \u2713
+        %(keysym)        X11 keysym; can be blank      checkmark
+        %(digraph)       Vim Digraph; can be blank     OK
+        %(name)          Code point name               CHECK MARK
+        %(cat)           Category name                 Other_Symbol
+        %(block)         Block name                    Dingbats
+        %(props)         Properties, separated by ,    Pattern Syntax
+        %(plane)         Plane name                    Basic Multilingual Plane
+        %(width)         Character width               Narrow
         %(wide_padding)  Blank for wide characters,
                          space otherwise; for alignment
 
@@ -230,13 +235,13 @@ Format:
 
     Placeholders for emoji:
 
-        %(emoji)       The emoji itself                 🧑‍🚒
-        %(name)        Emoji name                       firefighter
-        %(group)       Emoji group                      People & Body
-        %(subgroup)    Emoji subgroup                   person-role
-        %(cpoint)      Codepoints                       U+1F9D1 U+200D U+1F692
-        %(cldr)        CLDR data, w/o duplicating name  firetruck
-        %(cldr_full)   Full CLDR data                   firefighter, firetruck
+        %(emoji)       The emoji itself                🧑‍🚒
+        %(name)        Emoji name                      firefighter
+        %(group)       Emoji group                     People & Body
+        %(subgroup)    Emoji subgroup                  person-role
+        %(cpoint)      Codepoints                      U+1F9D1 U+200D U+1F692
+        %(cldr)        CLDR data, w/o emoji name       firetruck
+        %(cldr_full)   Full CLDR data                  firefighter, firetruck
 
         The default is:
         `+defaultEmojiFormat+`
@@ -310,8 +315,10 @@ func main() {
 		raw   = rawF.Set()
 		args  = flag.Args
 	)
-	args, err = zli.InputOrArgs(args, " \t\n", quiet)
-	zli.F(err)
+	if cmd != "list" {
+		args, err = zli.InputOrArgs(args, " \t\n", quiet)
+		zli.F(err)
+	}
 
 	format := formatF.String()
 	if !formatF.Set() && cmd == "emoji" {
@@ -478,12 +485,22 @@ func list(ls []string, as printAs) error {
 		zli.Fatalf("can't use -as table with the list command")
 	}
 
-	for _, l := range ls {
+	if len(ls) == 0 || zstring.Contains(ls, "all") {
+		ls = []string{"blocks", "categories", "properties"}
+	}
+
+	for i, l := range ls {
 		cmd, err := match(l, "blocks", "categories", "properties")
+		if cmd != "" && len(ls) > 0 && as == printAsList {
+			if i > 0 {
+				fmt.Fprintln(zli.Stdout)
+			}
+			fmt.Fprintf(zli.Stdout, "%s:\n", zstring.UpperFirst(cmd))
+		}
 
 		switch cmd {
 		case "":
-			zli.F(err)
+			zli.Fatalf("list: %s", err)
 
 		case "blocks":
 			order := make([]struct {
@@ -871,6 +888,9 @@ func print(args []string, format string, raw bool, as printAs) error {
 func emoji(args []string, format string, raw bool, as printAs, or bool, tones, genders unidata.EmojiModifier) error {
 	if as == printAsTable || as == printAsTableCompact {
 		// TODO: it should
+		// The reason it doesn't work is because printTbl() assumes that every
+		// entry is a codepoint. Should instead duplicate some data in
+		// Format.tblData, instead of using []unidata.Codepoint.
 		return errors.New("-table doesn't work with emoji")
 	}
 
