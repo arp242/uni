@@ -204,6 +204,10 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
+### 2.5.1 (2022-05-09)
+
+- Fix build on Go 1.17 and earlier.
+
 ### 2.5.0 (2022-05-03)
 
 - Add support for properties; they can be displayed with `%(props)` in

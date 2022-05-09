@@ -445,7 +445,11 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
-### 2.5.0 (unreleased)
+### 2.5.1 (2022-05-09)
+
+- Fix build on Go 1.17 and earlier.
+
+### 2.5.0 (2022-05-03)
 
 - Add support for properties; they can be displayed with `%(props)` in
   `-format`, and selected in `print` (e.g. `uni print dash`).
@@ -598,7 +602,7 @@ Development
 
 Re-generate the Unicode data with `go generate unidata`. Files are cached in
 `unidata/.cache`, so clear that if you want to update the files from remote.
-This requires zsh and GNU awk (gawk)
+This requires zsh and GNU awk (gawk).
 
 Alternatives
 ------------
