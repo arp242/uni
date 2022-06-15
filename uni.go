@@ -271,7 +271,7 @@ func main() {
 		formatF  = flag.String(defaultFormat, "format", "f")
 		tone     = flag.String("", "t", "tone", "tones")
 		gender   = flag.String("person", "g", "gender", "genders")
-		asF      = flag.String("list", "-a", "as")
+		asF      = flag.String("list", "a", "as")
 		jsonF    = flag.Bool(false, "json", "j")
 	)
 	err := flag.Parse()
