@@ -4,8 +4,8 @@ go 1.17
 
 require (
 	github.com/mattn/go-runewidth v0.0.13
-	zgo.at/termtext v1.0.0
-	zgo.at/zli v0.0.0-20220509152732-3bb954a2e74c
+	zgo.at/termtext v1.1.0
+	zgo.at/zli v0.0.0-20220625213957-6e39ac414c92
 	zgo.at/zstd v0.0.0-20220413140508-6078fed48e39
 )
 
