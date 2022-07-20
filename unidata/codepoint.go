@@ -29,6 +29,7 @@ type (
 	Plane        uint8      // Unicode plane
 	Category     uint8      // Unicode category
 	Block        uint16     // Unicode block
+	Script       uint16     // Unicode script.
 	Property     uint8      // Unicode property
 	PropertyList []Property // Unicode property
 )
@@ -37,6 +38,7 @@ func (w Width) String() string    { return Widths[w] }
 func (c Category) String() string { return Categories[c].Name }
 func (p Plane) String() string    { return Planes[p].Name }
 func (b Block) String() string    { return Blocks[b].Name }
+func (s Script) String() string   { return Scripts[s].Name }
 func (p Property) String() string { return Properties[p].Name }
 func (p PropertyList) String() string {
 	var b strings.Builder
@@ -95,6 +97,31 @@ func FindCategory(name string) (Category, bool) {
 			return k, true
 		}
 		if strings.HasPrefix(matchName(b.Name), match) || matchName(b.ShortName) == match {
+			found = append(found, k)
+		}
+	}
+
+	switch len(found) {
+	case 0:
+		return 0, false
+	case 1:
+		return found[0], true
+	default:
+		return 0, false // TODO: print what we found
+	}
+}
+
+// FindScript finds a script by name.
+func FindScript(name string) (Script, bool) {
+	var (
+		match = matchName(name)
+		found []Script
+	)
+	for k, b := range Scripts {
+		if matchName(b.Name) == match {
+			return k, true
+		}
+		if strings.HasPrefix(matchName(b.Name), match) {
 			found = append(found, k)
 		}
 	}
@@ -287,6 +314,17 @@ func (c Codepoint) Properties() PropertyList {
 		}
 	}
 	return all
+}
+
+func (c Codepoint) Script() Script {
+	for k, v := range Scripts {
+		for _, r := range v.Ranges {
+			if c.Codepoint >= r[0] && c.Codepoint <= r[1] {
+				return k
+			}
+		}
+	}
+	return ScriptUnknown
 }
 
 // FormatCodepoint formats the codepoint in Unicode notation.

@@ -325,6 +325,7 @@ func (f *Format) printTbl(out io.Writer) {
 			} else {
 				char = "·"
 			}
+			blank++
 		} else if !ok { /// Not in selection.
 			blank++
 			char = zli.Colorize("·", zli.Color256(249))
@@ -466,7 +467,7 @@ func (f *Format) String() string {
 
 var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"oct", "bin", "utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym",
-	"digraph", "name", "cat", "block", "plane", "width", "props"}
+	"digraph", "name", "cat", "block", "plane", "width", "props", "script"}
 
 func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	if f.tbl() {
@@ -497,6 +498,7 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 			"plane":        info.Plane().String(),
 			"width":        info.Width().String(),
 			"props":        info.Properties().String(),
+			"script":       info.Script().String(),
 		}
 	}
 
@@ -561,6 +563,9 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	}
 	if zstring.Contains(f.colNames, "block") {
 		cols["block"] = info.Block().String()
+	}
+	if zstring.Contains(f.colNames, "script") {
+		cols["script"] = info.Script().String()
 	}
 	if zstring.Contains(f.colNames, "plane") {
 		cols["plane"] = info.Plane().String()

@@ -353,6 +353,7 @@ func TestJSON(t *testing.T) {
 	"oct": "20254",
 	"plane": "Basic Multilingual Plane",
 	"props": "",
+	"script": "Common",
 	"utf16be": "20 ac",
 	"utf16le": "ac 20",
 	"utf8": "e2 82 ac",

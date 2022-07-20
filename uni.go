@@ -82,9 +82,9 @@ Flags:
     -j, -json      Backwards-compatible alias for -as json
 
 Commands:
-    list [query]     List an overview of blocks, categories, or properties.
-                     Every name can be abbreviated (i.e. "b" for "block"). Use
-                     "all" to show everything.
+    list [query]     List an overview of blocks, categories, scripts, or
+                     properties. Every name can be abbreviated (i.e. "b" for
+                     "block"). Use "all" to show everything.
 
     identify [text]  Identify all the characters in the given arguments.
 
@@ -253,7 +253,7 @@ const (
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
-		" %(props l:auto)"
+		" %(script l:auto) %(props l:auto)"
 
 	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
 	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
@@ -486,11 +486,11 @@ func list(ls []string, as printAs) error {
 	}
 
 	if len(ls) == 0 || zstring.Contains(ls, "all") {
-		ls = []string{"blocks", "categories", "properties"}
+		ls = []string{"blocks", "categories", "scripts", "properties"}
 	}
 
 	for i, l := range ls {
-		cmd, err := match(l, "blocks", "categories", "properties")
+		cmd, err := match(l, "blocks", "categories", "scripts", "properties")
 		if cmd != "" && len(ls) > 0 && as == printAsList {
 			if i > 0 {
 				fmt.Fprintln(zli.Stdout)
@@ -532,6 +532,39 @@ func list(ls []string, as printAs) error {
 					"to":       fmt.Sprintf(fmtCp, b.Range[0]),
 					"assigned": strconv.Itoa(assign[b.Name]),
 					"name":     b.Name,
+				})
+			}
+			f.Print(zli.Stdout)
+
+		case "scripts":
+			f, err := NewFormat("%(name l:auto)  %(assigned r:auto)",
+				as, "name", "assigned")
+			zli.F(err)
+
+			assign := make(map[unidata.Script]int)
+			order := make([]struct {
+				Name  string
+				Const unidata.Script
+			}, 0, len(unidata.Scripts))
+			for k, s := range unidata.Scripts {
+				if k == unidata.ScriptUnknown {
+					continue
+				}
+				order = append(order, struct {
+					Name  string
+					Const unidata.Script
+				}{s.Name, k})
+
+				for _, rng := range s.Ranges {
+					assign[k] += int(rng[1] - rng[0])
+				}
+			}
+			sort.Slice(order, func(i, j int) bool { return order[i].Const < order[j].Const })
+
+			for _, s := range order {
+				f.Line(map[string]string{
+					"name":     s.Name,
+					"assigned": strconv.Itoa(assign[s.Const]),
 				})
 			}
 			f.Print(zli.Stdout)
@@ -757,10 +790,11 @@ func print(args []string, format string, raw bool, as printAs) error {
 
 		// Find by block, category, or property.
 		var (
-			catOk, blOk, pOk bool
-			cat              unidata.Category
-			bl               unidata.Block
-			p                unidata.Property
+			catOk, blOk, pOk, scOk bool
+			cat                    unidata.Category
+			bl                     unidata.Block
+			p                      unidata.Property
+			sc                     unidata.Script
 		)
 		switch {
 		case zstring.HasPrefixes(a, "block:", "b:"):
@@ -768,6 +802,12 @@ func print(args []string, format string, raw bool, as printAs) error {
 			bl, blOk = unidata.FindBlock(a)
 			if !blOk {
 				zli.Fatalf("unknown or ambiguous block: %q", a)
+			}
+		case zstring.HasPrefixes(a, "script:", "s:"):
+			a = a[strings.IndexByte(a, ':')+1:]
+			sc, scOk = unidata.FindScript(a)
+			if !scOk {
+				zli.Fatalf("unknown or ambiguous script: %q", a)
 			}
 		case zstring.HasPrefixes(a, "category:", "cat:"):
 			a = a[strings.IndexByte(a, ':')+1:]
@@ -820,6 +860,25 @@ func print(args []string, format string, raw bool, as printAs) error {
 			}
 			continue
 		}
+		// Script.
+		if scOk {
+			cc := unidata.Scripts[sc]
+			if as == printAsList || as == printAsTable {
+				fmt.Fprintf(zli.Stdout, "Showing script %s\n", cc.Name)
+			}
+
+			for _, pp := range cc.Ranges {
+				for cp := pp[0]; cp <= pp[1]; cp++ {
+					s, ok := unidata.Codepoints[cp]
+					if ok {
+						f.Line(f.toLine(s, raw))
+					}
+				}
+			}
+
+			continue
+		}
+
 		// Block.
 		if blOk {
 			if as == printAsList || as == printAsTable {
@@ -891,7 +950,7 @@ func emoji(args []string, format string, raw bool, as printAs, or bool, tones, g
 		// The reason it doesn't work is because printTbl() assumes that every
 		// entry is a codepoint. Should instead duplicate some data in
 		// Format.tblData, instead of using []unidata.Codepoint.
-		return errors.New("-table doesn't work with emoji")
+		return errors.New("-as table doesn't work with the emoji command")
 	}
 
 	type matchArg struct {

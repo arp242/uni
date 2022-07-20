@@ -51,6 +51,12 @@ get() {
 mk() {
 	local go=gen_$1.go
 	print "Generating $go"
+
+	if [[ ${PRINT:-} -eq 1 ]]; then
+		gawk -f gen/$1.awk $2 || exit $?
+		return 0
+	fi
+
 	gawk -f gen/$1.awk $2 >$go || exit $?
 	err=$(gofmt -w $go 2>&1)
 	if [[ $? -ne 0 ]]; then
@@ -65,6 +71,7 @@ get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt'
+get 'https://www.unicode.org/Public/UCD/latest/ucd/Scripts.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt'
 get 'https://www.unicode.org/Public/emoji/14.0/emoji-test.txt'
 get 'https://html.spec.whatwg.org/entities.json'
@@ -72,11 +79,13 @@ get 'https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/raw/master/include/X1
 get 'https://tools.ietf.org/rfc/rfc1345.txt'
 get 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotations/en.xml'
 
+
 1=${1:-all}
 [[ $1 =~ "all|props?"      ]] && mk props      '.cache/PropList.txt'
 [[ $1 =~ "all|blocks?"     ]] && mk blocks     '.cache/Blocks.txt'
 [[ $1 =~ "all|cats?"       ]] && mk cats       '.cache/PropertyValueAliases.txt'
 [[ $1 =~ "all|codepoints?" ]] && mk codepoints '.cache/UnicodeData.txt'
+[[ $1 =~ "all|scripts?"    ]] && mk scripts    '.cache/Scripts.txt'
 # TODO: broken
 #[[ $1 =~ "all|emojis?"     ]] && mk emojis     '.cache/emoji-test.txt'
 

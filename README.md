@@ -375,6 +375,7 @@ all columns:
     	"oct": "150",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"script": "Latin",
     	"utf16be": "00 68",
     	"utf16le": "68 00",
     	"utf8": "68",
@@ -396,6 +397,7 @@ all columns:
     	"oct": "20254",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"script": "Common",
     	"utf16be": "20 ac",
     	"utf16le": "ac 20",
     	"utf8": "e2 82 ac",
@@ -417,6 +419,7 @@ all columns:
     	"oct": "375",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"script": "Latin",
     	"utf16be": "00 fd",
     	"utf16le": "fd 00",
     	"utf8": "c3 bd",
@@ -444,6 +447,12 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### unreleased
+
+- Add "script" property (e.g. `uni i a -f '%(script)'`). Also supported in the
+  list and print commands (`uni list scripts`, `uni p 'script:linear a'`.
+
 
 ### 2.5.1 (2022-05-09)
 
