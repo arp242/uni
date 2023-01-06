@@ -529,7 +529,7 @@ func list(ls []string, as printAs) error {
 			for _, b := range order {
 				f.Line(map[string]string{
 					"from":     fmt.Sprintf(fmtCp, b.Range[0]),
-					"to":       fmt.Sprintf(fmtCp, b.Range[0]),
+					"to":       fmt.Sprintf(fmtCp, b.Range[1]),
 					"assigned": strconv.Itoa(assign[b.Name]),
 					"name":     b.Name,
 				})
