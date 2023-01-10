@@ -316,7 +316,7 @@ func main() {
 		args  = flag.Args
 	)
 	if cmd != "list" {
-		args, err = zli.InputOrArgs(args, " \t\n", quiet)
+		args, err = zli.InputOrArgs(args, "", quiet)
 		zli.F(err)
 	}
 
