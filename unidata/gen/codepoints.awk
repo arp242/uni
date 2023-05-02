@@ -44,6 +44,8 @@ END {
     while (getline line <".cache/entities.json" > 0) {
         split(line, fields, /["\[\]]/)
         ent = fields[2]
+        if (match(fields[6], ", ")) # Exclude multi-codepoint entities
+            continue
         cp  = strtonum(fields[6])
         if (ent == "" || index(ent, ";") == 0)  # Don't include legacy w/o ;
             continue
