@@ -452,6 +452,7 @@ ChangeLog
 
 - Add "script" property (e.g. `uni i a -f '%(script)'`). Also supported in the
   list and print commands (`uni list scripts`, `uni p 'script:linear a'`.
+- `ls` command is now an alias for `list.
 
 
 ### 2.5.1 (2022-05-09)

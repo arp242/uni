@@ -291,7 +291,10 @@ func main() {
 		return
 	}
 
-	cmd, err := flag.ShiftCommand("list", "identify", "print", "search", "emoji", "help", "version")
+	cmd, err := flag.ShiftCommand("list", "ls", "identify", "print", "search", "emoji", "help", "version")
+	if cmd == "ls" { // Alias because I keep typing "ls"
+		cmd = "list"
+	}
 	switch cmd {
 	case "":
 		if errors.As(err, &zli.ErrCommandNoneGiven{}) {
