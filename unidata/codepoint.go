@@ -20,6 +20,7 @@ type (
 		// at some point.
 		//
 		// Note: don't change the order without changing gen_codepoints.go
+		unicode  Unicode
 		width    Width
 		category Category
 		name     string
@@ -32,6 +33,7 @@ type (
 	Script       uint16     // Unicode script.
 	Property     uint8      // Unicode property
 	PropertyList []Property // Unicode property
+	Unicode      uint8      // Unicode version
 )
 
 func (w Width) String() string    { return Widths[w] }
@@ -40,6 +42,7 @@ func (p Plane) String() string    { return Planes[p].Name }
 func (b Block) String() string    { return Blocks[b].Name }
 func (s Script) String() string   { return Scripts[s].Name }
 func (p Property) String() string { return Properties[p].Name }
+func (u Unicode) String() string  { return Unicodes[u].Name }
 func (p PropertyList) String() string {
 	var b strings.Builder
 	for i, pp := range p {
@@ -191,11 +194,11 @@ func Find(cp rune) (Codepoint, bool) {
 //
 // The input can be as (case-insensitive):
 //
-//   U+F1, U+00F1, UF1, F1   Unicode codepoint notation (hex)
-//   0xF1, xF1               Hex number
-//   0d241                   Decimal number
-//   0o361, o361             Octal number
-//   0b11110001              Binary number
+//	U+F1, U+00F1, UF1, F1   Unicode codepoint notation (hex)
+//	0xF1, xF1               Hex number
+//	0d241                   Decimal number
+//	0o361, o361             Octal number
+//	0b11110001              Binary number
 func FromString(s string) (Codepoint, error) {
 	os := s
 	s = strings.ToUpper(s)
@@ -327,6 +330,10 @@ func (c Codepoint) Script() Script {
 	return ScriptUnknown
 }
 
+func (c Codepoint) Unicode() Unicode {
+	return c.unicode
+}
+
 // FormatCodepoint formats the codepoint in Unicode notation.
 func (c Codepoint) FormatCodepoint() string {
 	return fmt.Sprintf("U+%04X", c.Codepoint)
@@ -394,8 +401,8 @@ func (c Codepoint) KeySym() string { return keysyms[c.Codepoint] }
 // Digraphs are defined in RFC1345. This adds two digraphs that Vim recognises
 // but are not in the RFC:
 //
-//   =e    €   U+20AC EURO SIGN
-//   =R    ₽   U+20BD RUBLE SIGN
+//	=e    €   U+20AC EURO SIGN
+//	=R    ₽   U+20BD RUBLE SIGN
 func (c Codepoint) Digraph() string { return digraphs[c.Codepoint] }
 
 // in reports if this codepoint is in the given category.

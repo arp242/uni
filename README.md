@@ -376,6 +376,7 @@ all columns:
     	"plane": "Basic Multilingual Plane",
     	"props": "",
     	"script": "Latin",
+    	"unicode": "1.1",
     	"utf16be": "00 68",
     	"utf16le": "68 00",
     	"utf8": "68",
@@ -398,6 +399,7 @@ all columns:
     	"plane": "Basic Multilingual Plane",
     	"props": "",
     	"script": "Common",
+    	"unicode": "2.1",
     	"utf16be": "20 ac",
     	"utf16le": "ac 20",
     	"utf8": "e2 82 ac",
@@ -420,6 +422,7 @@ all columns:
     	"plane": "Basic Multilingual Plane",
     	"props": "",
     	"script": "Latin",
+    	"unicode": "1.1",
     	"utf16be": "00 fd",
     	"utf16le": "fd 00",
     	"utf8": "c3 bd",
@@ -452,6 +455,10 @@ ChangeLog
 
 - Add "script" property (e.g. `uni i a -f '%(script)'`). Also supported in the
   list and print commands (`uni list scripts`, `uni p 'script:linear a'`.
+
+- Add "unicode" property, which tells you in which Unicode version a codepoint
+  was introduced.
+
 - `ls` command is now an alias for `list.
 
 

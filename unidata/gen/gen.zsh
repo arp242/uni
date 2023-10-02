@@ -68,6 +68,7 @@ mk() {
 
 mkdir -p .cache
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
+get 'https://www.unicode.org/Public/UCD/latest/ucd/DerivedAge.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt'

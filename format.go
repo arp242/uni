@@ -467,7 +467,7 @@ func (f *Format) String() string {
 
 var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"oct", "bin", "utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym",
-	"digraph", "name", "cat", "block", "plane", "width", "props", "script"}
+	"digraph", "name", "cat", "block", "plane", "width", "props", "script", "unicode"}
 
 func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	if f.tbl() {
@@ -499,6 +499,7 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 			"width":        info.Width().String(),
 			"props":        info.Properties().String(),
 			"script":       info.Script().String(),
+			"unicode":      info.Unicode().String(),
 		}
 	}
 
@@ -575,6 +576,9 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	}
 	if zstring.Contains(f.colNames, "props") {
 		cols["props"] = info.Properties().String()
+	}
+	if zstring.Contains(f.colNames, "unicode") {
+		cols["unicode"] = info.Unicode().String()
 	}
 	return cols
 }

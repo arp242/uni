@@ -227,6 +227,7 @@ Format:
         %(props)         Properties, separated by ,    Pattern Syntax
         %(plane)         Plane name                    Basic Multilingual Plane
         %(width)         Character width               Narrow
+        %(unicode)       First assigned in Unicode     1.1
         %(wide_padding)  Blank for wide characters,
                          space otherwise; for alignment
 
@@ -253,7 +254,7 @@ const (
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
-		" %(script l:auto) %(props l:auto)"
+		" %(script l:auto) %(props l:auto) %(unicode l:auto)"
 
 	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
 	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"

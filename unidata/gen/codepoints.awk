@@ -2,6 +2,7 @@ BEGIN {
     FS                    = ";"
     PROCINFO["sorted_in"] = "@ind_num_asc"
     loadwidths()
+    loadage()
 }
 
 {
@@ -23,8 +24,8 @@ BEGIN {
         }
     }
 
-    codepoints = codepoints sprintf("\t0x%X: {0x%X, %s, Cat%s, \"%s\"},\n",
-        codepoint, codepoint, widths[codepoint], cat, name)
+    codepoints = codepoints sprintf("\t0x%X: {0x%X, Unicode%s, %s, Cat%s, \"%s\"},\n",
+        codepoint, codepoint, ages[codepoint], widths[codepoint], cat, name)
 }
 
 END {
@@ -84,6 +85,21 @@ END {
     all[0x20bd] = "=R" # ₽ (Ruble); also =P and the only one with more than one digraph :-/
     for (k in all) printf("\t0x%02x: \"%s\",\n", k, all[k])
     print("}")
+}
+
+function loadage(     cp, start, end, i) {
+    while (getline line <".cache/DerivedAge.txt" > 0) {
+        if (match(line, "^$|^#") > 0)
+            continue
+
+        split(line, fields, "[; ]+")
+        split(fields[1], cp, /\.\./)
+        start = strtonum("0x" cp[1])
+        end   = strtonum("0x" (length(cp) > 1 ? cp[2] : cp[1]))
+
+        for (i=start; i<=end; i++)
+            ages[i] = gensub("[0_]{1,2}$", "", "g", gensub("\\.", "_", "g", fields[2]))
+    }
 }
 
 function loadwidths(      fields, width, cp, start, end, i) {

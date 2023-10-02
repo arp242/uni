@@ -159,10 +159,10 @@ func TestPrint(t *testing.T) {
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 605, -1},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 605, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 628, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 628, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 34626, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 34924, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 
@@ -354,6 +354,7 @@ func TestJSON(t *testing.T) {
 	"plane": "Basic Multilingual Plane",
 	"props": "",
 	"script": "Common",
+	"unicode": "2.1",
 	"utf16be": "20 ac",
 	"utf16le": "ac 20",
 	"utf8": "e2 82 ac",
