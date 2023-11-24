@@ -773,7 +773,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 			}
 
 			r, s := utf8.DecodeRune(byt)
-			if r == utf8.RuneError {
+			if r == utf8.RuneError && s == 1 {
 				return fmt.Errorf("invalid UTF-8 sequence: %q", a)
 			}
 			if s != len(byt) {
