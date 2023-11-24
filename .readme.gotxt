@@ -1,5 +1,5 @@
 `uni` queries the Unicode database from the commandline. It supports Unicode
-14.0 (September 2021) and has good support for emojis.
+15.1 (September 2023) and has good support for emojis.
 
 There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
@@ -204,25 +204,54 @@ some other tool if you want to process the data further.
 ChangeLog
 ---------
 
-### unreleased
+### v2.6.0 (2023-11-24)
 
 - Update to Unicode 15.1.
 
-- Add "script" property (e.g. `uni i a -f '%(script)'`). Also supported in the
-  list and print commands (`uni list scripts`, `uni p 'script:linear a'`).
+- Add "script" property – also supported in the list and print commands:
+
+      % uni identify -f '%(script l:auto) %(cpoint) %(name)' 'a Ω'
+      Script CPoint Name
+      Latin  U+0061 LATIN SMALL LETTER A
+      Common U+0020 SPACE
+      Greek  U+03A9 GREEK CAPITAL LETTER OMEGA
+
+      % uni list scripts
+      Scripts:
+      Name                    Assigned
+      Adlam                         83
+      Ahom                          54
+      Anatolian Hieroglyphs        582
+      …
+      
+      % uni print 'script:linear a'
+      Showing script Linear A
+           CPoint  Dec    UTF8        HTML       Name (Cat)
+      '𐘀'  U+10600 67072  f0 90 98 80 &#x10600;  LINEAR A SIGN AB001 (Other_Letter)
+      '𐘁'  U+10601 67073  f0 90 98 81 &#x10601;  LINEAR A SIGN AB002 (Other_Letter)
+      '𐘂'  U+10602 67074  f0 90 98 82 &#x10602;  LINEAR A SIGN AB003 (Other_Letter)
+      …
+
 
 - Add "unicode" property, which tells you in which Unicode version a codepoint
-  was introduced.
+  was introduced:
 
-- `ls` command is now an alias for `list.
-
-- Always print Private Use characters as-is for %(char) instead of using U+FFFD.
-  It's usually safe to print this, and having to use -raw is confusing.
+      % uni identify -f '%(unicode l:auto) %(cpoint l:auto) %(name)' a𐘂🫁
+      Unicode CPoint  Name
+      1.1     U+0061  LATIN SMALL LETTER A
+      7.0     U+10602 LINEAR A SIGN AB003
+      13.0    U+1FAC1 LUNGS
 
 - Show unprintable control characters as the open box (␣, U+2423) instead of the
   replacement character (�, U+FFFD). It already did that for C1 control
-  characters, and U+FFFD looked more like a bug than intentional. The -raw or -r
-  flags still override this.
+  characters, and U+FFFD looked more like a bug than intentional. The -raw/-r
+  flag still overrides this.
+
+- Always print Private Use characters as-is for %(char) instead of using U+FFFD
+  replacement character. It's usually safe to print this, and having to use -raw
+  is confusing.
+
+- `ls` command is now an alias for `list.
 
 ### 2.5.1 (2022-05-09)
 
