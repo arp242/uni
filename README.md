@@ -463,6 +463,13 @@ ChangeLog
 
 - `ls` command is now an alias for `list.
 
+- Always print Private Use characters as-is for %(char) instead of using U+FFFD.
+  It's usually safe to print this, and having to use -raw is confusing.
+
+- Show unprintable control characters as the open box (␣, U+2423) instead of the
+  replacement character (�, U+FFFD). It already did that for C1 control
+  characters, and U+FFFD looked more like a bug than intentional. The -raw or -r
+  flags still override this.
 
 ### 2.5.1 (2022-05-09)
 

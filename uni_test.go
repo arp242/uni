@@ -64,6 +64,29 @@ func TestIdentify(t *testing.T) {
 		{[]string{"i", ""}, ""},
 		{[]string{"i", "a"}, "SMALL LETTER A"},
 		{[]string{"i", `"`}, "&quot;"}, // Make sure it uses the lower-case and short variant.
+
+		{[]string{"i", "\u0600"}, "␣"},                                 // ARABIC NUMBER SIGN
+		{[]string{"i", "\u200d"}, "␣"},                                 // ZERO WIDTH JOINER
+		{[]string{"i", "\u200e"}, "␣"},                                 // LEFT-TO-RIGHT MARK
+		{[]string{"i", "\U000E007E"}, "␣"},                             // TAG TILDE
+		{[]string{"i", "\uE000"}, "'\uE000'"},                          // <Private Use> (First)
+		{[]string{"i", "\uE001"}, "'\uE001'"},                          // <Private Use>
+		{[]string{"i", "\uF8FF"}, "'\uF8FF'"},                          // <Private Use> (Last)
+		{[]string{"i", "\U000F0000"}, "'\U000F0000'"},                  // <Plane 15 Private Use> (First)
+		{[]string{"i", "\U000F0001"}, "'\U000F0001'"},                  // <Plane 15 Private Use>
+		{[]string{"i", "\U000FFFFD"}, "'\U000FFFFD'"},                  // <Plane 15 Private Use> (Last)
+		{[]string{"i", "\U00100000"}, "'\U00100000'"},                  // <Plane 16 Private Use> (First)
+		{[]string{"i", "\U00100001"}, "'\U00100001'"},                  // <Plane 16 Private Use>
+		{[]string{"i", "\U0010FFFD"}, "'\U0010FFFD'"},                  // <Plane 16 Private Use> (Last)
+		{[]string{"i", "\uE000"}, "<Private Use, First>"},              // <Private Use> (First)
+		{[]string{"i", "\uE001"}, "<Private Use>"},                     // <Private Use>
+		{[]string{"i", "\uF8FF"}, "<Private Use, Last>"},               // <Private Use> (Last)
+		{[]string{"i", "\U000F0000"}, "<Plane 15 Private Use, First>"}, // <Plane 15 Private Use> (First)
+		{[]string{"i", "\U000F0001"}, "<Plane 15 Private Use>"},        // <Plane 15 Private Use>
+		{[]string{"i", "\U000FFFFD"}, "<Plane 15 Private Use, Last>"},  // <Plane 15 Private Use> (Last)
+		{[]string{"i", "\U00100000"}, "<Plane 16 Private Use, First>"}, // <Plane 16 Private Use> (First)
+		{[]string{"i", "\U00100001"}, "<Plane 16 Private Use>"},        // <Plane 16 Private Use>
+		{[]string{"i", "\U0010FFFD"}, "<Plane 16 Private Use, Last>"},  // <Plane 16 Private Use> (Last)
 	}
 
 	for _, tt := range tests {
@@ -175,6 +198,26 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "utf8:0xE2 0x82 0xAC"}, "'€'", 1, -1},
 		// Issue #46
 		{[]string{"-q", "p", "utf8:ef bf bd"}, "U+FFFD", 1, -1},
+
+		// Surrogates
+		{[]string{"-q", "p", "U+DC00"}, "␣", 1, -1},                                       // <Low Surrogate> (First)
+		{[]string{"-q", "p", "U+DC01"}, "␣", 1, -1},                                       // <Low Surrogate>
+		{[]string{"-q", "p", "U+DFFF"}, "␣", 1, -1},                                       // <Low Surrogate> (Last)
+		{[]string{"-q", "p", "U+D800"}, "␣", 1, -1},                                       // <Non Private Use High Surrogate> (First)
+		{[]string{"-q", "p", "U+D801"}, "␣", 1, -1},                                       // <Non Private Use High Surrogate>
+		{[]string{"-q", "p", "U+DB7F"}, "␣", 1, -1},                                       // <Non Private Use High Surrogate> (Last)
+		{[]string{"-q", "p", "U+DB80"}, "␣", 1, -1},                                       // <Private Use High Surrogate> (First)
+		{[]string{"-q", "p", "U+DB81"}, "␣", 1, -1},                                       // <Private Use High Surrogate>
+		{[]string{"-q", "p", "U+DBFF"}, "␣", 1, -1},                                       // <Private Use High Surrogate> (Last)
+		{[]string{"-q", "p", "U+DC00"}, "<Low Surrogate, First>", 1, -1},                  // <Low Surrogate> (First)
+		{[]string{"-q", "p", "U+DC01"}, "<Low Surrogate>", 1, -1},                         // <Low Surrogate>
+		{[]string{"-q", "p", "U+DFFF"}, "<Low Surrogate, Last>", 1, -1},                   // <Low Surrogate> (Last)
+		{[]string{"-q", "p", "U+D800"}, "<Non Private Use High Surrogate, First>", 1, -1}, // <Non Private Use High Surrogate> (First)
+		{[]string{"-q", "p", "U+D801"}, "<Non Private Use High Surrogate>", 1, -1},        // <Non Private Use High Surrogate>
+		{[]string{"-q", "p", "U+DB7F"}, "<Non Private Use High Surrogate, Last>", 1, -1},  // <Non Private Use High Surrogate> (Last)
+		{[]string{"-q", "p", "U+DB80"}, "<Private Use High Surrogate, First>", 1, -1},     // <Private Use High Surrogate> (First)
+		{[]string{"-q", "p", "U+DB81"}, "<Private Use High Surrogate>", 1, -1},            // <Private Use High Surrogate>
+		{[]string{"-q", "p", "U+DBFF"}, "<Private Use High Surrogate, Last>", 1, -1},      // <Private Use High Surrogate> (Last)
 	}
 
 	for _, tt := range tests {

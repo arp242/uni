@@ -243,8 +243,7 @@ func (c Codepoint) String() string {
 //
 //   - Combining characters are prefixed with ◌ (U+25CC)
 //   - C0 control characters use the graphical representation (Control Pictures block, U+2400-2426)
-//   - C1 control characters use open box ␣ (U+2423)
-//   - Other unprintable characters use the replacement character � (U+FFFD)
+//   - Other control characters (C1, bidi, tags, some script-specific controls) use open box ␣ (U+2423)
 //   - Everything else is converted to a string without processing.
 func (c Codepoint) Display() string {
 	// Display combining characters with ◌.
@@ -265,8 +264,8 @@ func (c Codepoint) Display() string {
 			cp = 0x2423
 		}
 	// "Other, Format" category except the soft hyphen and spaces.
-	case !c.isPrint() && cp != 0x00ad && c.Category() != CatSpaceSeparator:
-		cp = 0xfffd
+	case c.category != CatPrivateUse && !c.isPrint() && cp != 0x00ad && c.Category() != CatSpaceSeparator:
+		cp = 0x2423
 	}
 
 	return string(cp)

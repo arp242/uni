@@ -208,6 +208,7 @@ Format:
 
     Placeholders for identify, search, and print:
         %(char)          The literal character         ✓
+                         (also see -raw flag)
         %(cpoint)        As codepoint                  U+2713
         %(hex)           As hex                        2713
         %(oct)           As octal                      23423
