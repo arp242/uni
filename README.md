@@ -453,8 +453,10 @@ ChangeLog
 
 ### unreleased
 
+- Update to Unicode 15.1.
+
 - Add "script" property (e.g. `uni i a -f '%(script)'`). Also supported in the
-  list and print commands (`uni list scripts`, `uni p 'script:linear a'`.
+  list and print commands (`uni list scripts`, `uni p 'script:linear a'`).
 
 - Add "unicode" property, which tells you in which Unicode version a codepoint
   was introduced.
