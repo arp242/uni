@@ -3,10 +3,10 @@ module zgo.at/uni/v2
 go 1.17
 
 require (
-	github.com/mattn/go-runewidth v0.0.13
+	github.com/mattn/go-runewidth v0.0.15
 	zgo.at/termtext v1.1.0
-	zgo.at/zli v0.0.0-20220625213957-6e39ac414c92
-	zgo.at/zstd v0.0.0-20220413140508-6078fed48e39
+	zgo.at/zli v0.0.0-20231011155715-00b7e09f5229
+	zgo.at/zstd v0.0.0-20231103054616-51d9aeb81421
 )
 
 require (

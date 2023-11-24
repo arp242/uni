@@ -1,5 +1,6 @@
-github.com/mattn/go-runewidth v0.0.13 h1:lTGmDsbAYt5DmK6OnoV7EuIF1wEIFAcxld6ypU4OSgU=
 github.com/mattn/go-runewidth v0.0.13/go.mod h1:Jdepj2loyihRzMpdS35Xk/zdY8IAYHsh153qUoGf23w=
+github.com/mattn/go-runewidth v0.0.15 h1:UNAjwbU9l54TA3KzvqLGxwWjHmMgBUVhBiTjelZgg3U=
+github.com/mattn/go-runewidth v0.0.15/go.mod h1:Jdepj2loyihRzMpdS35Xk/zdY8IAYHsh153qUoGf23w=
 github.com/rivo/uniseg v0.2.0 h1:S1pD9weZBuJdFmowNwbpi7BJ8TNftyUImj/0WQi72jY=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 golang.org/x/sys v0.0.0-20210615035016-665e8c7367d1 h1:SrN+KX8Art/Sf4HNj6Zcz06G7VEz+7w9tdXTPOZ7+l4=
@@ -8,7 +9,7 @@ golang.org/x/term v0.0.0-20220411215600-e5f449aeb171 h1:EH1Deb8WZJ0xc0WK//leUHXc
 golang.org/x/term v0.0.0-20220411215600-e5f449aeb171/go.mod h1:jbD1KX2456YbFQfuXm/mYQcufACuNUgVhRMnK/tPxf8=
 zgo.at/termtext v1.1.0 h1:fBwyR6BVw1DnOIGmRhlQwM3cePzoJtY9FHpc62TwCWU=
 zgo.at/termtext v1.1.0/go.mod h1:P0jvULwo8z82ad7+WR6vg5vTy86dqvbOmR3bT3NlYvc=
-zgo.at/zli v0.0.0-20220625213957-6e39ac414c92 h1:6fzpeSSutyHZ9fWPNF1ZXRStFLwJpDNL03npyy6jZMU=
-zgo.at/zli v0.0.0-20220625213957-6e39ac414c92/go.mod h1:6nYv5thziHp9CMVzGbQV4qeA9hMJSj7uJ8WLgD4BtVs=
-zgo.at/zstd v0.0.0-20220413140508-6078fed48e39 h1:vru0q7GNi2PmYOFxGm1cUIr0mRcuav7HYviuUtMvYNs=
-zgo.at/zstd v0.0.0-20220413140508-6078fed48e39/go.mod h1:KYkLDHZN6APaRYHlL+hpwBJW/g9w+MLmXi4MKE5YteY=
+zgo.at/zli v0.0.0-20231011155715-00b7e09f5229 h1:QStxac26xDcwDFyhLi79w3CiNHb7JlV6JQ35+GrdAG8=
+zgo.at/zli v0.0.0-20231011155715-00b7e09f5229/go.mod h1:6nYv5thziHp9CMVzGbQV4qeA9hMJSj7uJ8WLgD4BtVs=
+zgo.at/zstd v0.0.0-20231103054616-51d9aeb81421 h1:2wAigYAV3rV5X4i4VWY5OGZKY5+40H/UXWMTRwlgJJw=
+zgo.at/zstd v0.0.0-20231103054616-51d9aeb81421/go.mod h1:o/Q8+EtSahHnfkbB3t8wXE0FnoDTmJ0sBDlzezv9XeM=
