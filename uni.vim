@@ -1,3 +1,5 @@
+" https://github.com/arp242/uni
+
 command! -range UnicodeName
 			\  let s:save = @a
 			\| if <count> is# -1
@@ -15,9 +17,12 @@ command! -range UnicodeName
 
 " Vim9Script version:
 " command -range UnicodeName {
-"     | var save = @a
-"     | if <count> == -1  | @a = strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
-"     | else              | exe 'normal! gv"ay' | endif
-"     | echo system('uni -c i', @a)[: -2]
-"     | @a = save
-"     | }
+"     var save = @a
+"     if <count> == -1
+"         @a = strcharpart(strpart(getline('.'), col('.') - 1), 0, 1)
+"     else
+"         exe 'normal! gv"ay'
+"     endif
+"     echo system('uni -q i', @a)[: -2]
+"     @a = save
+" }
