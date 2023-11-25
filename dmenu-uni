@@ -7,8 +7,6 @@
 #   dmenu-uni emoji          All emojis.
 #   dmenu-uni emoji-common   Common emojis
 #
-# NOTE: dmenu will *crash* when using a colour emoji font, this is a bug in Xft:
-# https://bugs.freedesktop.org/show_bug.cgi?id=107534
 
 dmenu="dmenu -i"                                   # Command to use
 #dmenu="dmenu -x -i -l 20 -fn monospace:size=20"   # Adding some options
@@ -21,7 +19,7 @@ copy="xclip -rmlastnl -selection clipboard"
 # Common emojis I use >99% of the time:
 common="-or g:smileys g:hand-fingers-open g:hand-fingers-partial g:hand-single-finger g:hand-fingers-closed g:hands g:body-parts g:person-gesture"
 
-# Display onlt the male variants:
+# Display only the male variants:
 #common="$common -gender male"
 
 # Set skin tone:
