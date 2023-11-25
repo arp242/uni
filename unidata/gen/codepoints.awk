@@ -55,10 +55,10 @@ END {
         # Prefer entities without capitals and shorter entities.
         # TODO: include all entities as a []string; select the first one with
         # "%(html)" and all of them with "%(htmls)", "%(html_all)" or something.
-        if (!(cp in all) || (match(all[cp], /^[A-Z]/) && !match(ent, /^[A-Z]/)) || length(all[cp]) > length(ent))
-            all[cp] = ent
+        if (!(cp in all_ent) || (match(all_ent[cp], /^[A-Z]/) && !match(ent, /^[A-Z]/)) || length(all_ent[cp]) > length(ent))
+            all_ent[cp] = ent
     }
-    for (k in all) printf("\t0x%02x: \"%s\",\n", k, all[k])
+    for (k in all_ent) printf("\t0x%02x: \"%s\",\n", k, all_ent[k])
     print("}\n")
 
     print("var keysyms = map[rune]string{")
@@ -66,9 +66,9 @@ END {
         if (match(line, "^#define XK") == 0)
             continue
         split(line, fields, " ")
-        all[strtonum(fields[3])] = gensub("^XK_", "", 1, fields[2])
+        all_sym[strtonum(fields[3])] = gensub("^XK_", "", 1, fields[2])
     }
-    for (k in all) printf("\t0x%02x: \"%s\",\n", k, all[k])
+    for (k in all_sym) printf("\t0x%02x: \"%s\",\n", k, all_sym[k])
     print("}\n")
 
     print("var digraphs = map[rune]string{")
@@ -77,13 +77,13 @@ END {
             continue
         if (match(line, "^ .*?   +[0-9a-f]{4}") > 0) {
             split(line, fields, " ")
-            all[strtonum("0x" fields[2])] = gensub("\"", "\\\\\"", "g", fields[1])
+            all_di[strtonum("0x" fields[2])] = gensub("\"", "\\\\\"", "g", fields[1])
         }
     }
-    all[0x00]   = "NU" # Correct for inconsistent line
-    all[0x20ac] = "=e" # € (Euro)
-    all[0x20bd] = "=R" # ₽ (Ruble); also =P and the only one with more than one digraph :-/
-    for (k in all) printf("\t0x%02x: \"%s\",\n", k, all[k])
+    all_di[0x00]   = "NU" # Correct for inconsistent line
+    all_di[0x20ac] = "=e" # € (Euro)
+    all_di[0x20bd] = "=R" # ₽ (Ruble); also =P and the only one with more than one digraph :-/
+    for (k in all_di) printf("\t0x%02x: \"%s\",\n", k, all_di[k])
     print("}")
 }
 
