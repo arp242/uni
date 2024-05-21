@@ -1,4 +1,3 @@
-# TODO: add "alias" information from
 # Format:
 #    <codepoint>\t<description>
 #    \t= alias
@@ -89,7 +88,7 @@
 
 # Cross reference
 /^\tx / {
-    refs[++r] = gensub("\\((.+) - ([A-F0-9]{4,})\\)$", "U+\\2 \\1", "g", skip(1))
+    refs[++r] = gensub("\\((.+) - ([A-F0-9]{4,})\\)$", "\\2", "g", skip(1))
     next
 }
 
@@ -119,14 +118,14 @@ BEGIN {
 
     printf("\t%s: {\n", prchr(cp))
     if (a > 0) {
-        print("\t\taliases: []string{")
-        for (a in aliases) printf("\t\t\t`%s`,\n", aliases[a])
-        print("\t\t},")
+        printf("\t\taliases: []string{")
+        for (a in aliases) printf("`%s`,", aliases[a])
+        print("},")
     }
     if (r > 0) {
-        print("\t\trefs: []string{")
-        for (r in refs) printf("\t\t\t`%s`,\n", refs[r])
-        print("\t\t},")
+        printf("\t\trefs: []rune{")
+        for (r in refs) printf("0x%s,", refs[r])
+        print("},")
     }
 
     # for (n in notes)    print "\t" notes[n]
@@ -135,10 +134,8 @@ BEGIN {
     printf("\t},\n")
 
     cp = strtonum("0x" $1)
-    delete aliases; delete refs; 
-delete notes; delete comments
-    a = 0; r = 0;
-n = 0; c = 0
+    delete aliases; delete refs; delete notes; delete comments
+    a = 0; r = 0; n = 0; c = 0
 }
 
 END {

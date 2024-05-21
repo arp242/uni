@@ -28,7 +28,7 @@ type (
 
 	name struct {
 		aliases   []string
-		refs      []string
+		refs      []rune
 		decompose []rune
 	}
 
@@ -344,7 +344,12 @@ func (c Codepoint) Aliases() []string {
 }
 
 func (c Codepoint) Refs() []string {
-	return names[c.Codepoint].refs
+	r := names[c.Codepoint].refs
+	s := make([]string, 0, len(r))
+	for _, rr := range r {
+		s = append(s, fmt.Sprintf("U+%04X", rr))
+	}
+	return s
 }
 
 // FormatCodepoint formats the codepoint in Unicode notation.

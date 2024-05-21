@@ -4,27176 +4,14815 @@ package unidata
 
 var names = map[rune]name{
 	0x1a: {
-		refs: []string{
-			`U+FFFD replacement character`,
-		},
+		refs: []rune{0xFFFD},
 	},
 	0x20: {
-		refs: []string{
-			`U+00A0 no-break space`,
-			`U+200B zero width space`,
-			`U+202F narrow no-break space`,
-			`U+2060 word joiner`,
-			`U+2420 symbol for space`,
-			`U+2422 blank symbol`,
-			`U+2423 open box`,
-			`U+3000 ideographic space`,
-			`U+FEFF zero width no-break space`,
-		},
+		refs: []rune{0x00A0, 0x200B, 0x202F, 0x2060, 0x2420, 0x2422, 0x2423, 0x3000, 0xFEFF},
 	},
 	0x21: {
-		aliases: []string{
-			`factorial`,
-			`bang`,
-		},
-		refs: []string{
-			`U+00A1 inverted exclamation mark`,
-			`U+01C3 latin letter retroflex click`,
-			`U+203C double exclamation mark`,
-			`U+203D interrobang`,
-			`U+26A0 warning sign`,
-			`U+2757 heavy exclamation mark symbol`,
-			`U+2762 heavy exclamation mark ornament`,
-			`U+2E53 medieval exclamation mark`,
-			`U+A71D modifier letter raised exclamation mark`,
-		},
+		aliases: []string{`factorial`, `bang`},
+		refs:    []rune{0x00A1, 0x01C3, 0x203C, 0x203D, 0x26A0, 0x2757, 0x2762, 0x2E53, 0xA71D},
 	},
 	0x22: {
-		aliases: []string{
-			`double quote`,
-		},
-		refs: []string{
-			`U+02BA modifier letter double prime`,
-			`U+02DD double acute accent`,
-			`U+02EE modifier letter double apostrophe`,
-			`U+030B combining double acute accent`,
-			`U+030E combining double vertical line above`,
-			`U+05F4 hebrew punctuation gershayim`,
-			`U+201C left double quotation mark`,
-			`U+201D right double quotation mark`,
-			`U+2033 double prime`,
-			`U+3003 ditto mark`,
-		},
+		aliases: []string{`double quote`},
+		refs:    []rune{0x02BA, 0x02DD, 0x02EE, 0x030B, 0x030E, 0x05F4, 0x201C, 0x201D, 0x2033, 0x3003},
 	},
 	0x23: {
-		aliases: []string{
-			`pound sign`,
-			`hashtag`,
-			`hash`,
-			`crosshatch`,
-			`octothorpe`,
-		},
-		refs: []string{
-			`U+2114 l b bar symbol`,
-			`U+2116 numero sign`,
-			`U+2317 viewdata square`,
-			`U+266F music sharp sign`,
-			`U+29E3 equals sign and slanted parallel`,
-		},
+		aliases: []string{`pound sign`, `hashtag`, `hash`, `crosshatch`, `octothorpe`},
+		refs:    []rune{0x2114, 0x2116, 0x2317, 0x266F, 0x29E3},
 	},
 	0x24: {
-		aliases: []string{
-			`milréis`,
-			`escudo`,
-		},
-		refs: []string{
-			`U+00A2 cent sign`,
-			`U+00A4 currency sign`,
-			`U+20B1 peso sign`,
-			`U+1F4B2 heavy dollar sign`,
-		},
+		aliases: []string{`milréis`, `escudo`},
+		refs:    []rune{0x00A2, 0x00A4, 0x20B1, 0x1F4B2},
 	},
 	0x25: {
-		refs: []string{
-			`U+066A arabic percent sign`,
-			`U+2030 per mille sign`,
-			`U+2031 per ten thousand sign`,
-			`U+2052 commercial minus sign`,
-		},
+		refs: []rune{0x066A, 0x2030, 0x2031, 0x2052},
 	},
 	0x26: {
-		aliases: []string{
-			`and`,
-		},
-		refs: []string{
-			`U+204A tironian sign et`,
-			`U+214B turned ampersand`,
-			`U+1F674 heavy ampersand ornament`,
-		},
+		aliases: []string{`and`},
+		refs:    []rune{0x204A, 0x214B, 0x1F674},
 	},
 	0x27: {
-		aliases: []string{
-			`apostrophe-quote`,
-			`single quote`,
-			`APL quote`,
-		},
-		refs: []string{
-			`U+02B9 modifier letter prime`,
-			`U+02BC modifier letter apostrophe`,
-			`U+02C8 modifier letter vertical line`,
-			`U+0301 combining acute accent`,
-			`U+030D combining vertical line above`,
-			`U+05F3 hebrew punctuation geresh`,
-			`U+2018 left single quotation mark`,
-			`U+2019 right single quotation mark`,
-			`U+2032 prime`,
-			`U+A78C latin small letter saltillo`,
-		},
+		aliases: []string{`apostrophe-quote`, `single quote`, `APL quote`},
+		refs:    []rune{0x02B9, 0x02BC, 0x02C8, 0x0301, 0x030D, 0x05F3, 0x2018, 0x2019, 0x2032, 0xA78C},
 	},
 	0x28: {
-		aliases: []string{
-			`opening parenthesis`,
-		},
+		aliases: []string{`opening parenthesis`},
 	},
 	0x29: {
-		aliases: []string{
-			`closing parenthesis`,
-		},
+		aliases: []string{`closing parenthesis`},
 	},
 	0x2a: {
-		aliases: []string{
-			`star`,
-		},
-		refs: []string{
-			`U+066D arabic five pointed star`,
-			`U+203B reference mark`,
-			`U+2042 asterism`,
-			`U+204E low asterisk`,
-			`U+2051 two asterisks aligned vertically`,
-			`U+20F0 combining asterisk above`,
-			`U+2217 asterisk operator`,
-			`U+26B9 sextile`,
-			`U+2731 heavy asterisk`,
-			`U+A673 slavonic asterisk`,
-			`U+1F7B6 medium six spoked asterisk`,
-		},
+		aliases: []string{`star`},
+		refs:    []rune{0x066D, 0x203B, 0x2042, 0x204E, 0x2051, 0x20F0, 0x2217, 0x26B9, 0x2731, 0xA673, 0x1F7B6},
 	},
 	0x2b: {
-		refs: []string{
-			`U+02D6 modifier letter plus sign`,
-			`U+2212 minus sign`,
-			`U+2795 heavy plus sign`,
-			`U+FB29 hebrew letter alternative plus sign`,
-			`U+1F7A2 light greek cross`,
-		},
+		refs: []rune{0x02D6, 0x2212, 0x2795, 0xFB29, 0x1F7A2},
 	},
 	0x2c: {
-		refs: []string{
-			`U+060C arabic comma`,
-			`U+066B arabic decimal separator`,
-			`U+201A single low-9 quotation mark`,
-			`U+2E12 hypodiastole`,
-			`U+2E41 reversed comma`,
-			`U+2E4C medieval comma`,
-			`U+3001 ideographic comma`,
-		},
+		refs: []rune{0x060C, 0x066B, 0x201A, 0x2E12, 0x2E41, 0x2E4C, 0x3001},
 	},
 	0x2d: {
-		aliases: []string{
-			`hyphen`,
-			`dash`,
-			`minus sign`,
-		},
-		refs: []string{
-			`U+00AD soft hyphen`,
-			`U+02D7 modifier letter minus sign`,
-			`U+2010 hyphen`,
-			`U+2011 non-breaking hyphen`,
-			`U+2012 figure dash`,
-			`U+2013 en dash`,
-			`U+2027 hyphenation point`,
-			`U+2043 hyphen bullet`,
-			`U+2212 minus sign`,
-			`U+10191 roman uncia sign`,
-		},
+		aliases: []string{`hyphen`, `dash`, `minus sign`},
+		refs:    []rune{0x00AD, 0x02D7, 0x2010, 0x2011, 0x2012, 0x2013, 0x2027, 0x2043, 0x2212, 0x10191},
 	},
 	0x2e: {
-		aliases: []string{
-			`period`,
-			`dot`,
-			`decimal point`,
-		},
-		refs: []string{
-			`U+00B7 middle dot`,
-			`U+06D4 arabic full stop`,
-			`U+2024 one dot leader`,
-			`U+2026 horizontal ellipsis`,
-			`U+2E33 raised dot`,
-			`U+2E3C stenographic full stop`,
-			`U+3002 ideographic full stop`,
-		},
+		aliases: []string{`period`, `dot`, `decimal point`},
+		refs:    []rune{0x00B7, 0x06D4, 0x2024, 0x2026, 0x2E33, 0x2E3C, 0x3002},
 	},
 	0x2f: {
-		aliases: []string{
-			`slash`,
-			`forward slash`,
-			`virgule`,
-		},
-		refs: []string{
-			`U+0338 combining long solidus overlay`,
-			`U+2044 fraction slash`,
-			`U+2215 division slash`,
-			`U+27CB mathematical rising diagonal`,
-			`U+29F8 big solidus`,
-			`U+2E4A dotted solidus`,
-		},
+		aliases: []string{`slash`, `forward slash`, `virgule`},
+		refs:    []rune{0x0338, 0x2044, 0x2215, 0x27CB, 0x29F8, 0x2E4A},
 	},
 	0x32: {
-		refs: []string{
-			`U+01BB latin letter two with stroke`,
-			`U+218A turned digit two`,
-		},
+		refs: []rune{0x01BB, 0x218A},
 	},
 	0x33: {
-		refs: []string{
-			`U+218B turned digit three`,
-			`U+A7AB latin capital letter reversed open e`,
-		},
+		refs: []rune{0x218B, 0xA7AB},
 	},
 	0x34: {
-		refs: []string{
-			`U+A72C latin capital letter cuatrillo`,
-		},
+		refs: []rune{0xA72C},
 	},
 	0x35: {
-		refs: []string{
-			`U+01BC latin capital letter tone five`,
-		},
+		refs: []rune{0x01BC},
 	},
 	0x3a: {
-		refs: []string{
-			`U+02D0 modifier letter triangular colon`,
-			`U+02F8 modifier letter raised colon`,
-			`U+0589 armenian full stop`,
-			`U+05C3 hebrew punctuation sof pasuq`,
-			`U+1361 ethiopic wordspace`,
-			`U+1365 ethiopic colon`,
-			`U+205A two dot punctuation`,
-			`U+205D tricolon`,
-			`U+2236 ratio`,
-			`U+A789 modifier letter colon`,
-			`U+FE30 presentation form for vertical two dot leader`,
-		},
+		refs: []rune{0x02D0, 0x02F8, 0x0589, 0x05C3, 0x1361, 0x1365, 0x205A, 0x205D, 0x2236, 0xA789, 0xFE30},
 	},
 	0x3b: {
-		refs: []string{
-			`U+037E greek question mark`,
-			`U+061B arabic semicolon`,
-			`U+204F reversed semicolon`,
-			`U+2E35 turned semicolon`,
-		},
+		refs: []rune{0x037E, 0x061B, 0x204F, 0x2E35},
 	},
 	0x3c: {
-		refs: []string{
-			`U+02C2 modifier letter left arrowhead`,
-			`U+2039 single left-pointing angle quotation mark`,
-			`U+2329 left-pointing angle bracket`,
-			`U+27E8 mathematical left angle bracket`,
-			`U+3008 left angle bracket`,
-		},
+		refs: []rune{0x02C2, 0x2039, 0x2329, 0x27E8, 0x3008},
 	},
 	0x3d: {
-		refs: []string{
-			`U+1400 canadian syllabics hyphen`,
-			`U+2248 almost equal to`,
-			`U+2260 not equal to`,
-			`U+2261 identical to`,
-			`U+2E40 double hyphen`,
-			`U+30A0 katakana-hiragana double hyphen`,
-			`U+A78A modifier letter short equals sign`,
-			`U+FE66 small equals sign`,
-			`U+10190 roman sextans sign`,
-			`U+1F7F0 heavy equals sign`,
-		},
+		refs: []rune{0x1400, 0x2248, 0x2260, 0x2261, 0x2E40, 0x30A0, 0xA78A, 0xFE66, 0x10190, 0x1F7F0},
 	},
 	0x3e: {
-		refs: []string{
-			`U+02C3 modifier letter right arrowhead`,
-			`U+203A single right-pointing angle quotation mark`,
-			`U+232A right-pointing angle bracket`,
-			`U+27E9 mathematical right angle bracket`,
-			`U+3009 right angle bracket`,
-		},
+		refs: []rune{0x02C3, 0x203A, 0x232A, 0x27E9, 0x3009},
 	},
 	0x3f: {
-		refs: []string{
-			`U+00BF inverted question mark`,
-			`U+037E greek question mark`,
-			`U+061F arabic question mark`,
-			`U+203D interrobang`,
-			`U+2047 double question mark`,
-			`U+2753 black question mark ornament`,
-			`U+2BD1 uncertainty sign`,
-			`U+2E2E reversed question mark`,
-			`U+2E54 medieval question mark`,
-			`U+FFFD replacement character`,
-		},
+		refs: []rune{0x00BF, 0x037E, 0x061F, 0x203D, 0x2047, 0x2753, 0x2BD1, 0x2E2E, 0x2E54, 0xFFFD},
 	},
 	0x40: {
-		aliases: []string{
-			`at sign`,
-			`arroba`,
-		},
-		refs: []string{
-			`U+24D0 circled latin small letter a`,
-		},
+		aliases: []string{`at sign`, `arroba`},
+		refs:    []rune{0x24D0},
 	},
 	0x42: {
-		refs: []string{
-			`U+212C script capital b`,
-		},
+		refs: []rune{0x212C},
 	},
 	0x43: {
-		refs: []string{
-			`U+03F9 greek capital lunate sigma symbol`,
-			`U+2102 double-struck capital c`,
-			`U+2103 degree celsius`,
-			`U+212D black-letter capital c`,
-			`U+216D roman numeral one hundred`,
-		},
+		refs: []rune{0x03F9, 0x2102, 0x2103, 0x212D, 0x216D},
 	},
 	0x44: {
-		refs: []string{
-			`U+216E roman numeral five hundred`,
-		},
+		refs: []rune{0x216E},
 	},
 	0x45: {
-		refs: []string{
-			`U+0190 latin capital letter open e`,
-			`U+2107 euler constant`,
-			`U+2130 script capital e`,
-		},
+		refs: []rune{0x0190, 0x2107, 0x2130},
 	},
 	0x46: {
-		refs: []string{
-			`U+2109 degree fahrenheit`,
-			`U+2131 script capital f`,
-			`U+2132 turned capital f`,
-		},
+		refs: []rune{0x2109, 0x2131, 0x2132},
 	},
 	0x48: {
-		refs: []string{
-			`U+210B script capital h`,
-			`U+210C black-letter capital h`,
-			`U+210D double-struck capital h`,
-		},
+		refs: []rune{0x210B, 0x210C, 0x210D},
 	},
 	0x49: {
-		refs: []string{
-			`U+0130 latin capital letter i with dot above`,
-			`U+2110 script capital i`,
-			`U+2111 black-letter capital i`,
-			`U+2160 roman numeral one`,
-		},
+		refs: []rune{0x0130, 0x2110, 0x2111, 0x2160},
 	},
 	0x4b: {
-		refs: []string{
-			`U+212A kelvin sign`,
-		},
+		refs: []rune{0x212A},
 	},
 	0x4c: {
-		refs: []string{
-			`U+2112 script capital l`,
-		},
+		refs: []rune{0x2112},
 	},
 	0x4d: {
-		refs: []string{
-			`U+2133 script capital m`,
-			`U+216F roman numeral one thousand`,
-		},
+		refs: []rune{0x2133, 0x216F},
 	},
 	0x4e: {
-		refs: []string{
-			`U+2115 double-struck capital n`,
-		},
+		refs: []rune{0x2115},
 	},
 	0x50: {
-		refs: []string{
-			`U+2118 script capital p`,
-			`U+2119 double-struck capital p`,
-		},
+		refs: []rune{0x2118, 0x2119},
 	},
 	0x51: {
-		refs: []string{
-			`U+051A cyrillic capital letter qa`,
-			`U+211A double-struck capital q`,
-			`U+213A rotated capital q`,
-		},
+		refs: []rune{0x051A, 0x211A, 0x213A},
 	},
 	0x52: {
-		refs: []string{
-			`U+211B script capital r`,
-			`U+211C black-letter capital r`,
-			`U+211D double-struck capital r`,
-		},
+		refs: []rune{0x211B, 0x211C, 0x211D},
 	},
 	0x56: {
-		refs: []string{
-			`U+2164 roman numeral five`,
-		},
+		refs: []rune{0x2164},
 	},
 	0x57: {
-		refs: []string{
-			`U+051C cyrillic capital letter we`,
-		},
+		refs: []rune{0x051C},
 	},
 	0x58: {
-		refs: []string{
-			`U+2169 roman numeral ten`,
-		},
+		refs: []rune{0x2169},
 	},
 	0x5a: {
-		refs: []string{
-			`U+2124 double-struck capital z`,
-			`U+2128 black-letter capital z`,
-		},
+		refs: []rune{0x2124, 0x2128},
 	},
 	0x5b: {
-		aliases: []string{
-			`opening square bracket`,
-		},
+		aliases: []string{`opening square bracket`},
 	},
 	0x5c: {
-		aliases: []string{
-			`backslash`,
-		},
-		refs: []string{
-			`U+20E5 combining reverse solidus overlay`,
-			`U+2216 set minus`,
-			`U+27CD mathematical falling diagonal`,
-			`U+29F9 big reverse solidus`,
-		},
+		aliases: []string{`backslash`},
+		refs:    []rune{0x20E5, 0x2216, 0x27CD, 0x29F9},
 	},
 	0x5d: {
-		aliases: []string{
-			`closing square bracket`,
-		},
+		aliases: []string{`closing square bracket`},
 	},
 	0x5e: {
-		refs: []string{
-			`U+02C4 modifier letter up arrowhead`,
-			`U+02C6 modifier letter circumflex accent`,
-			`U+0302 combining circumflex accent`,
-			`U+2038 caret`,
-			`U+2227 logical and`,
-			`U+2303 up arrowhead`,
-		},
+		refs: []rune{0x02C4, 0x02C6, 0x0302, 0x2038, 0x2227, 0x2303},
 	},
 	0x5f: {
-		aliases: []string{
-			`spacing underscore`,
-		},
-		refs: []string{
-			`U+02CD modifier letter low macron`,
-			`U+0331 combining macron below`,
-			`U+0332 combining low line`,
-			`U+2017 double low line`,
-			`U+FE2D combining conjoining macron below`,
-		},
+		aliases: []string{`spacing underscore`},
+		refs:    []rune{0x02CD, 0x0331, 0x0332, 0x2017, 0xFE2D},
 	},
 	0x60: {
-		aliases: []string{
-			`backtick`,
-			`backquote`,
-		},
-		refs: []string{
-			`U+00B4 acute accent`,
-			`U+02CB modifier letter grave accent`,
-			`U+0300 combining grave accent`,
-			`U+1FEF greek varia`,
-			`U+2018 left single quotation mark`,
-			`U+2035 reversed prime`,
-		},
+		aliases: []string{`backtick`, `backquote`},
+		refs:    []rune{0x00B4, 0x02CB, 0x0300, 0x1FEF, 0x2018, 0x2035},
 	},
 	0x61: {
-		refs: []string{
-			`U+0251 latin small letter alpha`,
-		},
+		refs: []rune{0x0251},
 	},
 	0x63: {
-		refs: []string{
-			`U+03F2 greek lunate sigma symbol`,
-			`U+1D04 latin letter small capital c`,
-		},
+		refs: []rune{0x03F2, 0x1D04},
 	},
 	0x64: {
-		refs: []string{
-			`U+0501 cyrillic small letter komi de`,
-		},
+		refs: []rune{0x0501},
 	},
 	0x65: {
-		refs: []string{
-			`U+212E estimated symbol`,
-			`U+212F script small e`,
-			`U+AB32 latin small letter blackletter e`,
-		},
+		refs: []rune{0x212E, 0x212F, 0xAB32},
 	},
 	0x66: {
-		refs: []string{
-			`U+0192 latin small letter f with hook`,
-			`U+AB35 latin small letter lenis f`,
-		},
+		refs: []rune{0x0192, 0xAB35},
 	},
 	0x67: {
-		refs: []string{
-			`U+0261 latin small letter script g`,
-			`U+210A script small g`,
-		},
+		refs: []rune{0x0261, 0x210A},
 	},
 	0x68: {
-		refs: []string{
-			`U+04BB cyrillic small letter shha`,
-			`U+210E planck constant`,
-		},
+		refs: []rune{0x04BB, 0x210E},
 	},
 	0x69: {
-		refs: []string{
-			`U+0131 latin small letter dotless i`,
-			`U+2071 superscript latin small letter i`,
-			`U+1D6A4 mathematical italic small dotless i`,
-		},
+		refs: []rune{0x0131, 0x2071, 0x1D6A4},
 	},
 	0x6a: {
-		refs: []string{
-			`U+0237 latin small letter dotless j`,
-			`U+03F3 greek letter yot`,
-			`U+1D6A5 mathematical italic small dotless j`,
-		},
+		refs: []rune{0x0237, 0x03F3, 0x1D6A5},
 	},
 	0x6c: {
-		refs: []string{
-			`U+2113 script small l`,
-			`U+1D4C1 mathematical script small l`,
-		},
+		refs: []rune{0x2113, 0x1D4C1},
 	},
 	0x6e: {
-		refs: []string{
-			`U+207F superscript latin small letter n`,
-		},
+		refs: []rune{0x207F},
 	},
 	0x6f: {
-		refs: []string{
-			`U+1D0F latin letter small capital o`,
-			`U+2134 script small o`,
-			`U+AB3D latin small letter blackletter o`,
-		},
+		refs: []rune{0x1D0F, 0x2134, 0xAB3D},
 	},
 	0x71: {
-		refs: []string{
-			`U+051B cyrillic small letter qa`,
-		},
+		refs: []rune{0x051B},
 	},
 	0x73: {
-		refs: []string{
-			`U+017F latin small letter long s`,
-			`U+A731 latin letter small capital s`,
-		},
+		refs: []rune{0x017F, 0xA731},
 	},
 	0x77: {
-		refs: []string{
-			`U+051D cyrillic small letter we`,
-			`U+1D21 latin letter small capital w`,
-		},
+		refs: []rune{0x051D, 0x1D21},
 	},
 	0x78: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-		},
+		refs: []rune{0x00D7},
 	},
 	0x7a: {
-		refs: []string{
-			`U+01B6 latin small letter z with stroke`,
-			`U+1D22 latin letter small capital z`,
-		},
+		refs: []rune{0x01B6, 0x1D22},
 	},
 	0x7b: {
-		aliases: []string{
-			`opening curly bracket`,
-			`left brace`,
-		},
+		aliases: []string{`opening curly bracket`, `left brace`},
 	},
 	0x7c: {
-		aliases: []string{
-			`vertical bar`,
-			`pipe`,
-		},
-		refs: []string{
-			`U+00A6 broken bar`,
-			`U+01C0 latin letter dental click`,
-			`U+05C0 hebrew punctuation paseq`,
-			`U+0964 devanagari danda`,
-			`U+20D2 combining long vertical line overlay`,
-			`U+2223 divides`,
-			`U+2758 light vertical bar`,
-		},
+		aliases: []string{`vertical bar`, `pipe`},
+		refs:    []rune{0x00A6, 0x01C0, 0x05C0, 0x0964, 0x20D2, 0x2223, 0x2758},
 	},
 	0x7d: {
-		aliases: []string{
-			`closing curly bracket`,
-			`right brace`,
-		},
+		aliases: []string{`closing curly bracket`, `right brace`},
 	},
 	0x7e: {
-		refs: []string{
-			`U+02DC small tilde`,
-			`U+0303 combining tilde`,
-			`U+0334 combining tilde overlay`,
-			`U+2053 swung dash`,
-			`U+223C tilde operator`,
-			`U+2E1B tilde with ring above`,
-			`U+2E2F vertical tilde`,
-			`U+301C wave dash`,
-			`U+FF5E fullwidth tilde`,
-		},
+		refs: []rune{0x02DC, 0x0303, 0x0334, 0x2053, 0x223C, 0x2E1B, 0x2E2F, 0x301C, 0xFF5E},
 	},
 	0x82: {
-		refs: []string{
-			`U+200B zero width space`,
-		},
+		refs: []rune{0x200B},
 	},
 	0x83: {
-		refs: []string{
-			`U+2060 word joiner`,
-		},
+		refs: []rune{0x2060},
 	},
 	0xa0: {
-		refs: []string{
-			`U+0020 space`,
-			`U+2007 figure space`,
-			`U+202F narrow no-break space`,
-			`U+2060 word joiner`,
-			`U+237D shouldered open box`,
-			`U+FEFF zero width no-break space`,
-		},
+		refs: []rune{0x0020, 0x2007, 0x202F, 0x2060, 0x237D, 0xFEFF},
 	},
 	0xa1: {
-		refs: []string{
-			`U+0021 exclamation mark`,
-			`U+A71E modifier letter raised inverted exclamation mark`,
-		},
+		refs: []rune{0x0021, 0xA71E},
 	},
 	0xa2: {
-		refs: []string{
-			`U+023C latin small letter c with stroke`,
-			`U+20A5 mill sign`,
-			`U+20B5 cedi sign`,
-			`U+1D135 musical symbol cut time`,
-		},
+		refs: []rune{0x023C, 0x20A5, 0x20B5, 0x1D135},
 	},
 	0xa3: {
-		aliases: []string{
-			`pound sterling`,
-			`Irish punt`,
-			`lira`,
-			`etc.`,
-		},
-		refs: []string{
-			`U+20A4 lira sign`,
-			`U+20BA turkish lira sign`,
-			`U+10192 roman semuncia sign`,
-		},
+		aliases: []string{`pound sterling`, `Irish punt`, `lira`, `etc.`},
+		refs:    []rune{0x20A4, 0x20BA, 0x10192},
 	},
 	0xa4: {
-		refs: []string{
-			`U+0024 dollar sign`,
-		},
+		refs: []rune{0x0024},
 	},
 	0xa5: {
-		aliases: []string{
-			`yuan sign`,
-		},
-		refs: []string{
-			`U+024E latin capital letter y with stroke`,
-			`U+04B0 cyrillic capital letter straight u with stroke`,
-			`5143`,
-			`5186`,
-		},
+		aliases: []string{`yuan sign`},
+		refs:    []rune{0x024E, 0x04B0, 0x5143, 0x5186},
 	},
 	0xa6: {
-		aliases: []string{
-			`broken vertical bar`,
-			`parted rule`,
-		},
-		refs: []string{
-			`U+007C vertical line`,
-		},
+		aliases: []string{`broken vertical bar`, `parted rule`},
+		refs:    []rune{0x007C},
 	},
 	0xa7: {
-		refs: []string{
-			`U+2E39 top half section sign`,
-		},
+		refs: []rune{0x2E39},
 	},
 	0xa8: {
-		refs: []string{
-			`U+0308 combining diaeresis`,
-		},
+		refs: []rune{0x0308},
 	},
 	0xa9: {
-		refs: []string{
-			`U+2117 sound recording copyright`,
-			`U+24B8 circled latin capital letter c`,
-			`U+1F12F copyleft symbol`,
-			`U+1F1AD mask work symbol`,
-		},
+		refs: []rune{0x2117, 0x24B8, 0x1F12F, 0x1F1AD},
 	},
 	0xaa: {
-		refs: []string{
-			`U+1D43 modifier letter small a`,
-		},
+		refs: []rune{0x1D43},
 	},
 	0xab: {
-		aliases: []string{
-			`left guillemet`,
-			`chevrons`,
-		},
-		refs: []string{
-			`U+226A much less-than`,
-			`U+300A left double angle bracket`,
-		},
+		aliases: []string{`left guillemet`, `chevrons`},
+		refs:    []rune{0x226A, 0x300A},
 	},
 	0xac: {
-		aliases: []string{
-			`angled dash`,
-		},
-		refs: []string{
-			`U+2310 reversed not sign`,
-			`U+2319 turned not sign`,
-		},
+		aliases: []string{`angled dash`},
+		refs:    []rune{0x2310, 0x2319},
 	},
 	0xad: {
-		aliases: []string{
-			`discretionary hyphen`,
-		},
+		aliases: []string{`discretionary hyphen`},
 	},
 	0xae: {
-		aliases: []string{
-			`registered trade mark sign`,
-		},
-		refs: []string{
-			`U+2122 trade mark sign`,
-			`U+24C7 circled latin capital letter r`,
-			`U+1F16B raised md sign`,
-			`U+1F16C raised mr sign`,
-		},
+		aliases: []string{`registered trade mark sign`},
+		refs:    []rune{0x2122, 0x24C7, 0x1F16B, 0x1F16C},
 	},
 	0xaf: {
-		aliases: []string{
-			`overline`,
-			`APL overbar`,
-		},
-		refs: []string{
-			`U+02C9 modifier letter macron`,
-			`U+0304 combining macron`,
-			`U+0305 combining overline`,
-			`U+203E overline`,
-			`U+FE26 combining conjoining macron`,
-		},
+		aliases: []string{`overline`, `APL overbar`},
+		refs:    []rune{0x02C9, 0x0304, 0x0305, 0x203E, 0xFE26},
 	},
 	0xb0: {
-		refs: []string{
-			`U+02DA ring above`,
-			`U+030A combining ring above`,
-			`U+2070 superscript zero`,
-			`U+2103 degree celsius`,
-			`U+2109 degree fahrenheit`,
-			`U+2218 ring operator`,
-		},
+		refs: []rune{0x02DA, 0x030A, 0x2070, 0x2103, 0x2109, 0x2218},
 	},
 	0xb1: {
-		aliases: []string{
-			`biquintile`,
-		},
-		refs: []string{
-			`U+2213 minus-or-plus sign`,
-		},
+		aliases: []string{`biquintile`},
+		refs:    []rune{0x2213},
 	},
 	0xb2: {
-		aliases: []string{
-			`squared`,
-		},
-		refs: []string{
-			`U+00B9 superscript one`,
-		},
+		aliases: []string{`squared`},
+		refs:    []rune{0x00B9},
 	},
 	0xb3: {
-		aliases: []string{
-			`cubed`,
-		},
-		refs: []string{
-			`U+00B9 superscript one`,
-		},
+		aliases: []string{`cubed`},
+		refs:    []rune{0x00B9},
 	},
 	0xb4: {
-		refs: []string{
-			`U+0060 grave accent`,
-			`U+02B9 modifier letter prime`,
-			`U+02CA modifier letter acute accent`,
-			`U+02DD double acute accent`,
-			`U+0301 combining acute accent`,
-			`U+0384 greek tonos`,
-			`U+1FFD greek oxia`,
-			`U+2032 prime`,
-		},
+		refs: []rune{0x0060, 0x02B9, 0x02CA, 0x02DD, 0x0301, 0x0384, 0x1FFD, 0x2032},
 	},
 	0xb6: {
-		aliases: []string{
-			`paragraph sign`,
-		},
-		refs: []string{
-			`U+204B reversed pilcrow sign`,
-			`U+2761 curved stem paragraph sign ornament`,
-			`U+2E3F capitulum`,
-		},
+		aliases: []string{`paragraph sign`},
+		refs:    []rune{0x204B, 0x2761, 0x2E3F},
 	},
 	0xb7: {
-		aliases: []string{
-			`midpoint`,
-			`Georgian comma`,
-			`Greek middle dot`,
-		},
-		refs: []string{
-			`U+002E full stop`,
-			`U+02D9 dot above`,
-			`U+0387 greek ano teleia`,
-			`U+2022 bullet`,
-			`U+2024 one dot leader`,
-			`U+2027 hyphenation point`,
-			`U+2219 bullet operator`,
-			`U+22C5 dot operator`,
-			`U+2E31 word separator middle dot`,
-			`U+2E33 raised dot`,
-			`U+30FB katakana middle dot`,
-			`U+A78F latin letter sinological dot`,
-		},
+		aliases: []string{`midpoint`, `Georgian comma`, `Greek middle dot`},
+		refs:    []rune{0x002E, 0x02D9, 0x0387, 0x2022, 0x2024, 0x2027, 0x2219, 0x22C5, 0x2E31, 0x2E33, 0x30FB, 0xA78F},
 	},
 	0xb8: {
-		refs: []string{
-			`U+0327 combining cedilla`,
-		},
+		refs: []rune{0x0327},
 	},
 	0xb9: {
-		refs: []string{
-			`U+00B2 superscript two`,
-			`U+00B3 superscript three`,
-			`U+2070 superscript zero`,
-		},
+		refs: []rune{0x00B2, 0x00B3, 0x2070},
 	},
 	0xba: {
-		refs: []string{
-			`U+1D52 modifier letter small o`,
-			`U+2070 superscript zero`,
-			`U+2116 numero sign`,
-		},
+		refs: []rune{0x1D52, 0x2070, 0x2116},
 	},
 	0xbb: {
-		aliases: []string{
-			`right guillemet`,
-		},
-		refs: []string{
-			`U+226B much greater-than`,
-			`U+300B right double angle bracket`,
-		},
+		aliases: []string{`right guillemet`},
+		refs:    []rune{0x226B, 0x300B},
 	},
 	0xbf: {
-		aliases: []string{
-			`turned question mark`,
-		},
-		refs: []string{
-			`U+003F question mark`,
-			`U+2E18 inverted interrobang`,
-			`U+2E2E reversed question mark`,
-		},
+		aliases: []string{`turned question mark`},
+		refs:    []rune{0x003F, 0x2E18, 0x2E2E},
 	},
 	0xc5: {
-		refs: []string{
-			`U+212B angstrom sign`,
-		},
+		refs: []rune{0x212B},
 	},
 	0xc6: {
-		refs: []string{
-			`U+04D4 cyrillic capital ligature a ie`,
-		},
+		refs: []rune{0x04D4},
 	},
 	0xd0: {
-		refs: []string{
-			`U+0110 latin capital letter d with stroke`,
-			`U+0189 latin capital letter african d`,
-			`U+A7C7 latin capital letter d with short stroke overlay`,
-		},
+		refs: []rune{0x0110, 0x0189, 0xA7C7},
 	},
 	0xd7: {
-		aliases: []string{
-			`z notation Cartesian product`,
-		},
-		refs: []string{
-			`U+0078 latin small letter x`,
-			`U+2613 saltire`,
-			`U+2715 multiplication x`,
-			`U+2718 heavy ballot x`,
-			`U+274C cross mark`,
-			`U+2A2F vector or cross product`,
-			`U+1F5D9 cancellation x`,
-			`U+1F7A9 light saltire`,
-		},
+		aliases: []string{`z notation Cartesian product`},
+		refs:    []rune{0x0078, 0x2613, 0x2715, 0x2718, 0x274C, 0x2A2F, 0x1F5D9, 0x1F7A9},
 	},
 	0xd8: {
-		aliases: []string{
-			`o slash`,
-		},
-		refs: []string{
-			`U+019F latin capital letter o with middle tilde`,
-			`U+2205 empty set`,
-			`U+A74A latin capital letter o with long stroke overlay`,
-		},
+		aliases: []string{`o slash`},
+		refs:    []rune{0x019F, 0x2205, 0xA74A},
 	},
 	0xdf: {
-		aliases: []string{
-			`Eszett`,
-		},
-		refs: []string{
-			`U+017F latin small letter long s`,
-			`U+0292 latin small letter ezh`,
-			`U+03B2 greek small letter beta`,
-			`U+1E9E latin capital letter sharp s`,
-			`U+A7B5 latin small letter beta`,
-			`U+A7D7 latin small letter middle scots s`,
-		},
+		aliases: []string{`Eszett`},
+		refs:    []rune{0x017F, 0x0292, 0x03B2, 0x1E9E, 0xA7B5, 0xA7D7},
 	},
 	0xe6: {
-		aliases: []string{
-			`ash`,
-			`æsc`,
-		},
-		refs: []string{
-			`U+0153 latin small ligature oe`,
-			`U+04D5 cyrillic small ligature a ie`,
-			`U+1D02 latin small letter turned ae`,
-			`U+AB31 latin small letter a reversed-schwa`,
-		},
+		aliases: []string{`ash`, `æsc`},
+		refs:    []rune{0x0153, 0x04D5, 0x1D02, 0xAB31},
 	},
 	0xf0: {
-		refs: []string{
-			`U+0111 latin small letter d with stroke`,
-			`U+03B4 greek small letter delta`,
-			`U+1E9F latin small letter delta`,
-			`U+2202 partial differential`,
-			`U+A77A latin small letter insular d`,
-		},
+		refs: []rune{0x0111, 0x03B4, 0x1E9F, 0x2202, 0xA77A},
 	},
 	0xf7: {
-		aliases: []string{
-			`obelus`,
-		},
-		refs: []string{
-			`U+070B syriac harklean obelus`,
-			`U+2052 commercial minus sign`,
-			`U+2215 division slash`,
-			`U+2223 divides`,
-			`U+2236 ratio`,
-			`U+2797 heavy division sign`,
-			`U+27CC long division`,
-			`U+2E13 dotted obelos`,
-		},
+		aliases: []string{`obelus`},
+		refs:    []rune{0x070B, 0x2052, 0x2215, 0x2223, 0x2236, 0x2797, 0x27CC, 0x2E13},
 	},
 	0xf8: {
-		aliases: []string{
-			`o slash`,
-		},
-		refs: []string{
-			`U+0275 latin small letter barred o`,
-			`U+2300 diameter sign`,
-			`U+A74B latin small letter o with long stroke overlay`,
-			`U+A7C1 latin small letter old polish o`,
-			`U+AB3E latin small letter blackletter o with stroke`,
-		},
+		aliases: []string{`o slash`},
+		refs:    []rune{0x0275, 0x2300, 0xA74B, 0xA7C1, 0xAB3E},
 	},
 	0xfe: {
-		refs: []string{
-			`U+03F8 greek small letter sho`,
-			`U+16A6 runic letter thurisaz thurs thorn`,
-			`U+A7D3 latin small letter double thorn`,
-		},
+		refs: []rune{0x03F8, 0x16A6, 0xA7D3},
 	},
 	0x107: {
-		refs: []string{
-			`U+045B cyrillic small letter tshe`,
-		},
+		refs: []rune{0x045B},
 	},
 	0x110: {
-		refs: []string{
-			`U+00D0 latin capital letter eth`,
-			`U+0189 latin capital letter african d`,
-			`U+A7C7 latin capital letter d with short stroke overlay`,
-		},
+		refs: []rune{0x00D0, 0x0189, 0xA7C7},
 	},
 	0x111: {
-		refs: []string{
-			`U+00F0 latin small letter eth`,
-			`U+0452 cyrillic small letter dje`,
-			`U+1D6D latin small letter d with middle tilde`,
-			`U+20AB dong sign`,
-			`U+A7C8 latin small letter d with short stroke overlay`,
-		},
+		refs: []rune{0x00F0, 0x0452, 0x1D6D, 0x20AB, 0xA7C8},
 	},
 	0x11f: {
-		refs: []string{
-			`U+01E7 latin small letter g with caron`,
-		},
+		refs: []rune{0x01E7},
 	},
 	0x126: {
-		refs: []string{
-			`U+A7F8 modifier letter capital h with stroke`,
-		},
+		refs: []rune{0xA7F8},
 	},
 	0x127: {
-		refs: []string{
-			`U+045B cyrillic small letter tshe`,
-			`U+210F planck constant over two pi`,
-		},
+		refs: []rune{0x045B, 0x210F},
 	},
 	0x130: {
-		aliases: []string{
-			`i dot`,
-		},
-		refs: []string{
-			`U+0049 latin capital letter i`,
-		},
+		aliases: []string{`i dot`},
+		refs:    []rune{0x0049},
 	},
 	0x131: {
-		refs: []string{
-			`U+0069 latin small letter i`,
-			`U+0269 latin small letter iota`,
-			`U+026A latin letter small capital i`,
-			`U+0456 cyrillic small letter byelorussian-ukrainian i`,
-			`U+1D6A4 mathematical italic small dotless i`,
-		},
+		refs: []rune{0x0069, 0x0269, 0x026A, 0x0456, 0x1D6A4},
 	},
 	0x138: {
-		refs: []string{
-			`U+043A cyrillic small letter ka`,
-			`U+1D0B latin letter small capital k`,
-		},
+		refs: []rune{0x043A, 0x1D0B},
 	},
 	0x141: {
-		refs: []string{
-			`U+023D latin capital letter l with bar`,
-			`U+1D0C latin letter small capital l with stroke`,
-			`U+2C62 latin capital letter l with middle tilde`,
-			`U+A748 latin capital letter l with high stroke`,
-		},
+		refs: []rune{0x023D, 0x1D0C, 0x2C62, 0xA748},
 	},
 	0x142: {
-		refs: []string{
-			`U+019A latin small letter l with bar`,
-			`U+026B latin small letter l with middle tilde`,
-		},
+		refs: []rune{0x019A, 0x026B},
 	},
 	0x149: {
-		aliases: []string{
-			`latin small letter apostrophe n`,
-		},
+		aliases: []string{`latin small letter apostrophe n`},
 	},
 	0x14a: {
-		refs: []string{
-			`U+0220 latin capital letter n with long right leg`,
-			`U+A790 latin capital letter n with descender`,
-		},
+		refs: []rune{0x0220, 0xA790},
 	},
 	0x14b: {
-		aliases: []string{
-			`engma`,
-			`angma`,
-		},
-		refs: []string{
-			`U+019E latin small letter n with long right leg`,
-			`U+1D87 latin small letter n with palatal hook`,
-			`U+A791 latin small letter n with descender`,
-		},
+		aliases: []string{`engma`, `angma`},
+		refs:    []rune{0x019E, 0x1D87, 0xA791},
 	},
 	0x153: {
-		aliases: []string{
-			`eðel`,
-			`ethel`,
-		},
-		refs: []string{
-			`U+00E6 latin small letter ae`,
-			`U+0276 latin letter small capital oe`,
-			`U+1D14 latin small letter turned oe`,
-			`U+A7F9 modifier letter small ligature oe`,
-			`U+AB40 latin small letter inverted oe`,
-			`U+AB62 latin small letter open oe`,
-		},
+		aliases: []string{`eðel`, `ethel`},
+		refs:    []rune{0x00E6, 0x0276, 0x1D14, 0xA7F9, 0xAB40, 0xAB62},
 	},
 	0x15f: {
-		refs: []string{
-			`U+0219 latin small letter s with comma below`,
-		},
+		refs: []rune{0x0219},
 	},
 	0x163: {
-		refs: []string{
-			`U+021B latin small letter t with comma below`,
-		},
+		refs: []rune{0x021B},
 	},
 	0x167: {
-		refs: []string{
-			`U+1D75 latin small letter t with middle tilde`,
-		},
+		refs: []rune{0x1D75},
 	},
 	0x17f: {
-		refs: []string{
-			`U+00DF latin small letter sharp s`,
-			`U+FB05 latin small ligature long s t`,
-		},
+		refs: []rune{0x00DF, 0xFB05},
 	},
 	0x180: {
-		refs: []string{
-			`U+03B2 greek small letter beta`,
-			`U+1D6C latin small letter b with middle tilde`,
-			`U+2422 blank symbol`,
-		},
+		refs: []rune{0x03B2, 0x1D6C, 0x2422},
 	},
 	0x182: {
-		refs: []string{
-			`U+0411 cyrillic capital letter be`,
-		},
+		refs: []rune{0x0411},
 	},
 	0x183: {
-		refs: []string{
-			`U+0253 latin small letter b with hook`,
-			`U+0431 cyrillic small letter be`,
-		},
+		refs: []rune{0x0253, 0x0431},
 	},
 	0x185: {
-		refs: []string{
-			`U+01A8 latin small letter tone two`,
-			`U+01BD latin small letter tone five`,
-			`U+0437 cyrillic small letter ze`,
-			`U+0447 cyrillic small letter che`,
-			`U+044C cyrillic small letter soft sign`,
-		},
+		refs: []rune{0x01A8, 0x01BD, 0x0437, 0x0447, 0x044C},
 	},
 	0x186: {
-		refs: []string{
-			`U+1D10 latin letter small capital open o`,
-			`U+2183 roman numeral reversed one hundred`,
-		},
+		refs: []rune{0x1D10, 0x2183},
 	},
 	0x189: {
-		refs: []string{
-			`U+00D0 latin capital letter eth`,
-			`U+0110 latin capital letter d with stroke`,
-		},
+		refs: []rune{0x00D0, 0x0110},
 	},
 	0x18d: {
-		aliases: []string{
-			`reversed Polish-hook o`,
-		},
+		aliases: []string{`reversed Polish-hook o`},
 	},
 	0x18e: {
-		aliases: []string{
-			`turned capital e`,
-		},
-		refs: []string{
-			`U+2203 there exists`,
-			`U+2C7B latin letter small capital turned e`,
-		},
+		aliases: []string{`turned capital e`},
+		refs:    []rune{0x2203, 0x2C7B},
 	},
 	0x18f: {
-		refs: []string{
-			`U+04D8 cyrillic capital letter schwa`,
-		},
+		refs: []rune{0x04D8},
 	},
 	0x190: {
-		aliases: []string{
-			`capital epsilon`,
-		},
-		refs: []string{
-			`U+2107 euler constant`,
-			`U+218B turned digit three`,
-			`U+A72A latin capital letter tresillo`,
-		},
+		aliases: []string{`capital epsilon`},
+		refs:    []rune{0x2107, 0x218B, 0xA72A},
 	},
 	0x191: {
-		refs: []string{
-			`U+A798 latin capital letter f with stroke`,
-		},
+		refs: []rune{0xA798},
 	},
 	0x192: {
-		aliases: []string{
-			`script f`,
-			`Florin currency symbol`,
-			`function symbol`,
-		},
+		aliases: []string{`script f`, `Florin currency symbol`, `function symbol`},
 	},
 	0x195: {
-		aliases: []string{
-			`hwair`,
-		},
-		refs: []string{
-			`U+10348 gothic letter hwair`,
-		},
+		aliases: []string{`hwair`},
+		refs:    []rune{0x10348},
 	},
 	0x196: {
-		refs: []string{
-			`U+A646 cyrillic capital letter iota`,
-		},
+		refs: []rune{0xA646},
 	},
 	0x197: {
-		aliases: []string{
-			`barred i`,
-			`i bar`,
-		},
-		refs: []string{
-			`U+026A latin letter small capital i`,
-			`U+1D7B latin small capital letter i with stroke`,
-		},
+		aliases: []string{`barred i`, `i bar`},
+		refs:    []rune{0x026A, 0x1D7B},
 	},
 	0x19a: {
-		aliases: []string{
-			`barred l`,
-		},
-		refs: []string{
-			`U+0142 latin small letter l with stroke`,
-			`U+026C latin small letter l with belt`,
-			`U+2C61 latin small letter l with double bar`,
-			`U+A749 latin small letter l with high stroke`,
-		},
+		aliases: []string{`barred l`},
+		refs:    []rune{0x0142, 0x026C, 0x2C61, 0xA749},
 	},
 	0x19b: {
-		aliases: []string{
-			`barred lambda`,
-			`lambda bar`,
-		},
-		refs: []string{
-			`U+03BB greek small letter lamda`,
-		},
+		aliases: []string{`barred lambda`, `lambda bar`},
+		refs:    []rune{0x03BB},
 	},
 	0x19c: {
-		refs: []string{
-			`U+A7FA latin letter small capital turned m`,
-			`U+A7FD latin epigraphic letter inverted m`,
-		},
+		refs: []rune{0xA7FA, 0xA7FD},
 	},
 	0x19e: {
-		refs: []string{
-			`U+014B latin small letter eng`,
-			`U+3093 hiragana letter n`,
-		},
+		refs: []rune{0x014B, 0x3093},
 	},
 	0x19f: {
-		aliases: []string{
-			`barred o`,
-			`o bar`,
-		},
-		refs: []string{
-			`U+04E8 cyrillic capital letter barred o`,
-		},
+		aliases: []string{`barred o`, `o bar`},
+		refs:    []rune{0x04E8},
 	},
 	0x1a2: {
-		aliases: []string{
-			`LATIN CAPITAL LETTER GHA`,
-		},
+		aliases: []string{`LATIN CAPITAL LETTER GHA`},
 	},
 	0x1a3: {
-		aliases: []string{
-			`LATIN SMALL LETTER GHA`,
-		},
+		aliases: []string{`LATIN SMALL LETTER GHA`},
 	},
 	0x1a7: {
-		refs: []string{
-			`U+1D24 latin letter voiced laryngeal spirant`,
-			`U+A644 cyrillic capital letter reversed dze`,
-			`U+10193 roman sextula sign`,
-		},
+		refs: []rune{0x1D24, 0xA644, 0x10193},
 	},
 	0x1a8: {
-		refs: []string{
-			`U+0185 latin small letter tone six`,
-			`U+A645 cyrillic small letter reversed dze`,
-		},
+		refs: []rune{0x0185, 0xA645},
 	},
 	0x1a9: {
-		refs: []string{
-			`U+03A3 greek capital letter sigma`,
-			`U+2211 n-ary summation`,
-		},
+		refs: []rune{0x03A3, 0x2211},
 	},
 	0x1b1: {
-		refs: []string{
-			`U+2127 inverted ohm sign`,
-		},
+		refs: []rune{0x2127},
 	},
 	0x1b2: {
-		aliases: []string{
-			`script v`,
-		},
+		aliases: []string{`script v`},
 	},
 	0x1b6: {
-		aliases: []string{
-			`barred z`,
-			`z bar`,
-		},
-		refs: []string{
-			`U+007A latin small letter z`,
-			`U+1D76 latin small letter z with middle tilde`,
-		},
+		aliases: []string{`barred z`, `z bar`},
+		refs:    []rune{0x007A, 0x1D76},
 	},
 	0x1b7: {
-		refs: []string{
-			`U+021C latin capital letter yogh`,
-			`U+04E0 cyrillic capital letter abkhasian dze`,
-			`U+1D23 latin letter small capital ezh`,
-			`U+A7AB latin capital letter reversed open e`,
-		},
+		refs: []rune{0x021C, 0x04E0, 0x1D23, 0xA7AB},
 	},
 	0x1b8: {
-		refs: []string{
-			`U+0190 latin capital letter open e`,
-		},
+		refs: []rune{0x0190},
 	},
 	0x1b9: {
-		refs: []string{
-			`U+0295 latin letter pharyngeal voiced fricative`,
-			`U+0639 arabic letter ain`,
-		},
+		refs: []rune{0x0295, 0x0639},
 	},
 	0x1bb: {
-		refs: []string{
-			`U+01A7 latin capital letter tone two`,
-		},
+		refs: []rune{0x01A7},
 	},
 	0x1bd: {
-		refs: []string{
-			`U+0185 latin small letter tone six`,
-		},
+		refs: []rune{0x0185},
 	},
 	0x1be: {
-		refs: []string{
-			`U+0296 latin letter inverted glottal stop`,
-			`U+02A6 latin small letter ts digraph`,
-		},
+		refs: []rune{0x0296, 0x02A6},
 	},
 	0x1bf: {
-		aliases: []string{
-			`wen`,
-		},
-		refs: []string{
-			`U+16B9 runic letter wunjo wynn w`,
-		},
+		aliases: []string{`wen`},
+		refs:    []rune{0x16B9},
 	},
 	0x1c0: {
-		aliases: []string{
-			`pipe`,
-		},
-		refs: []string{
-			`U+002F solidus`,
-			`U+007C vertical line`,
-			`U+0287 latin small letter turned t`,
-			`U+2223 divides`,
-		},
+		aliases: []string{`pipe`},
+		refs:    []rune{0x002F, 0x007C, 0x0287, 0x2223},
 	},
 	0x1c1: {
-		aliases: []string{
-			`double pipe`,
-		},
-		refs: []string{
-			`U+0296 latin letter inverted glottal stop`,
-			`U+2016 double vertical line`,
-			`U+2225 parallel to`,
-		},
+		aliases: []string{`double pipe`},
+		refs:    []rune{0x0296, 0x2016, 0x2225},
 	},
 	0x1c2: {
-		aliases: []string{
-			`double-barred pipe`,
-		},
-		refs: []string{
-			`U+2260 not equal to`,
-			`U+29E7 thermodynamic`,
-		},
+		aliases: []string{`double-barred pipe`},
+		refs:    []rune{0x2260, 0x29E7},
 	},
 	0x1c3: {
-		aliases: []string{
-			`latin letter exclamation mark`,
-		},
-		refs: []string{
-			`U+0021 exclamation mark`,
-			`U+0297 latin letter stretched c`,
-			`U+1DF0A latin letter retroflex click with retroflex hook`,
-		},
+		aliases: []string{`latin letter exclamation mark`},
+		refs:    []rune{0x0021, 0x0297, 0x1DF0A},
 	},
 	0x1c6: {
-		refs: []string{
-			`U+045F cyrillic small letter dzhe`,
-		},
+		refs: []rune{0x045F},
 	},
 	0x1c9: {
-		refs: []string{
-			`U+0459 cyrillic small letter lje`,
-		},
+		refs: []rune{0x0459},
 	},
 	0x1cc: {
-		refs: []string{
-			`U+045A cyrillic small letter nje`,
-		},
+		refs: []rune{0x045A},
 	},
 	0x1dd: {
-		refs: []string{
-			`U+0259 latin small letter schwa`,
-		},
+		refs: []rune{0x0259},
 	},
 	0x1e7: {
-		refs: []string{
-			`U+011F latin small letter g with breve`,
-		},
+		refs: []rune{0x011F},
 	},
 	0x1f6: {
-		refs: []string{
-			`U+050A cyrillic capital letter komi nje`,
-			`U+10348 gothic letter hwair`,
-		},
+		refs: []rune{0x050A, 0x10348},
 	},
 	0x1f7: {
-		aliases: []string{
-			`wen`,
-		},
+		aliases: []string{`wen`},
 	},
 	0x219: {
-		refs: []string{
-			`U+015F latin small letter s with cedilla`,
-		},
+		refs: []rune{0x015F},
 	},
 	0x21b: {
-		refs: []string{
-			`U+0163 latin small letter t with cedilla`,
-		},
+		refs: []rune{0x0163},
 	},
 	0x21c: {
-		refs: []string{
-			`U+01B7 latin capital letter ezh`,
-			`U+0417 cyrillic capital letter ze`,
-			`U+A7AB latin capital letter reversed open e`,
-		},
+		refs: []rune{0x01B7, 0x0417, 0xA7AB},
 	},
 	0x21d: {
-		refs: []string{
-			`U+0292 latin small letter ezh`,
-			`U+1D79 latin small letter insular g`,
-			`U+A76B latin small letter et`,
-		},
+		refs: []rune{0x0292, 0x1D79, 0xA76B},
 	},
 	0x220: {
-		refs: []string{
-			`U+014A latin capital letter eng`,
-		},
+		refs: []rune{0x014A},
 	},
 	0x222: {
-		refs: []string{
-			`U+1D15 latin letter small capital ou`,
-		},
+		refs: []rune{0x1D15},
 	},
 	0x223: {
-		refs: []string{
-			`U+0038 digit eight`,
-		},
+		refs: []rune{0x0038},
 	},
 	0x224: {
-		refs: []string{
-			`U+2C6B latin capital letter z with descender`,
-		},
+		refs: []rune{0x2C6B},
 	},
 	0x237: {
-		refs: []string{
-			`U+03F3 greek letter yot`,
-			`U+0458 cyrillic small letter je`,
-			`U+1D6A5 mathematical italic small dotless j`,
-		},
+		refs: []rune{0x03F3, 0x0458, 0x1D6A5},
 	},
 	0x23b: {
-		refs: []string{
-			`U+20B5 cedi sign`,
-		},
+		refs: []rune{0x20B5},
 	},
 	0x23c: {
-		refs: []string{
-			`U+00A2 cent sign`,
-		},
+		refs: []rune{0x00A2},
 	},
 	0x23d: {
-		refs: []string{
-			`U+0141 latin capital letter l with stroke`,
-			`U+2C60 latin capital letter l with double bar`,
-			`U+2C62 latin capital letter l with middle tilde`,
-			`U+A748 latin capital letter l with high stroke`,
-		},
+		refs: []rune{0x0141, 0x2C60, 0x2C62, 0xA748},
 	},
 	0x23f: {
-		refs: []string{
-			`U+0282 latin small letter s with hook`,
-		},
+		refs: []rune{0x0282},
 	},
 	0x240: {
-		refs: []string{
-			`U+0290 latin small letter z with retroflex hook`,
-		},
+		refs: []rune{0x0290},
 	},
 	0x242: {
-		refs: []string{
-			`U+0294 latin letter glottal stop`,
-			`U+02C0 modifier letter glottal stop`,
-		},
+		refs: []rune{0x0294, 0x02C0},
 	},
 	0x243: {
-		refs: []string{
-			`U+1D03 latin letter small capital barred b`,
-		},
+		refs: []rune{0x1D03},
 	},
 	0x245: {
-		refs: []string{
-			`U+039B greek capital letter lamda`,
-		},
+		refs: []rune{0x039B},
 	},
 	0x24d: {
-		refs: []string{
-			`U+1D72 latin small letter r with middle tilde`,
-		},
+		refs: []rune{0x1D72},
 	},
 	0x251: {
-		aliases: []string{
-			`latin small letter script a`,
-		},
-		refs: []string{
-			`U+03B1 greek small letter alpha`,
-		},
+		aliases: []string{`latin small letter script a`},
+		refs:    []rune{0x03B1},
 	},
 	0x252: {
-		refs: []string{
-			`U+AB64 latin small letter inverted alpha`,
-		},
+		refs: []rune{0xAB64},
 	},
 	0x253: {
-		refs: []string{
-			`U+0431 cyrillic small letter be`,
-		},
+		refs: []rune{0x0431},
 	},
 	0x254: {
-		refs: []string{
-			`U+1D10 latin letter small capital open o`,
-			`U+2184 latin small letter reversed c`,
-		},
+		refs: []rune{0x1D10, 0x2184},
 	},
 	0x256: {
-		aliases: []string{
-			`d retroflex hook`,
-		},
+		aliases: []string{`d retroflex hook`},
 	},
 	0x259: {
-		refs: []string{
-			`U+01DD latin small letter turned e`,
-			`U+04D9 cyrillic small letter schwa`,
-		},
+		refs: []rune{0x01DD, 0x04D9},
 	},
 	0x25b: {
-		aliases: []string{
-			`epsilon`,
-		},
-		refs: []string{
-			`U+03B5 greek small letter epsilon`,
-			`U+0511 cyrillic small letter reversed ze`,
-		},
+		aliases: []string{`epsilon`},
+		refs:    []rune{0x03B5, 0x0511},
 	},
 	0x25c: {
-		aliases: []string{
-			`reversed epsilon`,
-		},
-		refs: []string{
-			`U+0437 cyrillic small letter ze`,
-			`U+1D08 latin small letter turned open e`,
-		},
+		aliases: []string{`reversed epsilon`},
+		refs:    []rune{0x0437, 0x1D08},
 	},
 	0x25e: {
-		aliases: []string{
-			`closed reversed epsilon`,
-		},
-		refs: []string{
-			`U+029A latin small letter closed open e`,
-		},
+		aliases: []string{`closed reversed epsilon`},
+		refs:    []rune{0x029A},
 	},
 	0x261: {
-		refs: []string{
-			`U+0067 latin small letter g`,
-			`U+210A script small g`,
-		},
+		refs: []rune{0x0067, 0x210A},
 	},
 	0x263: {
-		refs: []string{
-			`U+03B3 greek small letter gamma`,
-		},
+		refs: []rune{0x03B3},
 	},
 	0x264: {
-		aliases: []string{
-			`latin small letter baby gamma`,
-		},
+		aliases: []string{`latin small letter baby gamma`},
 	},
 	0x266: {
-		refs: []string{
-			`U+02B1 modifier letter small h with hook`,
-		},
+		refs: []rune{0x02B1},
 	},
 	0x267: {
-		refs: []string{
-			`U+A727 latin small letter heng`,
-		},
+		refs: []rune{0xA727},
 	},
 	0x268: {
-		aliases: []string{
-			`barred i`,
-			`i bar`,
-		},
-		refs: []string{
-			`U+1D7B latin small capital letter i with stroke`,
-		},
+		aliases: []string{`barred i`, `i bar`},
+		refs:    []rune{0x1D7B},
 	},
 	0x269: {
-		refs: []string{
-			`U+0131 latin small letter dotless i`,
-			`U+03B9 greek small letter iota`,
-			`U+A647 cyrillic small letter iota`,
-			`U+1D6A4 mathematical italic small dotless i`,
-		},
+		refs: []rune{0x0131, 0x03B9, 0xA647, 0x1D6A4},
 	},
 	0x26a: {
-		refs: []string{
-			`U+0131 latin small letter dotless i`,
-		},
+		refs: []rune{0x0131},
 	},
 	0x26b: {
-		refs: []string{
-			`U+0142 latin small letter l with stroke`,
-			`U+AB37 latin small letter l with inverted lazy s`,
-			`U+AB38 latin small letter l with double middle tilde`,
-		},
+		refs: []rune{0x0142, 0xAB37, 0xAB38},
 	},
 	0x26c: {
-		refs: []string{
-			`U+019A latin small letter l with bar`,
-		},
+		refs: []rune{0x019A},
 	},
 	0x26d: {
-		refs: []string{
-			`U+A78E latin small letter l with retroflex hook and belt`,
-		},
+		refs: []rune{0xA78E},
 	},
 	0x26f: {
-		refs: []string{
-			`U+A7FA latin letter small capital turned m`,
-		},
+		refs: []rune{0xA7FA},
 	},
 	0x271: {
-		refs: []string{
-			`U+1D86 latin small letter m with palatal hook`,
-		},
+		refs: []rune{0x1D86},
 	},
 	0x275: {
-		aliases: []string{
-			`o bar`,
-		},
-		refs: []string{
-			`U+03B8 greek small letter theta`,
-			`U+0473 cyrillic small letter fita`,
-			`U+04E9 cyrillic small letter barred o`,
-		},
+		aliases: []string{`o bar`},
+		refs:    []rune{0x03B8, 0x0473, 0x04E9},
 	},
 	0x276: {
-		refs: []string{
-			`U+0153 latin small ligature oe`,
-		},
+		refs: []rune{0x0153},
 	},
 	0x277: {
-		refs: []string{
-			`U+A7B7 latin small letter omega`,
-			`U+AB65 greek letter small capital omega`,
-		},
+		refs: []rune{0xA7B7, 0xAB65},
 	},
 	0x278: {
-		refs: []string{
-			`U+03C6 greek small letter phi`,
-			`U+03D5 greek phi symbol`,
-			`U+2C77 latin small letter tailless phi`,
-		},
+		refs: []rune{0x03C6, 0x03D5, 0x2C77},
 	},
 	0x279: {
-		refs: []string{
-			`U+02B4 modifier letter small turned r`,
-		},
+		refs: []rune{0x02B4},
 	},
 	0x27b: {
-		refs: []string{
-			`U+02B5 modifier letter small turned r with hook`,
-		},
+		refs: []rune{0x02B5},
 	},
 	0x27c: {
-		refs: []string{
-			`U+A783 latin small letter insular r`,
-			`U+A785 latin small letter insular s`,
-		},
+		refs: []rune{0xA783, 0xA785},
 	},
 	0x27d: {
-		refs: []string{
-			`U+2C79 latin small letter turned r with tail`,
-		},
+		refs: []rune{0x2C79},
 	},
 	0x27e: {
-		refs: []string{
-			`U+017F latin small letter long s`,
-		},
+		refs: []rune{0x017F},
 	},
 	0x27f: {
-		aliases: []string{
-			`long leg turned iota`,
-		},
+		aliases: []string{`long leg turned iota`},
 	},
 	0x281: {
-		refs: []string{
-			`U+02B6 modifier letter small capital inverted r`,
-		},
+		refs: []rune{0x02B6},
 	},
 	0x283: {
-		refs: []string{
-			`U+222B integral`,
-			`U+AB4D latin small letter baseline esh`,
-		},
+		refs: []rune{0x222B, 0xAB4D},
 	},
 	0x287: {
-		refs: []string{
-			`U+01C0 latin letter dental click`,
-		},
+		refs: []rune{0x01C0},
 	},
 	0x288: {
-		refs: []string{
-			`U+01AD latin small letter t with hook`,
-			`U+1DF09 latin small letter t with hook and retroflex hook`,
-		},
+		refs: []rune{0x01AD, 0x1DF09},
 	},
 	0x289: {
-		refs: []string{
-			`U+1D7E latin small capital letter u with stroke`,
-		},
+		refs: []rune{0x1D7E},
 	},
 	0x28a: {
-		refs: []string{
-			`U+03C5 greek small letter upsilon`,
-		},
+		refs: []rune{0x03C5},
 	},
 	0x28b: {
-		aliases: []string{
-			`latin small letter script v`,
-		},
-		refs: []string{
-			`U+03C5 greek small letter upsilon`,
-		},
+		aliases: []string{`latin small letter script v`},
+		refs:    []rune{0x03C5},
 	},
 	0x28c: {
-		aliases: []string{
-			`caret`,
-			`wedge`,
-		},
-		refs: []string{
-			`U+039B greek capital letter lamda`,
-			`U+1D27 greek letter small capital lamda`,
-			`U+2227 logical and`,
-		},
+		aliases: []string{`caret`, `wedge`},
+		refs:    []rune{0x039B, 0x1D27, 0x2227},
 	},
 	0x28d: {
-		refs: []string{
-			`U+AB69 modifier letter small turned w`,
-		},
+		refs: []rune{0xAB69},
 	},
 	0x292: {
-		aliases: []string{
-			`dram sign`,
-		},
-		refs: []string{
-			`U+021D latin small letter yogh`,
-			`U+04E1 cyrillic small letter abkhasian dze`,
-			`U+2125 ounce sign`,
-			`U+1F772 alchemical symbol for half dram`,
-			`2CF01`,
-		},
+		aliases: []string{`dram sign`},
+		refs:    []rune{0x021D, 0x04E1, 0x2125, 0x1F772, 0x2CF01},
 	},
 	0x294: {
-		refs: []string{
-			`U+0241 latin capital letter glottal stop`,
-			`U+02C0 modifier letter glottal stop`,
-		},
+		refs: []rune{0x0241, 0x02C0},
 	},
 	0x295: {
-		aliases: []string{
-			`reversed glottal stop`,
-		},
-		refs: []string{
-			`U+01B9 latin small letter ezh reversed`,
-			`U+02C1 modifier letter reversed glottal stop`,
-		},
+		aliases: []string{`reversed glottal stop`},
+		refs:    []rune{0x01B9, 0x02C1},
 	},
 	0x296: {
-		refs: []string{
-			`U+01C1 latin letter lateral click`,
-		},
+		refs: []rune{0x01C1},
 	},
 	0x297: {
-		refs: []string{
-			`U+01C3 latin letter retroflex click`,
-			`U+2201 complement`,
-		},
+		refs: []rune{0x01C3, 0x2201},
 	},
 	0x298: {
-		aliases: []string{
-			`bullseye`,
-		},
-		refs: []string{
-			`U+2299 circled dot operator`,
-			`U+A668 cyrillic capital letter monocular o`,
-		},
+		aliases: []string{`bullseye`},
+		refs:    []rune{0x2299, 0xA668},
 	},
 	0x299: {
-		refs: []string{
-			`U+0432 cyrillic small letter ve`,
-		},
+		refs: []rune{0x0432},
 	},
 	0x29a: {
-		aliases: []string{
-			`closed epsilon`,
-		},
-		refs: []string{
-			`U+025E latin small letter closed reversed open e`,
-		},
+		aliases: []string{`closed epsilon`},
+		refs:    []rune{0x025E},
 	},
 	0x29c: {
-		refs: []string{
-			`U+043D cyrillic small letter en`,
-			`U+1D34 modifier letter capital h`,
-			`U+A7F8 modifier letter capital h with stroke`,
-		},
+		refs: []rune{0x043D, 0x1D34, 0xA7F8},
 	},
 	0x29e: {
-		refs: []string{
-			`U+1DF10 latin letter small capital turned k`,
-		},
+		refs: []rune{0x1DF10},
 	},
 	0x2a3: {
-		refs: []string{
-			`U+AB66 latin small letter dz digraph with retroflex hook`,
-		},
+		refs: []rune{0xAB66},
 	},
 	0x2a6: {
-		refs: []string{
-			`U+01BE latin letter inverted glottal stop with stroke`,
-			`U+AB67 latin small letter ts digraph with retroflex hook`,
-		},
+		refs: []rune{0x01BE, 0xAB67},
 	},
 	0x2a7: {
-		refs: []string{
-			`U+A729 latin small letter tz`,
-		},
+		refs: []rune{0xA729},
 	},
 	0x2af: {
-		refs: []string{
-			`U+2071 superscript latin small letter i`,
-			`U+207F superscript latin small letter n`,
-		},
+		refs: []rune{0x2071, 0x207F},
 	},
 	0x2b1: {
-		refs: []string{
-			`U+0266 latin small letter h with hook`,
-			`U+0324 combining diaeresis below`,
-		},
+		refs: []rune{0x0266, 0x0324},
 	},
 	0x2b2: {
-		refs: []string{
-			`U+0321 combining palatalized hook below`,
-		},
+		refs: []rune{0x0321},
 	},
 	0x2b4: {
-		refs: []string{
-			`U+0279 latin small letter turned r`,
-		},
+		refs: []rune{0x0279},
 	},
 	0x2b5: {
-		refs: []string{
-			`U+027B latin small letter turned r with hook`,
-		},
+		refs: []rune{0x027B},
 	},
 	0x2b6: {
-		refs: []string{
-			`U+0281 latin letter small capital inverted r`,
-		},
+		refs: []rune{0x0281},
 	},
 	0x2b7: {
-		refs: []string{
-			`U+032B combining inverted double arch below`,
-		},
+		refs: []rune{0x032B},
 	},
 	0x2b9: {
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+00B4 acute accent`,
-			`U+02CA modifier letter acute accent`,
-			`U+0301 combining acute accent`,
-			`U+0374 greek numeral sign`,
-			`U+05F3 hebrew punctuation geresh`,
-			`U+2032 prime`,
-		},
+		refs: []rune{0x0027, 0x00B4, 0x02CA, 0x0301, 0x0374, 0x05F3, 0x2032},
 	},
 	0x2ba: {
-		refs: []string{
-			`U+0022 quotation mark`,
-			`U+030B combining double acute accent`,
-			`U+2033 double prime`,
-		},
+		refs: []rune{0x0022, 0x030B, 0x2033},
 	},
 	0x2bb: {
-		refs: []string{
-			`U+0312 combining turned comma above`,
-			`U+07F5 nko low tone apostrophe`,
-			`U+2018 left single quotation mark`,
-		},
+		refs: []rune{0x0312, 0x07F5, 0x2018},
 	},
 	0x2bc: {
-		aliases: []string{
-			`apostrophe`,
-		},
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+0313 combining comma above`,
-			`U+0315 combining comma above right`,
-			`U+055A armenian apostrophe`,
-			`U+07F4 nko high tone apostrophe`,
-			`U+1FBF greek psili`,
-			`U+2019 right single quotation mark`,
-		},
+		aliases: []string{`apostrophe`},
+		refs:    []rune{0x0027, 0x0313, 0x0315, 0x055A, 0x07F4, 0x1FBF, 0x2019},
 	},
 	0x2bd: {
-		refs: []string{
-			`U+0314 combining reversed comma above`,
-			`U+0559 armenian modifier letter left half ring`,
-			`U+1FFE greek dasia`,
-			`U+201B single high-reversed-9 quotation mark`,
-		},
+		refs: []rune{0x0314, 0x0559, 0x1FFE, 0x201B},
 	},
 	0x2be: {
-		refs: []string{
-			`U+055A armenian apostrophe`,
-			`U+05D0 hebrew letter alef`,
-			`U+0621 arabic letter hamza`,
-		},
+		refs: []rune{0x055A, 0x05D0, 0x0621},
 	},
 	0x2bf: {
-		refs: []string{
-			`U+0559 armenian modifier letter left half ring`,
-			`U+05E2 hebrew letter ayin`,
-			`U+0639 arabic letter ain`,
-		},
+		refs: []rune{0x0559, 0x05E2, 0x0639},
 	},
 	0x2c0: {
-		refs: []string{
-			`U+0294 latin letter glottal stop`,
-			`U+0309 combining hook above`,
-		},
+		refs: []rune{0x0294, 0x0309},
 	},
 	0x2c1: {
-		refs: []string{
-			`U+0295 latin letter pharyngeal voiced fricative`,
-		},
+		refs: []rune{0x0295},
 	},
 	0x2c4: {
-		refs: []string{
-			`U+005E circumflex accent`,
-			`U+2303 up arrowhead`,
-		},
+		refs: []rune{0x005E, 0x2303},
 	},
 	0x2c6: {
-		refs: []string{
-			`U+005E circumflex accent`,
-			`U+0302 combining circumflex accent`,
-			`U+A788 modifier letter low circumflex accent`,
-		},
+		refs: []rune{0x005E, 0x0302, 0xA788},
 	},
 	0x2c7: {
-		aliases: []string{
-			`hacek`,
-		},
-		refs: []string{
-			`U+030C combining caron`,
-		},
+		aliases: []string{`hacek`},
+		refs:    []rune{0x030C},
 	},
 	0x2c8: {
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+030D combining vertical line above`,
-		},
+		refs: []rune{0x0027, 0x030D},
 	},
 	0x2c9: {
-		refs: []string{
-			`U+00AF macron`,
-			`U+0304 combining macron`,
-		},
+		refs: []rune{0x00AF, 0x0304},
 	},
 	0x2ca: {
-		refs: []string{
-			`U+00B4 acute accent`,
-			`U+02B9 modifier letter prime`,
-			`U+0301 combining acute accent`,
-			`U+0374 greek numeral sign`,
-			`U+055B armenian emphasis mark`,
-		},
+		refs: []rune{0x00B4, 0x02B9, 0x0301, 0x0374, 0x055B},
 	},
 	0x2cb: {
-		refs: []string{
-			`U+0060 grave accent`,
-			`U+0300 combining grave accent`,
-			`U+055D armenian comma`,
-		},
+		refs: []rune{0x0060, 0x0300, 0x055D},
 	},
 	0x2cc: {
-		refs: []string{
-			`U+0329 combining vertical line below`,
-		},
+		refs: []rune{0x0329},
 	},
 	0x2cd: {
-		refs: []string{
-			`U+005F low line`,
-			`U+0331 combining macron below`,
-		},
+		refs: []rune{0x005F, 0x0331},
 	},
 	0x2cf: {
-		refs: []string{
-			`U+0375 greek lower numeral sign`,
-		},
+		refs: []rune{0x0375},
 	},
 	0x2d0: {
-		refs: []string{
-			`U+003A colon`,
-		},
+		refs: []rune{0x003A},
 	},
 	0x2d1: {
-		refs: []string{
-			`U+00B7 middle dot`,
-		},
+		refs: []rune{0x00B7},
 	},
 	0x2d4: {
-		refs: []string{
-			`U+031D combining up tack below`,
-			`U+0323 combining dot below`,
-		},
+		refs: []rune{0x031D, 0x0323},
 	},
 	0x2d5: {
-		refs: []string{
-			`U+031C combining left half ring below`,
-			`U+031E combining down tack below`,
-		},
+		refs: []rune{0x031C, 0x031E},
 	},
 	0x2d6: {
-		refs: []string{
-			`U+031F combining plus sign below`,
-		},
+		refs: []rune{0x031F},
 	},
 	0x2d7: {
-		refs: []string{
-			`U+0320 combining minus sign below`,
-			`U+2212 minus sign`,
-		},
+		refs: []rune{0x0320, 0x2212},
 	},
 	0x2d8: {
-		refs: []string{
-			`U+0306 combining breve`,
-		},
+		refs: []rune{0x0306},
 	},
 	0x2d9: {
-		refs: []string{
-			`U+0307 combining dot above`,
-		},
+		refs: []rune{0x0307},
 	},
 	0x2da: {
-		refs: []string{
-			`U+00B0 degree sign`,
-			`U+030A combining ring above`,
-		},
+		refs: []rune{0x00B0, 0x030A},
 	},
 	0x2db: {
-		refs: []string{
-			`U+0328 combining ogonek`,
-		},
+		refs: []rune{0x0328},
 	},
 	0x2dc: {
-		refs: []string{
-			`U+007E tilde`,
-			`U+0303 combining tilde`,
-			`U+223C tilde operator`,
-		},
+		refs: []rune{0x007E, 0x0303, 0x223C},
 	},
 	0x2dd: {
-		refs: []string{
-			`U+030B combining double acute accent`,
-		},
+		refs: []rune{0x030B},
 	},
 	0x2ed: {
-		refs: []string{
-			`U+A78A modifier letter short equals sign`,
-		},
+		refs: []rune{0xA78A},
 	},
 	0x2f3: {
-		refs: []string{
-			`U+0325 combining ring below`,
-		},
+		refs: []rune{0x0325},
 	},
 	0x300: {
-		aliases: []string{
-			`Greek varia`,
-		},
-		refs: []string{
-			`U+0060 grave accent`,
-			`U+02CB modifier letter grave accent`,
-		},
+		aliases: []string{`Greek varia`},
+		refs:    []rune{0x0060, 0x02CB},
 	},
 	0x301: {
-		aliases: []string{
-			`stress mark`,
-			`Greek oxia`,
-			`tonos`,
-		},
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+00B4 acute accent`,
-			`U+02B9 modifier letter prime`,
-			`U+02CA modifier letter acute accent`,
-			`U+0384 greek tonos`,
-		},
+		aliases: []string{`stress mark`, `Greek oxia`, `tonos`},
+		refs:    []rune{0x0027, 0x00B4, 0x02B9, 0x02CA, 0x0384},
 	},
 	0x302: {
-		aliases: []string{
-			`hat`,
-		},
-		refs: []string{
-			`U+005E circumflex accent`,
-			`U+02C6 modifier letter circumflex accent`,
-		},
+		aliases: []string{`hat`},
+		refs:    []rune{0x005E, 0x02C6},
 	},
 	0x303: {
-		refs: []string{
-			`U+007E tilde`,
-			`U+02DC small tilde`,
-		},
+		refs: []rune{0x007E, 0x02DC},
 	},
 	0x304: {
-		aliases: []string{
-			`long`,
-		},
-		refs: []string{
-			`U+00AF macron`,
-			`U+02C9 modifier letter macron`,
-		},
+		aliases: []string{`long`},
+		refs:    []rune{0x00AF, 0x02C9},
 	},
 	0x305: {
-		aliases: []string{
-			`overscore`,
-			`vinculum`,
-		},
-		refs: []string{
-			`U+00AF macron`,
-		},
+		aliases: []string{`overscore`, `vinculum`},
+		refs:    []rune{0x00AF},
 	},
 	0x306: {
-		aliases: []string{
-			`short`,
-			`Greek vrachy`,
-		},
-		refs: []string{
-			`U+02D8 breve`,
-			`U+A67C combining cyrillic kavyka`,
-		},
+		aliases: []string{`short`, `Greek vrachy`},
+		refs:    []rune{0x02D8, 0xA67C},
 	},
 	0x307: {
-		aliases: []string{
-			`derivative`,
-		},
-		refs: []string{
-			`U+02D9 dot above`,
-		},
+		aliases: []string{`derivative`},
+		refs:    []rune{0x02D9},
 	},
 	0x308: {
-		aliases: []string{
-			`double dot above`,
-			`umlaut`,
-			`Greek dialytika`,
-			`double derivative`,
-		},
-		refs: []string{
-			`U+00A8 diaeresis`,
-		},
+		aliases: []string{`double dot above`, `umlaut`, `Greek dialytika`, `double derivative`},
+		refs:    []rune{0x00A8},
 	},
 	0x309: {
-		aliases: []string{
-			`hoi`,
-		},
-		refs: []string{
-			`U+02C0 modifier letter glottal stop`,
-		},
+		aliases: []string{`hoi`},
+		refs:    []rune{0x02C0},
 	},
 	0x30a: {
-		refs: []string{
-			`U+00B0 degree sign`,
-			`U+02DA ring above`,
-		},
+		refs: []rune{0x00B0, 0x02DA},
 	},
 	0x30b: {
-		refs: []string{
-			`U+0022 quotation mark`,
-			`U+02BA modifier letter double prime`,
-			`U+02DD double acute accent`,
-		},
+		refs: []rune{0x0022, 0x02BA, 0x02DD},
 	},
 	0x30c: {
-		aliases: []string{
-			`hacek`,
-			`V above`,
-		},
-		refs: []string{
-			`U+02C7 caron`,
-		},
+		aliases: []string{`hacek`, `V above`},
+		refs:    []rune{0x02C7},
 	},
 	0x30d: {
-		refs: []string{
-			`U+02C8 modifier letter vertical line`,
-		},
+		refs: []rune{0x02C8},
 	},
 	0x30e: {
-		refs: []string{
-			`U+0022 quotation mark`,
-		},
+		refs: []rune{0x0022},
 	},
 	0x310: {
-		refs: []string{
-			`U+0901 devanagari sign candrabindu`,
-		},
+		refs: []rune{0x0901},
 	},
 	0x311: {
-		refs: []string{
-			`U+0484 combining cyrillic palatalization`,
-			`U+0487 combining cyrillic pokrytie`,
-		},
+		refs: []rune{0x0484, 0x0487},
 	},
 	0x312: {
-		aliases: []string{
-			`cedilla above`,
-		},
-		refs: []string{
-			`U+02BB modifier letter turned comma`,
-		},
+		aliases: []string{`cedilla above`},
+		refs:    []rune{0x02BB},
 	},
 	0x313: {
-		aliases: []string{
-			`Greek psili`,
-			`smooth breathing mark`,
-		},
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-			`U+0486 combining cyrillic psili pneumata`,
-			`U+055A armenian apostrophe`,
-		},
+		aliases: []string{`Greek psili`, `smooth breathing mark`},
+		refs:    []rune{0x02BC, 0x0486, 0x055A},
 	},
 	0x314: {
-		aliases: []string{
-			`Greek dasia`,
-			`rough breathing mark`,
-		},
-		refs: []string{
-			`U+02BD modifier letter reversed comma`,
-			`U+0485 combining cyrillic dasia pneumata`,
-			`U+0559 armenian modifier letter left half ring`,
-		},
+		aliases: []string{`Greek dasia`, `rough breathing mark`},
+		refs:    []rune{0x02BD, 0x0485, 0x0559},
 	},
 	0x315: {
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-		},
+		refs: []rune{0x02BC},
 	},
 	0x318: {
-		refs: []string{
-			`U+AB6A modifier letter left tack`,
-		},
+		refs: []rune{0xAB6A},
 	},
 	0x319: {
-		refs: []string{
-			`U+AB6B modifier letter right tack`,
-		},
+		refs: []rune{0xAB6B},
 	},
 	0x31c: {
-		refs: []string{
-			`U+02D5 modifier letter down tack`,
-		},
+		refs: []rune{0x02D5},
 	},
 	0x31d: {
-		refs: []string{
-			`U+02D4 modifier letter up tack`,
-		},
+		refs: []rune{0x02D4},
 	},
 	0x31e: {
-		refs: []string{
-			`U+02D5 modifier letter down tack`,
-		},
+		refs: []rune{0x02D5},
 	},
 	0x31f: {
-		refs: []string{
-			`U+02D6 modifier letter plus sign`,
-			`U+1AC8 combining plus sign above`,
-		},
+		refs: []rune{0x02D6, 0x1AC8},
 	},
 	0x320: {
-		refs: []string{
-			`U+02D7 modifier letter minus sign`,
-		},
+		refs: []rune{0x02D7},
 	},
 	0x321: {
-		refs: []string{
-			`U+02B2 modifier letter small j`,
-		},
+		refs: []rune{0x02B2},
 	},
 	0x323: {
-		aliases: []string{
-			`nang`,
-		},
-		refs: []string{
-			`U+02D4 modifier letter up tack`,
-		},
+		aliases: []string{`nang`},
+		refs:    []rune{0x02D4},
 	},
 	0x324: {
-		refs: []string{
-			`U+02B1 modifier letter small h with hook`,
-		},
+		refs: []rune{0x02B1},
 	},
 	0x325: {
-		refs: []string{
-			`U+02F3 modifier letter low ring`,
-		},
+		refs: []rune{0x02F3},
 	},
 	0x327: {
-		refs: []string{
-			`U+00B8 cedilla`,
-		},
+		refs: []rune{0x00B8},
 	},
 	0x328: {
-		aliases: []string{
-			`nasal hook`,
-		},
-		refs: []string{
-			`U+02DB ogonek`,
-			`U+1AB7 combining open mark below`,
-		},
+		aliases: []string{`nasal hook`},
+		refs:    []rune{0x02DB, 0x1AB7},
 	},
 	0x329: {
-		refs: []string{
-			`U+02CC modifier letter low vertical line`,
-		},
+		refs: []rune{0x02CC},
 	},
 	0x32b: {
-		refs: []string{
-			`U+02B7 modifier letter small w`,
-			`U+1AC7 combining inverted double arch above`,
-		},
+		refs: []rune{0x02B7, 0x1AC7},
 	},
 	0x331: {
-		refs: []string{
-			`U+005F low line`,
-			`U+02CD modifier letter low macron`,
-		},
+		refs: []rune{0x005F, 0x02CD},
 	},
 	0x332: {
-		aliases: []string{
-			`underline`,
-			`underscore`,
-		},
-		refs: []string{
-			`U+005F low line`,
-		},
+		aliases: []string{`underline`, `underscore`},
+		refs:    []rune{0x005F},
 	},
 	0x333: {
-		aliases: []string{
-			`double underline`,
-			`double underscore`,
-		},
-		refs: []string{
-			`U+0347 combining equals sign below`,
-			`U+2017 double low line`,
-		},
+		aliases: []string{`double underline`, `double underscore`},
+		refs:    []rune{0x0347, 0x2017},
 	},
 	0x336: {
-		aliases: []string{
-			`strikethrough`,
-		},
+		aliases: []string{`strikethrough`},
 	},
 	0x337: {
-		aliases: []string{
-			`short slash overlay`,
-		},
+		aliases: []string{`short slash overlay`},
 	},
 	0x338: {
-		aliases: []string{
-			`long slash overlay`,
-		},
+		aliases: []string{`long slash overlay`},
 	},
 	0x33a: {
-		refs: []string{
-			`U+1DF9 combining wide inverted bridge below`,
-		},
+		refs: []rune{0x1DF9},
 	},
 	0x33e: {
-		aliases: []string{
-			`yerik`,
-		},
-		refs: []string{
-			`U+0484 combining cyrillic palatalization`,
-			`U+2E2F vertical tilde`,
-			`U+A67D combining cyrillic payerok`,
-		},
+		aliases: []string{`yerik`},
+		refs:    []rune{0x0484, 0x2E2F, 0xA67D},
 	},
 	0x342: {
-		refs: []string{
-			`U+0303 combining tilde`,
-			`U+0311 combining inverted breve`,
-		},
+		refs: []rune{0x0303, 0x0311},
 	},
 	0x345: {
-		aliases: []string{
-			`greek non-spacing iota below`,
-			`iota subscript`,
-		},
-		refs: []string{
-			`U+037A greek ypogegrammeni`,
-			`U+0399 greek capital letter iota`,
-		},
+		aliases: []string{`greek non-spacing iota below`, `iota subscript`},
+		refs:    []rune{0x037A, 0x0399},
 	},
 	0x346: {
-		refs: []string{
-			`U+20E9 combining wide bridge above`,
-		},
+		refs: []rune{0x20E9},
 	},
 	0x358: {
-		refs: []string{
-			`U+1DF8 combining dot above left`,
-		},
+		refs: []rune{0x1DF8},
 	},
 	0x359: {
-		refs: []string{
-			`U+204E low asterisk`,
-		},
+		refs: []rune{0x204E},
 	},
 	0x35c: {
-		aliases: []string{
-			`ligature tie below`,
-			`papyrological hyphen`,
-		},
-		refs: []string{
-			`U+035D combining double breve`,
-			`U+0361 combining double inverted breve`,
-			`U+FE27 combining ligature left half below`,
-		},
+		aliases: []string{`ligature tie below`, `papyrological hyphen`},
+		refs:    []rune{0x035D, 0x0361, 0xFE27},
 	},
 	0x360: {
-		refs: []string{
-			`U+FE22 combining double tilde left half`,
-		},
+		refs: []rune{0xFE22},
 	},
 	0x361: {
-		aliases: []string{
-			`ligature tie`,
-		},
-		refs: []string{
-			`U+FE20 combining ligature left half`,
-		},
+		aliases: []string{`ligature tie`},
+		refs:    []rune{0xFE20},
 	},
 	0x370: {
-		refs: []string{
-			`U+2C75 latin capital letter half h`,
-		},
+		refs: []rune{0x2C75},
 	},
 	0x371: {
-		refs: []string{
-			`U+2C76 latin small letter half h`,
-		},
+		refs: []rune{0x2C76},
 	},
 	0x374: {
-		aliases: []string{
-			`dexia keraia`,
-		},
-		refs: []string{
-			`U+02CA modifier letter acute accent`,
-		},
+		aliases: []string{`dexia keraia`},
+		refs:    []rune{0x02CA},
 	},
 	0x375: {
-		aliases: []string{
-			`aristeri keraia`,
-		},
-		refs: []string{
-			`U+02CF modifier letter low acute accent`,
-		},
+		aliases: []string{`aristeri keraia`},
+		refs:    []rune{0x02CF},
 	},
 	0x37a: {
-		aliases: []string{
-			`iota subscript`,
-		},
-		refs: []string{
-			`U+0345 combining greek ypogegrammeni`,
-		},
+		aliases: []string{`iota subscript`},
+		refs:    []rune{0x0345},
 	},
 	0x37e: {
-		aliases: []string{
-			`erotimatiko`,
-		},
-		refs: []string{
-			`U+003F question mark`,
-		},
+		aliases: []string{`erotimatiko`},
+		refs:    []rune{0x003F},
 	},
 	0x384: {
-		refs: []string{
-			`U+00B4 acute accent`,
-			`U+030D combining vertical line above`,
-		},
+		refs: []rune{0x00B4, 0x030D},
 	},
 	0x393: {
-		aliases: []string{
-			`gamma function`,
-		},
-		refs: []string{
-			`U+213E double-struck capital gamma`,
-		},
+		aliases: []string{`gamma function`},
+		refs:    []rune{0x213E},
 	},
 	0x394: {
-		refs: []string{
-			`U+2206 increment`,
-		},
+		refs: []rune{0x2206},
 	},
 	0x399: {
-		aliases: []string{
-			`iota adscript`,
-		},
+		aliases: []string{`iota adscript`},
 	},
 	0x3a0: {
-		refs: []string{
-			`U+213F double-struck capital pi`,
-			`U+220F n-ary product`,
-		},
+		refs: []rune{0x213F, 0x220F},
 	},
 	0x3a3: {
-		refs: []string{
-			`U+01A9 latin capital letter esh`,
-			`U+2211 n-ary summation`,
-		},
+		refs: []rune{0x01A9, 0x2211},
 	},
 	0x3a9: {
-		refs: []string{
-			`U+2126 ohm sign`,
-			`U+2127 inverted ohm sign`,
-		},
+		refs: []rune{0x2126, 0x2127},
 	},
 	0x3b1: {
-		refs: []string{
-			`U+0251 latin small letter alpha`,
-			`U+221D proportional to`,
-		},
+		refs: []rune{0x0251, 0x221D},
 	},
 	0x3b2: {
-		refs: []string{
-			`U+00DF latin small letter sharp s`,
-			`U+0180 latin small letter b with stroke`,
-			`U+A7B5 latin small letter beta`,
-		},
+		refs: []rune{0x00DF, 0x0180, 0xA7B5},
 	},
 	0x3b3: {
-		refs: []string{
-			`U+0263 latin small letter gamma`,
-			`U+213D double-struck small gamma`,
-		},
+		refs: []rune{0x0263, 0x213D},
 	},
 	0x3b5: {
-		refs: []string{
-			`U+025B latin small letter open e`,
-		},
+		refs: []rune{0x025B},
 	},
 	0x3b8: {
-		refs: []string{
-			`U+0275 latin small letter barred o`,
-			`U+0473 cyrillic small letter fita`,
-		},
+		refs: []rune{0x0275, 0x0473},
 	},
 	0x3b9: {
-		refs: []string{
-			`U+0269 latin small letter iota`,
-			`U+2129 turned greek small letter iota`,
-		},
+		refs: []rune{0x0269, 0x2129},
 	},
 	0x3bb: {
-		aliases: []string{
-			`lambda`,
-		},
+		aliases: []string{`lambda`},
 	},
 	0x3bc: {
-		refs: []string{
-			`U+00B5 micro sign`,
-		},
+		refs: []rune{0x00B5},
 	},
 	0x3c2: {
-		aliases: []string{
-			`stigma`,
-		},
-		refs: []string{
-			`U+03DB greek small letter stigma`,
-		},
+		aliases: []string{`stigma`},
+		refs:    []rune{0x03DB},
 	},
 	0x3c5: {
-		refs: []string{
-			`U+028A latin small letter upsilon`,
-			`U+028B latin small letter v with hook`,
-		},
+		refs: []rune{0x028A, 0x028B},
 	},
 	0x3c6: {
-		refs: []string{
-			`U+0278 latin small letter phi`,
-			`U+03D5 greek phi symbol`,
-		},
+		refs: []rune{0x0278, 0x03D5},
 	},
 	0x3c7: {
-		refs: []string{
-			`U+AB53 latin small letter chi`,
-		},
+		refs: []rune{0xAB53},
 	},
 	0x3c9: {
-		refs: []string{
-			`U+A7B7 latin small letter omega`,
-		},
+		refs: []rune{0xA7B7},
 	},
 	0x3cf: {
-		refs: []string{
-			`U+03D7 greek kai symbol`,
-		},
+		refs: []rune{0x03D7},
 	},
 	0x3d0: {
-		aliases: []string{
-			`curled beta`,
-		},
+		aliases: []string{`curled beta`},
 	},
 	0x3d1: {
-		aliases: []string{
-			`script theta`,
-		},
+		aliases: []string{`script theta`},
 	},
 	0x3d6: {
-		aliases: []string{
-			`omega pi`,
-		},
+		aliases: []string{`omega pi`},
 	},
 	0x3d7: {
-		refs: []string{
-			`U+2CE4 coptic symbol kai`,
-		},
+		refs: []rune{0x2CE4},
 	},
 	0x3da: {
-		refs: []string{
-			`U+2185 roman numeral six late form`,
-		},
+		refs: []rune{0x2185},
 	},
 	0x3db: {
-		refs: []string{
-			`U+03C2 greek small letter final sigma`,
-		},
+		refs: []rune{0x03C2},
 	},
 	0x3f0: {
-		aliases: []string{
-			`script kappa`,
-		},
+		aliases: []string{`script kappa`},
 	},
 	0x3f1: {
-		aliases: []string{
-			`tailed rho`,
-		},
+		aliases: []string{`tailed rho`},
 	},
 	0x3f2: {
-		aliases: []string{
-			`greek small letter lunate sigma`,
-		},
+		aliases: []string{`greek small letter lunate sigma`},
 	},
 	0x3f4: {
-		refs: []string{
-			`U+0472 cyrillic capital letter fita`,
-		},
+		refs: []rune{0x0472},
 	},
 	0x3f5: {
-		aliases: []string{
-			`straight epsilon`,
-		},
-		refs: []string{
-			`U+220A small element of`,
-		},
+		aliases: []string{`straight epsilon`},
+		refs:    []rune{0x220A},
 	},
 	0x3f6: {
-		aliases: []string{
-			`reversed straight epsilon`,
-		},
-		refs: []string{
-			`U+220D small contains as member`,
-		},
+		aliases: []string{`reversed straight epsilon`},
+		refs:    []rune{0x220D},
 	},
 	0x3fd: {
-		aliases: []string{
-			`antisigma`,
-		},
+		aliases: []string{`antisigma`},
 	},
 	0x3fe: {
-		aliases: []string{
-			`sigma periestigmenon`,
-		},
+		aliases: []string{`sigma periestigmenon`},
 	},
 	0x3ff: {
-		aliases: []string{
-			`antisigma periestigmenon`,
-		},
+		aliases: []string{`antisigma periestigmenon`},
 	},
 	0x406: {
-		refs: []string{
-			`U+0049 latin capital letter i`,
-			`U+0456 cyrillic small letter byelorussian-ukrainian i`,
-			`U+04C0 cyrillic letter palochka`,
-		},
+		refs: []rune{0x0049, 0x0456, 0x04C0},
 	},
 	0x411: {
-		refs: []string{
-			`U+0183 latin small letter b with topbar`,
-		},
+		refs: []rune{0x0183},
 	},
 	0x423: {
-		refs: []string{
-			`U+0478 cyrillic capital letter uk`,
-			`U+04AF cyrillic small letter straight u`,
-			`U+A64A cyrillic capital letter monograph uk`,
-		},
+		refs: []rune{0x0478, 0x04AF, 0xA64A},
 	},
 	0x44b: {
-		refs: []string{
-			`U+A651 cyrillic small letter yeru with back yer`,
-		},
+		refs: []rune{0xA651},
 	},
 	0x44c: {
-		refs: []string{
-			`U+0185 latin small letter tone six`,
-			`U+A64F cyrillic small letter neutral yer`,
-		},
+		refs: []rune{0x0185, 0xA64F},
 	},
 	0x44e: {
-		refs: []string{
-			`U+A655 cyrillic small letter reversed yu`,
-		},
+		refs: []rune{0xA655},
 	},
 	0x452: {
-		refs: []string{
-			`U+0111 latin small letter d with stroke`,
-		},
+		refs: []rune{0x0111},
 	},
 	0x454: {
-		aliases: []string{
-			`Old Cyrillic yest`,
-		},
+		aliases: []string{`Old Cyrillic yest`},
 	},
 	0x455: {
-		refs: []string{
-			`U+A643 cyrillic small letter dzelo`,
-		},
+		refs: []rune{0xA643},
 	},
 	0x456: {
-		aliases: []string{
-			`Old Cyrillic i`,
-		},
+		aliases: []string{`Old Cyrillic i`},
 	},
 	0x459: {
-		refs: []string{
-			`U+01C9 latin small letter lj`,
-		},
+		refs: []rune{0x01C9},
 	},
 	0x45a: {
-		refs: []string{
-			`U+01CC latin small letter nj`,
-		},
+		refs: []rune{0x01CC},
 	},
 	0x45b: {
-		refs: []string{
-			`U+0107 latin small letter c with acute`,
-			`U+0127 latin small letter h with stroke`,
-			`U+040B cyrillic capital letter tshe`,
-			`U+210F planck constant over two pi`,
-			`U+A649 cyrillic small letter djerv`,
-		},
+		refs: []rune{0x0107, 0x0127, 0x040B, 0x210F, 0xA649},
 	},
 	0x45f: {
-		refs: []string{
-			`U+01C6 latin small letter dz with caron`,
-		},
+		refs: []rune{0x01C6},
 	},
 	0x461: {
-		refs: []string{
-			`U+A64D cyrillic small letter broad omega`,
-		},
+		refs: []rune{0xA64D},
 	},
 	0x463: {
-		refs: []string{
-			`U+A653 cyrillic small letter iotified yat`,
-			`U+AB60 latin small letter sakha yat`,
-		},
+		refs: []rune{0xA653, 0xAB60},
 	},
 	0x465: {
-		refs: []string{
-			`U+AB61 latin small letter iotified e`,
-		},
+		refs: []rune{0xAB61},
 	},
 	0x467: {
-		refs: []string{
-			`U+A659 cyrillic small letter closed little yus`,
-			`U+A65B cyrillic small letter blended yus`,
-		},
+		refs: []rune{0xA659, 0xA65B},
 	},
 	0x469: {
-		refs: []string{
-			`U+044F cyrillic small letter ya`,
-			`U+A65D cyrillic small letter iotified closed little yus`,
-		},
+		refs: []rune{0x044F, 0xA65D},
 	},
 	0x46b: {
-		refs: []string{
-			`U+A65B cyrillic small letter blended yus`,
-		},
+		refs: []rune{0xA65B},
 	},
 	0x473: {
-		refs: []string{
-			`U+0275 latin small letter barred o`,
-			`U+03B8 greek small letter theta`,
-		},
+		refs: []rune{0x0275, 0x03B8},
 	},
 	0x478: {
-		refs: []string{
-			`U+0423 cyrillic capital letter u`,
-		},
+		refs: []rune{0x0423},
 	},
 	0x47c: {
-		aliases: []string{
-			`Cyrillic beautiful omega`,
-		},
-		refs: []string{
-			`U+A64C cyrillic capital letter broad omega`,
-		},
+		aliases: []string{`Cyrillic beautiful omega`},
+		refs:    []rune{0xA64C},
 	},
 	0x47d: {
-		refs: []string{
-			`U+1F66 greek small letter omega with psili and perispomeni`,
-		},
+		refs: []rune{0x1F66},
 	},
 	0x483: {
-		refs: []string{
-			`U+A66F combining cyrillic vzmet`,
-		},
+		refs: []rune{0xA66F},
 	},
 	0x484: {
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-			`U+0311 combining inverted breve`,
-		},
+		refs: []rune{0x02BC, 0x0311},
 	},
 	0x485: {
-		refs: []string{
-			`U+0314 combining reversed comma above`,
-		},
+		refs: []rune{0x0314},
 	},
 	0x486: {
-		refs: []string{
-			`U+0313 combining comma above`,
-		},
+		refs: []rune{0x0313},
 	},
 	0x487: {
-		refs: []string{
-			`U+0311 combining inverted breve`,
-			`U+A66F combining cyrillic vzmet`,
-		},
+		refs: []rune{0x0311, 0xA66F},
 	},
 	0x489: {
-		refs: []string{
-			`U+A670 combining cyrillic ten millions sign`,
-		},
+		refs: []rune{0xA670},
 	},
 	0x4af: {
-		refs: []string{
-			`U+0423 cyrillic capital letter u`,
-		},
+		refs: []rune{0x0423},
 	},
 	0x4bb: {
-		refs: []string{
-			`U+0068 latin small letter h`,
-		},
+		refs: []rune{0x0068},
 	},
 	0x4c0: {
-		refs: []string{
-			`U+0049 latin capital letter i`,
-			`U+0406 cyrillic capital letter byelorussian-ukrainian i`,
-		},
+		refs: []rune{0x0049, 0x0406},
 	},
 	0x4d5: {
-		refs: []string{
-			`U+00E6 latin small letter ae`,
-		},
+		refs: []rune{0x00E6},
 	},
 	0x4d9: {
-		refs: []string{
-			`U+0259 latin small letter schwa`,
-		},
+		refs: []rune{0x0259},
 	},
 	0x4e1: {
-		refs: []string{
-			`U+0292 latin small letter ezh`,
-		},
+		refs: []rune{0x0292},
 	},
 	0x4e9: {
-		refs: []string{
-			`U+0275 latin small letter barred o`,
-		},
+		refs: []rune{0x0275},
 	},
 	0x515: {
-		aliases: []string{
-			`voiceless l`,
-		},
+		aliases: []string{`voiceless l`},
 	},
 	0x517: {
-		aliases: []string{
-			`voiceless r`,
-		},
+		aliases: []string{`voiceless r`},
 	},
 	0x521: {
-		aliases: []string{
-			`palatalized l`,
-		},
+		aliases: []string{`palatalized l`},
 	},
 	0x523: {
-		aliases: []string{
-			`palatalized n`,
-		},
+		aliases: []string{`palatalized n`},
 	},
 	0x525: {
-		refs: []string{
-			`U+04A7 cyrillic small letter pe with middle hook`,
-		},
+		refs: []rune{0x04A7},
 	},
 	0x559: {
-		refs: []string{
-			`U+02BD modifier letter reversed comma`,
-			`U+02BF modifier letter left half ring`,
-			`U+0314 combining reversed comma above`,
-		},
+		refs: []rune{0x02BD, 0x02BF, 0x0314},
 	},
 	0x55a: {
-		aliases: []string{
-			`armenian modifier letter right half ring`,
-		},
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-			`U+02BE modifier letter right half ring`,
-			`U+0313 combining comma above`,
-		},
+		aliases: []string{`armenian modifier letter right half ring`},
+		refs:    []rune{0x02BC, 0x02BE, 0x0313},
 	},
 	0x55b: {
-		aliases: []string{
-			`shesht`,
-		},
-		refs: []string{
-			`U+02CA modifier letter acute accent`,
-		},
+		aliases: []string{`shesht`},
+		refs:    []rune{0x02CA},
 	},
 	0x55c: {
-		aliases: []string{
-			`batsaganchakan nshan`,
-		},
+		aliases: []string{`batsaganchakan nshan`},
 	},
 	0x55d: {
-		aliases: []string{
-			`bowt`,
-		},
-		refs: []string{
-			`U+02CB modifier letter grave accent`,
-		},
+		aliases: []string{`bowt`},
+		refs:    []rune{0x02CB},
 	},
 	0x55e: {
-		aliases: []string{
-			`hartsakan nshan`,
-		},
+		aliases: []string{`hartsakan nshan`},
 	},
 	0x55f: {
-		aliases: []string{
-			`patiw`,
-		},
+		aliases: []string{`patiw`},
 	},
 	0x589: {
-		aliases: []string{
-			`vertsaket`,
-		},
-		refs: []string{
-			`U+003A colon`,
-		},
+		aliases: []string{`vertsaket`},
+		refs:    []rune{0x003A},
 	},
 	0x58a: {
-		aliases: []string{
-			`yentamna`,
-		},
+		aliases: []string{`yentamna`},
 	},
 	0x591: {
-		aliases: []string{
-			`atnah`,
-		},
+		aliases: []string{`atnah`},
 	},
 	0x592: {
-		aliases: []string{
-			`segolta`,
-		},
+		aliases: []string{`segolta`},
 	},
 	0x596: {
-		aliases: []string{
-			`tarha`,
-			`me'ayla ~ mayla`,
-		},
+		aliases: []string{`tarha`, `me'ayla ~ mayla`},
 	},
 	0x598: {
-		aliases: []string{
-			`tsinorit`,
-			`zinorit; tsinor`,
-			`zinor`,
-		},
-		refs: []string{
-			`U+05AE hebrew accent zinor`,
-		},
+		aliases: []string{`tsinorit`, `zinorit; tsinor`, `zinor`},
+		refs:    []rune{0x05AE},
 	},
 	0x59c: {
-		aliases: []string{
-			`teres`,
-		},
+		aliases: []string{`teres`},
 	},
 	0x59f: {
-		aliases: []string{
-			`pazer gadol`,
-		},
+		aliases: []string{`pazer gadol`},
 	},
 	0x5a1: {
-		aliases: []string{
-			`pazer qatan`,
-		},
+		aliases: []string{`pazer qatan`},
 	},
 	0x5a2: {
-		refs: []string{
-			`U+05AA hebrew accent yerah ben yomo`,
-		},
+		refs: []rune{0x05AA},
 	},
 	0x5a5: {
-		aliases: []string{
-			`yored`,
-		},
+		aliases: []string{`yored`},
 	},
 	0x5a8: {
-		aliases: []string{
-			`azla`,
-		},
+		aliases: []string{`azla`},
 	},
 	0x5aa: {
-		aliases: []string{
-			`galgal`,
-		},
-		refs: []string{
-			`U+05A2 hebrew accent atnah hafukh`,
-		},
+		aliases: []string{`galgal`},
+		refs:    []rune{0x05A2},
 	},
 	0x5ae: {
-		aliases: []string{
-			`tsinor; zarqa`,
-		},
-		refs: []string{
-			`U+0598 hebrew accent zarqa`,
-		},
+		aliases: []string{`tsinor; zarqa`},
+		refs:    []rune{0x0598},
 	},
 	0x5b8: {
-		refs: []string{
-			`U+05C7 hebrew point qamats qatan`,
-		},
+		refs: []rune{0x05C7},
 	},
 	0x5bc: {
-		aliases: []string{
-			`shuruq`,
-		},
+		aliases: []string{`shuruq`},
 	},
 	0x5bd: {
-		aliases: []string{
-			`siluq`,
-		},
+		aliases: []string{`siluq`},
 	},
 	0x5bf: {
-		refs: []string{
-			`U+FB1E hebrew point judeo-spanish varika`,
-		},
+		refs: []rune{0xFB1E},
 	},
 	0x5c0: {
-		aliases: []string{
-			`legarmeh`,
-		},
-		refs: []string{
-			`U+007C vertical line`,
-		},
+		aliases: []string{`legarmeh`},
+		refs:    []rune{0x007C},
 	},
 	0x5c3: {
-		refs: []string{
-			`U+003A colon`,
-		},
+		refs: []rune{0x003A},
 	},
 	0x5c5: {
-		refs: []string{
-			`U+05B4 hebrew point hiriq`,
-		},
+		refs: []rune{0x05B4},
 	},
 	0x5c6: {
-		refs: []string{
-			`U+05E0 hebrew letter nun`,
-		},
+		refs: []rune{0x05E0},
 	},
 	0x5c7: {
-		refs: []string{
-			`U+05B8 hebrew point qamats`,
-		},
+		refs: []rune{0x05B8},
 	},
 	0x5d0: {
-		aliases: []string{
-			`aleph`,
-		},
-		refs: []string{
-			`U+2135 alef symbol`,
-		},
+		aliases: []string{`aleph`},
+		refs:    []rune{0x2135},
 	},
 	0x5d1: {
-		refs: []string{
-			`U+2136 bet symbol`,
-		},
+		refs: []rune{0x2136},
 	},
 	0x5d2: {
-		refs: []string{
-			`U+2137 gimel symbol`,
-		},
+		refs: []rune{0x2137},
 	},
 	0x5d3: {
-		refs: []string{
-			`U+2138 dalet symbol`,
-		},
+		refs: []rune{0x2138},
 	},
 	0x5e6: {
-		aliases: []string{
-			`zade`,
-		},
+		aliases: []string{`zade`},
 	},
 	0x5f0: {
-		aliases: []string{
-			`tsvey vovn`,
-		},
+		aliases: []string{`tsvey vovn`},
 	},
 	0x5f2: {
-		aliases: []string{
-			`tsvey yudn`,
-		},
+		aliases: []string{`tsvey yudn`},
 	},
 	0x5f3: {
-		refs: []string{
-			`U+0027 apostrophe`,
-		},
+		refs: []rune{0x0027},
 	},
 	0x5f4: {
-		refs: []string{
-			`U+0022 quotation mark`,
-		},
+		refs: []rune{0x0022},
 	},
 	0x606: {
-		refs: []string{
-			`U+221B cube root`,
-		},
+		refs: []rune{0x221B},
 	},
 	0x607: {
-		refs: []string{
-			`U+221C fourth root`,
-		},
+		refs: []rune{0x221C},
 	},
 	0x609: {
-		refs: []string{
-			`U+2030 per mille sign`,
-		},
+		refs: []rune{0x2030},
 	},
 	0x60a: {
-		refs: []string{
-			`U+2031 per ten thousand sign`,
-		},
+		refs: []rune{0x2031},
 	},
 	0x60c: {
-		refs: []string{
-			`U+002C comma`,
-			`U+2E32 turned comma`,
-			`U+2E41 reversed comma`,
-		},
+		refs: []rune{0x002C, 0x2E32, 0x2E41},
 	},
 	0x611: {
-		refs: []string{
-			`U+FD47 arabic ligature alayhi as-salaam`,
-		},
+		refs: []rune{0xFD47},
 	},
 	0x612: {
-		refs: []string{
-			`U+FD40 arabic ligature rahimahu allaah`,
-		},
+		refs: []rune{0xFD40},
 	},
 	0x613: {
-		refs: []string{
-			`U+FD41 arabic ligature radi allaahu anh`,
-		},
+		refs: []rune{0xFD41},
 	},
 	0x616: {
-		aliases: []string{
-			`ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE`,
-		},
+		aliases: []string{`ARABIC SMALL HIGH LIGATURE ALEF WITH YEH BARREE`},
 	},
 	0x61b: {
-		refs: []string{
-			`U+003B semicolon`,
-			`U+204F reversed semicolon`,
-			`U+2E35 turned semicolon`,
-		},
+		refs: []rune{0x003B, 0x204F, 0x2E35},
 	},
 	0x61c: {
-		refs: []string{
-			`U+200F right-to-left mark`,
-		},
+		refs: []rune{0x200F},
 	},
 	0x61f: {
-		refs: []string{
-			`U+003F question mark`,
-			`U+2E2E reversed question mark`,
-		},
+		refs: []rune{0x003F, 0x2E2E},
 	},
 	0x621: {
-		refs: []string{
-			`U+02BE modifier letter right half ring`,
-		},
+		refs: []rune{0x02BE},
 	},
 	0x639: {
-		refs: []string{
-			`U+01B9 latin small letter ezh reversed`,
-			`U+02BF modifier letter left half ring`,
-		},
+		refs: []rune{0x01B9, 0x02BF},
 	},
 	0x640: {
-		aliases: []string{
-			`kashida`,
-		},
+		aliases: []string{`kashida`},
 	},
 	0x649: {
-		refs: []string{
-			`U+0626 arabic letter yeh with hamza above`,
-		},
+		refs: []rune{0x0626},
 	},
 	0x64a: {
-		refs: []string{
-			`U+08A8 arabic letter yeh with two dots below and hamza above`,
-		},
+		refs: []rune{0x08A8},
 	},
 	0x652: {
-		refs: []string{
-			`U+06E1 arabic small high dotless head of khah`,
-		},
+		refs: []rune{0x06E1},
 	},
 	0x653: {
-		refs: []string{
-			`U+089C arabic madda waajib`,
-			`U+089E arabic doubled madda`,
-			`U+089F arabic half madda over madda`,
-		},
+		refs: []rune{0x089C, 0x089E, 0x089F},
 	},
 	0x657: {
-		aliases: []string{
-			`ulta pesh`,
-		},
+		aliases: []string{`ulta pesh`},
 	},
 	0x66a: {
-		refs: []string{
-			`U+0025 percent sign`,
-		},
+		refs: []rune{0x0025},
 	},
 	0x66c: {
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+2019 right single quotation mark`,
-		},
+		refs: []rune{0x0027, 0x2019},
 	},
 	0x66d: {
-		refs: []string{
-			`U+002A asterisk`,
-		},
+		refs: []rune{0x002A},
 	},
 	0x6a9: {
-		aliases: []string{
-			`kaf mashkula`,
-		},
+		aliases: []string{`kaf mashkula`},
 	},
 	0x6ac: {
-		refs: []string{
-			`U+0762 arabic letter keheh with dot above`,
-		},
+		refs: []rune{0x0762},
 	},
 	0x6c0: {
-		aliases: []string{
-			`arabic letter hamzah on ha`,
-		},
+		aliases: []string{`arabic letter hamzah on ha`},
 	},
 	0x6cc: {
-		refs: []string{
-			`U+0649 arabic letter alef maksura`,
-			`U+064A arabic letter yeh`,
-		},
+		refs: []rune{0x0649, 0x064A},
 	},
 	0x6e1: {
-		aliases: []string{
-			`Arabic jazm`,
-		},
-		refs: []string{
-			`U+0652 arabic sukun`,
-		},
+		aliases: []string{`Arabic jazm`},
+		refs:    []rune{0x0652},
 	},
 	0x6e5: {
-		refs: []string{
-			`U+08D3 arabic small low waw`,
-			`U+08F3 arabic small high waw`,
-		},
+		refs: []rune{0x08D3, 0x08F3},
 	},
 	0x709: {
-		aliases: []string{
-			`SYRIAC SUBLINEAR COLON SKEWED LEFT`,
-		},
+		aliases: []string{`SYRIAC SUBLINEAR COLON SKEWED LEFT`},
 	},
 	0x70b: {
-		refs: []string{
-			`U+00F7 division sign`,
-		},
+		refs: []rune{0x00F7},
 	},
 	0x70f: {
-		aliases: []string{
-			`SAM`,
-		},
+		aliases: []string{`SAM`},
 	},
 	0x740: {
-		refs: []string{
-			`U+1DF8 combining dot above left`,
-		},
+		refs: []rune{0x1DF8},
 	},
 	0x762: {
-		refs: []string{
-			`U+06AC arabic letter kaf with dot above`,
-		},
+		refs: []rune{0x06AC},
 	},
 	0x763: {
-		refs: []string{
-			`U+06AD arabic letter ng`,
-		},
+		refs: []rune{0x06AD},
 	},
 	0x76c: {
-		refs: []string{
-			`U+0291 latin small letter z with curl`,
-		},
+		refs: []rune{0x0291},
 	},
 	0x7ea: {
-		refs: []string{
-			`U+07D9 nko letter ra`,
-		},
+		refs: []rune{0x07D9},
 	},
 	0x7eb: {
-		refs: []string{
-			`U+0304 combining macron`,
-		},
+		refs: []rune{0x0304},
 	},
 	0x7ec: {
-		refs: []string{
-			`U+0303 combining tilde`,
-		},
+		refs: []rune{0x0303},
 	},
 	0x7ed: {
-		refs: []string{
-			`U+0307 combining dot above`,
-		},
+		refs: []rune{0x0307},
 	},
 	0x7ee: {
-		refs: []string{
-			`U+0302 combining circumflex accent`,
-		},
+		refs: []rune{0x0302},
 	},
 	0x7f2: {
-		refs: []string{
-			`U+0323 combining dot below`,
-		},
+		refs: []rune{0x0323},
 	},
 	0x7f3: {
-		refs: []string{
-			`U+0308 combining diaeresis`,
-		},
+		refs: []rune{0x0308},
 	},
 	0x7f4: {
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-		},
+		refs: []rune{0x02BC},
 	},
 	0x7f5: {
-		refs: []string{
-			`U+02BB modifier letter turned comma`,
-		},
+		refs: []rune{0x02BB},
 	},
 	0x7fa: {
-		refs: []string{
-			`U+005F low line`,
-			`U+0640 arabic tatweel`,
-		},
+		refs: []rune{0x005F, 0x0640},
 	},
 	0x7fd: {
-		refs: []string{
-			`U+032A combining bridge below`,
-		},
+		refs: []rune{0x032A},
 	},
 	0x7fe: {
-		refs: []string{
-			`U+07D8 nko letter da`,
-		},
+		refs: []rune{0x07D8},
 	},
 	0x7ff: {
-		refs: []string{
-			`U+07D5 nko letter ta`,
-		},
+		refs: []rune{0x07D5},
 	},
 	0x81c: {
-		aliases: []string{
-			`fatha al-nida`,
-		},
+		aliases: []string{`fatha al-nida`},
 	},
 	0x81e: {
-		aliases: []string{
-			`fatha al-ima`,
-		},
+		aliases: []string{`fatha al-ima`},
 	},
 	0x821: {
-		aliases: []string{
-			`fatha al-iha`,
-		},
+		aliases: []string{`fatha al-iha`},
 	},
 	0x825: {
-		aliases: []string{
-			`fatha`,
-		},
+		aliases: []string{`fatha`},
 	},
 	0x826: {
-		aliases: []string{
-			`damma`,
-		},
+		aliases: []string{`damma`},
 	},
 	0x829: {
-		aliases: []string{
-			`kasra`,
-		},
+		aliases: []string{`kasra`},
 	},
 	0x830: {
-		aliases: []string{
-			`word separator`,
-		},
+		aliases: []string{`word separator`},
 	},
 	0x831: {
-		aliases: []string{
-			`interruption`,
-		},
+		aliases: []string{`interruption`},
 	},
 	0x832: {
-		aliases: []string{
-			`restraint`,
-		},
+		aliases: []string{`restraint`},
 	},
 	0x833: {
-		aliases: []string{
-			`prayer`,
-		},
+		aliases: []string{`prayer`},
 	},
 	0x834: {
-		aliases: []string{
-			`surprise`,
-		},
+		aliases: []string{`surprise`},
 	},
 	0x835: {
-		aliases: []string{
-			`question`,
-		},
+		aliases: []string{`question`},
 	},
 	0x838: {
-		aliases: []string{
-			`shouting`,
-		},
+		aliases: []string{`shouting`},
 	},
 	0x839: {
-		aliases: []string{
-			`end of section`,
-		},
+		aliases: []string{`end of section`},
 	},
 	0x83a: {
-		aliases: []string{
-			`outburst`,
-		},
+		aliases: []string{`outburst`},
 	},
 	0x83b: {
-		aliases: []string{
-			`teaching`,
-		},
+		aliases: []string{`teaching`},
 	},
 	0x83c: {
-		aliases: []string{
-			`submissiveness`,
-		},
+		aliases: []string{`submissiveness`},
 	},
 	0x83d: {
-		aliases: []string{
-			`full stop`,
-		},
+		aliases: []string{`full stop`},
 	},
 	0x83e: {
-		aliases: []string{
-			`rest`,
-		},
+		aliases: []string{`rest`},
 	},
 	0x840: {
-		aliases: []string{
-			`a`,
-		},
+		aliases: []string{`a`},
 	},
 	0x845: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0x847: {
-		aliases: []string{
-			`pharyngeal hu`,
-		},
+		aliases: []string{`pharyngeal hu`},
 	},
 	0x849: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0x856: {
-		aliases: []string{
-			`di`,
-		},
+		aliases: []string{`di`},
 	},
 	0x860: {
-		refs: []string{
-			`U+0D19 malayalam letter nga`,
-		},
+		refs: []rune{0x0D19},
 	},
 	0x861: {
-		refs: []string{
-			`U+0D1C malayalam letter ja`,
-		},
+		refs: []rune{0x0D1C},
 	},
 	0x862: {
-		refs: []string{
-			`U+0D1E malayalam letter nya`,
-		},
+		refs: []rune{0x0D1E},
 	},
 	0x863: {
-		refs: []string{
-			`U+0D1F malayalam letter tta`,
-		},
+		refs: []rune{0x0D1F},
 	},
 	0x864: {
-		refs: []string{
-			`U+0D23 malayalam letter nna`,
-		},
+		refs: []rune{0x0D23},
 	},
 	0x865: {
-		refs: []string{
-			`U+0D29 malayalam letter nnna`,
-		},
+		refs: []rune{0x0D29},
 	},
 	0x866: {
-		refs: []string{
-			`U+0D2D malayalam letter bha`,
-		},
+		refs: []rune{0x0D2D},
 	},
 	0x867: {
-		refs: []string{
-			`U+0D30 malayalam letter ra`,
-		},
+		refs: []rune{0x0D30},
 	},
 	0x868: {
-		refs: []string{
-			`U+0D33 malayalam letter lla`,
-		},
+		refs: []rune{0x0D33},
 	},
 	0x869: {
-		refs: []string{
-			`U+0D34 malayalam letter llla`,
-		},
+		refs: []rune{0x0D34},
 	},
 	0x86a: {
-		refs: []string{
-			`U+0D37 malayalam letter ssa`,
-		},
+		refs: []rune{0x0D37},
 	},
 	0x89c: {
-		refs: []string{
-			`U+0653 arabic maddah above`,
-		},
+		refs: []rune{0x0653},
 	},
 	0x8a1: {
-		refs: []string{
-			`U+0253 latin small letter b with hook`,
-		},
+		refs: []rune{0x0253},
 	},
 	0x8a8: {
-		refs: []string{
-			`U+01B4 latin small letter y with hook`,
-		},
+		refs: []rune{0x01B4},
 	},
 	0x8a9: {
-		refs: []string{
-			`U+0272 latin small letter n with left hook`,
-		},
+		refs: []rune{0x0272},
 	},
 	0x8aa: {
-		aliases: []string{
-			`bottya-reh`,
-		},
+		aliases: []string{`bottya-reh`},
 	},
 	0x8ab: {
-		aliases: []string{
-			`nota-wa`,
-		},
+		aliases: []string{`nota-wa`},
 	},
 	0x8ac: {
-		aliases: []string{
-			`bottya-yeh`,
-		},
+		aliases: []string{`bottya-yeh`},
 	},
 	0x8b4: {
-		refs: []string{
-			`U+06AE arabic letter kaf with three dots below`,
-		},
+		refs: []rune{0x06AE},
 	},
 	0x8bb: {
-		refs: []string{
-			`U+06A1 arabic letter dotless feh`,
-			`U+06A2 arabic letter feh with dot moved below`,
-		},
+		refs: []rune{0x06A1, 0x06A2},
 	},
 	0x8bc: {
-		refs: []string{
-			`U+066F arabic letter dotless qaf`,
-			`U+06A7 arabic letter qaf with dot above`,
-			`U+08C4 arabic letter african qaf with three dots above`,
-		},
+		refs: []rune{0x066F, 0x06A7, 0x08C4},
 	},
 	0x8bd: {
-		refs: []string{
-			`U+06BA arabic letter noon ghunna`,
-			`U+0646 arabic letter noon`,
-		},
+		refs: []rune{0x06BA, 0x0646},
 	},
 	0x8c4: {
-		refs: []string{
-			`U+08BC arabic letter african qaf`,
-		},
+		refs: []rune{0x08BC},
 	},
 	0x8cc: {
-		aliases: []string{
-			`sign of waqf`,
-		},
+		aliases: []string{`sign of waqf`},
 	},
 	0x8dd: {
-		refs: []string{
-			`U+10EFD arabic small low word sakta`,
-		},
+		refs: []rune{0x10EFD},
 	},
 	0x8f0: {
-		aliases: []string{
-			`successive fathatan`,
-		},
+		aliases: []string{`successive fathatan`},
 	},
 	0x8f1: {
-		aliases: []string{
-			`successive dammatan`,
-		},
+		aliases: []string{`successive dammatan`},
 	},
 	0x8f2: {
-		aliases: []string{
-			`successive kasratan`,
-		},
+		aliases: []string{`successive kasratan`},
 	},
 	0x900: {
-		aliases: []string{
-			`vaidika adhomukha candrabindu`,
-		},
+		aliases: []string{`vaidika adhomukha candrabindu`},
 	},
 	0x901: {
-		aliases: []string{
-			`anunasika`,
-		},
-		refs: []string{
-			`U+0310 combining candrabindu`,
-		},
+		aliases: []string{`anunasika`},
+		refs:    []rune{0x0310},
 	},
 	0x902: {
-		aliases: []string{
-			`bindu`,
-		},
+		aliases: []string{`bindu`},
 	},
 	0x945: {
-		aliases: []string{
-			`candra`,
-		},
+		aliases: []string{`candra`},
 	},
 	0x94d: {
-		aliases: []string{
-			`halant`,
-		},
+		aliases: []string{`halant`},
 	},
 	0x950: {
-		refs: []string{
-			`U+1F549 om symbol`,
-		},
+		refs: []rune{0x1F549},
 	},
 	0x951: {
-		aliases: []string{
-			`Vedic tone svarita`,
-		},
-		refs: []string{
-			`U+1CDA vedic tone double svarita`,
-		},
+		aliases: []string{`Vedic tone svarita`},
+		refs:    []rune{0x1CDA},
 	},
 	0x952: {
-		aliases: []string{
-			`Vedic tone anudatta`,
-		},
-		refs: []string{
-			`U+1CDC vedic tone kathaka anudatta`,
-		},
+		aliases: []string{`Vedic tone anudatta`},
+		refs:    []rune{0x1CDC},
 	},
 	0x953: {
-		refs: []string{
-			`U+0300 combining grave accent`,
-		},
+		refs: []rune{0x0300},
 	},
 	0x954: {
-		refs: []string{
-			`U+0301 combining acute accent`,
-		},
+		refs: []rune{0x0301},
 	},
 	0x964: {
-		aliases: []string{
-			`purna viram`,
-		},
+		aliases: []string{`purna viram`},
 	},
 	0x965: {
-		aliases: []string{
-			`deergh viram`,
-		},
+		aliases: []string{`deergh viram`},
 	},
 	0x979: {
-		refs: []string{
-			`U+0AF9 gujarati letter zha`,
-		},
+		refs: []rune{0x0AF9},
 	},
 	0x980: {
-		aliases: []string{
-			`siddham`,
-			`siddhirastu`,
-		},
+		aliases: []string{`siddham`, `siddhirastu`},
 	},
 	0x9ac: {
-		aliases: []string{
-			`Bengali va`,
-			`wa`,
-		},
+		aliases: []string{`Bengali va`, `wa`},
 	},
 	0x9cd: {
-		aliases: []string{
-			`hasant`,
-		},
+		aliases: []string{`hasant`},
 	},
 	0x9e4: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0x9e5: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0x9f0: {
-		aliases: []string{
-			`Assamese letter ra`,
-		},
+		aliases: []string{`Assamese letter ra`},
 	},
 	0x9f1: {
-		aliases: []string{
-			`Assamese letter wa`,
-			`bengali letter va with lower diagonal`,
-		},
+		aliases: []string{`Assamese letter wa`, `bengali letter va with lower diagonal`},
 	},
 	0x9f2: {
-		aliases: []string{
-			`taka`,
-		},
+		aliases: []string{`taka`},
 	},
 	0x9f3: {
-		aliases: []string{
-			`Bangladeshi taka`,
-		},
+		aliases: []string{`Bangladeshi taka`},
 	},
 	0x9fa: {
-		aliases: []string{
-			`ishvar`,
-			`svargiya`,
-		},
+		aliases: []string{`ishvar`, `svargiya`},
 	},
 	0x9fe: {
-		refs: []string{
-			`U+09BD bengali sign avagraha`,
-			`U+111C9 sharada sandhi mark`,
-			`U+1145E newa sandhi mark`,
-		},
+		refs: []rune{0x09BD, 0x111C9, 0x1145E},
 	},
 	0xa05: {
-		aliases: []string{
-			`aira`,
-		},
+		aliases: []string{`aira`},
 	},
 	0xa3c: {
-		aliases: []string{
-			`pairin bindi`,
-		},
+		aliases: []string{`pairin bindi`},
 	},
 	0xa3e: {
-		aliases: []string{
-			`kanna`,
-		},
+		aliases: []string{`kanna`},
 	},
 	0xa3f: {
-		aliases: []string{
-			`sihari`,
-		},
+		aliases: []string{`sihari`},
 	},
 	0xa40: {
-		aliases: []string{
-			`bihari`,
-		},
+		aliases: []string{`bihari`},
 	},
 	0xa41: {
-		aliases: []string{
-			`aunkar`,
-		},
+		aliases: []string{`aunkar`},
 	},
 	0xa42: {
-		aliases: []string{
-			`dulainkar`,
-		},
+		aliases: []string{`dulainkar`},
 	},
 	0xa47: {
-		aliases: []string{
-			`lanvan`,
-		},
+		aliases: []string{`lanvan`},
 	},
 	0xa48: {
-		aliases: []string{
-			`dulanvan`,
-		},
+		aliases: []string{`dulanvan`},
 	},
 	0xa4b: {
-		aliases: []string{
-			`hora`,
-		},
+		aliases: []string{`hora`},
 	},
 	0xa4c: {
-		aliases: []string{
-			`kanaura`,
-		},
+		aliases: []string{`kanaura`},
 	},
 	0xa64: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xa65: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xa76: {
-		refs: []string{
-			`U+111C7 sharada abbreviation sign`,
-		},
+		refs: []rune{0x111C7},
 	},
 	0xae4: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xae5: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xaf9: {
-		refs: []string{
-			`U+0979 devanagari letter zha`,
-		},
+		refs: []rune{0x0979},
 	},
 	0xb2c: {
-		refs: []string{
-			`U+0B35 oriya letter va`,
-		},
+		refs: []rune{0x0B35},
 	},
 	0xb2f: {
-		aliases: []string{
-			`ja`,
-		},
+		aliases: []string{`ja`},
 	},
 	0xb35: {
-		refs: []string{
-			`U+0B2C oriya letter ba`,
-		},
+		refs: []rune{0x0B2C},
 	},
 	0xb5c: {
-		aliases: []string{
-			`dda`,
-		},
+		aliases: []string{`dda`},
 	},
 	0xb5d: {
-		aliases: []string{
-			`ddha`,
-		},
+		aliases: []string{`ddha`},
 	},
 	0xb5f: {
-		aliases: []string{
-			`ya`,
-		},
+		aliases: []string{`ya`},
 	},
 	0xb64: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xb65: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xb71: {
-		refs: []string{
-			`U+0B13 oriya letter o`,
-			`U+0B35 oriya letter va`,
-		},
+		refs: []rune{0x0B13, 0x0B35},
 	},
 	0xb83: {
-		aliases: []string{
-			`aytham`,
-		},
+		aliases: []string{`aytham`},
 	},
 	0xb99: {
-		refs: []string{
-			`U+11FDA tamil sign kuruni`,
-		},
+		refs: []rune{0x11FDA},
 	},
 	0xba4: {
-		refs: []string{
-			`U+11FDC tamil sign mukkuruni`,
-		},
+		refs: []rune{0x11FDC},
 	},
 	0xbaa: {
-		aliases: []string{
-			`maa`,
-		},
-		refs: []string{
-			`U+11FC8 tamil fraction one twentieth`,
-		},
+		aliases: []string{`maa`},
+		refs:    []rune{0x11FC8},
 	},
 	0xbb3: {
-		refs: []string{
-			`U+11FDC tamil sign mukkuruni`,
-		},
+		refs: []rune{0x11FDC},
 	},
 	0xbb5: {
-		refs: []string{
-			`U+11FD0 tamil fraction one quarter`,
-		},
+		refs: []rune{0x11FD0},
 	},
 	0xbcd: {
-		aliases: []string{
-			`pulli`,
-		},
+		aliases: []string{`pulli`},
 	},
 	0xbe4: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xbe5: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xbf3: {
-		aliases: []string{
-			`naal`,
-			`naali/padi`,
-			`pillaiyaar suli`,
-		},
-		refs: []string{
-			`U+11FD9 tamil sign muuvuzhakku`,
-		},
+		aliases: []string{`naal`, `naali/padi`, `pillaiyaar suli`},
+		refs:    []rune{0x11FD9},
 	},
 	0xbf4: {
-		aliases: []string{
-			`maatham`,
-		},
+		aliases: []string{`maatham`},
 	},
 	0xbf5: {
-		aliases: []string{
-			`varudam`,
-		},
+		aliases: []string{`varudam`},
 	},
 	0xbf6: {
-		aliases: []string{
-			`patru`,
-		},
+		aliases: []string{`patru`},
 	},
 	0xbf7: {
-		aliases: []string{
-			`eduppu`,
-		},
-		refs: []string{
-			`U+11FE8 tamil traditional credit sign`,
-		},
+		aliases: []string{`eduppu`},
+		refs:    []rune{0x11FE8},
 	},
 	0xbf8: {
-		aliases: []string{
-			`merpadi`,
-		},
+		aliases: []string{`merpadi`},
 	},
 	0xbf9: {
-		aliases: []string{
-			`rupai`,
-		},
-		refs: []string{
-			`U+11FE6 tamil land sign`,
-		},
+		aliases: []string{`rupai`},
+		refs:    []rune{0x11FE6},
 	},
 	0xbfa: {
-		aliases: []string{
-			`enn`,
-			`niluvai`,
-		},
-		refs: []string{
-			`U+11FE9 tamil traditional number sign`,
-		},
+		aliases: []string{`enn`, `niluvai`},
+		refs:    []rune{0x11FE9},
 	},
 	0xc01: {
-		aliases: []string{
-			`arasunna`,
-		},
+		aliases: []string{`arasunna`},
 	},
 	0xc02: {
-		aliases: []string{
-			`sunna`,
-		},
+		aliases: []string{`sunna`},
 	},
 	0xc4d: {
-		aliases: []string{
-			`halant`,
-		},
+		aliases: []string{`halant`},
 	},
 	0xc5d: {
-		refs: []string{
-			`U+0CDD kannada letter nakaara pollu`,
-			`U+0D7B malayalam letter chillu n`,
-		},
+		refs: []rune{0x0CDD, 0x0D7B},
 	},
 	0xc64: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xc65: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xc77: {
-		aliases: []string{
-			`siddhirastu`,
-		},
-		refs: []string{
-			`U+A8FC devanagari sign siddham`,
-			`U+111DB sharada sign siddham`,
-		},
+		aliases: []string{`siddhirastu`},
+		refs:    []rune{0xA8FC, 0x111DB},
 	},
 	0xc84: {
-		aliases: []string{
-			`siddhirastu`,
-		},
-		refs: []string{
-			`U+A8FC devanagari sign siddham`,
-			`U+111DB sharada sign siddham`,
-		},
+		aliases: []string{`siddhirastu`},
+		refs:    []rune{0xA8FC, 0x111DB},
 	},
 	0xcdd: {
-		refs: []string{
-			`U+0C5D telugu letter nakaara pollu`,
-			`U+0D7B malayalam letter chillu n`,
-		},
+		refs: []rune{0x0C5D, 0x0D7B},
 	},
 	0xcde: {
-		aliases: []string{
-			`KANNADA LETTER LLLA`,
-		},
+		aliases: []string{`KANNADA LETTER LLLA`},
 	},
 	0xce4: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xce5: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xcf1: {
-		refs: []string{
-			`U+1CF5 vedic sign jihvamuliya`,
-		},
+		refs: []rune{0x1CF5},
 	},
 	0xcf2: {
-		refs: []string{
-			`U+1CF6 vedic sign upadhmaniya`,
-		},
+		refs: []rune{0x1CF6},
 	},
 	0xd1a: {
-		aliases: []string{
-			`cha`,
-		},
+		aliases: []string{`cha`},
 	},
 	0xd1b: {
-		aliases: []string{
-			`chha`,
-		},
+		aliases: []string{`chha`},
 	},
 	0xd1e: {
-		aliases: []string{
-			`nha`,
-		},
+		aliases: []string{`nha`},
 	},
 	0xd1f: {
-		aliases: []string{
-			`ta`,
-		},
+		aliases: []string{`ta`},
 	},
 	0xd20: {
-		aliases: []string{
-			`tta`,
-		},
+		aliases: []string{`tta`},
 	},
 	0xd21: {
-		aliases: []string{
-			`hard da`,
-		},
+		aliases: []string{`hard da`},
 	},
 	0xd22: {
-		aliases: []string{
-			`hard dda`,
-		},
+		aliases: []string{`hard dda`},
 	},
 	0xd23: {
-		aliases: []string{
-			`hard na`,
-		},
+		aliases: []string{`hard na`},
 	},
 	0xd24: {
-		aliases: []string{
-			`tha`,
-		},
+		aliases: []string{`tha`},
 	},
 	0xd25: {
-		aliases: []string{
-			`ttha`,
-		},
+		aliases: []string{`ttha`},
 	},
 	0xd26: {
-		aliases: []string{
-			`soft da`,
-		},
+		aliases: []string{`soft da`},
 	},
 	0xd27: {
-		aliases: []string{
-			`soft dda`,
-		},
+		aliases: []string{`soft dda`},
 	},
 	0xd34: {
-		aliases: []string{
-			`zha`,
-		},
+		aliases: []string{`zha`},
 	},
 	0xd36: {
-		aliases: []string{
-			`soft sha`,
-		},
+		aliases: []string{`soft sha`},
 	},
 	0xd37: {
-		aliases: []string{
-			`sha`,
-		},
+		aliases: []string{`sha`},
 	},
 	0xd3d: {
-		aliases: []string{
-			`praslesham`,
-		},
+		aliases: []string{`praslesham`},
 	},
 	0xd4c: {
-		refs: []string{
-			`U+0D57 malayalam au length mark`,
-		},
+		refs: []rune{0x0D57},
 	},
 	0xd4d: {
-		aliases: []string{
-			`candrakkala`,
-			`vowel half-u`,
-		},
+		aliases: []string{`candrakkala`, `vowel half-u`},
 	},
 	0xd57: {
-		refs: []string{
-			`U+0D4C malayalam vowel sign au`,
-		},
+		refs: []rune{0x0D4C},
 	},
 	0xd58: {
-		aliases: []string{
-			`arakaani`,
-		},
+		aliases: []string{`arakaani`},
 	},
 	0xd59: {
-		aliases: []string{
-			`aramaa`,
-		},
+		aliases: []string{`aramaa`},
 	},
 	0xd5a: {
-		aliases: []string{
-			`muunnukaani`,
-		},
+		aliases: []string{`muunnukaani`},
 	},
 	0xd5b: {
-		aliases: []string{
-			`orumaa`,
-		},
+		aliases: []string{`orumaa`},
 	},
 	0xd5c: {
-		aliases: []string{
-			`rantumaa`,
-		},
+		aliases: []string{`rantumaa`},
 	},
 	0xd5d: {
-		aliases: []string{
-			`muunnumaa`,
-		},
+		aliases: []string{`muunnumaa`},
 	},
 	0xd5e: {
-		aliases: []string{
-			`naalumaa`,
-		},
+		aliases: []string{`naalumaa`},
 	},
 	0xd64: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0xd65: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xd73: {
-		aliases: []string{
-			`kaal`,
-		},
-		refs: []string{
-			`U+A830 north indic fraction one quarter`,
-		},
+		aliases: []string{`kaal`},
+		refs:    []rune{0xA830},
 	},
 	0xd74: {
-		aliases: []string{
-			`ara`,
-		},
-		refs: []string{
-			`U+A831 north indic fraction one half`,
-		},
+		aliases: []string{`ara`},
+		refs:    []rune{0xA831},
 	},
 	0xd75: {
-		aliases: []string{
-			`mukkaal`,
-		},
-		refs: []string{
-			`U+A832 north indic fraction three quarters`,
-		},
+		aliases: []string{`mukkaal`},
+		refs:    []rune{0xA832},
 	},
 	0xd76: {
-		aliases: []string{
-			`maakaani`,
-		},
+		aliases: []string{`maakaani`},
 	},
 	0xd77: {
-		aliases: []string{
-			`arakkaal`,
-		},
+		aliases: []string{`arakkaal`},
 	},
 	0xd78: {
-		aliases: []string{
-			`muntaani`,
-		},
+		aliases: []string{`muntaani`},
 	},
 	0xd82: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0xd83: {
-		aliases: []string{
-			`visarga`,
-		},
+		aliases: []string{`visarga`},
 	},
 	0xd85: {
-		aliases: []string{
-			`sinhala letter a`,
-		},
+		aliases: []string{`sinhala letter a`},
 	},
 	0xd86: {
-		aliases: []string{
-			`sinhala letter aa`,
-		},
+		aliases: []string{`sinhala letter aa`},
 	},
 	0xd87: {
-		aliases: []string{
-			`sinhala letter ae`,
-		},
+		aliases: []string{`sinhala letter ae`},
 	},
 	0xd88: {
-		aliases: []string{
-			`sinhala letter aae`,
-		},
+		aliases: []string{`sinhala letter aae`},
 	},
 	0xd89: {
-		aliases: []string{
-			`sinhala letter i`,
-		},
+		aliases: []string{`sinhala letter i`},
 	},
 	0xd8a: {
-		aliases: []string{
-			`sinhala letter ii`,
-		},
+		aliases: []string{`sinhala letter ii`},
 	},
 	0xd8b: {
-		aliases: []string{
-			`sinhala letter u`,
-		},
+		aliases: []string{`sinhala letter u`},
 	},
 	0xd8c: {
-		aliases: []string{
-			`sinhala letter uu`,
-		},
+		aliases: []string{`sinhala letter uu`},
 	},
 	0xd8d: {
-		aliases: []string{
-			`sinhala letter vocalic r`,
-		},
+		aliases: []string{`sinhala letter vocalic r`},
 	},
 	0xd8e: {
-		aliases: []string{
-			`sinhala letter vocalic rr`,
-		},
+		aliases: []string{`sinhala letter vocalic rr`},
 	},
 	0xd8f: {
-		aliases: []string{
-			`sinhala letter vocalic l`,
-		},
+		aliases: []string{`sinhala letter vocalic l`},
 	},
 	0xd90: {
-		aliases: []string{
-			`sinhala letter vocalic ll`,
-		},
+		aliases: []string{`sinhala letter vocalic ll`},
 	},
 	0xd91: {
-		aliases: []string{
-			`sinhala letter e`,
-		},
+		aliases: []string{`sinhala letter e`},
 	},
 	0xd92: {
-		aliases: []string{
-			`sinhala letter ee`,
-		},
+		aliases: []string{`sinhala letter ee`},
 	},
 	0xd93: {
-		aliases: []string{
-			`sinhala letter ai`,
-		},
+		aliases: []string{`sinhala letter ai`},
 	},
 	0xd94: {
-		aliases: []string{
-			`sinhala letter o`,
-		},
+		aliases: []string{`sinhala letter o`},
 	},
 	0xd95: {
-		aliases: []string{
-			`sinhala letter oo`,
-		},
+		aliases: []string{`sinhala letter oo`},
 	},
 	0xd96: {
-		aliases: []string{
-			`sinhala letter au`,
-		},
+		aliases: []string{`sinhala letter au`},
 	},
 	0xd9a: {
-		aliases: []string{
-			`sinhala letter ka`,
-		},
+		aliases: []string{`sinhala letter ka`},
 	},
 	0xd9b: {
-		aliases: []string{
-			`sinhala letter kha`,
-		},
+		aliases: []string{`sinhala letter kha`},
 	},
 	0xd9c: {
-		aliases: []string{
-			`sinhala letter ga`,
-		},
+		aliases: []string{`sinhala letter ga`},
 	},
 	0xd9d: {
-		aliases: []string{
-			`sinhala letter gha`,
-		},
+		aliases: []string{`sinhala letter gha`},
 	},
 	0xd9e: {
-		aliases: []string{
-			`sinhala letter nga`,
-		},
+		aliases: []string{`sinhala letter nga`},
 	},
 	0xd9f: {
-		aliases: []string{
-			`sinhala letter nnga`,
-		},
+		aliases: []string{`sinhala letter nnga`},
 	},
 	0xda0: {
-		aliases: []string{
-			`sinhala letter ca`,
-		},
+		aliases: []string{`sinhala letter ca`},
 	},
 	0xda1: {
-		aliases: []string{
-			`sinhala letter cha`,
-		},
+		aliases: []string{`sinhala letter cha`},
 	},
 	0xda2: {
-		aliases: []string{
-			`sinhala letter ja`,
-		},
+		aliases: []string{`sinhala letter ja`},
 	},
 	0xda3: {
-		aliases: []string{
-			`sinhala letter jha`,
-		},
+		aliases: []string{`sinhala letter jha`},
 	},
 	0xda4: {
-		aliases: []string{
-			`sinhala letter nya`,
-		},
+		aliases: []string{`sinhala letter nya`},
 	},
 	0xda5: {
-		aliases: []string{
-			`sinhala letter jnya`,
-		},
+		aliases: []string{`sinhala letter jnya`},
 	},
 	0xda6: {
-		aliases: []string{
-			`sinhala letter nyja`,
-		},
+		aliases: []string{`sinhala letter nyja`},
 	},
 	0xda7: {
-		aliases: []string{
-			`sinhala letter tta`,
-		},
+		aliases: []string{`sinhala letter tta`},
 	},
 	0xda8: {
-		aliases: []string{
-			`sinhala letter ttha`,
-		},
+		aliases: []string{`sinhala letter ttha`},
 	},
 	0xda9: {
-		aliases: []string{
-			`sinhala letter dda`,
-		},
+		aliases: []string{`sinhala letter dda`},
 	},
 	0xdaa: {
-		aliases: []string{
-			`sinhala letter ddha`,
-		},
+		aliases: []string{`sinhala letter ddha`},
 	},
 	0xdab: {
-		aliases: []string{
-			`sinhala letter nna`,
-		},
+		aliases: []string{`sinhala letter nna`},
 	},
 	0xdac: {
-		aliases: []string{
-			`sinhala letter nndda`,
-		},
+		aliases: []string{`sinhala letter nndda`},
 	},
 	0xdad: {
-		aliases: []string{
-			`sinhala letter ta`,
-		},
+		aliases: []string{`sinhala letter ta`},
 	},
 	0xdae: {
-		aliases: []string{
-			`sinhala letter tha`,
-		},
+		aliases: []string{`sinhala letter tha`},
 	},
 	0xdaf: {
-		aliases: []string{
-			`sinhala letter da`,
-		},
+		aliases: []string{`sinhala letter da`},
 	},
 	0xdb0: {
-		aliases: []string{
-			`sinhala letter dha`,
-		},
+		aliases: []string{`sinhala letter dha`},
 	},
 	0xdb1: {
-		aliases: []string{
-			`sinhala letter na`,
-		},
+		aliases: []string{`sinhala letter na`},
 	},
 	0xdb3: {
-		aliases: []string{
-			`sinhala letter nda`,
-		},
+		aliases: []string{`sinhala letter nda`},
 	},
 	0xdb4: {
-		aliases: []string{
-			`sinhala letter pa`,
-		},
+		aliases: []string{`sinhala letter pa`},
 	},
 	0xdb5: {
-		aliases: []string{
-			`sinhala letter pha`,
-		},
+		aliases: []string{`sinhala letter pha`},
 	},
 	0xdb6: {
-		aliases: []string{
-			`sinhala letter ba`,
-		},
+		aliases: []string{`sinhala letter ba`},
 	},
 	0xdb7: {
-		aliases: []string{
-			`sinhala letter bha`,
-		},
+		aliases: []string{`sinhala letter bha`},
 	},
 	0xdb8: {
-		aliases: []string{
-			`sinhala letter ma`,
-		},
+		aliases: []string{`sinhala letter ma`},
 	},
 	0xdb9: {
-		aliases: []string{
-			`sinhala letter mba`,
-		},
+		aliases: []string{`sinhala letter mba`},
 	},
 	0xdba: {
-		aliases: []string{
-			`sinhala letter ya`,
-		},
+		aliases: []string{`sinhala letter ya`},
 	},
 	0xdbb: {
-		aliases: []string{
-			`sinhala letter ra`,
-		},
+		aliases: []string{`sinhala letter ra`},
 	},
 	0xdbd: {
-		aliases: []string{
-			`sinhala letter la`,
-		},
+		aliases: []string{`sinhala letter la`},
 	},
 	0xdc0: {
-		aliases: []string{
-			`sinhala letter va`,
-		},
+		aliases: []string{`sinhala letter va`},
 	},
 	0xdc1: {
-		aliases: []string{
-			`sinhala letter sha`,
-		},
+		aliases: []string{`sinhala letter sha`},
 	},
 	0xdc2: {
-		aliases: []string{
-			`sinhala letter ssa`,
-		},
+		aliases: []string{`sinhala letter ssa`},
 	},
 	0xdc3: {
-		aliases: []string{
-			`sinhala letter sa`,
-		},
+		aliases: []string{`sinhala letter sa`},
 	},
 	0xdc4: {
-		aliases: []string{
-			`sinhala letter ha`,
-		},
+		aliases: []string{`sinhala letter ha`},
 	},
 	0xdc5: {
-		aliases: []string{
-			`sinhala letter lla`,
-		},
+		aliases: []string{`sinhala letter lla`},
 	},
 	0xdc6: {
-		aliases: []string{
-			`sinhala letter fa`,
-		},
+		aliases: []string{`sinhala letter fa`},
 	},
 	0xdca: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0xdcf: {
-		aliases: []string{
-			`sinhala vowel sign aa`,
-		},
+		aliases: []string{`sinhala vowel sign aa`},
 	},
 	0xdd0: {
-		aliases: []string{
-			`sinhala vowel sign ae`,
-		},
+		aliases: []string{`sinhala vowel sign ae`},
 	},
 	0xdd1: {
-		aliases: []string{
-			`sinhala vowel sign aae`,
-		},
+		aliases: []string{`sinhala vowel sign aae`},
 	},
 	0xdd2: {
-		aliases: []string{
-			`sinhala vowel sign i`,
-		},
+		aliases: []string{`sinhala vowel sign i`},
 	},
 	0xdd3: {
-		aliases: []string{
-			`sinhala vowel sign ii`,
-		},
+		aliases: []string{`sinhala vowel sign ii`},
 	},
 	0xdd4: {
-		aliases: []string{
-			`sinhala vowel sign u`,
-		},
+		aliases: []string{`sinhala vowel sign u`},
 	},
 	0xdd6: {
-		aliases: []string{
-			`sinhala vowel sign uu`,
-		},
+		aliases: []string{`sinhala vowel sign uu`},
 	},
 	0xdd8: {
-		aliases: []string{
-			`sinhala vowel sign vocalic r`,
-		},
+		aliases: []string{`sinhala vowel sign vocalic r`},
 	},
 	0xdd9: {
-		aliases: []string{
-			`sinhala vowel sign e`,
-		},
+		aliases: []string{`sinhala vowel sign e`},
 	},
 	0xdda: {
-		aliases: []string{
-			`sinhala vowel sign ee`,
-		},
+		aliases: []string{`sinhala vowel sign ee`},
 	},
 	0xddb: {
-		aliases: []string{
-			`sinhala vowel sign ai`,
-		},
+		aliases: []string{`sinhala vowel sign ai`},
 	},
 	0xddc: {
-		aliases: []string{
-			`sinhala vowel sign o`,
-		},
+		aliases: []string{`sinhala vowel sign o`},
 	},
 	0xddd: {
-		aliases: []string{
-			`sinhala vowel sign oo`,
-		},
+		aliases: []string{`sinhala vowel sign oo`},
 	},
 	0xdde: {
-		aliases: []string{
-			`sinhala vowel sign au`,
-		},
+		aliases: []string{`sinhala vowel sign au`},
 	},
 	0xddf: {
-		aliases: []string{
-			`sinhala vowel sign vocalic l`,
-		},
+		aliases: []string{`sinhala vowel sign vocalic l`},
 	},
 	0xdf2: {
-		aliases: []string{
-			`sinhala vowel sign vocalic rr`,
-		},
+		aliases: []string{`sinhala vowel sign vocalic rr`},
 	},
 	0xdf3: {
-		aliases: []string{
-			`sinhala vowel sign vocalic ll`,
-		},
+		aliases: []string{`sinhala vowel sign vocalic ll`},
 	},
 	0xdf4: {
-		refs: []string{
-			`U+11FFF tamil punctuation end of text`,
-		},
+		refs: []rune{0x11FFF},
 	},
 	0xe2e: {
-		aliases: []string{
-			`ho nok huk`,
-		},
+		aliases: []string{`ho nok huk`},
 	},
 	0xe2f: {
-		aliases: []string{
-			`paiyan noi`,
-		},
+		aliases: []string{`paiyan noi`},
 	},
 	0xe32: {
-		refs: []string{
-			`U+0E45 thai character lakkhangyao`,
-		},
+		refs: []rune{0x0E45},
 	},
 	0xe37: {
-		aliases: []string{
-			`sara uue`,
-		},
+		aliases: []string{`sara uue`},
 	},
 	0xe43: {
-		aliases: []string{
-			`sara ai mai muan`,
-		},
+		aliases: []string{`sara ai mai muan`},
 	},
 	0xe44: {
-		aliases: []string{
-			`sara ai mai malai`,
-		},
+		aliases: []string{`sara ai mai malai`},
 	},
 	0xe45: {
-		aliases: []string{
-			`lakkhang yao`,
-		},
-		refs: []string{
-			`U+0E32 thai character sara aa`,
-		},
+		aliases: []string{`lakkhang yao`},
+		refs:    []rune{0x0E32},
 	},
 	0xe46: {
-		aliases: []string{
-			`mai yamok`,
-		},
+		aliases: []string{`mai yamok`},
 	},
 	0xe47: {
-		aliases: []string{
-			`mai taikhu`,
-		},
+		aliases: []string{`mai taikhu`},
 	},
 	0xe4c: {
-		refs: []string{
-			`U+17CD khmer sign toandakhiat`,
-		},
+		refs: []rune{0x17CD},
 	},
 	0xe4d: {
-		aliases: []string{
-			`nikkhahit`,
-		},
+		aliases: []string{`nikkhahit`},
 	},
 	0xe4e: {
-		refs: []string{
-			`U+0ECE lao yamakkan`,
-		},
+		refs: []rune{0x0ECE},
 	},
 	0xe4f: {
-		refs: []string{
-			`U+17D9 khmer sign phnaek muan`,
-		},
+		refs: []rune{0x17D9},
 	},
 	0xe5b: {
-		refs: []string{
-			`U+17DA khmer sign koomuut`,
-		},
+		refs: []rune{0x17DA},
 	},
 	0xe81: {
-		aliases: []string{
-			`ko kay`,
-		},
+		aliases: []string{`ko kay`},
 	},
 	0xe82: {
-		aliases: []string{
-			`kho khay`,
-		},
+		aliases: []string{`kho khay`},
 	},
 	0xe84: {
-		aliases: []string{
-			`kho khuay`,
-		},
+		aliases: []string{`kho khuay`},
 	},
 	0xe87: {
-		aliases: []string{
-			`ngo ngu`,
-			`ngo ngua`,
-		},
+		aliases: []string{`ngo ngu`, `ngo ngua`},
 	},
 	0xe88: {
-		aliases: []string{
-			`co cok`,
-			`co cua`,
-		},
+		aliases: []string{`co cok`, `co cua`},
 	},
 	0xe8a: {
-		aliases: []string{
-			`so sang`,
-		},
+		aliases: []string{`so sang`},
 	},
 	0xe8d: {
-		aliases: []string{
-			`nyo nyung`,
-		},
+		aliases: []string{`nyo nyung`},
 	},
 	0xe94: {
-		aliases: []string{
-			`do dek`,
-		},
+		aliases: []string{`do dek`},
 	},
 	0xe95: {
-		aliases: []string{
-			`to ta`,
-		},
+		aliases: []string{`to ta`},
 	},
 	0xe96: {
-		aliases: []string{
-			`tho thong`,
-		},
+		aliases: []string{`tho thong`},
 	},
 	0xe97: {
-		aliases: []string{
-			`tho thung`,
-		},
+		aliases: []string{`tho thung`},
 	},
 	0xe99: {
-		aliases: []string{
-			`no nok`,
-		},
+		aliases: []string{`no nok`},
 	},
 	0xe9a: {
-		aliases: []string{
-			`bo be`,
-			`bo bet`,
-		},
+		aliases: []string{`bo be`, `bo bet`},
 	},
 	0xe9b: {
-		aliases: []string{
-			`po pa`,
-		},
+		aliases: []string{`po pa`},
 	},
 	0xe9c: {
-		aliases: []string{
-			`pho pheng`,
-		},
+		aliases: []string{`pho pheng`},
 	},
 	0xe9d: {
-		aliases: []string{
-			`LAO LETTER FO FON`,
-			`fo fa`,
-		},
+		aliases: []string{`LAO LETTER FO FON`, `fo fa`},
 	},
 	0xe9e: {
-		aliases: []string{
-			`pho phu`,
-		},
+		aliases: []string{`pho phu`},
 	},
 	0xe9f: {
-		aliases: []string{
-			`LAO LETTER FO FAY`,
-		},
+		aliases: []string{`LAO LETTER FO FAY`},
 	},
 	0xea1: {
-		aliases: []string{
-			`mo mew`,
-			`mo ma`,
-		},
+		aliases: []string{`mo mew`, `mo ma`},
 	},
 	0xea2: {
-		aliases: []string{
-			`yo ya`,
-		},
+		aliases: []string{`yo ya`},
 	},
 	0xea3: {
-		aliases: []string{
-			`LAO LETTER RO`,
-			`ro rot`,
-		},
+		aliases: []string{`LAO LETTER RO`, `ro rot`},
 	},
 	0xea5: {
-		aliases: []string{
-			`LAO LETTER LO`,
-			`lo ling`,
-		},
+		aliases: []string{`LAO LETTER LO`, `lo ling`},
 	},
 	0xea7: {
-		aliases: []string{
-			`wo wi`,
-		},
+		aliases: []string{`wo wi`},
 	},
 	0xeaa: {
-		aliases: []string{
-			`so sya`,
-		},
+		aliases: []string{`so sya`},
 	},
 	0xeab: {
-		aliases: []string{
-			`ho hay`,
-			`ho han`,
-		},
+		aliases: []string{`ho hay`, `ho han`},
 	},
 	0xead: {
-		aliases: []string{
-			`o o`,
-		},
+		aliases: []string{`o o`},
 	},
 	0xeae: {
-		aliases: []string{
-			`ho hya`,
-			`ho hyan`,
-		},
+		aliases: []string{`ho hya`, `ho hyan`},
 	},
 	0xebb: {
-		aliases: []string{
-			`mai kong`,
-		},
+		aliases: []string{`mai kong`},
 	},
 	0xebd: {
-		aliases: []string{
-			`nyo fyang`,
-		},
+		aliases: []string{`nyo fyang`},
 	},
 	0xec3: {
-		aliases: []string{
-			`mai muan`,
-		},
+		aliases: []string{`mai muan`},
 	},
 	0xec4: {
-		aliases: []string{
-			`mai may`,
-		},
+		aliases: []string{`mai may`},
 	},
 	0xece: {
-		refs: []string{
-			`U+0E4E thai character yamakkan`,
-		},
+		refs: []rune{0x0E4E},
 	},
 	0xf04: {
-		refs: []string{
-			`U+1800 mongolian birga`,
-		},
+		refs: []rune{0x1800},
 	},
 	0xf0b: {
-		aliases: []string{
-			`tsek`,
-		},
+		aliases: []string{`tsek`},
 	},
 	0xf0d: {
-		aliases: []string{
-			`shey`,
-		},
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		aliases: []string{`shey`},
+		refs:    []rune{0x0964},
 	},
 	0xf0e: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0xf14: {
-		refs: []string{
-			`U+17D6 khmer sign camnuc pii kuuh`,
-		},
+		refs: []rune{0x17D6},
 	},
 	0xf1c: {
-		refs: []string{
-			`U+1F746 alchemical symbol for oil`,
-		},
+		refs: []rune{0x1F746},
 	},
 	0xf1f: {
-		aliases: []string{
-			`deka dena`,
-		},
-		refs: []string{
-			`U+0FCE tibetan sign rdel nag rdel dkar`,
-		},
+		aliases: []string{`deka dena`},
+		refs:    []rune{0x0FCE},
 	},
 	0xf65: {
-		aliases: []string{
-			`reversed sha`,
-		},
+		aliases: []string{`reversed sha`},
 	},
 	0xf6a: {
-		refs: []string{
-			`U+0F62 tibetan letter ra`,
-		},
+		refs: []rune{0x0F62},
 	},
 	0xf71: {
-		aliases: []string{
-			`a-chung`,
-		},
+		aliases: []string{`a-chung`},
 	},
 	0xf7e: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0xf7f: {
-		aliases: []string{
-			`visarga`,
-		},
+		aliases: []string{`visarga`},
 	},
 	0xf83: {
-		refs: []string{
-			`U+0901 devanagari sign candrabindu`,
-		},
+		refs: []rune{0x0901},
 	},
 	0xf84: {
-		aliases: []string{
-			`srog med`,
-		},
-		refs: []string{
-			`U+094D devanagari sign virama`,
-		},
+		aliases: []string{`srog med`},
+		refs:    []rune{0x094D},
 	},
 	0xf85: {
-		refs: []string{
-			`U+093D devanagari sign avagraha`,
-		},
+		refs: []rune{0x093D},
 	},
 	0xf88: {
-		refs: []string{
-			`U+1CF5 vedic sign jihvamuliya`,
-			`U+1882 mongolian letter ali gali damaru`,
-		},
+		refs: []rune{0x1CF5, 0x1882},
 	},
 	0xf89: {
-		refs: []string{
-			`U+1CF6 vedic sign upadhmaniya`,
-			`U+1884 mongolian letter ali gali inverted ubadama`,
-		},
+		refs: []rune{0x1CF6, 0x1884},
 	},
 	0xf8c: {
-		refs: []string{
-			`U+1883 mongolian letter ali gali ubadama`,
-		},
+		refs: []rune{0x1883},
 	},
 	0xfad: {
-		aliases: []string{
-			`wa-zur`,
-			`wa-btags`,
-		},
+		aliases: []string{`wa-zur`, `wa-btags`},
 	},
 	0xfb0: {
-		aliases: []string{
-			`a-chung`,
-		},
-		refs: []string{
-			`U+0F71 tibetan vowel sign aa`,
-		},
+		aliases: []string{`a-chung`},
+		refs:    []rune{0x0F71},
 	},
 	0xfb1: {
-		aliases: []string{
-			`ya-btags`,
-		},
+		aliases: []string{`ya-btags`},
 	},
 	0xfb2: {
-		aliases: []string{
-			`ra-btags`,
-		},
+		aliases: []string{`ra-btags`},
 	},
 	0xfb5: {
-		aliases: []string{
-			`reversed subjoined sha`,
-		},
+		aliases: []string{`reversed subjoined sha`},
 	},
 	0xfbf: {
-		refs: []string{
-			`U+203B reference mark`,
-		},
+		refs: []rune{0x203B},
 	},
 	0xfc4: {
-		refs: []string{
-			`U+1F514 bell`,
-		},
+		refs: []rune{0x1F514},
 	},
 	0xfca: {
-		refs: []string{
-			`U+262F yin yang`,
-		},
+		refs: []rune{0x262F},
 	},
 	0xfcc: {
-		refs: []string{
-			`U+0FD6 left-facing svasti sign`,
-		},
+		refs: []rune{0x0FD6},
 	},
 	0xfce: {
-		aliases: []string{
-			`dena deka`,
-		},
-		refs: []string{
-			`U+0F1F tibetan sign rdel dkar rdel nag`,
-		},
+		aliases: []string{`dena deka`},
+		refs:    []rune{0x0F1F},
 	},
 	0xfd0: {
-		aliases: []string{
-			`TIBETAN MARK BKA- SHOG GI MGO RGYAN`,
-		},
+		aliases: []string{`TIBETAN MARK BKA- SHOG GI MGO RGYAN`},
 	},
 	0xfd2: {
-		aliases: []string{
-			`nyi tsek`,
-		},
+		aliases: []string{`nyi tsek`},
 	},
 	0xfd3: {
-		aliases: []string{
-			`da nying yik go dun ma`,
-		},
+		aliases: []string{`da nying yik go dun ma`},
 	},
 	0xfd4: {
-		aliases: []string{
-			`da nying yik go kab ma`,
-		},
+		aliases: []string{`da nying yik go kab ma`},
 	},
 	0xfd5: {
-		aliases: []string{
-			`gyung drung nang -khor`,
-		},
-		refs: []string{
-			`5350`,
-		},
+		aliases: []string{`gyung drung nang -khor`},
+		refs:    []rune{0x5350},
 	},
 	0xfd6: {
-		aliases: []string{
-			`gyung drung phyi -khor`,
-		},
-		refs: []string{
-			`534D`,
-		},
+		aliases: []string{`gyung drung phyi -khor`},
+		refs:    []rune{0x534D},
 	},
 	0xfd7: {
-		aliases: []string{
-			`gyung drung nang -khor bzhi mig can`,
-		},
+		aliases: []string{`gyung drung nang -khor bzhi mig can`},
 	},
 	0xfd8: {
-		aliases: []string{
-			`gyung drung phyi -khor bzhi mig can`,
-		},
+		aliases: []string{`gyung drung phyi -khor bzhi mig can`},
 	},
 	0x1037: {
-		aliases: []string{
-			`aukmyit`,
-		},
+		aliases: []string{`aukmyit`},
 	},
 	0x103a: {
-		aliases: []string{
-			`killer`,
-		},
+		aliases: []string{`killer`},
 	},
 	0x104a: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0x104b: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0x10a0: {
-		refs: []string{
-			`U+2D00 georgian small letter an`,
-		},
+		refs: []rune{0x2D00},
 	},
 	0x10d0: {
-		refs: []string{
-			`U+1C90 georgian mtavruli capital letter an`,
-		},
+		refs: []rune{0x1C90},
 	},
 	0x10fb: {
-		refs: []string{
-			`U+2056 three dot punctuation`,
-		},
+		refs: []rune{0x2056},
 	},
 	0x1100: {
-		aliases: []string{
-			`G`,
-		},
+		aliases: []string{`G`},
 	},
 	0x1101: {
-		aliases: []string{
-			`GG`,
-		},
+		aliases: []string{`GG`},
 	},
 	0x1102: {
-		aliases: []string{
-			`N`,
-		},
+		aliases: []string{`N`},
 	},
 	0x1103: {
-		aliases: []string{
-			`D`,
-		},
+		aliases: []string{`D`},
 	},
 	0x1104: {
-		aliases: []string{
-			`DD`,
-		},
+		aliases: []string{`DD`},
 	},
 	0x1105: {
-		aliases: []string{
-			`R`,
-		},
+		aliases: []string{`R`},
 	},
 	0x1106: {
-		aliases: []string{
-			`M`,
-		},
+		aliases: []string{`M`},
 	},
 	0x1107: {
-		aliases: []string{
-			`B`,
-		},
+		aliases: []string{`B`},
 	},
 	0x1108: {
-		aliases: []string{
-			`BB`,
-		},
+		aliases: []string{`BB`},
 	},
 	0x1109: {
-		aliases: []string{
-			`S`,
-		},
+		aliases: []string{`S`},
 	},
 	0x110a: {
-		aliases: []string{
-			`SS`,
-		},
+		aliases: []string{`SS`},
 	},
 	0x110c: {
-		aliases: []string{
-			`J`,
-		},
+		aliases: []string{`J`},
 	},
 	0x110d: {
-		aliases: []string{
-			`JJ`,
-		},
+		aliases: []string{`JJ`},
 	},
 	0x110e: {
-		aliases: []string{
-			`C`,
-		},
+		aliases: []string{`C`},
 	},
 	0x110f: {
-		aliases: []string{
-			`K`,
-		},
+		aliases: []string{`K`},
 	},
 	0x1110: {
-		aliases: []string{
-			`T`,
-		},
+		aliases: []string{`T`},
 	},
 	0x1111: {
-		aliases: []string{
-			`P`,
-		},
+		aliases: []string{`P`},
 	},
 	0x1112: {
-		aliases: []string{
-			`H`,
-		},
+		aliases: []string{`H`},
 	},
 	0x1161: {
-		aliases: []string{
-			`A`,
-		},
+		aliases: []string{`A`},
 	},
 	0x1162: {
-		aliases: []string{
-			`AE`,
-		},
+		aliases: []string{`AE`},
 	},
 	0x1163: {
-		aliases: []string{
-			`YA`,
-		},
+		aliases: []string{`YA`},
 	},
 	0x1164: {
-		aliases: []string{
-			`YAE`,
-		},
+		aliases: []string{`YAE`},
 	},
 	0x1165: {
-		aliases: []string{
-			`EO`,
-		},
+		aliases: []string{`EO`},
 	},
 	0x1166: {
-		aliases: []string{
-			`E`,
-		},
+		aliases: []string{`E`},
 	},
 	0x1167: {
-		aliases: []string{
-			`YEO`,
-		},
+		aliases: []string{`YEO`},
 	},
 	0x1168: {
-		aliases: []string{
-			`YE`,
-		},
+		aliases: []string{`YE`},
 	},
 	0x1169: {
-		aliases: []string{
-			`O`,
-		},
+		aliases: []string{`O`},
 	},
 	0x116a: {
-		aliases: []string{
-			`WA`,
-		},
+		aliases: []string{`WA`},
 	},
 	0x116b: {
-		aliases: []string{
-			`WAE`,
-		},
+		aliases: []string{`WAE`},
 	},
 	0x116c: {
-		aliases: []string{
-			`OE`,
-		},
+		aliases: []string{`OE`},
 	},
 	0x116d: {
-		aliases: []string{
-			`YO`,
-		},
+		aliases: []string{`YO`},
 	},
 	0x116e: {
-		aliases: []string{
-			`U`,
-		},
+		aliases: []string{`U`},
 	},
 	0x116f: {
-		aliases: []string{
-			`WEO`,
-		},
+		aliases: []string{`WEO`},
 	},
 	0x1170: {
-		aliases: []string{
-			`WE`,
-		},
+		aliases: []string{`WE`},
 	},
 	0x1171: {
-		aliases: []string{
-			`WI`,
-		},
+		aliases: []string{`WI`},
 	},
 	0x1172: {
-		aliases: []string{
-			`YU`,
-		},
+		aliases: []string{`YU`},
 	},
 	0x1173: {
-		aliases: []string{
-			`EU`,
-		},
+		aliases: []string{`EU`},
 	},
 	0x1174: {
-		aliases: []string{
-			`YI`,
-		},
+		aliases: []string{`YI`},
 	},
 	0x1175: {
-		aliases: []string{
-			`I`,
-		},
+		aliases: []string{`I`},
 	},
 	0x11a8: {
-		aliases: []string{
-			`G`,
-		},
+		aliases: []string{`G`},
 	},
 	0x11a9: {
-		aliases: []string{
-			`GG`,
-		},
+		aliases: []string{`GG`},
 	},
 	0x11aa: {
-		aliases: []string{
-			`GS`,
-		},
+		aliases: []string{`GS`},
 	},
 	0x11ab: {
-		aliases: []string{
-			`N`,
-		},
+		aliases: []string{`N`},
 	},
 	0x11ac: {
-		aliases: []string{
-			`NJ`,
-		},
+		aliases: []string{`NJ`},
 	},
 	0x11ad: {
-		aliases: []string{
-			`NH`,
-		},
+		aliases: []string{`NH`},
 	},
 	0x11ae: {
-		aliases: []string{
-			`D`,
-		},
+		aliases: []string{`D`},
 	},
 	0x11af: {
-		aliases: []string{
-			`L`,
-		},
+		aliases: []string{`L`},
 	},
 	0x11b0: {
-		aliases: []string{
-			`LG`,
-		},
+		aliases: []string{`LG`},
 	},
 	0x11b1: {
-		aliases: []string{
-			`LM`,
-		},
+		aliases: []string{`LM`},
 	},
 	0x11b2: {
-		aliases: []string{
-			`LB`,
-		},
+		aliases: []string{`LB`},
 	},
 	0x11b3: {
-		aliases: []string{
-			`LS`,
-		},
+		aliases: []string{`LS`},
 	},
 	0x11b4: {
-		aliases: []string{
-			`LT`,
-		},
+		aliases: []string{`LT`},
 	},
 	0x11b5: {
-		aliases: []string{
-			`LP`,
-		},
+		aliases: []string{`LP`},
 	},
 	0x11b6: {
-		aliases: []string{
-			`LH`,
-		},
+		aliases: []string{`LH`},
 	},
 	0x11b7: {
-		aliases: []string{
-			`M`,
-		},
+		aliases: []string{`M`},
 	},
 	0x11b8: {
-		aliases: []string{
-			`B`,
-		},
+		aliases: []string{`B`},
 	},
 	0x11b9: {
-		aliases: []string{
-			`BS`,
-		},
+		aliases: []string{`BS`},
 	},
 	0x11ba: {
-		aliases: []string{
-			`S`,
-		},
+		aliases: []string{`S`},
 	},
 	0x11bb: {
-		aliases: []string{
-			`SS`,
-		},
+		aliases: []string{`SS`},
 	},
 	0x11bc: {
-		aliases: []string{
-			`NG`,
-		},
+		aliases: []string{`NG`},
 	},
 	0x11bd: {
-		aliases: []string{
-			`J`,
-		},
+		aliases: []string{`J`},
 	},
 	0x11be: {
-		aliases: []string{
-			`C`,
-		},
+		aliases: []string{`C`},
 	},
 	0x11bf: {
-		aliases: []string{
-			`K`,
-		},
+		aliases: []string{`K`},
 	},
 	0x11c0: {
-		aliases: []string{
-			`T`,
-		},
+		aliases: []string{`T`},
 	},
 	0x11c1: {
-		aliases: []string{
-			`P`,
-		},
+		aliases: []string{`P`},
 	},
 	0x11c2: {
-		aliases: []string{
-			`H`,
-		},
+		aliases: []string{`H`},
 	},
 	0x11ec: {
-		aliases: []string{
-			`HANGUL JONGSEONG YESIEUNG-KIYEOK`,
-		},
+		aliases: []string{`HANGUL JONGSEONG YESIEUNG-KIYEOK`},
 	},
 	0x11ed: {
-		aliases: []string{
-			`HANGUL JONGSEONG YESIEUNG-SSANGKIYEOK`,
-		},
+		aliases: []string{`HANGUL JONGSEONG YESIEUNG-SSANGKIYEOK`},
 	},
 	0x11ee: {
-		aliases: []string{
-			`HANGUL JONGSEONG SSANGYESIEUNG`,
-		},
+		aliases: []string{`HANGUL JONGSEONG SSANGYESIEUNG`},
 	},
 	0x11ef: {
-		aliases: []string{
-			`HANGUL JONGSEONG YESIEUNG-KHIEUKH`,
-		},
+		aliases: []string{`HANGUL JONGSEONG YESIEUNG-KHIEUKH`},
 	},
 	0x124a: {
-		refs: []string{
-			`U+1E7F0 ethiopic syllable gurage qwi`,
-		},
+		refs: []rune{0x1E7F0},
 	},
 	0x124c: {
-		refs: []string{
-			`U+1E7F1 ethiopic syllable gurage qwee`,
-		},
+		refs: []rune{0x1E7F1},
 	},
 	0x124d: {
-		refs: []string{
-			`U+1E7F2 ethiopic syllable gurage qwe`,
-		},
+		refs: []rune{0x1E7F2},
 	},
 	0x12b2: {
-		refs: []string{
-			`U+1E7F5 ethiopic syllable gurage kwi`,
-		},
+		refs: []rune{0x1E7F5},
 	},
 	0x12b4: {
-		refs: []string{
-			`U+1E7F6 ethiopic syllable gurage kwee`,
-		},
+		refs: []rune{0x1E7F6},
 	},
 	0x12b5: {
-		refs: []string{
-			`U+1E7F7 ethiopic syllable gurage kwe`,
-		},
+		refs: []rune{0x1E7F7},
 	},
 	0x12c0: {
-		refs: []string{
-			`U+1E7E8 ethiopic syllable gurage hhwa`,
-		},
+		refs: []rune{0x1E7E8},
 	},
 	0x12c2: {
-		refs: []string{
-			`U+1E7E9 ethiopic syllable hhwi`,
-		},
+		refs: []rune{0x1E7E9},
 	},
 	0x12c4: {
-		refs: []string{
-			`U+1E7EA ethiopic syllable hhwee`,
-		},
+		refs: []rune{0x1E7EA},
 	},
 	0x12c5: {
-		refs: []string{
-			`U+1E7EB ethiopic syllable hhwe`,
-		},
+		refs: []rune{0x1E7EB},
 	},
 	0x1312: {
-		refs: []string{
-			`U+1E7F8 ethiopic syllable gurage gwi`,
-		},
+		refs: []rune{0x1E7F8},
 	},
 	0x1314: {
-		refs: []string{
-			`U+1E7F9 ethiopic syllable gurage gwee`,
-		},
+		refs: []rune{0x1E7F9},
 	},
 	0x1315: {
-		refs: []string{
-			`U+1E7FA ethiopic syllable gurage gwe`,
-		},
+		refs: []rune{0x1E7FA},
 	},
 	0x1381: {
-		refs: []string{
-			`U+1E7ED ethiopic syllable gurage mwi`,
-		},
+		refs: []rune{0x1E7ED},
 	},
 	0x1382: {
-		refs: []string{
-			`U+1E7EE ethiopic syllable gurage mwee`,
-		},
+		refs: []rune{0x1E7EE},
 	},
 	0x1385: {
-		refs: []string{
-			`U+1E7F3 ethiopic syllable gurage bwi`,
-		},
+		refs: []rune{0x1E7F3},
 	},
 	0x1386: {
-		refs: []string{
-			`U+1E7F4 ethiopic syllable gurage bwee`,
-		},
+		refs: []rune{0x1E7F4},
 	},
 	0x1389: {
-		refs: []string{
-			`U+1E7FB ethiopic syllable gurage fwi`,
-		},
+		refs: []rune{0x1E7FB},
 	},
 	0x138a: {
-		refs: []string{
-			`U+1E7FC ethiopic syllable gurage fwee`,
-		},
+		refs: []rune{0x1E7FC},
 	},
 	0x138d: {
-		refs: []string{
-			`U+1E7FD ethiopic syllable gurage pwi`,
-		},
+		refs: []rune{0x1E7FD},
 	},
 	0x138e: {
-		refs: []string{
-			`U+1E7FE ethiopic syllable gurage pwee`,
-		},
+		refs: []rune{0x1E7FE},
 	},
 	0x142a: {
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		refs: []rune{0x22A4},
 	},
 	0x156f: {
-		refs: []string{
-			`U+002A asterisk`,
-		},
+		refs: []rune{0x002A},
 	},
 	0x166d: {
-		refs: []string{
-			`U+2627 chi rho`,
-		},
+		refs: []rune{0x2627},
 	},
 	0x166e: {
-		refs: []string{
-			`U+2E3C stenographic full stop`,
-		},
+		refs: []rune{0x2E3C},
 	},
 	0x1680: {
-		refs: []string{
-			`U+0020 space`,
-		},
+		refs: []rune{0x0020},
 	},
 	0x16a6: {
-		refs: []string{
-			`U+00FE latin small letter thorn`,
-		},
+		refs: []rune{0x00FE},
 	},
 	0x16b9: {
-		refs: []string{
-			`U+01BF latin letter wynn`,
-		},
+		refs: []rune{0x01BF},
 	},
 	0x1715: {
-		refs: []string{
-			`U+1734 hanunoo sign pamudpod`,
-		},
+		refs: []rune{0x1734},
 	},
 	0x171f: {
-		aliases: []string{
-			`Zambales ra`,
-		},
+		aliases: []string{`Zambales ra`},
 	},
 	0x1734: {
-		refs: []string{
-			`U+1715 tagalog sign pamudpod`,
-		},
+		refs: []rune{0x1715},
 	},
 	0x1735: {
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		refs: []rune{0x0964},
 	},
 	0x1736: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0x17c6: {
-		aliases: []string{
-			`srak am`,
-			`anusvara`,
-		},
-		refs: []string{
-			`U+0E4D thai character nikhahit`,
-			`U+1036 myanmar sign anusvara`,
-		},
+		aliases: []string{`srak am`, `anusvara`},
+		refs:    []rune{0x0E4D, 0x1036},
 	},
 	0x17c7: {
-		aliases: []string{
-			`srak ah`,
-			`visarga`,
-		},
-		refs: []string{
-			`U+1038 myanmar sign visarga`,
-		},
+		aliases: []string{`srak ah`, `visarga`},
+		refs:    []rune{0x1038},
 	},
 	0x17cd: {
-		refs: []string{
-			`U+0E4C thai character thanthakhat`,
-		},
+		refs: []rune{0x0E4C},
 	},
 	0x17d3: {
-		refs: []string{
-			`U+19E0 khmer symbol pathamasat`,
-		},
+		refs: []rune{0x19E0},
 	},
 	0x17d4: {
-		refs: []string{
-			`U+0E2F thai character paiyannoi`,
-			`U+104A myanmar sign little section`,
-		},
+		refs: []rune{0x0E2F, 0x104A},
 	},
 	0x17d5: {
-		refs: []string{
-			`U+0E5A thai character angkhankhu`,
-			`U+104B myanmar sign section`,
-		},
+		refs: []rune{0x0E5A, 0x104B},
 	},
 	0x17d6: {
-		refs: []string{
-			`U+00F7 division sign`,
-			`U+0F14 tibetan mark gter tsheg`,
-		},
+		refs: []rune{0x00F7, 0x0F14},
 	},
 	0x17d7: {
-		refs: []string{
-			`U+0E46 thai character maiyamok`,
-		},
+		refs: []rune{0x0E46},
 	},
 	0x17d9: {
-		refs: []string{
-			`U+0E4F thai character fongman`,
-		},
+		refs: []rune{0x0E4F},
 	},
 	0x17da: {
-		refs: []string{
-			`U+0E5B thai character khomut`,
-		},
+		refs: []rune{0x0E5B},
 	},
 	0x17dc: {
-		refs: []string{
-			`U+093D devanagari sign avagraha`,
-		},
+		refs: []rune{0x093D},
 	},
 	0x17dd: {
-		refs: []string{
-			`U+17D1 khmer sign viriam`,
-		},
+		refs: []rune{0x17D1},
 	},
 	0x1800: {
-		refs: []string{
-			`U+0F04 tibetan mark initial yig mgo mdun ma`,
-		},
+		refs: []rune{0x0F04},
 	},
 	0x1806: {
-		refs: []string{
-			`U+00AD soft hyphen`,
-		},
+		refs: []rune{0x00AD},
 	},
 	0x1820: {
-		refs: []string{
-			`U+0430 cyrillic small letter a`,
-		},
+		refs: []rune{0x0430},
 	},
 	0x1821: {
-		refs: []string{
-			`U+044D cyrillic small letter e`,
-		},
+		refs: []rune{0x044D},
 	},
 	0x1822: {
-		refs: []string{
-			`U+0438 cyrillic small letter i`,
-		},
+		refs: []rune{0x0438},
 	},
 	0x1823: {
-		refs: []string{
-			`U+043E cyrillic small letter o`,
-		},
+		refs: []rune{0x043E},
 	},
 	0x1824: {
-		refs: []string{
-			`U+0443 cyrillic small letter u`,
-		},
+		refs: []rune{0x0443},
 	},
 	0x1825: {
-		refs: []string{
-			`U+04E9 cyrillic small letter barred o`,
-		},
+		refs: []rune{0x04E9},
 	},
 	0x1826: {
-		refs: []string{
-			`U+04AF cyrillic small letter straight u`,
-		},
+		refs: []rune{0x04AF},
 	},
 	0x1828: {
-		refs: []string{
-			`U+043D cyrillic small letter en`,
-		},
+		refs: []rune{0x043D},
 	},
 	0x182a: {
-		refs: []string{
-			`U+0431 cyrillic small letter be`,
-		},
+		refs: []rune{0x0431},
 	},
 	0x182b: {
-		refs: []string{
-			`U+043F cyrillic small letter pe`,
-		},
+		refs: []rune{0x043F},
 	},
 	0x182c: {
-		refs: []string{
-			`U+0445 cyrillic small letter ha`,
-		},
+		refs: []rune{0x0445},
 	},
 	0x182d: {
-		refs: []string{
-			`U+0433 cyrillic small letter ghe`,
-		},
+		refs: []rune{0x0433},
 	},
 	0x182e: {
-		refs: []string{
-			`U+043C cyrillic small letter em`,
-		},
+		refs: []rune{0x043C},
 	},
 	0x182f: {
-		refs: []string{
-			`U+043B cyrillic small letter el`,
-		},
+		refs: []rune{0x043B},
 	},
 	0x1830: {
-		refs: []string{
-			`U+0441 cyrillic small letter es`,
-		},
+		refs: []rune{0x0441},
 	},
 	0x1831: {
-		refs: []string{
-			`U+0448 cyrillic small letter sha`,
-		},
+		refs: []rune{0x0448},
 	},
 	0x1832: {
-		refs: []string{
-			`U+0442 cyrillic small letter te`,
-		},
+		refs: []rune{0x0442},
 	},
 	0x1833: {
-		refs: []string{
-			`U+0434 cyrillic small letter de`,
-		},
+		refs: []rune{0x0434},
 	},
 	0x1834: {
-		refs: []string{
-			`U+0447 cyrillic small letter che`,
-		},
+		refs: []rune{0x0447},
 	},
 	0x1835: {
-		refs: []string{
-			`U+0436 cyrillic small letter zhe`,
-		},
+		refs: []rune{0x0436},
 	},
 	0x1836: {
-		refs: []string{
-			`U+0439 cyrillic small letter short i`,
-		},
+		refs: []rune{0x0439},
 	},
 	0x1837: {
-		refs: []string{
-			`U+0440 cyrillic small letter er`,
-		},
+		refs: []rune{0x0440},
 	},
 	0x1838: {
-		refs: []string{
-			`U+0432 cyrillic small letter ve`,
-		},
+		refs: []rune{0x0432},
 	},
 	0x1839: {
-		refs: []string{
-			`U+0444 cyrillic small letter ef`,
-		},
+		refs: []rune{0x0444},
 	},
 	0x183a: {
-		refs: []string{
-			`U+0445 cyrillic small letter ha`,
-		},
+		refs: []rune{0x0445},
 	},
 	0x183b: {
-		refs: []string{
-			`U+043A cyrillic small letter ka`,
-		},
+		refs: []rune{0x043A},
 	},
 	0x183c: {
-		refs: []string{
-			`U+0446 cyrillic small letter tse`,
-		},
+		refs: []rune{0x0446},
 	},
 	0x183d: {
-		refs: []string{
-			`U+0437 cyrillic small letter ze`,
-		},
+		refs: []rune{0x0437},
 	},
 	0x183e: {
-		refs: []string{
-			`U+0445 cyrillic small letter ha`,
-		},
+		refs: []rune{0x0445},
 	},
 	0x183f: {
-		refs: []string{
-			`U+0436 cyrillic small letter zhe`,
-		},
+		refs: []rune{0x0436},
 	},
 	0x1880: {
-		refs: []string{
-			`U+0F83 tibetan sign sna ldan`,
-		},
+		refs: []rune{0x0F83},
 	},
 	0x1881: {
-		refs: []string{
-			`U+0F7F tibetan sign rnam bcad`,
-		},
+		refs: []rune{0x0F7F},
 	},
 	0x1882: {
-		refs: []string{
-			`U+0F88 tibetan sign lce tsa can`,
-		},
+		refs: []rune{0x0F88},
 	},
 	0x1884: {
-		refs: []string{
-			`U+0F89 tibetan sign mchu can`,
-		},
+		refs: []rune{0x0F89},
 	},
 	0x1885: {
-		refs: []string{
-			`U+0F85 tibetan mark paluta`,
-		},
+		refs: []rune{0x0F85},
 	},
 	0x191d: {
-		aliases: []string{
-			`jnya`,
-		},
+		aliases: []string{`jnya`},
 	},
 	0x1aa3: {
-		aliases: []string{
-			`courtyard`,
-		},
+		aliases: []string{`courtyard`},
 	},
 	0x1aa4: {
-		aliases: []string{
-			`oyster`,
-		},
+		aliases: []string{`oyster`},
 	},
 	0x1aa5: {
-		aliases: []string{
-			`flower`,
-		},
-		refs: []string{
-			`U+2055 flower punctuation mark`,
-		},
+		aliases: []string{`flower`},
+		refs:    []rune{0x2055},
 	},
 	0x1aa7: {
-		refs: []string{
-			`U+0E46 thai character maiyamok`,
-		},
+		refs: []rune{0x0E46},
 	},
 	0x1aab: {
-		refs: []string{
-			`U+0E5A thai character angkhankhu`,
-		},
+		refs: []rune{0x0E5A},
 	},
 	0x1ab7: {
-		refs: []string{
-			`U+0328 combining ogonek`,
-			`U+0345 combining greek ypogegrammeni`,
-		},
+		refs: []rune{0x0328, 0x0345},
 	},
 	0x1abf: {
-		refs: []string{
-			`U+02B7 modifier letter small w`,
-		},
+		refs: []rune{0x02B7},
 	},
 	0x1ac6: {
-		aliases: []string{
-			`superscript octothorp`,
-		},
+		aliases: []string{`superscript octothorp`},
 	},
 	0x1ac7: {
-		refs: []string{
-			`U+032B combining inverted double arch below`,
-			`U+1DF1 combining latin small letter w`,
-		},
+		refs: []rune{0x032B, 0x1DF1},
 	},
 	0x1ac8: {
-		refs: []string{
-			`U+031F combining plus sign below`,
-		},
+		refs: []rune{0x031F},
 	},
 	0x1acb: {
-		refs: []string{
-			`U+030B combining double acute accent`,
-		},
+		refs: []rune{0x030B},
 	},
 	0x1b00: {
-		aliases: []string{
-			`ardhacandra`,
-		},
+		aliases: []string{`ardhacandra`},
 	},
 	0x1b01: {
-		aliases: []string{
-			`candrabindu`,
-		},
+		aliases: []string{`candrabindu`},
 	},
 	0x1b02: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0x1b03: {
-		aliases: []string{
-			`final r`,
-		},
-		refs: []string{
-			`U+A982 javanese sign layar`,
-		},
+		aliases: []string{`final r`},
+		refs:    []rune{0xA982},
 	},
 	0x1b04: {
-		aliases: []string{
-			`visarga`,
-		},
+		aliases: []string{`visarga`},
 	},
 	0x1b05: {
-		aliases: []string{
-			`a`,
-		},
+		aliases: []string{`a`},
 	},
 	0x1b06: {
-		aliases: []string{
-			`aa`,
-		},
+		aliases: []string{`aa`},
 	},
 	0x1b07: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0x1b08: {
-		aliases: []string{
-			`ii`,
-		},
+		aliases: []string{`ii`},
 	},
 	0x1b09: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0x1b0a: {
-		aliases: []string{
-			`uu`,
-		},
+		aliases: []string{`uu`},
 	},
 	0x1b0b: {
-		aliases: []string{
-			`vocalic r`,
-		},
+		aliases: []string{`vocalic r`},
 	},
 	0x1b0c: {
-		aliases: []string{
-			`vocalic rr`,
-		},
+		aliases: []string{`vocalic rr`},
 	},
 	0x1b0d: {
-		aliases: []string{
-			`vocalic l`,
-		},
+		aliases: []string{`vocalic l`},
 	},
 	0x1b0e: {
-		aliases: []string{
-			`vocalic ll`,
-		},
+		aliases: []string{`vocalic ll`},
 	},
 	0x1b0f: {
-		aliases: []string{
-			`e`,
-		},
+		aliases: []string{`e`},
 	},
 	0x1b10: {
-		aliases: []string{
-			`ai`,
-		},
+		aliases: []string{`ai`},
 	},
 	0x1b11: {
-		aliases: []string{
-			`o`,
-		},
+		aliases: []string{`o`},
 	},
 	0x1b12: {
-		aliases: []string{
-			`au`,
-		},
+		aliases: []string{`au`},
 	},
 	0x1b14: {
-		aliases: []string{
-			`kha`,
-		},
+		aliases: []string{`kha`},
 	},
 	0x1b16: {
-		aliases: []string{
-			`gha`,
-		},
+		aliases: []string{`gha`},
 	},
 	0x1b19: {
-		aliases: []string{
-			`cha`,
-		},
+		aliases: []string{`cha`},
 	},
 	0x1b1b: {
-		aliases: []string{
-			`jha`,
-		},
+		aliases: []string{`jha`},
 	},
 	0x1b1d: {
-		aliases: []string{
-			`tta`,
-		},
+		aliases: []string{`tta`},
 	},
 	0x1b1e: {
-		aliases: []string{
-			`ttha`,
-		},
+		aliases: []string{`ttha`},
 	},
 	0x1b1f: {
-		aliases: []string{
-			`dda`,
-		},
+		aliases: []string{`dda`},
 	},
 	0x1b20: {
-		aliases: []string{
-			`ddha`,
-		},
+		aliases: []string{`ddha`},
 	},
 	0x1b21: {
-		aliases: []string{
-			`nna`,
-		},
+		aliases: []string{`nna`},
 	},
 	0x1b23: {
-		aliases: []string{
-			`tha`,
-		},
+		aliases: []string{`tha`},
 	},
 	0x1b25: {
-		aliases: []string{
-			`dha`,
-		},
+		aliases: []string{`dha`},
 	},
 	0x1b28: {
-		aliases: []string{
-			`pha`,
-		},
+		aliases: []string{`pha`},
 	},
 	0x1b2a: {
-		aliases: []string{
-			`bha`,
-		},
+		aliases: []string{`bha`},
 	},
 	0x1b30: {
-		aliases: []string{
-			`sha`,
-		},
+		aliases: []string{`sha`},
 	},
 	0x1b31: {
-		aliases: []string{
-			`ssa`,
-		},
+		aliases: []string{`ssa`},
 	},
 	0x1b34: {
-		aliases: []string{
-			`nukta`,
-		},
+		aliases: []string{`nukta`},
 	},
 	0x1b35: {
-		aliases: []string{
-			`aa`,
-		},
+		aliases: []string{`aa`},
 	},
 	0x1b36: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0x1b37: {
-		aliases: []string{
-			`ii`,
-		},
+		aliases: []string{`ii`},
 	},
 	0x1b38: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0x1b39: {
-		aliases: []string{
-			`uu`,
-		},
+		aliases: []string{`uu`},
 	},
 	0x1b3a: {
-		aliases: []string{
-			`vocalic r`,
-		},
+		aliases: []string{`vocalic r`},
 	},
 	0x1b3b: {
-		aliases: []string{
-			`vocalic rr`,
-		},
+		aliases: []string{`vocalic rr`},
 	},
 	0x1b3c: {
-		aliases: []string{
-			`vocalic l`,
-		},
+		aliases: []string{`vocalic l`},
 	},
 	0x1b3d: {
-		aliases: []string{
-			`vocalic ll`,
-		},
+		aliases: []string{`vocalic ll`},
 	},
 	0x1b3e: {
-		aliases: []string{
-			`e`,
-		},
+		aliases: []string{`e`},
 	},
 	0x1b3f: {
-		aliases: []string{
-			`ai`,
-		},
+		aliases: []string{`ai`},
 	},
 	0x1b40: {
-		aliases: []string{
-			`o`,
-		},
+		aliases: []string{`o`},
 	},
 	0x1b41: {
-		aliases: []string{
-			`au`,
-		},
+		aliases: []string{`au`},
 	},
 	0x1b42: {
-		aliases: []string{
-			`ae`,
-		},
+		aliases: []string{`ae`},
 	},
 	0x1b43: {
-		aliases: []string{
-			`oe`,
-		},
+		aliases: []string{`oe`},
 	},
 	0x1b44: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0x1b4c: {
-		refs: []string{
-			`U+A998 javanese letter nya murda`,
-		},
+		refs: []rune{0xA998},
 	},
 	0x1b5a: {
-		aliases: []string{
-			`section`,
-		},
+		aliases: []string{`section`},
 	},
 	0x1b5b: {
-		aliases: []string{
-			`honorific section`,
-		},
+		aliases: []string{`honorific section`},
 	},
 	0x1b5c: {
-		aliases: []string{
-			`punctuation ring`,
-		},
+		aliases: []string{`punctuation ring`},
 	},
 	0x1b5d: {
-		aliases: []string{
-			`colon`,
-		},
+		aliases: []string{`colon`},
 	},
 	0x1b5e: {
-		aliases: []string{
-			`danda`,
-		},
-		refs: []string{
-			`U+0964 devanagari danda`,
-		},
+		aliases: []string{`danda`},
+		refs:    []rune{0x0964},
 	},
 	0x1b5f: {
-		aliases: []string{
-			`double danda`,
-		},
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		aliases: []string{`double danda`},
+		refs:    []rune{0x0965},
 	},
 	0x1b60: {
-		aliases: []string{
-			`line-breaking hyphen`,
-		},
+		aliases: []string{`line-breaking hyphen`},
 	},
 	0x1b7d: {
-		aliases: []string{
-			`end of text`,
-		},
+		aliases: []string{`end of text`},
 	},
 	0x1b7e: {
-		aliases: []string{
-			`end of text`,
-		},
+		aliases: []string{`end of text`},
 	},
 	0x1b80: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0x1b81: {
-		aliases: []string{
-			`final r`,
-		},
+		aliases: []string{`final r`},
 	},
 	0x1b82: {
-		aliases: []string{
-			`visarga`,
-		},
+		aliases: []string{`visarga`},
 	},
 	0x1ba1: {
-		aliases: []string{
-			`subjoined ya`,
-		},
+		aliases: []string{`subjoined ya`},
 	},
 	0x1ba2: {
-		aliases: []string{
-			`subjoined ra`,
-		},
+		aliases: []string{`subjoined ra`},
 	},
 	0x1ba3: {
-		aliases: []string{
-			`subjoined la`,
-		},
+		aliases: []string{`subjoined la`},
 	},
 	0x1ba4: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0x1ba5: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0x1ba6: {
-		aliases: []string{
-			`ae`,
-		},
+		aliases: []string{`ae`},
 	},
 	0x1ba7: {
-		aliases: []string{
-			`o`,
-		},
+		aliases: []string{`o`},
 	},
 	0x1ba8: {
-		aliases: []string{
-			`e`,
-		},
+		aliases: []string{`e`},
 	},
 	0x1ba9: {
-		aliases: []string{
-			`eu`,
-		},
+		aliases: []string{`eu`},
 	},
 	0x1baa: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0x1bac: {
-		aliases: []string{
-			`subjoined ma`,
-		},
+		aliases: []string{`subjoined ma`},
 	},
 	0x1bad: {
-		aliases: []string{
-			`subjoined wa`,
-		},
+		aliases: []string{`subjoined wa`},
 	},
 	0x1bba: {
-		aliases: []string{
-			`gemination mark`,
-		},
+		aliases: []string{`gemination mark`},
 	},
 	0x1bbd: {
-		aliases: []string{
-			`SUNDANESE LETTER ARCHAIC I`,
-		},
+		aliases: []string{`SUNDANESE LETTER ARCHAIC I`},
 	},
 	0x1be7: {
-		aliases: []string{
-			`kebereten`,
-		},
+		aliases: []string{`kebereten`},
 	},
 	0x1be8: {
-		aliases: []string{
-			`ketolongen`,
-		},
+		aliases: []string{`ketolongen`},
 	},
 	0x1be9: {
-		aliases: []string{
-			`talinga`,
-		},
+		aliases: []string{`talinga`},
 	},
 	0x1bea: {
-		aliases: []string{
-			`ulua`,
-		},
+		aliases: []string{`ulua`},
 	},
 	0x1beb: {
-		aliases: []string{
-			`haluan`,
-		},
+		aliases: []string{`haluan`},
 	},
 	0x1bec: {
-		aliases: []string{
-			`siala ulu`,
-		},
+		aliases: []string{`siala ulu`},
 	},
 	0x1bed: {
-		aliases: []string{
-			`hatulungan`,
-		},
+		aliases: []string{`hatulungan`},
 	},
 	0x1bee: {
-		aliases: []string{
-			`boruta`,
-		},
+		aliases: []string{`boruta`},
 	},
 	0x1bef: {
-		aliases: []string{
-			`haboritan for simalungun sa`,
-		},
+		aliases: []string{`haboritan for simalungun sa`},
 	},
 	0x1bf0: {
-		aliases: []string{
-			`amisara`,
-		},
+		aliases: []string{`amisara`},
 	},
 	0x1bf1: {
-		aliases: []string{
-			`hajoringan`,
-		},
+		aliases: []string{`hajoringan`},
 	},
 	0x1bf2: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0x1bf3: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0x1c80: {
-		refs: []string{
-			`U+0432 cyrillic small letter ve`,
-		},
+		refs: []rune{0x0432},
 	},
 	0x1c81: {
-		refs: []string{
-			`U+0434 cyrillic small letter de`,
-		},
+		refs: []rune{0x0434},
 	},
 	0x1c82: {
-		refs: []string{
-			`U+043E cyrillic small letter o`,
-		},
+		refs: []rune{0x043E},
 	},
 	0x1c83: {
-		refs: []string{
-			`U+0441 cyrillic small letter es`,
-		},
+		refs: []rune{0x0441},
 	},
 	0x1c85: {
-		refs: []string{
-			`U+0442 cyrillic small letter te`,
-		},
+		refs: []rune{0x0442},
 	},
 	0x1c86: {
-		refs: []string{
-			`U+044A cyrillic small letter hard sign`,
-		},
+		refs: []rune{0x044A},
 	},
 	0x1c87: {
-		refs: []string{
-			`U+0463 cyrillic small letter yat`,
-		},
+		refs: []rune{0x0463},
 	},
 	0x1c88: {
-		refs: []string{
-			`U+0479 cyrillic small letter uk`,
-			`U+A64B cyrillic small letter monograph uk`,
-		},
+		refs: []rune{0x0479, 0xA64B},
 	},
 	0x1c90: {
-		refs: []string{
-			`U+10D0 georgian letter an`,
-		},
+		refs: []rune{0x10D0},
 	},
 	0x1cd0: {
-		aliases: []string{
-			`vaidika saamasvara karshanna`,
-		},
+		aliases: []string{`vaidika saamasvara karshanna`},
 	},
 	0x1cd1: {
-		aliases: []string{
-			`vaidika svarita uurdhva shara`,
-		},
+		aliases: []string{`vaidika svarita uurdhva shara`},
 	},
 	0x1cd2: {
-		aliases: []string{
-			`vaidika saamasvara prenkha`,
-		},
+		aliases: []string{`vaidika saamasvara prenkha`},
 	},
 	0x1cd3: {
-		aliases: []string{
-			`vaidika saamagaana yogakaala`,
-		},
+		aliases: []string{`vaidika saamagaana yogakaala`},
 	},
 	0x1cd5: {
-		aliases: []string{
-			`vaidika svarita adho nyubja`,
-		},
+		aliases: []string{`vaidika svarita adho nyubja`},
 	},
 	0x1cd6: {
-		aliases: []string{
-			`vaidika svarita adhah konna`,
-		},
+		aliases: []string{`vaidika svarita adhah konna`},
 	},
 	0x1cd7: {
-		aliases: []string{
-			`vaidika svarita adho vakra rekhaa`,
-		},
+		aliases: []string{`vaidika svarita adho vakra rekhaa`},
 	},
 	0x1cd8: {
-		aliases: []string{
-			`vaidika svarita adho'rdha vakra`,
-		},
+		aliases: []string{`vaidika svarita adho'rdha vakra`},
 	},
 	0x1cd9: {
-		aliases: []string{
-			`vaidika svarita adhah samyukta rekhaa`,
-		},
+		aliases: []string{`vaidika svarita adhah samyukta rekhaa`},
 	},
 	0x1cda: {
-		aliases: []string{
-			`vaidika svarita uurdhva dvi rekhaa`,
-		},
-		refs: []string{
-			`U+0951 devanagari stress sign udatta`,
-		},
+		aliases: []string{`vaidika svarita uurdhva dvi rekhaa`},
+		refs:    []rune{0x0951},
 	},
 	0x1cdb: {
-		aliases: []string{
-			`vaidika svarita uurdhva tri rekhaa`,
-		},
+		aliases: []string{`vaidika svarita uurdhva tri rekhaa`},
 	},
 	0x1cdc: {
-		aliases: []string{
-			`vaidika svarita adho rekhaa`,
-		},
-		refs: []string{
-			`U+0952 devanagari stress sign anudatta`,
-		},
+		aliases: []string{`vaidika svarita adho rekhaa`},
+		refs:    []rune{0x0952},
 	},
 	0x1cdd: {
-		aliases: []string{
-			`vaidika svarita adho bindu`,
-		},
+		aliases: []string{`vaidika svarita adho bindu`},
 	},
 	0x1cde: {
-		aliases: []string{
-			`vaidika svarita adho dvi bindu`,
-		},
+		aliases: []string{`vaidika svarita adho dvi bindu`},
 	},
 	0x1cdf: {
-		aliases: []string{
-			`vaidika svarita adhas tri bindu`,
-		},
+		aliases: []string{`vaidika svarita adhas tri bindu`},
 	},
 	0x1ce0: {
-		aliases: []string{
-			`vaidika uurdhva vakra rekhaa`,
-		},
+		aliases: []string{`vaidika uurdhva vakra rekhaa`},
 	},
 	0x1ce1: {
-		aliases: []string{
-			`vaidika svarita dvi vakra khannda`,
-		},
+		aliases: []string{`vaidika svarita dvi vakra khannda`},
 	},
 	0x1ce2: {
-		aliases: []string{
-			`vaidika madhyarekhaa`,
-		},
+		aliases: []string{`vaidika madhyarekhaa`},
 	},
 	0x1ce3: {
-		aliases: []string{
-			`vaidika visarga dakshinnatah uurdhvaga`,
-		},
+		aliases: []string{`vaidika visarga dakshinnatah uurdhvaga`},
 	},
 	0x1ce4: {
-		aliases: []string{
-			`vaidika visarga vaamatah uurdhvaga`,
-		},
+		aliases: []string{`vaidika visarga vaamatah uurdhvaga`},
 	},
 	0x1ce5: {
-		aliases: []string{
-			`vaidika visarga vaamatah adhoga`,
-		},
+		aliases: []string{`vaidika visarga vaamatah adhoga`},
 	},
 	0x1ce6: {
-		aliases: []string{
-			`vaidika visarga dakshinnatah adhoga`,
-		},
+		aliases: []string{`vaidika visarga dakshinnatah adhoga`},
 	},
 	0x1ce7: {
-		aliases: []string{
-			`vaidika visarga dakshinnatah uurdhva vakra`,
-		},
+		aliases: []string{`vaidika visarga dakshinnatah uurdhva vakra`},
 	},
 	0x1ce8: {
-		aliases: []string{
-			`vaidika visarga vaamatah adho vakra`,
-		},
+		aliases: []string{`vaidika visarga vaamatah adho vakra`},
 	},
 	0x1ce9: {
-		aliases: []string{
-			`vaidika anusvaara antarmukha`,
-		},
+		aliases: []string{`vaidika anusvaara antarmukha`},
 	},
 	0x1cea: {
-		aliases: []string{
-			`vaidika anusvaara naagaphanna`,
-		},
+		aliases: []string{`vaidika anusvaara naagaphanna`},
 	},
 	0x1ceb: {
-		aliases: []string{
-			`vaidika anusvaara vaamagomukha`,
-		},
+		aliases: []string{`vaidika anusvaara vaamagomukha`},
 	},
 	0x1cec: {
-		aliases: []string{
-			`vaidika anusvaara vaamagomukha sa-vakra`,
-		},
+		aliases: []string{`vaidika anusvaara vaamagomukha sa-vakra`},
 	},
 	0x1ced: {
-		aliases: []string{
-			`vaidika tiryak`,
-		},
+		aliases: []string{`vaidika tiryak`},
 	},
 	0x1cee: {
-		aliases: []string{
-			`vaidika anusvaara anugaamii`,
-		},
+		aliases: []string{`vaidika anusvaara anugaamii`},
 	},
 	0x1cef: {
-		aliases: []string{
-			`vaidika anusvaara dakshinnamukha`,
-		},
+		aliases: []string{`vaidika anusvaara dakshinnamukha`},
 	},
 	0x1cf0: {
-		aliases: []string{
-			`vaidika anusvaara ttha-sadrisha`,
-		},
+		aliases: []string{`vaidika anusvaara ttha-sadrisha`},
 	},
 	0x1cf1: {
-		aliases: []string{
-			`vaidika anusvaara ubhayato mukha`,
-		},
+		aliases: []string{`vaidika anusvaara ubhayato mukha`},
 	},
 	0x1cf2: {
-		aliases: []string{
-			`vaidika jihvaamuuliiya upadhmaaniiya`,
-		},
+		aliases: []string{`vaidika jihvaamuuliiya upadhmaaniiya`},
 	},
 	0x1cf5: {
-		refs: []string{
-			`U+0CF1 kannada sign jihvamuliya`,
-			`U+0F88 tibetan sign lce tsa can`,
-			`U+11003 brahmi sign jihvamuliya`,
-			`U+111C2 sharada sign jihvamuliya`,
-			`U+11460 newa sign jihvamuliya`,
-			`U+11A84 soyombo sign jihvamuliya`,
-		},
+		refs: []rune{0x0CF1, 0x0F88, 0x11003, 0x111C2, 0x11460, 0x11A84},
 	},
 	0x1cf6: {
-		refs: []string{
-			`U+0CF2 kannada sign upadhmaniya`,
-			`U+0F89 tibetan sign mchu can`,
-			`U+11004 brahmi sign upadhmaniya`,
-			`U+111C3 sharada sign upadhmaniya`,
-			`U+11461 newa sign upadhmaniya`,
-			`U+11A85 soyombo sign upadhmaniya`,
-		},
+		refs: []rune{0x0CF2, 0x0F89, 0x11004, 0x111C3, 0x11461, 0x11A85},
 	},
 	0x1cf7: {
-		aliases: []string{
-			`vaidika saamagaana atikrama`,
-		},
+		aliases: []string{`vaidika saamagaana atikrama`},
 	},
 	0x1d03: {
-		refs: []string{
-			`U+0243 latin capital letter b with stroke`,
-		},
+		refs: []rune{0x0243},
 	},
 	0x1d08: {
-		refs: []string{
-			`U+025C latin small letter reversed open e`,
-			`U+1D4C modifier letter small turned open e`,
-		},
+		refs: []rune{0x025C, 0x1D4C},
 	},
 	0x1d0b: {
-		refs: []string{
-			`U+0138 latin small letter kra`,
-			`U+043A cyrillic small letter ka`,
-		},
+		refs: []rune{0x0138, 0x043A},
 	},
 	0x1d0e: {
-		refs: []string{
-			`U+0438 cyrillic small letter i`,
-			`U+1D3B modifier letter capital reversed n`,
-		},
+		refs: []rune{0x0438, 0x1D3B},
 	},
 	0x1d10: {
-		refs: []string{
-			`U+0254 latin small letter open o`,
-			`U+2184 latin small letter reversed c`,
-		},
+		refs: []rune{0x0254, 0x2184},
 	},
 	0x1d18: {
-		refs: []string{
-			`U+1D29 greek letter small capital rho`,
-		},
+		refs: []rune{0x1D29},
 	},
 	0x1d1b: {
-		refs: []string{
-			`U+0442 cyrillic small letter te`,
-		},
+		refs: []rune{0x0442},
 	},
 	0x1d23: {
-		refs: []string{
-			`U+04E1 cyrillic small letter abkhasian dze`,
-		},
+		refs: []rune{0x04E1},
 	},
 	0x1d25: {
-		refs: []string{
-			`U+0639 arabic letter ain`,
-			`U+A725 latin small letter egyptological ain`,
-		},
+		refs: []rune{0x0639, 0xA725},
 	},
 	0x1d29: {
-		refs: []string{
-			`U+1D18 latin letter small capital p`,
-		},
+		refs: []rune{0x1D18},
 	},
 	0x1d2b: {
-		refs: []string{
-			`U+043B cyrillic small letter el`,
-		},
+		refs: []rune{0x043B},
 	},
 	0x1d34: {
-		refs: []string{
-			`U+029C latin letter small capital h`,
-			`U+1D78 modifier letter cyrillic en`,
-		},
+		refs: []rune{0x029C, 0x1D78},
 	},
 	0x1d5c: {
-		refs: []string{
-			`U+A725 latin small letter egyptological ain`,
-		},
+		refs: []rune{0xA725},
 	},
 	0x1d6b: {
-		refs: []string{
-			`U+026B latin small letter l with middle tilde`,
-			`U+AB68 latin small letter turned r with middle tilde`,
-		},
+		refs: []rune{0x026B, 0xAB68},
 	},
 	0x1d77: {
-		refs: []string{
-			`U+10F9 georgian letter turned gan`,
-		},
+		refs: []rune{0x10F9},
 	},
 	0x1d78: {
-		refs: []string{
-			`U+1D34 modifier letter capital h`,
-		},
+		refs: []rune{0x1D34},
 	},
 	0x1d79: {
-		refs: []string{
-			`U+0067 latin small letter g`,
-			`U+021D latin small letter yogh`,
-			`U+0261 latin small letter script g`,
-			`U+0263 latin small letter gamma`,
-			`U+A7D1 latin small letter closed insular g`,
-		},
+		refs: []rune{0x0067, 0x021D, 0x0261, 0x0263, 0xA7D1},
 	},
 	0x1d7a: {
-		refs: []string{
-			`U+03B8 greek small letter theta`,
-		},
+		refs: []rune{0x03B8},
 	},
 	0x1d7b: {
-		refs: []string{
-			`U+0197 latin capital letter i with stroke`,
-		},
+		refs: []rune{0x0197},
 	},
 	0x1d7e: {
-		refs: []string{
-			`U+0289 latin small letter u bar`,
-		},
+		refs: []rune{0x0289},
 	},
 	0x1d7f: {
-		refs: []string{
-			`U+01AB latin small letter t with palatal hook`,
-		},
+		refs: []rune{0x01AB},
 	},
 	0x1d86: {
-		refs: []string{
-			`U+0271 latin small letter m with hook`,
-		},
+		refs: []rune{0x0271},
 	},
 	0x1d87: {
-		refs: []string{
-			`U+014B latin small letter eng`,
-		},
+		refs: []rune{0x014B},
 	},
 	0x1d8e: {
-		refs: []string{
-			`U+0225 latin small letter z with hook`,
-			`U+02DE modifier letter rhotic hook`,
-			`U+01AE latin capital letter t with retroflex hook`,
-			`U+0256 latin small letter d with tail`,
-			`U+026D latin small letter l with retroflex hook`,
-			`U+0273 latin small letter n with retroflex hook`,
-			`U+027B latin small letter turned r with hook`,
-			`U+027D latin small letter r with tail`,
-			`U+0282 latin small letter s with hook`,
-			`U+0285 latin small letter squat reversed esh`,
-			`U+0288 latin small letter t with retroflex hook`,
-			`U+0290 latin small letter z with retroflex hook`,
-			`U+02AF latin small letter turned h with fishhook and tail`,
-		},
+		refs: []rune{0x0225, 0x02DE, 0x01AE, 0x0256, 0x026D, 0x0273, 0x027B, 0x027D, 0x0282, 0x0285, 0x0288, 0x0290, 0x02AF},
 	},
 	0x1d94: {
-		refs: []string{
-			`U+025D latin small letter reversed open e with hook`,
-		},
+		refs: []rune{0x025D},
 	},
 	0x1d95: {
-		refs: []string{
-			`U+025A latin small letter schwa with hook`,
-		},
+		refs: []rune{0x025A},
 	},
 	0x1da6: {
-		refs: []string{
-			`U+1D35 modifier letter capital i`,
-		},
+		refs: []rune{0x1D35},
 	},
 	0x1dab: {
-		refs: []string{
-			`U+1D38 modifier letter capital l`,
-		},
+		refs: []rune{0x1D38},
 	},
 	0x1db0: {
-		refs: []string{
-			`U+1D3A modifier letter capital n`,
-		},
+		refs: []rune{0x1D3A},
 	},
 	0x1db8: {
-		refs: []string{
-			`U+1D41 modifier letter capital u`,
-		},
+		refs: []rune{0x1D41},
 	},
 	0x1dc0: {
-		refs: []string{
-			`U+0300 combining grave accent`,
-			`U+1FED greek dialytika and varia`,
-		},
+		refs: []rune{0x0300, 0x1FED},
 	},
 	0x1dc1: {
-		refs: []string{
-			`U+0301 combining acute accent`,
-			`U+0344 combining greek dialytika tonos`,
-			`U+1FEE greek dialytika and oxia`,
-		},
+		refs: []rune{0x0301, 0x0344, 0x1FEE},
 	},
 	0x1dc3: {
-		refs: []string{
-			`U+0306 combining breve`,
-		},
+		refs: []rune{0x0306},
 	},
 	0x1df1: {
-		refs: []string{
-			`U+1ABF combining latin small letter w below`,
-			`U+1AC7 combining inverted double arch above`,
-		},
+		refs: []rune{0x1ABF, 0x1AC7},
 	},
 	0x1df7: {
-		refs: []string{
-			`U+A67C combining cyrillic kavyka`,
-		},
+		refs: []rune{0xA67C},
 	},
 	0x1df8: {
-		refs: []string{
-			`U+0358 combining dot above right`,
-			`U+0740 syriac feminine dot`,
-		},
+		refs: []rune{0x0358, 0x0740},
 	},
 	0x1df9: {
-		refs: []string{
-			`U+033A combining inverted bridge below`,
-		},
+		refs: []rune{0x033A},
 	},
 	0x1e37: {
-		refs: []string{
-			`U+0325 combining ring below`,
-		},
+		refs: []rune{0x0325},
 	},
 	0x1e5b: {
-		refs: []string{
-			`U+0325 combining ring below`,
-		},
+		refs: []rune{0x0325},
 	},
 	0x1e93: {
-		refs: []string{
-			`U+0638 arabic letter zah`,
-		},
+		refs: []rune{0x0638},
 	},
 	0x1e9c: {
-		refs: []string{
-			`U+A7A9 latin small letter s with oblique stroke`,
-		},
+		refs: []rune{0xA7A9},
 	},
 	0x1e9e: {
-		refs: []string{
-			`U+00DF latin small letter sharp s`,
-			`U+A7D6 latin capital letter middle scots s`,
-		},
+		refs: []rune{0x00DF, 0xA7D6},
 	},
 	0x1e9f: {
-		refs: []string{
-			`U+03B4 greek small letter delta`,
-		},
+		refs: []rune{0x03B4},
 	},
 	0x1fbf: {
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-		},
+		refs: []rune{0x02BC},
 	},
 	0x1ffe: {
-		refs: []string{
-			`U+02BD modifier letter reversed comma`,
-		},
+		refs: []rune{0x02BD},
 	},
 	0x2001: {
-		aliases: []string{
-			`mutton quad`,
-		},
+		aliases: []string{`mutton quad`},
 	},
 	0x2002: {
-		aliases: []string{
-			`nut`,
-		},
+		aliases: []string{`nut`},
 	},
 	0x2003: {
-		aliases: []string{
-			`mutton`,
-		},
+		aliases: []string{`mutton`},
 	},
 	0x2004: {
-		aliases: []string{
-			`thick space`,
-		},
+		aliases: []string{`thick space`},
 	},
 	0x2005: {
-		aliases: []string{
-			`mid space`,
-		},
+		aliases: []string{`mid space`},
 	},
 	0x2009: {
-		refs: []string{
-			`U+202F narrow no-break space`,
-		},
+		refs: []rune{0x202F},
 	},
 	0x200f: {
-		refs: []string{
-			`U+061C arabic letter mark`,
-		},
+		refs: []rune{0x061C},
 	},
 	0x2010: {
-		refs: []string{
-			`U+002D hyphen-minus`,
-			`U+00AD soft hyphen`,
-		},
+		refs: []rune{0x002D, 0x00AD},
 	},
 	0x2014: {
-		refs: []string{
-			`U+2E3A two-em dash`,
-			`U+30FC katakana-hiragana prolonged sound mark`,
-		},
+		refs: []rune{0x2E3A, 0x30FC},
 	},
 	0x2015: {
-		aliases: []string{
-			`quotation dash`,
-		},
+		aliases: []string{`quotation dash`},
 	},
 	0x2016: {
-		refs: []string{
-			`U+20E6 combining double vertical stroke overlay`,
-			`U+2225 parallel to`,
-			`U+23F8 double vertical bar`,
-		},
+		refs: []rune{0x20E6, 0x2225, 0x23F8},
 	},
 	0x2017: {
-		refs: []string{
-			`U+005F low line`,
-			`U+0333 combining double low line`,
-		},
+		refs: []rune{0x005F, 0x0333},
 	},
 	0x2018: {
-		aliases: []string{
-			`single turned comma quotation mark`,
-		},
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+02BB modifier letter turned comma`,
-			`U+275B heavy single turned comma quotation mark ornament`,
-		},
+		aliases: []string{`single turned comma quotation mark`},
+		refs:    []rune{0x0027, 0x02BB, 0x275B},
 	},
 	0x2019: {
-		aliases: []string{
-			`single comma quotation mark`,
-		},
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+02BC modifier letter apostrophe`,
-			`U+275C heavy single comma quotation mark ornament`,
-		},
+		aliases: []string{`single comma quotation mark`},
+		refs:    []rune{0x0027, 0x02BC, 0x275C},
 	},
 	0x201a: {
-		aliases: []string{
-			`low single comma quotation mark`,
-		},
+		aliases: []string{`low single comma quotation mark`},
 	},
 	0x201b: {
-		aliases: []string{
-			`single reversed comma quotation mark`,
-		},
-		refs: []string{
-			`U+02BD modifier letter reversed comma`,
-		},
+		aliases: []string{`single reversed comma quotation mark`},
+		refs:    []rune{0x02BD},
 	},
 	0x201c: {
-		aliases: []string{
-			`double turned comma quotation mark`,
-		},
-		refs: []string{
-			`U+0022 quotation mark`,
-			`U+275D heavy double turned comma quotation mark ornament`,
-			`U+301D reversed double prime quotation mark`,
-		},
+		aliases: []string{`double turned comma quotation mark`},
+		refs:    []rune{0x0022, 0x275D, 0x301D},
 	},
 	0x201d: {
-		aliases: []string{
-			`double comma quotation mark`,
-		},
-		refs: []string{
-			`U+0022 quotation mark`,
-			`U+2033 double prime`,
-			`U+275E heavy double comma quotation mark ornament`,
-			`U+301E double prime quotation mark`,
-		},
+		aliases: []string{`double comma quotation mark`},
+		refs:    []rune{0x0022, 0x2033, 0x275E, 0x301E},
 	},
 	0x201e: {
-		aliases: []string{
-			`low double comma quotation mark`,
-		},
-		refs: []string{
-			`U+2E42 double low-reversed-9 quotation mark`,
-			`U+301F low double prime quotation mark`,
-		},
+		aliases: []string{`low double comma quotation mark`},
+		refs:    []rune{0x2E42, 0x301F},
 	},
 	0x201f: {
-		aliases: []string{
-			`double reversed comma quotation mark`,
-		},
+		aliases: []string{`double reversed comma quotation mark`},
 	},
 	0x2020: {
-		aliases: []string{
-			`obelisk`,
-			`long cross`,
-			`oblong cross`,
-		},
-		refs: []string{
-			`U+2E38 turned dagger`,
-		},
+		aliases: []string{`obelisk`, `long cross`, `oblong cross`},
+		refs:    []rune{0x2E38},
 	},
 	0x2021: {
-		aliases: []string{
-			`diesis`,
-			`double obelisk`,
-		},
-		refs: []string{
-			`U+2E4B triple dagger`,
-		},
+		aliases: []string{`diesis`, `double obelisk`},
+		refs:    []rune{0x2E4B},
 	},
 	0x2022: {
-		aliases: []string{
-			`black small circle`,
-		},
-		refs: []string{
-			`U+00B7 middle dot`,
-			`U+2024 one dot leader`,
-			`U+2219 bullet operator`,
-			`U+25D8 inverse bullet`,
-			`U+25E6 white bullet`,
-		},
+		aliases: []string{`black small circle`},
+		refs:    []rune{0x00B7, 0x2024, 0x2219, 0x25D8, 0x25E6},
 	},
 	0x2023: {
-		refs: []string{
-			`U+220E end of proof`,
-			`U+25B8 black right-pointing small triangle`,
-		},
+		refs: []rune{0x220E, 0x25B8},
 	},
 	0x2024: {
-		refs: []string{
-			`U+00B7 middle dot`,
-			`U+2022 bullet`,
-			`U+2219 bullet operator`,
-		},
+		refs: []rune{0x00B7, 0x2022, 0x2219},
 	},
 	0x2026: {
-		aliases: []string{
-			`three dot leader`,
-		},
-		refs: []string{
-			`U+22EE vertical ellipsis`,
-			`U+FE19 presentation form for vertical horizontal ellipsis`,
-		},
+		aliases: []string{`three dot leader`},
+		refs:    []rune{0x22EE, 0xFE19},
 	},
 	0x202f: {
-		refs: []string{
-			`U+00A0 no-break space`,
-			`U+2005 four-per-em space`,
-			`U+2009 thin space`,
-		},
+		refs: []rune{0x00A0, 0x2005, 0x2009},
 	},
 	0x2030: {
-		aliases: []string{
-			`permille`,
-			`per thousand`,
-		},
-		refs: []string{
-			`U+0025 percent sign`,
-			`U+0609 arabic-indic per mille sign`,
-		},
+		aliases: []string{`permille`, `per thousand`},
+		refs:    []rune{0x0025, 0x0609},
 	},
 	0x2031: {
-		aliases: []string{
-			`permyriad`,
-		},
-		refs: []string{
-			`U+0025 percent sign`,
-			`U+060A arabic-indic per ten thousand sign`,
-		},
+		aliases: []string{`permyriad`},
+		refs:    []rune{0x0025, 0x060A},
 	},
 	0x2032: {
-		aliases: []string{
-			`minutes`,
-			`feet`,
-		},
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+00B4 acute accent`,
-			`U+02B9 modifier letter prime`,
-		},
+		aliases: []string{`minutes`, `feet`},
+		refs:    []rune{0x0027, 0x00B4, 0x02B9},
 	},
 	0x2033: {
-		aliases: []string{
-			`seconds`,
-			`inches`,
-		},
-		refs: []string{
-			`U+0022 quotation mark`,
-			`U+02BA modifier letter double prime`,
-			`U+201D right double quotation mark`,
-			`U+3003 ditto mark`,
-			`U+301E double prime quotation mark`,
-		},
+		aliases: []string{`seconds`, `inches`},
+		refs:    []rune{0x0022, 0x02BA, 0x201D, 0x3003, 0x301E},
 	},
 	0x2034: {
-		aliases: []string{
-			`lines`,
-		},
+		aliases: []string{`lines`},
 	},
 	0x2035: {
-		refs: []string{
-			`U+0060 grave accent`,
-		},
+		refs: []rune{0x0060},
 	},
 	0x2036: {
-		refs: []string{
-			`U+301D reversed double prime quotation mark`,
-		},
+		refs: []rune{0x301D},
 	},
 	0x2038: {
-		refs: []string{
-			`U+2303 up arrowhead`,
-			`U+A788 modifier letter low circumflex accent`,
-		},
+		refs: []rune{0x2303, 0xA788},
 	},
 	0x2039: {
-		aliases: []string{
-			`left pointing single guillemet`,
-		},
-		refs: []string{
-			`U+003C less-than sign`,
-			`U+2329 left-pointing angle bracket`,
-			`U+3008 left angle bracket`,
-		},
+		aliases: []string{`left pointing single guillemet`},
+		refs:    []rune{0x003C, 0x2329, 0x3008},
 	},
 	0x203a: {
-		aliases: []string{
-			`right pointing single guillemet`,
-		},
-		refs: []string{
-			`U+003E greater-than sign`,
-			`U+232A right-pointing angle bracket`,
-			`U+3009 right angle bracket`,
-		},
+		aliases: []string{`right pointing single guillemet`},
+		refs:    []rune{0x003E, 0x232A, 0x3009},
 	},
 	0x203b: {
-		aliases: []string{
-			`Japanese kome`,
-			`Urdu paragraph separator`,
-		},
-		refs: []string{
-			`U+0FBF tibetan ku ru kha bzhi mig can`,
-			`200AD`,
-		},
+		aliases: []string{`Japanese kome`, `Urdu paragraph separator`},
+		refs:    []rune{0x0FBF, 0x200AD},
 	},
 	0x203c: {
-		refs: []string{
-			`U+0021 exclamation mark`,
-		},
+		refs: []rune{0x0021},
 	},
 	0x203d: {
-		refs: []string{
-			`U+0021 exclamation mark`,
-			`U+003F question mark`,
-			`U+2E18 inverted interrobang`,
-			`U+1F679 heavy interrobang ornament`,
-		},
+		refs: []rune{0x0021, 0x003F, 0x2E18, 0x1F679},
 	},
 	0x203e: {
-		aliases: []string{
-			`spacing overscore`,
-		},
+		aliases: []string{`spacing overscore`},
 	},
 	0x203f: {
-		aliases: []string{
-			`Greek enotikon`,
-		},
-		refs: []string{
-			`U+2323 smile`,
-		},
+		aliases: []string{`Greek enotikon`},
+		refs:    []rune{0x2323},
 	},
 	0x2040: {
-		aliases: []string{
-			`z notation sequence concatenation`,
-		},
-		refs: []string{
-			`U+2322 frown`,
-		},
+		aliases: []string{`z notation sequence concatenation`},
+		refs:    []rune{0x2322},
 	},
 	0x2041: {
-		refs: []string{
-			`U+22CC right semidirect product`,
-		},
+		refs: []rune{0x22CC},
 	},
 	0x2043: {
-		refs: []string{
-			`U+002D hyphen-minus`,
-		},
+		refs: []rune{0x002D},
 	},
 	0x2044: {
-		aliases: []string{
-			`solidus`,
-		},
-		refs: []string{
-			`U+002F solidus`,
-			`U+2215 division slash`,
-		},
+		aliases: []string{`solidus`},
+		refs:    []rune{0x002F, 0x2215},
 	},
 	0x2045: {
-		refs: []string{
-			`U+2E20 left vertical bar with quill`,
-			`U+2E55 left square bracket with stroke`,
-		},
+		refs: []rune{0x2E20, 0x2E55},
 	},
 	0x204a: {
-		refs: []string{
-			`U+0026 ampersand`,
-			`U+2E52 tironian sign capital et`,
-			`U+1F670 script ligature et ornament`,
-		},
+		refs: []rune{0x0026, 0x2E52, 0x1F670},
 	},
 	0x204b: {
-		refs: []string{
-			`U+00B6 pilcrow sign`,
-			`U+2E4D paragraphus mark`,
-		},
+		refs: []rune{0x00B6, 0x2E4D},
 	},
 	0x204e: {
-		refs: []string{
-			`U+002A asterisk`,
-			`U+0359 combining asterisk below`,
-		},
+		refs: []rune{0x002A, 0x0359},
 	},
 	0x204f: {
-		refs: []string{
-			`U+003B semicolon`,
-			`U+061B arabic semicolon`,
-		},
+		refs: []rune{0x003B, 0x061B},
 	},
 	0x2050: {
-		refs: []string{
-			`U+AB5B modifier breve with inverted breve`,
-		},
+		refs: []rune{0xAB5B},
 	},
 	0x2052: {
-		aliases: []string{
-			`abzüglich (German)`,
-			`med avdrag av (Swedish)`,
-			`piska (Swedish`,
-			`whip)`,
-		},
-		refs: []string{
-			`U+0025 percent sign`,
-			`U+066A arabic percent sign`,
-			`U+00F7 division sign`,
-		},
+		aliases: []string{`abzüglich (German)`, `med avdrag av (Swedish)`, `piska (Swedish`, `whip)`},
+		refs:    []rune{0x0025, 0x066A, 0x00F7},
 	},
 	0x2053: {
-		refs: []string{
-			`U+007E tilde`,
-		},
+		refs: []rune{0x007E},
 	},
 	0x2055: {
-		aliases: []string{
-			`phul`,
-			`puspika`,
-		},
-		refs: []string{
-			`U+274B heavy eight teardrop-spoked propeller asterisk`,
-		},
+		aliases: []string{`phul`, `puspika`},
+		refs:    []rune{0x274B},
 	},
 	0x2056: {
-		refs: []string{
-			`U+10FB georgian paragraph separator`,
-		},
+		refs: []rune{0x10FB},
 	},
 	0x2059: {
-		aliases: []string{
-			`Greek pentonkion`,
-			`quincunx`,
-		},
-		refs: []string{
-			`U+2684 die face-5`,
-		},
+		aliases: []string{`Greek pentonkion`, `quincunx`},
+		refs:    []rune{0x2684},
 	},
 	0x205a: {
-		refs: []string{
-			`U+FE30 presentation form for vertical two dot leader`,
-			`U+1015B greek acrophonic epidaurean two`,
-		},
+		refs: []rune{0xFE30, 0x1015B},
 	},
 	0x205d: {
-		aliases: []string{
-			`Epidaurean acrophonic symbol three`,
-		},
-		refs: []string{
-			`U+22EE vertical ellipsis`,
-			`U+2AF6 triple colon operator`,
-			`U+FE19 presentation form for vertical horizontal ellipsis`,
-		},
+		aliases: []string{`Epidaurean acrophonic symbol three`},
+		refs:    []rune{0x22EE, 0x2AF6, 0xFE19},
 	},
 	0x205e: {
-		refs: []string{
-			`U+2E3D vertical six dots`,
-		},
+		refs: []rune{0x2E3D},
 	},
 	0x2060: {
-		refs: []string{
-			`U+FEFF zero width no-break space`,
-		},
+		refs: []rune{0xFEFF},
 	},
 	0x2063: {
-		aliases: []string{
-			`invisible comma`,
-		},
+		aliases: []string{`invisible comma`},
 	},
 	0x2072: {
-		refs: []string{
-			`U+00B2 superscript two`,
-		},
+		refs: []rune{0x00B2},
 	},
 	0x2073: {
-		refs: []string{
-			`U+00B3 superscript three`,
-		},
+		refs: []rune{0x00B3},
 	},
 	0x20a0: {
-		refs: []string{
-			`U+20AC euro sign`,
-		},
+		refs: []rune{0x20AC},
 	},
 	0x20a3: {
-		refs: []string{
-			`U+A798 latin capital letter f with stroke`,
-		},
+		refs: []rune{0xA798},
 	},
 	0x20a4: {
-		refs: []string{
-			`U+00A3 pound sign`,
-			`U+20BA turkish lira sign`,
-		},
+		refs: []rune{0x00A3, 0x20BA},
 	},
 	0x20a7: {
-		refs: []string{
-			`U+20B1 peso sign`,
-		},
+		refs: []rune{0x20B1},
 	},
 	0x20a8: {
-		refs: []string{
-			`U+20B9 indian rupee sign`,
-		},
+		refs: []rune{0x20B9},
 	},
 	0x20aa: {
-		aliases: []string{
-			`shekel`,
-		},
+		aliases: []string{`shekel`},
 	},
 	0x20ac: {
-		refs: []string{
-			`U+20A0 euro-currency sign`,
-		},
+		refs: []rune{0x20A0},
 	},
 	0x20b1: {
-		aliases: []string{
-			`Filipino peso sign`,
-		},
-		refs: []string{
-			`U+0024 dollar sign`,
-			`U+20A7 peseta sign`,
-		},
+		aliases: []string{`Filipino peso sign`},
+		refs:    []rune{0x0024, 0x20A7},
 	},
 	0x20b5: {
-		refs: []string{
-			`U+00A2 cent sign`,
-			`U+023B latin capital letter c with stroke`,
-		},
+		refs: []rune{0x00A2, 0x023B},
 	},
 	0x20b8: {
-		refs: []string{
-			`U+2351 apl functional symbol up tack overbar`,
-			`U+2564 box drawings down single and horizontal double`,
-			`U+3012 postal mark`,
-		},
+		refs: []rune{0x2351, 0x2564, 0x3012},
 	},
 	0x20b9: {
-		refs: []string{
-			`U+0930 devanagari letter ra`,
-		},
+		refs: []rune{0x0930},
 	},
 	0x20bb: {
-		refs: []string{
-			`U+2133 script capital m`,
-		},
+		refs: []rune{0x2133},
 	},
 	0x20db: {
-		aliases: []string{
-			`third derivative`,
-		},
+		aliases: []string{`third derivative`},
 	},
 	0x20dc: {
-		aliases: []string{
-			`fourth derivative`,
-		},
+		aliases: []string{`fourth derivative`},
 	},
 	0x20dd: {
-		aliases: []string{
-			`JIS composition circle`,
-			`Cyrillic combining ten thousands sign`,
-		},
-		refs: []string{
-			`U+25CB white circle`,
-			`U+25EF large circle`,
-			`U+3007 ideographic number zero`,
-		},
+		aliases: []string{`JIS composition circle`, `Cyrillic combining ten thousands sign`},
+		refs:    []rune{0x25CB, 0x25EF, 0x3007},
 	},
 	0x20de: {
-		refs: []string{
-			`U+25A1 white square`,
-		},
+		refs: []rune{0x25A1},
 	},
 	0x20df: {
-		refs: []string{
-			`U+25C7 white diamond`,
-		},
+		refs: []rune{0x25C7},
 	},
 	0x20e0: {
-		refs: []string{
-			`U+1F6C7 prohibited sign`,
-		},
+		refs: []rune{0x1F6C7},
 	},
 	0x20e2: {
-		refs: []string{
-			`U+239A clear screen symbol`,
-			`U+1F5B5 screen`,
-		},
+		refs: []rune{0x239A, 0x1F5B5},
 	},
 	0x20e4: {
-		refs: []string{
-			`U+25B3 white up-pointing triangle`,
-		},
+		refs: []rune{0x25B3},
 	},
 	0x20e5: {
-		refs: []string{
-			`U+005C reverse solidus`,
-		},
+		refs: []rune{0x005C},
 	},
 	0x20e6: {
-		aliases: []string{
-			`z notation finite function diacritic`,
-		},
-		refs: []string{
-			`U+2016 double vertical line`,
-			`U+21FB rightwards arrow with double vertical stroke`,
-			`U+2901 rightwards two-headed arrow with double vertical stroke`,
-			`U+2915 rightwards arrow with tail with double vertical stroke`,
-		},
+		aliases: []string{`z notation finite function diacritic`},
+		refs:    []rune{0x2016, 0x21FB, 0x2901, 0x2915},
 	},
 	0x20e7: {
-		aliases: []string{
-			`actuarial bend`,
-		},
-		refs: []string{
-			`U+2309 right ceiling`,
-		},
+		aliases: []string{`actuarial bend`},
+		refs:    []rune{0x2309},
 	},
 	0x20e9: {
-		aliases: []string{
-			`contraction operator`,
-		},
-		refs: []string{
-			`U+0346 combining bridge above`,
-		},
+		aliases: []string{`contraction operator`},
+		refs:    []rune{0x0346},
 	},
 	0x20ea: {
-		refs: []string{
-			`U+2190 leftwards arrow`,
-		},
+		refs: []rune{0x2190},
 	},
 	0x20eb: {
-		aliases: []string{
-			`long double slash overlay`,
-		},
+		aliases: []string{`long double slash overlay`},
 	},
 	0x2101: {
-		aliases: []string{
-			`aux soins`,
-		},
-		refs: []string{
-			`U+214D aktieselskab`,
-		},
+		aliases: []string{`aux soins`},
+		refs:    []rune{0x214D},
 	},
 	0x2102: {
-		aliases: []string{
-			`the set of complex numbers`,
-		},
+		aliases: []string{`the set of complex numbers`},
 	},
 	0x2103: {
-		aliases: []string{
-			`degrees centigrade`,
-		},
+		aliases: []string{`degrees centigrade`},
 	},
 	0x2104: {
-		aliases: []string{
-			`clone`,
-		},
+		aliases: []string{`clone`},
 	},
 	0x2107: {
-		refs: []string{
-			`U+0045 latin capital letter e`,
-		},
+		refs: []rune{0x0045},
 	},
 	0x210a: {
-		aliases: []string{
-			`real number symbol`,
-		},
+		aliases: []string{`real number symbol`},
 	},
 	0x210b: {
-		aliases: []string{
-			`Hamiltonian operator`,
-		},
+		aliases: []string{`Hamiltonian operator`},
 	},
 	0x210c: {
-		aliases: []string{
-			`Hilbert space`,
-		},
+		aliases: []string{`Hilbert space`},
 	},
 	0x210e: {
-		aliases: []string{
-			`height`,
-			`specific enthalpy`,
-			`...`,
-		},
+		aliases: []string{`height`, `specific enthalpy`, `...`},
 	},
 	0x210f: {
-		aliases: []string{
-			`reduced Planck constant`,
-			`Dirac constant`,
-		},
-		refs: []string{
-			`U+045B cyrillic small letter tshe`,
-		},
+		aliases: []string{`reduced Planck constant`, `Dirac constant`},
+		refs:    []rune{0x045B},
 	},
 	0x2111: {
-		aliases: []string{
-			`imaginary part`,
-		},
+		aliases: []string{`imaginary part`},
 	},
 	0x2112: {
-		aliases: []string{
-			`Laplace transform`,
-		},
+		aliases: []string{`Laplace transform`},
 	},
 	0x2113: {
-		aliases: []string{
-			`mathematical symbol 'ell'`,
-			`liter`,
-		},
-		refs: []string{
-			`U+1D4C1 mathematical script small l`,
-		},
+		aliases: []string{`mathematical symbol 'ell'`, `liter`},
+		refs:    []rune{0x1D4C1},
 	},
 	0x2114: {
-		aliases: []string{
-			`pounds`,
-		},
-		refs: []string{
-			`U+0023 number sign`,
-		},
+		aliases: []string{`pounds`},
+		refs:    []rune{0x0023},
 	},
 	0x2115: {
-		aliases: []string{
-			`natural number`,
-		},
+		aliases: []string{`natural number`},
 	},
 	0x2116: {
-		refs: []string{
-			`U+0023 number sign`,
-			`U+00BA masculine ordinal indicator`,
-		},
+		refs: []rune{0x0023, 0x00BA},
 	},
 	0x2117: {
-		aliases: []string{
-			`published`,
-			`phonorecord sign`,
-		},
-		refs: []string{
-			`U+00A9 copyright sign`,
-			`U+24C5 circled latin capital letter p`,
-		},
+		aliases: []string{`published`, `phonorecord sign`},
+		refs:    []rune{0x00A9, 0x24C5},
 	},
 	0x2118: {
-		aliases: []string{
-			`WEIERSTRASS ELLIPTIC FUNCTION`,
-		},
+		aliases: []string{`WEIERSTRASS ELLIPTIC FUNCTION`},
 	},
 	0x211a: {
-		aliases: []string{
-			`the set of rational numbers`,
-		},
+		aliases: []string{`the set of rational numbers`},
 	},
 	0x211b: {
-		aliases: []string{
-			`Riemann Integral`,
-		},
+		aliases: []string{`Riemann Integral`},
 	},
 	0x211c: {
-		aliases: []string{
-			`real part`,
-		},
+		aliases: []string{`real part`},
 	},
 	0x211d: {
-		aliases: []string{
-			`the set of real numbers`,
-		},
+		aliases: []string{`the set of real numbers`},
 	},
 	0x211e: {
-		aliases: []string{
-			`recipe`,
-			`cross ratio`,
-		},
+		aliases: []string{`recipe`, `cross ratio`},
 	},
 	0x2121: {
-		refs: []string{
-			`U+260E black telephone`,
-			`U+2706 telephone location sign`,
-			`U+1F4DE telephone receiver`,
-		},
+		refs: []rune{0x260E, 0x2706, 0x1F4DE},
 	},
 	0x2122: {
-		refs: []string{
-			`U+1F12E circled wz`,
-		},
+		refs: []rune{0x1F12E},
 	},
 	0x2124: {
-		aliases: []string{
-			`the set of integers`,
-		},
+		aliases: []string{`the set of integers`},
 	},
 	0x2125: {
-		refs: []string{
-			`U+0292 latin small letter ezh`,
-			`U+1F773 alchemical symbol for half ounce`,
-			`2CF04`,
-		},
+		refs: []rune{0x0292, 0x1F773, 0x2CF04},
 	},
 	0x2126: {
-		refs: []string{
-			`U+260A ascending node`,
-		},
+		refs: []rune{0x260A},
 	},
 	0x2127: {
-		aliases: []string{
-			`mho`,
-		},
-		refs: []string{
-			`U+01B1 latin capital letter upsilon`,
-			`U+03A9 greek capital letter omega`,
-			`U+260B descending node`,
-		},
+		aliases: []string{`mho`},
+		refs:    []rune{0x01B1, 0x03A9, 0x260B},
 	},
 	0x2129: {
-		refs: []string{
-			`U+03B9 greek small letter iota`,
-		},
+		refs: []rune{0x03B9},
 	},
 	0x212c: {
-		aliases: []string{
-			`Bernoulli function`,
-		},
+		aliases: []string{`Bernoulli function`},
 	},
 	0x212e: {
-		refs: []string{
-			`U+0065 latin small letter e`,
-		},
+		refs: []rune{0x0065},
 	},
 	0x212f: {
-		aliases: []string{
-			`error`,
-			`natural exponent`,
-		},
+		aliases: []string{`error`, `natural exponent`},
 	},
 	0x2130: {
-		aliases: []string{
-			`emf`,
-		},
+		aliases: []string{`emf`},
 	},
 	0x2131: {
-		aliases: []string{
-			`Fourier transform`,
-		},
+		aliases: []string{`Fourier transform`},
 	},
 	0x2132: {
-		aliases: []string{
-			`Claudian digamma inversum`,
-		},
-		refs: []string{
-			`U+0046 latin capital letter f`,
-			`U+03DC greek letter digamma`,
-		},
+		aliases: []string{`Claudian digamma inversum`},
+		refs:    []rune{0x0046, 0x03DC},
 	},
 	0x2133: {
-		aliases: []string{
-			`M-matrix`,
-			`German Mark currency symbol`,
-			`before WWII`,
-		},
-		refs: []string{
-			`U+20BB nordic mark sign`,
-		},
+		aliases: []string{`M-matrix`, `German Mark currency symbol`, `before WWII`},
+		refs:    []rune{0x20BB},
 	},
 	0x2134: {
-		aliases: []string{
-			`order`,
-			`of inferior order to`,
-		},
+		aliases: []string{`order`, `of inferior order to`},
 	},
 	0x2135: {
-		aliases: []string{
-			`first transfinite cardinal`,
-		},
+		aliases: []string{`first transfinite cardinal`},
 	},
 	0x2136: {
-		aliases: []string{
-			`second transfinite cardinal`,
-		},
+		aliases: []string{`second transfinite cardinal`},
 	},
 	0x2137: {
-		aliases: []string{
-			`third transfinite cardinal`,
-		},
+		aliases: []string{`third transfinite cardinal`},
 	},
 	0x2138: {
-		aliases: []string{
-			`fourth transfinite cardinal`,
-		},
+		aliases: []string{`fourth transfinite cardinal`},
 	},
 	0x2139: {
-		refs: []string{
-			`U+1F6C8 circled information source`,
-		},
+		refs: []rune{0x1F6C8},
 	},
 	0x213b: {
-		refs: []string{
-			`U+2121 telephone sign`,
-			`U+1F4E0 fax machine`,
-		},
+		refs: []rune{0x2121, 0x1F4E0},
 	},
 	0x2141: {
-		aliases: []string{
-			`game`,
-		},
-		refs: []string{
-			`U+A4E8 lisu letter hha`,
-		},
+		aliases: []string{`game`},
+		refs:    []rune{0xA4E8},
 	},
 	0x2142: {
-		refs: []string{
-			`U+A4F6 lisu letter uh`,
-		},
+		refs: []rune{0xA4F6},
 	},
 	0x2144: {
-		refs: []string{
-			`U+11FB0 lisu letter yha`,
-		},
+		refs: []rune{0x11FB0},
 	},
 	0x214b: {
-		refs: []string{
-			`U+0026 ampersand`,
-		},
+		refs: []rune{0x0026},
 	},
 	0x214d: {
-		refs: []string{
-			`U+2101 addressed to the subject`,
-		},
+		refs: []rune{0x2101},
 	},
 	0x214e: {
-		refs: []string{
-			`U+03DD greek small letter digamma`,
-		},
+		refs: []rune{0x03DD},
 	},
 	0x214f: {
-		refs: []string{
-			`U+00BC vulgar fraction one quarter`,
-			`U+00BD vulgar fraction one half`,
-			`U+00BE vulgar fraction three quarters`,
-		},
+		refs: []rune{0x00BC, 0x00BD, 0x00BE},
 	},
 	0x2183: {
-		aliases: []string{
-			`apostrophic C`,
-			`Claudian antisigma`,
-		},
-		refs: []string{
-			`U+0186 latin capital letter open o`,
-			`U+03FD greek capital reversed lunate sigma symbol`,
-		},
+		aliases: []string{`apostrophic C`, `Claudian antisigma`},
+		refs:    []rune{0x0186, 0x03FD},
 	},
 	0x2184: {
-		refs: []string{
-			`U+0254 latin small letter open o`,
-			`U+037B greek small reversed lunate sigma symbol`,
-		},
+		refs: []rune{0x0254, 0x037B},
 	},
 	0x2185: {
-		refs: []string{
-			`U+03DA greek letter stigma`,
-		},
+		refs: []rune{0x03DA},
 	},
 	0x2186: {
-		refs: []string{
-			`U+16CE runic letter z`,
-			`U+2193 downwards arrow`,
-		},
+		refs: []rune{0x16CE, 0x2193},
 	},
 	0x218b: {
-		refs: []string{
-			`U+0190 latin capital letter open e`,
-			`U+2107 euler constant`,
-			`U+A72B latin small letter tresillo`,
-		},
+		refs: []rune{0x0190, 0x2107, 0xA72B},
 	},
 	0x2190: {
-		refs: []string{
-			`U+20EA combining leftwards arrow overlay`,
-		},
+		refs: []rune{0x20EA},
 	},
 	0x2192: {
-		aliases: []string{
-			`z notation total function`,
-		},
+		aliases: []string{`z notation total function`},
 	},
 	0x2194: {
-		aliases: []string{
-			`z notation relation`,
-		},
+		aliases: []string{`z notation relation`},
 	},
 	0x219c: {
-		refs: []string{
-			`U+2B3F wave arrow pointing directly left`,
-		},
+		refs: []rune{0x2B3F},
 	},
 	0x219e: {
-		aliases: []string{
-			`fast cursor left`,
-		},
-		refs: []string{
-			`U+2BEC leftwards two-headed arrow with triangle arrowheads`,
-		},
+		aliases: []string{`fast cursor left`},
+		refs:    []rune{0x2BEC},
 	},
 	0x219f: {
-		aliases: []string{
-			`fast cursor up`,
-		},
+		aliases: []string{`fast cursor up`},
 	},
 	0x21a0: {
-		aliases: []string{
-			`z notation total surjection`,
-			`fast cursor right`,
-		},
+		aliases: []string{`z notation total surjection`, `fast cursor right`},
 	},
 	0x21a1: {
-		aliases: []string{
-			`form feed`,
-			`fast cursor down`,
-		},
+		aliases: []string{`form feed`, `fast cursor down`},
 	},
 	0x21a3: {
-		aliases: []string{
-			`z notation total injection`,
-		},
+		aliases: []string{`z notation total injection`},
 	},
 	0x21a6: {
-		aliases: []string{
-			`z notation maplet`,
-		},
+		aliases: []string{`z notation maplet`},
 	},
 	0x21a7: {
-		aliases: []string{
-			`depth symbol`,
-		},
+		aliases: []string{`depth symbol`},
 	},
 	0x21af: {
-		aliases: []string{
-			`electrolysis`,
-		},
-		refs: []string{
-			`U+2B4D downwards triangle-headed zigzag arrow`,
-		},
+		aliases: []string{`electrolysis`},
+		refs:    []rune{0x2B4D},
 	},
 	0x21b2: {
-		refs: []string{
-			`U+1FBB4 inverse downwards arrow with tip leftwards`,
-		},
+		refs: []rune{0x1FBB4},
 	},
 	0x21b4: {
-		aliases: []string{
-			`line feed`,
-		},
+		aliases: []string{`line feed`},
 	},
 	0x21b5: {
-		refs: []string{
-			`U+23CE return symbol`,
-		},
+		refs: []rune{0x23CE},
 	},
 	0x21b8: {
-		aliases: []string{
-			`home`,
-		},
+		aliases: []string{`home`},
 	},
 	0x21b9: {
-		aliases: []string{
-			`tab with shift tab`,
-		},
-		refs: []string{
-			`U+2B7E horizontal tab key`,
-		},
+		aliases: []string{`tab with shift tab`},
+		refs:    []rune{0x2B7E},
 	},
 	0x21dc: {
-		refs: []string{
-			`U+2B33 long leftwards squiggle arrow`,
-		},
+		refs: []rune{0x2B33},
 	},
 	0x21de: {
-		aliases: []string{
-			`page up`,
-		},
+		aliases: []string{`page up`},
 	},
 	0x21df: {
-		aliases: []string{
-			`page down`,
-		},
+		aliases: []string{`page down`},
 	},
 	0x21e4: {
-		aliases: []string{
-			`leftward tab`,
-		},
+		aliases: []string{`leftward tab`},
 	},
 	0x21e5: {
-		aliases: []string{
-			`rightward tab`,
-		},
+		aliases: []string{`rightward tab`},
 	},
 	0x21e6: {
-		refs: []string{
-			`U+2B00 north east white arrow`,
-		},
+		refs: []rune{0x2B00},
 	},
 	0x21e7: {
-		aliases: []string{
-			`shift`,
-			`level 2 select`,
-		},
+		aliases: []string{`shift`, `level 2 select`},
 	},
 	0x21e8: {
-		aliases: []string{
-			`group select`,
-		},
+		aliases: []string{`group select`},
 	},
 	0x21ea: {
-		aliases: []string{
-			`caps lock`,
-		},
+		aliases: []string{`caps lock`},
 	},
 	0x21eb: {
-		aliases: []string{
-			`level 2 lock`,
-		},
+		aliases: []string{`level 2 lock`},
 	},
 	0x21ec: {
-		aliases: []string{
-			`capitals (caps) lock`,
-		},
-		refs: []string{
-			`U+2BB8 upwards white arrow from bar with horizontal bar`,
-		},
+		aliases: []string{`capitals (caps) lock`},
+		refs:    []rune{0x2BB8},
 	},
 	0x21ed: {
-		aliases: []string{
-			`numeric lock`,
-		},
+		aliases: []string{`numeric lock`},
 	},
 	0x21ee: {
-		aliases: []string{
-			`level 3 select`,
-		},
+		aliases: []string{`level 3 select`},
 	},
 	0x21ef: {
-		aliases: []string{
-			`level 3 lock`,
-		},
+		aliases: []string{`level 3 lock`},
 	},
 	0x21f0: {
-		aliases: []string{
-			`group lock`,
-		},
+		aliases: []string{`group lock`},
 	},
 	0x21f1: {
-		aliases: []string{
-			`home`,
-		},
+		aliases: []string{`home`},
 	},
 	0x21f2: {
-		aliases: []string{
-			`end`,
-		},
+		aliases: []string{`end`},
 	},
 	0x21f3: {
-		aliases: []string{
-			`scrolling`,
-		},
-		refs: []string{
-			`U+2B04 left right white arrow`,
-		},
+		aliases: []string{`scrolling`},
+		refs:    []rune{0x2B04},
 	},
 	0x21f4: {
-		refs: []string{
-			`U+2B30 left arrow with small circle`,
-		},
+		refs: []rune{0x2B30},
 	},
 	0x21f6: {
-		refs: []string{
-			`U+2B31 three leftwards arrows`,
-		},
+		refs: []rune{0x2B31},
 	},
 	0x21f8: {
-		aliases: []string{
-			`z notation partial function`,
-		},
+		aliases: []string{`z notation partial function`},
 	},
 	0x21f9: {
-		aliases: []string{
-			`z notation partial relation`,
-		},
+		aliases: []string{`z notation partial relation`},
 	},
 	0x21fb: {
-		aliases: []string{
-			`z notation finite function`,
-		},
+		aliases: []string{`z notation finite function`},
 	},
 	0x21fc: {
-		aliases: []string{
-			`z notation finite relation`,
-		},
+		aliases: []string{`z notation finite relation`},
 	},
 	0x2200: {
-		aliases: []string{
-			`universal quantifier`,
-		},
+		aliases: []string{`universal quantifier`},
 	},
 	0x2201: {
-		refs: []string{
-			`U+0297 latin letter stretched c`,
-		},
+		refs: []rune{0x0297},
 	},
 	0x2203: {
-		aliases: []string{
-			`existential quantifier`,
-		},
+		aliases: []string{`existential quantifier`},
 	},
 	0x2205: {
-		aliases: []string{
-			`null set`,
-		},
-		refs: []string{
-			`U+00D8 latin capital letter o with stroke`,
-			`U+2300 diameter sign`,
-		},
+		aliases: []string{`null set`},
+		refs:    []rune{0x00D8, 0x2300},
 	},
 	0x2206: {
-		aliases: []string{
-			`Laplace operator`,
-			`forward difference`,
-			`symmetric difference`,
-		},
-		refs: []string{
-			`U+0394 greek capital letter delta`,
-			`U+25B3 white up-pointing triangle`,
-		},
+		aliases: []string{`Laplace operator`, `forward difference`, `symmetric difference`},
+		refs:    []rune{0x0394, 0x25B3},
 	},
 	0x2207: {
-		aliases: []string{
-			`backward difference`,
-			`gradient`,
-			`del`,
-		},
-		refs: []string{
-			`U+25BD white down-pointing triangle`,
-		},
+		aliases: []string{`backward difference`, `gradient`, `del`},
+		refs:    []rune{0x25BD},
 	},
 	0x220a: {
-		refs: []string{
-			`U+03F5 greek lunate epsilon symbol`,
-		},
+		refs: []rune{0x03F5},
 	},
 	0x220b: {
-		aliases: []string{
-			`such that`,
-		},
+		aliases: []string{`such that`},
 	},
 	0x220d: {
-		refs: []string{
-			`U+03F6 greek reversed lunate epsilon symbol`,
-		},
+		refs: []rune{0x03F6},
 	},
 	0x220e: {
-		aliases: []string{
-			`q.e.d.`,
-		},
-		refs: []string{
-			`U+2023 triangular bullet`,
-			`U+25AE black vertical rectangle`,
-		},
+		aliases: []string{`q.e.d.`},
+		refs:    []rune{0x2023, 0x25AE},
 	},
 	0x220f: {
-		aliases: []string{
-			`product sign`,
-		},
-		refs: []string{
-			`U+03A0 greek capital letter pi`,
-		},
+		aliases: []string{`product sign`},
+		refs:    []rune{0x03A0},
 	},
 	0x2210: {
-		aliases: []string{
-			`coproduct sign`,
-		},
+		aliases: []string{`coproduct sign`},
 	},
 	0x2211: {
-		aliases: []string{
-			`summation sign`,
-		},
-		refs: []string{
-			`U+03A3 greek capital letter sigma`,
-			`U+2140 double-struck n-ary summation`,
-		},
+		aliases: []string{`summation sign`},
+		refs:    []rune{0x03A3, 0x2140},
 	},
 	0x2212: {
-		refs: []string{
-			`U+002D hyphen-minus`,
-			`U+2796 heavy minus sign`,
-		},
+		refs: []rune{0x002D, 0x2796},
 	},
 	0x2213: {
-		refs: []string{
-			`U+00B1 plus-minus sign`,
-		},
+		refs: []rune{0x00B1},
 	},
 	0x2215: {
-		refs: []string{
-			`U+002F solidus`,
-			`U+2044 fraction slash`,
-			`U+27CB mathematical rising diagonal`,
-		},
+		refs: []rune{0x002F, 0x2044, 0x27CB},
 	},
 	0x2216: {
-		refs: []string{
-			`U+005C reverse solidus`,
-			`U+27CD mathematical falling diagonal`,
-			`U+29F5 reverse solidus operator`,
-		},
+		refs: []rune{0x005C, 0x27CD, 0x29F5},
 	},
 	0x2217: {
-		refs: []string{
-			`U+002A asterisk`,
-		},
+		refs: []rune{0x002A},
 	},
 	0x2218: {
-		aliases: []string{
-			`composite function`,
-			`APL jot`,
-		},
-		refs: []string{
-			`U+00B0 degree sign`,
-			`U+0970 devanagari abbreviation sign`,
-			`U+25E6 white bullet`,
-			`U+10B39 avestan abbreviation mark`,
-		},
+		aliases: []string{`composite function`, `APL jot`},
+		refs:    []rune{0x00B0, 0x0970, 0x25E6, 0x10B39},
 	},
 	0x2219: {
-		refs: []string{
-			`U+00B7 middle dot`,
-			`U+2022 bullet`,
-			`U+2024 one dot leader`,
-		},
+		refs: []rune{0x00B7, 0x2022, 0x2024},
 	},
 	0x221a: {
-		aliases: []string{
-			`radical sign`,
-		},
-		refs: []string{
-			`U+2713 check mark`,
-		},
+		aliases: []string{`radical sign`},
+		refs:    []rune{0x2713},
 	},
 	0x221b: {
-		refs: []string{
-			`U+0606 arabic-indic cube root`,
-		},
+		refs: []rune{0x0606},
 	},
 	0x221c: {
-		refs: []string{
-			`U+0607 arabic-indic fourth root`,
-		},
+		refs: []rune{0x0607},
 	},
 	0x221d: {
-		refs: []string{
-			`U+03B1 greek small letter alpha`,
-		},
+		refs: []rune{0x03B1},
 	},
 	0x221f: {
-		aliases: []string{
-			`with`,
-		},
-		refs: []string{
-			`U+2BFE reversed right angle`,
-		},
+		aliases: []string{`with`},
+		refs:    []rune{0x2BFE},
 	},
 	0x2220: {
-		refs: []string{
-			`U+299F acute angle`,
-		},
+		refs: []rune{0x299F},
 	},
 	0x2222: {
-		aliases: []string{
-			`angle arc`,
-		},
+		aliases: []string{`angle arc`},
 	},
 	0x2223: {
-		aliases: []string{
-			`such that`,
-			`APL stile`,
-		},
-		refs: []string{
-			`U+007C vertical line`,
-			`U+01C0 latin letter dental click`,
-		},
+		aliases: []string{`such that`, `APL stile`},
+		refs:    []rune{0x007C, 0x01C0},
 	},
 	0x2225: {
-		refs: []string{
-			`U+01C1 latin letter lateral click`,
-			`U+2016 double vertical line`,
-		},
+		refs: []rune{0x01C1, 0x2016},
 	},
 	0x2227: {
-		aliases: []string{
-			`wedge`,
-			`conjunction`,
-		},
-		refs: []string{
-			`U+22C0 n-ary logical and`,
-			`U+2303 up arrowhead`,
-			`U+27D1 and with dot`,
-		},
+		aliases: []string{`wedge`, `conjunction`},
+		refs:    []rune{0x22C0, 0x2303, 0x27D1},
 	},
 	0x2228: {
-		aliases: []string{
-			`vee`,
-			`disjunction`,
-		},
-		refs: []string{
-			`U+22C1 n-ary logical or`,
-			`U+2304 down arrowhead`,
-			`U+27C7 or with dot inside`,
-		},
+		aliases: []string{`vee`, `disjunction`},
+		refs:    []rune{0x22C1, 0x2304, 0x27C7},
 	},
 	0x2229: {
-		aliases: []string{
-			`cap`,
-			`hat`,
-		},
-		refs: []string{
-			`U+22C2 n-ary intersection`,
-		},
+		aliases: []string{`cap`, `hat`},
+		refs:    []rune{0x22C2},
 	},
 	0x222a: {
-		aliases: []string{
-			`cup`,
-		},
-		refs: []string{
-			`U+22C3 n-ary union`,
-		},
+		aliases: []string{`cup`},
+		refs:    []rune{0x22C3},
 	},
 	0x222b: {
-		refs: []string{
-			`U+0283 latin small letter esh`,
-		},
+		refs: []rune{0x0283},
 	},
 	0x222d: {
-		refs: []string{
-			`U+2A0C quadruple integral operator`,
-		},
+		refs: []rune{0x2A0C},
 	},
 	0x222e: {
-		refs: []string{
-			`U+2A15 integral around a point operator`,
-		},
+		refs: []rune{0x2A15},
 	},
 	0x2234: {
-		refs: []string{
-			`U+26EC historic site`,
-		},
+		refs: []rune{0x26EC},
 	},
 	0x2236: {
-		refs: []string{
-			`U+003A colon`,
-		},
+		refs: []rune{0x003A},
 	},
 	0x2238: {
-		aliases: []string{
-			`saturating subtraction`,
-		},
+		aliases: []string{`saturating subtraction`},
 	},
 	0x223b: {
-		refs: []string{
-			`U+2A6B tilde operator with rising dots`,
-		},
+		refs: []rune{0x2A6B},
 	},
 	0x223c: {
-		aliases: []string{
-			`varies with`,
-			`difference between`,
-			`similar to`,
-			`not`,
-			`cycle`,
-			`APL tilde`,
-		},
-		refs: []string{
-			`U+007E tilde`,
-			`U+00AC not sign`,
-			`U+02DC small tilde`,
-		},
+		aliases: []string{`varies with`, `difference between`, `similar to`, `not`, `cycle`, `APL tilde`},
+		refs:    []rune{0x007E, 0x00AC, 0x02DC},
 	},
 	0x223d: {
-		aliases: []string{
-			`lazy S`,
-		},
+		aliases: []string{`lazy S`},
 	},
 	0x223e: {
-		aliases: []string{
-			`most positive`,
-		},
+		aliases: []string{`most positive`},
 	},
 	0x223f: {
-		aliases: []string{
-			`alternating current`,
-		},
+		aliases: []string{`alternating current`},
 	},
 	0x2245: {
-		refs: []string{
-			`U+2A70 approximately equal or equal to`,
-		},
+		refs: []rune{0x2A70},
 	},
 	0x2248: {
-		aliases: []string{
-			`asymptotic to`,
-		},
+		aliases: []string{`asymptotic to`},
 	},
 	0x2252: {
-		aliases: []string{
-			`nearly equals`,
-		},
+		aliases: []string{`nearly equals`},
 	},
 	0x2257: {
-		aliases: []string{
-			`approximately equal to`,
-		},
+		aliases: []string{`approximately equal to`},
 	},
 	0x2259: {
-		aliases: []string{
-			`corresponds to`,
-		},
+		aliases: []string{`corresponds to`},
 	},
 	0x225c: {
-		aliases: []string{
-			`equiangular`,
-			`equal to by definition`,
-		},
+		aliases: []string{`equiangular`, `equal to by definition`},
 	},
 	0x2260: {
-		refs: []string{
-			`U+003D equals sign`,
-			`U+01C2 latin letter alveolar click`,
-		},
+		refs: []rune{0x003D, 0x01C2},
 	},
 	0x2264: {
-		refs: []string{
-			`U+003C less-than sign`,
-		},
+		refs: []rune{0x003C},
 	},
 	0x2265: {
-		refs: []string{
-			`U+003E greater-than sign`,
-		},
+		refs: []rune{0x003E},
 	},
 	0x2268: {
-		refs: []string{
-			`U+2A87 less-than and single-line not equal to`,
-		},
+		refs: []rune{0x2A87},
 	},
 	0x2269: {
-		refs: []string{
-			`U+2A88 greater-than and single-line not equal to`,
-		},
+		refs: []rune{0x2A88},
 	},
 	0x226a: {
-		refs: []string{
-			`U+00AB left-pointing double angle quotation mark`,
-		},
+		refs: []rune{0x00AB},
 	},
 	0x226b: {
-		refs: []string{
-			`U+00BB right-pointing double angle quotation mark`,
-		},
+		refs: []rune{0x00BB},
 	},
 	0x226c: {
-		aliases: []string{
-			`plaintiff`,
-			`quantic`,
-		},
+		aliases: []string{`plaintiff`, `quantic`},
 	},
 	0x227a: {
-		aliases: []string{
-			`lower rank than`,
-		},
-		refs: []string{
-			`U+22B0 precedes under relation`,
-		},
+		aliases: []string{`lower rank than`},
+		refs:    []rune{0x22B0},
 	},
 	0x227b: {
-		aliases: []string{
-			`higher rank than`,
-		},
-		refs: []string{
-			`U+22B1 succeeds under relation`,
-		},
+		aliases: []string{`higher rank than`},
+		refs:    []rune{0x22B1},
 	},
 	0x2282: {
-		aliases: []string{
-			`included in set`,
-		},
-		refs: []string{
-			`U+2E26 left sideways u bracket`,
-		},
+		aliases: []string{`included in set`},
+		refs:    []rune{0x2E26},
 	},
 	0x2283: {
-		aliases: []string{
-			`includes in set`,
-		},
-		refs: []string{
-			`U+2E27 right sideways u bracket`,
-		},
+		aliases: []string{`includes in set`},
+		refs:    []rune{0x2E27},
 	},
 	0x228d: {
-		refs: []string{
-			`U+2A03 n-ary union operator with dot`,
-			`U+2A40 intersection with dot`,
-		},
+		refs: []rune{0x2A03, 0x2A40},
 	},
 	0x228e: {
-		aliases: []string{
-			`z notation bag addition`,
-		},
-		refs: []string{
-			`U+2A04 n-ary union operator with plus`,
-		},
+		aliases: []string{`z notation bag addition`},
+		refs:    []rune{0x2A04},
 	},
 	0x2293: {
-		refs: []string{
-			`U+2A05 n-ary square intersection operator`,
-		},
+		refs: []rune{0x2A05},
 	},
 	0x2294: {
-		refs: []string{
-			`U+2A06 n-ary square union operator`,
-		},
+		refs: []rune{0x2A06},
 	},
 	0x2295: {
-		aliases: []string{
-			`direct sum`,
-			`vector pointing into page`,
-		},
-		refs: []string{
-			`U+2A01 n-ary circled plus operator`,
-			`U+1F728 alchemical symbol for verdigris`,
-		},
+		aliases: []string{`direct sum`, `vector pointing into page`},
+		refs:    []rune{0x2A01, 0x1F728},
 	},
 	0x2296: {
-		aliases: []string{
-			`symmetric difference`,
-		},
-		refs: []string{
-			`U+29B5 circle with horizontal bar`,
-			`U+1F714 alchemical symbol for salt`,
-		},
+		aliases: []string{`symmetric difference`},
+		refs:    []rune{0x29B5, 0x1F714},
 	},
 	0x2297: {
-		aliases: []string{
-			`tensor product`,
-			`vector pointing into page`,
-		},
-		refs: []string{
-			`U+26D2 circled crossing lanes`,
-			`U+2A02 n-ary circled times operator`,
-			`U+2BBE circled x`,
-			`U+1F774 lot of fortune`,
-		},
+		aliases: []string{`tensor product`, `vector pointing into page`},
+		refs:    []rune{0x26D2, 0x2A02, 0x2BBE, 0x1F774},
 	},
 	0x2299: {
-		aliases: []string{
-			`direct product`,
-			`vector pointing out of page`,
-		},
-		refs: []string{
-			`U+0298 latin letter bilabial click`,
-			`U+2609 sun`,
-			`U+2A00 n-ary circled dot operator`,
-		},
+		aliases: []string{`direct product`, `vector pointing out of page`},
+		refs:    []rune{0x0298, 0x2609, 0x2A00},
 	},
 	0x229a: {
-		refs: []string{
-			`U+233E apl functional symbol circle jot`,
-			`U+25CE bullseye`,
-		},
+		refs: []rune{0x233E, 0x25CE},
 	},
 	0x229b: {
-		refs: []string{
-			`U+235F apl functional symbol circle star`,
-		},
+		refs: []rune{0x235F},
 	},
 	0x229c: {
-		aliases: []string{
-			`NoDerivatives`,
-		},
-		refs: []string{
-			`U+1F16D circled cc`,
-		},
+		aliases: []string{`NoDerivatives`},
+		refs:    []rune{0x1F16D},
 	},
 	0x22a0: {
-		refs: []string{
-			`U+2612 ballot box with x`,
-			`U+26DD squared saltire`,
-			`U+1F771 alchemical symbol for month`,
-		},
+		refs: []rune{0x2612, 0x26DD, 0x1F771},
 	},
 	0x22a1: {
-		refs: []string{
-			`U+1F755 alchemical symbol for urine`,
-			`U+1FBBC right open squared dot`,
-		},
+		refs: []rune{0x1F755, 0x1FBBC},
 	},
 	0x22a2: {
-		aliases: []string{
-			`turnstile`,
-			`proves`,
-			`implies`,
-			`yields`,
-			`reducible`,
-		},
+		aliases: []string{`turnstile`, `proves`, `implies`, `yields`, `reducible`},
 	},
 	0x22a3: {
-		aliases: []string{
-			`reverse turnstile`,
-			`non-theorem`,
-			`does not yield`,
-		},
+		aliases: []string{`reverse turnstile`, `non-theorem`, `does not yield`},
 	},
 	0x22a4: {
-		aliases: []string{
-			`top`,
-		},
-		refs: []string{
-			`U+2E06 raised interpolation marker`,
-			`U+1F768 alchemical symbol for crucible-4`,
-		},
+		aliases: []string{`top`},
+		refs:    []rune{0x2E06, 0x1F768},
 	},
 	0x22a5: {
-		aliases: []string{
-			`base`,
-			`bottom`,
-		},
-		refs: []string{
-			`U+27C2 perpendicular`,
-		},
+		aliases: []string{`base`, `bottom`},
+		refs:    []rune{0x27C2},
 	},
 	0x22a6: {
-		aliases: []string{
-			`reduces to`,
-		},
+		aliases: []string{`reduces to`},
 	},
 	0x22a8: {
-		aliases: []string{
-			`statement is true`,
-			`valid`,
-			`is a tautology`,
-			`satisfies`,
-			`results in`,
-		},
+		aliases: []string{`statement is true`, `valid`, `is a tautology`, `satisfies`, `results in`},
 	},
 	0x22b0: {
-		refs: []string{
-			`U+227A precedes`,
-		},
+		refs: []rune{0x227A},
 	},
 	0x22b1: {
-		refs: []string{
-			`U+227B succeeds`,
-		},
+		refs: []rune{0x227B},
 	},
 	0x22b2: {
-		refs: []string{
-			`U+25C5 white left-pointing pointer`,
-		},
+		refs: []rune{0x25C5},
 	},
 	0x22b3: {
-		refs: []string{
-			`U+25BB white right-pointing pointer`,
-		},
+		refs: []rune{0x25BB},
 	},
 	0x22bb: {
-		refs: []string{
-			`U+26BA semisextile`,
-		},
+		refs: []rune{0x26BA},
 	},
 	0x22bc: {
-		refs: []string{
-			`U+2305 projective`,
-			`U+26BB quincunx`,
-		},
+		refs: []rune{0x2305, 0x26BB},
 	},
 	0x22c0: {
-		refs: []string{
-			`U+2227 logical and`,
-		},
+		refs: []rune{0x2227},
 	},
 	0x22c1: {
-		refs: []string{
-			`U+2228 logical or`,
-		},
+		refs: []rune{0x2228},
 	},
 	0x22c2: {
-		aliases: []string{
-			`z notation generalised intersection`,
-		},
-		refs: []string{
-			`U+2229 intersection`,
-		},
+		aliases: []string{`z notation generalised intersection`},
+		refs:    []rune{0x2229},
 	},
 	0x22c3: {
-		aliases: []string{
-			`z notation generalised union`,
-		},
-		refs: []string{
-			`U+222A union`,
-		},
+		aliases: []string{`z notation generalised union`},
+		refs:    []rune{0x222A},
 	},
 	0x22c4: {
-		refs: []string{
-			`U+25C7 white diamond`,
-			`U+2B29 black small diamond`,
-		},
+		refs: []rune{0x25C7, 0x2B29},
 	},
 	0x22c5: {
-		refs: []string{
-			`U+00B7 middle dot`,
-		},
+		refs: []rune{0x00B7},
 	},
 	0x22c6: {
-		refs: []string{
-			`U+066D arabic five pointed star`,
-			`U+2605 black star`,
-			`U+2B50 white medium star`,
-		},
+		refs: []rune{0x066D, 0x2605, 0x2B50},
 	},
 	0x22c7: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-			`U+00F7 division sign`,
-			`U+2715 multiplication x`,
-		},
+		refs: []rune{0x00D7, 0x00F7, 0x2715},
 	},
 	0x22c8: {
-		refs: []string{
-			`U+2445 ocr bow tie`,
-		},
+		refs: []rune{0x2445},
 	},
 	0x22cc: {
-		refs: []string{
-			`U+2041 caret insertion point`,
-		},
+		refs: []rune{0x2041},
 	},
 	0x22d4: {
-		aliases: []string{
-			`proper intersection`,
-		},
+		aliases: []string{`proper intersection`},
 	},
 	0x22d5: {
-		refs: []string{
-			`U+2317 viewdata square`,
-		},
+		refs: []rune{0x2317},
 	},
 	0x22ee: {
-		refs: []string{
-			`U+205D tricolon`,
-			`U+2026 horizontal ellipsis`,
-			`U+FE19 presentation form for vertical horizontal ellipsis`,
-		},
+		refs: []rune{0x205D, 0x2026, 0xFE19},
 	},
 	0x2300: {
-		refs: []string{
-			`U+00F8 latin small letter o with stroke`,
-			`U+2205 empty set`,
-		},
+		refs: []rune{0x00F8, 0x2205},
 	},
 	0x2303: {
-		refs: []string{
-			`U+005E circumflex accent`,
-			`U+02C4 modifier letter up arrowhead`,
-			`U+2038 caret`,
-			`U+2227 logical and`,
-		},
+		refs: []rune{0x005E, 0x02C4, 0x2038, 0x2227},
 	},
 	0x2304: {
-		refs: []string{
-			`U+02C5 modifier letter down arrowhead`,
-			`U+2228 logical or`,
-			`U+2335 countersink`,
-		},
+		refs: []rune{0x02C5, 0x2228, 0x2335},
 	},
 	0x2305: {
-		refs: []string{
-			`U+22BC nand`,
-		},
+		refs: []rune{0x22BC},
 	},
 	0x2307: {
-		refs: []string{
-			`U+2E3E wiggly vertical line`,
-			`U+3030 wavy dash`,
-		},
+		refs: []rune{0x2E3E, 0x3030},
 	},
 	0x2308: {
-		aliases: []string{
-			`APL upstile`,
-		},
-		refs: []string{
-			`U+2E22 top left half bracket`,
-			`U+300C left corner bracket`,
-		},
+		aliases: []string{`APL upstile`},
+		refs:    []rune{0x2E22, 0x300C},
 	},
 	0x2309: {
-		refs: []string{
-			`U+20E7 combining annuity symbol`,
-			`U+2E23 top right half bracket`,
-		},
+		refs: []rune{0x20E7, 0x2E23},
 	},
 	0x230a: {
-		aliases: []string{
-			`APL downstile`,
-		},
-		refs: []string{
-			`U+2E24 bottom left half bracket`,
-		},
+		aliases: []string{`APL downstile`},
+		refs:    []rune{0x2E24},
 	},
 	0x230b: {
-		refs: []string{
-			`U+300D right corner bracket`,
-			`U+2E25 bottom right half bracket`,
-		},
+		refs: []rune{0x300D, 0x2E25},
 	},
 	0x2310: {
-		aliases: []string{
-			`beginning of line`,
-		},
-		refs: []string{
-			`U+00AC not sign`,
-		},
+		aliases: []string{`beginning of line`},
+		refs:    []rune{0x00AC},
 	},
 	0x2311: {
-		aliases: []string{
-			`Kissen`,
-		},
-		refs: []string{
-			`U+2BCF rotated white four pointed cusp`,
-		},
+		aliases: []string{`Kissen`},
+		refs:    []rune{0x2BCF},
 	},
 	0x2312: {
-		aliases: []string{
-			`position of any line`,
-		},
-		refs: []string{
-			`U+25E0 upper half circle`,
-		},
+		aliases: []string{`position of any line`},
+		refs:    []rune{0x25E0},
 	},
 	0x2313: {
-		aliases: []string{
-			`position of a surface`,
-		},
+		aliases: []string{`position of a surface`},
 	},
 	0x2316: {
-		aliases: []string{
-			`true position`,
-		},
-		refs: []string{
-			`U+2BD0 square position indicator`,
-		},
+		aliases: []string{`true position`},
+		refs:    []rune{0x2BD0},
 	},
 	0x2317: {
-		refs: []string{
-			`U+22D5 equal and parallel to`,
-		},
+		refs: []rune{0x22D5},
 	},
 	0x2318: {
-		aliases: []string{
-			`command key`,
-			`operating system key`,
-		},
+		aliases: []string{`command key`, `operating system key`},
 	},
 	0x2319: {
-		aliases: []string{
-			`line marker`,
-		},
+		aliases: []string{`line marker`},
 	},
 	0x231a: {
-		refs: []string{
-			`U+23F0 alarm clock`,
-			`U+1F550 clock face one oclock`,
-		},
+		refs: []rune{0x23F0, 0x1F550},
 	},
 	0x231b: {
-		aliases: []string{
-			`alchemical symbol for hour`,
-		},
+		aliases: []string{`alchemical symbol for hour`},
 	},
 	0x231c: {
-		refs: []string{
-			`U+2E00 right angle substitution marker`,
-			`U+2E22 top left half bracket`,
-		},
+		refs: []rune{0x2E00, 0x2E22},
 	},
 	0x2320: {
-		refs: []string{
-			`U+23AE integral extension`,
-		},
+		refs: []rune{0x23AE},
 	},
 	0x2322: {
-		refs: []string{
-			`U+2040 character tie`,
-		},
+		refs: []rune{0x2040},
 	},
 	0x2323: {
-		refs: []string{
-			`U+203F undertie`,
-		},
+		refs: []rune{0x203F},
 	},
 	0x2324: {
-		aliases: []string{
-			`enter key`,
-		},
+		aliases: []string{`enter key`},
 	},
 	0x2326: {
-		aliases: []string{
-			`delete to the right key`,
-		},
+		aliases: []string{`delete to the right key`},
 	},
 	0x2327: {
-		aliases: []string{
-			`clear key`,
-		},
-		refs: []string{
-			`U+2612 ballot box with x`,
-		},
+		aliases: []string{`clear key`},
+		refs:    []rune{0x2612},
 	},
 	0x2328: {
-		refs: []string{
-			`U+1F5A6 keyboard and mouse`,
-			`U+1F5AE wired keyboard`,
-		},
+		refs: []rune{0x1F5A6, 0x1F5AE},
 	},
 	0x2329: {
-		refs: []string{
-			`U+003C less-than sign`,
-			`U+2039 single left-pointing angle quotation mark`,
-			`U+27E8 mathematical left angle bracket`,
-		},
+		refs: []rune{0x003C, 0x2039, 0x27E8},
 	},
 	0x232a: {
-		refs: []string{
-			`U+003E greater-than sign`,
-			`U+203A single right-pointing angle quotation mark`,
-			`U+27E9 mathematical right angle bracket`,
-		},
+		refs: []rune{0x003E, 0x203A, 0x27E9},
 	},
 	0x232b: {
-		aliases: []string{
-			`delete to the left key`,
-		},
+		aliases: []string{`delete to the left key`},
 	},
 	0x2333: {
-		refs: []string{
-			`U+25FA lower left triangle`,
-		},
+		refs: []rune{0x25FA},
 	},
 	0x2334: {
-		refs: []string{
-			`U+2423 open box`,
-		},
+		refs: []rune{0x2423},
 	},
 	0x2335: {
-		refs: []string{
-			`U+2304 down arrowhead`,
-		},
+		refs: []rune{0x2304},
 	},
 	0x2337: {
-		refs: []string{
-			`U+2395 apl functional symbol quad`,
-			`U+25AF white vertical rectangle`,
-			`U+2AFF n-ary white vertical bar`,
-		},
+		refs: []rune{0x2395, 0x25AF, 0x2AFF},
 	},
 	0x233a: {
-		refs: []string{
-			`U+26CB white diamond in square`,
-		},
+		refs: []rune{0x26CB},
 	},
 	0x233b: {
-		refs: []string{
-			`U+29C7 squared small circle`,
-		},
+		refs: []rune{0x29C7},
 	},
 	0x233e: {
-		refs: []string{
-			`U+229A circled ring operator`,
-			`U+29BE circled white bullet`,
-		},
+		refs: []rune{0x229A, 0x29BE},
 	},
 	0x233f: {
-		refs: []string{
-			`U+1019A roman as sign`,
-		},
+		refs: []rune{0x1019A},
 	},
 	0x2340: {
-		refs: []string{
-			`U+29F7 reverse solidus with horizontal stroke`,
-		},
+		refs: []rune{0x29F7},
 	},
 	0x2341: {
-		refs: []string{
-			`U+29C4 squared rising diagonal slash`,
-		},
+		refs: []rune{0x29C4},
 	},
 	0x2342: {
-		refs: []string{
-			`U+29C5 squared falling diagonal slash`,
-		},
+		refs: []rune{0x29C5},
 	},
 	0x2349: {
-		refs: []string{
-			`U+29B0 reversed empty set`,
-		},
+		refs: []rune{0x29B0},
 	},
 	0x234a: {
-		aliases: []string{
-			`up tack underbar`,
-		},
-		refs: []string{
-			`U+22A5 up tack`,
-		},
+		aliases: []string{`up tack underbar`},
+		refs:    []rune{0x22A5},
 	},
 	0x234e: {
-		aliases: []string{
-			`up tack jot`,
-		},
-		refs: []string{
-			`U+22A5 up tack`,
-		},
+		aliases: []string{`up tack jot`},
+		refs:    []rune{0x22A5},
 	},
 	0x2351: {
-		aliases: []string{
-			`down tack overbar`,
-		},
-		refs: []string{
-			`U+22A4 down tack`,
-			`U+3012 postal mark`,
-		},
+		aliases: []string{`down tack overbar`},
+		refs:    []rune{0x22A4, 0x3012},
 	},
 	0x2353: {
-		refs: []string{
-			`U+2BB9 up arrowhead in a rectangle box`,
-		},
+		refs: []rune{0x2BB9},
 	},
 	0x2355: {
-		aliases: []string{
-			`down tack jot`,
-		},
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		aliases: []string{`down tack jot`},
+		refs:    []rune{0x22A4},
 	},
 	0x235d: {
-		refs: []string{
-			`U+2A40 intersection with dot`,
-		},
+		refs: []rune{0x2A40},
 	},
 	0x235f: {
-		refs: []string{
-			`U+229B circled asterisk operator`,
-		},
+		refs: []rune{0x229B},
 	},
 	0x2361: {
-		aliases: []string{
-			`down tack diaeresis`,
-		},
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		aliases: []string{`down tack diaeresis`},
+		refs:    []rune{0x22A4},
 	},
 	0x2364: {
-		aliases: []string{
-			`hoot`,
-		},
+		aliases: []string{`hoot`},
 	},
 	0x2365: {
-		aliases: []string{
-			`holler`,
-		},
+		aliases: []string{`holler`},
 	},
 	0x2368: {
-		aliases: []string{
-			`smirk`,
-		},
+		aliases: []string{`smirk`},
 	},
 	0x2370: {
-		refs: []string{
-			`U+2BD1 uncertainty sign`,
-		},
+		refs: []rune{0x2BD1},
 	},
 	0x237d: {
-		refs: []string{
-			`U+2423 open box`,
-		},
+		refs: []rune{0x2423},
 	},
 	0x2385: {
-		aliases: []string{
-			`center`,
-		},
+		aliases: []string{`center`},
 	},
 	0x2388: {
-		aliases: []string{
-			`control`,
-		},
-		refs: []string{
-			`U+2638 wheel of dharma`,
-		},
+		aliases: []string{`control`},
+		refs:    []rune{0x2638},
 	},
 	0x2389: {
-		aliases: []string{
-			`pause`,
-		},
+		aliases: []string{`pause`},
 	},
 	0x238a: {
-		aliases: []string{
-			`interrupt`,
-			`break`,
-		},
+		aliases: []string{`interrupt`, `break`},
 	},
 	0x238b: {
-		aliases: []string{
-			`escape`,
-		},
+		aliases: []string{`escape`},
 	},
 	0x2394: {
-		refs: []string{
-			`U+2B21 white hexagon`,
-		},
+		refs: []rune{0x2B21},
 	},
 	0x2395: {
-		refs: []string{
-			`U+2337 apl functional symbol squish quad`,
-			`U+25AF white vertical rectangle`,
-		},
+		refs: []rune{0x2337, 0x25AF},
 	},
 	0x2397: {
-		refs: []string{
-			`U+1F519 back with leftwards arrow above`,
-		},
+		refs: []rune{0x1F519},
 	},
 	0x239a: {
-		refs: []string{
-			`U+20E2 combining enclosing screen`,
-		},
+		refs: []rune{0x20E2},
 	},
 	0x23ae: {
-		refs: []string{
-			`U+2320 top half integral`,
-			`U+2321 bottom half integral`,
-		},
+		refs: []rune{0x2320, 0x2321},
 	},
 	0x23af: {
-		refs: []string{
-			`U+23D0 vertical line extension`,
-		},
+		refs: []rune{0x23D0},
 	},
 	0x23b0: {
-		aliases: []string{
-			`left moustache`,
-		},
+		aliases: []string{`left moustache`},
 	},
 	0x23b1: {
-		aliases: []string{
-			`right moustache`,
-		},
+		aliases: []string{`right moustache`},
 	},
 	0x23b3: {
-		refs: []string{
-			`U+2211 n-ary summation`,
-		},
+		refs: []rune{0x2211},
 	},
 	0x23b4: {
-		refs: []string{
-			`U+FE47 presentation form for vertical left square bracket`,
-		},
+		refs: []rune{0xFE47},
 	},
 	0x23b5: {
-		refs: []string{
-			`U+FE48 presentation form for vertical right square bracket`,
-		},
+		refs: []rune{0xFE48},
 	},
 	0x23be: {
-		refs: []string{
-			`U+2308 left ceiling`,
-		},
+		refs: []rune{0x2308},
 	},
 	0x23bf: {
-		refs: []string{
-			`U+230A left floor`,
-		},
+		refs: []rune{0x230A},
 	},
 	0x23c9: {
-		refs: []string{
-			`U+22A4 down tack`,
-			`U+252C box drawings light down and horizontal`,
-		},
+		refs: []rune{0x22A4, 0x252C},
 	},
 	0x23ca: {
-		refs: []string{
-			`U+22A5 up tack`,
-			`U+2534 box drawings light up and horizontal`,
-		},
+		refs: []rune{0x22A5, 0x2534},
 	},
 	0x23cb: {
-		refs: []string{
-			`U+2309 right ceiling`,
-		},
+		refs: []rune{0x2309},
 	},
 	0x23cc: {
-		refs: []string{
-			`U+230B right floor`,
-		},
+		refs: []rune{0x230B},
 	},
 	0x23ce: {
-		refs: []string{
-			`U+21B5 downwards arrow with corner leftwards`,
-			`U+2B90 return left`,
-		},
+		refs: []rune{0x21B5, 0x2B90},
 	},
 	0x23d0: {
-		refs: []string{
-			`U+23AF horizontal line extension`,
-		},
+		refs: []rune{0x23AF},
 	},
 	0x23d7: {
-		refs: []string{
-			`U+1D242 combining greek musical triseme`,
-		},
+		refs: []rune{0x1D242},
 	},
 	0x23d8: {
-		refs: []string{
-			`U+1D243 combining greek musical tetraseme`,
-		},
+		refs: []rune{0x1D243},
 	},
 	0x23d9: {
-		refs: []string{
-			`U+1D244 combining greek musical pentaseme`,
-		},
+		refs: []rune{0x1D244},
 	},
 	0x23dc: {
-		refs: []string{
-			`U+FE35 presentation form for vertical left parenthesis`,
-		},
+		refs: []rune{0xFE35},
 	},
 	0x23dd: {
-		refs: []string{
-			`U+FE36 presentation form for vertical right parenthesis`,
-		},
+		refs: []rune{0xFE36},
 	},
 	0x23de: {
-		refs: []string{
-			`U+FE37 presentation form for vertical left curly bracket`,
-		},
+		refs: []rune{0xFE37},
 	},
 	0x23df: {
-		refs: []string{
-			`U+FE38 presentation form for vertical right curly bracket`,
-		},
+		refs: []rune{0xFE38},
 	},
 	0x23e0: {
-		refs: []string{
-			`U+FE39 presentation form for vertical left tortoise shell bracket`,
-		},
+		refs: []rune{0xFE39},
 	},
 	0x23e1: {
-		refs: []string{
-			`U+FE3A presentation form for vertical right tortoise shell bracket`,
-		},
+		refs: []rune{0xFE3A},
 	},
 	0x23e9: {
-		aliases: []string{
-			`fast forward`,
-		},
+		aliases: []string{`fast forward`},
 	},
 	0x23ea: {
-		aliases: []string{
-			`rewind`,
-			`fast backwards`,
-		},
+		aliases: []string{`rewind`, `fast backwards`},
 	},
 	0x23ed: {
-		aliases: []string{
-			`skip to the end or next file/track/chapter`,
-		},
+		aliases: []string{`skip to the end or next file/track/chapter`},
 	},
 	0x23ee: {
-		aliases: []string{
-			`skip to the start or previous file/track/chapter`,
-		},
+		aliases: []string{`skip to the start or previous file/track/chapter`},
 	},
 	0x23ef: {
-		aliases: []string{
-			`play/pause toggle`,
-		},
+		aliases: []string{`play/pause toggle`},
 	},
 	0x23f0: {
-		refs: []string{
-			`U+231A watch`,
-			`U+1F550 clock face one oclock`,
-			`U+1F570 mantelpiece clock`,
-		},
+		refs: []rune{0x231A, 0x1F550, 0x1F570},
 	},
 	0x23f3: {
-		refs: []string{
-			`U+231B hourglass`,
-		},
+		refs: []rune{0x231B},
 	},
 	0x23f4: {
-		aliases: []string{
-			`reverse`,
-			`back`,
-		},
-		refs: []string{
-			`U+2BC7 black medium left-pointing triangle centred`,
-			`U+1F780 black left-pointing isosceles right triangle`,
-		},
+		aliases: []string{`reverse`, `back`},
+		refs:    []rune{0x2BC7, 0x1F780},
 	},
 	0x23f5: {
-		aliases: []string{
-			`forward`,
-		},
-		refs: []string{
-			`U+2BC8 black medium right-pointing triangle centred`,
-			`U+1F782 black right-pointing isosceles right triangle`,
-		},
+		aliases: []string{`forward`},
+		refs:    []rune{0x2BC8, 0x1F782},
 	},
 	0x23f6: {
-		aliases: []string{
-			`increase`,
-		},
-		refs: []string{
-			`U+2BC5 black medium up-pointing triangle centred`,
-			`U+1F781 black up-pointing isosceles right triangle`,
-		},
+		aliases: []string{`increase`},
+		refs:    []rune{0x2BC5, 0x1F781},
 	},
 	0x23f7: {
-		aliases: []string{
-			`decrease`,
-		},
-		refs: []string{
-			`U+2BC6 black medium down-pointing triangle centred`,
-			`U+1F783 black down-pointing isosceles right triangle`,
-		},
+		aliases: []string{`decrease`},
+		refs:    []rune{0x2BC6, 0x1F783},
 	},
 	0x23f8: {
-		aliases: []string{
-			`pause`,
-		},
-		refs: []string{
-			`U+2016 double vertical line`,
-		},
+		aliases: []string{`pause`},
+		refs:    []rune{0x2016},
 	},
 	0x23f9: {
-		aliases: []string{
-			`stop`,
-		},
-		refs: []string{
-			`U+25FC black medium square`,
-		},
+		aliases: []string{`stop`},
+		refs:    []rune{0x25FC},
 	},
 	0x23fa: {
-		aliases: []string{
-			`record`,
-		},
-		refs: []string{
-			`U+26AB medium black circle`,
-			`U+1F534 large red circle`,
-		},
+		aliases: []string{`record`},
+		refs:    []rune{0x26AB, 0x1F534},
 	},
 	0x23fd: {
-		refs: []string{
-			`U+2B58 heavy circle`,
-		},
+		refs: []rune{0x2B58},
 	},
 	0x23fe: {
-		refs: []string{
-			`U+263E last quarter moon`,
-		},
+		refs: []rune{0x263E},
 	},
 	0x2422: {
-		refs: []string{
-			`U+0180 latin small letter b with stroke`,
-		},
+		refs: []rune{0x0180},
 	},
 	0x2423: {
-		refs: []string{
-			`U+2334 counterbore`,
-		},
+		refs: []rune{0x2334},
 	},
 	0x2426: {
-		refs: []string{
-			`U+061F arabic question mark`,
-		},
+		refs: []rune{0x061F},
 	},
 	0x2445: {
-		aliases: []string{
-			`unique asterisk`,
-		},
-		refs: []string{
-			`U+22C8 bowtie`,
-		},
+		aliases: []string{`unique asterisk`},
+		refs:    []rune{0x22C8},
 	},
 	0x2446: {
-		aliases: []string{
-			`transit`,
-		},
+		aliases: []string{`transit`},
 	},
 	0x2447: {
-		aliases: []string{
-			`amount`,
-		},
+		aliases: []string{`amount`},
 	},
 	0x2448: {
-		aliases: []string{
-			`MICR ON US SYMBOL`,
-			`on us`,
-		},
+		aliases: []string{`MICR ON US SYMBOL`, `on us`},
 	},
 	0x2449: {
-		aliases: []string{
-			`MICR DASH SYMBOL`,
-			`dash`,
-		},
+		aliases: []string{`MICR DASH SYMBOL`, `dash`},
 	},
 	0x24b8: {
-		refs: []string{
-			`U+00A9 copyright sign`,
-		},
+		refs: []rune{0x00A9},
 	},
 	0x24c2: {
-		refs: []string{
-			`U+1F1AD mask work symbol`,
-		},
+		refs: []rune{0x1F1AD},
 	},
 	0x24c5: {
-		refs: []string{
-			`U+2117 sound recording copyright`,
-		},
+		refs: []rune{0x2117},
 	},
 	0x24c7: {
-		refs: []string{
-			`U+00AE registered sign`,
-		},
+		refs: []rune{0x00AE},
 	},
 	0x24ff: {
-		refs: []string{
-			`U+2776 dingbat negative circled digit one`,
-		},
+		refs: []rune{0x2776},
 	},
 	0x2500: {
-		aliases: []string{
-			`Videotex Mosaic DG 15`,
-		},
-		refs: []string{
-			`U+1FBAF box drawings light horizontal with vertical stroke`,
-		},
+		aliases: []string{`Videotex Mosaic DG 15`},
+		refs:    []rune{0x1FBAF},
 	},
 	0x2502: {
-		aliases: []string{
-			`Videotex Mosaic DG 14`,
-		},
+		aliases: []string{`Videotex Mosaic DG 14`},
 	},
 	0x250c: {
-		aliases: []string{
-			`Videotex Mosaic DG 16`,
-		},
+		aliases: []string{`Videotex Mosaic DG 16`},
 	},
 	0x2510: {
-		aliases: []string{
-			`Videotex Mosaic DG 17`,
-		},
+		aliases: []string{`Videotex Mosaic DG 17`},
 	},
 	0x2514: {
-		aliases: []string{
-			`Videotex Mosaic DG 18`,
-		},
+		aliases: []string{`Videotex Mosaic DG 18`},
 	},
 	0x2518: {
-		aliases: []string{
-			`Videotex Mosaic DG 19`,
-		},
+		aliases: []string{`Videotex Mosaic DG 19`},
 	},
 	0x251c: {
-		aliases: []string{
-			`Videotex Mosaic DG 20`,
-		},
+		aliases: []string{`Videotex Mosaic DG 20`},
 	},
 	0x251d: {
-		aliases: []string{
-			`Videotex Mosaic DG 03`,
-		},
+		aliases: []string{`Videotex Mosaic DG 03`},
 	},
 	0x2524: {
-		aliases: []string{
-			`Videotex Mosaic DG 21`,
-		},
+		aliases: []string{`Videotex Mosaic DG 21`},
 	},
 	0x2525: {
-		aliases: []string{
-			`Videotex Mosaic DG 04`,
-		},
+		aliases: []string{`Videotex Mosaic DG 04`},
 	},
 	0x252c: {
-		aliases: []string{
-			`Videotex Mosaic DG 22`,
-		},
+		aliases: []string{`Videotex Mosaic DG 22`},
 	},
 	0x252f: {
-		aliases: []string{
-			`Videotex Mosaic DG 02`,
-		},
+		aliases: []string{`Videotex Mosaic DG 02`},
 	},
 	0x2534: {
-		aliases: []string{
-			`Videotex Mosaic DG 23`,
-		},
+		aliases: []string{`Videotex Mosaic DG 23`},
 	},
 	0x2537: {
-		aliases: []string{
-			`Videotex Mosaic DG 01`,
-		},
+		aliases: []string{`Videotex Mosaic DG 01`},
 	},
 	0x253c: {
-		aliases: []string{
-			`Videotex Mosaic DG 24`,
-		},
+		aliases: []string{`Videotex Mosaic DG 24`},
 	},
 	0x253f: {
-		aliases: []string{
-			`Videotex Mosaic DG 13`,
-		},
+		aliases: []string{`Videotex Mosaic DG 13`},
 	},
 	0x2571: {
-		refs: []string{
-			`U+002F solidus`,
-			`U+2044 fraction slash`,
-			`U+2215 division slash`,
-		},
+		refs: []rune{0x002F, 0x2044, 0x2215},
 	},
 	0x2572: {
-		refs: []string{
-			`U+005C reverse solidus`,
-			`U+2216 set minus`,
-			`U+29F5 reverse solidus operator`,
-		},
+		refs: []rune{0x005C, 0x2216, 0x29F5},
 	},
 	0x2573: {
-		refs: []string{
-			`U+2613 saltire`,
-			`U+2715 multiplication x`,
-		},
+		refs: []rune{0x2613, 0x2715},
 	},
 	0x2588: {
-		aliases: []string{
-			`solid`,
-		},
-		refs: []string{
-			`U+25A0 black square`,
-		},
+		aliases: []string{`solid`},
+		refs:    []rune{0x25A0},
 	},
 	0x2592: {
-		aliases: []string{
-			`speckles fill`,
-			`dotted fill`,
-		},
-		refs: []string{
-			`U+1FB90 inverse medium shade`,
-		},
+		aliases: []string{`speckles fill`, `dotted fill`},
+		refs:    []rune{0x1FB90},
 	},
 	0x259a: {
-		refs: []string{
-			`U+1F67F reverse checker board`,
-			`U+1FB95 checker board fill`,
-		},
+		refs: []rune{0x1F67F, 0x1FB95},
 	},
 	0x259e: {
-		refs: []string{
-			`U+1F67E checker board`,
-			`U+1FB96 inverse checker board fill`,
-		},
+		refs: []rune{0x1F67E, 0x1FB96},
 	},
 	0x25a0: {
-		aliases: []string{
-			`moding mark`,
-		},
-		refs: []string{
-			`U+2588 full block`,
-			`U+2B1B black large square`,
-		},
+		aliases: []string{`moding mark`},
+		refs:    []rune{0x2588, 0x2B1B},
 	},
 	0x25a1: {
-		aliases: []string{
-			`quadrature`,
-			`alchemical symbol for salt`,
-		},
-		refs: []string{
-			`U+20DE combining enclosing square`,
-			`U+25FB white medium square`,
-			`U+2610 ballot box`,
-			`U+2B1C white large square`,
-			`U+3013 geta mark`,
-		},
+		aliases: []string{`quadrature`, `alchemical symbol for salt`},
+		refs:    []rune{0x20DE, 0x25FB, 0x2610, 0x2B1C, 0x3013},
 	},
 	0x25a7: {
-		refs: []string{
-			`U+1FB98 upper left to lower right fill`,
-		},
+		refs: []rune{0x1FB98},
 	},
 	0x25a8: {
-		refs: []string{
-			`U+1FB99 upper right to lower left fill`,
-		},
+		refs: []rune{0x1FB99},
 	},
 	0x25aa: {
-		aliases: []string{
-			`square bullet`,
-		},
-		refs: []string{
-			`U+2B1D black very small square`,
-		},
+		aliases: []string{`square bullet`},
+		refs:    []rune{0x2B1D},
 	},
 	0x25ab: {
-		refs: []string{
-			`U+2B1E white very small square`,
-		},
+		refs: []rune{0x2B1E},
 	},
 	0x25ae: {
-		aliases: []string{
-			`histogram marker`,
-		},
-		refs: []string{
-			`U+220E end of proof`,
-		},
+		aliases: []string{`histogram marker`},
+		refs:    []rune{0x220E},
 	},
 	0x25af: {
-		refs: []string{
-			`U+2337 apl functional symbol squish quad`,
-			`U+2395 apl functional symbol quad`,
-		},
+		refs: []rune{0x2337, 0x2395},
 	},
 	0x25b2: {
-		refs: []string{
-			`U+23F6 black medium up-pointing triangle`,
-			`U+2BC5 black medium up-pointing triangle centred`,
-			`U+1F53A up-pointing red triangle`,
-		},
+		refs: []rune{0x23F6, 0x2BC5, 0x1F53A},
 	},
 	0x25b3: {
-		aliases: []string{
-			`trine`,
-		},
-		refs: []string{
-			`U+20E4 combining enclosing upward pointing triangle`,
-			`U+2206 increment`,
-			`U+1F6C6 triangle with rounded corners`,
-			`U+1F702 alchemical symbol for fire`,
-		},
+		aliases: []string{`trine`},
+		refs:    []rune{0x20E4, 0x2206, 0x1F6C6, 0x1F702},
 	},
 	0x25b4: {
-		refs: []string{
-			`U+1F53C up-pointing small red triangle`,
-		},
+		refs: []rune{0x1F53C},
 	},
 	0x25b6: {
-		refs: []string{
-			`U+23F5 black medium right-pointing triangle`,
-			`U+2BC8 black medium right-pointing triangle centred`,
-		},
+		refs: []rune{0x23F5, 0x2BC8},
 	},
 	0x25b7: {
-		aliases: []string{
-			`z notation range restriction`,
-		},
+		aliases: []string{`z notation range restriction`},
 	},
 	0x25b8: {
-		refs: []string{
-			`U+2023 triangular bullet`,
-		},
+		refs: []rune{0x2023},
 	},
 	0x25bb: {
-		aliases: []string{
-			`forward arrow indicator`,
-		},
-		refs: []string{
-			`U+22B3 contains as normal subgroup`,
-		},
+		aliases: []string{`forward arrow indicator`},
+		refs:    []rune{0x22B3},
 	},
 	0x25bc: {
-		refs: []string{
-			`U+23F7 black medium down-pointing triangle`,
-			`U+2BC6 black medium down-pointing triangle centred`,
-			`U+1F53B down-pointing red triangle`,
-		},
+		refs: []rune{0x23F7, 0x2BC6, 0x1F53B},
 	},
 	0x25bd: {
-		aliases: []string{
-			`Hamilton operator`,
-		},
-		refs: []string{
-			`U+2207 nabla`,
-			`U+26DB heavy white down-pointing triangle`,
-			`U+1F704 alchemical symbol for water`,
-		},
+		aliases: []string{`Hamilton operator`},
+		refs:    []rune{0x2207, 0x26DB, 0x1F704},
 	},
 	0x25be: {
-		refs: []string{
-			`U+1F53D down-pointing small red triangle`,
-		},
+		refs: []rune{0x1F53D},
 	},
 	0x25c0: {
-		refs: []string{
-			`U+23F4 black medium left-pointing triangle`,
-			`U+2BC7 black medium left-pointing triangle centred`,
-		},
+		refs: []rune{0x23F4, 0x2BC7},
 	},
 	0x25c1: {
-		aliases: []string{
-			`z notation domain restriction`,
-		},
+		aliases: []string{`z notation domain restriction`},
 	},
 	0x25c5: {
-		aliases: []string{
-			`backward arrow indicator`,
-		},
-		refs: []string{
-			`U+22B2 normal subgroup of`,
-		},
+		aliases: []string{`backward arrow indicator`},
+		refs:    []rune{0x22B2},
 	},
 	0x25c6: {
-		refs: []string{
-			`U+2666 black diamond suit`,
-			`U+2B25 black medium diamond`,
-			`U+1F536 large orange diamond`,
-		},
+		refs: []rune{0x2666, 0x2B25, 0x1F536},
 	},
 	0x25c7: {
-		refs: []string{
-			`U+20DF combining enclosing diamond`,
-			`U+22C4 diamond operator`,
-			`U+2662 white diamond suit`,
-			`U+27E1 white concave-sided diamond`,
-			`U+2B26 white medium diamond`,
-			`U+1F754 alchemical symbol for soap`,
-			`U+1FBAE box drawings light diagonal diamond`,
-		},
+		refs: []rune{0x20DF, 0x22C4, 0x2662, 0x27E1, 0x2B26, 0x1F754, 0x1FBAE},
 	},
 	0x25c9: {
-		aliases: []string{
-			`tainome`,
-		},
+		aliases: []string{`tainome`},
 	},
 	0x25ca: {
-		refs: []string{
-			`U+2662 white diamond suit`,
-		},
+		refs: []rune{0x2662},
 	},
 	0x25cb: {
-		refs: []string{
-			`U+20DD combining enclosing circle`,
-			`U+25EF large circle`,
-			`U+2B58 heavy circle`,
-			`U+3007 ideographic number zero`,
-			`U+1F315 full moon symbol`,
-		},
+		refs: []rune{0x20DD, 0x25EF, 0x2B58, 0x3007, 0x1F315},
 	},
 	0x25ce: {
-		refs: []string{
-			`U+229A circled ring operator`,
-			`U+2B57 heavy circle with circle inside`,
-			`U+1F3AF direct hit`,
-			`U+1F78B round target`,
-		},
+		refs: []rune{0x229A, 0x2B57, 0x1F3AF, 0x1F78B},
 	},
 	0x25cf: {
-		refs: []string{
-			`U+2B24 black large circle`,
-			`U+1F311 new moon symbol`,
-			`U+1F534 large red circle`,
-		},
+		refs: []rune{0x2B24, 0x1F311, 0x1F534},
 	},
 	0x25d0: {
-		refs: []string{
-			`U+1F313 first quarter moon symbol`,
-		},
+		refs: []rune{0x1F313},
 	},
 	0x25d1: {
-		refs: []string{
-			`U+1F317 last quarter moon symbol`,
-		},
+		refs: []rune{0x1F317},
 	},
 	0x25d8: {
-		refs: []string{
-			`U+2022 bullet`,
-			`U+25E6 white bullet`,
-		},
+		refs: []rune{0x2022, 0x25E6},
 	},
 	0x25e0: {
-		refs: []string{
-			`U+2312 arc`,
-		},
+		refs: []rune{0x2312},
 	},
 	0x25e2: {
-		refs: []string{
-			`U+1FB9E lower right triangular medium shade`,
-		},
+		refs: []rune{0x1FB9E},
 	},
 	0x25e3: {
-		refs: []string{
-			`U+1FB9F lower left triangular medium shade`,
-		},
+		refs: []rune{0x1FB9F},
 	},
 	0x25e4: {
-		refs: []string{
-			`U+1FB9C upper left triangular medium shade`,
-		},
+		refs: []rune{0x1FB9C},
 	},
 	0x25e5: {
-		refs: []string{
-			`U+1FB9D upper right triangular medium shade`,
-		},
+		refs: []rune{0x1FB9D},
 	},
 	0x25e6: {
-		refs: []string{
-			`U+2022 bullet`,
-			`U+2218 ring operator`,
-			`U+25D8 inverse bullet`,
-		},
+		refs: []rune{0x2022, 0x2218, 0x25D8},
 	},
 	0x25e7: {
-		refs: []string{
-			`U+2B12 square with top half black`,
-		},
+		refs: []rune{0x2B12},
 	},
 	0x25ef: {
-		refs: []string{
-			`U+20DD combining enclosing circle`,
-			`U+25CB white circle`,
-			`U+2B24 black large circle`,
-			`U+2B55 heavy large circle`,
-			`U+3007 ideographic number zero`,
-		},
+		refs: []rune{0x20DD, 0x25CB, 0x2B24, 0x2B55, 0x3007},
 	},
 	0x25fa: {
-		refs: []string{
-			`U+22BF right triangle`,
-		},
+		refs: []rune{0x22BF},
 	},
 	0x25fb: {
-		aliases: []string{
-			`always`,
-		},
-		refs: []string{
-			`U+25A1 white square`,
-			`U+27E4 white square with leftwards tick`,
-		},
+		aliases: []string{`always`},
+		refs:    []rune{0x25A1, 0x27E4},
 	},
 	0x25fc: {
-		refs: []string{
-			`U+23F9 black square for stop`,
-			`U+25A0 black square`,
-		},
+		refs: []rune{0x23F9, 0x25A0},
 	},
 	0x25fd: {
-		refs: []string{
-			`U+25AB white small square`,
-		},
+		refs: []rune{0x25AB},
 	},
 	0x25fe: {
-		refs: []string{
-			`U+25AA black small square`,
-		},
+		refs: []rune{0x25AA},
 	},
 	0x25ff: {
-		refs: []string{
-			`U+22BF right triangle`,
-		},
+		refs: []rune{0x22BF},
 	},
 	0x2600: {
-		aliases: []string{
-			`clear weather`,
-		},
-		refs: []string{
-			`U+2609 sun`,
-			`U+1F506 high brightness symbol`,
-		},
+		aliases: []string{`clear weather`},
+		refs:    []rune{0x2609, 0x1F506},
 	},
 	0x2601: {
-		aliases: []string{
-			`cloudy weather`,
-		},
+		aliases: []string{`cloudy weather`},
 	},
 	0x2602: {
-		aliases: []string{
-			`rainy weather`,
-		},
-		refs: []string{
-			`U+1F302 closed umbrella`,
-			`U+1F327 cloud with rain`,
-		},
+		aliases: []string{`rainy weather`},
+		refs:    []rune{0x1F302, 0x1F327},
 	},
 	0x2603: {
-		aliases: []string{
-			`snowy weather`,
-		},
+		aliases: []string{`snowy weather`},
 	},
 	0x2605: {
-		refs: []string{
-			`U+22C6 star operator`,
-			`U+2B51 black small star`,
-			`U+2BE8 left half black star`,
-			`U+1F7C9 light five pointed black star`,
-		},
+		refs: []rune{0x22C6, 0x2B51, 0x2BE8, 0x1F7C9},
 	},
 	0x2606: {
-		refs: []string{
-			`U+2729 stress outlined white star`,
-			`U+2B50 white medium star`,
-			`U+1F31F glowing star`,
-		},
+		refs: []rune{0x2729, 0x2B50, 0x1F31F},
 	},
 	0x2609: {
-		aliases: []string{
-			`alchemical symbol for gold`,
-		},
-		refs: []string{
-			`U+2299 circled dot operator`,
-			`U+2600 black sun with rays`,
-			`U+263C white sun with rays`,
-			`U+1F31E sun with face`,
-		},
+		aliases: []string{`alchemical symbol for gold`},
+		refs:    []rune{0x2299, 0x2600, 0x263C, 0x1F31E},
 	},
 	0x260a: {
-		aliases: []string{
-			`alchemical symbol for sublimation`,
-		},
-		refs: []string{
-			`U+1F75E alchemical symbol for sublimation`,
-		},
+		aliases: []string{`alchemical symbol for sublimation`},
+		refs:    []rune{0x1F75E},
 	},
 	0x260b: {
-		aliases: []string{
-			`alchemical symbol for purify`,
-		},
-		refs: []string{
-			`U+1F763 alchemical symbol for purify`,
-		},
+		aliases: []string{`alchemical symbol for purify`},
+		refs:    []rune{0x1F763},
 	},
 	0x260c: {
-		aliases: []string{
-			`alchemical symbol for day`,
-		},
-		refs: []string{
-			`U+1F775 occultation`,
-		},
+		aliases: []string{`alchemical symbol for day`},
+		refs:    []rune{0x1F775},
 	},
 	0x260d: {
-		refs: []string{
-			`U+1F776 lunar eclipse`,
-		},
+		refs: []rune{0x1F776},
 	},
 	0x260e: {
-		refs: []string{
-			`U+2121 telephone sign`,
-			`U+2706 telephone location sign`,
-			`U+1F4DE telephone receiver`,
-			`U+1F57F black touchtone telephone`,
-		},
+		refs: []rune{0x2121, 0x2706, 0x1F4DE, 0x1F57F},
 	},
 	0x260f: {
-		refs: []string{
-			`U+1F57E white touchtone telephone`,
-		},
+		refs: []rune{0x1F57E},
 	},
 	0x2610: {
-		refs: []string{
-			`U+25A1 white square`,
-		},
+		refs: []rune{0x25A1},
 	},
 	0x2611: {
-		refs: []string{
-			`U+1F5F9 ballot box with bold check`,
-		},
+		refs: []rune{0x1F5F9},
 	},
 	0x2612: {
-		refs: []string{
-			`U+22A0 squared times`,
-			`U+2327 x in a rectangle box`,
-			`U+2BBD ballot box with light x`,
-			`U+1F5F3 ballot box with ballot`,
-			`U+1F5F5 ballot box with script x`,
-		},
+		refs: []rune{0x22A0, 0x2327, 0x2BBD, 0x1F5F3, 0x1F5F5},
 	},
 	0x2613: {
-		aliases: []string{
-			`St. Andrew's Cross`,
-		},
-		refs: []string{
-			`U+2717 ballot x`,
-			`U+1F7A9 light saltire`,
-		},
+		aliases: []string{`St. Andrew's Cross`},
+		refs:    []rune{0x2717, 0x1F7A9},
 	},
 	0x2614: {
-		aliases: []string{
-			`showery weather`,
-		},
+		aliases: []string{`showery weather`},
 	},
 	0x2615: {
-		aliases: []string{
-			`tea or coffee`,
-			`depending on locale`,
-		},
-		refs: []string{
-			`U+231A watch`,
-			`U+231B hourglass`,
-			`U+1F375 teacup without handle`,
-		},
+		aliases: []string{`tea or coffee`, `depending on locale`},
+		refs:    []rune{0x231A, 0x231B, 0x1F375},
 	},
 	0x2618: {
-		refs: []string{
-			`U+1F340 four leaf clover`,
-		},
+		refs: []rune{0x1F340},
 	},
 	0x2619: {
-		refs: []string{
-			`U+2767 rotated floral heart bullet`,
-			`U+1F659 south west pointing vine leaf`,
-		},
+		refs: []rune{0x2767, 0x1F659},
 	},
 	0x261c: {
-		refs: []string{
-			`U+1F448 white left pointing backhand index`,
-			`U+1F598 sideways white left pointing index`,
-		},
+		refs: []rune{0x1F448, 0x1F598},
 	},
 	0x261d: {
-		refs: []string{
-			`U+1F59E sideways white up pointing index`,
-		},
+		refs: []rune{0x1F59E},
 	},
 	0x261e: {
-		aliases: []string{
-			`fist`,
-		},
-		refs: []string{
-			`U+1F599 sideways white right pointing index`,
-			`U+1FBC1 left third white right pointing index`,
-		},
+		aliases: []string{`fist`},
+		refs:    []rune{0x1F599, 0x1FBC1},
 	},
 	0x261f: {
-		refs: []string{
-			`U+1F597 white down pointing left hand index`,
-			`U+1F59F sideways white down pointing index`,
-		},
+		refs: []rune{0x1F597, 0x1F59F},
 	},
 	0x2620: {
-		aliases: []string{
-			`poison`,
-		},
-		refs: []string{
-			`U+1F571 black skull and crossbones`,
-		},
+		aliases: []string{`poison`},
+		refs:    []rune{0x1F571},
 	},
 	0x2624: {
-		refs: []string{
-			`U+2695 staff of aesculapius`,
-			`U+1F750 alchemical symbol for caduceus`,
-		},
+		refs: []rune{0x2695, 0x1F750},
 	},
 	0x2627: {
-		aliases: []string{
-			`Constantine's cross`,
-			`Christogram`,
-		},
-		refs: []string{
-			`U+2CE9 coptic symbol khi ro`,
-		},
+		aliases: []string{`Constantine's cross`, `Christogram`},
+		refs:    []rune{0x2CE9},
 	},
 	0x2629: {
-		aliases: []string{
-			`simple cross potent`,
-		},
-		refs: []string{
-			`U+1F70A alchemical symbol for vinegar`,
-		},
+		aliases: []string{`simple cross potent`},
+		refs:    []rune{0x1F70A},
 	},
 	0x262b: {
-		aliases: []string{
-			`symbol of iran`,
-		},
+		aliases: []string{`symbol of iran`},
 	},
 	0x262c: {
-		aliases: []string{
-			`khanda`,
-		},
-		refs: []string{
-			`U+1FAAF khanda`,
-		},
+		aliases: []string{`khanda`},
+		refs:    []rune{0x1FAAF},
 	},
 	0x262f: {
-		refs: []string{
-			`U+0FCA tibetan symbol nor bu nyis -khyil`,
-		},
+		refs: []rune{0x0FCA},
 	},
 	0x2630: {
-		aliases: []string{
-			`qian2`,
-		},
+		aliases: []string{`qian2`},
 	},
 	0x2631: {
-		aliases: []string{
-			`dui4`,
-		},
+		aliases: []string{`dui4`},
 	},
 	0x2632: {
-		aliases: []string{
-			`li2`,
-		},
+		aliases: []string{`li2`},
 	},
 	0x2633: {
-		aliases: []string{
-			`zhen4`,
-		},
+		aliases: []string{`zhen4`},
 	},
 	0x2634: {
-		aliases: []string{
-			`xun4`,
-		},
+		aliases: []string{`xun4`},
 	},
 	0x2635: {
-		aliases: []string{
-			`kan3`,
-		},
+		aliases: []string{`kan3`},
 	},
 	0x2636: {
-		aliases: []string{
-			`gen4`,
-		},
+		aliases: []string{`gen4`},
 	},
 	0x2637: {
-		aliases: []string{
-			`kun1`,
-		},
+		aliases: []string{`kun1`},
 	},
 	0x2638: {
-		refs: []string{
-			`U+2388 helm symbol`,
-		},
+		refs: []rune{0x2388},
 	},
 	0x2639: {
-		refs: []string{
-			`U+1F641 slightly frowning face`,
-		},
+		refs: []rune{0x1F641},
 	},
 	0x263a: {
-		aliases: []string{
-			`have a nice day!`,
-		},
-		refs: []string{
-			`U+1F642 slightly smiling face`,
-		},
+		aliases: []string{`have a nice day!`},
+		refs:    []rune{0x1F642},
 	},
 	0x263c: {
-		aliases: []string{
-			`compass`,
-		},
-		refs: []string{
-			`U+2609 sun`,
-			`U+1F31E sun with face`,
-			`U+1F323 white sun`,
-			`U+1F506 high brightness symbol`,
-		},
+		aliases: []string{`compass`},
+		refs:    []rune{0x2609, 0x1F31E, 0x1F323, 0x1F506},
 	},
 	0x263d: {
-		aliases: []string{
-			`alchemical symbol for silver`,
-		},
-		refs: []string{
-			`U+1F313 first quarter moon symbol`,
-		},
+		aliases: []string{`alchemical symbol for silver`},
+		refs:    []rune{0x1F313},
 	},
 	0x263e: {
-		aliases: []string{
-			`alchemical symbol for silver`,
-		},
-		refs: []string{
-			`U+23FE power sleep symbol`,
-			`U+1F317 last quarter moon symbol`,
-			`U+1F319 crescent moon`,
-		},
+		aliases: []string{`alchemical symbol for silver`},
+		refs:    []rune{0x23FE, 0x1F317, 0x1F319},
 	},
 	0x263f: {
-		aliases: []string{
-			`alchemical symbol for quicksilver`,
-			`intersexuality`,
-		},
+		aliases: []string{`alchemical symbol for quicksilver`, `intersexuality`},
 	},
 	0x2640: {
-		aliases: []string{
-			`Venus`,
-			`alchemical symbol for copper`,
-		},
-		refs: []string{
-			`U+1F469 woman`,
-			`U+1F6BA womens symbol`,
-		},
+		aliases: []string{`Venus`, `alchemical symbol for copper`},
+		refs:    []rune{0x1F469, 0x1F6BA},
 	},
 	0x2641: {
-		aliases: []string{
-			`alchemical symbol for antimony`,
-		},
-		refs: []string{
-			`U+1F728 alchemical symbol for verdigris`,
-		},
+		aliases: []string{`alchemical symbol for antimony`},
+		refs:    []rune{0x1F728},
 	},
 	0x2642: {
-		aliases: []string{
-			`Mars`,
-			`alchemical symbol for iron`,
-		},
-		refs: []string{
-			`U+2BFD passed symbol`,
-			`U+1F468 man`,
-			`U+1F6B9 mens symbol`,
-		},
+		aliases: []string{`Mars`, `alchemical symbol for iron`},
+		refs:    []rune{0x2BFD, 0x1F468, 0x1F6B9},
 	},
 	0x2643: {
-		aliases: []string{
-			`alchemical symbol for tin`,
-		},
+		aliases: []string{`alchemical symbol for tin`},
 	},
 	0x2644: {
-		aliases: []string{
-			`alchemical symbol for lead`,
-		},
+		aliases: []string{`alchemical symbol for lead`},
 	},
 	0x2645: {
-		refs: []string{
-			`U+26E2 astronomical symbol for uranus`,
-		},
+		refs: []rune{0x26E2},
 	},
 	0x2646: {
-		aliases: []string{
-			`alchemical symbol for bismuth/tinglass`,
-		},
-		refs: []string{
-			`U+2BC9 neptune form two`,
-		},
+		aliases: []string{`alchemical symbol for bismuth/tinglass`},
+		refs:    []rune{0x2BC9},
 	},
 	0x2647: {
-		refs: []string{
-			`U+2BD3 pluto form two`,
-		},
+		refs: []rune{0x2BD3},
 	},
 	0x2648: {
-		refs: []string{
-			`U+1F40F ram`,
-		},
+		refs: []rune{0x1F40F},
 	},
 	0x264b: {
-		refs: []string{
-			`U+1F980 crab`,
-		},
+		refs: []rune{0x1F980},
 	},
 	0x264c: {
-		refs: []string{
-			`U+1F981 lion face`,
-		},
+		refs: []rune{0x1F981},
 	},
 	0x264d: {
-		aliases: []string{
-			`minim`,
-		},
+		aliases: []string{`minim`},
 	},
 	0x264e: {
-		refs: []string{
-			`U+2696 scales`,
-			`U+1F75E alchemical symbol for sublimation`,
-		},
+		refs: []rune{0x2696, 0x1F75E},
 	},
 	0x264f: {
-		aliases: []string{
-			`Scorpio`,
-			`minim`,
-			`drop`,
-		},
-		refs: []string{
-			`U+1F982 scorpion`,
-		},
+		aliases: []string{`Scorpio`, `minim`, `drop`},
+		refs:    []rune{0x1F982},
 	},
 	0x2650: {
-		refs: []string{
-			`U+1F3F9 bow and arrow`,
-		},
+		refs: []rune{0x1F3F9},
 	},
 	0x2652: {
-		refs: []string{
-			`U+1F3FA amphora`,
-		},
+		refs: []rune{0x1F3FA},
 	},
 	0x2662: {
-		refs: []string{
-			`U+25C7 white diamond`,
-			`U+25CA lozenge`,
-		},
+		refs: []rune{0x25C7, 0x25CA},
 	},
 	0x2663: {
-		refs: []string{
-			`U+2618 shamrock`,
-		},
+		refs: []rune{0x2618},
 	},
 	0x2665: {
-		aliases: []string{
-			`valentine`,
-		},
-		refs: []string{
-			`U+2764 heavy black heart`,
-			`U+1F394 heart with tip on the left`,
-			`U+1F499 blue heart`,
-			`U+1F5A4 black heart`,
-		},
+		aliases: []string{`valentine`},
+		refs:    []rune{0x2764, 0x1F394, 0x1F499, 0x1F5A4},
 	},
 	0x2666: {
-		refs: []string{
-			`U+25C6 black diamond`,
-		},
+		refs: []rune{0x25C6},
 	},
 	0x2669: {
-		aliases: []string{
-			`crotchet`,
-		},
-		refs: []string{
-			`U+1D15F musical symbol quarter note`,
-		},
+		aliases: []string{`crotchet`},
+		refs:    []rune{0x1D15F},
 	},
 	0x266a: {
-		aliases: []string{
-			`quaver`,
-		},
-		refs: []string{
-			`U+1D160 musical symbol eighth note`,
-			`U+1F3B5 musical note`,
-		},
+		aliases: []string{`quaver`},
+		refs:    []rune{0x1D160, 0x1F3B5},
 	},
 	0x266b: {
-		aliases: []string{
-			`beamed quavers`,
-		},
-		refs: []string{
-			`U+1F39D beamed descending musical notes`,
-			`U+1F3B6 multiple musical notes`,
-		},
+		aliases: []string{`beamed quavers`},
+		refs:    []rune{0x1F39D, 0x1F3B6},
 	},
 	0x266c: {
-		aliases: []string{
-			`beamed semiquavers`,
-		},
+		aliases: []string{`beamed semiquavers`},
 	},
 	0x266f: {
-		aliases: []string{
-			`z notation infix bag count`,
-		},
-		refs: []string{
-			`U+0023 number sign`,
-		},
+		aliases: []string{`z notation infix bag count`},
+		refs:    []rune{0x0023},
 	},
 	0x267b: {
-		refs: []string{
-			`U+1F501 clockwise rightwards and leftwards open circle arrows`,
-		},
+		refs: []rune{0x1F501},
 	},
 	0x267e: {
-		aliases: []string{
-			`non-acid paper`,
-		},
+		aliases: []string{`non-acid paper`},
 	},
 	0x267f: {
-		aliases: []string{
-			`accessible place`,
-		},
+		aliases: []string{`accessible place`},
 	},
 	0x2680: {
-		refs: []string{
-			`U+1F3B2 game die`,
-		},
+		refs: []rune{0x1F3B2},
 	},
 	0x2687: {
-		refs: []string{
-			`U+1F636 face without mouth`,
-		},
+		refs: []rune{0x1F636},
 	},
 	0x2690: {
-		refs: []string{
-			`U+1F3F3 waving white flag`,
-		},
+		refs: []rune{0x1F3F3},
 	},
 	0x2692: {
-		aliases: []string{
-			`mining`,
-			`working day`,
-		},
-		refs: []string{
-			`U+26CF pick`,
-			`U+1F6E0 hammer and wrench`,
-		},
+		aliases: []string{`mining`, `working day`},
+		refs:    []rune{0x26CF, 0x1F6E0},
 	},
 	0x2693: {
-		aliases: []string{
-			`nautical term`,
-			`harbor`,
-		},
+		aliases: []string{`nautical term`, `harbor`},
 	},
 	0x2694: {
-		aliases: []string{
-			`military term`,
-			`battleground (on maps)`,
-			`killed in action`,
-		},
-		refs: []string{
-			`U+1F93A fencer`,
-		},
+		aliases: []string{`military term`, `battleground (on maps)`, `killed in action`},
+		refs:    []rune{0x1F93A},
 	},
 	0x2695: {
-		aliases: []string{
-			`medical term`,
-		},
-		refs: []string{
-			`U+2624 caduceus`,
-			`U+1F54F bowl of hygieia`,
-		},
+		aliases: []string{`medical term`},
+		refs:    []rune{0x2624, 0x1F54F},
 	},
 	0x2696: {
-		aliases: []string{
-			`legal term`,
-			`jurisprudence`,
-		},
-		refs: []string{
-			`U+264E libra`,
-		},
+		aliases: []string{`legal term`, `jurisprudence`},
+		refs:    []rune{0x264E},
 	},
 	0x2697: {
-		aliases: []string{
-			`chemical term`,
-			`chemistry`,
-		},
-		refs: []string{
-			`U+1F76D alchemical symbol for retort`,
-		},
+		aliases: []string{`chemical term`, `chemistry`},
+		refs:    []rune{0x1F76D},
 	},
 	0x2698: {
-		aliases: []string{
-			`botanical term`,
-		},
-		refs: []string{
-			`U+2055 flower punctuation mark`,
-			`U+2740 white florette`,
-			`U+1F337 tulip`,
-		},
+		aliases: []string{`botanical term`},
+		refs:    []rune{0x2055, 0x2740, 0x1F337},
 	},
 	0x2699: {
-		aliases: []string{
-			`technology`,
-			`tools`,
-		},
+		aliases: []string{`technology`, `tools`},
 	},
 	0x269b: {
-		aliases: []string{
-			`nuclear installation`,
-		},
+		aliases: []string{`nuclear installation`},
 	},
 	0x269d: {
-		refs: []string{
-			`U+26E5 right-handed interlaced pentagram`,
-		},
+		refs: []rune{0x26E5},
 	},
 	0x269e: {
-		aliases: []string{
-			`someone speaking`,
-		},
-		refs: []string{
-			`U+1F5E6 three rays left`,
-		},
+		aliases: []string{`someone speaking`},
+		refs:    []rune{0x1F5E6},
 	},
 	0x269f: {
-		aliases: []string{
-			`background speaking`,
-		},
-		refs: []string{
-			`U+1F5E7 three rays right`,
-		},
+		aliases: []string{`background speaking`},
+		refs:    []rune{0x1F5E7},
 	},
 	0x26a0: {
-		refs: []string{
-			`U+1F6D1 octagonal sign`,
-		},
+		refs: []rune{0x1F6D1},
 	},
 	0x26a1: {
-		aliases: []string{
-			`thunder`,
-			`lightning symbol`,
-		},
-		refs: []string{
-			`U+1F5F2 lightning mood`,
-		},
+		aliases: []string{`thunder`, `lightning symbol`},
+		refs:    []rune{0x1F5F2},
 	},
 	0x26a2: {
-		aliases: []string{
-			`female homosexuality`,
-		},
-		refs: []string{
-			`U+1F46D two women holding hands`,
-		},
+		aliases: []string{`female homosexuality`},
+		refs:    []rune{0x1F46D},
 	},
 	0x26a3: {
-		aliases: []string{
-			`male homosexuality`,
-		},
-		refs: []string{
-			`U+1F46C two men holding hands`,
-		},
+		aliases: []string{`male homosexuality`},
+		refs:    []rune{0x1F46C},
 	},
 	0x26a4: {
-		aliases: []string{
-			`heterosexuality`,
-		},
+		aliases: []string{`heterosexuality`},
 	},
 	0x26a5: {
-		aliases: []string{
-			`intersex`,
-			`androgynous`,
-			`hermaphroditic`,
-		},
+		aliases: []string{`intersex`, `androgynous`, `hermaphroditic`},
 	},
 	0x26a6: {
-		aliases: []string{
-			`transgender`,
-			`alchemical symbol for iron or crocus of iron`,
-		},
+		aliases: []string{`transgender`, `alchemical symbol for iron or crocus of iron`},
 	},
 	0x26a7: {
-		aliases: []string{
-			`transgender`,
-		},
+		aliases: []string{`transgender`},
 	},
 	0x26a8: {
-		aliases: []string{
-			`alchemical symbol for iron`,
-		},
+		aliases: []string{`alchemical symbol for iron`},
 	},
 	0x26a9: {
-		aliases: []string{
-			`alchemical symbol for iron`,
-		},
+		aliases: []string{`alchemical symbol for iron`},
 	},
 	0x26aa: {
-		aliases: []string{
-			`asexuality`,
-			`sexless`,
-			`genderless`,
-			`engaged`,
-			`betrothed`,
-		},
-		refs: []string{
-			`U+1F785 medium bold white circle`,
-		},
+		aliases: []string{`asexuality`, `sexless`, `genderless`, `engaged`, `betrothed`},
+		refs:    []rune{0x1F785},
 	},
 	0x26ab: {
-		refs: []string{
-			`U+23FA black circle for record`,
-		},
+		refs: []rune{0x23FA},
 	},
 	0x26ac: {
-		aliases: []string{
-			`engaged`,
-			`betrothed`,
-		},
+		aliases: []string{`engaged`, `betrothed`},
 	},
 	0x26ad: {
-		refs: []string{
-			`U+221E infinity`,
-			`U+1F492 wedding`,
-		},
+		refs: []rune{0x221E, 0x1F492},
 	},
 	0x26ae: {
-		refs: []string{
-			`U+29DE infinity negated with vertical bar`,
-			`U+2BFA united symbol`,
-		},
+		refs: []rune{0x29DE, 0x2BFA},
 	},
 	0x26af: {
-		refs: []string{
-			`U+29DF double-ended multimap`,
-			`U+2BFB separated symbol`,
-		},
+		refs: []rune{0x29DF, 0x2BFB},
 	},
 	0x26b0: {
-		aliases: []string{
-			`buried`,
-		},
-		refs: []string{
-			`U+25AD white rectangle`,
-		},
+		aliases: []string{`buried`},
+		refs:    []rune{0x25AD},
 	},
 	0x26b1: {
-		aliases: []string{
-			`cremated`,
-		},
+		aliases: []string{`cremated`},
 	},
 	0x26b9: {
-		refs: []string{
-			`U+002A asterisk`,
-			`U+2736 six pointed black star`,
-			`U+1F739 alchemical symbol for sal-ammoniac`,
-		},
+		refs: []rune{0x002A, 0x2736, 0x1F739},
 	},
 	0x26ba: {
-		refs: []string{
-			`U+22BB xor`,
-		},
+		refs: []rune{0x22BB},
 	},
 	0x26bb: {
-		refs: []string{
-			`U+22BC nand`,
-		},
+		refs: []rune{0x22BC},
 	},
 	0x26bf: {
-		aliases: []string{
-			`parental lock`,
-		},
-		refs: []string{
-			`U+1F511 key`,
-		},
+		aliases: []string{`parental lock`},
+		refs:    []rune{0x1F511},
 	},
 	0x26c4: {
-		aliases: []string{
-			`light snow`,
-		},
+		aliases: []string{`light snow`},
 	},
 	0x26c5: {
-		aliases: []string{
-			`partly cloudy`,
-		},
-		refs: []string{
-			`U+1F324 white sun with small cloud`,
-		},
+		aliases: []string{`partly cloudy`},
+		refs:    []rune{0x1F324},
 	},
 	0x26c6: {
-		aliases: []string{
-			`rainy weather`,
-		},
+		aliases: []string{`rainy weather`},
 	},
 	0x26c7: {
-		aliases: []string{
-			`heavy snow`,
-		},
+		aliases: []string{`heavy snow`},
 	},
 	0x26c8: {
-		aliases: []string{
-			`thunderstorm`,
-		},
-		refs: []string{
-			`U+1F329 cloud with lightning`,
-		},
+		aliases: []string{`thunderstorm`},
+		refs:    []rune{0x1F329},
 	},
 	0x26cb: {
-		refs: []string{
-			`U+233A apl functional symbol quad diamond`,
-		},
+		refs: []rune{0x233A},
 	},
 	0x26cc: {
-		aliases: []string{
-			`accident`,
-		},
-		refs: []string{
-			`U+292C falling diagonal crossing rising diagonal`,
-		},
+		aliases: []string{`accident`},
+		refs:    []rune{0x292C},
 	},
 	0x26cf: {
-		aliases: []string{
-			`under construction`,
-		},
-		refs: []string{
-			`U+2692 hammer and pick`,
-			`U+1F6A7 construction sign`,
-		},
+		aliases: []string{`under construction`},
+		refs:    []rune{0x2692, 0x1F6A7},
 	},
 	0x26d0: {
-		aliases: []string{
-			`icy road`,
-		},
+		aliases: []string{`icy road`},
 	},
 	0x26d1: {
-		aliases: []string{
-			`maintenance`,
-		},
-		refs: []string{
-			`U+1F477 construction worker`,
-		},
+		aliases: []string{`maintenance`},
+		refs:    []rune{0x1F477},
 	},
 	0x26d2: {
-		aliases: []string{
-			`road closed`,
-		},
-		refs: []string{
-			`U+2297 circled times`,
-		},
+		aliases: []string{`road closed`},
+		refs:    []rune{0x2297},
 	},
 	0x26d3: {
-		aliases: []string{
-			`tyre chains required`,
-		},
+		aliases: []string{`tyre chains required`},
 	},
 	0x26d4: {
-		refs: []string{
-			`U+1F6AB no entry sign`,
-		},
+		refs: []rune{0x1F6AB},
 	},
 	0x26db: {
-		aliases: []string{
-			`drive slow`,
-		},
-		refs: []string{
-			`U+25BD white down-pointing triangle`,
-		},
+		aliases: []string{`drive slow`},
+		refs:    []rune{0x25BD},
 	},
 	0x26dd: {
-		aliases: []string{
-			`closed entry`,
-		},
-		refs: []string{
-			`U+22A0 squared times`,
-		},
+		aliases: []string{`closed entry`},
+		refs:    []rune{0x22A0},
 	},
 	0x26de: {
-		aliases: []string{
-			`closed to large vehicles`,
-		},
+		aliases: []string{`closed to large vehicles`},
 	},
 	0x26df: {
-		aliases: []string{
-			`black lorry`,
-			`closed to large vehicles`,
-			`alternate`,
-		},
-		refs: []string{
-			`U+1F69A delivery truck`,
-		},
+		aliases: []string{`black lorry`, `closed to large vehicles`, `alternate`},
+		refs:    []rune{0x1F69A},
 	},
 	0x26e2: {
-		refs: []string{
-			`U+2645 uranus`,
-		},
+		refs: []rune{0x2645},
 	},
 	0x26e3: {
-		aliases: []string{
-			`public office`,
-		},
+		aliases: []string{`public office`},
 	},
 	0x26e4: {
-		aliases: []string{
-			`pentalpha`,
-			`pentangle`,
-		},
-		refs: []string{
-			`U+2606 white star`,
-		},
+		aliases: []string{`pentalpha`, `pentangle`},
+		refs:    []rune{0x2606},
 	},
 	0x26e5: {
-		refs: []string{
-			`U+269D outlined white star`,
-		},
+		refs: []rune{0x269D},
 	},
 	0x26e8: {
-		aliases: []string{
-			`hospital`,
-		},
-		refs: []string{
-			`U+1F3E5 hospital`,
-		},
+		aliases: []string{`hospital`},
+		refs:    []rune{0x1F3E5},
 	},
 	0x26e9: {
-		aliases: []string{
-			`torii`,
-		},
+		aliases: []string{`torii`},
 	},
 	0x26eb: {
-		refs: []string{
-			`U+1F3F0 european castle`,
-		},
+		refs: []rune{0x1F3F0},
 	},
 	0x26ec: {
-		refs: []string{
-			`U+2234 therefore`,
-		},
+		refs: []rune{0x2234},
 	},
 	0x26ed: {
-		aliases: []string{
-			`factory`,
-		},
-		refs: []string{
-			`U+2699 gear`,
-			`U+1F3ED factory`,
-		},
+		aliases: []string{`factory`},
+		refs:    []rune{0x2699, 0x1F3ED},
 	},
 	0x26ee: {
-		aliases: []string{
-			`power plant`,
-			`power substation`,
-		},
+		aliases: []string{`power plant`, `power substation`},
 	},
 	0x26f0: {
-		refs: []string{
-			`U+1F3D4 snow capped mountain`,
-		},
+		refs: []rune{0x1F3D4},
 	},
 	0x26f1: {
-		aliases: []string{
-			`bathing beach`,
-		},
-		refs: []string{
-			`U+2602 umbrella`,
-			`U+1F3D6 beach with umbrella`,
-		},
+		aliases: []string{`bathing beach`},
+		refs:    []rune{0x2602, 0x1F3D6},
 	},
 	0x26f2: {
-		aliases: []string{
-			`park`,
-		},
+		aliases: []string{`park`},
 	},
 	0x26f3: {
-		aliases: []string{
-			`golf course`,
-		},
-		refs: []string{
-			`U+1F6A9 triangular flag on post`,
-		},
+		aliases: []string{`golf course`},
+		refs:    []rune{0x1F6A9},
 	},
 	0x26f4: {
-		aliases: []string{
-			`ferry boat terminal`,
-		},
-		refs: []string{
-			`U+1F6A2 ship`,
-		},
+		aliases: []string{`ferry boat terminal`},
+		refs:    []rune{0x1F6A2},
 	},
 	0x26f5: {
-		aliases: []string{
-			`marina or yacht harbour`,
-		},
-		refs: []string{
-			`U+1F6A3 rowboat`,
-		},
+		aliases: []string{`marina or yacht harbour`},
+		refs:    []rune{0x1F6A3},
 	},
 	0x26f6: {
-		aliases: []string{
-			`intersection`,
-		},
+		aliases: []string{`intersection`},
 	},
 	0x26f7: {
-		aliases: []string{
-			`ski resort`,
-		},
-		refs: []string{
-			`U+1F3BF ski and ski boot`,
-		},
+		aliases: []string{`ski resort`},
+		refs:    []rune{0x1F3BF},
 	},
 	0x26f8: {
-		aliases: []string{
-			`ice skating rink`,
-		},
+		aliases: []string{`ice skating rink`},
 	},
 	0x26f9: {
-		aliases: []string{
-			`track and field`,
-			`gymnasium`,
-		},
+		aliases: []string{`track and field`, `gymnasium`},
 	},
 	0x26fa: {
-		aliases: []string{
-			`camping site`,
-		},
-		refs: []string{
-			`U+1F3D5 camping`,
-		},
+		aliases: []string{`camping site`},
+		refs:    []rune{0x1F3D5},
 	},
 	0x26fb: {
-		refs: []string{
-			`U+1F3E6 bank`,
-		},
+		refs: []rune{0x1F3E6},
 	},
 	0x26fc: {
-		aliases: []string{
-			`graveyard`,
-			`memorial park`,
-			`cemetery`,
-		},
+		aliases: []string{`graveyard`, `memorial park`, `cemetery`},
 	},
 	0x26fd: {
-		aliases: []string{
-			`petrol station`,
-			`gas station`,
-		},
+		aliases: []string{`petrol station`, `gas station`},
 	},
 	0x26fe: {
-		aliases: []string{
-			`drive-in restaurant`,
-		},
-		refs: []string{
-			`U+2615 hot beverage`,
-			`U+1F375 teacup without handle`,
-		},
+		aliases: []string{`drive-in restaurant`},
+		refs:    []rune{0x2615, 0x1F375},
 	},
 	0x26ff: {
-		aliases: []string{
-			`Japanese self-defence force site`,
-		},
-		refs: []string{
-			`U+260E black telephone`,
-			`U+261B black right pointing index`,
-			`U+261E white right pointing index`,
-			`U+2605 black star`,
-			`U+25CF black circle`,
-			`U+25A0 black square`,
-			`U+25B2 black up-pointing triangle`,
-			`U+25BC black down-pointing triangle`,
-			`U+25C6 black diamond`,
-			`U+2192 rightwards arrow`,
-			`U+2194 left right arrow`,
-			`U+2195 up down arrow`,
-		},
+		aliases: []string{`Japanese self-defence force site`},
+		refs:    []rune{0x260E, 0x261B, 0x261E, 0x2605, 0x25CF, 0x25A0, 0x25B2, 0x25BC, 0x25C6, 0x2192, 0x2194, 0x2195},
 	},
 	0x2705: {
-		refs: []string{
-			`U+2714 heavy check mark`,
-		},
+		refs: []rune{0x2714},
 	},
 	0x2706: {
-		refs: []string{
-			`U+2121 telephone sign`,
-			`U+1F4DE telephone receiver`,
-		},
+		refs: []rune{0x2121, 0x1F4DE},
 	},
 	0x2708: {
-		refs: []string{
-			`U+1F6E7 up-pointing airplane`,
-		},
+		refs: []rune{0x1F6E7},
 	},
 	0x2709: {
-		aliases: []string{
-			`sealed envelope`,
-		},
-		refs: []string{
-			`U+1F4E8 incoming envelope`,
-			`U+1F582 back of envelope`,
-		},
+		aliases: []string{`sealed envelope`},
+		refs:    []rune{0x1F4E8, 0x1F582},
 	},
 	0x270a: {
-		aliases: []string{
-			`rock in Rock`,
-			`Paper`,
-			`Scissors game`,
-		},
-		refs: []string{
-			`U+1F44A fisted hand sign`,
-		},
+		aliases: []string{`rock in Rock`, `Paper`, `Scissors game`},
+		refs:    []rune{0x1F44A},
 	},
 	0x270b: {
-		aliases: []string{
-			`paper in Rock`,
-			`Paper`,
-			`Scissors game`,
-		},
-		refs: []string{
-			`U+1F44B waving hand sign`,
-			`U+1F590 raised hand with fingers splayed`,
-		},
+		aliases: []string{`paper in Rock`, `Paper`, `Scissors game`},
+		refs:    []rune{0x1F44B, 0x1F590},
 	},
 	0x270c: {
-		aliases: []string{
-			`scissors in Rock`,
-			`Paper`,
-			`Scissors game`,
-		},
-		refs: []string{
-			`U+1F594 reversed victory hand`,
-		},
+		aliases: []string{`scissors in Rock`, `Paper`, `Scissors game`},
+		refs:    []rune{0x1F594},
 	},
 	0x270d: {
-		refs: []string{
-			`U+1F58E left writing hand`,
-		},
+		refs: []rune{0x1F58E},
 	},
 	0x270e: {
-		refs: []string{
-			`U+1F589 lower left pencil`,
-		},
+		refs: []rune{0x1F589},
 	},
 	0x2711: {
-		refs: []string{
-			`U+1F58B lower left fountain pen`,
-		},
+		refs: []rune{0x1F58B},
 	},
 	0x2713: {
-		refs: []string{
-			`U+221A square root`,
-			`U+1F5F8 light check mark`,
-			`U+1FBB1 inverse check mark`,
-		},
+		refs: []rune{0x221A, 0x1F5F8, 0x1FBB1},
 	},
 	0x2715: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-			`U+2573 box drawings light diagonal cross`,
-			`U+1F7A8 thin saltire`,
-		},
+		refs: []rune{0x00D7, 0x2573, 0x1F7A8},
 	},
 	0x2716: {
-		refs: []string{
-			`U+1F7AE extremely heavy saltire`,
-		},
+		refs: []rune{0x1F7AE},
 	},
 	0x2717: {
-		refs: []string{
-			`U+2613 saltire`,
-			`U+1F5F4 ballot script x`,
-		},
+		refs: []rune{0x2613, 0x1F5F4},
 	},
 	0x2718: {
-		refs: []string{
-			`U+1F5F6 ballot bold script x`,
-		},
+		refs: []rune{0x1F5F6},
 	},
 	0x271a: {
-		refs: []string{
-			`U+1F7A5 very bold greek cross`,
-			`U+1FBBB voided greek cross`,
-		},
+		refs: []rune{0x1F7A5, 0x1FBBB},
 	},
 	0x271e: {
-		refs: []string{
-			`U+1F546 white latin cross`,
-		},
+		refs: []rune{0x1F546},
 	},
 	0x2720: {
-		refs: []string{
-			`U+2E50 cross patty with right crossbar`,
-			`U+1F902 circled cross formee`,
-		},
+		refs: []rune{0x2E50, 0x1F902},
 	},
 	0x2721: {
-		refs: []string{
-			`U+1F52F six pointed star with middle dot`,
-		},
+		refs: []rune{0x1F52F},
 	},
 	0x2726: {
-		refs: []string{
-			`U+2BCC light four pointed black cusp`,
-			`U+1F7C6 four pointed black star`,
-		},
+		refs: []rune{0x2BCC, 0x1F7C6},
 	},
 	0x2727: {
-		refs: []string{
-			`U+2BCE white four pointed cusp`,
-		},
+		refs: []rune{0x2BCE},
 	},
 	0x2729: {
-		refs: []string{
-			`U+2606 white star`,
-		},
+		refs: []rune{0x2606},
 	},
 	0x2731: {
-		refs: []string{
-			`U+002A asterisk`,
-			`U+1F7B8 heavy six spoked asterisk`,
-		},
+		refs: []rune{0x002A, 0x1F7B8},
 	},
 	0x2733: {
-		refs: []string{
-			`U+1F7BB light eight spoked asterisk`,
-		},
+		refs: []rune{0x1F7BB},
 	},
 	0x2735: {
-		refs: []string{
-			`U+1F7D1 heavy eight pointed pinwheel star`,
-		},
+		refs: []rune{0x1F7D1},
 	},
 	0x2736: {
-		refs: []string{
-			`U+26B9 sextile`,
-		},
+		refs: []rune{0x26B9},
 	},
 	0x2737: {
-		refs: []string{
-			`U+1F7CE medium eight pointed black star`,
-		},
+		refs: []rune{0x1F7CE},
 	},
 	0x2738: {
-		refs: []string{
-			`U+1F7CF heavy eight pointed black star`,
-		},
+		refs: []rune{0x1F7CF},
 	},
 	0x273a: {
-		aliases: []string{
-			`starburst`,
-		},
+		aliases: []string{`starburst`},
 	},
 	0x2740: {
-		refs: []string{
-			`U+1F3F5 rosette`,
-			`U+1F4AE white flower`,
-		},
+		refs: []rune{0x1F3F5, 0x1F4AE},
 	},
 	0x2741: {
-		refs: []string{
-			`U+1F3F6 black rosette`,
-		},
+		refs: []rune{0x1F3F6},
 	},
 	0x2749: {
-		aliases: []string{
-			`jack`,
-		},
+		aliases: []string{`jack`},
 	},
 	0x274b: {
-		aliases: []string{
-			`turbofan`,
-		},
+		aliases: []string{`turbofan`},
 	},
 	0x274c: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-			`U+1F5D9 cancellation x`,
-			`U+1F7AC heavy saltire`,
-			`U+1FBC0 white heavy saltire with rounded corners`,
-		},
+		refs: []rune{0x00D7, 0x1F5D9, 0x1F7AC, 0x1FBC0},
 	},
 	0x274d: {
-		refs: []string{
-			`U+1F53E lower right shadowed white circle`,
-		},
+		refs: []rune{0x1F53E},
 	},
 	0x274e: {
-		refs: []string{
-			`U+1FBBD negative diagonal cross`,
-		},
+		refs: []rune{0x1FBBD},
 	},
 	0x2757: {
-		aliases: []string{
-			`obstacles on the road`,
-			`ARIB STD B24`,
-		},
+		aliases: []string{`obstacles on the road`, `ARIB STD B24`},
 	},
 	0x2758: {
-		refs: []string{
-			`U+007C vertical line`,
-		},
+		refs: []rune{0x007C},
 	},
 	0x275b: {
-		refs: []string{
-			`U+2018 left single quotation mark`,
-		},
+		refs: []rune{0x2018},
 	},
 	0x275c: {
-		refs: []string{
-			`U+2019 right single quotation mark`,
-		},
+		refs: []rune{0x2019},
 	},
 	0x275d: {
-		refs: []string{
-			`U+201C left double quotation mark`,
-			`U+1F676 sans-serif heavy double turned comma quotation mark ornament`,
-		},
+		refs: []rune{0x201C, 0x1F676},
 	},
 	0x275e: {
-		refs: []string{
-			`U+201D right double quotation mark`,
-			`U+1F677 sans-serif heavy double comma quotation mark ornament`,
-		},
+		refs: []rune{0x201D, 0x1F677},
 	},
 	0x275f: {
-		refs: []string{
-			`U+201A single low-9 quotation mark`,
-		},
+		refs: []rune{0x201A},
 	},
 	0x2760: {
-		refs: []string{
-			`U+201E double low-9 quotation mark`,
-			`U+1F678 sans-serif heavy low double comma quotation mark ornament`,
-		},
+		refs: []rune{0x201E, 0x1F678},
 	},
 	0x2761: {
-		refs: []string{
-			`U+00B6 pilcrow sign`,
-		},
+		refs: []rune{0x00B6},
 	},
 	0x2762: {
-		refs: []string{
-			`U+0021 exclamation mark`,
-		},
+		refs: []rune{0x0021},
 	},
 	0x2764: {
-		refs: []string{
-			`U+2665 black heart suit`,
-			`U+1F5A4 black heart`,
-			`U+1F90D white heart`,
-		},
+		refs: []rune{0x2665, 0x1F5A4, 0x1F90D},
 	},
 	0x2766: {
-		aliases: []string{
-			`Aldus leaf`,
-		},
+		aliases: []string{`Aldus leaf`},
 	},
 	0x2767: {
-		aliases: []string{
-			`hedera`,
-			`ivy leaf`,
-		},
-		refs: []string{
-			`U+2619 reversed rotated floral heart bullet`,
-			`U+1F65B south east pointing vine leaf`,
-		},
+		aliases: []string{`hedera`, `ivy leaf`},
+		refs:    []rune{0x2619, 0x1F65B},
 	},
 	0x2768: {
-		refs: []string{
-			`U+0028 left parenthesis`,
-		},
+		refs: []rune{0x0028},
 	},
 	0x2769: {
-		refs: []string{
-			`U+0029 right parenthesis`,
-		},
+		refs: []rune{0x0029},
 	},
 	0x276c: {
-		refs: []string{
-			`U+2329 left-pointing angle bracket`,
-		},
+		refs: []rune{0x2329},
 	},
 	0x276d: {
-		refs: []string{
-			`U+232A right-pointing angle bracket`,
-		},
+		refs: []rune{0x232A},
 	},
 	0x276e: {
-		refs: []string{
-			`U+2039 single left-pointing angle quotation mark`,
-		},
+		refs: []rune{0x2039},
 	},
 	0x276f: {
-		refs: []string{
-			`U+203A single right-pointing angle quotation mark`,
-		},
+		refs: []rune{0x203A},
 	},
 	0x2772: {
-		refs: []string{
-			`U+3014 left tortoise shell bracket`,
-		},
+		refs: []rune{0x3014},
 	},
 	0x2773: {
-		refs: []string{
-			`U+3015 right tortoise shell bracket`,
-		},
+		refs: []rune{0x3015},
 	},
 	0x2774: {
-		refs: []string{
-			`U+007B left curly bracket`,
-		},
+		refs: []rune{0x007B},
 	},
 	0x2775: {
-		refs: []string{
-			`U+007D right curly bracket`,
-		},
+		refs: []rune{0x007D},
 	},
 	0x2794: {
-		refs: []string{
-			`U+1F872 wide-headed rightwards medium barb arrow`,
-		},
+		refs: []rune{0x1F872},
 	},
 	0x2795: {
-		refs: []string{
-			`U+002B plus sign`,
-		},
+		refs: []rune{0x002B},
 	},
 	0x2796: {
-		refs: []string{
-			`U+2212 minus sign`,
-		},
+		refs: []rune{0x2212},
 	},
 	0x2797: {
-		refs: []string{
-			`U+00F7 division sign`,
-		},
+		refs: []rune{0x00F7},
 	},
 	0x27a1: {
-		refs: []string{
-			`U+2B05 leftwards black arrow`,
-			`U+2B95 rightwards black arrow`,
-		},
+		refs: []rune{0x2B05, 0x2B95},
 	},
 	0x27a2: {
-		refs: []string{
-			`U+2B9A three-d top-lighted rightwards equilateral arrowhead`,
-		},
+		refs: []rune{0x2B9A},
 	},
 	0x27a4: {
-		refs: []string{
-			`U+2B9E black rightwards equilateral arrowhead`,
-			`U+1FBB0 arrowhead-shaped pointer`,
-		},
+		refs: []rune{0x2B9E, 0x1FBB0},
 	},
 	0x27a5: {
-		refs: []string{
-			`U+2BA9 black curved downwards and rightwards arrow`,
-		},
+		refs: []rune{0x2BA9},
 	},
 	0x27a6: {
-		refs: []string{
-			`U+2BAB black curved upwards and rightwards arrow`,
-		},
+		refs: []rune{0x2BAB},
 	},
 	0x27a7: {
-		refs: []string{
-			`U+1F842 rightwards heavy compressed arrow`,
-		},
+		refs: []rune{0x1F842},
 	},
 	0x27a9: {
-		refs: []string{
-			`U+1F8A5 rightwards right-shaded white arrow`,
-		},
+		refs: []rune{0x1F8A5},
 	},
 	0x27aa: {
-		refs: []string{
-			`U+1F8A7 rightwards left-shaded white arrow`,
-		},
+		refs: []rune{0x1F8A7},
 	},
 	0x27ab: {
-		refs: []string{
-			`U+1F8A9 rightwards back-tilted shadowed white arrow`,
-		},
+		refs: []rune{0x1F8A9},
 	},
 	0x27ac: {
-		refs: []string{
-			`U+1F8AB rightwards front-tilted shadowed white arrow`,
-		},
+		refs: []rune{0x1F8AB},
 	},
 	0x27af: {
-		refs: []string{
-			`U+1F89A rightwards arrow with notched tail`,
-		},
+		refs: []rune{0x1F89A},
 	},
 	0x27b0: {
-		aliases: []string{
-			`kururi`,
-		},
+		aliases: []string{`kururi`},
 	},
 	0x27c2: {
-		aliases: []string{
-			`orthogonal to`,
-		},
-		refs: []string{
-			`U+22A5 up tack`,
-		},
+		aliases: []string{`orthogonal to`},
+		refs:    []rune{0x22A5},
 	},
 	0x27c7: {
-		refs: []string{
-			`U+2228 logical or`,
-			`U+228D multiset multiplication`,
-			`U+27D1 and with dot`,
-		},
+		refs: []rune{0x2228, 0x228D, 0x27D1},
 	},
 	0x27ca: {
-		refs: []string{
-			`U+2AF2 parallel with horizontal stroke`,
-			`U+2AF5 triple vertical bar with horizontal stroke`,
-		},
+		refs: []rune{0x2AF2, 0x2AF5},
 	},
 	0x27cb: {
-		aliases: []string{
-			`\diagup`,
-		},
-		refs: []string{
-			`U+2215 division slash`,
-		},
+		aliases: []string{`\diagup`},
+		refs:    []rune{0x2215},
 	},
 	0x27cc: {
-		refs: []string{
-			`U+00F7 division sign`,
-			`U+2215 division slash`,
-			`U+221A square root`,
-		},
+		refs: []rune{0x00F7, 0x2215, 0x221A},
 	},
 	0x27cd: {
-		aliases: []string{
-			`\diagdown`,
-		},
-		refs: []string{
-			`U+2216 set minus`,
-			`U+29F5 reverse solidus operator`,
-		},
+		aliases: []string{`\diagdown`},
+		refs:    []rune{0x2216, 0x29F5},
 	},
 	0x27ce: {
-		aliases: []string{
-			`box min`,
-		},
+		aliases: []string{`box min`},
 	},
 	0x27cf: {
-		aliases: []string{
-			`box max`,
-		},
+		aliases: []string{`box max`},
 	},
 	0x27d0: {
-		refs: []string{
-			`U+1F4A0 diamond shape with a dot inside`,
-		},
+		refs: []rune{0x1F4A0},
 	},
 	0x27d1: {
-		refs: []string{
-			`U+2227 logical and`,
-			`U+27C7 or with dot inside`,
-			`U+2A40 intersection with dot`,
-		},
+		refs: []rune{0x2227, 0x27C7, 0x2A40},
 	},
 	0x27d2: {
-		refs: []string{
-			`U+2AD9 element of opening downwards`,
-		},
+		refs: []rune{0x2AD9},
 	},
 	0x27d3: {
-		aliases: []string{
-			`pullback`,
-		},
-		refs: []string{
-			`U+230B right floor`,
-		},
+		aliases: []string{`pullback`},
+		refs:    []rune{0x230B},
 	},
 	0x27d4: {
-		aliases: []string{
-			`pushout`,
-		},
-		refs: []string{
-			`U+2308 left ceiling`,
-		},
+		aliases: []string{`pushout`},
+		refs:    []rune{0x2308},
 	},
 	0x27d7: {
-		refs: []string{
-			`U+2A1D join`,
-		},
+		refs: []rune{0x2A1D},
 	},
 	0x27d8: {
-		refs: []string{
-			`U+22A5 up tack`,
-		},
+		refs: []rune{0x22A5},
 	},
 	0x27d9: {
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		refs: []rune{0x22A4},
 	},
 	0x27da: {
-		refs: []string{
-			`U+22A8 true`,
-			`U+2AE4 vertical bar double left turnstile`,
-		},
+		refs: []rune{0x22A8, 0x2AE4},
 	},
 	0x27db: {
-		refs: []string{
-			`U+22A2 right tack`,
-		},
+		refs: []rune{0x22A2},
 	},
 	0x27dc: {
-		refs: []string{
-			`U+22B8 multimap`,
-		},
+		refs: []rune{0x22B8},
 	},
 	0x27dd: {
-		refs: []string{
-			`U+22A2 right tack`,
-		},
+		refs: []rune{0x22A2},
 	},
 	0x27de: {
-		refs: []string{
-			`U+22A3 left tack`,
-		},
+		refs: []rune{0x22A3},
 	},
 	0x27df: {
-		aliases: []string{
-			`radial component`,
-		},
-		refs: []string{
-			`U+2AF1 down tack with circle below`,
-		},
+		aliases: []string{`radial component`},
+		refs:    []rune{0x2AF1},
 	},
 	0x27e0: {
-		refs: []string{
-			`U+25CA lozenge`,
-		},
+		refs: []rune{0x25CA},
 	},
 	0x27e1: {
-		aliases: []string{
-			`never`,
-		},
-		refs: []string{
-			`U+25C7 white diamond`,
-		},
+		aliases: []string{`never`},
+		refs:    []rune{0x25C7},
 	},
 	0x27e2: {
-		aliases: []string{
-			`was never`,
-		},
+		aliases: []string{`was never`},
 	},
 	0x27e3: {
-		aliases: []string{
-			`will never be`,
-		},
+		aliases: []string{`will never be`},
 	},
 	0x27e4: {
-		aliases: []string{
-			`was always`,
-		},
-		refs: []string{
-			`U+25A1 white square`,
-			`U+25FB white medium square`,
-		},
+		aliases: []string{`was always`},
+		refs:    []rune{0x25A1, 0x25FB},
 	},
 	0x27e5: {
-		aliases: []string{
-			`will always be`,
-		},
+		aliases: []string{`will always be`},
 	},
 	0x27e6: {
-		aliases: []string{
-			`z notation left bag bracket`,
-		},
-		refs: []string{
-			`U+301A left white square bracket`,
-		},
+		aliases: []string{`z notation left bag bracket`},
+		refs:    []rune{0x301A},
 	},
 	0x27e7: {
-		aliases: []string{
-			`z notation right bag bracket`,
-		},
-		refs: []string{
-			`U+301B right white square bracket`,
-		},
+		aliases: []string{`z notation right bag bracket`},
+		refs:    []rune{0x301B},
 	},
 	0x27e8: {
-		aliases: []string{
-			`bra`,
-			`z notation left sequence bracket`,
-		},
-		refs: []string{
-			`U+2329 left-pointing angle bracket`,
-			`U+3008 left angle bracket`,
-		},
+		aliases: []string{`bra`, `z notation left sequence bracket`},
+		refs:    []rune{0x2329, 0x3008},
 	},
 	0x27e9: {
-		aliases: []string{
-			`ket`,
-			`z notation right sequence bracket`,
-		},
-		refs: []string{
-			`U+232A right-pointing angle bracket`,
-			`U+3009 right angle bracket`,
-		},
+		aliases: []string{`ket`, `z notation right sequence bracket`},
+		refs:    []rune{0x232A, 0x3009},
 	},
 	0x27ea: {
-		aliases: []string{
-			`z notation left chevron bracket`,
-		},
-		refs: []string{
-			`U+300A left double angle bracket`,
-		},
+		aliases: []string{`z notation left chevron bracket`},
+		refs:    []rune{0x300A},
 	},
 	0x27eb: {
-		aliases: []string{
-			`z notation right chevron bracket`,
-		},
-		refs: []string{
-			`U+300B right double angle bracket`,
-		},
+		aliases: []string{`z notation right chevron bracket`},
+		refs:    []rune{0x300B},
 	},
 	0x27ec: {
-		refs: []string{
-			`U+2997 left black tortoise shell bracket`,
-			`U+3018 left white tortoise shell bracket`,
-		},
+		refs: []rune{0x2997, 0x3018},
 	},
 	0x27ed: {
-		refs: []string{
-			`U+2998 right black tortoise shell bracket`,
-			`U+3019 right white tortoise shell bracket`,
-		},
+		refs: []rune{0x2998, 0x3019},
 	},
 	0x27ee: {
-		aliases: []string{
-			`lgroup`,
-		},
+		aliases: []string{`lgroup`},
 	},
 	0x27ef: {
-		aliases: []string{
-			`rgroup`,
-		},
+		aliases: []string{`rgroup`},
 	},
 	0x27f0: {
-		refs: []string{
-			`U+290A upwards triple arrow`,
-			`U+2B45 leftwards quadruple arrow`,
-		},
+		refs: []rune{0x290A, 0x2B45},
 	},
 	0x27f1: {
-		refs: []string{
-			`U+290B downwards triple arrow`,
-		},
+		refs: []rune{0x290B},
 	},
 	0x27f2: {
-		refs: []string{
-			`U+21BA anticlockwise open circle arrow`,
-			`U+2940 anticlockwise closed circle arrow`,
-		},
+		refs: []rune{0x21BA, 0x2940},
 	},
 	0x27f3: {
-		refs: []string{
-			`U+21BB clockwise open circle arrow`,
-			`U+2941 clockwise closed circle arrow`,
-		},
+		refs: []rune{0x21BB, 0x2941},
 	},
 	0x27f4: {
-		refs: []string{
-			`U+2B32 left arrow with circled plus`,
-		},
+		refs: []rune{0x2B32},
 	},
 	0x27f5: {
-		refs: []string{
-			`U+2190 leftwards arrow`,
-		},
+		refs: []rune{0x2190},
 	},
 	0x27f6: {
-		refs: []string{
-			`U+2192 rightwards arrow`,
-		},
+		refs: []rune{0x2192},
 	},
 	0x27f7: {
-		refs: []string{
-			`U+2194 left right arrow`,
-		},
+		refs: []rune{0x2194},
 	},
 	0x27f8: {
-		refs: []string{
-			`U+21D0 leftwards double arrow`,
-		},
+		refs: []rune{0x21D0},
 	},
 	0x27f9: {
-		refs: []string{
-			`U+21D2 rightwards double arrow`,
-		},
+		refs: []rune{0x21D2},
 	},
 	0x27fa: {
-		refs: []string{
-			`U+21D4 left right double arrow`,
-		},
+		refs: []rune{0x21D4},
 	},
 	0x27fb: {
-		aliases: []string{
-			`maps from`,
-		},
-		refs: []string{
-			`U+21A4 leftwards arrow from bar`,
-		},
+		aliases: []string{`maps from`},
+		refs:    []rune{0x21A4},
 	},
 	0x27fc: {
-		aliases: []string{
-			`maps to`,
-		},
-		refs: []string{
-			`U+21A6 rightwards arrow from bar`,
-		},
+		aliases: []string{`maps to`},
+		refs:    []rune{0x21A6},
 	},
 	0x27fd: {
-		refs: []string{
-			`U+2906 leftwards double arrow from bar`,
-		},
+		refs: []rune{0x2906},
 	},
 	0x27fe: {
-		refs: []string{
-			`U+2907 rightwards double arrow from bar`,
-		},
+		refs: []rune{0x2907},
 	},
 	0x27ff: {
-		refs: []string{
-			`U+21DD rightwards squiggle arrow`,
-			`U+2B33 long leftwards squiggle arrow`,
-		},
+		refs: []rune{0x21DD, 0x2B33},
 	},
 	0x2900: {
-		aliases: []string{
-			`z notation partial surjection`,
-		},
-		refs: []string{
-			`U+2B34 leftwards two-headed arrow with vertical stroke`,
-		},
+		aliases: []string{`z notation partial surjection`},
+		refs:    []rune{0x2B34},
 	},
 	0x2901: {
-		aliases: []string{
-			`z notation finite surjection`,
-		},
-		refs: []string{
-			`U+2B35 leftwards two-headed arrow with double vertical stroke`,
-		},
+		aliases: []string{`z notation finite surjection`},
+		refs:    []rune{0x2B35},
 	},
 	0x2905: {
-		aliases: []string{
-			`maps to`,
-		},
-		refs: []string{
-			`U+2B36 leftwards two-headed arrow from bar`,
-		},
+		aliases: []string{`maps to`},
+		refs:    []rune{0x2B36},
 	},
 	0x2906: {
-		aliases: []string{
-			`maps from`,
-		},
-		refs: []string{
-			`U+27FB long leftwards arrow from bar`,
-		},
+		aliases: []string{`maps from`},
+		refs:    []rune{0x27FB},
 	},
 	0x2907: {
-		aliases: []string{
-			`maps to`,
-		},
-		refs: []string{
-			`U+27FC long rightwards arrow from bar`,
-		},
+		aliases: []string{`maps to`},
+		refs:    []rune{0x27FC},
 	},
 	0x290a: {
-		refs: []string{
-			`U+21D1 upwards double arrow`,
-			`U+27F0 upwards quadruple arrow`,
-		},
+		refs: []rune{0x21D1, 0x27F0},
 	},
 	0x290b: {
-		refs: []string{
-			`U+21D3 downwards double arrow`,
-			`U+27F1 downwards quadruple arrow`,
-		},
+		refs: []rune{0x21D3, 0x27F1},
 	},
 	0x2910: {
-		refs: []string{
-			`U+2B37 leftwards two-headed triple dash arrow`,
-		},
+		refs: []rune{0x2B37},
 	},
 	0x2911: {
-		refs: []string{
-			`U+2B38 leftwards arrow with dotted stem`,
-		},
+		refs: []rune{0x2B38},
 	},
 	0x2914: {
-		aliases: []string{
-			`z notation partial injection`,
-		},
-		refs: []string{
-			`U+2B39 leftwards arrow with tail with vertical stroke`,
-		},
+		aliases: []string{`z notation partial injection`},
+		refs:    []rune{0x2B39},
 	},
 	0x2915: {
-		aliases: []string{
-			`z notation finite injection`,
-		},
-		refs: []string{
-			`U+2B3A leftwards arrow with tail with double vertical stroke`,
-		},
+		aliases: []string{`z notation finite injection`},
+		refs:    []rune{0x2B3A},
 	},
 	0x2916: {
-		aliases: []string{
-			`bijective mapping`,
-			`z notation bijection`,
-		},
-		refs: []string{
-			`U+2B3B leftwards two-headed arrow with tail`,
-		},
+		aliases: []string{`bijective mapping`, `z notation bijection`},
+		refs:    []rune{0x2B3B},
 	},
 	0x2917: {
-		aliases: []string{
-			`z notation surjective injection`,
-		},
-		refs: []string{
-			`U+2B3C leftwards two-headed arrow with tail with vertical stroke`,
-		},
+		aliases: []string{`z notation surjective injection`},
+		refs:    []rune{0x2B3C},
 	},
 	0x2918: {
-		aliases: []string{
-			`z notation finite surjective injection`,
-		},
-		refs: []string{
-			`U+2B3D leftwards two-headed arrow with tail with double vertical stroke`,
-		},
+		aliases: []string{`z notation finite surjective injection`},
+		refs:    []rune{0x2B3D},
 	},
 	0x292c: {
-		refs: []string{
-			`U+26CC crossing lanes`,
-		},
+		refs: []rune{0x26CC},
 	},
 	0x2933: {
-		refs: []string{
-			`U+219D rightwards wave arrow`,
-			`U+2B3F wave arrow pointing directly left`,
-		},
+		refs: []rune{0x219D, 0x2B3F},
 	},
 	0x2940: {
-		refs: []string{
-			`U+20DA combining anticlockwise ring overlay`,
-		},
+		refs: []rune{0x20DA},
 	},
 	0x2941: {
-		refs: []string{
-			`U+20D9 combining clockwise ring overlay`,
-		},
+		refs: []rune{0x20D9},
 	},
 	0x2947: {
-		refs: []string{
-			`U+2B3E leftwards arrow through x`,
-		},
+		refs: []rune{0x2B3E},
 	},
 	0x2970: {
-		refs: []string{
-			`U+2283 superset of`,
-		},
+		refs: []rune{0x2283},
 	},
 	0x2971: {
-		refs: []string{
-			`U+2B40 equals sign above leftwards arrow`,
-		},
+		refs: []rune{0x2B40},
 	},
 	0x2972: {
-		refs: []string{
-			`U+2B41 reverse tilde operator above leftwards arrow`,
-		},
+		refs: []rune{0x2B41},
 	},
 	0x2973: {
-		refs: []string{
-			`U+2B4C rightwards arrow above reverse tilde operator`,
-		},
+		refs: []rune{0x2B4C},
 	},
 	0x2974: {
-		refs: []string{
-			`U+2B4B leftwards arrow above reverse tilde operator`,
-		},
+		refs: []rune{0x2B4B},
 	},
 	0x2975: {
-		refs: []string{
-			`U+2B42 leftwards arrow above reverse almost equal to`,
-		},
+		refs: []rune{0x2B42},
 	},
 	0x2977: {
-		refs: []string{
-			`U+2B43 rightwards arrow through greater-than`,
-		},
+		refs: []rune{0x2B43},
 	},
 	0x297a: {
-		refs: []string{
-			`U+2B44 rightwards arrow through superset`,
-		},
+		refs: []rune{0x2B44},
 	},
 	0x2980: {
-		refs: []string{
-			`U+2AF4 triple vertical bar binary relation`,
-			`U+2AFC large triple vertical bar operator`,
-		},
+		refs: []rune{0x2AF4, 0x2AFC},
 	},
 	0x2981: {
-		refs: []string{
-			`U+2219 bullet operator`,
-			`U+25CF black circle`,
-		},
+		refs: []rune{0x2219, 0x25CF},
 	},
 	0x2982: {
-		refs: []string{
-			`U+0F7F tibetan sign rnam bcad`,
-		},
+		refs: []rune{0x0F7F},
 	},
 	0x2985: {
-		refs: []string{
-			`U+2E28 left double parenthesis`,
-			`U+FF5F fullwidth left white parenthesis`,
-		},
+		refs: []rune{0x2E28, 0xFF5F},
 	},
 	0x2986: {
-		refs: []string{
-			`U+2E29 right double parenthesis`,
-			`U+FF60 fullwidth right white parenthesis`,
-		},
+		refs: []rune{0x2E29, 0xFF60},
 	},
 	0x2997: {
-		refs: []string{
-			`U+27EC mathematical left white tortoise shell bracket`,
-			`U+3014 left tortoise shell bracket`,
-			`U+3018 left white tortoise shell bracket`,
-		},
+		refs: []rune{0x27EC, 0x3014, 0x3018},
 	},
 	0x299a: {
-		refs: []string{
-			`U+2307 wavy line`,
-		},
+		refs: []rune{0x2307},
 	},
 	0x299b: {
-		refs: []string{
-			`U+2221 measured angle`,
-		},
+		refs: []rune{0x2221},
 	},
 	0x299c: {
-		refs: []string{
-			`U+221F right angle`,
-		},
+		refs: []rune{0x221F},
 	},
 	0x299f: {
-		refs: []string{
-			`U+2220 angle`,
-		},
+		refs: []rune{0x2220},
 	},
 	0x29a0: {
-		refs: []string{
-			`U+2222 spherical angle`,
-		},
+		refs: []rune{0x2222},
 	},
 	0x29a2: {
-		refs: []string{
-			`U+2220 angle`,
-		},
+		refs: []rune{0x2220},
 	},
 	0x29b0: {
-		refs: []string{
-			`U+2205 empty set`,
-			`U+2349 apl functional symbol circle backslash`,
-		},
+		refs: []rune{0x2205, 0x2349},
 	},
 	0x29b5: {
-		refs: []string{
-			`U+2296 circled minus`,
-		},
+		refs: []rune{0x2296},
 	},
 	0x29b6: {
-		refs: []string{
-			`U+1F715 alchemical symbol for nitre`,
-		},
+		refs: []rune{0x1F715},
 	},
 	0x29bb: {
-		refs: []string{
-			`U+2297 circled times`,
-		},
+		refs: []rune{0x2297},
 	},
 	0x29be: {
-		refs: []string{
-			`U+229A circled ring operator`,
-			`U+233E apl functional symbol circle jot`,
-			`U+25CE bullseye`,
-		},
+		refs: []rune{0x229A, 0x233E, 0x25CE},
 	},
 	0x29bf: {
-		refs: []string{
-			`U+2299 circled dot operator`,
-			`U+25C9 fisheye`,
-			`U+2A00 n-ary circled dot operator`,
-		},
+		refs: []rune{0x2299, 0x25C9, 0x2A00},
 	},
 	0x29c4: {
-		refs: []string{
-			`U+2341 apl functional symbol quad slash`,
-			`U+303C masu mark`,
-		},
+		refs: []rune{0x2341, 0x303C},
 	},
 	0x29c5: {
-		refs: []string{
-			`U+2342 apl functional symbol quad backslash`,
-		},
+		refs: []rune{0x2342},
 	},
 	0x29c7: {
-		refs: []string{
-			`U+233B apl functional symbol quad jot`,
-		},
+		refs: []rune{0x233B},
 	},
 	0x29c9: {
-		refs: []string{
-			`U+2BBA overlapping white squares`,
-		},
+		refs: []rune{0x2BBA},
 	},
 	0x29cd: {
-		refs: []string{
-			`U+25B3 white up-pointing triangle`,
-		},
+		refs: []rune{0x25B3},
 	},
 	0x29d1: {
-		refs: []string{
-			`U+22C8 bowtie`,
-		},
+		refs: []rune{0x22C8},
 	},
 	0x29d3: {
-		refs: []string{
-			`U+1FB9B left and right triangular half block`,
-		},
+		refs: []rune{0x1FB9B},
 	},
 	0x29d4: {
-		refs: []string{
-			`U+22C9 left normal factor semidirect product`,
-		},
+		refs: []rune{0x22C9},
 	},
 	0x29d5: {
-		refs: []string{
-			`U+22CA right normal factor semidirect product`,
-		},
+		refs: []rune{0x22CA},
 	},
 	0x29d6: {
-		aliases: []string{
-			`vertical bowtie`,
-			`white framus`,
-		},
-		refs: []string{
-			`U+231B hourglass`,
-		},
+		aliases: []string{`vertical bowtie`, `white framus`},
+		refs:    []rune{0x231B},
 	},
 	0x29d7: {
-		refs: []string{
-			`U+1FB9A upper and lower triangular half block`,
-		},
+		refs: []rune{0x1FB9A},
 	},
 	0x29d8: {
-		refs: []string{
-			`U+FE34 presentation form for vertical wavy low line`,
-		},
+		refs: []rune{0xFE34},
 	},
 	0x29dc: {
-		aliases: []string{
-			`ISOtech entity &iinfin;`,
-		},
-		refs: []string{
-			`U+221E infinity`,
-		},
+		aliases: []string{`ISOtech entity &iinfin;`},
+		refs:    []rune{0x221E},
 	},
 	0x29df: {
-		refs: []string{
-			`U+22B8 multimap`,
-			`U+1F73A alchemical symbol for arsenic`,
-		},
+		refs: []rune{0x22B8, 0x1F73A},
 	},
 	0x29e0: {
-		aliases: []string{
-			`D'Alembertian`,
-		},
-		refs: []string{
-			`U+274F lower right drop-shadowed white square`,
-		},
+		aliases: []string{`D'Alembertian`},
+		refs:    []rune{0x274F},
 	},
 	0x29e1: {
-		refs: []string{
-			`U+22B4 normal subgroup of or equal to`,
-		},
+		refs: []rune{0x22B4},
 	},
 	0x29e2: {
-		refs: []string{
-			`U+22FF z notation bag membership`,
-		},
+		refs: []rune{0x22FF},
 	},
 	0x29e3: {
-		refs: []string{
-			`U+0023 number sign`,
-			`U+22D5 equal and parallel to`,
-		},
+		refs: []rune{0x0023, 0x22D5},
 	},
 	0x29e5: {
-		refs: []string{
-			`U+2A68 triple horizontal bar with double vertical stroke`,
-		},
+		refs: []rune{0x2A68},
 	},
 	0x29e6: {
-		aliases: []string{
-			`tautological equivalent`,
-		},
+		aliases: []string{`tautological equivalent`},
 	},
 	0x29e7: {
-		aliases: []string{
-			`record mark`,
-		},
-		refs: []string{
-			`U+2260 not equal to`,
-			`U+2BD2 group mark`,
-		},
+		aliases: []string{`record mark`},
+		refs:    []rune{0x2260, 0x2BD2},
 	},
 	0x29e8: {
-		refs: []string{
-			`U+25ED up-pointing triangle with left half black`,
-		},
+		refs: []rune{0x25ED},
 	},
 	0x29e9: {
-		refs: []string{
-			`U+25EE up-pointing triangle with right half black`,
-		},
+		refs: []rune{0x25EE},
 	},
 	0x29eb: {
-		refs: []string{
-			`U+25CA lozenge`,
-		},
+		refs: []rune{0x25CA},
 	},
 	0x29f4: {
-		aliases: []string{
-			`colon right arrow`,
-		},
+		aliases: []string{`colon right arrow`},
 	},
 	0x29f5: {
-		refs: []string{
-			`U+005C reverse solidus`,
-			`U+2216 set minus`,
-			`U+27CD mathematical falling diagonal`,
-		},
+		refs: []rune{0x005C, 0x2216, 0x27CD},
 	},
 	0x29f7: {
-		refs: []string{
-			`U+2340 apl functional symbol backslash bar`,
-		},
+		refs: []rune{0x2340},
 	},
 	0x29f8: {
-		refs: []string{
-			`U+2215 division slash`,
-		},
+		refs: []rune{0x2215},
 	},
 	0x29f9: {
-		aliases: []string{
-			`z notation schema hiding`,
-		},
-		refs: []string{
-			`U+2216 set minus`,
-		},
+		aliases: []string{`z notation schema hiding`},
+		refs:    []rune{0x2216},
 	},
 	0x29fc: {
-		refs: []string{
-			`U+227A precedes`,
-			`U+2329 left-pointing angle bracket`,
-		},
+		refs: []rune{0x227A, 0x2329},
 	},
 	0x29fd: {
-		refs: []string{
-			`U+227B succeeds`,
-			`U+232A right-pointing angle bracket`,
-		},
+		refs: []rune{0x227B, 0x232A},
 	},
 	0x29fe: {
-		refs: []string{
-			`U+002B plus sign`,
-		},
+		refs: []rune{0x002B},
 	},
 	0x29ff: {
-		refs: []string{
-			`U+2212 minus sign`,
-		},
+		refs: []rune{0x2212},
 	},
 	0x2a00: {
-		refs: []string{
-			`U+2299 circled dot operator`,
-			`U+25C9 fisheye`,
-		},
+		refs: []rune{0x2299, 0x25C9},
 	},
 	0x2a01: {
-		refs: []string{
-			`U+2295 circled plus`,
-		},
+		refs: []rune{0x2295},
 	},
 	0x2a02: {
-		refs: []string{
-			`U+2297 circled times`,
-			`U+2B59 heavy circled saltire`,
-		},
+		refs: []rune{0x2297, 0x2B59},
 	},
 	0x2a03: {
-		refs: []string{
-			`U+228D multiset multiplication`,
-		},
+		refs: []rune{0x228D},
 	},
 	0x2a04: {
-		refs: []string{
-			`U+228E multiset union`,
-		},
+		refs: []rune{0x228E},
 	},
 	0x2a05: {
-		refs: []string{
-			`U+2293 square cap`,
-		},
+		refs: []rune{0x2293},
 	},
 	0x2a06: {
-		refs: []string{
-			`U+2294 square cup`,
-		},
+		refs: []rune{0x2294},
 	},
 	0x2a07: {
-		aliases: []string{
-			`merge`,
-		},
-		refs: []string{
-			`U+2A55 two intersecting logical and`,
-		},
+		aliases: []string{`merge`},
+		refs:    []rune{0x2A55},
 	},
 	0x2a08: {
-		refs: []string{
-			`U+2A56 two intersecting logical or`,
-		},
+		refs: []rune{0x2A56},
 	},
 	0x2a09: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-		},
+		refs: []rune{0x00D7},
 	},
 	0x2a0a: {
-		refs: []string{
-			`U+2211 n-ary summation`,
-		},
+		refs: []rune{0x2211},
 	},
 	0x2a0c: {
-		refs: []string{
-			`U+222D triple integral`,
-		},
+		refs: []rune{0x222D},
 	},
 	0x2a15: {
-		refs: []string{
-			`U+222E contour integral`,
-		},
+		refs: []rune{0x222E},
 	},
 	0x2a1b: {
-		aliases: []string{
-			`upper integral`,
-		},
+		aliases: []string{`upper integral`},
 	},
 	0x2a1c: {
-		aliases: []string{
-			`lower integral`,
-		},
+		aliases: []string{`lower integral`},
 	},
 	0x2a1d: {
-		aliases: []string{
-			`large bowtie`,
-		},
-		refs: []string{
-			`U+22C8 bowtie`,
-			`U+27D7 full outer join`,
-		},
+		aliases: []string{`large bowtie`},
+		refs:    []rune{0x22C8, 0x27D7},
 	},
 	0x2a1e: {
-		refs: []string{
-			`U+25C1 white left-pointing triangle`,
-		},
+		refs: []rune{0x25C1},
 	},
 	0x2a1f: {
-		refs: []string{
-			`U+2A3E z notation relational composition`,
-		},
+		refs: []rune{0x2A3E},
 	},
 	0x2a20: {
-		refs: []string{
-			`U+226B much greater-than`,
-		},
+		refs: []rune{0x226B},
 	},
 	0x2a21: {
-		refs: []string{
-			`U+21BE upwards harpoon with barb rightwards`,
-		},
+		refs: []rune{0x21BE},
 	},
 	0x2a24: {
-		aliases: []string{
-			`positive difference or sum`,
-		},
+		aliases: []string{`positive difference or sum`},
 	},
 	0x2a25: {
-		refs: []string{
-			`U+2214 dot plus`,
-		},
+		refs: []rune{0x2214},
 	},
 	0x2a26: {
-		aliases: []string{
-			`sum or positive difference`,
-		},
+		aliases: []string{`sum or positive difference`},
 	},
 	0x2a27: {
-		aliases: []string{
-			`nim-addition`,
-		},
+		aliases: []string{`nim-addition`},
 	},
 	0x2a2a: {
-		refs: []string{
-			`U+2238 dot minus`,
-		},
+		refs: []rune{0x2238},
 	},
 	0x2a2f: {
-		refs: []string{
-			`U+00D7 multiplication sign`,
-		},
+		refs: []rune{0x00D7},
 	},
 	0x2a3c: {
-		refs: []string{
-			`U+230B right floor`,
-		},
+		refs: []rune{0x230B},
 	},
 	0x2a3d: {
-		refs: []string{
-			`U+230A left floor`,
-			`U+2319 turned not sign`,
-		},
+		refs: []rune{0x230A, 0x2319},
 	},
 	0x2a3e: {
-		refs: []string{
-			`U+2A1F z notation schema composition`,
-		},
+		refs: []rune{0x2A1F},
 	},
 	0x2a3f: {
-		refs: []string{
-			`U+2210 n-ary coproduct`,
-		},
+		refs: []rune{0x2210},
 	},
 	0x2a40: {
-		refs: []string{
-			`U+2227 logical and`,
-			`U+27D1 and with dot`,
-		},
+		refs: []rune{0x2227, 0x27D1},
 	},
 	0x2a41: {
-		aliases: []string{
-			`z notation bag subtraction`,
-		},
-		refs: []string{
-			`U+228E multiset union`,
-		},
+		aliases: []string{`z notation bag subtraction`},
+		refs:    []rune{0x228E},
 	},
 	0x2a4c: {
-		refs: []string{
-			`U+222A union`,
-		},
+		refs: []rune{0x222A},
 	},
 	0x2a4d: {
-		refs: []string{
-			`U+2229 intersection`,
-		},
+		refs: []rune{0x2229},
 	},
 	0x2a55: {
-		refs: []string{
-			`U+2A07 two logical and operator`,
-		},
+		refs: []rune{0x2A07},
 	},
 	0x2a56: {
-		refs: []string{
-			`U+2A08 two logical or operator`,
-		},
+		refs: []rune{0x2A08},
 	},
 	0x2a5e: {
-		refs: []string{
-			`U+2306 perspective`,
-		},
+		refs: []rune{0x2306},
 	},
 	0x2a60: {
-		refs: []string{
-			`U+2259 estimates`,
-		},
+		refs: []rune{0x2259},
 	},
 	0x2a61: {
-		refs: []string{
-			`U+225A equiangular to`,
-		},
+		refs: []rune{0x225A},
 	},
 	0x2a63: {
-		refs: []string{
-			`U+225A equiangular to`,
-		},
+		refs: []rune{0x225A},
 	},
 	0x2a65: {
-		refs: []string{
-			`U+2332 conical taper`,
-		},
+		refs: []rune{0x2332},
 	},
 	0x2a66: {
-		refs: []string{
-			`U+2250 approaches the limit`,
-		},
+		refs: []rune{0x2250},
 	},
 	0x2a68: {
-		aliases: []string{
-			`identical and parallel to`,
-		},
-		refs: []string{
-			`U+22D5 equal and parallel to`,
-			`U+29E5 identical to and slanted parallel`,
-		},
+		aliases: []string{`identical and parallel to`},
+		refs:    []rune{0x22D5, 0x29E5},
 	},
 	0x2a6b: {
-		refs: []string{
-			`U+223B homothetic`,
-		},
+		refs: []rune{0x223B},
 	},
 	0x2a6d: {
-		refs: []string{
-			`U+2245 approximately equal to`,
-		},
+		refs: []rune{0x2245},
 	},
 	0x2a6e: {
-		refs: []string{
-			`U+225B star equals`,
-		},
+		refs: []rune{0x225B},
 	},
 	0x2a70: {
-		refs: []string{
-			`U+2245 approximately equal to`,
-		},
+		refs: []rune{0x2245},
 	},
 	0x2a7d: {
-		refs: []string{
-			`U+2264 less-than or equal to`,
-		},
+		refs: []rune{0x2264},
 	},
 	0x2a7e: {
-		refs: []string{
-			`U+2265 greater-than or equal to`,
-		},
+		refs: []rune{0x2265},
 	},
 	0x2a87: {
-		refs: []string{
-			`U+2268 less-than but not equal to`,
-		},
+		refs: []rune{0x2268},
 	},
 	0x2a88: {
-		refs: []string{
-			`U+2269 greater-than but not equal to`,
-		},
+		refs: []rune{0x2269},
 	},
 	0x2a8b: {
-		refs: []string{
-			`U+22DA less-than equal to or greater-than`,
-		},
+		refs: []rune{0x22DA},
 	},
 	0x2a8c: {
-		refs: []string{
-			`U+22DB greater-than equal to or less-than`,
-		},
+		refs: []rune{0x22DB},
 	},
 	0x2a95: {
-		refs: []string{
-			`U+22DC equal to or less-than`,
-		},
+		refs: []rune{0x22DC},
 	},
 	0x2a96: {
-		refs: []string{
-			`U+22DD equal to or greater-than`,
-		},
+		refs: []rune{0x22DD},
 	},
 	0x2a99: {
-		refs: []string{
-			`U+22DC equal to or less-than`,
-		},
+		refs: []rune{0x22DC},
 	},
 	0x2a9a: {
-		refs: []string{
-			`U+22DD equal to or greater-than`,
-		},
+		refs: []rune{0x22DD},
 	},
 	0x2aa1: {
-		aliases: []string{
-			`absolute continuity`,
-		},
-		refs: []string{
-			`U+226A much less-than`,
-		},
+		aliases: []string{`absolute continuity`},
+		refs:    []rune{0x226A},
 	},
 	0x2aa2: {
-		refs: []string{
-			`U+226B much greater-than`,
-		},
+		refs: []rune{0x226B},
 	},
 	0x2aae: {
-		refs: []string{
-			`U+224F difference between`,
-		},
+		refs: []rune{0x224F},
 	},
 	0x2aaf: {
-		refs: []string{
-			`U+227C precedes or equal to`,
-		},
+		refs: []rune{0x227C},
 	},
 	0x2ab0: {
-		refs: []string{
-			`U+227D succeeds or equal to`,
-		},
+		refs: []rune{0x227D},
 	},
 	0x2acf: {
-		refs: []string{
-			`U+2282 subset of`,
-		},
+		refs: []rune{0x2282},
 	},
 	0x2ad0: {
-		refs: []string{
-			`U+2283 superset of`,
-		},
+		refs: []rune{0x2283},
 	},
 	0x2ad9: {
-		refs: []string{
-			`U+2208 element of`,
-			`U+27D2 element of opening upwards`,
-		},
+		refs: []rune{0x2208, 0x27D2},
 	},
 	0x2ada: {
-		refs: []string{
-			`U+22D4 pitchfork`,
-		},
+		refs: []rune{0x22D4},
 	},
 	0x2adb: {
-		refs: []string{
-			`U+22D4 pitchfork`,
-		},
+		refs: []rune{0x22D4},
 	},
 	0x2adc: {
-		aliases: []string{
-			`not independent`,
-		},
+		aliases: []string{`not independent`},
 	},
 	0x2add: {
-		aliases: []string{
-			`independent`,
-		},
+		aliases: []string{`independent`},
 	},
 	0x2ade: {
-		refs: []string{
-			`U+22A3 left tack`,
-		},
+		refs: []rune{0x22A3},
 	},
 	0x2adf: {
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		refs: []rune{0x22A4},
 	},
 	0x2ae0: {
-		refs: []string{
-			`U+22A5 up tack`,
-		},
+		refs: []rune{0x22A5},
 	},
 	0x2ae2: {
-		aliases: []string{
-			`ordinarily satisfies`,
-		},
+		aliases: []string{`ordinarily satisfies`},
 	},
 	0x2ae3: {
-		refs: []string{
-			`U+22A9 forces`,
-		},
+		refs: []rune{0x22A9},
 	},
 	0x2ae4: {
-		refs: []string{
-			`U+22A8 true`,
-		},
+		refs: []rune{0x22A8},
 	},
 	0x2ae6: {
-		refs: []string{
-			`U+22A9 forces`,
-		},
+		refs: []rune{0x22A9},
 	},
 	0x2ae7: {
-		refs: []string{
-			`U+22A4 down tack`,
-			`U+2351 apl functional symbol up tack overbar`,
-			`U+3012 postal mark`,
-		},
+		refs: []rune{0x22A4, 0x2351, 0x3012},
 	},
 	0x2ae8: {
-		refs: []string{
-			`U+22A5 up tack`,
-			`U+234A apl functional symbol down tack underbar`,
-		},
+		refs: []rune{0x22A5, 0x234A},
 	},
 	0x2aeb: {
-		aliases: []string{
-			`independence`,
-		},
+		aliases: []string{`independence`},
 	},
 	0x2aec: {
-		refs: []string{
-			`U+00AC not sign`,
-		},
+		refs: []rune{0x00AC},
 	},
 	0x2aed: {
-		refs: []string{
-			`U+2310 reversed not sign`,
-		},
+		refs: []rune{0x2310},
 	},
 	0x2aee: {
-		refs: []string{
-			`U+2224 does not divide`,
-		},
+		refs: []rune{0x2224},
 	},
 	0x2af1: {
-		aliases: []string{
-			`necessarily satisfies`,
-		},
-		refs: []string{
-			`U+27DF up tack with circle above`,
-		},
+		aliases: []string{`necessarily satisfies`},
+		refs:    []rune{0x27DF},
 	},
 	0x2af2: {
-		refs: []string{
-			`U+2226 not parallel to`,
-			`U+27CA vertical bar with horizontal stroke`,
-		},
+		refs: []rune{0x2226, 0x27CA},
 	},
 	0x2af4: {
-		aliases: []string{
-			`interleave`,
-		},
-		refs: []string{
-			`U+2980 triple vertical bar delimiter`,
-		},
+		aliases: []string{`interleave`},
+		refs:    []rune{0x2980},
 	},
 	0x2af5: {
-		refs: []string{
-			`U+27CA vertical bar with horizontal stroke`,
-		},
+		refs: []rune{0x27CA},
 	},
 	0x2af6: {
-		refs: []string{
-			`U+205D tricolon`,
-			`U+22EE vertical ellipsis`,
-		},
+		refs: []rune{0x205D, 0x22EE},
 	},
 	0x2af7: {
-		refs: []string{
-			`U+22D8 very much less-than`,
-		},
+		refs: []rune{0x22D8},
 	},
 	0x2af8: {
-		refs: []string{
-			`U+22D9 very much greater-than`,
-		},
+		refs: []rune{0x22D9},
 	},
 	0x2af9: {
-		refs: []string{
-			`U+2266 less-than over equal to`,
-		},
+		refs: []rune{0x2266},
 	},
 	0x2afa: {
-		refs: []string{
-			`U+2267 greater-than over equal to`,
-		},
+		refs: []rune{0x2267},
 	},
 	0x2afb: {
-		refs: []string{
-			`U+2AF4 triple vertical bar binary relation`,
-		},
+		refs: []rune{0x2AF4},
 	},
 	0x2afc: {
-		refs: []string{
-			`U+2AF4 triple vertical bar binary relation`,
-			`U+2980 triple vertical bar delimiter`,
-		},
+		refs: []rune{0x2AF4, 0x2980},
 	},
 	0x2afd: {
-		refs: []string{
-			`U+2225 parallel to`,
-		},
+		refs: []rune{0x2225},
 	},
 	0x2afe: {
-		aliases: []string{
-			`Dijkstra choice`,
-		},
+		aliases: []string{`Dijkstra choice`},
 	},
 	0x2aff: {
-		aliases: []string{
-			`n-ary Dijkstra choice`,
-		},
+		aliases: []string{`n-ary Dijkstra choice`},
 	},
 	0x2b04: {
-		refs: []string{
-			`U+21E6 leftwards white arrow`,
-			`U+21F3 up down white arrow`,
-		},
+		refs: []rune{0x21E6, 0x21F3},
 	},
 	0x2b05: {
-		refs: []string{
-			`U+27A1 black rightwards arrow`,
-			`U+2B95 rightwards black arrow`,
-		},
+		refs: []rune{0x27A1, 0x2B95},
 	},
 	0x2b12: {
-		refs: []string{
-			`U+25E7 square with left half black`,
-		},
+		refs: []rune{0x25E7},
 	},
 	0x2b1b: {
-		refs: []string{
-			`U+25A0 black square`,
-		},
+		refs: []rune{0x25A0},
 	},
 	0x2b1c: {
-		refs: []string{
-			`U+25A1 white square`,
-		},
+		refs: []rune{0x25A1},
 	},
 	0x2b1d: {
-		refs: []string{
-			`U+25AA black small square`,
-		},
+		refs: []rune{0x25AA},
 	},
 	0x2b1e: {
-		refs: []string{
-			`U+25AB white small square`,
-		},
+		refs: []rune{0x25AB},
 	},
 	0x2b21: {
-		refs: []string{
-			`U+2394 software-function symbol`,
-		},
+		refs: []rune{0x2394},
 	},
 	0x2b24: {
-		refs: []string{
-			`U+25CF black circle`,
-			`U+25EF large circle`,
-			`U+1F534 large red circle`,
-		},
+		refs: []rune{0x25CF, 0x25EF, 0x1F534},
 	},
 	0x2b25: {
-		refs: []string{
-			`U+25C6 black diamond`,
-		},
+		refs: []rune{0x25C6},
 	},
 	0x2b26: {
-		refs: []string{
-			`U+25C7 white diamond`,
-			`U+1F754 alchemical symbol for soap`,
-		},
+		refs: []rune{0x25C7, 0x1F754},
 	},
 	0x2b28: {
-		refs: []string{
-			`U+25CA lozenge`,
-		},
+		refs: []rune{0x25CA},
 	},
 	0x2b29: {
-		refs: []string{
-			`U+22C4 diamond operator`,
-			`U+1F538 small orange diamond`,
-		},
+		refs: []rune{0x22C4, 0x1F538},
 	},
 	0x2b30: {
-		refs: []string{
-			`U+21F4 right arrow with small circle`,
-		},
+		refs: []rune{0x21F4},
 	},
 	0x2b31: {
-		refs: []string{
-			`U+21F6 three rightwards arrows`,
-		},
+		refs: []rune{0x21F6},
 	},
 	0x2b32: {
-		refs: []string{
-			`U+27F4 right arrow with circled plus`,
-		},
+		refs: []rune{0x27F4},
 	},
 	0x2b33: {
-		refs: []string{
-			`U+27FF long rightwards squiggle arrow`,
-			`U+21DC leftwards squiggle arrow`,
-		},
+		refs: []rune{0x27FF, 0x21DC},
 	},
 	0x2b34: {
-		refs: []string{
-			`U+2900 rightwards two-headed arrow with vertical stroke`,
-		},
+		refs: []rune{0x2900},
 	},
 	0x2b35: {
-		refs: []string{
-			`U+2901 rightwards two-headed arrow with double vertical stroke`,
-		},
+		refs: []rune{0x2901},
 	},
 	0x2b36: {
-		refs: []string{
-			`U+2905 rightwards two-headed arrow from bar`,
-		},
+		refs: []rune{0x2905},
 	},
 	0x2b37: {
-		refs: []string{
-			`U+2910 rightwards two-headed triple dash arrow`,
-		},
+		refs: []rune{0x2910},
 	},
 	0x2b38: {
-		refs: []string{
-			`U+2911 rightwards arrow with dotted stem`,
-		},
+		refs: []rune{0x2911},
 	},
 	0x2b39: {
-		refs: []string{
-			`U+2914 rightwards arrow with tail with vertical stroke`,
-		},
+		refs: []rune{0x2914},
 	},
 	0x2b3a: {
-		refs: []string{
-			`U+2915 rightwards arrow with tail with double vertical stroke`,
-		},
+		refs: []rune{0x2915},
 	},
 	0x2b3b: {
-		refs: []string{
-			`U+2916 rightwards two-headed arrow with tail`,
-		},
+		refs: []rune{0x2916},
 	},
 	0x2b3c: {
-		refs: []string{
-			`U+2917 rightwards two-headed arrow with tail with vertical stroke`,
-		},
+		refs: []rune{0x2917},
 	},
 	0x2b3d: {
-		refs: []string{
-			`U+2918 rightwards two-headed arrow with tail with double vertical stroke`,
-		},
+		refs: []rune{0x2918},
 	},
 	0x2b3e: {
-		refs: []string{
-			`U+2947 rightwards arrow through x`,
-		},
+		refs: []rune{0x2947},
 	},
 	0x2b3f: {
-		refs: []string{
-			`U+2933 wave arrow pointing directly right`,
-			`U+219C leftwards wave arrow`,
-		},
+		refs: []rune{0x2933, 0x219C},
 	},
 	0x2b40: {
-		refs: []string{
-			`U+2971 equals sign above rightwards arrow`,
-		},
+		refs: []rune{0x2971},
 	},
 	0x2b41: {
-		refs: []string{
-			`U+2972 tilde operator above rightwards arrow`,
-		},
+		refs: []rune{0x2972},
 	},
 	0x2b42: {
-		refs: []string{
-			`U+2975 rightwards arrow above almost equal to`,
-		},
+		refs: []rune{0x2975},
 	},
 	0x2b43: {
-		refs: []string{
-			`U+2977 leftwards arrow through less-than`,
-		},
+		refs: []rune{0x2977},
 	},
 	0x2b44: {
-		refs: []string{
-			`U+297A leftwards arrow through subset`,
-		},
+		refs: []rune{0x297A},
 	},
 	0x2b45: {
-		refs: []string{
-			`U+27F0 upwards quadruple arrow`,
-		},
+		refs: []rune{0x27F0},
 	},
 	0x2b4b: {
-		refs: []string{
-			`U+2974 rightwards arrow above tilde operator`,
-		},
+		refs: []rune{0x2974},
 	},
 	0x2b4c: {
-		refs: []string{
-			`U+2973 leftwards arrow above tilde operator`,
-		},
+		refs: []rune{0x2973},
 	},
 	0x2b4d: {
-		refs: []string{
-			`U+21AF downwards zigzag arrow`,
-		},
+		refs: []rune{0x21AF},
 	},
 	0x2b50: {
-		refs: []string{
-			`U+2606 white star`,
-		},
+		refs: []rune{0x2606},
 	},
 	0x2b51: {
-		refs: []string{
-			`U+066D arabic five pointed star`,
-			`U+22C6 star operator`,
-			`U+2605 black star`,
-		},
+		refs: []rune{0x066D, 0x22C6, 0x2605},
 	},
 	0x2b55: {
-		aliases: []string{
-			`basic symbol for speed limit`,
-		},
-		refs: []string{
-			`U+25EF large circle`,
-		},
+		aliases: []string{`basic symbol for speed limit`},
+		refs:    []rune{0x25EF},
 	},
 	0x2b56: {
-		aliases: []string{
-			`prefectural office`,
-		},
+		aliases: []string{`prefectural office`},
 	},
 	0x2b57: {
-		aliases: []string{
-			`municipal office`,
-		},
-		refs: []string{
-			`U+25CE bullseye`,
-		},
+		aliases: []string{`municipal office`},
+		refs:    []rune{0x25CE},
 	},
 	0x2b58: {
-		aliases: []string{
-			`town or village office`,
-			`power off symbol`,
-		},
-		refs: []string{
-			`U+23FD power on symbol`,
-			`U+25CB white circle`,
-		},
+		aliases: []string{`town or village office`, `power off symbol`},
+		refs:    []rune{0x23FD, 0x25CB},
 	},
 	0x2b59: {
-		aliases: []string{
-			`police station`,
-		},
-		refs: []string{
-			`U+2A02 n-ary circled times operator`,
-		},
+		aliases: []string{`police station`},
+		refs:    []rune{0x2A02},
 	},
 	0x2b60: {
-		refs: []string{
-			`U+2190 leftwards arrow`,
-		},
+		refs: []rune{0x2190},
 	},
 	0x2b61: {
-		refs: []string{
-			`U+2191 upwards arrow`,
-		},
+		refs: []rune{0x2191},
 	},
 	0x2b62: {
-		refs: []string{
-			`U+2192 rightwards arrow`,
-			`U+279D triangle-headed rightwards arrow`,
-		},
+		refs: []rune{0x2192, 0x279D},
 	},
 	0x2b63: {
-		refs: []string{
-			`U+2193 downwards arrow`,
-		},
+		refs: []rune{0x2193},
 	},
 	0x2b64: {
-		refs: []string{
-			`U+2194 left right arrow`,
-		},
+		refs: []rune{0x2194},
 	},
 	0x2b65: {
-		refs: []string{
-			`U+2195 up down arrow`,
-		},
+		refs: []rune{0x2195},
 	},
 	0x2b66: {
-		refs: []string{
-			`U+2196 north west arrow`,
-		},
+		refs: []rune{0x2196},
 	},
 	0x2b67: {
-		refs: []string{
-			`U+2197 north east arrow`,
-		},
+		refs: []rune{0x2197},
 	},
 	0x2b68: {
-		refs: []string{
-			`U+2198 south east arrow`,
-		},
+		refs: []rune{0x2198},
 	},
 	0x2b69: {
-		refs: []string{
-			`U+2199 south west arrow`,
-		},
+		refs: []rune{0x2199},
 	},
 	0x2b6a: {
-		refs: []string{
-			`U+21E0 leftwards dashed arrow`,
-		},
+		refs: []rune{0x21E0},
 	},
 	0x2b6b: {
-		refs: []string{
-			`U+21E1 upwards dashed arrow`,
-		},
+		refs: []rune{0x21E1},
 	},
 	0x2b6c: {
-		refs: []string{
-			`U+21E2 rightwards dashed arrow`,
-		},
+		refs: []rune{0x21E2},
 	},
 	0x2b6d: {
-		refs: []string{
-			`U+21E3 downwards dashed arrow`,
-		},
+		refs: []rune{0x21E3},
 	},
 	0x2b6e: {
-		refs: []string{
-			`U+21BB clockwise open circle arrow`,
-		},
+		refs: []rune{0x21BB},
 	},
 	0x2b6f: {
-		refs: []string{
-			`U+21BA anticlockwise open circle arrow`,
-		},
+		refs: []rune{0x21BA},
 	},
 	0x2b70: {
-		aliases: []string{
-			`left tab`,
-		},
-		refs: []string{
-			`U+21E4 leftwards arrow to bar`,
-		},
+		aliases: []string{`left tab`},
+		refs:    []rune{0x21E4},
 	},
 	0x2b71: {
-		aliases: []string{
-			`up tab`,
-		},
-		refs: []string{
-			`U+2912 upwards arrow to bar`,
-		},
+		aliases: []string{`up tab`},
+		refs:    []rune{0x2912},
 	},
 	0x2b72: {
-		aliases: []string{
-			`right tab`,
-		},
-		refs: []string{
-			`U+21E5 rightwards arrow to bar`,
-		},
+		aliases: []string{`right tab`},
+		refs:    []rune{0x21E5},
 	},
 	0x2b73: {
-		aliases: []string{
-			`down tab`,
-		},
-		refs: []string{
-			`U+2913 downwards arrow to bar`,
-		},
+		aliases: []string{`down tab`},
+		refs:    []rune{0x2913},
 	},
 	0x2b76: {
-		aliases: []string{
-			`home`,
-		},
+		aliases: []string{`home`},
 	},
 	0x2b78: {
-		aliases: []string{
-			`end`,
-		},
+		aliases: []string{`end`},
 	},
 	0x2b7a: {
-		aliases: []string{
-			`LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE`,
-		},
+		aliases: []string{`LEFTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE`},
 	},
 	0x2b7b: {
-		aliases: []string{
-			`page up`,
-		},
+		aliases: []string{`page up`},
 	},
 	0x2b7c: {
-		aliases: []string{
-			`RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE`,
-		},
+		aliases: []string{`RIGHTWARDS TRIANGLE-HEADED ARROW WITH DOUBLE VERTICAL STROKE`},
 	},
 	0x2b7d: {
-		aliases: []string{
-			`page down`,
-		},
+		aliases: []string{`page down`},
 	},
 	0x2b7e: {
-		refs: []string{
-			`U+21B9 leftwards arrow to bar over rightwards arrow to bar`,
-		},
+		refs: []rune{0x21B9},
 	},
 	0x2b80: {
-		refs: []string{
-			`U+21C6 leftwards arrow over rightwards arrow`,
-		},
+		refs: []rune{0x21C6},
 	},
 	0x2b83: {
-		refs: []string{
-			`U+21F5 downwards arrow leftwards of upwards arrow`,
-		},
+		refs: []rune{0x21F5},
 	},
 	0x2b84: {
-		refs: []string{
-			`U+21C7 leftwards paired arrows`,
-		},
+		refs: []rune{0x21C7},
 	},
 	0x2b85: {
-		refs: []string{
-			`U+21C8 upwards paired arrows`,
-		},
+		refs: []rune{0x21C8},
 	},
 	0x2b86: {
-		refs: []string{
-			`U+21C9 rightwards paired arrows`,
-		},
+		refs: []rune{0x21C9},
 	},
 	0x2b87: {
-		refs: []string{
-			`U+21CA downwards paired arrows`,
-		},
+		refs: []rune{0x21CA},
 	},
 	0x2b8a: {
-		refs: []string{
-			`U+27B2 circled heavy white rightwards arrow`,
-		},
+		refs: []rune{0x27B2},
 	},
 	0x2b8f: {
-		refs: []string{
-			`U+21B6 anticlockwise top semicircle arrow`,
-		},
+		refs: []rune{0x21B6},
 	},
 	0x2b90: {
-		refs: []string{
-			`U+23CE return symbol`,
-		},
+		refs: []rune{0x23CE},
 	},
 	0x2b94: {
-		aliases: []string{
-			`loop`,
-		},
+		aliases: []string{`loop`},
 	},
 	0x2b95: {
-		refs: []string{
-			`U+27A1 black rightwards arrow`,
-			`U+2B05 leftwards black arrow`,
-		},
+		refs: []rune{0x27A1, 0x2B05},
 	},
 	0x2b97: {
-		refs: []string{
-			`U+3036 circled postal mark`,
-		},
+		refs: []rune{0x3036},
 	},
 	0x2b9a: {
-		refs: []string{
-			`U+27A2 three-d top-lighted rightwards arrowhead`,
-		},
+		refs: []rune{0x27A2},
 	},
 	0x2b9e: {
-		refs: []string{
-			`U+27A4 black rightwards arrowhead`,
-		},
+		refs: []rune{0x27A4},
 	},
 	0x2ba0: {
-		refs: []string{
-			`U+21B2 downwards arrow with tip leftwards`,
-		},
+		refs: []rune{0x21B2},
 	},
 	0x2ba1: {
-		refs: []string{
-			`U+21B3 downwards arrow with tip rightwards`,
-		},
+		refs: []rune{0x21B3},
 	},
 	0x2ba2: {
-		refs: []string{
-			`U+21B0 upwards arrow with tip leftwards`,
-		},
+		refs: []rune{0x21B0},
 	},
 	0x2ba3: {
-		refs: []string{
-			`U+21B1 upwards arrow with tip rightwards`,
-		},
+		refs: []rune{0x21B1},
 	},
 	0x2ba4: {
-		refs: []string{
-			`U+2B11 leftwards arrow with tip upwards`,
-		},
+		refs: []rune{0x2B11},
 	},
 	0x2ba5: {
-		refs: []string{
-			`U+2B0F rightwards arrow with tip upwards`,
-		},
+		refs: []rune{0x2B0F},
 	},
 	0x2ba6: {
-		refs: []string{
-			`U+2B10 leftwards arrow with tip downwards`,
-		},
+		refs: []rune{0x2B10},
 	},
 	0x2ba7: {
-		refs: []string{
-			`U+2B0E rightwards arrow with tip downwards`,
-		},
+		refs: []rune{0x2B0E},
 	},
 	0x2ba9: {
-		refs: []string{
-			`U+27A5 heavy black curved downwards and rightwards arrow`,
-		},
+		refs: []rune{0x27A5},
 	},
 	0x2bab: {
-		refs: []string{
-			`U+27A6 heavy black curved upwards and rightwards arrow`,
-		},
+		refs: []rune{0x27A6},
 	},
 	0x2bb8: {
-		aliases: []string{
-			`caps lock`,
-		},
-		refs: []string{
-			`U+21EC upwards white arrow on pedestal with horizontal bar`,
-		},
+		aliases: []string{`caps lock`},
+		refs:    []rune{0x21EC},
 	},
 	0x2bb9: {
-		aliases: []string{
-			`escape`,
-		},
-		refs: []string{
-			`U+2353 apl functional symbol quad up caret`,
-		},
+		aliases: []string{`escape`},
+		refs:    []rune{0x2353},
 	},
 	0x2bba: {
-		aliases: []string{
-			`pair of bishops`,
-		},
-		refs: []string{
-			`U+29C9 two joined squares`,
-		},
+		aliases: []string{`pair of bishops`},
+		refs:    []rune{0x29C9},
 	},
 	0x2bbb: {
-		aliases: []string{
-			`bishops of opposite colour`,
-		},
+		aliases: []string{`bishops of opposite colour`},
 	},
 	0x2bbc: {
-		aliases: []string{
-			`bishops of the same colour`,
-		},
+		aliases: []string{`bishops of the same colour`},
 	},
 	0x2bbd: {
-		refs: []string{
-			`U+2612 ballot box with x`,
-		},
+		refs: []rune{0x2612},
 	},
 	0x2bbe: {
-		refs: []string{
-			`U+2297 circled times`,
-		},
+		refs: []rune{0x2297},
 	},
 	0x2bc3: {
-		refs: []string{
-			`U+1F6D1 octagonal sign`,
-		},
+		refs: []rune{0x1F6D1},
 	},
 	0x2bc5: {
-		refs: []string{
-			`U+25B2 black up-pointing triangle`,
-		},
+		refs: []rune{0x25B2},
 	},
 	0x2bc6: {
-		refs: []string{
-			`U+25BC black down-pointing triangle`,
-		},
+		refs: []rune{0x25BC},
 	},
 	0x2bc7: {
-		refs: []string{
-			`U+25C0 black left-pointing triangle`,
-		},
+		refs: []rune{0x25C0},
 	},
 	0x2bc8: {
-		refs: []string{
-			`U+25B6 black right-pointing triangle`,
-		},
+		refs: []rune{0x25B6},
 	},
 	0x2bc9: {
-		refs: []string{
-			`U+2646 neptune`,
-		},
+		refs: []rune{0x2646},
 	},
 	0x2bcc: {
-		refs: []string{
-			`U+2726 black four pointed star`,
-		},
+		refs: []rune{0x2726},
 	},
 	0x2bce: {
-		refs: []string{
-			`U+2727 white four pointed star`,
-		},
+		refs: []rune{0x2727},
 	},
 	0x2bcf: {
-		refs: []string{
-			`U+2311 square lozenge`,
-		},
+		refs: []rune{0x2311},
 	},
 	0x2bd0: {
-		refs: []string{
-			`U+2316 position indicator`,
-		},
+		refs: []rune{0x2316},
 	},
 	0x2bd1: {
-		aliases: []string{
-			`query`,
-		},
-		refs: []string{
-			`U+2370 apl functional symbol quad question`,
-			`U+FFFD replacement character`,
-		},
+		aliases: []string{`query`},
+		refs:    []rune{0x2370, 0xFFFD},
 	},
 	0x2bd2: {
-		refs: []string{
-			`U+2021 double dagger`,
-			`U+29E7 thermodynamic`,
-			`U+2E4B triple dagger`,
-		},
+		refs: []rune{0x2021, 0x29E7, 0x2E4B},
 	},
 	0x2bd3: {
-		refs: []string{
-			`U+2647 pluto`,
-		},
+		refs: []rune{0x2647},
 	},
 	0x2bde: {
-		aliases: []string{
-			`true black moon Lilith`,
-		},
+		aliases: []string{`true black moon Lilith`},
 	},
 	0x2be8: {
-		refs: []string{
-			`U+2605 black star`,
-		},
+		refs: []rune{0x2605},
 	},
 	0x2bec: {
-		aliases: []string{
-			`fast cursor left`,
-		},
-		refs: []string{
-			`U+219E leftwards two headed arrow`,
-		},
+		aliases: []string{`fast cursor left`},
+		refs:    []rune{0x219E},
 	},
 	0x2bed: {
-		aliases: []string{
-			`fast cursor up`,
-		},
+		aliases: []string{`fast cursor up`},
 	},
 	0x2bee: {
-		aliases: []string{
-			`fast cursor right`,
-		},
+		aliases: []string{`fast cursor right`},
 	},
 	0x2bef: {
-		aliases: []string{
-			`fast cursor down`,
-		},
+		aliases: []string{`fast cursor down`},
 	},
 	0x2bf9: {
-		aliases: []string{
-			`with compensation for the material`,
-		},
+		aliases: []string{`with compensation for the material`},
 	},
 	0x2bfa: {
-		aliases: []string{
-			`united pawns`,
-		},
-		refs: []string{
-			`U+26AE divorce symbol`,
-		},
+		aliases: []string{`united pawns`},
+		refs:    []rune{0x26AE},
 	},
 	0x2bfb: {
-		aliases: []string{
-			`separated pawns`,
-		},
-		refs: []string{
-			`U+26AF unmarried partnership symbol`,
-			`U+29DF double-ended multimap`,
-			`U+1F73A alchemical symbol for arsenic`,
-		},
+		aliases: []string{`separated pawns`},
+		refs:    []rune{0x26AF, 0x29DF, 0x1F73A},
 	},
 	0x2bfc: {
-		aliases: []string{
-			`doubled pawns`,
-		},
+		aliases: []string{`doubled pawns`},
 	},
 	0x2bfd: {
-		aliases: []string{
-			`passed pawn`,
-		},
-		refs: []string{
-			`U+2642 male sign`,
-		},
+		aliases: []string{`passed pawn`},
+		refs:    []rune{0x2642},
 	},
 	0x2bfe: {
-		aliases: []string{
-			`without`,
-		},
-		refs: []string{
-			`U+221F right angle`,
-		},
+		aliases: []string{`without`},
+		refs:    []rune{0x221F},
 	},
 	0x2c3a: {
-		refs: []string{
-			`U+A647 cyrillic small letter iota`,
-		},
+		refs: []rune{0xA647},
 	},
 	0x2c60: {
-		refs: []string{
-			`U+023D latin capital letter l with bar`,
-		},
+		refs: []rune{0x023D},
 	},
 	0x2c61: {
-		refs: []string{
-			`U+019A latin small letter l with bar`,
-			`U+AB38 latin small letter l with double middle tilde`,
-		},
+		refs: []rune{0x019A, 0xAB38},
 	},
 	0x2c62: {
-		refs: []string{
-			`U+0141 latin capital letter l with stroke`,
-		},
+		refs: []rune{0x0141},
 	},
 	0x2c67: {
-		refs: []string{
-			`U+04A2 cyrillic capital letter en with descender`,
-		},
+		refs: []rune{0x04A2},
 	},
 	0x2c69: {
-		refs: []string{
-			`U+049A cyrillic capital letter ka with descender`,
-		},
+		refs: []rune{0x049A},
 	},
 	0x2c6b: {
-		refs: []string{
-			`U+0224 latin capital letter z with hook`,
-		},
+		refs: []rune{0x0224},
 	},
 	0x2c6d: {
-		aliases: []string{
-			`capital script a`,
-		},
+		aliases: []string{`capital script a`},
 	},
 	0x2c6f: {
-		refs: []string{
-			`U+2200 for all`,
-		},
+		refs: []rune{0x2200},
 	},
 	0x2c75: {
-		refs: []string{
-			`U+0370 greek capital letter heta`,
-			`U+2132 turned capital f`,
-			`U+2183 roman numeral reversed one hundred`,
-			`U+A7F5 latin capital letter reversed half h`,
-		},
+		refs: []rune{0x0370, 0x2132, 0x2183, 0xA7F5},
 	},
 	0x2c76: {
-		refs: []string{
-			`U+0371 greek small letter heta`,
-			`U+A7F6 latin small letter reversed half h`,
-		},
+		refs: []rune{0x0371, 0xA7F6},
 	},
 	0x2c77: {
-		refs: []string{
-			`U+03C6 greek small letter phi`,
-		},
+		refs: []rune{0x03C6},
 	},
 	0x2c7b: {
-		refs: []string{
-			`U+018E latin capital letter reversed e`,
-		},
+		refs: []rune{0x018E},
 	},
 	0x2c7e: {
-		refs: []string{
-			`U+A7C5 latin capital letter s with hook`,
-		},
+		refs: []rune{0xA7C5},
 	},
 	0x2ce4: {
-		refs: []string{
-			`U+03D7 greek kai symbol`,
-		},
+		refs: []rune{0x03D7},
 	},
 	0x2ce8: {
-		refs: []string{
-			`U+101A0 greek symbol tau rho`,
-		},
+		refs: []rune{0x101A0},
 	},
 	0x2ce9: {
-		refs: []string{
-			`U+2627 chi rho`,
-		},
+		refs: []rune{0x2627},
 	},
 	0x2cf0: {
-		refs: []string{
-			`U+0314 combining reversed comma above`,
-			`U+0485 combining cyrillic dasia pneumata`,
-		},
+		refs: []rune{0x0314, 0x0485},
 	},
 	0x2cf1: {
-		refs: []string{
-			`U+0313 combining comma above`,
-			`U+0486 combining cyrillic psili pneumata`,
-		},
+		refs: []rune{0x0313, 0x0486},
 	},
 	0x2cf2: {
-		refs: []string{
-			`U+03E6 coptic capital letter khei`,
-		},
+		refs: []rune{0x03E6},
 	},
 	0x2cf3: {
-		refs: []string{
-			`U+03E7 coptic small letter khei`,
-		},
+		refs: []rune{0x03E7},
 	},
 	0x2d00: {
-		refs: []string{
-			`U+10A0 georgian capital letter an`,
-		},
+		refs: []rune{0x10A0},
 	},
 	0x2d40: {
-		aliases: []string{
-			`Tuareg yab`,
-		},
+		aliases: []string{`Tuareg yab`},
 	},
 	0x2d53: {
-		aliases: []string{
-			`Tuareg yaw`,
-		},
+		aliases: []string{`Tuareg yaw`},
 	},
 	0x2d58: {
-		aliases: []string{
-			`Adrar yaj`,
-		},
+		aliases: []string{`Adrar yaj`},
 	},
 	0x2d64: {
-		aliases: []string{
-			`harpoon yaz`,
-		},
+		aliases: []string{`harpoon yaz`},
 	},
 	0x2d6f: {
-		aliases: []string{
-			`tamatart`,
-		},
+		aliases: []string{`tamatart`},
 	},
 	0x2d70: {
-		aliases: []string{
-			`tazarast`,
-		},
+		aliases: []string{`tazarast`},
 	},
 	0x2dd0: {
-		refs: []string{
-			`U+1E7E0 ethiopic syllable hhya`,
-		},
+		refs: []rune{0x1E7E0},
 	},
 	0x2dd1: {
-		refs: []string{
-			`U+1E7E1 ethiopic syllable hhyu`,
-		},
+		refs: []rune{0x1E7E1},
 	},
 	0x2dd2: {
-		refs: []string{
-			`U+1E7E2 ethiopic syllable hhyi`,
-		},
+		refs: []rune{0x1E7E2},
 	},
 	0x2dd3: {
-		refs: []string{
-			`U+1E7E3 ethiopic syllable hhyaa`,
-		},
+		refs: []rune{0x1E7E3},
 	},
 	0x2dd4: {
-		refs: []string{
-			`U+1E7E4 ethiopic syllable hhyee`,
-		},
+		refs: []rune{0x1E7E4},
 	},
 	0x2dd5: {
-		refs: []string{
-			`U+1E7E5 ethiopic syllable hhye`,
-		},
+		refs: []rune{0x1E7E5},
 	},
 	0x2dd6: {
-		refs: []string{
-			`U+1E7E6 ethiopic syllable hhyo`,
-		},
+		refs: []rune{0x1E7E6},
 	},
 	0x2de8: {
-		refs: []string{
-			`U+1DDF combining latin letter small capital m`,
-		},
+		refs: []rune{0x1DDF},
 	},
 	0x2dea: {
-		refs: []string{
-			`U+0366 combining latin small letter o`,
-		},
+		refs: []rune{0x0366},
 	},
 	0x2ded: {
-		refs: []string{
-			`U+0368 combining latin small letter c`,
-		},
+		refs: []rune{0x0368},
 	},
 	0x2def: {
-		refs: []string{
-			`U+036F combining latin small letter x`,
-		},
+		refs: []rune{0x036F},
 	},
 	0x2df6: {
-		refs: []string{
-			`U+0363 combining latin small letter a`,
-		},
+		refs: []rune{0x0363},
 	},
 	0x2df7: {
-		refs: []string{
-			`U+0364 combining latin small letter e`,
-		},
+		refs: []rune{0x0364},
 	},
 	0x2e00: {
-		refs: []string{
-			`U+231C top left corner`,
-		},
+		refs: []rune{0x231C},
 	},
 	0x2e06: {
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		refs: []rune{0x22A4},
 	},
 	0x2e0e: {
-		refs: []string{
-			`U+1FBD greek koronis`,
-		},
+		refs: []rune{0x1FBD},
 	},
 	0x2e12: {
-		aliases: []string{
-			`ypodiastoli`,
-		},
+		aliases: []string{`ypodiastoli`},
 	},
 	0x2e13: {
-		refs: []string{
-			`U+2052 commercial minus sign`,
-		},
+		refs: []rune{0x2052},
 	},
 	0x2e16: {
-		aliases: []string{
-			`diple periestigmene`,
-		},
+		aliases: []string{`diple periestigmene`},
 	},
 	0x2e17: {
-		refs: []string{
-			`U+002D hyphen-minus`,
-			`U+003D equals sign`,
-			`U+2010 hyphen`,
-			`U+2E40 double hyphen`,
-			`U+2E5D oblique hyphen`,
-		},
+		refs: []rune{0x002D, 0x003D, 0x2010, 0x2E40, 0x2E5D},
 	},
 	0x2e18: {
-		aliases: []string{
-			`gnaborretni`,
-		},
-		refs: []string{
-			`U+203D interrobang`,
-		},
+		aliases: []string{`gnaborretni`},
+		refs:    []rune{0x203D},
 	},
 	0x2e20: {
-		refs: []string{
-			`U+2045 left square bracket with quill`,
-		},
+		refs: []rune{0x2045},
 	},
 	0x2e22: {
-		refs: []string{
-			`U+2308 left ceiling`,
-			`U+231C top left corner`,
-			`U+300C left corner bracket`,
-		},
+		refs: []rune{0x2308, 0x231C, 0x300C},
 	},
 	0x2e26: {
-		refs: []string{
-			`U+2282 subset of`,
-		},
+		refs: []rune{0x2282},
 	},
 	0x2e27: {
-		refs: []string{
-			`U+2283 superset of`,
-		},
+		refs: []rune{0x2283},
 	},
 	0x2e28: {
-		refs: []string{
-			`U+2985 left white parenthesis`,
-			`U+FF5F fullwidth left white parenthesis`,
-		},
+		refs: []rune{0x2985, 0xFF5F},
 	},
 	0x2e2e: {
-		aliases: []string{
-			`punctus percontativus`,
-		},
-		refs: []string{
-			`U+003F question mark`,
-			`U+00BF inverted question mark`,
-			`U+061F arabic question mark`,
-		},
+		aliases: []string{`punctus percontativus`},
+		refs:    []rune{0x003F, 0x00BF, 0x061F},
 	},
 	0x2e2f: {
-		refs: []string{
-			`U+033E combining vertical tilde`,
-			`U+A67F cyrillic payerok`,
-		},
+		refs: []rune{0x033E, 0xA67F},
 	},
 	0x2e30: {
-		refs: []string{
-			`U+2218 ring operator`,
-			`U+25E6 white bullet`,
-		},
+		refs: []rune{0x2218, 0x25E6},
 	},
 	0x2e31: {
-		refs: []string{
-			`U+00B7 middle dot`,
-		},
+		refs: []rune{0x00B7},
 	},
 	0x2e32: {
-		refs: []string{
-			`U+060C arabic comma`,
-		},
+		refs: []rune{0x060C},
 	},
 	0x2e33: {
-		refs: []string{
-			`U+002E full stop`,
-			`U+00B7 middle dot`,
-		},
+		refs: []rune{0x002E, 0x00B7},
 	},
 	0x2e34: {
-		refs: []string{
-			`U+002C comma`,
-		},
+		refs: []rune{0x002C},
 	},
 	0x2e35: {
-		refs: []string{
-			`U+061B arabic semicolon`,
-		},
+		refs: []rune{0x061B},
 	},
 	0x2e38: {
-		refs: []string{
-			`U+2020 dagger`,
-		},
+		refs: []rune{0x2020},
 	},
 	0x2e39: {
-		refs: []string{
-			`U+00A7 section sign`,
-		},
+		refs: []rune{0x00A7},
 	},
 	0x2e3a: {
-		aliases: []string{
-			`omission dash`,
-		},
-		refs: []string{
-			`U+2014 em dash`,
-		},
+		aliases: []string{`omission dash`},
+		refs:    []rune{0x2014},
 	},
 	0x2e3c: {
-		refs: []string{
-			`U+002E full stop`,
-			`U+166E canadian syllabics full stop`,
-		},
+		refs: []rune{0x002E, 0x166E},
 	},
 	0x2e3d: {
-		refs: []string{
-			`U+205E vertical four dots`,
-			`U+2999 dotted fence`,
-		},
+		refs: []rune{0x205E, 0x2999},
 	},
 	0x2e3e: {
-		refs: []string{
-			`U+2307 wavy line`,
-			`U+299A vertical zigzag line`,
-		},
+		refs: []rune{0x2307, 0x299A},
 	},
 	0x2e3f: {
-		refs: []string{
-			`U+00B6 pilcrow sign`,
-		},
+		refs: []rune{0x00B6},
 	},
 	0x2e40: {
-		refs: []string{
-			`U+003D equals sign`,
-			`U+2010 hyphen`,
-			`U+2E17 double oblique hyphen`,
-			`U+30A0 katakana-hiragana double hyphen`,
-			`U+A78A modifier letter short equals sign`,
-		},
+		refs: []rune{0x003D, 0x2010, 0x2E17, 0x30A0, 0xA78A},
 	},
 	0x2e41: {
-		refs: []string{
-			`U+002C comma`,
-			`U+060C arabic comma`,
-		},
+		refs: []rune{0x002C, 0x060C},
 	},
 	0x2e42: {
-		refs: []string{
-			`U+201E double low-9 quotation mark`,
-		},
+		refs: []rune{0x201E},
 	},
 	0x2e43: {
-		refs: []string{
-			`U+2E0F paragraphos`,
-		},
+		refs: []rune{0x2E0F},
 	},
 	0x2e44: {
-		refs: []string{
-			`U+0374 greek numeral sign`,
-		},
+		refs: []rune{0x0374},
 	},
 	0x2e46: {
-		refs: []string{
-			`U+2A46 union above intersection`,
-			`U+AB5B modifier breve with inverted breve`,
-		},
+		refs: []rune{0x2A46, 0xAB5B},
 	},
 	0x2e47: {
-		refs: []string{
-			`U+A67E cyrillic kavyka`,
-		},
+		refs: []rune{0xA67E},
 	},
 	0x2e4a: {
-		aliases: []string{
-			`virgula suspensiva`,
-		},
+		aliases: []string{`virgula suspensiva`},
 	},
 	0x2e4b: {
-		refs: []string{
-			`U+2020 dagger`,
-			`U+2021 double dagger`,
-		},
+		refs: []rune{0x2020, 0x2021},
 	},
 	0x2e4d: {
-		refs: []string{
-			`U+00B6 pilcrow sign`,
-			`U+204B reversed pilcrow sign`,
-			`U+2E0F paragraphos`,
-			`U+2E3F capitulum`,
-		},
+		refs: []rune{0x00B6, 0x204B, 0x2E0F, 0x2E3F},
 	},
 	0x2e50: {
-		refs: []string{
-			`U+2720 maltese cross`,
-			`U+2C75 latin capital letter half h`,
-		},
+		refs: []rune{0x2720, 0x2C75},
 	},
 	0x2e51: {
-		refs: []string{
-			`U+A7F5 latin capital letter reversed half h`,
-		},
+		refs: []rune{0xA7F5},
 	},
 	0x2e52: {
-		refs: []string{
-			`U+204A tironian sign et`,
-		},
+		refs: []rune{0x204A},
 	},
 	0x2e55: {
-		refs: []string{
-			`U+2045 left square bracket with quill`,
-		},
+		refs: []rune{0x2045},
 	},
 	0x2e5d: {
-		refs: []string{
-			`U+2010 hyphen`,
-			`U+2E17 double oblique hyphen`,
-		},
+		refs: []rune{0x2010, 0x2E17},
 	},
 	0x2e81: {
-		refs: []string{
-			`5382`,
-			`20086`,
-		},
+		refs: []rune{0x5382, 0x20086},
 	},
 	0x2e82: {
-		refs: []string{
-			`4E5B`,
-		},
+		refs: []rune{0x4E5B},
 	},
 	0x2e83: {
-		refs: []string{
-			`4E5A`,
-		},
+		refs: []rune{0x4E5A},
 	},
 	0x2e84: {
-		refs: []string{
-			`4E59`,
-		},
+		refs: []rune{0x4E59},
 	},
 	0x2e85: {
-		refs: []string{
-			`4EBB`,
-		},
+		refs: []rune{0x4EBB},
 	},
 	0x2e86: {
-		refs: []string{
-			`5182`,
-		},
+		refs: []rune{0x5182},
 	},
 	0x2e87: {
-		refs: []string{
-			`51E0`,
-			`20628`,
-		},
+		refs: []rune{0x51E0, 0x20628},
 	},
 	0x2e88: {
-		refs: []string{
-			`5200`,
-			`2008A`,
-		},
+		refs: []rune{0x5200, 0x2008A},
 	},
 	0x2e89: {
-		refs: []string{
-			`5202`,
-		},
+		refs: []rune{0x5202},
 	},
 	0x2e8a: {
-		refs: []string{
-			`535C`,
-		},
+		refs: []rune{0x535C},
 	},
 	0x2e8b: {
-		refs: []string{
-			`353E`,
-		},
+		refs: []rune{0x353E},
 	},
 	0x2e8c: {
-		refs: []string{
-			`5C0F`,
-		},
+		refs: []rune{0x5C0F},
 	},
 	0x2e8d: {
-		refs: []string{
-			`5C0F`,
-			`2D544`,
-		},
+		refs: []rune{0x5C0F, 0x2D544},
 	},
 	0x2e8e: {
-		refs: []string{
-			`5C22`,
-			`5140`,
-		},
+		refs: []rune{0x5C22, 0x5140},
 	},
 	0x2e8f: {
-		refs: []string{
-			`5C23`,
-		},
+		refs: []rune{0x5C23},
 	},
 	0x2e90: {
-		refs: []string{
-			`5C22`,
-		},
+		refs: []rune{0x5C22},
 	},
 	0x2e91: {
-		refs: []string{
-			`5C23`,
-			`21BC2`,
-		},
+		refs: []rune{0x5C23, 0x21BC2},
 	},
 	0x2e92: {
-		refs: []string{
-			`5DF3`,
-		},
+		refs: []rune{0x5DF3},
 	},
 	0x2e93: {
-		refs: []string{
-			`5E7A`,
-		},
+		refs: []rune{0x5E7A},
 	},
 	0x2e94: {
-		refs: []string{
-			`5F51`,
-		},
+		refs: []rune{0x5F51},
 	},
 	0x2e95: {
-		refs: []string{
-			`5F50`,
-			`2B739`,
-		},
+		refs: []rune{0x5F50, 0x2B739},
 	},
 	0x2e96: {
-		refs: []string{
-			`5FC4`,
-		},
+		refs: []rune{0x5FC4},
 	},
 	0x2e97: {
-		refs: []string{
-			`38FA`,
-			`5FC3`,
-		},
+		refs: []rune{0x38FA, 0x5FC3},
 	},
 	0x2e98: {
-		refs: []string{
-			`624C`,
-		},
+		refs: []rune{0x624C},
 	},
 	0x2e99: {
-		refs: []string{
-			`6535`,
-		},
+		refs: []rune{0x6535},
 	},
 	0x2e9a: {
-		refs: []string{
-			`U+2F46 kangxi radical not`,
-		},
+		refs: []rune{0x2F46},
 	},
 	0x2e9b: {
-		refs: []string{
-			`65E1`,
-		},
+		refs: []rune{0x65E1},
 	},
 	0x2e9c: {
-		refs: []string{
-			`5183`,
-			`65E5`,
-		},
+		refs: []rune{0x5183, 0x65E5},
 	},
 	0x2e9d: {
-		refs: []string{
-			`6708`,
-		},
+		refs: []rune{0x6708},
 	},
 	0x2e9e: {
-		refs: []string{
-			`6B7A`,
-		},
+		refs: []rune{0x6B7A},
 	},
 	0x2ea0: {
-		refs: []string{
-			`6C11`,
-		},
+		refs: []rune{0x6C11},
 	},
 	0x2ea1: {
-		refs: []string{
-			`6C35`,
-		},
+		refs: []rune{0x6C35},
 	},
 	0x2ea2: {
-		refs: []string{
-			`6C3A`,
-		},
+		refs: []rune{0x6C3A},
 	},
 	0x2ea3: {
-		refs: []string{
-			`706C`,
-		},
+		refs: []rune{0x706C},
 	},
 	0x2ea4: {
-		refs: []string{
-			`722B`,
-		},
+		refs: []rune{0x722B},
 	},
 	0x2ea5: {
-		refs: []string{
-			`722B`,
-		},
+		refs: []rune{0x722B},
 	},
 	0x2ea6: {
-		refs: []string{
-			`4E2C`,
-		},
+		refs: []rune{0x4E2C},
 	},
 	0x2ea7: {
-		refs: []string{
-			`725B`,
-			`20092`,
-		},
+		refs: []rune{0x725B, 0x20092},
 	},
 	0x2ea8: {
-		refs: []string{
-			`72AD`,
-		},
+		refs: []rune{0x72AD},
 	},
 	0x2ea9: {
-		refs: []string{
-			`738B`,
-			`248E9`,
-		},
+		refs: []rune{0x738B, 0x248E9},
 	},
 	0x2eaa: {
-		refs: []string{
-			`758B`,
-			`24D14`,
-		},
+		refs: []rune{0x758B, 0x24D14},
 	},
 	0x2eab: {
-		refs: []string{
-			`U+2EB2 cjk radical net two`,
-			`76EE`,
-			`7F52`,
-		},
+		refs: []rune{0x2EB2, 0x76EE, 0x7F52},
 	},
 	0x2eac: {
-		refs: []string{
-			`793A`,
-		},
+		refs: []rune{0x793A},
 	},
 	0x2ead: {
-		refs: []string{
-			`793B`,
-		},
+		refs: []rune{0x793B},
 	},
 	0x2eae: {
-		refs: []string{
-			`7AF9`,
-			`25AD7`,
-		},
+		refs: []rune{0x7AF9, 0x25AD7},
 	},
 	0x2eaf: {
-		refs: []string{
-			`7CF9`,
-		},
+		refs: []rune{0x7CF9},
 	},
 	0x2eb0: {
-		refs: []string{
-			`7E9F`,
-		},
+		refs: []rune{0x7E9F},
 	},
 	0x2eb1: {
-		refs: []string{
-			`7F53`,
-		},
+		refs: []rune{0x7F53},
 	},
 	0x2eb2: {
-		refs: []string{
-			`U+2EAB cjk radical eye`,
-			`7F52`,
-			`26270`,
-		},
+		refs: []rune{0x2EAB, 0x7F52, 0x26270},
 	},
 	0x2eb3: {
-		refs: []string{
-			`34C1`,
-			`7F51`,
-		},
+		refs: []rune{0x34C1, 0x7F51},
 	},
 	0x2eb4: {
-		refs: []string{
-			`34C1`,
-			`7F51`,
-		},
+		refs: []rune{0x34C1, 0x7F51},
 	},
 	0x2eb5: {
-		refs: []string{
-			`2626B`,
-		},
+		refs: []rune{0x2626B},
 	},
 	0x2eb6: {
-		refs: []string{
-			`7F8A`,
-		},
+		refs: []rune{0x7F8A},
 	},
 	0x2eb7: {
-		refs: []string{
-			`7F8A`,
-			`2634C`,
-		},
+		refs: []rune{0x7F8A, 0x2634C},
 	},
 	0x2eb8: {
-		refs: []string{
-			`7F8B`,
-			`2634B`,
-		},
+		refs: []rune{0x7F8B, 0x2634B},
 	},
 	0x2eb9: {
-		refs: []string{
-			`8002`,
-		},
+		refs: []rune{0x8002},
 	},
 	0x2eba: {
-		refs: []string{
-			`8080`,
-		},
+		refs: []rune{0x8080},
 	},
 	0x2ebb: {
-		refs: []string{
-			`807F`,
-		},
+		refs: []rune{0x807F},
 	},
 	0x2ebc: {
-		refs: []string{
-			`8089`,
-		},
+		refs: []rune{0x8089},
 	},
 	0x2ebd: {
-		refs: []string{
-			`81FC`,
-			`26951`,
-		},
+		refs: []rune{0x81FC, 0x26951},
 	},
 	0x2ebe: {
-		refs: []string{
-			`8279`,
-		},
+		refs: []rune{0x8279},
 	},
 	0x2ebf: {
-		refs: []string{
-			`8279`,
-		},
+		refs: []rune{0x8279},
 	},
 	0x2ec0: {
-		refs: []string{
-			`8279`,
-		},
+		refs: []rune{0x8279},
 	},
 	0x2ec1: {
-		refs: []string{
-			`864E`,
-		},
+		refs: []rune{0x864E},
 	},
 	0x2ec2: {
-		refs: []string{
-			`8864`,
-		},
+		refs: []rune{0x8864},
 	},
 	0x2ec3: {
-		refs: []string{
-			`8980`,
-		},
+		refs: []rune{0x8980},
 	},
 	0x2ec4: {
-		refs: []string{
-			`897F`,
-		},
+		refs: []rune{0x897F},
 	},
 	0x2ec5: {
-		refs: []string{
-			`89C1`,
-		},
+		refs: []rune{0x89C1},
 	},
 	0x2ec6: {
-		refs: []string{
-			`89D2`,
-		},
+		refs: []rune{0x89D2},
 	},
 	0x2ec7: {
-		refs: []string{
-			`278B2`,
-		},
+		refs: []rune{0x278B2},
 	},
 	0x2ec8: {
-		refs: []string{
-			`8BA0`,
-		},
+		refs: []rune{0x8BA0},
 	},
 	0x2ec9: {
-		refs: []string{
-			`8D1D`,
-		},
+		refs: []rune{0x8D1D},
 	},
 	0x2eca: {
-		refs: []string{
-			`8DB3`,
-			`27FB7`,
-		},
+		refs: []rune{0x8DB3, 0x27FB7},
 	},
 	0x2ecb: {
-		refs: []string{
-			`8F66`,
-		},
+		refs: []rune{0x8F66},
 	},
 	0x2ecc: {
-		refs: []string{
-			`8FB6`,
-		},
+		refs: []rune{0x8FB6},
 	},
 	0x2ecd: {
-		refs: []string{
-			`8FB6`,
-		},
+		refs: []rune{0x8FB6},
 	},
 	0x2ece: {
-		refs: []string{
-			`8FB6`,
-		},
+		refs: []rune{0x8FB6},
 	},
 	0x2ecf: {
-		refs: []string{
-			`9091`,
-		},
+		refs: []rune{0x9091},
 	},
 	0x2ed0: {
-		refs: []string{
-			`9485`,
-		},
+		refs: []rune{0x9485},
 	},
 	0x2ed1: {
-		refs: []string{
-			`9577`,
-		},
+		refs: []rune{0x9577},
 	},
 	0x2ed2: {
-		refs: []string{
-			`9578`,
-		},
+		refs: []rune{0x9578},
 	},
 	0x2ed3: {
-		refs: []string{
-			`957F`,
-		},
+		refs: []rune{0x957F},
 	},
 	0x2ed4: {
-		refs: []string{
-			`95E8`,
-		},
+		refs: []rune{0x95E8},
 	},
 	0x2ed5: {
-		refs: []string{
-			`961C`,
-			`28E0F`,
-		},
+		refs: []rune{0x961C, 0x28E0F},
 	},
 	0x2ed6: {
-		refs: []string{
-			`961D`,
-		},
+		refs: []rune{0x961D},
 	},
 	0x2ed7: {
-		refs: []string{
-			`96E8`,
-		},
+		refs: []rune{0x96E8},
 	},
 	0x2ed8: {
-		refs: []string{
-			`9752`,
-		},
+		refs: []rune{0x9752},
 	},
 	0x2ed9: {
-		refs: []string{
-			`97E6`,
-		},
+		refs: []rune{0x97E6},
 	},
 	0x2eda: {
-		refs: []string{
-			`9875`,
-		},
+		refs: []rune{0x9875},
 	},
 	0x2edb: {
-		refs: []string{
-			`98CE`,
-		},
+		refs: []rune{0x98CE},
 	},
 	0x2edc: {
-		refs: []string{
-			`98DE`,
-		},
+		refs: []rune{0x98DE},
 	},
 	0x2edd: {
-		refs: []string{
-			`98DF`,
-		},
+		refs: []rune{0x98DF},
 	},
 	0x2ede: {
-		refs: []string{
-			`2967F`,
-		},
+		refs: []rune{0x2967F},
 	},
 	0x2edf: {
-		refs: []string{
-			`98E0`,
-		},
+		refs: []rune{0x98E0},
 	},
 	0x2ee0: {
-		refs: []string{
-			`9963`,
-		},
+		refs: []rune{0x9963},
 	},
 	0x2ee1: {
-		refs: []string{
-			`29810`,
-		},
+		refs: []rune{0x29810},
 	},
 	0x2ee2: {
-		refs: []string{
-			`9A6C`,
-		},
+		refs: []rune{0x9A6C},
 	},
 	0x2ee3: {
-		refs: []string{
-			`9AA8`,
-		},
+		refs: []rune{0x9AA8},
 	},
 	0x2ee4: {
-		refs: []string{
-			`9B3C`,
-		},
+		refs: []rune{0x9B3C},
 	},
 	0x2ee5: {
-		refs: []string{
-			`9C7C`,
-		},
+		refs: []rune{0x9C7C},
 	},
 	0x2ee6: {
-		refs: []string{
-			`9E1F`,
-		},
+		refs: []rune{0x9E1F},
 	},
 	0x2ee7: {
-		refs: []string{
-			`5364`,
-		},
+		refs: []rune{0x5364},
 	},
 	0x2ee8: {
-		refs: []string{
-			`9EA6`,
-		},
+		refs: []rune{0x9EA6},
 	},
 	0x2ee9: {
-		refs: []string{
-			`9EC4`,
-		},
+		refs: []rune{0x9EC4},
 	},
 	0x2eea: {
-		refs: []string{
-			`9EFE`,
-		},
+		refs: []rune{0x9EFE},
 	},
 	0x2eeb: {
-		refs: []string{
-			`6589`,
-		},
+		refs: []rune{0x6589},
 	},
 	0x2eec: {
-		refs: []string{
-			`9F50`,
-		},
+		refs: []rune{0x9F50},
 	},
 	0x2eed: {
-		refs: []string{
-			`6B6F`,
-		},
+		refs: []rune{0x6B6F},
 	},
 	0x2eee: {
-		refs: []string{
-			`9F7F`,
-		},
+		refs: []rune{0x9F7F},
 	},
 	0x2eef: {
-		refs: []string{
-			`7ADC`,
-			`9F8D`,
-		},
+		refs: []rune{0x7ADC, 0x9F8D},
 	},
 	0x2ef0: {
-		refs: []string{
-			`9F99`,
-		},
+		refs: []rune{0x9F99},
 	},
 	0x2ef1: {
-		refs: []string{
-			`9F9C`,
-		},
+		refs: []rune{0x9F9C},
 	},
 	0x2ef2: {
-		refs: []string{
-			`4E80`,
-		},
+		refs: []rune{0x4E80},
 	},
 	0x2f2a: {
-		refs: []string{
-			`21BC1`,
-		},
+		refs: []rune{0x21BC1},
 	},
 	0x3000: {
-		refs: []string{
-			`U+0020 space`,
-		},
+		refs: []rune{0x0020},
 	},
 	0x3001: {
-		refs: []string{
-			`U+002C comma`,
-			`U+FF0C fullwidth comma`,
-			`U+FF64 halfwidth ideographic comma`,
-		},
+		refs: []rune{0x002C, 0xFF0C, 0xFF64},
 	},
 	0x3002: {
-		refs: []string{
-			`U+002E full stop`,
-			`U+FF0E fullwidth full stop`,
-			`U+FF61 halfwidth ideographic full stop`,
-		},
+		refs: []rune{0x002E, 0xFF0E, 0xFF61},
 	},
 	0x3003: {
-		refs: []string{
-			`U+2033 double prime`,
-		},
+		refs: []rune{0x2033},
 	},
 	0x3005: {
-		refs: []string{
-			`206A4`,
-			`U+16FE0 tangut iteration mark`,
-		},
+		refs: []rune{0x206A4, 0x16FE0},
 	},
 	0x3006: {
-		refs: []string{
-			`4E44`,
-		},
+		refs: []rune{0x4E44},
 	},
 	0x3007: {
-		refs: []string{
-			`U+20DD combining enclosing circle`,
-			`U+25CB white circle`,
-			`U+25EF large circle`,
-		},
+		refs: []rune{0x20DD, 0x25CB, 0x25EF},
 	},
 	0x3008: {
-		refs: []string{
-			`U+003C less-than sign`,
-			`U+2039 single left-pointing angle quotation mark`,
-			`U+2329 left-pointing angle bracket`,
-			`U+27E8 mathematical left angle bracket`,
-		},
+		refs: []rune{0x003C, 0x2039, 0x2329, 0x27E8},
 	},
 	0x3009: {
-		refs: []string{
-			`U+003E greater-than sign`,
-			`U+203A single right-pointing angle quotation mark`,
-			`U+232A right-pointing angle bracket`,
-			`U+27E9 mathematical right angle bracket`,
-		},
+		refs: []rune{0x003E, 0x203A, 0x232A, 0x27E9},
 	},
 	0x300a: {
-		refs: []string{
-			`U+00AB left-pointing double angle quotation mark`,
-			`U+27EA mathematical left double angle bracket`,
-		},
+		refs: []rune{0x00AB, 0x27EA},
 	},
 	0x300b: {
-		refs: []string{
-			`U+00BB right-pointing double angle quotation mark`,
-			`U+27EB mathematical right double angle bracket`,
-		},
+		refs: []rune{0x00BB, 0x27EB},
 	},
 	0x300c: {
-		refs: []string{
-			`U+2308 left ceiling`,
-		},
+		refs: []rune{0x2308},
 	},
 	0x300d: {
-		refs: []string{
-			`U+230B right floor`,
-		},
+		refs: []rune{0x230B},
 	},
 	0x3012: {
-		refs: []string{
-			`U+20B8 tenge sign`,
-			`U+2AE7 short down tack with overbar`,
-			`U+1F3E3 japanese post office`,
-		},
+		refs: []rune{0x20B8, 0x2AE7, 0x1F3E3},
 	},
 	0x3013: {
-		refs: []string{
-			`U+25A1 white square`,
-			`U+1F7F0 heavy equals sign`,
-		},
+		refs: []rune{0x25A1, 0x1F7F0},
 	},
 	0x3018: {
-		refs: []string{
-			`U+27EC mathematical left white tortoise shell bracket`,
-		},
+		refs: []rune{0x27EC},
 	},
 	0x3019: {
-		refs: []string{
-			`U+27ED mathematical right white tortoise shell bracket`,
-		},
+		refs: []rune{0x27ED},
 	},
 	0x301a: {
-		aliases: []string{
-			`left abstract syntax bracket`,
-		},
-		refs: []string{
-			`U+27E6 mathematical left white square bracket`,
-		},
+		aliases: []string{`left abstract syntax bracket`},
+		refs:    []rune{0x27E6},
 	},
 	0x301b: {
-		aliases: []string{
-			`right abstract syntax bracket`,
-		},
-		refs: []string{
-			`U+27E7 mathematical right white square bracket`,
-		},
+		aliases: []string{`right abstract syntax bracket`},
+		refs:    []rune{0x27E7},
 	},
 	0x301c: {
-		refs: []string{
-			`U+2053 swung dash`,
-			`U+3030 wavy dash`,
-			`U+FF5E fullwidth tilde`,
-		},
+		refs: []rune{0x2053, 0x3030, 0xFF5E},
 	},
 	0x301d: {
-		refs: []string{
-			`U+201C left double quotation mark`,
-			`U+2036 reversed double prime`,
-		},
+		refs: []rune{0x201C, 0x2036},
 	},
 	0x301e: {
-		refs: []string{
-			`U+201D right double quotation mark`,
-			`U+2033 double prime`,
-		},
+		refs: []rune{0x201D, 0x2033},
 	},
 	0x302e: {
-		aliases: []string{
-			`single dot Bangjeom`,
-		},
+		aliases: []string{`single dot Bangjeom`},
 	},
 	0x302f: {
-		aliases: []string{
-			`double dot Bangjeom`,
-		},
+		aliases: []string{`double dot Bangjeom`},
 	},
 	0x3030: {
-		refs: []string{
-			`U+2307 wavy line`,
-			`U+301C wave dash`,
-		},
+		refs: []rune{0x2307, 0x301C},
 	},
 	0x3036: {
-		aliases: []string{
-			`symbol for type B electronics`,
-		},
-		refs: []string{
-			`U+2B97 symbol for type a electronics`,
-		},
+		aliases: []string{`symbol for type B electronics`},
+		refs:    []rune{0x2B97},
 	},
 	0x303c: {
-		refs: []string{
-			`U+29C4 squared rising diagonal slash`,
-		},
+		refs: []rune{0x29C4},
 	},
 	0x3057: {
-		aliases: []string{
-			`SHI`,
-		},
+		aliases: []string{`SHI`},
 	},
 	0x3058: {
-		aliases: []string{
-			`JI`,
-		},
+		aliases: []string{`JI`},
 	},
 	0x3061: {
-		aliases: []string{
-			`CHI`,
-		},
+		aliases: []string{`CHI`},
 	},
 	0x3062: {
-		aliases: []string{
-			`JI`,
-		},
+		aliases: []string{`JI`},
 	},
 	0x3063: {
-		aliases: []string{
-			`SMALL TSU`,
-		},
+		aliases: []string{`SMALL TSU`},
 	},
 	0x3064: {
-		aliases: []string{
-			`TSU`,
-		},
+		aliases: []string{`TSU`},
 	},
 	0x3065: {
-		aliases: []string{
-			`ZU`,
-		},
+		aliases: []string{`ZU`},
 	},
 	0x3075: {
-		aliases: []string{
-			`FU`,
-		},
+		aliases: []string{`FU`},
 	},
 	0x30a0: {
-		refs: []string{
-			`U+003D equals sign`,
-			`U+2E40 double hyphen`,
-		},
+		refs: []rune{0x003D, 0x2E40},
 	},
 	0x30b7: {
-		aliases: []string{
-			`SHI`,
-		},
+		aliases: []string{`SHI`},
 	},
 	0x30b8: {
-		aliases: []string{
-			`JI`,
-		},
+		aliases: []string{`JI`},
 	},
 	0x30c1: {
-		aliases: []string{
-			`CHI`,
-		},
+		aliases: []string{`CHI`},
 	},
 	0x30c2: {
-		aliases: []string{
-			`JI`,
-		},
+		aliases: []string{`JI`},
 	},
 	0x30c3: {
-		aliases: []string{
-			`SMALL TSU`,
-		},
+		aliases: []string{`SMALL TSU`},
 	},
 	0x30c4: {
-		aliases: []string{
-			`TSU`,
-		},
+		aliases: []string{`TSU`},
 	},
 	0x30c5: {
-		aliases: []string{
-			`ZU`,
-		},
+		aliases: []string{`ZU`},
 	},
 	0x30d5: {
-		aliases: []string{
-			`FU`,
-		},
+		aliases: []string{`FU`},
 	},
 	0x30fb: {
-		refs: []string{
-			`U+00B7 middle dot`,
-		},
+		refs: []rune{0x00B7},
 	},
 	0x30fc: {
-		refs: []string{
-			`U+2014 em dash`,
-		},
+		refs: []rune{0x2014},
 	},
 	0x3164: {
-		aliases: []string{
-			`chaeum`,
-		},
+		aliases: []string{`chaeum`},
 	},
 	0x3180: {
-		aliases: []string{
-			`ssangyesieung`,
-		},
+		aliases: []string{`ssangyesieung`},
 	},
 	0x3190: {
-		aliases: []string{
-			`tateten`,
-		},
+		aliases: []string{`tateten`},
 	},
 	0x3191: {
-		aliases: []string{
-			`kaeriten re`,
-		},
+		aliases: []string{`kaeriten re`},
 	},
 	0x3248: {
-		aliases: []string{
-			`speed limit 10 km/h`,
-		},
+		aliases: []string{`speed limit 10 km/h`},
 	},
 	0x3249: {
-		aliases: []string{
-			`speed limit 20 km/h`,
-		},
+		aliases: []string{`speed limit 20 km/h`},
 	},
 	0x324a: {
-		aliases: []string{
-			`speed limit 30 km/h`,
-		},
+		aliases: []string{`speed limit 30 km/h`},
 	},
 	0x324b: {
-		aliases: []string{
-			`speed limit 40 km/h`,
-		},
+		aliases: []string{`speed limit 40 km/h`},
 	},
 	0x324c: {
-		aliases: []string{
-			`speed limit 50 km/h`,
-		},
+		aliases: []string{`speed limit 50 km/h`},
 	},
 	0x324d: {
-		aliases: []string{
-			`speed limit 60 km/h`,
-		},
+		aliases: []string{`speed limit 60 km/h`},
 	},
 	0x324e: {
-		aliases: []string{
-			`speed limit 70 km/h`,
-		},
+		aliases: []string{`speed limit 70 km/h`},
 	},
 	0x324f: {
-		aliases: []string{
-			`speed limit 80 km/h`,
-		},
+		aliases: []string{`speed limit 80 km/h`},
 	},
 	0x3280: {
-		aliases: []string{
-			`maru-iti`,
-			`symbol of unification`,
-		},
+		aliases: []string{`maru-iti`, `symbol of unification`},
 	},
 	0x332c: {
-		refs: []string{
-			`U+0E3F thai currency symbol baht`,
-		},
+		refs: []rune{0x0E3F},
 	},
 	0x337f: {
-		aliases: []string{
-			`kabusiki-gaisya`,
-		},
+		aliases: []string{`kabusiki-gaisya`},
 	},
 	0x33c5: {
-		refs: []string{
-			`U+1F12D circled cd`,
-		},
+		refs: []rune{0x1F12D},
 	},
 	0xa015: {
-		aliases: []string{
-			`YI SYLLABLE ITERATION MARK`,
-		},
+		aliases: []string{`YI SYLLABLE ITERATION MARK`},
 	},
 	0xa490: {
-		refs: []string{
-			`U+A408 yi syllable qot`,
-		},
+		refs: []rune{0xA408},
 	},
 	0xa491: {
-		refs: []string{
-			`U+A1B9 yi syllable li`,
-		},
+		refs: []rune{0xA1B9},
 	},
 	0xa4f7: {
-		refs: []string{
-			`U+02BC modifier letter apostrophe`,
-			`U+02CD modifier letter low macron`,
-		},
+		refs: []rune{0x02BC, 0x02CD},
 	},
 	0xa558: {
-		refs: []string{
-			`U+A610 vai syllable ndole fa`,
-		},
+		refs: []rune{0xA610},
 	},
 	0xa56a: {
-		refs: []string{
-			`U+A611 vai syllable ndole ka`,
-		},
+		refs: []rune{0xA611},
 	},
 	0xa56e: {
-		refs: []string{
-			`U+A62A vai syllable ndole ma`,
-		},
+		refs: []rune{0xA62A},
 	},
 	0xa587: {
-		refs: []string{
-			`U+A612 vai syllable ndole soo`,
-		},
+		refs: []rune{0xA612},
 	},
 	0xa5d1: {
-		refs: []string{
-			`U+A62B vai syllable ndole do`,
-		},
+		refs: []rune{0xA62B},
 	},
 	0xa610: {
-		refs: []string{
-			`U+A558 vai syllable fa`,
-		},
+		refs: []rune{0xA558},
 	},
 	0xa611: {
-		refs: []string{
-			`U+A56A vai syllable ka`,
-		},
+		refs: []rune{0xA56A},
 	},
 	0xa612: {
-		refs: []string{
-			`U+A587 vai syllable soo`,
-		},
+		refs: []rune{0xA587},
 	},
 	0xa62a: {
-		refs: []string{
-			`U+A56E vai syllable ma`,
-		},
+		refs: []rune{0xA56E},
 	},
 	0xa62b: {
-		refs: []string{
-			`U+A5D1 vai syllable do`,
-		},
+		refs: []rune{0xA5D1},
 	},
 	0xa641: {
-		refs: []string{
-			`U+0437 cyrillic small letter ze`,
-		},
+		refs: []rune{0x0437},
 	},
 	0xa643: {
-		refs: []string{
-			`U+0455 cyrillic small letter dze`,
-		},
+		refs: []rune{0x0455},
 	},
 	0xa644: {
-		refs: []string{
-			`U+10193 roman sextula sign`,
-		},
+		refs: []rune{0x10193},
 	},
 	0xa647: {
-		refs: []string{
-			`U+2C3A glagolitic small letter initial izhe`,
-		},
+		refs: []rune{0x2C3A},
 	},
 	0xa649: {
-		refs: []string{
-			`U+0452 cyrillic small letter dje`,
-			`U+045B cyrillic small letter tshe`,
-		},
+		refs: []rune{0x0452, 0x045B},
 	},
 	0xa64b: {
-		refs: []string{
-			`U+0443 cyrillic small letter u`,
-		},
+		refs: []rune{0x0443},
 	},
 	0xa64d: {
-		refs: []string{
-			`U+0461 cyrillic small letter omega`,
-		},
+		refs: []rune{0x0461},
 	},
 	0xa64f: {
-		refs: []string{
-			`U+044A cyrillic small letter hard sign`,
-			`U+044C cyrillic small letter soft sign`,
-		},
+		refs: []rune{0x044A, 0x044C},
 	},
 	0xa651: {
-		refs: []string{
-			`U+044B cyrillic small letter yeru`,
-		},
+		refs: []rune{0x044B},
 	},
 	0xa653: {
-		refs: []string{
-			`U+0463 cyrillic small letter yat`,
-		},
+		refs: []rune{0x0463},
 	},
 	0xa655: {
-		refs: []string{
-			`U+044E cyrillic small letter yu`,
-		},
+		refs: []rune{0x044E},
 	},
 	0xa659: {
-		refs: []string{
-			`U+0467 cyrillic small letter little yus`,
-		},
+		refs: []rune{0x0467},
 	},
 	0xa65b: {
-		refs: []string{
-			`U+0467 cyrillic small letter little yus`,
-			`U+046B cyrillic small letter big yus`,
-		},
+		refs: []rune{0x0467, 0x046B},
 	},
 	0xa65d: {
-		refs: []string{
-			`U+0469 cyrillic small letter iotified little yus`,
-		},
+		refs: []rune{0x0469},
 	},
 	0xa66f: {
-		refs: []string{
-			`U+0483 combining cyrillic titlo`,
-			`U+0487 combining cyrillic pokrytie`,
-		},
+		refs: []rune{0x0483, 0x0487},
 	},
 	0xa670: {
-		refs: []string{
-			`U+0489 combining cyrillic millions sign`,
-		},
+		refs: []rune{0x0489},
 	},
 	0xa67c: {
-		refs: []string{
-			`U+0306 combining breve`,
-			`U+1DF6 combining kavyka above right`,
-			`U+1DF7 combining kavyka above left`,
-		},
+		refs: []rune{0x0306, 0x1DF6, 0x1DF7},
 	},
 	0xa67d: {
-		refs: []string{
-			`U+033E combining vertical tilde`,
-		},
+		refs: []rune{0x033E},
 	},
 	0xa67e: {
-		refs: []string{
-			`U+2E47 low kavyka`,
-		},
+		refs: []rune{0x2E47},
 	},
 	0xa67f: {
-		refs: []string{
-			`U+2E2F vertical tilde`,
-		},
+		refs: []rune{0x2E2F},
 	},
 	0xa723: {
-		refs: []string{
-			`U+05D0 hebrew letter alef`,
-			`U+0623 arabic letter alef with hamza above`,
-		},
+		refs: []rune{0x05D0, 0x0623},
 	},
 	0xa725: {
-		refs: []string{
-			`U+02BF modifier letter left half ring`,
-			`U+05E2 hebrew letter ayin`,
-			`U+0639 arabic letter ain`,
-			`U+1D25 latin letter ain`,
-			`U+1D5C modifier letter small ain`,
-			`U+A7BD latin small letter glottal i`,
-		},
+		refs: []rune{0x02BF, 0x05E2, 0x0639, 0x1D25, 0x1D5C, 0xA7BD},
 	},
 	0xa726: {
-		refs: []string{
-			`U+04C7 cyrillic capital letter en with hook`,
-			`U+2C67 latin capital letter h with descender`,
-		},
+		refs: []rune{0x04C7, 0x2C67},
 	},
 	0xa727: {
-		refs: []string{
-			`U+0267 latin small letter heng with hook`,
-			`U+A795 latin small letter h with palatal hook`,
-			`U+AB5C modifier letter small heng`,
-		},
+		refs: []rune{0x0267, 0xA795, 0xAB5C},
 	},
 	0xa729: {
-		aliases: []string{
-			`tezh digraph`,
-		},
-		refs: []string{
-			`U+02A6 latin small letter ts digraph`,
-			`U+02A7 latin small letter tesh digraph`,
-		},
+		aliases: []string{`tezh digraph`},
+		refs:    []rune{0x02A6, 0x02A7},
 	},
 	0xa72b: {
-		refs: []string{
-			`U+218B turned digit three`,
-		},
+		refs: []rune{0x218B},
 	},
 	0xa72d: {
-		refs: []string{
-			`U+0034 digit four`,
-		},
+		refs: []rune{0x0034},
 	},
 	0xa732: {
-		refs: []string{
-			`U+10780 modifier letter small capital aa`,
-		},
+		refs: []rune{0x10780},
 	},
 	0xa73e: {
-		refs: []string{
-			`U+03FF greek capital reversed dotted lunate sigma symbol`,
-		},
+		refs: []rune{0x03FF},
 	},
 	0xa73f: {
-		refs: []string{
-			`U+037D greek small reversed dotted lunate sigma symbol`,
-		},
+		refs: []rune{0x037D},
 	},
 	0xa748: {
-		refs: []string{
-			`U+023D latin capital letter l with bar`,
-		},
+		refs: []rune{0x023D},
 	},
 	0xa749: {
-		refs: []string{
-			`U+019A latin small letter l with bar`,
-		},
+		refs: []rune{0x019A},
 	},
 	0xa74a: {
-		refs: []string{
-			`U+019F latin capital letter o with middle tilde`,
-		},
+		refs: []rune{0x019F},
 	},
 	0xa74b: {
-		refs: []string{
-			`U+00F8 latin small letter o with stroke`,
-			`U+0275 latin small letter barred o`,
-		},
+		refs: []rune{0x00F8, 0x0275},
 	},
 	0xa74f: {
-		refs: []string{
-			`U+A699 cyrillic small letter double o`,
-		},
+		refs: []rune{0xA699},
 	},
 	0xa750: {
-		refs: []string{
-			`U+20BD ruble sign`,
-		},
+		refs: []rune{0x20BD},
 	},
 	0xa751: {
-		refs: []string{
-			`U+03FC greek rho with stroke symbol`,
-			`U+1D71 latin small letter p with middle tilde`,
-		},
+		refs: []rune{0x03FC, 0x1D71},
 	},
 	0xa763: {
-		refs: []string{
-			`U+00E7 latin small letter c with cedilla`,
-		},
+		refs: []rune{0x00E7},
 	},
 	0xa76a: {
-		refs: []string{
-			`U+A7AB latin capital letter reversed open e`,
-		},
+		refs: []rune{0xA7AB},
 	},
 	0xa76b: {
-		refs: []string{
-			`U+021D latin small letter yogh`,
-		},
+		refs: []rune{0x021D},
 	},
 	0xa76e: {
-		refs: []string{
-			`U+0039 digit nine`,
-		},
+		refs: []rune{0x0039},
 	},
 	0xa770: {
-		refs: []string{
-			`U+2079 superscript nine`,
-		},
+		refs: []rune{0x2079},
 	},
 	0xa77a: {
-		refs: []string{
-			`U+00F0 latin small letter eth`,
-			`U+1E9F latin small letter delta`,
-		},
+		refs: []rune{0x00F0, 0x1E9F},
 	},
 	0xa77d: {
-		refs: []string{
-			`U+A7D0 latin capital letter closed insular g`,
-		},
+		refs: []rune{0xA7D0},
 	},
 	0xa77f: {
-		refs: []string{
-			`U+1D77 latin small letter turned g`,
-		},
+		refs: []rune{0x1D77},
 	},
 	0xa783: {
-		refs: []string{
-			`U+027C latin small letter r with long leg`,
-		},
+		refs: []rune{0x027C},
 	},
 	0xa785: {
-		refs: []string{
-			`U+017F latin small letter long s`,
-		},
+		refs: []rune{0x017F},
 	},
 	0xa788: {
-		refs: []string{
-			`U+02C6 modifier letter circumflex accent`,
-			`U+02F0 modifier letter low up arrowhead`,
-			`U+2038 caret`,
-		},
+		refs: []rune{0x02C6, 0x02F0, 0x2038},
 	},
 	0xa789: {
-		refs: []string{
-			`U+003A colon`,
-			`U+02D0 modifier letter triangular colon`,
-			`U+02F8 modifier letter raised colon`,
-			`U+A4FD lisu letter tone mya jeu`,
-		},
+		refs: []rune{0x003A, 0x02D0, 0x02F8, 0xA4FD},
 	},
 	0xa78a: {
-		refs: []string{
-			`U+003D equals sign`,
-			`U+02ED modifier letter unaspirated`,
-			`U+2E40 double hyphen`,
-			`U+FE66 small equals sign`,
-		},
+		refs: []rune{0x003D, 0x02ED, 0x2E40, 0xFE66},
 	},
 	0xa78c: {
-		refs: []string{
-			`U+0027 apostrophe`,
-			`U+0242 latin small letter glottal stop`,
-			`U+0294 latin letter glottal stop`,
-			`U+02BC modifier letter apostrophe`,
-			`U+02C0 modifier letter glottal stop`,
-		},
+		refs: []rune{0x0027, 0x0242, 0x0294, 0x02BC, 0x02C0},
 	},
 	0xa78d: {
-		refs: []string{
-			`U+0427 cyrillic capital letter che`,
-		},
+		refs: []rune{0x0427},
 	},
 	0xa78e: {
-		refs: []string{
-			`U+026C latin small letter l with belt`,
-		},
+		refs: []rune{0x026C},
 	},
 	0xa78f: {
-		refs: []string{
-			`U+00B7 middle dot`,
-			`U+2022 bullet`,
-		},
+		refs: []rune{0x00B7, 0x2022},
 	},
 	0xa791: {
-		refs: []string{
-			`U+014B latin small letter eng`,
-			`U+019E latin small letter n with long right leg`,
-			`U+04A3 cyrillic small letter en with descender`,
-		},
+		refs: []rune{0x014B, 0x019E, 0x04A3},
 	},
 	0xa792: {
-		aliases: []string{
-			`Cambrian symbol`,
-		},
-		refs: []string{
-			`U+20AC euro sign`,
-		},
+		aliases: []string{`Cambrian symbol`},
+		refs:    []rune{0x20AC},
 	},
 	0xa793: {
-		refs: []string{
-			`U+0454 cyrillic small letter ukrainian ie`,
-		},
+		refs: []rune{0x0454},
 	},
 	0xa795: {
-		refs: []string{
-			`U+A727 latin small letter heng`,
-		},
+		refs: []rune{0xA727},
 	},
 	0xa798: {
-		refs: []string{
-			`U+0191 latin capital letter f with hook`,
-			`U+20A3 french franc sign`,
-		},
+		refs: []rune{0x0191, 0x20A3},
 	},
 	0xa7a9: {
-		refs: []string{
-			`U+1E9C latin small letter long s with diagonal stroke`,
-			`U+A7CA latin small letter s with short stroke overlay`,
-		},
+		refs: []rune{0x1E9C, 0xA7CA},
 	},
 	0xa7ab: {
-		refs: []string{
-			`U+01B7 latin capital letter ezh`,
-			`U+021C latin capital letter yogh`,
-			`U+0417 cyrillic capital letter ze`,
-		},
+		refs: []rune{0x01B7, 0x021C, 0x0417},
 	},
 	0xa7ad: {
-		refs: []string{
-			`U+023D latin capital letter l with bar`,
-			`U+1DF04 latin letter small capital l with belt`,
-		},
+		refs: []rune{0x023D, 0x1DF04},
 	},
 	0xa7ae: {
-		refs: []string{
-			`U+0049 latin capital letter i`,
-			`U+026A latin letter small capital i`,
-		},
+		refs: []rune{0x0049, 0x026A},
 	},
 	0xa7af: {
-		refs: []string{
-			`U+A7F4 modifier letter capital q`,
-		},
+		refs: []rune{0xA7F4},
 	},
 	0xa7b3: {
-		refs: []string{
-			`U+03A7 greek capital letter chi`,
-		},
+		refs: []rune{0x03A7},
 	},
 	0xa7b5: {
-		refs: []string{
-			`U+00DF latin small letter sharp s`,
-			`U+03B2 greek small letter beta`,
-		},
+		refs: []rune{0x00DF, 0x03B2},
 	},
 	0xa7b7: {
-		refs: []string{
-			`U+0277 latin small letter closed omega`,
-			`U+03C9 greek small letter omega`,
-			`U+0461 cyrillic small letter omega`,
-			`U+A64D cyrillic small letter broad omega`,
-		},
+		refs: []rune{0x0277, 0x03C9, 0x0461, 0xA64D},
 	},
 	0xa7bd: {
-		aliases: []string{
-			`egyptological yod`,
-		},
-		refs: []string{
-			`U+A723 latin small letter egyptological alef`,
-			`U+A725 latin small letter egyptological ain`,
-		},
+		aliases: []string{`egyptological yod`},
+		refs:    []rune{0xA723, 0xA725},
 	},
 	0xa7c1: {
-		refs: []string{
-			`U+00F8 latin small letter o with stroke`,
-		},
+		refs: []rune{0x00F8},
 	},
 	0xa7c7: {
-		refs: []string{
-			`U+00D0 latin capital letter eth`,
-			`U+0110 latin capital letter d with stroke`,
-		},
+		refs: []rune{0x00D0, 0x0110},
 	},
 	0xa7c8: {
-		aliases: []string{
-			`tau gallicum`,
-		},
-		refs: []string{
-			`U+0111 latin small letter d with stroke`,
-		},
+		aliases: []string{`tau gallicum`},
+		refs:    []rune{0x0111},
 	},
 	0xa7d1: {
-		refs: []string{
-			`U+1D79 latin small letter insular g`,
-		},
+		refs: []rune{0x1D79},
 	},
 	0xa7d3: {
-		refs: []string{
-			`U+00FE latin small letter thorn`,
-		},
+		refs: []rune{0x00FE},
 	},
 	0xa7d5: {
-		refs: []string{
-			`U+01BF latin letter wynn`,
-		},
+		refs: []rune{0x01BF},
 	},
 	0xa7d7: {
-		refs: []string{
-			`U+00DF latin small letter sharp s`,
-		},
+		refs: []rune{0x00DF},
 	},
 	0xa7f4: {
-		refs: []string{
-			`U+A7AF latin letter small capital q`,
-		},
+		refs: []rune{0xA7AF},
 	},
 	0xa7f5: {
-		aliases: []string{
-			`H dimidié`,
-		},
-		refs: []string{
-			`U+2C75 latin capital letter half h`,
-		},
+		aliases: []string{`H dimidié`},
+		refs:    []rune{0x2C75},
 	},
 	0xa7f8: {
-		refs: []string{
-			`U+029C latin letter small capital h`,
-		},
+		refs: []rune{0x029C},
 	},
 	0xa7fa: {
-		refs: []string{
-			`U+026F latin small letter turned m`,
-			`U+0448 cyrillic small letter sha`,
-		},
+		refs: []rune{0x026F, 0x0448},
 	},
 	0xa7fb: {
-		aliases: []string{
-			`filia (daughter)`,
-			`femina`,
-		},
+		aliases: []string{`filia (daughter)`, `femina`},
 	},
 	0xa7fc: {
-		aliases: []string{
-			`puella`,
-		},
+		aliases: []string{`puella`},
 	},
 	0xa7fd: {
-		aliases: []string{
-			`mulier`,
-			`matrona`,
-		},
-		refs: []string{
-			`U+019C latin capital letter turned m`,
-		},
+		aliases: []string{`mulier`, `matrona`},
+		refs:    []rune{0x019C},
 	},
 	0xa806: {
-		aliases: []string{
-			`halant`,
-			`virama`,
-		},
+		aliases: []string{`halant`, `virama`},
 	},
 	0xa82c: {
-		aliases: []string{
-			`killer`,
-		},
+		aliases: []string{`killer`},
 	},
 	0xa838: {
-		refs: []string{
-			`U+09F2 bengali rupee mark`,
-		},
+		refs: []rune{0x09F2},
 	},
 	0xa840: {
-		refs: []string{
-			`U+0F40 tibetan letter ka`,
-		},
+		refs: []rune{0x0F40},
 	},
 	0xa841: {
-		refs: []string{
-			`U+0F41 tibetan letter kha`,
-		},
+		refs: []rune{0x0F41},
 	},
 	0xa842: {
-		refs: []string{
-			`U+0F42 tibetan letter ga`,
-		},
+		refs: []rune{0x0F42},
 	},
 	0xa843: {
-		refs: []string{
-			`U+0F44 tibetan letter nga`,
-		},
+		refs: []rune{0x0F44},
 	},
 	0xa844: {
-		refs: []string{
-			`U+0F45 tibetan letter ca`,
-		},
+		refs: []rune{0x0F45},
 	},
 	0xa845: {
-		refs: []string{
-			`U+0F46 tibetan letter cha`,
-		},
+		refs: []rune{0x0F46},
 	},
 	0xa846: {
-		refs: []string{
-			`U+0F47 tibetan letter ja`,
-		},
+		refs: []rune{0x0F47},
 	},
 	0xa847: {
-		refs: []string{
-			`U+0F49 tibetan letter nya`,
-		},
+		refs: []rune{0x0F49},
 	},
 	0xa848: {
-		refs: []string{
-			`U+0F4F tibetan letter ta`,
-		},
+		refs: []rune{0x0F4F},
 	},
 	0xa849: {
-		refs: []string{
-			`U+0F50 tibetan letter tha`,
-		},
+		refs: []rune{0x0F50},
 	},
 	0xa84a: {
-		refs: []string{
-			`U+0F51 tibetan letter da`,
-		},
+		refs: []rune{0x0F51},
 	},
 	0xa84b: {
-		refs: []string{
-			`U+0F53 tibetan letter na`,
-		},
+		refs: []rune{0x0F53},
 	},
 	0xa84c: {
-		refs: []string{
-			`U+0F54 tibetan letter pa`,
-		},
+		refs: []rune{0x0F54},
 	},
 	0xa84d: {
-		refs: []string{
-			`U+0F55 tibetan letter pha`,
-		},
+		refs: []rune{0x0F55},
 	},
 	0xa84e: {
-		refs: []string{
-			`U+0F56 tibetan letter ba`,
-		},
+		refs: []rune{0x0F56},
 	},
 	0xa84f: {
-		refs: []string{
-			`U+0F58 tibetan letter ma`,
-		},
+		refs: []rune{0x0F58},
 	},
 	0xa850: {
-		refs: []string{
-			`U+0F59 tibetan letter tsa`,
-		},
+		refs: []rune{0x0F59},
 	},
 	0xa851: {
-		refs: []string{
-			`U+0F5A tibetan letter tsha`,
-		},
+		refs: []rune{0x0F5A},
 	},
 	0xa852: {
-		refs: []string{
-			`U+0F5B tibetan letter dza`,
-		},
+		refs: []rune{0x0F5B},
 	},
 	0xa853: {
-		refs: []string{
-			`U+0F5D tibetan letter wa`,
-		},
+		refs: []rune{0x0F5D},
 	},
 	0xa854: {
-		refs: []string{
-			`U+0F5E tibetan letter zha`,
-		},
+		refs: []rune{0x0F5E},
 	},
 	0xa855: {
-		refs: []string{
-			`U+0F5F tibetan letter za`,
-		},
+		refs: []rune{0x0F5F},
 	},
 	0xa856: {
-		refs: []string{
-			`U+0F60 tibetan letter -a`,
-		},
+		refs: []rune{0x0F60},
 	},
 	0xa857: {
-		refs: []string{
-			`U+0F61 tibetan letter ya`,
-		},
+		refs: []rune{0x0F61},
 	},
 	0xa858: {
-		refs: []string{
-			`U+0F62 tibetan letter ra`,
-		},
+		refs: []rune{0x0F62},
 	},
 	0xa859: {
-		refs: []string{
-			`U+0F63 tibetan letter la`,
-		},
+		refs: []rune{0x0F63},
 	},
 	0xa85a: {
-		refs: []string{
-			`U+0F64 tibetan letter sha`,
-		},
+		refs: []rune{0x0F64},
 	},
 	0xa85b: {
-		refs: []string{
-			`U+0F66 tibetan letter sa`,
-		},
+		refs: []rune{0x0F66},
 	},
 	0xa85c: {
-		refs: []string{
-			`U+0F67 tibetan letter ha`,
-		},
+		refs: []rune{0x0F67},
 	},
 	0xa85d: {
-		refs: []string{
-			`U+0F68 tibetan letter a`,
-		},
+		refs: []rune{0x0F68},
 	},
 	0xa85e: {
-		refs: []string{
-			`U+0F72 tibetan vowel sign i`,
-		},
+		refs: []rune{0x0F72},
 	},
 	0xa85f: {
-		refs: []string{
-			`U+0F74 tibetan vowel sign u`,
-		},
+		refs: []rune{0x0F74},
 	},
 	0xa860: {
-		refs: []string{
-			`U+0F7A tibetan vowel sign e`,
-		},
+		refs: []rune{0x0F7A},
 	},
 	0xa861: {
-		refs: []string{
-			`U+0F7C tibetan vowel sign o`,
-		},
+		refs: []rune{0x0F7C},
 	},
 	0xa864: {
-		refs: []string{
-			`U+A85C phags-pa letter ha`,
-		},
+		refs: []rune{0xA85C},
 	},
 	0xa867: {
-		refs: []string{
-			`U+0FAD tibetan subjoined letter wa`,
-		},
+		refs: []rune{0x0FAD},
 	},
 	0xa868: {
-		refs: []string{
-			`U+0FB1 tibetan subjoined letter ya`,
-		},
+		refs: []rune{0x0FB1},
 	},
 	0xa869: {
-		refs: []string{
-			`U+0F4A tibetan letter tta`,
-		},
+		refs: []rune{0x0F4A},
 	},
 	0xa86a: {
-		refs: []string{
-			`U+0F4B tibetan letter ttha`,
-		},
+		refs: []rune{0x0F4B},
 	},
 	0xa86b: {
-		refs: []string{
-			`U+0F4C tibetan letter dda`,
-		},
+		refs: []rune{0x0F4C},
 	},
 	0xa86c: {
-		refs: []string{
-			`U+0F4E tibetan letter nna`,
-		},
+		refs: []rune{0x0F4E},
 	},
 	0xa86d: {
-		refs: []string{
-			`U+A857 phags-pa letter ya`,
-		},
+		refs: []rune{0xA857},
 	},
 	0xa86e: {
-		refs: []string{
-			`U+A85A phags-pa letter sha`,
-		},
+		refs: []rune{0xA85A},
 	},
 	0xa86f: {
-		refs: []string{
-			`U+A85C phags-pa letter ha`,
-		},
+		refs: []rune{0xA85C},
 	},
 	0xa870: {
-		refs: []string{
-			`U+A864 phags-pa letter fa`,
-		},
+		refs: []rune{0xA864},
 	},
 	0xa871: {
-		refs: []string{
-			`U+0FB2 tibetan subjoined letter ra`,
-		},
+		refs: []rune{0x0FB2},
 	},
 	0xa872: {
-		refs: []string{
-			`U+0F62 tibetan letter ra`,
-		},
+		refs: []rune{0x0F62},
 	},
 	0xa873: {
-		refs: []string{
-			`U+0F83 tibetan sign sna ldan`,
-			`U+0F7E tibetan sign rjes su nga ro`,
-			`U+1880 mongolian letter ali gali anusvara one`,
-		},
+		refs: []rune{0x0F83, 0x0F7E, 0x1880},
 	},
 	0xa874: {
-		refs: []string{
-			`U+0F04 tibetan mark initial yig mgo mdun ma`,
-			`U+1800 mongolian birga`,
-		},
+		refs: []rune{0x0F04, 0x1800},
 	},
 	0xa876: {
-		refs: []string{
-			`U+0F0D tibetan mark shad`,
-		},
+		refs: []rune{0x0F0D},
 	},
 	0xa877: {
-		refs: []string{
-			`U+0F0E tibetan mark nyis shad`,
-		},
+		refs: []rune{0x0F0E},
 	},
 	0xa8e0: {
-		aliases: []string{
-			`vaidika saamasvara anka shuunya`,
-		},
+		aliases: []string{`vaidika saamasvara anka shuunya`},
 	},
 	0xa8e1: {
-		aliases: []string{
-			`vaidika saamasvara anka eka udaatta`,
-		},
+		aliases: []string{`vaidika saamasvara anka eka udaatta`},
 	},
 	0xa8e2: {
-		aliases: []string{
-			`vaidika saamasvara anka dvi svarita`,
-		},
+		aliases: []string{`vaidika saamasvara anka dvi svarita`},
 	},
 	0xa8e3: {
-		aliases: []string{
-			`vaidika saamasvara anka tri anudaatta`,
-		},
+		aliases: []string{`vaidika saamasvara anka tri anudaatta`},
 	},
 	0xa8e4: {
-		aliases: []string{
-			`vaidika saamasvara anka chatur`,
-		},
+		aliases: []string{`vaidika saamasvara anka chatur`},
 	},
 	0xa8e5: {
-		aliases: []string{
-			`vaidika saamasvara anka pancha`,
-		},
+		aliases: []string{`vaidika saamasvara anka pancha`},
 	},
 	0xa8e6: {
-		aliases: []string{
-			`vaidika saamasvara anka shatt`,
-		},
+		aliases: []string{`vaidika saamasvara anka shatt`},
 	},
 	0xa8e7: {
-		aliases: []string{
-			`vaidika saamasvara anka sapta`,
-		},
+		aliases: []string{`vaidika saamasvara anka sapta`},
 	},
 	0xa8e8: {
-		aliases: []string{
-			`vaidika saamasvara anka ashta`,
-		},
+		aliases: []string{`vaidika saamasvara anka ashta`},
 	},
 	0xa8e9: {
-		aliases: []string{
-			`vaidika saamasvara anka nava`,
-		},
+		aliases: []string{`vaidika saamasvara anka nava`},
 	},
 	0xa8ea: {
-		aliases: []string{
-			`vaidika saamasvara abhinihita`,
-		},
+		aliases: []string{`vaidika saamasvara abhinihita`},
 	},
 	0xa8eb: {
-		aliases: []string{
-			`vaidika saamasvara u`,
-		},
+		aliases: []string{`vaidika saamasvara u`},
 	},
 	0xa8ec: {
-		aliases: []string{
-			`vaidika saamasvara ka`,
-		},
+		aliases: []string{`vaidika saamasvara ka`},
 	},
 	0xa8ed: {
-		aliases: []string{
-			`vaidika saamasvara namana`,
-		},
+		aliases: []string{`vaidika saamasvara namana`},
 	},
 	0xa8ee: {
-		aliases: []string{
-			`vaidika saamasvara prannatam`,
-		},
+		aliases: []string{`vaidika saamasvara prannatam`},
 	},
 	0xa8ef: {
-		aliases: []string{
-			`vaidika saamasvara ra`,
-		},
+		aliases: []string{`vaidika saamasvara ra`},
 	},
 	0xa8f0: {
-		aliases: []string{
-			`vaidika saamasvara vinata`,
-		},
+		aliases: []string{`vaidika saamasvara vinata`},
 	},
 	0xa8f1: {
-		aliases: []string{
-			`vaidika saamasvara diirghiibhaava`,
-		},
+		aliases: []string{`vaidika saamasvara diirghiibhaava`},
 	},
 	0xa8f2: {
-		aliases: []string{
-			`vaidika candrabindu`,
-		},
-		refs: []string{
-			`U+0901 devanagari sign candrabindu`,
-		},
+		aliases: []string{`vaidika candrabindu`},
+		refs:    []rune{0x0901},
 	},
 	0xa8f3: {
-		aliases: []string{
-			`vaidika anusvaara candrabindu tiryak`,
-		},
+		aliases: []string{`vaidika anusvaara candrabindu tiryak`},
 	},
 	0xa8f4: {
-		aliases: []string{
-			`vaidika anusvaara dvi candrabindu tiryak`,
-		},
+		aliases: []string{`vaidika anusvaara dvi candrabindu tiryak`},
 	},
 	0xa8f5: {
-		aliases: []string{
-			`vaidika anusvaara candrabindu sa-dvi`,
-		},
+		aliases: []string{`vaidika anusvaara candrabindu sa-dvi`},
 	},
 	0xa8f6: {
-		aliases: []string{
-			`vaidika anusvaara candrabindu sa-tri`,
-		},
+		aliases: []string{`vaidika anusvaara candrabindu sa-tri`},
 	},
 	0xa8f7: {
-		aliases: []string{
-			`vaidika anusvaara candrabindu sa-avagraha`,
-		},
+		aliases: []string{`vaidika anusvaara candrabindu sa-avagraha`},
 	},
 	0xa8f8: {
-		aliases: []string{
-			`vaidika pushpikaa`,
-		},
+		aliases: []string{`vaidika pushpikaa`},
 	},
 	0xa8fa: {
-		aliases: []string{
-			`vaidika trutikaa`,
-		},
-		refs: []string{
-			`U+2038 caret`,
-		},
+		aliases: []string{`vaidika trutikaa`},
+		refs:    []rune{0x2038},
 	},
 	0xa8fb: {
-		aliases: []string{
-			`shirorekhaa`,
-		},
-		refs: []string{
-			`U+111DC sharada headstroke`,
-		},
+		aliases: []string{`shirorekhaa`},
+		refs:    []rune{0x111DC},
 	},
 	0xa8fc: {
-		aliases: []string{
-			`siddhirastu`,
-		},
-		refs: []string{
-			`U+0C77 telugu sign siddham`,
-			`U+0C84 kannada sign siddham`,
-			`U+0F04 tibetan mark initial yig mgo mdun ma`,
-			`U+1800 mongolian birga`,
-			`U+111DB sharada sign siddham`,
-		},
+		aliases: []string{`siddhirastu`},
+		refs:    []rune{0x0C77, 0x0C84, 0x0F04, 0x1800, 0x111DB},
 	},
 	0xa947: {
-		aliases: []string{
-			`kaluan`,
-		},
+		aliases: []string{`kaluan`},
 	},
 	0xa948: {
-		aliases: []string{
-			`kamitan`,
-		},
+		aliases: []string{`kamitan`},
 	},
 	0xa949: {
-		aliases: []string{
-			`kamica`,
-		},
+		aliases: []string{`kamica`},
 	},
 	0xa94a: {
-		aliases: []string{
-			`katiling`,
-		},
+		aliases: []string{`katiling`},
 	},
 	0xa94c: {
-		aliases: []string{
-			`katulung`,
-		},
+		aliases: []string{`katulung`},
 	},
 	0xa94e: {
-		aliases: []string{
-			`kajina`,
-		},
+		aliases: []string{`kajina`},
 	},
 	0xa94f: {
-		aliases: []string{
-			`katulang`,
-		},
+		aliases: []string{`katulang`},
 	},
 	0xa950: {
-		aliases: []string{
-			`duo deatas`,
-		},
+		aliases: []string{`duo deatas`},
 	},
 	0xa951: {
-		aliases: []string{
-			`kajunjung`,
-		},
+		aliases: []string{`kajunjung`},
 	},
 	0xa980: {
-		aliases: []string{
-			`candrabindu`,
-		},
+		aliases: []string{`candrabindu`},
 	},
 	0xa981: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0xa982: {
-		aliases: []string{
-			`final r`,
-		},
-		refs: []string{
-			`U+1B03 balinese sign surang`,
-		},
+		aliases: []string{`final r`},
+		refs:    []rune{0x1B03},
 	},
 	0xa983: {
-		aliases: []string{
-			`visarga`,
-		},
+		aliases: []string{`visarga`},
 	},
 	0xa989: {
-		aliases: []string{
-			`vocalic r`,
-		},
+		aliases: []string{`vocalic r`},
 	},
 	0xa98a: {
-		aliases: []string{
-			`vocalic l`,
-		},
+		aliases: []string{`vocalic l`},
 	},
 	0xa98b: {
-		aliases: []string{
-			`vocalic ll`,
-		},
+		aliases: []string{`vocalic ll`},
 	},
 	0xa990: {
-		aliases: []string{
-			`qa`,
-		},
+		aliases: []string{`qa`},
 	},
 	0xa991: {
-		aliases: []string{
-			`kha`,
-		},
+		aliases: []string{`kha`},
 	},
 	0xa993: {
-		aliases: []string{
-			`gha`,
-		},
+		aliases: []string{`gha`},
 	},
 	0xa996: {
-		aliases: []string{
-			`cha`,
-		},
+		aliases: []string{`cha`},
 	},
 	0xa998: {
-		aliases: []string{
-			`jnya`,
-		},
-		refs: []string{
-			`U+1B4C balinese letter archaic jnya`,
-		},
+		aliases: []string{`jnya`},
+		refs:    []rune{0x1B4C},
 	},
 	0xa999: {
-		aliases: []string{
-			`jha`,
-		},
+		aliases: []string{`jha`},
 	},
 	0xa99c: {
-		aliases: []string{
-			`ttha`,
-		},
+		aliases: []string{`ttha`},
 	},
 	0xa99e: {
-		aliases: []string{
-			`ddha`,
-		},
+		aliases: []string{`ddha`},
 	},
 	0xa99f: {
-		aliases: []string{
-			`nna`,
-		},
+		aliases: []string{`nna`},
 	},
 	0xa9a1: {
-		aliases: []string{
-			`tha`,
-		},
+		aliases: []string{`tha`},
 	},
 	0xa9a3: {
-		aliases: []string{
-			`dha`,
-		},
+		aliases: []string{`dha`},
 	},
 	0xa9a6: {
-		aliases: []string{
-			`pha`,
-		},
+		aliases: []string{`pha`},
 	},
 	0xa9a8: {
-		aliases: []string{
-			`bha`,
-		},
+		aliases: []string{`bha`},
 	},
 	0xa9af: {
-		aliases: []string{
-			`sha`,
-		},
+		aliases: []string{`sha`},
 	},
 	0xa9b0: {
-		aliases: []string{
-			`ssa`,
-		},
+		aliases: []string{`ssa`},
 	},
 	0xa9b3: {
-		aliases: []string{
-			`nukta`,
-		},
+		aliases: []string{`nukta`},
 	},
 	0xa9b4: {
-		aliases: []string{
-			`aa`,
-		},
+		aliases: []string{`aa`},
 	},
 	0xa9b6: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0xa9b7: {
-		aliases: []string{
-			`ii`,
-		},
+		aliases: []string{`ii`},
 	},
 	0xa9b8: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0xa9b9: {
-		aliases: []string{
-			`uu`,
-		},
+		aliases: []string{`uu`},
 	},
 	0xa9ba: {
-		aliases: []string{
-			`e`,
-		},
+		aliases: []string{`e`},
 	},
 	0xa9bb: {
-		aliases: []string{
-			`ai`,
-		},
+		aliases: []string{`ai`},
 	},
 	0xa9bc: {
-		aliases: []string{
-			`ĕ`,
-		},
+		aliases: []string{`ĕ`},
 	},
 	0xa9bd: {
-		aliases: []string{
-			`vocalic r`,
-		},
+		aliases: []string{`vocalic r`},
 	},
 	0xa9be: {
-		aliases: []string{
-			`medial ya`,
-		},
+		aliases: []string{`medial ya`},
 	},
 	0xa9bf: {
-		aliases: []string{
-			`medial ra`,
-		},
+		aliases: []string{`medial ra`},
 	},
 	0xa9c0: {
-		aliases: []string{
-			`virama`,
-		},
+		aliases: []string{`virama`},
 	},
 	0xa9c8: {
-		aliases: []string{
-			`danda`,
-		},
+		aliases: []string{`danda`},
 	},
 	0xa9c9: {
-		aliases: []string{
-			`double danda`,
-		},
+		aliases: []string{`double danda`},
 	},
 	0xa9cf: {
-		refs: []string{
-			`U+0662 arabic-indic digit two`,
-		},
+		refs: []rune{0x0662},
 	},
 	0xa9e6: {
-		refs: []string{
-			`U+AA70 myanmar modifier letter khamti reduplication`,
-		},
+		refs: []rune{0xAA70},
 	},
 	0xaa6e: {
-		aliases: []string{
-			`MYANMAR LETTER KHAMTI LLA`,
-		},
+		aliases: []string{`MYANMAR LETTER KHAMTI LLA`},
 	},
 	0xaa70: {
-		refs: []string{
-			`U+A9E6 myanmar modifier letter shan reduplication`,
-		},
+		refs: []rune{0xA9E6},
 	},
 	0xaadb: {
-		aliases: []string{
-			`person`,
-		},
+		aliases: []string{`person`},
 	},
 	0xaadc: {
-		aliases: []string{
-			`one`,
-		},
+		aliases: []string{`one`},
 	},
 	0xaadd: {
-		refs: []string{
-			`U+0E46 thai character maiyamok`,
-		},
+		refs: []rune{0x0E46},
 	},
 	0xaaf0: {
-		aliases: []string{
-			`danda`,
-		},
+		aliases: []string{`danda`},
 	},
 	0xaaf1: {
-		aliases: []string{
-			`question mark`,
-		},
+		aliases: []string{`question mark`},
 	},
 	0xaaf2: {
-		refs: []string{
-			`U+0950 devanagari om`,
-		},
+		refs: []rune{0x0950},
 	},
 	0xaaf6: {
-		refs: []string{
-			`U+1039 myanmar sign virama`,
-		},
+		refs: []rune{0x1039},
 	},
 	0xab32: {
-		refs: []string{
-			`U+1D522 mathematical fraktur small e`,
-		},
+		refs: []rune{0x1D522},
 	},
 	0xab35: {
-		refs: []string{
-			`U+0066 latin small letter f`,
-		},
+		refs: []rune{0x0066},
 	},
 	0xab38: {
-		refs: []string{
-			`U+026B latin small letter l with middle tilde`,
-			`U+2C61 latin small letter l with double bar`,
-		},
+		refs: []rune{0x026B, 0x2C61},
 	},
 	0xab3d: {
-		refs: []string{
-			`U+1D52C mathematical fraktur small o`,
-		},
+		refs: []rune{0x1D52C},
 	},
 	0xab3e: {
-		refs: []string{
-			`U+00F8 latin small letter o with stroke`,
-		},
+		refs: []rune{0x00F8},
 	},
 	0xab40: {
-		aliases: []string{
-			`latin small letter o reversed-schwa`,
-		},
+		aliases: []string{`latin small letter o reversed-schwa`},
 	},
 	0xab4b: {
-		refs: []string{
-			`U+1D4C7 mathematical script small r`,
-		},
+		refs: []rune{0x1D4C7},
 	},
 	0xab4d: {
-		refs: []string{
-			`U+0283 latin small letter esh`,
-		},
+		refs: []rune{0x0283},
 	},
 	0xab53: {
-		refs: []string{
-			`U+03C7 greek small letter chi`,
-		},
+		refs: []rune{0x03C7},
 	},
 	0xab5b: {
-		refs: []string{
-			`U+02D8 breve`,
-			`U+224D equivalent to`,
-			`U+23D1 metrical breve`,
-			`U+2E46 inverted low kavyka with kavyka above`,
-		},
+		refs: []rune{0x02D8, 0x224D, 0x23D1, 0x2E46},
 	},
 	0xab60: {
-		refs: []string{
-			`U+0463 cyrillic small letter yat`,
-		},
+		refs: []rune{0x0463},
 	},
 	0xab61: {
-		refs: []string{
-			`U+0465 cyrillic small letter iotified e`,
-		},
+		refs: []rune{0x0465},
 	},
 	0xab62: {
-		refs: []string{
-			`U+0254 latin small letter open o`,
-		},
+		refs: []rune{0x0254},
 	},
 	0xab64: {
-		refs: []string{
-			`U+0252 latin small letter turned alpha`,
-		},
+		refs: []rune{0x0252},
 	},
 	0xab65: {
-		refs: []string{
-			`U+0277 latin small letter closed omega`,
-			`U+03A9 greek capital letter omega`,
-		},
+		refs: []rune{0x0277, 0x03A9},
 	},
 	0xab66: {
-		refs: []string{
-			`U+0290 latin small letter z with retroflex hook`,
-			`U+02A3 latin small letter dz digraph`,
-		},
+		refs: []rune{0x0290, 0x02A3},
 	},
 	0xab67: {
-		refs: []string{
-			`U+0282 latin small letter s with hook`,
-			`U+02A6 latin small letter ts digraph`,
-		},
+		refs: []rune{0x0282, 0x02A6},
 	},
 	0xab68: {
-		refs: []string{
-			`U+1D72 latin small letter r with middle tilde`,
-		},
+		refs: []rune{0x1D72},
 	},
 	0xab69: {
-		refs: []string{
-			`U+1AC0 combining latin small letter turned w below`,
-		},
+		refs: []rune{0x1AC0},
 	},
 	0xab6a: {
-		refs: []string{
-			`U+02D4 modifier letter up tack`,
-			`U+0318 combining left tack below`,
-		},
+		refs: []rune{0x02D4, 0x0318},
 	},
 	0xab6b: {
-		refs: []string{
-			`U+0319 combining right tack below`,
-		},
+		refs: []rune{0x0319},
 	},
 	0xabc0: {
-		aliases: []string{
-			`ka`,
-		},
+		aliases: []string{`ka`},
 	},
 	0xabc1: {
-		aliases: []string{
-			`sa`,
-		},
+		aliases: []string{`sa`},
 	},
 	0xabc2: {
-		aliases: []string{
-			`la`,
-		},
+		aliases: []string{`la`},
 	},
 	0xabc3: {
-		aliases: []string{
-			`ma`,
-		},
+		aliases: []string{`ma`},
 	},
 	0xabc6: {
-		aliases: []string{
-			`ca`,
-		},
+		aliases: []string{`ca`},
 	},
 	0xabc7: {
-		aliases: []string{
-			`ta`,
-		},
+		aliases: []string{`ta`},
 	},
 	0xabc8: {
-		aliases: []string{
-			`kha`,
-		},
+		aliases: []string{`kha`},
 	},
 	0xabc9: {
-		aliases: []string{
-			`nga`,
-		},
+		aliases: []string{`nga`},
 	},
 	0xabca: {
-		aliases: []string{
-			`tha`,
-		},
+		aliases: []string{`tha`},
 	},
 	0xabcb: {
-		aliases: []string{
-			`wa`,
-		},
+		aliases: []string{`wa`},
 	},
 	0xabcc: {
-		aliases: []string{
-			`ya`,
-		},
+		aliases: []string{`ya`},
 	},
 	0xabcd: {
-		aliases: []string{
-			`ha`,
-		},
+		aliases: []string{`ha`},
 	},
 	0xabce: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0xabd0: {
-		aliases: []string{
-			`pha`,
-		},
+		aliases: []string{`pha`},
 	},
 	0xabd1: {
-		aliases: []string{
-			`a`,
-		},
+		aliases: []string{`a`},
 	},
 	0xabd2: {
-		aliases: []string{
-			`ga`,
-		},
+		aliases: []string{`ga`},
 	},
 	0xabd3: {
-		aliases: []string{
-			`jha`,
-		},
+		aliases: []string{`jha`},
 	},
 	0xabd4: {
-		aliases: []string{
-			`ra`,
-		},
+		aliases: []string{`ra`},
 	},
 	0xabd6: {
-		aliases: []string{
-			`ja`,
-		},
+		aliases: []string{`ja`},
 	},
 	0xabd7: {
-		aliases: []string{
-			`da`,
-		},
+		aliases: []string{`da`},
 	},
 	0xabd8: {
-		aliases: []string{
-			`gha`,
-		},
+		aliases: []string{`gha`},
 	},
 	0xabd9: {
-		aliases: []string{
-			`dha`,
-		},
+		aliases: []string{`dha`},
 	},
 	0xabda: {
-		aliases: []string{
-			`bha`,
-		},
+		aliases: []string{`bha`},
 	},
 	0xabdb: {
-		aliases: []string{
-			`k`,
-		},
+		aliases: []string{`k`},
 	},
 	0xabdc: {
-		aliases: []string{
-			`l`,
-		},
+		aliases: []string{`l`},
 	},
 	0xabdd: {
-		aliases: []string{
-			`m`,
-		},
+		aliases: []string{`m`},
 	},
 	0xabde: {
-		aliases: []string{
-			`p`,
-		},
+		aliases: []string{`p`},
 	},
 	0xabdf: {
-		aliases: []string{
-			`n`,
-		},
+		aliases: []string{`n`},
 	},
 	0xabe0: {
-		aliases: []string{
-			`t`,
-		},
+		aliases: []string{`t`},
 	},
 	0xabe1: {
-		aliases: []string{
-			`ng`,
-		},
+		aliases: []string{`ng`},
 	},
 	0xabe2: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0xabe3: {
-		aliases: []string{
-			`o`,
-		},
+		aliases: []string{`o`},
 	},
 	0xabe4: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0xabe5: {
-		aliases: []string{
-			`aa`,
-		},
+		aliases: []string{`aa`},
 	},
 	0xabe6: {
-		aliases: []string{
-			`e`,
-		},
+		aliases: []string{`e`},
 	},
 	0xabe7: {
-		aliases: []string{
-			`ou`,
-		},
+		aliases: []string{`ou`},
 	},
 	0xabe8: {
-		aliases: []string{
-			`u`,
-		},
+		aliases: []string{`u`},
 	},
 	0xabe9: {
-		aliases: []string{
-			`ei`,
-		},
+		aliases: []string{`ei`},
 	},
 	0xabea: {
-		aliases: []string{
-			`anusvara`,
-		},
+		aliases: []string{`anusvara`},
 	},
 	0xabeb: {
-		aliases: []string{
-			`double danda`,
-		},
+		aliases: []string{`double danda`},
 	},
 	0xabec: {
-		aliases: []string{
-			`heavy tone`,
-		},
+		aliases: []string{`heavy tone`},
 	},
 	0xabed: {
-		aliases: []string{
-			`killer`,
-		},
-		refs: []string{
-			`U+103A myanmar sign asat`,
-		},
+		aliases: []string{`killer`},
+		refs:    []rune{0x103A},
 	},
 	0xabf0: {
-		aliases: []string{
-			`phun`,
-		},
+		aliases: []string{`phun`},
 	},
 	0xabf1: {
-		aliases: []string{
-			`ama`,
-		},
+		aliases: []string{`ama`},
 	},
 	0xabf2: {
-		aliases: []string{
-			`ani`,
-		},
+		aliases: []string{`ani`},
 	},
 	0xabf3: {
-		aliases: []string{
-			`ahum`,
-		},
+		aliases: []string{`ahum`},
 	},
 	0xabf4: {
-		aliases: []string{
-			`mari`,
-		},
+		aliases: []string{`mari`},
 	},
 	0xabf5: {
-		aliases: []string{
-			`manga`,
-		},
+		aliases: []string{`manga`},
 	},
 	0xabf6: {
-		aliases: []string{
-			`taruk`,
-		},
+		aliases: []string{`taruk`},
 	},
 	0xabf7: {
-		aliases: []string{
-			`taret`,
-		},
+		aliases: []string{`taret`},
 	},
 	0xabf8: {
-		aliases: []string{
-			`nipal`,
-		},
+		aliases: []string{`nipal`},
 	},
 	0xabf9: {
-		aliases: []string{
-			`mapal`,
-		},
+		aliases: []string{`mapal`},
 	},
 	0xf92c: {
-		refs: []string{
-			`90DE`,
-			`U+FA2E cjk compatibility ideograph-FA2E`,
-		},
+		refs: []rune{0x90DE, 0xFA2E},
 	},
 	0xf9b8: {
-		refs: []string{
-			`96B7`,
-			`U+FA2F cjk compatibility ideograph-FA2F`,
-		},
+		refs: []rune{0x96B7, 0xFA2F},
 	},
 	0xfad4: {
-		refs: []string{
-			`U+2F949 cjk compatibility ideograph-2F949`,
-		},
+		refs: []rune{0x2F949},
 	},
 	0xfbc2: {
-		refs: []string{
-			`U+0671 arabic letter alef wasla`,
-		},
+		refs: []rune{0x0671},
 	},
 	0xfd40: {
-		refs: []string{
-			`U+0612 arabic sign rahmatullah alayhe`,
-		},
+		refs: []rune{0x0612},
 	},
 	0xfd41: {
-		refs: []string{
-			`U+0613 arabic sign radi allahou anhu`,
-		},
+		refs: []rune{0x0613},
 	},
 	0xfd46: {
-		refs: []string{
-			`U+FDFA arabic ligature sallallahou alayhe wasallam`,
-		},
+		refs: []rune{0xFDFA},
 	},
 	0xfd47: {
-		refs: []string{
-			`U+0611 arabic sign alayhe assallam`,
-		},
+		refs: []rune{0x0611},
 	},
 	0xfd4c: {
-		refs: []string{
-			`U+FDFA arabic ligature sallallahou alayhe wasallam`,
-			`U+FD46 arabic ligature sallallaahu alayhi wa-aalih`,
-		},
+		refs: []rune{0xFDFA, 0xFD46},
 	},
 	0xfdf5: {
-		refs: []string{
-			`U+FDFA arabic ligature sallallahou alayhe wasallam`,
-		},
+		refs: []rune{0xFDFA},
 	},
 	0xfe0e: {
-		aliases: []string{
-			`text variation selector`,
-		},
+		aliases: []string{`text variation selector`},
 	},
 	0xfe0f: {
-		aliases: []string{
-			`emoji variation selector`,
-		},
+		aliases: []string{`emoji variation selector`},
 	},
 	0xfe10: {
-		refs: []string{
-			`U+FE50 small comma`,
-		},
+		refs: []rune{0xFE50},
 	},
 	0xfe11: {
-		refs: []string{
-			`U+FE45 sesame dot`,
-			`U+FE51 small ideographic comma`,
-		},
+		refs: []rune{0xFE45, 0xFE51},
 	},
 	0xfe13: {
-		refs: []string{
-			`U+FE55 small colon`,
-		},
+		refs: []rune{0xFE55},
 	},
 	0xfe14: {
-		refs: []string{
-			`U+FE54 small semicolon`,
-		},
+		refs: []rune{0xFE54},
 	},
 	0xfe15: {
-		refs: []string{
-			`U+FE57 small exclamation mark`,
-		},
+		refs: []rune{0xFE57},
 	},
 	0xfe16: {
-		refs: []string{
-			`U+FE56 small question mark`,
-		},
+		refs: []rune{0xFE56},
 	},
 	0xfe18: {
-		aliases: []string{
-			`PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET`,
-		},
+		aliases: []string{`PRESENTATION FORM FOR VERTICAL RIGHT WHITE LENTICULAR BRACKET`},
 	},
 	0xfe19: {
-		refs: []string{
-			`U+22EE vertical ellipsis`,
-		},
+		refs: []rune{0x22EE},
 	},
 	0xfe21: {
-		refs: []string{
-			`U+0361 combining double inverted breve`,
-		},
+		refs: []rune{0x0361},
 	},
 	0xfe23: {
-		refs: []string{
-			`U+0360 combining double tilde`,
-		},
+		refs: []rune{0x0360},
 	},
 	0xfe26: {
-		refs: []string{
-			`U+0304 combining macron`,
-			`U+035E combining double macron`,
-		},
+		refs: []rune{0x0304, 0x035E},
 	},
 	0xfe28: {
-		refs: []string{
-			`U+035C combining double breve below`,
-		},
+		refs: []rune{0x035C},
 	},
 	0xfe2d: {
-		refs: []string{
-			`U+0331 combining macron below`,
-			`U+035F combining double macron below`,
-		},
+		refs: []rune{0x0331, 0x035F},
 	},
 	0xfe2f: {
-		refs: []string{
-			`U+0483 combining cyrillic titlo`,
-		},
+		refs: []rune{0x0483},
 	},
 	0xfe35: {
-		refs: []string{
-			`U+23DC top parenthesis`,
-		},
+		refs: []rune{0x23DC},
 	},
 	0xfe36: {
-		refs: []string{
-			`U+23DD bottom parenthesis`,
-		},
+		refs: []rune{0x23DD},
 	},
 	0xfe37: {
-		refs: []string{
-			`U+23DE top curly bracket`,
-		},
+		refs: []rune{0x23DE},
 	},
 	0xfe38: {
-		refs: []string{
-			`U+23DF bottom curly bracket`,
-		},
+		refs: []rune{0x23DF},
 	},
 	0xfe39: {
-		refs: []string{
-			`U+23E0 top tortoise shell bracket`,
-		},
+		refs: []rune{0x23E0},
 	},
 	0xfe3a: {
-		refs: []string{
-			`U+23E1 bottom tortoise shell bracket`,
-		},
+		refs: []rune{0x23E1},
 	},
 	0xfe45: {
-		refs: []string{
-			`U+FE51 small ideographic comma`,
-		},
+		refs: []rune{0xFE51},
 	},
 	0xfe47: {
-		refs: []string{
-			`U+23B4 top square bracket`,
-		},
+		refs: []rune{0x23B4},
 	},
 	0xfe48: {
-		refs: []string{
-			`U+23B5 bottom square bracket`,
-		},
+		refs: []rune{0x23B5},
 	},
 	0xfe50: {
-		refs: []string{
-			`U+FE10 presentation form for vertical comma`,
-		},
+		refs: []rune{0xFE10},
 	},
 	0xfe51: {
-		refs: []string{
-			`U+FE11 presentation form for vertical ideographic comma`,
-			`U+FE45 sesame dot`,
-		},
+		refs: []rune{0xFE11, 0xFE45},
 	},
 	0xfe54: {
-		refs: []string{
-			`U+FE14 presentation form for vertical semicolon`,
-		},
+		refs: []rune{0xFE14},
 	},
 	0xfe55: {
-		refs: []string{
-			`U+FE13 presentation form for vertical colon`,
-		},
+		refs: []rune{0xFE13},
 	},
 	0xfeff: {
-		aliases: []string{
-			`BYTE ORDER MARK`,
-			`BOM`,
-			`ZWNBSP`,
-		},
-		refs: []string{
-			`U+200B zero width space`,
-			`U+2060 word joiner`,
-			`U+FFFE <not a character>`,
-		},
+		aliases: []string{`BYTE ORDER MARK`, `BOM`, `ZWNBSP`},
+		refs:    []rune{0x200B, 0x2060, 0xFFFE},
 	},
 	0xff0c: {
-		refs: []string{
-			`U+3001 ideographic comma`,
-		},
+		refs: []rune{0x3001},
 	},
 	0xff5e: {
-		refs: []string{
-			`U+301C wave dash`,
-		},
+		refs: []rune{0x301C},
 	},
 	0xff5f: {
-		refs: []string{
-			`U+2E28 left double parenthesis`,
-		},
+		refs: []rune{0x2E28},
 	},
 	0xffe3: {
-		refs: []string{
-			`U+203E overline`,
-		},
+		refs: []rune{0x203E},
 	},
 	0xfffd: {
-		refs: []string{
-			`U+2BD1 uncertainty sign`,
-			`U+1FBC4 negative squared question mark`,
-		},
+		refs: []rune{0x2BD1, 0x1FBC4},
 	},
 	0xfffe: {
-		refs: []string{
-			`U+FEFF zero width no-break space`,
-		},
+		refs: []rune{0xFEFF},
 	},
 	0x1000e: {
-		aliases: []string{
-			`ideogram B129 flour`,
-		},
+		aliases: []string{`ideogram B129 flour`},
 	},
 	0x10018: {
-		aliases: []string{
-			`ideogram B109 ox`,
-		},
+		aliases: []string{`ideogram B109 ox`},
 	},
 	0x1001b: {
-		aliases: []string{
-			`ideogram B030 figs`,
-		},
+		aliases: []string{`ideogram B030 figs`},
 	},
 	0x10025: {
-		aliases: []string{
-			`ideogram B106 sheep`,
-		},
+		aliases: []string{`ideogram B106 sheep`},
 	},
 	0x1002d: {
-		aliases: []string{
-			`ideogram B031 flax`,
-		},
+		aliases: []string{`ideogram B031 flax`},
 	},
 	0x10042: {
-		aliases: []string{
-			`ideogram B108 pig`,
-		},
+		aliases: []string{`ideogram B108 pig`},
 	},
 	0x10049: {
-		aliases: []string{
-			`ideogram B144 saffron`,
-		},
+		aliases: []string{`ideogram B144 saffron`},
 	},
 	0x10052: {
-		aliases: []string{
-			`ideogram B107 goat`,
-		},
+		aliases: []string{`ideogram B107 goat`},
 	},
 	0x1005d: {
-		refs: []string{
-			`U+10025 linear b syllable b021 qi`,
-			`U+10052 linear b symbol b022`,
-			`U+10018 linear b syllable b023 mu`,
-			`U+1001B linear b syllable b030 ni`,
-			`U+1002D linear b syllable b031 sa`,
-			`U+10049 linear b syllable b033 ra3`,
-			`U+1000E linear b syllable b065 ju`,
-			`U+10042 linear b syllable b085 au`,
-		},
+		refs: []rune{0x10025, 0x10052, 0x10018, 0x1001B, 0x1002D, 0x10049, 0x1000E, 0x10042},
 	},
 	0x10093: {
-		aliases: []string{
-			`fruit`,
-		},
+		aliases: []string{`fruit`},
 	},
 	0x10094: {
-		aliases: []string{
-			`saffron`,
-		},
+		aliases: []string{`saffron`},
 	},
 	0x10098: {
-		aliases: []string{
-			`ointment`,
-		},
+		aliases: []string{`ointment`},
 	},
 	0x10099: {
-		aliases: []string{
-			`honey`,
-		},
+		aliases: []string{`honey`},
 	},
 	0x100a4: {
-		aliases: []string{
-			`cheese`,
-		},
+		aliases: []string{`cheese`},
 	},
 	0x100c9: {
-		aliases: []string{
-			`pugio`,
-		},
+		aliases: []string{`pugio`},
 	},
 	0x100cb: {
-		aliases: []string{
-			`gupio`,
-			`inverted sword`,
-		},
+		aliases: []string{`gupio`, `inverted sword`},
 	},
 	0x100e8: {
-		refs: []string{
-			`U+1F3FA amphora`,
-		},
+		refs: []rune{0x1F3FA},
 	},
 	0x1015b: {
-		refs: []string{
-			`U+205A two dot punctuation`,
-		},
+		refs: []rune{0x205A},
 	},
 	0x1015e: {
-		refs: []string{
-			`U+10111 aegean number twenty`,
-		},
+		refs: []rune{0x10111},
 	},
 	0x10190: {
-		refs: []string{
-			`U+003D equals sign`,
-		},
+		refs: []rune{0x003D},
 	},
 	0x10191: {
-		refs: []string{
-			`U+002D hyphen-minus`,
-		},
+		refs: []rune{0x002D},
 	},
 	0x10192: {
-		refs: []string{
-			`U+00A3 pound sign`,
-		},
+		refs: []rune{0x00A3},
 	},
 	0x10193: {
-		refs: []string{
-			`U+A644 cyrillic capital letter reversed dze`,
-		},
+		refs: []rune{0xA644},
 	},
 	0x1019a: {
-		refs: []string{
-			`U+233F apl functional symbol slash bar`,
-		},
+		refs: []rune{0x233F},
 	},
 	0x101a0: {
-		aliases: []string{
-			`rho-cross`,
-			`staurogram`,
-		},
-		refs: []string{
-			`U+2627 chi rho`,
-			`U+2CE8 coptic symbol tau ro`,
-		},
+		aliases: []string{`rho-cross`, `staurogram`},
+		refs:    []rune{0x2627, 0x2CE8},
 	},
 	0x1060f: {
-		refs: []string{
-			`U+10025 linear b syllable b021 qi`,
-		},
+		refs: []rune{0x10025},
 	},
 	0x10610: {
-		refs: []string{
-			`U+10086 linear b ideogram b106f ewe`,
-		},
+		refs: []rune{0x10086},
 	},
 	0x10611: {
-		refs: []string{
-			`U+10087 linear b ideogram b106m ram`,
-		},
+		refs: []rune{0x10087},
 	},
 	0x10612: {
-		refs: []string{
-			`U+10052 linear b symbol b022`,
-		},
+		refs: []rune{0x10052},
 	},
 	0x10613: {
-		refs: []string{
-			`U+10088 linear b ideogram b107f she-goat`,
-		},
+		refs: []rune{0x10088},
 	},
 	0x10614: {
-		refs: []string{
-			`U+10089 linear b ideogram b107m he-goat`,
-		},
+		refs: []rune{0x10089},
 	},
 	0x10615: {
-		refs: []string{
-			`U+10018 linear b syllable b023 mu`,
-		},
+		refs: []rune{0x10018},
 	},
 	0x10616: {
-		refs: []string{
-			`U+1008D linear b ideogram b109m bull`,
-		},
+		refs: []rune{0x1008D},
 	},
 	0x1061d: {
-		refs: []string{
-			`U+1001B linear b syllable b030 ni`,
-		},
+		refs: []rune{0x1001B},
 	},
 	0x10629: {
-		refs: []string{
-			`U+10045 linear b syllable b048 nwa`,
-		},
+		refs: []rune{0x10045},
 	},
 	0x1062e: {
-		refs: []string{
-			`U+100A7 linear b ideogram b159 cloth`,
-		},
+		refs: []rune{0x100A7},
 	},
 	0x10644: {
-		refs: []string{
-			`U+10042 linear b syllable b085 au`,
-		},
+		refs: []rune{0x10042},
 	},
 	0x10647: {
-		refs: []string{
-			`U+10080 linear b ideogram b100 man`,
-			`U+10081 linear b ideogram b102 woman`,
-		},
+		refs: []rune{0x10080, 0x10081},
 	},
 	0x10649: {
-		refs: []string{
-			`U+1008E linear b ideogram b120 wheat`,
-		},
+		refs: []rune{0x1008E},
 	},
 	0x1064b: {
-		refs: []string{
-			`U+10090 linear b ideogram b122 olive`,
-		},
+		refs: []rune{0x10090},
 	},
 	0x1064d: {
-		refs: []string{
-			`U+10096 linear b ideogram b131 wine`,
-		},
+		refs: []rune{0x10096},
 	},
 	0x10656: {
-		refs: []string{
-			`U+10095 linear b ideogram b130 oil`,
-		},
+		refs: []rune{0x10095},
 	},
 	0x10657: {
-		refs: []string{
-			`U+10092 linear b ideogram b125 cyperus`,
-		},
+		refs: []rune{0x10092},
 	},
 	0x106c0: {
-		refs: []string{
-			`U+1061A linear a sign ab028`,
-		},
+		refs: []rune{0x1061A},
 	},
 	0x106c5: {
-		refs: []string{
-			`U+10621 linear a sign ab038`,
-		},
+		refs: []rune{0x10621},
 	},
 	0x106cd: {
-		refs: []string{
-			`U+1062C linear a sign ab051`,
-		},
+		refs: []rune{0x1062C},
 	},
 	0x106d9: {
-		refs: []string{
-			`U+106D8 linear a sign a548`,
-		},
+		refs: []rune{0x106D8},
 	},
 	0x106e0: {
-		refs: []string{
-			`U+10641 linear a sign ab080`,
-		},
+		refs: []rune{0x10641},
 	},
 	0x106e4: {
-		refs: []string{
-			`U+10642 linear a sign ab081`,
-		},
+		refs: []rune{0x10642},
 	},
 	0x1071c: {
-		refs: []string{
-			`U+10658 linear a sign a304`,
-		},
+		refs: []rune{0x10658},
 	},
 	0x10722: {
-		refs: []string{
-			`U+1066A linear a sign a318`,
-		},
+		refs: []rune{0x1066A},
 	},
 	0x10728: {
-		refs: []string{
-			`U+106A1 linear a sign a401-vas`,
-		},
+		refs: []rune{0x106A1},
 	},
 	0x10733: {
-		refs: []string{
-			`U+106AE linear a sign a414-vas`,
-		},
+		refs: []rune{0x106AE},
 	},
 	0x10740: {
-		refs: []string{
-			`U+29E7 thermodynamic`,
-		},
+		refs: []rune{0x29E7},
 	},
 	0x10747: {
-		refs: []string{
-			`U+1013C aegean dry measure first subunit`,
-		},
+		refs: []rune{0x1013C},
 	},
 	0x1074e: {
-		refs: []string{
-			`U+10139 aegean weight second subunit`,
-		},
+		refs: []rune{0x10139},
 	},
 	0x1074f: {
-		refs: []string{
-			`U+16B9 runic letter wunjo wynn w`,
-		},
+		refs: []rune{0x16B9},
 	},
 	0x10762: {
-		refs: []string{
-			`U+10634 linear a sign ab060`,
-		},
+		refs: []rune{0x10634},
 	},
 	0x10765: {
-		refs: []string{
-			`U+10655 linear a sign a301`,
-		},
+		refs: []rune{0x10655},
 	},
 	0x10780: {
-		refs: []string{
-			`U+A732 latin capital letter aa`,
-		},
+		refs: []rune{0xA732},
 	},
 	0x10900: {
-		refs: []string{
-			`U+05D0 hebrew letter alef`,
-		},
+		refs: []rune{0x05D0},
 	},
 	0x10901: {
-		refs: []string{
-			`U+05D1 hebrew letter bet`,
-		},
+		refs: []rune{0x05D1},
 	},
 	0x10902: {
-		refs: []string{
-			`U+05D2 hebrew letter gimel`,
-		},
+		refs: []rune{0x05D2},
 	},
 	0x10903: {
-		refs: []string{
-			`U+05D3 hebrew letter dalet`,
-		},
+		refs: []rune{0x05D3},
 	},
 	0x10904: {
-		refs: []string{
-			`U+05D4 hebrew letter he`,
-		},
+		refs: []rune{0x05D4},
 	},
 	0x10905: {
-		refs: []string{
-			`U+05D5 hebrew letter vav`,
-		},
+		refs: []rune{0x05D5},
 	},
 	0x10906: {
-		refs: []string{
-			`U+05D6 hebrew letter zayin`,
-		},
+		refs: []rune{0x05D6},
 	},
 	0x10907: {
-		refs: []string{
-			`U+05D7 hebrew letter het`,
-		},
+		refs: []rune{0x05D7},
 	},
 	0x10908: {
-		refs: []string{
-			`U+05D8 hebrew letter tet`,
-		},
+		refs: []rune{0x05D8},
 	},
 	0x10909: {
-		refs: []string{
-			`U+05D9 hebrew letter yod`,
-		},
+		refs: []rune{0x05D9},
 	},
 	0x1090a: {
-		refs: []string{
-			`U+05DB hebrew letter kaf`,
-		},
+		refs: []rune{0x05DB},
 	},
 	0x1090b: {
-		refs: []string{
-			`U+05DC hebrew letter lamed`,
-		},
+		refs: []rune{0x05DC},
 	},
 	0x1090c: {
-		refs: []string{
-			`U+05DE hebrew letter mem`,
-		},
+		refs: []rune{0x05DE},
 	},
 	0x1090d: {
-		refs: []string{
-			`U+05E0 hebrew letter nun`,
-		},
+		refs: []rune{0x05E0},
 	},
 	0x1090e: {
-		refs: []string{
-			`U+05E1 hebrew letter samekh`,
-		},
+		refs: []rune{0x05E1},
 	},
 	0x1090f: {
-		refs: []string{
-			`U+05E2 hebrew letter ayin`,
-		},
+		refs: []rune{0x05E2},
 	},
 	0x10910: {
-		refs: []string{
-			`U+05E4 hebrew letter pe`,
-		},
+		refs: []rune{0x05E4},
 	},
 	0x10911: {
-		refs: []string{
-			`U+05E6 hebrew letter tsadi`,
-		},
+		refs: []rune{0x05E6},
 	},
 	0x10912: {
-		refs: []string{
-			`U+05E7 hebrew letter qof`,
-		},
+		refs: []rune{0x05E7},
 	},
 	0x10913: {
-		refs: []string{
-			`U+05E8 hebrew letter resh`,
-		},
+		refs: []rune{0x05E8},
 	},
 	0x10914: {
-		refs: []string{
-			`U+05E9 hebrew letter shin`,
-		},
+		refs: []rune{0x05E9},
 	},
 	0x10915: {
-		refs: []string{
-			`U+05EA hebrew letter tav`,
-		},
+		refs: []rune{0x05EA},
 	},
 	0x1091f: {
-		refs: []string{
-			`U+002E full stop`,
-			`U+00B7 middle dot`,
-			`U+2E31 word separator middle dot`,
-		},
+		refs: []rune{0x002E, 0x00B7, 0x2E31},
 	},
 	0x10980: {
-		refs: []string{
-			`U+13000 egyptian hieroglyph a001`,
-		},
+		refs: []rune{0x13000},
 	},
 	0x10981: {
-		refs: []string{
-			`U+13184 egyptian hieroglyph h006`,
-		},
+		refs: []rune{0x13184},
 	},
 	0x10982: {
-		refs: []string{
-			`U+1301E egyptian hieroglyph a026`,
-		},
+		refs: []rune{0x1301E},
 	},
 	0x10983: {
-		refs: []string{
-			`U+130FE egyptian hieroglyph f001`,
-		},
+		refs: []rune{0x130FE},
 	},
 	0x10984: {
-		refs: []string{
-			`U+131CC egyptian hieroglyph m017a`,
-		},
+		refs: []rune{0x131CC},
 	},
 	0x10985: {
-		refs: []string{
-			`U+1336F egyptian hieroglyph v004`,
-		},
+		refs: []rune{0x1336F},
 	},
 	0x10986: {
-		refs: []string{
-			`U+130DE egyptian hieroglyph e011`,
-		},
+		refs: []rune{0x130DE},
 	},
 	0x10987: {
-		refs: []string{
-			`U+130C0 egyptian hieroglyph d058`,
-		},
+		refs: []rune{0x130C0},
 	},
 	0x10988: {
-		refs: []string{
-			`U+132AA egyptian hieroglyph q003`,
-		},
+		refs: []rune{0x132AA},
 	},
 	0x10989: {
-		refs: []string{
-			`U+13153 egyptian hieroglyph g017`,
-		},
+		refs: []rune{0x13153},
 	},
 	0x1098a: {
-		refs: []string{
-			`U+13216 egyptian hieroglyph n035`,
-		},
+		refs: []rune{0x13216},
 	},
 	0x1098c: {
-		refs: []string{
-			`U+131D2 egyptian hieroglyph m022a`,
-		},
+		refs: []rune{0x131D2},
 	},
 	0x1098e: {
-		refs: []string{
-			`U+1308B egyptian hieroglyph d021`,
-		},
+		refs: []rune{0x1308B},
 	},
 	0x10990: {
-		refs: []string{
-			`U+130ED egyptian hieroglyph e023`,
-		},
+		refs: []rune{0x130ED},
 	},
 	0x10991: {
-		refs: []string{
-			`U+1340D egyptian hieroglyph aa001`,
-		},
+		refs: []rune{0x1340D},
 	},
 	0x10992: {
-		refs: []string{
-			`U+133BC egyptian hieroglyph w011`,
-		},
+		refs: []rune{0x133BC},
 	},
 	0x10993: {
-		refs: []string{
-			`U+131B7 egyptian hieroglyph m008`,
-		},
+		refs: []rune{0x131B7},
 	},
 	0x10994: {
-		refs: []string{
-			`U+13283 egyptian hieroglyph o034`,
-		},
+		refs: []rune{0x13283},
 	},
 	0x10995: {
-		refs: []string{
-			`U+13283 egyptian hieroglyph o034`,
-		},
+		refs: []rune{0x13283},
 	},
 	0x10996: {
-		refs: []string{
-			`U+1316C egyptian hieroglyph g038`,
-		},
+		refs: []rune{0x1316C},
 	},
 	0x10997: {
-		refs: []string{
-			`U+1320E egyptian hieroglyph n029`,
-		},
+		refs: []rune{0x1320E},
 	},
 	0x10998: {
-		refs: []string{
-			`U+1337F egyptian hieroglyph v013`,
-		},
+		refs: []rune{0x1337F},
 	},
 	0x10999: {
-		refs: []string{
-			`U+131FE egyptian hieroglyph n016`,
-		},
+		refs: []rune{0x131FE},
 	},
 	0x1099a: {
-		refs: []string{
-			`U+131FE egyptian hieroglyph n016`,
-			`U+13254 egyptian hieroglyph o004`,
-		},
+		refs: []rune{0x131FE, 0x13254},
 	},
 	0x1099b: {
-		refs: []string{
-			`U+13254 egyptian hieroglyph o004`,
-		},
+		refs: []rune{0x13254},
 	},
 	0x1099c: {
-		refs: []string{
-			`U+13205 egyptian hieroglyph n021`,
-		},
+		refs: []rune{0x13205},
 	},
 	0x1099d: {
-		refs: []string{
-			`U+1307B egyptian hieroglyph d006`,
-		},
+		refs: []rune{0x1307B},
 	},
 	0x1099e: {
-		refs: []string{
-			`U+2625 ankh`,
-			`U+132F9 egyptian hieroglyph s034`,
-		},
+		refs: []rune{0x2625, 0x132F9},
 	},
 	0x10a3f: {
-		aliases: []string{
-			`halant`,
-		},
+		aliases: []string{`halant`},
 	},
 	0x10a60: {
-		aliases: []string{
-			`heh`,
-		},
-		refs: []string{
-			`U+1200 ethiopic syllable ha`,
-		},
+		aliases: []string{`heh`},
+		refs:    []rune{0x1200},
 	},
 	0x10a61: {
-		aliases: []string{
-			`lam`,
-		},
-		refs: []string{
-			`U+1208 ethiopic syllable la`,
-		},
+		aliases: []string{`lam`},
+		refs:    []rune{0x1208},
 	},
 	0x10a62: {
-		aliases: []string{
-			`hah`,
-		},
-		refs: []string{
-			`U+1210 ethiopic syllable hha`,
-		},
+		aliases: []string{`hah`},
+		refs:    []rune{0x1210},
 	},
 	0x10a63: {
-		aliases: []string{
-			`meem`,
-		},
-		refs: []string{
-			`U+1218 ethiopic syllable ma`,
-		},
+		aliases: []string{`meem`},
+		refs:    []rune{0x1218},
 	},
 	0x10a64: {
-		aliases: []string{
-			`qaf`,
-		},
-		refs: []string{
-			`U+1240 ethiopic syllable qa`,
-		},
+		aliases: []string{`qaf`},
+		refs:    []rune{0x1240},
 	},
 	0x10a65: {
-		aliases: []string{
-			`waw`,
-		},
-		refs: []string{
-			`U+12C8 ethiopic syllable wa`,
-		},
+		aliases: []string{`waw`},
+		refs:    []rune{0x12C8},
 	},
 	0x10a66: {
-		aliases: []string{
-			`sheen`,
-		},
-		refs: []string{
-			`U+1220 ethiopic syllable sza`,
-		},
+		aliases: []string{`sheen`},
+		refs:    []rune{0x1220},
 	},
 	0x10a67: {
-		aliases: []string{
-			`reh`,
-		},
-		refs: []string{
-			`U+1228 ethiopic syllable ra`,
-		},
+		aliases: []string{`reh`},
+		refs:    []rune{0x1228},
 	},
 	0x10a68: {
-		aliases: []string{
-			`beh`,
-		},
-		refs: []string{
-			`U+1260 ethiopic syllable ba`,
-		},
+		aliases: []string{`beh`},
+		refs:    []rune{0x1260},
 	},
 	0x10a69: {
-		aliases: []string{
-			`teh`,
-		},
-		refs: []string{
-			`U+1270 ethiopic syllable ta`,
-		},
+		aliases: []string{`teh`},
+		refs:    []rune{0x1270},
 	},
 	0x10a6a: {
-		refs: []string{
-			`U+1230 ethiopic syllable sa`,
-		},
+		refs: []rune{0x1230},
 	},
 	0x10a6b: {
-		aliases: []string{
-			`kaf`,
-		},
-		refs: []string{
-			`U+12A8 ethiopic syllable ka`,
-		},
+		aliases: []string{`kaf`},
+		refs:    []rune{0x12A8},
 	},
 	0x10a6c: {
-		aliases: []string{
-			`noon`,
-		},
-		refs: []string{
-			`U+1290 ethiopic syllable na`,
-		},
+		aliases: []string{`noon`},
+		refs:    []rune{0x1290},
 	},
 	0x10a6d: {
-		aliases: []string{
-			`khah`,
-		},
-		refs: []string{
-			`U+1280 ethiopic syllable xa`,
-		},
+		aliases: []string{`khah`},
+		refs:    []rune{0x1280},
 	},
 	0x10a6e: {
-		aliases: []string{
-			`sad`,
-		},
-		refs: []string{
-			`U+1338 ethiopic syllable tsa`,
-		},
+		aliases: []string{`sad`},
+		refs:    []rune{0x1338},
 	},
 	0x10a70: {
-		aliases: []string{
-			`feh`,
-		},
-		refs: []string{
-			`U+1348 ethiopic syllable fa`,
-		},
+		aliases: []string{`feh`},
+		refs:    []rune{0x1348},
 	},
 	0x10a71: {
-		aliases: []string{
-			`alef`,
-		},
-		refs: []string{
-			`U+12A0 ethiopic syllable glottal a`,
-		},
+		aliases: []string{`alef`},
+		refs:    []rune{0x12A0},
 	},
 	0x10a72: {
-		aliases: []string{
-			`ain`,
-		},
-		refs: []string{
-			`U+12D0 ethiopic syllable pharyngeal a`,
-		},
+		aliases: []string{`ain`},
+		refs:    []rune{0x12D0},
 	},
 	0x10a73: {
-		aliases: []string{
-			`dad`,
-		},
-		refs: []string{
-			`U+1340 ethiopic syllable tza`,
-		},
+		aliases: []string{`dad`},
+		refs:    []rune{0x1340},
 	},
 	0x10a74: {
-		aliases: []string{
-			`jeem`,
-		},
-		refs: []string{
-			`U+1308 ethiopic syllable ga`,
-		},
+		aliases: []string{`jeem`},
+		refs:    []rune{0x1308},
 	},
 	0x10a75: {
-		aliases: []string{
-			`dal`,
-		},
-		refs: []string{
-			`U+12F0 ethiopic syllable da`,
-		},
+		aliases: []string{`dal`},
+		refs:    []rune{0x12F0},
 	},
 	0x10a76: {
-		aliases: []string{
-			`ghain`,
-		},
+		aliases: []string{`ghain`},
 	},
 	0x10a77: {
-		aliases: []string{
-			`tah`,
-		},
-		refs: []string{
-			`U+1320 ethiopic syllable tha`,
-		},
+		aliases: []string{`tah`},
+		refs:    []rune{0x1320},
 	},
 	0x10a78: {
-		aliases: []string{
-			`zain`,
-		},
-		refs: []string{
-			`U+12D8 ethiopic syllable za`,
-		},
+		aliases: []string{`zain`},
+		refs:    []rune{0x12D8},
 	},
 	0x10a79: {
-		aliases: []string{
-			`thal`,
-		},
+		aliases: []string{`thal`},
 	},
 	0x10a7a: {
-		aliases: []string{
-			`yeh`,
-		},
-		refs: []string{
-			`U+12E8 ethiopic syllable ya`,
-		},
+		aliases: []string{`yeh`},
+		refs:    []rune{0x12E8},
 	},
 	0x10a7b: {
-		aliases: []string{
-			`theh`,
-		},
+		aliases: []string{`theh`},
 	},
 	0x10a7c: {
-		aliases: []string{
-			`zah`,
-		},
+		aliases: []string{`zah`},
 	},
 	0x10a80: {
-		refs: []string{
-			`U+1200 ethiopic syllable ha`,
-			`U+10A60 old south arabian letter he`,
-		},
+		refs: []rune{0x1200, 0x10A60},
 	},
 	0x10a81: {
-		refs: []string{
-			`U+1208 ethiopic syllable la`,
-			`U+10A61 old south arabian letter lamedh`,
-		},
+		refs: []rune{0x1208, 0x10A61},
 	},
 	0x10a82: {
-		refs: []string{
-			`U+1210 ethiopic syllable hha`,
-			`U+10A62 old south arabian letter heth`,
-		},
+		refs: []rune{0x1210, 0x10A62},
 	},
 	0x10a83: {
-		refs: []string{
-			`U+1218 ethiopic syllable ma`,
-			`U+10A63 old south arabian letter mem`,
-		},
+		refs: []rune{0x1218, 0x10A63},
 	},
 	0x10a84: {
-		refs: []string{
-			`U+1240 ethiopic syllable qa`,
-			`U+10A64 old south arabian letter qoph`,
-		},
+		refs: []rune{0x1240, 0x10A64},
 	},
 	0x10a85: {
-		refs: []string{
-			`U+12C8 ethiopic syllable wa`,
-			`U+10A65 old south arabian letter waw`,
-		},
+		refs: []rune{0x12C8, 0x10A65},
 	},
 	0x10a86: {
-		refs: []string{
-			`U+1220 ethiopic syllable sza`,
-			`U+10A66 old south arabian letter shin`,
-		},
+		refs: []rune{0x1220, 0x10A66},
 	},
 	0x10a87: {
-		refs: []string{
-			`U+1228 ethiopic syllable ra`,
-			`U+10A67 old south arabian letter resh`,
-		},
+		refs: []rune{0x1228, 0x10A67},
 	},
 	0x10a88: {
-		refs: []string{
-			`U+1260 ethiopic syllable ba`,
-			`U+10A68 old south arabian letter beth`,
-		},
+		refs: []rune{0x1260, 0x10A68},
 	},
 	0x10a89: {
-		refs: []string{
-			`U+1270 ethiopic syllable ta`,
-			`U+10A69 old south arabian letter taw`,
-		},
+		refs: []rune{0x1270, 0x10A69},
 	},
 	0x10a8a: {
-		refs: []string{
-			`U+1230 ethiopic syllable sa`,
-			`U+10A6A old south arabian letter sat`,
-		},
+		refs: []rune{0x1230, 0x10A6A},
 	},
 	0x10a8b: {
-		refs: []string{
-			`U+12A8 ethiopic syllable ka`,
-			`U+10A6B old south arabian letter kaph`,
-		},
+		refs: []rune{0x12A8, 0x10A6B},
 	},
 	0x10a8c: {
-		refs: []string{
-			`U+1290 ethiopic syllable na`,
-			`U+10A6C old south arabian letter nun`,
-		},
+		refs: []rune{0x1290, 0x10A6C},
 	},
 	0x10a8d: {
-		refs: []string{
-			`U+1280 ethiopic syllable xa`,
-			`U+10A6D old south arabian letter kheth`,
-		},
+		refs: []rune{0x1280, 0x10A6D},
 	},
 	0x10a8e: {
-		refs: []string{
-			`U+1338 ethiopic syllable tsa`,
-			`U+10A6E old south arabian letter sadhe`,
-		},
+		refs: []rune{0x1338, 0x10A6E},
 	},
 	0x10a8f: {
-		refs: []string{
-			`U+10A6F old south arabian letter samekh`,
-		},
+		refs: []rune{0x10A6F},
 	},
 	0x10a90: {
-		refs: []string{
-			`U+1348 ethiopic syllable fa`,
-			`U+10A70 old south arabian letter fe`,
-		},
+		refs: []rune{0x1348, 0x10A70},
 	},
 	0x10a91: {
-		refs: []string{
-			`U+12A0 ethiopic syllable glottal a`,
-			`U+10A71 old south arabian letter alef`,
-		},
+		refs: []rune{0x12A0, 0x10A71},
 	},
 	0x10a92: {
-		refs: []string{
-			`U+12D0 ethiopic syllable pharyngeal a`,
-			`U+10A72 old south arabian letter ayn`,
-		},
+		refs: []rune{0x12D0, 0x10A72},
 	},
 	0x10a93: {
-		refs: []string{
-			`U+1340 ethiopic syllable tza`,
-			`U+10A73 old south arabian letter dhadhe`,
-		},
+		refs: []rune{0x1340, 0x10A73},
 	},
 	0x10a94: {
-		refs: []string{
-			`U+1308 ethiopic syllable ga`,
-			`U+10A74 old south arabian letter gimel`,
-		},
+		refs: []rune{0x1308, 0x10A74},
 	},
 	0x10a95: {
-		refs: []string{
-			`U+12F0 ethiopic syllable da`,
-			`U+10A75 old south arabian letter daleth`,
-		},
+		refs: []rune{0x12F0, 0x10A75},
 	},
 	0x10a96: {
-		refs: []string{
-			`U+10A76 old south arabian letter ghayn`,
-		},
+		refs: []rune{0x10A76},
 	},
 	0x10a97: {
-		refs: []string{
-			`U+1320 ethiopic syllable tha`,
-			`U+10A77 old south arabian letter teth`,
-		},
+		refs: []rune{0x1320, 0x10A77},
 	},
 	0x10a98: {
-		refs: []string{
-			`U+12D8 ethiopic syllable za`,
-			`U+10A78 old south arabian letter zayn`,
-		},
+		refs: []rune{0x12D8, 0x10A78},
 	},
 	0x10a99: {
-		refs: []string{
-			`U+10A79 old south arabian letter dhaleth`,
-		},
+		refs: []rune{0x10A79},
 	},
 	0x10a9a: {
-		refs: []string{
-			`U+12E8 ethiopic syllable ya`,
-			`U+10A7A old south arabian letter yodh`,
-		},
+		refs: []rune{0x12E8, 0x10A7A},
 	},
 	0x10a9b: {
-		refs: []string{
-			`U+10A7B old south arabian letter thaw`,
-		},
+		refs: []rune{0x10A7B},
 	},
 	0x10a9c: {
-		refs: []string{
-			`U+10A7C old south arabian letter theth`,
-		},
+		refs: []rune{0x10A7C},
 	},
 	0x10b39: {
-		refs: []string{
-			`U+2218 ring operator`,
-			`U+2E30 ring point`,
-			`U+2E31 word separator middle dot`,
-		},
+		refs: []rune{0x2218, 0x2E30, 0x2E31},
 	},
 	0x10c81: {
-		aliases: []string{
-			`Á`,
-		},
+		aliases: []string{`Á`},
 	},
 	0x10c82: {
-		aliases: []string{
-			`B`,
-		},
+		aliases: []string{`B`},
 	},
 	0x10c84: {
-		aliases: []string{
-			`C`,
-		},
+		aliases: []string{`C`},
 	},
 	0x10c86: {
-		aliases: []string{
-			`Cs`,
-		},
+		aliases: []string{`Cs`},
 	},
 	0x10c87: {
-		aliases: []string{
-			`D`,
-		},
+		aliases: []string{`D`},
 	},
 	0x10c8a: {
-		aliases: []string{
-			`Ë`,
-		},
+		aliases: []string{`Ë`},
 	},
 	0x10c8b: {
-		aliases: []string{
-			`É`,
-		},
+		aliases: []string{`É`},
 	},
 	0x10c8c: {
-		aliases: []string{
-			`F`,
-		},
+		aliases: []string{`F`},
 	},
 	0x10c8d: {
-		aliases: []string{
-			`G`,
-		},
+		aliases: []string{`G`},
 	},
 	0x10c8e: {
-		aliases: []string{
-			`Gy`,
-		},
+		aliases: []string{`Gy`},
 	},
 	0x10c8f: {
-		aliases: []string{
-			`H`,
-		},
+		aliases: []string{`H`},
 	},
 	0x10c91: {
-		aliases: []string{
-			`Í`,
-		},
+		aliases: []string{`Í`},
 	},
 	0x10c92: {
-		aliases: []string{
-			`J`,
-		},
+		aliases: []string{`J`},
 	},
 	0x10c93: {
-		aliases: []string{
-			`K`,
-		},
+		aliases: []string{`K`},
 	},
 	0x10c96: {
-		aliases: []string{
-			`L`,
-		},
+		aliases: []string{`L`},
 	},
 	0x10c97: {
-		aliases: []string{
-			`Ly`,
-		},
+		aliases: []string{`Ly`},
 	},
 	0x10c98: {
-		aliases: []string{
-			`M`,
-		},
+		aliases: []string{`M`},
 	},
 	0x10c99: {
-		aliases: []string{
-			`N`,
-		},
+		aliases: []string{`N`},
 	},
 	0x10c9a: {
-		aliases: []string{
-			`Ny`,
-		},
+		aliases: []string{`Ny`},
 	},
 	0x10c9b: {
-		aliases: []string{
-			`O`,
-		},
+		aliases: []string{`O`},
 	},
 	0x10c9c: {
-		aliases: []string{
-			`Ó`,
-		},
+		aliases: []string{`Ó`},
 	},
 	0x10c9d: {
-		aliases: []string{
-			`Ö`,
-		},
+		aliases: []string{`Ö`},
 	},
 	0x10c9e: {
-		aliases: []string{
-			`Ö`,
-		},
+		aliases: []string{`Ö`},
 	},
 	0x10c9f: {
-		aliases: []string{
-			`Ő`,
-		},
+		aliases: []string{`Ő`},
 	},
 	0x10ca0: {
-		aliases: []string{
-			`P`,
-		},
+		aliases: []string{`P`},
 	},
 	0x10ca2: {
-		aliases: []string{
-			`R`,
-		},
+		aliases: []string{`R`},
 	},
 	0x10ca4: {
-		aliases: []string{
-			`S`,
-		},
+		aliases: []string{`S`},
 	},
 	0x10ca5: {
-		aliases: []string{
-			`Sz`,
-		},
+		aliases: []string{`Sz`},
 	},
 	0x10ca6: {
-		aliases: []string{
-			`T`,
-		},
+		aliases: []string{`T`},
 	},
 	0x10ca8: {
-		aliases: []string{
-			`Ty`,
-		},
+		aliases: []string{`Ty`},
 	},
 	0x10cab: {
-		aliases: []string{
-			`Ú`,
-		},
+		aliases: []string{`Ú`},
 	},
 	0x10cac: {
-		aliases: []string{
-			`Ü`,
-		},
+		aliases: []string{`Ü`},
 	},
 	0x10cad: {
-		aliases: []string{
-			`Ü`,
-			`Ű`,
-		},
+		aliases: []string{`Ü`, `Ű`},
 	},
 	0x10cae: {
-		aliases: []string{
-			`V`,
-		},
+		aliases: []string{`V`},
 	},
 	0x10caf: {
-		aliases: []string{
-			`Z`,
-		},
+		aliases: []string{`Z`},
 	},
 	0x10cb0: {
-		aliases: []string{
-			`Zs`,
-		},
+		aliases: []string{`Zs`},
 	},
 	0x10cc1: {
-		aliases: []string{
-			`á`,
-		},
+		aliases: []string{`á`},
 	},
 	0x10cc2: {
-		aliases: []string{
-			`b`,
-		},
+		aliases: []string{`b`},
 	},
 	0x10cc4: {
-		aliases: []string{
-			`c`,
-		},
+		aliases: []string{`c`},
 	},
 	0x10cc6: {
-		aliases: []string{
-			`cs`,
-		},
+		aliases: []string{`cs`},
 	},
 	0x10cc7: {
-		aliases: []string{
-			`d`,
-		},
+		aliases: []string{`d`},
 	},
 	0x10cca: {
-		aliases: []string{
-			`ë`,
-		},
+		aliases: []string{`ë`},
 	},
 	0x10ccb: {
-		aliases: []string{
-			`é`,
-		},
+		aliases: []string{`é`},
 	},
 	0x10ccc: {
-		aliases: []string{
-			`f`,
-		},
+		aliases: []string{`f`},
 	},
 	0x10ccd: {
-		aliases: []string{
-			`g`,
-		},
+		aliases: []string{`g`},
 	},
 	0x10cce: {
-		aliases: []string{
-			`gy`,
-		},
+		aliases: []string{`gy`},
 	},
 	0x10ccf: {
-		aliases: []string{
-			`h`,
-		},
+		aliases: []string{`h`},
 	},
 	0x10cd1: {
-		aliases: []string{
-			`í`,
-		},
+		aliases: []string{`í`},
 	},
 	0x10cd2: {
-		aliases: []string{
-			`j`,
-		},
+		aliases: []string{`j`},
 	},
 	0x10cd3: {
-		aliases: []string{
-			`k`,
-		},
+		aliases: []string{`k`},
 	},
 	0x10cd6: {
-		aliases: []string{
-			`l`,
-		},
+		aliases: []string{`l`},
 	},
 	0x10cd7: {
-		aliases: []string{
-			`ly`,
-		},
+		aliases: []string{`ly`},
 	},
 	0x10cd8: {
-		aliases: []string{
-			`m`,
-		},
+		aliases: []string{`m`},
 	},
 	0x10cd9: {
-		aliases: []string{
-			`n`,
-		},
+		aliases: []string{`n`},
 	},
 	0x10cda: {
-		aliases: []string{
-			`ny`,
-		},
+		aliases: []string{`ny`},
 	},
 	0x10cdc: {
-		aliases: []string{
-			`ó`,
-		},
+		aliases: []string{`ó`},
 	},
 	0x10cdd: {
-		aliases: []string{
-			`ö`,
-		},
+		aliases: []string{`ö`},
 	},
 	0x10cde: {
-		aliases: []string{
-			`ö`,
-		},
+		aliases: []string{`ö`},
 	},
 	0x10cdf: {
-		aliases: []string{
-			`ő`,
-		},
+		aliases: []string{`ő`},
 	},
 	0x10ce0: {
-		aliases: []string{
-			`p`,
-		},
+		aliases: []string{`p`},
 	},
 	0x10ce2: {
-		aliases: []string{
-			`r`,
-		},
+		aliases: []string{`r`},
 	},
 	0x10ce4: {
-		aliases: []string{
-			`s`,
-		},
+		aliases: []string{`s`},
 	},
 	0x10ce5: {
-		aliases: []string{
-			`sz`,
-		},
+		aliases: []string{`sz`},
 	},
 	0x10ce6: {
-		aliases: []string{
-			`t`,
-		},
+		aliases: []string{`t`},
 	},
 	0x10ce8: {
-		aliases: []string{
-			`ty`,
-		},
+		aliases: []string{`ty`},
 	},
 	0x10ceb: {
-		aliases: []string{
-			`ú`,
-		},
+		aliases: []string{`ú`},
 	},
 	0x10cec: {
-		aliases: []string{
-			`ü`,
-		},
+		aliases: []string{`ü`},
 	},
 	0x10ced: {
-		aliases: []string{
-			`ü`,
-			`ű`,
-		},
+		aliases: []string{`ü`, `ű`},
 	},
 	0x10cee: {
-		aliases: []string{
-			`v`,
-		},
+		aliases: []string{`v`},
 	},
 	0x10cef: {
-		aliases: []string{
-			`z`,
-		},
+		aliases: []string{`z`},
 	},
 	0x10cf0: {
-		aliases: []string{
-			`zs`,
-		},
+		aliases: []string{`zs`},
 	},
 	0x10d1a: {
-		aliases: []string{
-			`gan`,
-		},
+		aliases: []string{`gan`},
 	},
 	0x10d1b: {
-		aliases: []string{
-			`nayya`,
-		},
+		aliases: []string{`nayya`},
 	},
 	0x10d1d: {
-		aliases: []string{
-			`aa-for`,
-		},
+		aliases: []string{`aa-for`},
 	},
 	0x10d1e: {
-		aliases: []string{
-			`i-for`,
-		},
+		aliases: []string{`i-for`},
 	},
 	0x10d1f: {
-		aliases: []string{
-			`u-for`,
-		},
+		aliases: []string{`u-for`},
 	},
 	0x10d20: {
-		aliases: []string{
-			`e-for`,
-		},
+		aliases: []string{`e-for`},
 	},
 	0x10d21: {
-		aliases: []string{
-			`o-for`,
-		},
+		aliases: []string{`o-for`},
 	},
 	0x10efd: {
-		refs: []string{
-			`U+08DD arabic small high word sakta`,
-		},
+		refs: []rune{0x08DD},
 	},
 	0x10f44: {
-		aliases: []string{
-			`hooked resh`,
-		},
+		aliases: []string{`hooked resh`},
 	},
 	0x10f45: {
-		refs: []string{
-			`6240`,
-		},
+		refs: []rune{0x6240},
 	},
 	0x10f81: {
-		aliases: []string{
-			`hooked resh`,
-		},
+		aliases: []string{`hooked resh`},
 	},
 	0x110be: {
-		refs: []string{
-			`U+1123B khojki section mark`,
-		},
+		refs: []rune{0x1123B},
 	},
 	0x110bf: {
-		refs: []string{
-			`U+1123C khojki double section mark`,
-		},
+		refs: []rune{0x1123C},
 	},
 	0x11133: {
-		refs: []string{
-			`U+1039 myanmar sign virama`,
-		},
+		refs: []rune{0x1039},
 	},
 	0x11134: {
-		refs: []string{
-			`U+103A myanmar sign asat`,
-		},
+		refs: []rune{0x103A},
 	},
 	0x111c9: {
-		refs: []string{
-			`U+09FE bengali sandhi mark`,
-		},
+		refs: []rune{0x09FE},
 	},
 	0x111ce: {
-		refs: []string{
-			`U+094E devanagari vowel sign prishthamatra e`,
-		},
+		refs: []rune{0x094E},
 	},
 	0x111db: {
-		aliases: []string{
-			`siddhirastu`,
-		},
-		refs: []string{
-			`U+0C84 kannada sign siddham`,
-			`U+A8FC devanagari sign siddham`,
-		},
+		aliases: []string{`siddhirastu`},
+		refs:    []rune{0x0C84, 0xA8FC},
 	},
 	0x111dc: {
-		refs: []string{
-			`U+A8FB devanagari headstroke`,
-		},
+		refs: []rune{0xA8FB},
 	},
 	0x1123b: {
-		refs: []string{
-			`U+110BE kaithi section mark`,
-		},
+		refs: []rune{0x110BE},
 	},
 	0x1123c: {
-		refs: []string{
-			`U+110BF kaithi double section mark`,
-		},
+		refs: []rune{0x110BF},
 	},
 	0x11293: {
-		aliases: []string{
-			`tra`,
-		},
+		aliases: []string{`tra`},
 	},
 	0x1133b: {
-		aliases: []string{
-			`vindu`,
-		},
+		aliases: []string{`vindu`},
 	},
 	0x11442: {
-		aliases: []string{
-			`tutisaalaa`,
-		},
+		aliases: []string{`tutisaalaa`},
 	},
 	0x11443: {
-		aliases: []string{
-			`milaaphuti`,
-		},
+		aliases: []string{`milaaphuti`},
 	},
 	0x11444: {
-		aliases: []string{
-			`sinhaphuti`,
-		},
+		aliases: []string{`sinhaphuti`},
 	},
 	0x11445: {
-		aliases: []string{
-			`liphuti`,
-		},
+		aliases: []string{`liphuti`},
 	},
 	0x11447: {
-		aliases: []string{
-			`sulaa`,
-		},
+		aliases: []string{`sulaa`},
 	},
 	0x11448: {
-		aliases: []string{
-			`baadipu`,
-		},
+		aliases: []string{`baadipu`},
 	},
 	0x1144b: {
-		aliases: []string{
-			`dipu`,
-		},
+		aliases: []string{`dipu`},
 	},
 	0x1144d: {
-		aliases: []string{
-			`jhaasu`,
-		},
+		aliases: []string{`jhaasu`},
 	},
 	0x1144e: {
-		aliases: []string{
-			`thaayjaayekaa`,
-		},
+		aliases: []string{`thaayjaayekaa`},
 	},
 	0x11450: {
-		aliases: []string{
-			`guli`,
-		},
+		aliases: []string{`guli`},
 	},
 	0x11451: {
-		aliases: []string{
-			`chi`,
-		},
+		aliases: []string{`chi`},
 	},
 	0x11452: {
-		aliases: []string{
-			`nasi`,
-		},
+		aliases: []string{`nasi`},
 	},
 	0x11453: {
-		aliases: []string{
-			`swa`,
-		},
+		aliases: []string{`swa`},
 	},
 	0x11454: {
-		aliases: []string{
-			`pi`,
-		},
+		aliases: []string{`pi`},
 	},
 	0x11455: {
-		aliases: []string{
-			`njaa`,
-		},
+		aliases: []string{`njaa`},
 	},
 	0x11456: {
-		aliases: []string{
-			`khu`,
-		},
+		aliases: []string{`khu`},
 	},
 	0x11457: {
-		aliases: []string{
-			`nhasa`,
-		},
+		aliases: []string{`nhasa`},
 	},
 	0x11458: {
-		aliases: []string{
-			`cyaa`,
-		},
+		aliases: []string{`cyaa`},
 	},
 	0x11459: {
-		aliases: []string{
-			`gu`,
-		},
+		aliases: []string{`gu`},
 	},
 	0x1145b: {
-		aliases: []string{
-			`jaayekaa`,
-		},
+		aliases: []string{`jaayekaa`},
 	},
 	0x1145d: {
-		aliases: []string{
-			`tansaa`,
-		},
+		aliases: []string{`tansaa`},
 	},
 	0x1145e: {
-		refs: []string{
-			`U+09FE bengali sandhi mark`,
-		},
+		refs: []rune{0x09FE},
 	},
 	0x11460: {
-		refs: []string{
-			`U+1CF5 vedic sign jihvamuliya`,
-		},
+		refs: []rune{0x1CF5},
 	},
 	0x11461: {
-		refs: []string{
-			`U+1CF6 vedic sign upadhmaniya`,
-		},
+		refs: []rune{0x1CF6},
 	},
 	0x114c2: {
-		aliases: []string{
-			`halant`,
-		},
+		aliases: []string{`halant`},
 	},
 	0x114c5: {
-		aliases: []string{
-			`vedic anusvara`,
-		},
+		aliases: []string{`vedic anusvara`},
 	},
 	0x115c1: {
-		aliases: []string{
-			`siddhirastu`,
-		},
+		aliases: []string{`siddhirastu`},
 	},
 	0x115d8: {
-		refs: []string{
-			`U+11582 siddham letter i`,
-		},
+		refs: []rune{0x11582},
 	},
 	0x115da: {
-		refs: []string{
-			`U+11583 siddham letter ii`,
-		},
+		refs: []rune{0x11583},
 	},
 	0x115db: {
-		refs: []string{
-			`U+11584 siddham letter u`,
-		},
+		refs: []rune{0x11584},
 	},
 	0x1163f: {
-		aliases: []string{
-			`halant`,
-		},
+		aliases: []string{`halant`},
 	},
 	0x11660: {
-		refs: []string{
-			`U+1800 mongolian birga`,
-		},
+		refs: []rune{0x1800},
 	},
 	0x116b9: {
-		refs: []string{
-			`U+0A76 gurmukhi abbreviation sign`,
-			`U+111C7 sharada abbreviation sign`,
-		},
+		refs: []rune{0x0A76, 0x111C7},
 	},
 	0x1193d: {
-		aliases: []string{
-			`sukun`,
-		},
+		aliases: []string{`sukun`},
 	},
 	0x11941: {
-		aliases: []string{
-			`repha`,
-		},
+		aliases: []string{`repha`},
 	},
 	0x11a29: {
-		refs: []string{
-			`U+0F60 tibetan letter -a`,
-		},
+		refs: []rune{0x0F60},
 	},
 	0x11a34: {
-		refs: []string{
-			`U+0F84 tibetan mark halanta`,
-		},
+		refs: []rune{0x0F84},
 	},
 	0x11a35: {
-		refs: []string{
-			`U+0F83 tibetan sign sna ldan`,
-			`U+1880 mongolian letter ali gali anusvara one`,
-		},
+		refs: []rune{0x0F83, 0x1880},
 	},
 	0x11a37: {
-		refs: []string{
-			`U+0F82 tibetan sign nyi zla naa da`,
-		},
+		refs: []rune{0x0F82},
 	},
 	0x11a38: {
-		refs: []string{
-			`U+0F7E tibetan sign rjes su nga ro`,
-		},
+		refs: []rune{0x0F7E},
 	},
 	0x11a39: {
-		refs: []string{
-			`U+0F7F tibetan sign rnam bcad`,
-		},
+		refs: []rune{0x0F7F},
 	},
 	0x11a3f: {
-		refs: []string{
-			`U+0FD3 tibetan mark initial brda rnying yig mgo mdun ma`,
-			`U+1800 mongolian birga`,
-		},
+		refs: []rune{0x0FD3, 0x1800},
 	},
 	0x11a40: {
-		refs: []string{
-			`U+0FD4 tibetan mark closing brda rnying yig mgo sgab ma`,
-		},
+		refs: []rune{0x0FD4},
 	},
 	0x11a41: {
-		refs: []string{
-			`U+0F0B tibetan mark intersyllabic tsheg`,
-		},
+		refs: []rune{0x0F0B},
 	},
 	0x11a42: {
-		refs: []string{
-			`U+0F0D tibetan mark shad`,
-		},
+		refs: []rune{0x0F0D},
 	},
 	0x11a43: {
-		refs: []string{
-			`U+0F0E tibetan mark nyis shad`,
-		},
+		refs: []rune{0x0F0E},
 	},
 	0x11a44: {
-		refs: []string{
-			`U+0F14 tibetan mark gter tsheg`,
-		},
+		refs: []rune{0x0F14},
 	},
 	0x11a45: {
-		refs: []string{
-			`U+0F04 tibetan mark initial yig mgo mdun ma`,
-		},
+		refs: []rune{0x0F04},
 	},
 	0x11a46: {
-		refs: []string{
-			`U+0F05 tibetan mark closing yig mgo sgab ma`,
-		},
+		refs: []rune{0x0F05},
 	},
 	0x11a84: {
-		refs: []string{
-			`U+1CF5 vedic sign jihvamuliya`,
-		},
+		refs: []rune{0x1CF5},
 	},
 	0x11a85: {
-		refs: []string{
-			`U+1CF6 vedic sign upadhmaniya`,
-		},
+		refs: []rune{0x1CF6},
 	},
 	0x11a95: {
-		refs: []string{
-			`U+0F60 tibetan letter -a`,
-		},
+		refs: []rune{0x0F60},
 	},
 	0x11aa2: {
-		aliases: []string{
-			`cintamani`,
-			`candamani`,
-		},
+		aliases: []string{`cintamani`, `candamani`},
 	},
 	0x11b00: {
-		refs: []string{
-			`U+0965 devanagari double danda`,
-		},
+		refs: []rune{0x0965},
 	},
 	0x11b09: {
-		refs: []string{
-			`U+0966 devanagari digit zero`,
-		},
+		refs: []rune{0x0966},
 	},
 	0x11c70: {
-		refs: []string{
-			`U+0FD6 left-facing svasti sign`,
-		},
+		refs: []rune{0x0FD6},
 	},
 	0x11fb0: {
-		refs: []string{
-			`U+2144 turned sans-serif capital y`,
-			`U+A4EC lisu letter ya`,
-		},
+		refs: []rune{0x2144, 0xA4EC},
 	},
 	0x11fc0: {
-		aliases: []string{
-			`munthiri`,
-		},
+		aliases: []string{`munthiri`},
 	},
 	0x11fc1: {
-		aliases: []string{
-			`araikkaani`,
-		},
+		aliases: []string{`araikkaani`},
 	},
 	0x11fc2: {
-		aliases: []string{
-			`kaani`,
-		},
+		aliases: []string{`kaani`},
 	},
 	0x11fc3: {
-		aliases: []string{
-			`kaal viisam`,
-		},
+		aliases: []string{`kaal viisam`},
 	},
 	0x11fc4: {
-		aliases: []string{
-			`arai maa`,
-		},
+		aliases: []string{`arai maa`},
 	},
 	0x11fc5: {
-		aliases: []string{
-			`arai viisam`,
-		},
+		aliases: []string{`arai viisam`},
 	},
 	0x11fc6: {
-		aliases: []string{
-			`mukkaani`,
-		},
+		aliases: []string{`mukkaani`},
 	},
 	0x11fc7: {
-		aliases: []string{
-			`mukkaal viisam`,
-		},
+		aliases: []string{`mukkaal viisam`},
 	},
 	0x11fc8: {
-		aliases: []string{
-			`maa`,
-		},
-		refs: []string{
-			`U+0BAA tamil letter pa`,
-		},
+		aliases: []string{`maa`},
+		refs:    []rune{0x0BAA},
 	},
 	0x11fc9: {
-		aliases: []string{
-			`viisam/maakaani`,
-		},
+		aliases: []string{`viisam/maakaani`},
 	},
 	0x11fca: {
-		aliases: []string{
-			`viisam/maakaani`,
-		},
+		aliases: []string{`viisam/maakaani`},
 	},
 	0x11fcb: {
-		aliases: []string{
-			`irumaa`,
-		},
+		aliases: []string{`irumaa`},
 	},
 	0x11fcc: {
-		aliases: []string{
-			`araikkaal`,
-		},
+		aliases: []string{`araikkaal`},
 	},
 	0x11fcd: {
-		aliases: []string{
-			`mummaa`,
-		},
+		aliases: []string{`mummaa`},
 	},
 	0x11fce: {
-		aliases: []string{
-			`muuviisam/mummaamukkaani`,
-		},
+		aliases: []string{`muuviisam/mummaamukkaani`},
 	},
 	0x11fcf: {
-		aliases: []string{
-			`naangu maa`,
-		},
+		aliases: []string{`naangu maa`},
 	},
 	0x11fd0: {
-		aliases: []string{
-			`kaal`,
-		},
-		refs: []string{
-			`U+0BB5 tamil letter va`,
-		},
+		aliases: []string{`kaal`},
+		refs:    []rune{0x0BB5},
 	},
 	0x11fd1: {
-		aliases: []string{
-			`arai`,
-		},
+		aliases: []string{`arai`},
 	},
 	0x11fd2: {
-		aliases: []string{
-			`arai`,
-		},
+		aliases: []string{`arai`},
 	},
 	0x11fd3: {
-		aliases: []string{
-			`mukkaal`,
-		},
+		aliases: []string{`mukkaal`},
 	},
 	0x11fd9: {
-		refs: []string{
-			`U+0BF3 tamil day sign`,
-		},
+		refs: []rune{0x0BF3},
 	},
 	0x11fda: {
-		aliases: []string{
-			`marakkaal`,
-		},
-		refs: []string{
-			`U+0B99 tamil letter nga`,
-		},
+		aliases: []string{`marakkaal`},
+		refs:    []rune{0x0B99},
 	},
 	0x11fdc: {
-		refs: []string{
-			`U+0BA4 tamil letter ta`,
-			`U+0BB3 tamil letter lla`,
-		},
+		refs: []rune{0x0BA4, 0x0BB3},
 	},
 	0x11fe3: {
-		aliases: []string{
-			`veeli`,
-		},
+		aliases: []string{`veeli`},
 	},
 	0x11fe4: {
-		aliases: []string{
-			`nansey`,
-		},
+		aliases: []string{`nansey`},
 	},
 	0x11fe5: {
-		aliases: []string{
-			`punsey`,
-		},
+		aliases: []string{`punsey`},
 	},
 	0x11fe6: {
-		aliases: []string{
-			`nilam`,
-		},
-		refs: []string{
-			`U+0BF9 tamil rupee sign`,
-		},
+		aliases: []string{`nilam`},
+		refs:    []rune{0x0BF9},
 	},
 	0x11fe7: {
-		aliases: []string{
-			`uppalam`,
-		},
+		aliases: []string{`uppalam`},
 	},
 	0x11fe8: {
-		aliases: []string{
-			`varavu`,
-		},
-		refs: []string{
-			`U+0BF7 tamil credit sign`,
-		},
+		aliases: []string{`varavu`},
+		refs:    []rune{0x0BF7},
 	},
 	0x11fe9: {
-		aliases: []string{
-			`enn`,
-		},
-		refs: []string{
-			`U+0BFA tamil number sign`,
-		},
+		aliases: []string{`enn`},
+		refs:    []rune{0x0BFA},
 	},
 	0x11fea: {
-		aliases: []string{
-			`naalathu`,
-		},
+		aliases: []string{`naalathu`},
 	},
 	0x11feb: {
-		aliases: []string{
-			`silvaanam/sillarai`,
-		},
+		aliases: []string{`silvaanam/sillarai`},
 	},
 	0x11fec: {
-		aliases: []string{
-			`poga`,
-		},
+		aliases: []string{`poga`},
 	},
 	0x11fed: {
-		aliases: []string{
-			`aaga`,
-		},
+		aliases: []string{`aaga`},
 	},
 	0x11fee: {
-		aliases: []string{
-			`vasam`,
-		},
+		aliases: []string{`vasam`},
 	},
 	0x11fef: {
-		aliases: []string{
-			`muthal`,
-		},
+		aliases: []string{`muthal`},
 	},
 	0x11ff0: {
-		aliases: []string{
-			`et cetera`,
-		},
+		aliases: []string{`et cetera`},
 	},
 	0x11ff1: {
-		aliases: []string{
-			`et cetera`,
-		},
+		aliases: []string{`et cetera`},
 	},
 	0x11fff: {
-		refs: []string{
-			`U+0DF4 sinhala punctuation kunddaliya`,
-		},
+		refs: []rune{0x0DF4},
 	},
 	0x122d4: {
-		aliases: []string{
-			`CUNEIFORM SIGN NU11 TENU`,
-		},
+		aliases: []string{`CUNEIFORM SIGN NU11 TENU`},
 	},
 	0x122d5: {
-		aliases: []string{
-			`CUNEIFORM SIGN NU11 OVER NU11 BUR OVER BUR`,
-		},
+		aliases: []string{`CUNEIFORM SIGN NU11 OVER NU11 BUR OVER BUR`},
 	},
 	0x12470: {
-		refs: []string{
-			`U+1039F ugaritic word divider`,
-			`U+103D0 old persian word divider`,
-		},
+		refs: []rune{0x1039F, 0x103D0},
 	},
 	0x1309d: {
-		refs: []string{
-			`U+05E2 hebrew letter ayin`,
-			`U+0639 arabic letter ain`,
-		},
+		refs: []rune{0x05E2, 0x0639},
 	},
 	0x1313f: {
-		refs: []string{
-			`U+05D0 hebrew letter alef`,
-			`U+0623 arabic letter alef with hamza above`,
-		},
+		refs: []rune{0x05D0, 0x0623},
 	},
 	0x131cb: {
-		refs: []string{
-			`U+05D9 hebrew letter yod`,
-			`U+064A arabic letter yeh`,
-		},
+		refs: []rune{0x05D9, 0x064A},
 	},
 	0x131cc: {
-		refs: []string{
-			`U+133ED egyptian hieroglyph z004`,
-		},
+		refs: []rune{0x133ED},
 	},
 	0x1320e: {
-		refs: []string{
-			`U+05E7 hebrew letter qof`,
-			`U+0642 arabic letter qaf`,
-		},
+		refs: []rune{0x05E7, 0x0642},
 	},
 	0x13254: {
-		refs: []string{
-			`U+05D4 hebrew letter he`,
-			`U+0647 arabic letter heh`,
-		},
+		refs: []rune{0x05D4, 0x0647},
 	},
 	0x13258: {
-		refs: []string{
-			`U+13282 egyptian hieroglyph o033a`,
-		},
+		refs: []rune{0x13282},
 	},
 	0x13282: {
-		refs: []string{
-			`U+13258 egyptian hieroglyph o006a`,
-		},
+		refs: []rune{0x13258},
 	},
 	0x13283: {
-		refs: []string{
-			`U+132F4 egyptian hieroglyph s029`,
-		},
+		refs: []rune{0x132F4},
 	},
 	0x132f4: {
-		refs: []string{
-			`U+13283 egyptian hieroglyph o034`,
-		},
+		refs: []rune{0x13283},
 	},
 	0x13378: {
-		refs: []string{
-			`U+1342F egyptian hieroglyph v011d`,
-		},
+		refs: []rune{0x1342F},
 	},
 	0x1339b: {
-		refs: []string{
-			`U+062D arabic letter hah`,
-		},
+		refs: []rune{0x062D},
 	},
 	0x133a1: {
-		refs: []string{
-			`U+05DB hebrew letter kaf`,
-			`U+0643 arabic letter kaf`,
-		},
+		refs: []rune{0x05DB, 0x0643},
 	},
 	0x133ed: {
-		refs: []string{
-			`U+131CC egyptian hieroglyph m017a`,
-		},
+		refs: []rune{0x131CC},
 	},
 	0x133fc: {
-		refs: []string{
-			`U+133EA egyptian hieroglyph z003`,
-		},
+		refs: []rune{0x133EA},
 	},
 	0x1340d: {
-		refs: []string{
-			`U+062E arabic letter khah`,
-		},
+		refs: []rune{0x062E},
 	},
 	0x13430: {
-		aliases: []string{
-			`sign separator: subordination`,
-		},
+		aliases: []string{`sign separator: subordination`},
 	},
 	0x13431: {
-		aliases: []string{
-			`sign separator: juxtaposition`,
-		},
+		aliases: []string{`sign separator: juxtaposition`},
 	},
 	0x14400: {
-		aliases: []string{
-			`ego`,
-		},
+		aliases: []string{`ego`},
 	},
 	0x14401: {
-		aliases: []string{
-			`ego2`,
-		},
+		aliases: []string{`ego2`},
 	},
 	0x14403: {
-		aliases: []string{
-			`mons2`,
-		},
+		aliases: []string{`mons2`},
 	},
 	0x14405: {
-		aliases: []string{
-			`adorare`,
-		},
+		aliases: []string{`adorare`},
 	},
 	0x14406: {
-		aliases: []string{
-			`edere`,
-		},
+		aliases: []string{`edere`},
 	},
 	0x14407: {
-		aliases: []string{
-			`bibere`,
-		},
+		aliases: []string{`bibere`},
 	},
 	0x14408: {
-		aliases: []string{
-			`amplecti`,
-		},
+		aliases: []string{`amplecti`},
 	},
 	0x14409: {
-		aliases: []string{
-			`caput`,
-		},
+		aliases: []string{`caput`},
 	},
 	0x1440a: {
-		aliases: []string{
-			`caput+scalprum`,
-		},
+		aliases: []string{`caput+scalprum`},
 	},
 	0x1440c: {
-		aliases: []string{
-			`statua`,
-		},
+		aliases: []string{`statua`},
 	},
 	0x1440e: {
-		aliases: []string{
-			`prae`,
-			`logosyllabic pari`,
-		},
+		aliases: []string{`prae`, `logosyllabic pari`},
 	},
 	0x1440f: {
-		aliases: []string{
-			`domina`,
-		},
+		aliases: []string{`domina`},
 	},
 	0x14410: {
-		aliases: []string{
-			`magnus.domina`,
-		},
+		aliases: []string{`magnus.domina`},
 	},
 	0x14411: {
-		aliases: []string{
-			`rex`,
-		},
+		aliases: []string{`rex`},
 	},
 	0x14412: {
-		aliases: []string{
-			`magnus.rex`,
-		},
+		aliases: []string{`magnus.rex`},
 	},
 	0x14413: {
-		aliases: []string{
-			`syllabic á`,
-		},
+		aliases: []string{`syllabic á`},
 	},
 	0x14415: {
-		aliases: []string{
-			`heros`,
-		},
+		aliases: []string{`heros`},
 	},
 	0x14416: {
-		aliases: []string{
-			`loqui`,
-		},
+		aliases: []string{`loqui`},
 	},
 	0x14418: {
-		aliases: []string{
-			`lis`,
-		},
+		aliases: []string{`lis`},
 	},
 	0x14419: {
-		aliases: []string{
-			`oculus`,
-		},
+		aliases: []string{`oculus`},
 	},
 	0x1441a: {
-		aliases: []string{
-			`frons`,
-		},
+		aliases: []string{`frons`},
 	},
 	0x1441b: {
-		aliases: []string{
-			`versus`,
-		},
+		aliases: []string{`versus`},
 	},
 	0x1441c: {
-		aliases: []string{
-			`libare`,
-		},
+		aliases: []string{`libare`},
 	},
 	0x1441d: {
-		aliases: []string{
-			`fortis`,
-		},
+		aliases: []string{`fortis`},
 	},
 	0x1441e: {
-		aliases: []string{
-			`syllabic tá`,
-		},
+		aliases: []string{`syllabic tá`},
 	},
 	0x14420: {
-		aliases: []string{
-			`ligare`,
-			`pugnus+pugnus`,
-		},
+		aliases: []string{`ligare`, `pugnus+pugnus`},
 	},
 	0x14421: {
-		aliases: []string{
-			`bracchium`,
-		},
+		aliases: []string{`bracchium`},
 	},
 	0x14423: {
-		aliases: []string{
-			`post`,
-		},
+		aliases: []string{`post`},
 	},
 	0x14424: {
-		aliases: []string{
-			`syllabic na`,
-		},
+		aliases: []string{`syllabic na`},
 	},
 	0x14425: {
-		aliases: []string{
-			`lituus+na`,
-		},
+		aliases: []string{`lituus+na`},
 	},
 	0x14428: {
-		aliases: []string{
-			`pugnus`,
-		},
+		aliases: []string{`pugnus`},
 	},
 	0x14429: {
-		aliases: []string{
-			`pugnus+x`,
-		},
+		aliases: []string{`pugnus+x`},
 	},
 	0x1442b: {
-		aliases: []string{
-			`capere`,
-			`syllabic tà`,
-		},
+		aliases: []string{`capere`, `syllabic tà`},
 	},
 	0x1442c: {
-		aliases: []string{
-			`syllabic tà`,
-		},
+		aliases: []string{`syllabic tà`},
 	},
 	0x1442d: {
-		aliases: []string{
-			`capere2.capere2`,
-			`syllabic ta-x?`,
-		},
+		aliases: []string{`capere2.capere2`, `syllabic ta-x?`},
 	},
 	0x1442e: {
-		aliases: []string{
-			`capere2`,
-		},
+		aliases: []string{`capere2`},
 	},
 	0x14430: {
-		aliases: []string{
-			`infans`,
-			`filius`,
-			`frater`,
-		},
+		aliases: []string{`infans`, `filius`, `frater`},
 	},
 	0x14431: {
-		aliases: []string{
-			`filia`,
-		},
+		aliases: []string{`filia`},
 	},
 	0x14432: {
-		aliases: []string{
-			`rex.infans`,
-			`rex.filius`,
-		},
+		aliases: []string{`rex.infans`, `rex.filius`},
 	},
 	0x14433: {
-		aliases: []string{
-			`rex.filia`,
-		},
+		aliases: []string{`rex.filia`},
 	},
 	0x14434: {
-		aliases: []string{
-			`magnus.filia`,
-		},
+		aliases: []string{`magnus.filia`},
 	},
 	0x14437: {
-		aliases: []string{
-			`syllabic a+tá`,
-		},
+		aliases: []string{`syllabic a+tá`},
 	},
 	0x1443a: {
-		aliases: []string{
-			`manus.culter`,
-		},
+		aliases: []string{`manus.culter`},
 	},
 	0x1443b: {
-		aliases: []string{
-			`manus+culter`,
-			`ensis`,
-		},
+		aliases: []string{`manus+culter`, `ensis`},
 	},
 	0x1443d: {
-		aliases: []string{
-			`syllabic nì`,
-		},
+		aliases: []string{`syllabic nì`},
 	},
 	0x1443e: {
-		aliases: []string{
-			`syllabic ká`,
-		},
+		aliases: []string{`syllabic ká`},
 	},
 	0x1443f: {
-		aliases: []string{
-			`infra`,
-			`sub`,
-			`syllabic ká`,
-		},
+		aliases: []string{`infra`, `sub`, `syllabic ká`},
 	},
 	0x14440: {
-		aliases: []string{
-			`cum`,
-		},
+		aliases: []string{`cum`},
 	},
 	0x14441: {
-		aliases: []string{
-			`manus`,
-		},
+		aliases: []string{`manus`},
 	},
 	0x14444: {
-		aliases: []string{
-			`longus`,
-			`manus+minus?`,
-		},
+		aliases: []string{`longus`, `manus+minus?`},
 	},
 	0x14447: {
-		aliases: []string{
-			`ponere`,
-		},
+		aliases: []string{`ponere`},
 	},
 	0x14448: {
-		aliases: []string{
-			`dare`,
-			`syllabic pi`,
-		},
+		aliases: []string{`dare`, `syllabic pi`},
 	},
 	0x14449: {
-		aliases: []string{
-			`syllabic pi`,
-		},
+		aliases: []string{`syllabic pi`},
 	},
 	0x1444a: {
-		aliases: []string{
-			`mandare`,
-			`dare.dare`,
-		},
+		aliases: []string{`mandare`, `dare.dare`},
 	},
 	0x1444b: {
-		aliases: []string{
-			`mandare2`,
-		},
+		aliases: []string{`mandare2`},
 	},
 	0x1444f: {
-		aliases: []string{
-			`super`,
-			`logosyllabic sara/i`,
-		},
+		aliases: []string{`super`, `logosyllabic sara/i`},
 	},
 	0x14452: {
-		aliases: []string{
-			`audire`,
-			`auris+tu+mi`,
-		},
+		aliases: []string{`audire`, `auris+tu+mi`},
 	},
 	0x14457: {
-		aliases: []string{
-			`ala`,
-		},
+		aliases: []string{`ala`},
 	},
 	0x14458: {
-		aliases: []string{
-			`femina`,
-			`mater`,
-		},
+		aliases: []string{`femina`, `mater`},
 	},
 	0x14459: {
-		aliases: []string{
-			`Sarma`,
-		},
+		aliases: []string{`Sarma`},
 	},
 	0x1445a: {
-		aliases: []string{
-			`Sarma2`,
-		},
+		aliases: []string{`Sarma2`},
 	},
 	0x1445b: {
-		aliases: []string{
-			`crus`,
-			`syllabic ta6`,
-		},
+		aliases: []string{`crus`, `syllabic ta6`},
 	},
 	0x1445c: {
-		aliases: []string{
-			`crus+flumen`,
-		},
+		aliases: []string{`crus+flumen`},
 	},
 	0x1445d: {
-		aliases: []string{
-			`crus2`,
-			`syllabic nà`,
-		},
+		aliases: []string{`crus2`, `syllabic nà`},
 	},
 	0x1445e: {
-		aliases: []string{
-			`genuflectere`,
-		},
+		aliases: []string{`genuflectere`},
 	},
 	0x1445f: {
-		aliases: []string{
-			`crus.crus`,
-		},
+		aliases: []string{`crus.crus`},
 	},
 	0x14462: {
-		aliases: []string{
-			`syllabic tu`,
-		},
+		aliases: []string{`syllabic tu`},
 	},
 	0x14463: {
-		aliases: []string{
-			`pes`,
-			`syllabic ti`,
-		},
+		aliases: []string{`pes`, `syllabic ti`},
 	},
 	0x14464: {
-		aliases: []string{
-			`pes.scala.rotae`,
-		},
+		aliases: []string{`pes.scala.rotae`},
 	},
 	0x14466: {
-		aliases: []string{
-			`pes2`,
-		},
+		aliases: []string{`pes2`},
 	},
 	0x14468: {
-		aliases: []string{
-			`pes2.pes2`,
-		},
+		aliases: []string{`pes2.pes2`},
 	},
 	0x14469: {
-		aliases: []string{
-			`pes2.pes`,
-		},
+		aliases: []string{`pes2.pes`},
 	},
 	0x1446a: {
-		aliases: []string{
-			`leo`,
-			`bestia`,
-		},
+		aliases: []string{`leo`, `bestia`},
 	},
 	0x1446b: {
-		aliases: []string{
-			`leo2`,
-		},
+		aliases: []string{`leo2`},
 	},
 	0x1446c: {
-		aliases: []string{
-			`canis`,
-		},
+		aliases: []string{`canis`},
 	},
 	0x1446d: {
-		aliases: []string{
-			`canis2`,
-		},
+		aliases: []string{`canis2`},
 	},
 	0x1446e: {
-		aliases: []string{
-			`equus`,
-		},
+		aliases: []string{`equus`},
 	},
 	0x1446f: {
-		aliases: []string{
-			`asinus`,
-			`syllabic ta`,
-		},
+		aliases: []string{`asinus`, `syllabic ta`},
 	},
 	0x14470: {
-		aliases: []string{
-			`syllabic ta`,
-		},
+		aliases: []string{`syllabic ta`},
 	},
 	0x14471: {
-		aliases: []string{
-			`asinus2`,
-		},
+		aliases: []string{`asinus2`},
 	},
 	0x14472: {
-		aliases: []string{
-			`asinus2a`,
-		},
+		aliases: []string{`asinus2a`},
 	},
 	0x14473: {
-		aliases: []string{
-			`cervus`,
-			`syllabic rú`,
-		},
+		aliases: []string{`cervus`, `syllabic rú`},
 	},
 	0x14474: {
-		aliases: []string{
-			`cervus2`,
-			`syllabic rú`,
-		},
+		aliases: []string{`cervus2`, `syllabic rú`},
 	},
 	0x14475: {
-		aliases: []string{
-			`cervus3`,
-			`syllabic rú`,
-		},
+		aliases: []string{`cervus3`, `syllabic rú`},
 	},
 	0x14476: {
-		aliases: []string{
-			`capra`,
-			`syllabic sà`,
-		},
+		aliases: []string{`capra`, `syllabic sà`},
 	},
 	0x14477: {
-		aliases: []string{
-			`syllabic sà`,
-		},
+		aliases: []string{`syllabic sà`},
 	},
 	0x14478: {
-		aliases: []string{
-			`capra2`,
-			`syllabic sà`,
-		},
+		aliases: []string{`capra2`, `syllabic sà`},
 	},
 	0x14479: {
-		aliases: []string{
-			`capra2a`,
-			`syllabic sà`,
-		},
+		aliases: []string{`capra2a`, `syllabic sà`},
 	},
 	0x1447a: {
-		aliases: []string{
-			`bos`,
-			`syllabic u`,
-		},
+		aliases: []string{`bos`, `syllabic u`},
 	},
 	0x1447b: {
-		aliases: []string{
-			`bos`,
-			`syllabic u`,
-		},
+		aliases: []string{`bos`, `syllabic u`},
 	},
 	0x1447c: {
-		aliases: []string{
-			`bos2`,
-			`syllabic u`,
-		},
+		aliases: []string{`bos2`, `syllabic u`},
 	},
 	0x1447e: {
-		aliases: []string{
-			`bos+mi`,
-			`syllabic mu`,
-			`logosyllabic muwa`,
-		},
+		aliases: []string{`bos+mi`, `syllabic mu`, `logosyllabic muwa`},
 	},
 	0x1447f: {
-		aliases: []string{
-			`syllabic mu`,
-			`logosyllabic muwa`,
-		},
+		aliases: []string{`syllabic mu`, `logosyllabic muwa`},
 	},
 	0x14480: {
-		aliases: []string{
-			`bos.mi`,
-			`syllabic mu`,
-			`logosyllabic muwa`,
-		},
+		aliases: []string{`bos.mi`, `syllabic mu`, `logosyllabic muwa`},
 	},
 	0x14481: {
-		aliases: []string{
-			`bos2.mi`,
-			`syllabic mu`,
-			`logosyllabic muwa`,
-		},
+		aliases: []string{`bos2.mi`, `syllabic mu`, `logosyllabic muwa`},
 	},
 	0x14482: {
-		aliases: []string{
-			`cornu`,
-			`sú`,
-		},
+		aliases: []string{`cornu`, `sú`},
 	},
 	0x14483: {
-		aliases: []string{
-			`vitellus`,
-			`syllabic ma-x`,
-		},
+		aliases: []string{`vitellus`, `syllabic ma-x`},
 	},
 	0x14484: {
-		aliases: []string{
-			`ovis`,
-			`syllabic ma`,
-		},
+		aliases: []string{`ovis`, `syllabic ma`},
 	},
 	0x14485: {
-		aliases: []string{
-			`syllabic ma`,
-		},
+		aliases: []string{`syllabic ma`},
 	},
 	0x14486: {
-		aliases: []string{
-			`ovis2`,
-			`syllabic ma`,
-		},
+		aliases: []string{`ovis2`, `syllabic ma`},
 	},
 	0x14487: {
-		aliases: []string{
-			`ovis3`,
-		},
+		aliases: []string{`ovis3`},
 	},
 	0x14488: {
-		aliases: []string{
-			`lingere`,
-			`syllabic za4`,
-		},
+		aliases: []string{`lingere`, `syllabic za4`},
 	},
 	0x1448a: {
-		aliases: []string{
-			`lituus+u`,
-		},
+		aliases: []string{`lituus+u`},
 	},
 	0x1448b: {
-		aliases: []string{
-			`lepus`,
-			`logosyllabic tapa`,
-		},
+		aliases: []string{`lepus`, `logosyllabic tapa`},
 	},
 	0x1448c: {
-		aliases: []string{
-			`lepus2`,
-			`logosyllabic tapa`,
-		},
+		aliases: []string{`lepus2`, `logosyllabic tapa`},
 	},
 	0x14491: {
-		aliases: []string{
-			`gryllus`,
-		},
+		aliases: []string{`gryllus`},
 	},
 	0x14492: {
-		aliases: []string{
-			`sphinx`,
-		},
+		aliases: []string{`sphinx`},
 	},
 	0x14496: {
-		aliases: []string{
-			`syllabic lí`,
-		},
+		aliases: []string{`syllabic lí`},
 	},
 	0x14497: {
-		aliases: []string{
-			`ungula`,
-			`syllabic li-x`,
-		},
+		aliases: []string{`ungula`, `syllabic li-x`},
 	},
 	0x1449a: {
-		aliases: []string{
-			`avis`,
-			`zi4`,
-		},
+		aliases: []string{`avis`, `zi4`},
 	},
 	0x1449c: {
-		aliases: []string{
-			`avis3`,
-		},
+		aliases: []string{`avis3`},
 	},
 	0x1449d: {
-		aliases: []string{
-			`avis5`,
-		},
+		aliases: []string{`avis5`},
 	},
 	0x1449e: {
-		aliases: []string{
-			`avis2`,
-		},
+		aliases: []string{`avis2`},
 	},
 	0x1449f: {
-		aliases: []string{
-			`aquila`,
-			`avis4`,
-			`syllabic ara/i`,
-		},
+		aliases: []string{`aquila`, `avis4`, `syllabic ara/i`},
 	},
 	0x144a0: {
-		aliases: []string{
-			`syllabic ara/i`,
-		},
+		aliases: []string{`syllabic ara/i`},
 	},
 	0x144a1: {
-		aliases: []string{
-			`avis-x`,
-		},
+		aliases: []string{`avis-x`},
 	},
 	0x144a4: {
-		aliases: []string{
-			`libatio`,
-		},
+		aliases: []string{`libatio`},
 	},
 	0x144a5: {
-		aliases: []string{
-			`piscis`,
-		},
+		aliases: []string{`piscis`},
 	},
 	0x144af: {
-		aliases: []string{
-			`Janus`,
-		},
+		aliases: []string{`Janus`},
 	},
 	0x144b2: {
-		aliases: []string{
-			`Telipinu`,
-		},
+		aliases: []string{`Telipinu`},
 	},
 	0x144b4: {
-		aliases: []string{
-			`syllabic nu`,
-		},
+		aliases: []string{`syllabic nu`},
 	},
 	0x144bb: {
-		aliases: []string{
-			`vitis`,
-			`syllabic wi(ya)`,
-		},
+		aliases: []string{`vitis`, `syllabic wi(ya)`},
 	},
 	0x144c0: {
-		aliases: []string{
-			`bonus`,
-			`syllabic wà/ì`,
-		},
+		aliases: []string{`bonus`, `syllabic wà/ì`},
 	},
 	0x144c1: {
-		aliases: []string{
-			`syllabic wá/í`,
-		},
+		aliases: []string{`syllabic wá/í`},
 	},
 	0x144c7: {
-		aliases: []string{
-			`syllabic ta/i5`,
-			`lá/í`,
-		},
+		aliases: []string{`syllabic ta/i5`, `lá/í`},
 	},
 	0x144c8: {
-		aliases: []string{
-			`hastarius`,
-		},
+		aliases: []string{`hastarius`},
 	},
 	0x144c9: {
-		aliases: []string{
-			`syllabic si`,
-		},
+		aliases: []string{`syllabic si`},
 	},
 	0x144ca: {
-		aliases: []string{
-			`lingua`,
-			`syllabic la`,
-		},
+		aliases: []string{`lingua`, `syllabic la`},
 	},
 	0x144cb: {
-		aliases: []string{
-			`syllabic la+la`,
-		},
+		aliases: []string{`syllabic la+la`},
 	},
 	0x144cc: {
-		aliases: []string{
-			`lingua+clavus`,
-		},
+		aliases: []string{`lingua+clavus`},
 	},
 	0x144cd: {
-		aliases: []string{
-			`syllabic la+ra+a`,
-		},
+		aliases: []string{`syllabic la+ra+a`},
 	},
 	0x144ce: {
-		aliases: []string{
-			`hordeum`,
-			`syllabic hwi-x`,
-		},
+		aliases: []string{`hordeum`, `syllabic hwi-x`},
 	},
 	0x144d0: {
-		aliases: []string{
-			`panis`,
-			`syllabic pa-x`,
-		},
+		aliases: []string{`panis`, `syllabic pa-x`},
 	},
 	0x144d1: {
-		aliases: []string{
-			`caelum`,
-		},
+		aliases: []string{`caelum`},
 	},
 	0x144d9: {
-		aliases: []string{
-			`sol2`,
-		},
+		aliases: []string{`sol2`},
 	},
 	0x144da: {
-		aliases: []string{
-			`sol`,
-		},
+		aliases: []string{`sol`},
 	},
 	0x144db: {
-		aliases: []string{
-			`oriens`,
-		},
+		aliases: []string{`oriens`},
 	},
 	0x144dc: {
-		aliases: []string{
-			`luna`,
-		},
+		aliases: []string{`luna`},
 	},
 	0x144df: {
-		aliases: []string{
-			`Hatti`,
-			`syllabic há`,
-		},
+		aliases: []string{`Hatti`, `syllabic há`},
 	},
 	0x144e0: {
-		aliases: []string{
-			`Hatti+li`,
-			`Hattusili`,
-			`logosyllabic há-li`,
-		},
+		aliases: []string{`Hatti+li`, `Hattusili`, `logosyllabic há-li`},
 	},
 	0x144e2: {
-		aliases: []string{
-			`tonitrus`,
-		},
+		aliases: []string{`tonitrus`},
 	},
 	0x144e3: {
-		aliases: []string{
-			`fulgur`,
-		},
+		aliases: []string{`fulgur`},
 	},
 	0x144e4: {
-		aliases: []string{
-			`terra`,
-			`locus`,
-			`syllabic wa/i6`,
-		},
+		aliases: []string{`terra`, `locus`, `syllabic wa/i6`},
 	},
 	0x144e5: {
-		aliases: []string{
-			`via+terra.scalprum`,
-		},
+		aliases: []string{`via+terra.scalprum`},
 	},
 	0x144e6: {
-		aliases: []string{
-			`via+terra+scalprum`,
-		},
+		aliases: []string{`via+terra+scalprum`},
 	},
 	0x144e7: {
-		aliases: []string{
-			`(deus)via+terra`,
-		},
+		aliases: []string{`(deus)via+terra`},
 	},
 	0x144e9: {
-		aliases: []string{
-			`syllabic wa/i5`,
-		},
+		aliases: []string{`syllabic wa/i5`},
 	},
 	0x144ec: {
-		aliases: []string{
-			`mons`,
-			`syllabic wa/i5`,
-		},
+		aliases: []string{`mons`, `syllabic wa/i5`},
 	},
 	0x144ed: {
-		aliases: []string{
-			`leo+mons.tu+leo`,
-		},
+		aliases: []string{`leo+mons.tu+leo`},
 	},
 	0x144ef: {
-		aliases: []string{
-			`syllabic i`,
-			`i(a)`,
-		},
+		aliases: []string{`syllabic i`, `i(a)`},
 	},
 	0x144f0: {
-		aliases: []string{
-			`syllabic i+ra/i`,
-			`ri+i`,
-		},
+		aliases: []string{`syllabic i+ra/i`, `ri+i`},
 	},
 	0x144f1: {
-		aliases: []string{
-			`syllabic ia`,
-		},
+		aliases: []string{`syllabic ia`},
 	},
 	0x144f3: {
-		aliases: []string{
-			`flumen`,
-		},
+		aliases: []string{`flumen`},
 	},
 	0x144f5: {
-		aliases: []string{
-			`syllabic ní`,
-		},
+		aliases: []string{`syllabic ní`},
 	},
 	0x144f6: {
-		aliases: []string{
-			`fons`,
-		},
+		aliases: []string{`fons`},
 	},
 	0x144f7: {
-		aliases: []string{
-			`syllabic ha`,
-		},
+		aliases: []string{`syllabic ha`},
 	},
 	0x144f8: {
-		aliases: []string{
-			`fines`,
-			`syllabic arha`,
-		},
+		aliases: []string{`fines`, `syllabic arha`},
 	},
 	0x144f9: {
-		aliases: []string{
-			`fines+ha`,
-			`arha`,
-		},
+		aliases: []string{`fines+ha`, `arha`},
 	},
 	0x144fe: {
-		aliases: []string{
-			`via`,
-		},
+		aliases: []string{`via`},
 	},
 	0x14500: {
-		aliases: []string{
-			`syllabic sa6`,
-		},
+		aliases: []string{`syllabic sa6`},
 	},
 	0x14501: {
-		aliases: []string{
-			`syllabic ha? pa?`,
-		},
+		aliases: []string{`syllabic ha? pa?`},
 	},
 	0x14502: {
-		aliases: []string{
-			`urbs`,
-		},
+		aliases: []string{`urbs`},
 	},
 	0x14503: {
-		aliases: []string{
-			`Ishuwa`,
-		},
+		aliases: []string{`Ishuwa`},
 	},
 	0x14504: {
-		aliases: []string{
-			`urbs+ra/i?+li`,
-			`urbs+ra/i?-li`,
-		},
+		aliases: []string{`urbs+ra/i?+li`, `urbs+ra/i?-li`},
 	},
 	0x14505: {
-		aliases: []string{
-			`urbs+li`,
-			`urbs-li`,
-			`Mursili`,
-		},
+		aliases: []string{`urbs+li`, `urbs-li`, `Mursili`},
 	},
 	0x14506: {
-		aliases: []string{
-			`regio`,
-			`syllabic tu4`,
-		},
+		aliases: []string{`regio`, `syllabic tu4`},
 	},
 	0x14507: {
-		aliases: []string{
-			`syllabic mí.regio`,
-		},
+		aliases: []string{`syllabic mí.regio`},
 	},
 	0x14509: {
-		aliases: []string{
-			`castrum`,
-		},
+		aliases: []string{`castrum`},
 	},
 	0x1450d: {
-		aliases: []string{
-			`turris?`,
-		},
+		aliases: []string{`turris?`},
 	},
 	0x1450e: {
-		aliases: []string{
-			`murus?`,
-		},
+		aliases: []string{`murus?`},
 	},
 	0x1450f: {
-		aliases: []string{
-			`porta`,
-		},
+		aliases: []string{`porta`},
 	},
 	0x14511: {
-		aliases: []string{
-			`porta2`,
-		},
+		aliases: []string{`porta2`},
 	},
 	0x14513: {
-		aliases: []string{
-			`syllabic ki-x`,
-		},
+		aliases: []string{`syllabic ki-x`},
 	},
 	0x14515: {
-		aliases: []string{
-			`cubitum`,
-		},
+		aliases: []string{`cubitum`},
 	},
 	0x14516: {
-		aliases: []string{
-			`aedificium`,
-		},
+		aliases: []string{`aedificium`},
 	},
 	0x14517: {
-		aliases: []string{
-			`vacuus`,
-			`aedificium+minus`,
-		},
+		aliases: []string{`vacuus`, `aedificium+minus`},
 	},
 	0x14518: {
-		aliases: []string{
-			`aedificare`,
-			`aedificium.ponere`,
-		},
+		aliases: []string{`aedificare`, `aedificium.ponere`},
 	},
 	0x14519: {
-		aliases: []string{
-			`domus`,
-		},
+		aliases: []string{`domus`},
 	},
 	0x1451a: {
-		aliases: []string{
-			`delere`,
-			`domus+minus`,
-		},
+		aliases: []string{`delere`, `domus+minus`},
 	},
 	0x1451b: {
-		aliases: []string{
-			`deus.domus`,
-		},
+		aliases: []string{`deus.domus`},
 	},
 	0x1451c: {
-		aliases: []string{
-			`magnus.domus`,
-		},
+		aliases: []string{`magnus.domus`},
 	},
 	0x1451d: {
-		aliases: []string{
-			`domus+x`,
-		},
+		aliases: []string{`domus+x`},
 	},
 	0x1451e: {
-		aliases: []string{
-			`domus+scala`,
-		},
+		aliases: []string{`domus+scala`},
 	},
 	0x14520: {
-		aliases: []string{
-			`eunuchus2`,
-		},
+		aliases: []string{`eunuchus2`},
 	},
 	0x14521: {
-		aliases: []string{
-			`horreum`,
-		},
+		aliases: []string{`horreum`},
 	},
 	0x14523: {
-		aliases: []string{
-			`argentum`,
-		},
+		aliases: []string{`argentum`},
 	},
 	0x1452a: {
-		aliases: []string{
-			`podium`,
-		},
+		aliases: []string{`podium`},
 	},
 	0x1452c: {
-		aliases: []string{
-			`pes.regio`,
-		},
+		aliases: []string{`pes.regio`},
 	},
 	0x1452d: {
-		aliases: []string{
-			`stele`,
-			`lapis+scalprum`,
-		},
+		aliases: []string{`stele`, `lapis+scalprum`},
 	},
 	0x1452e: {
-		aliases: []string{
-			`lapis`,
-		},
+		aliases: []string{`lapis`},
 	},
 	0x1452f: {
-		aliases: []string{
-			`scalprum`,
-		},
+		aliases: []string{`scalprum`},
 	},
 	0x14530: {
-		aliases: []string{
-			`exercitus`,
-		},
+		aliases: []string{`exercitus`},
 	},
 	0x14533: {
-		aliases: []string{
-			`scutum`,
-		},
+		aliases: []string{`scutum`},
 	},
 	0x14537: {
-		aliases: []string{
-			`frater2`,
-		},
+		aliases: []string{`frater2`},
 	},
 	0x14538: {
-		aliases: []string{
-			`iudex.la`,
-			`iudex+la`,
-		},
+		aliases: []string{`iudex.la`, `iudex+la`},
 	},
 	0x14539: {
-		aliases: []string{
-			`syllabic li`,
-		},
+		aliases: []string{`syllabic li`},
 	},
 	0x1453b: {
-		aliases: []string{
-			`malleus`,
-			`syllabic wa/i9`,
-		},
+		aliases: []string{`malleus`, `syllabic wa/i9`},
 	},
 	0x1453c: {
-		aliases: []string{
-			`ascia`,
-		},
+		aliases: []string{`ascia`},
 	},
 	0x1453e: {
-		aliases: []string{
-			`logosyllabic tuzzi`,
-		},
+		aliases: []string{`logosyllabic tuzzi`},
 	},
 	0x14540: {
-		aliases: []string{
-			`iaculum`,
-			`syllabic zu?`,
-			`logosyllabic zuwa`,
-		},
+		aliases: []string{`iaculum`, `syllabic zu?`, `logosyllabic zuwa`},
 	},
 	0x14541: {
-		aliases: []string{
-			`syllabic wa/i7`,
-		},
+		aliases: []string{`syllabic wa/i7`},
 	},
 	0x14543: {
-		aliases: []string{
-			`currus`,
-		},
+		aliases: []string{`currus`},
 	},
 	0x14544: {
-		aliases: []string{
-			`auriga`,
-		},
+		aliases: []string{`auriga`},
 	},
 	0x14545: {
-		aliases: []string{
-			`auriga2`,
-		},
+		aliases: []string{`auriga2`},
 	},
 	0x14546: {
-		aliases: []string{
-			`syllabic hara/i`,
-		},
+		aliases: []string{`syllabic hara/i`},
 	},
 	0x14547: {
-		aliases: []string{
-			`syllabic lì`,
-		},
+		aliases: []string{`syllabic lì`},
 	},
 	0x14548: {
-		aliases: []string{
-			`rota`,
-			`logosyllabic hala/i`,
-		},
+		aliases: []string{`rota`, `logosyllabic hala/i`},
 	},
 	0x1454a: {
-		aliases: []string{
-			`thronus`,
-			`mensa`,
-		},
+		aliases: []string{`thronus`, `mensa`},
 	},
 	0x1454b: {
-		aliases: []string{
-			`thronus`,
-			`mensa2`,
-			`Sarpa`,
-		},
+		aliases: []string{`thronus`, `mensa2`, `Sarpa`},
 	},
 	0x1454c: {
-		aliases: []string{
-			`sol2.thronus/mensa`,
-		},
+		aliases: []string{`sol2.thronus/mensa`},
 	},
 	0x1454d: {
-		aliases: []string{
-			`(deus)mons.Sarpa`,
-			`(deus)mons.mensa`,
-			`thronus`,
-		},
+		aliases: []string{`(deus)mons.Sarpa`, `(deus)mons.mensa`, `thronus`},
 	},
 	0x1454f: {
-		aliases: []string{
-			`thronus2`,
-		},
+		aliases: []string{`thronus2`},
 	},
 	0x14550: {
-		aliases: []string{
-			`solium`,
-			`syllabic í`,
-		},
+		aliases: []string{`solium`, `syllabic í`},
 	},
 	0x14551: {
-		aliases: []string{
-			`syllabic iá`,
-		},
+		aliases: []string{`syllabic iá`},
 	},
 	0x14552: {
-		aliases: []string{
-			`nepos`,
-		},
+		aliases: []string{`nepos`},
 	},
 	0x14553: {
-		aliases: []string{
-			`lectus`,
-		},
+		aliases: []string{`lectus`},
 	},
 	0x14555: {
-		aliases: []string{
-			`syllabic sara/i`,
-		},
+		aliases: []string{`syllabic sara/i`},
 	},
 	0x14556: {
-		aliases: []string{
-			`syllabic mà`,
-		},
+		aliases: []string{`syllabic mà`},
 	},
 	0x14557: {
-		aliases: []string{
-			`fusus`,
-		},
+		aliases: []string{`fusus`},
 	},
 	0x14558: {
-		aliases: []string{
-			`syllabic hí`,
-		},
+		aliases: []string{`syllabic hí`},
 	},
 	0x14559: {
-		aliases: []string{
-			`syllabic hu`,
-		},
+		aliases: []string{`syllabic hu`},
 	},
 	0x1455b: {
-		aliases: []string{
-			`crux`,
-		},
+		aliases: []string{`crux`},
 	},
 	0x1455c: {
-		aliases: []string{
-			`crux2`,
-		},
+		aliases: []string{`crux2`},
 	},
 	0x14560: {
-		aliases: []string{
-			`vir`,
-			`syllabic zí`,
-		},
+		aliases: []string{`vir`, `syllabic zí`},
 	},
 	0x14561: {
-		aliases: []string{
-			`syllabic ha-x`,
-		},
+		aliases: []string{`syllabic ha-x`},
 	},
 	0x14562: {
-		aliases: []string{
-			`syllabic kar`,
-		},
+		aliases: []string{`syllabic kar`},
 	},
 	0x14563: {
-		aliases: []string{
-			`syllabic sa7`,
-		},
+		aliases: []string{`syllabic sa7`},
 	},
 	0x14565: {
-		aliases: []string{
-			`Teshub`,
-		},
+		aliases: []string{`Teshub`},
 	},
 	0x14566: {
-		aliases: []string{
-			`syllabic ta/i4`,
-			`la/i`,
-		},
+		aliases: []string{`syllabic ta/i4`, `la/i`},
 	},
 	0x14569: {
-		aliases: []string{
-			`purus`,
-		},
+		aliases: []string{`purus`},
 	},
 	0x1456c: {
-		aliases: []string{
-			`syllabic tú`,
-		},
+		aliases: []string{`syllabic tú`},
 	},
 	0x1456d: {
-		aliases: []string{
-			`scriba`,
-			`syllabic tù`,
-		},
+		aliases: []string{`scriba`, `syllabic tù`},
 	},
 	0x1456e: {
-		aliases: []string{
-			`sigillum`,
-			`syllabic sa5`,
-		},
+		aliases: []string{`sigillum`, `syllabic sa5`},
 	},
 	0x1456f: {
-		aliases: []string{
-			`syllabic pu`,
-		},
+		aliases: []string{`syllabic pu`},
 	},
 	0x14570: {
-		aliases: []string{
-			`relative`,
-			`syllabic kwi/a`,
-		},
+		aliases: []string{`relative`, `syllabic kwi/a`},
 	},
 	0x14572: {
-		aliases: []string{
-			`capere+scalprum`,
-		},
+		aliases: []string{`capere+scalprum`},
 	},
 	0x14573: {
-		aliases: []string{
-			`avus`,
-		},
+		aliases: []string{`avus`},
 	},
 	0x14574: {
-		aliases: []string{
-			`negative`,
-		},
+		aliases: []string{`negative`},
 	},
 	0x14575: {
-		aliases: []string{
-			`negative2`,
-			`syllabic ná`,
-		},
+		aliases: []string{`negative2`, `syllabic ná`},
 	},
 	0x14576: {
-		aliases: []string{
-			`negative3`,
-		},
+		aliases: []string{`negative3`},
 	},
 	0x14578: {
-		aliases: []string{
-			`syllabic pa`,
-		},
+		aliases: []string{`syllabic pa`},
 	},
 	0x14579: {
-		aliases: []string{
-			`syllabic zá`,
-		},
+		aliases: []string{`syllabic zá`},
 	},
 	0x1457a: {
-		aliases: []string{
-			`annus`,
-			`pithos.scutella`,
-			`pithos`,
-			`syllabic zì`,
-		},
+		aliases: []string{`annus`, `pithos.scutella`, `pithos`, `syllabic zì`},
 	},
 	0x1457b: {
-		aliases: []string{
-			`syllabic zì`,
-		},
+		aliases: []string{`syllabic zì`},
 	},
 	0x1457c: {
-		aliases: []string{
-			`syllabic zà`,
-		},
+		aliases: []string{`syllabic zà`},
 	},
 	0x1457d: {
-		aliases: []string{
-			`syllabic za-x`,
-		},
+		aliases: []string{`syllabic za-x`},
 	},
 	0x1457e: {
-		aliases: []string{
-			`pithos`,
-		},
+		aliases: []string{`pithos`},
 	},
 	0x1457f: {
-		aliases: []string{
-			`culter`,
-		},
+		aliases: []string{`culter`},
 	},
 	0x14581: {
-		aliases: []string{
-			`annus+annus`,
-		},
+		aliases: []string{`annus+annus`},
 	},
 	0x14582: {
-		aliases: []string{
-			`vas`,
-		},
+		aliases: []string{`vas`},
 	},
 	0x14584: {
-		aliases: []string{
-			`pithos`,
-		},
+		aliases: []string{`pithos`},
 	},
 	0x14585: {
-		aliases: []string{
-			`contractus`,
-		},
+		aliases: []string{`contractus`},
 	},
 	0x14586: {
-		aliases: []string{
-			`urceus`,
-		},
+		aliases: []string{`urceus`},
 	},
 	0x14587: {
-		aliases: []string{
-			`poculum`,
-		},
+		aliases: []string{`poculum`},
 	},
 	0x14588: {
-		aliases: []string{
-			`syllabic hú`,
-		},
+		aliases: []string{`syllabic hú`},
 	},
 	0x14590: {
-		aliases: []string{
-			`sacerdos`,
-		},
+		aliases: []string{`sacerdos`},
 	},
 	0x14593: {
-		aliases: []string{
-			`dies`,
-		},
+		aliases: []string{`dies`},
 	},
 	0x14596: {
-		aliases: []string{
-			`deus`,
-		},
+		aliases: []string{`deus`},
 	},
 	0x14598: {
-		aliases: []string{
-			`syllabic má`,
-		},
+		aliases: []string{`syllabic má`},
 	},
 	0x14599: {
-		aliases: []string{
-			`magnus`,
-			`syllabic ur`,
-		},
+		aliases: []string{`magnus`, `syllabic ur`},
 	},
 	0x1459a: {
-		aliases: []string{
-			`syllabic u`,
-		},
+		aliases: []string{`syllabic u`},
 	},
 	0x1459b: {
-		aliases: []string{
-			`syllabic mu`,
-		},
+		aliases: []string{`syllabic mu`},
 	},
 	0x1459d: {
-		aliases: []string{
-			`omnis(+mi)`,
-		},
+		aliases: []string{`omnis(+mi)`},
 	},
 	0x1459e: {
-		aliases: []string{
-			`logosyllabic tala`,
-		},
+		aliases: []string{`logosyllabic tala`},
 	},
 	0x1459f: {
-		aliases: []string{
-			`malus`,
-		},
+		aliases: []string{`malus`},
 	},
 	0x145a0: {
-		aliases: []string{
-			`malus2`,
-		},
+		aliases: []string{`malus2`},
 	},
 	0x145a1: {
-		aliases: []string{
-			`vita`,
-		},
+		aliases: []string{`vita`},
 	},
 	0x145a2: {
-		aliases: []string{
-			`bonus2`,
-			`syllabic su`,
-		},
+		aliases: []string{`bonus2`, `syllabic su`},
 	},
 	0x145a3: {
-		aliases: []string{
-			`iustitia`,
-			`iudex`,
-		},
+		aliases: []string{`iustitia`, `iudex`},
 	},
 	0x145a4: {
-		aliases: []string{
-			`iudex+ra/i`,
-			`tara/i-x`,
-		},
+		aliases: []string{`iudex+ra/i`, `tara/i-x`},
 	},
 	0x145a5: {
-		aliases: []string{
-			`sacerdos2`,
-		},
+		aliases: []string{`sacerdos2`},
 	},
 	0x145a9: {
-		aliases: []string{
-			`syllabic zi`,
-			`zi/a`,
-		},
+		aliases: []string{`syllabic zi`, `zi/a`},
 	},
 	0x145aa: {
-		aliases: []string{
-			`syllabic za`,
-		},
+		aliases: []string{`syllabic za`},
 	},
 	0x145ab: {
-		aliases: []string{
-			`lituus`,
-		},
+		aliases: []string{`lituus`},
 	},
 	0x145ac: {
-		aliases: []string{
-			`occidens`,
-			`syllabic ià`,
-		},
+		aliases: []string{`occidens`, `syllabic ià`},
 	},
 	0x145ad: {
-		aliases: []string{
-			`one`,
-			`unus`,
-			`syllabic sa8`,
-		},
+		aliases: []string{`one`, `unus`, `syllabic sa8`},
 	},
 	0x145ae: {
-		aliases: []string{
-			`minus`,
-		},
+		aliases: []string{`minus`},
 	},
 	0x145af: {
-		aliases: []string{
-			`mori`,
-			`vir2.minus`,
-		},
+		aliases: []string{`mori`, `vir2.minus`},
 	},
 	0x145b0: {
-		aliases: []string{
-			`lignum`,
-		},
+		aliases: []string{`lignum`},
 	},
 	0x145b1: {
-		refs: []string{
-			`U+144A0 anatolian hieroglyph a134`,
-			`U+144F0 anatolian hieroglyph a209a`,
-			`U+14546 anatolian hieroglyph a290`,
-			`U+14555 anatolian hieroglyph a303`,
-			`U+14562 anatolian hieroglyph a315`,
-			`U+145A4 anatolian hieroglyph a371a`,
-			`U+145B9 anatolian hieroglyph a389`,
-			`U+145F8 anatolian hieroglyph a450a`,
-		},
+		refs: []rune{0x144A0, 0x144F0, 0x14546, 0x14555, 0x14562, 0x145A4, 0x145B9, 0x145F8},
 	},
 	0x145b2: {
-		aliases: []string{
-			`personal determinative`,
-		},
+		aliases: []string{`personal determinative`},
 	},
 	0x145b3: {
-		aliases: []string{
-			`two`,
-		},
+		aliases: []string{`two`},
 	},
 	0x145b4: {
-		aliases: []string{
-			`two`,
-		},
+		aliases: []string{`two`},
 	},
 	0x145b5: {
-		aliases: []string{
-			`vir2`,
-			`word divider`,
-		},
+		aliases: []string{`vir2`, `word divider`},
 	},
 	0x145b6: {
-		aliases: []string{
-			`vir2a`,
-		},
+		aliases: []string{`vir2a`},
 	},
 	0x145b7: {
-		aliases: []string{
-			`servus`,
-			`syllabic mì`,
-		},
+		aliases: []string{`servus`, `syllabic mì`},
 	},
 	0x145b8: {
-		aliases: []string{
-			`three`,
-			`tara/i`,
-		},
+		aliases: []string{`three`, `tara/i`},
 	},
 	0x145b9: {
-		aliases: []string{
-			`tara/i`,
-		},
+		aliases: []string{`tara/i`},
 	},
 	0x145ba: {
-		aliases: []string{
-			`dominus`,
-		},
+		aliases: []string{`dominus`},
 	},
 	0x145bb: {
-		aliases: []string{
-			`four`,
-			`syllabic mi`,
-		},
+		aliases: []string{`four`, `syllabic mi`},
 	},
 	0x145bc: {
-		aliases: []string{
-			`five`,
-		},
+		aliases: []string{`five`},
 	},
 	0x145bd: {
-		aliases: []string{
-			`eight`,
-		},
+		aliases: []string{`eight`},
 	},
 	0x145bf: {
-		aliases: []string{
-			`nine`,
-			`syllabic nú`,
-		},
+		aliases: []string{`nine`, `syllabic nú`},
 	},
 	0x145c1: {
-		aliases: []string{
-			`ten`,
-			`decem`,
-		},
+		aliases: []string{`ten`, `decem`},
 	},
 	0x145c3: {
-		aliases: []string{
-			`hundred`,
-			`centum`,
-		},
+		aliases: []string{`hundred`, `centum`},
 	},
 	0x145c4: {
-		aliases: []string{
-			`thousand`,
-			`mille`,
-		},
+		aliases: []string{`thousand`, `mille`},
 	},
 	0x145c6: {
-		aliases: []string{
-			`scutella`,
-			`syllabic sa4`,
-		},
+		aliases: []string{`scutella`, `syllabic sa4`},
 	},
 	0x145c8: {
-		aliases: []string{
-			`animal`,
-		},
+		aliases: []string{`animal`},
 	},
 	0x145d0: {
-		aliases: []string{
-			`syllabic ni`,
-		},
+		aliases: []string{`syllabic ni`},
 	},
 	0x145d1: {
-		aliases: []string{
-			`syllabic ru`,
-		},
+		aliases: []string{`syllabic ru`},
 	},
 	0x145d2: {
-		aliases: []string{
-			`syllabic hi`,
-		},
+		aliases: []string{`syllabic hi`},
 	},
 	0x145d4: {
-		aliases: []string{
-			`syllabic sa`,
-		},
+		aliases: []string{`syllabic sa`},
 	},
 	0x145d6: {
-		aliases: []string{
-			`syllabic sa-x`,
-		},
+		aliases: []string{`syllabic sa-x`},
 	},
 	0x145d8: {
-		aliases: []string{
-			`syllabic mí`,
-			`logosyllabic urhi`,
-		},
+		aliases: []string{`syllabic mí`, `logosyllabic urhi`},
 	},
 	0x145da: {
-		aliases: []string{
-			`syllabic us`,
-		},
+		aliases: []string{`syllabic us`},
 	},
 	0x145db: {
-		aliases: []string{
-			`panis.scutella`,
-		},
+		aliases: []string{`panis.scutella`},
 	},
 	0x145dc: {
-		aliases: []string{
-			`syllabic ku`,
-		},
+		aliases: []string{`syllabic ku`},
 	},
 	0x145e2: {
-		aliases: []string{
-			`syllabic tana`,
-		},
+		aliases: []string{`syllabic tana`},
 	},
 	0x145e3: {
-		aliases: []string{
-			`omnis2`,
-			`syllabic pú`,
-		},
+		aliases: []string{`omnis2`, `syllabic pú`},
 	},
 	0x145e5: {
-		aliases: []string{
-			`syllabic zu?`,
-		},
+		aliases: []string{`syllabic zu?`},
 	},
 	0x145e6: {
-		aliases: []string{
-			`syllabic sá`,
-		},
+		aliases: []string{`syllabic sá`},
 	},
 	0x145e7: {
-		aliases: []string{
-			`syllabic ka`,
-		},
+		aliases: []string{`syllabic ka`},
 	},
 	0x145e8: {
-		aliases: []string{
-			`syllabic a-x?`,
-		},
+		aliases: []string{`syllabic a-x?`},
 	},
 	0x145eb: {
-		aliases: []string{
-			`pastor`,
-		},
+		aliases: []string{`pastor`},
 	},
 	0x145ec: {
-		aliases: []string{
-			`syllabic wa/i`,
-		},
+		aliases: []string{`syllabic wa/i`},
 	},
 	0x145f2: {
-		aliases: []string{
-			`syllabic la`,
-			`li`,
-			`lu`,
-		},
+		aliases: []string{`syllabic la`, `li`, `lu`},
 	},
 	0x145f3: {
-		aliases: []string{
-			`syllabic ki`,
-		},
+		aliases: []string{`syllabic ki`},
 	},
 	0x145f4: {
-		aliases: []string{
-			`syllabic ni-x`,
-		},
+		aliases: []string{`syllabic ni-x`},
 	},
 	0x145f5: {
-		aliases: []string{
-			`syllabic sù?`,
-			`zú?`,
-		},
+		aliases: []string{`syllabic sù?`, `zú?`},
 	},
 	0x145f7: {
-		aliases: []string{
-			`syllabic a`,
-			`end of a word`,
-		},
+		aliases: []string{`syllabic a`, `end of a word`},
 	},
 	0x145f8: {
-		aliases: []string{
-			`a+ra/i`,
-			`ra+a`,
-		},
+		aliases: []string{`a+ra/i`, `ra+a`},
 	},
 	0x145f9: {
-		aliases: []string{
-			`logosyllabic huru`,
-		},
+		aliases: []string{`logosyllabic huru`},
 	},
 	0x145fd: {
-		aliases: []string{
-			`syllabic la-x`,
-		},
+		aliases: []string{`syllabic la-x`},
 	},
 	0x145fe: {
-		aliases: []string{
-			`syllabic sí?`,
-		},
+		aliases: []string{`syllabic sí?`},
 	},
 	0x14605: {
-		aliases: []string{
-			`syllabic ma-x?`,
-		},
+		aliases: []string{`syllabic ma-x?`},
 	},
 	0x1460d: {
-		aliases: []string{
-			`twelve`,
-		},
+		aliases: []string{`twelve`},
 	},
 	0x14611: {
-		aliases: []string{
-			`eunuchus`,
-		},
+		aliases: []string{`eunuchus`},
 	},
 	0x14614: {
-		aliases: []string{
-			`flammae?`,
-		},
+		aliases: []string{`flammae?`},
 	},
 	0x1461d: {
-		aliases: []string{
-			`falx?`,
-		},
+		aliases: []string{`falx?`},
 	},
 	0x1461f: {
-		aliases: []string{
-			`syllabic tí`,
-		},
+		aliases: []string{`syllabic tí`},
 	},
 	0x1462e: {
-		aliases: []string{
-			`syllabic hana`,
-		},
+		aliases: []string{`syllabic hana`},
 	},
 	0x14630: {
-		aliases: []string{
-			`currere`,
-			`syllabic hwi/a`,
-		},
+		aliases: []string{`currere`, `syllabic hwi/a`},
 	},
 	0x14640: {
-		aliases: []string{
-			`propheta?`,
-			`cornu+caput`,
-		},
+		aliases: []string{`propheta?`, `cornu+caput`},
 	},
 	0x14641: {
-		aliases: []string{
-			`princeps`,
-		},
+		aliases: []string{`princeps`},
 	},
 	0x14642: {
-		aliases: []string{
-			`Güterbock G195`,
-		},
+		aliases: []string{`Güterbock G195`},
 	},
 	0x14643: {
-		aliases: []string{
-			`aper`,
-		},
+		aliases: []string{`aper`},
 	},
 	0x14644: {
-		aliases: []string{
-			`tì`,
-		},
+		aliases: []string{`tì`},
 	},
 	0x14645: {
-		aliases: []string{
-			`lingua+x`,
-		},
+		aliases: []string{`lingua+x`},
 	},
 	0x16a4a: {
-		aliases: []string{
-			`i`,
-		},
+		aliases: []string{`i`},
 	},
 	0x16a5d: {
-		aliases: []string{
-			`o`,
-		},
+		aliases: []string{`o`},
 	},
 	0x16b00: {
-		aliases: []string{
-			`keem`,
-		},
+		aliases: []string{`keem`},
 	},
 	0x16b01: {
-		aliases: []string{
-			`kee`,
-		},
+		aliases: []string{`kee`},
 	},
 	0x16b02: {
-		aliases: []string{
-			`kim`,
-		},
+		aliases: []string{`kim`},
 	},
 	0x16b03: {
-		aliases: []string{
-			`ki`,
-		},
+		aliases: []string{`ki`},
 	},
 	0x16b04: {
-		aliases: []string{
-			`kaum`,
-		},
+		aliases: []string{`kaum`},
 	},
 	0x16b05: {
-		aliases: []string{
-			`kau`,
-		},
+		aliases: []string{`kau`},
 	},
 	0x16b06: {
-		aliases: []string{
-			`kum`,
-		},
+		aliases: []string{`kum`},
 	},
 	0x16b07: {
-		aliases: []string{
-			`ke`,
-		},
+		aliases: []string{`ke`},
 	},
 	0x16b08: {
-		aliases: []string{
-			`kem`,
-		},
+		aliases: []string{`kem`},
 	},
 	0x16b0a: {
-		aliases: []string{
-			`kaim`,
-		},
+		aliases: []string{`kaim`},
 	},
 	0x16b0b: {
-		aliases: []string{
-			`kai`,
-		},
+		aliases: []string{`kai`},
 	},
 	0x16b0f: {
-		aliases: []string{
-			`kaw`,
-		},
+		aliases: []string{`kaw`},
 	},
 	0x16b10: {
-		aliases: []string{
-			`kuam`,
-		},
+		aliases: []string{`kuam`},
 	},
 	0x16b11: {
-		aliases: []string{
-			`kua`,
-		},
+		aliases: []string{`kua`},
 	},
 	0x16b12: {
-		aliases: []string{
-			`kom`,
-		},
+		aliases: []string{`kom`},
 	},
 	0x16b13: {
-		aliases: []string{
-			`kog`,
-		},
+		aliases: []string{`kog`},
 	},
 	0x16b15: {
-		aliases: []string{
-			`kia`,
-		},
+		aliases: []string{`kia`},
 	},
 	0x16b16: {
-		aliases: []string{
-			`kam`,
-		},
+		aliases: []string{`kam`},
 	},
 	0x16b18: {
-		aliases: []string{
-			`kwm`,
-		},
+		aliases: []string{`kwm`},
 	},
 	0x16b1a: {
-		aliases: []string{
-			`kaam`,
-		},
+		aliases: []string{`kaam`},
 	},
 	0x16b3a: {
-		refs: []string{
-			`U+0026 ampersand`,
-		},
+		refs: []rune{0x0026},
 	},
 	0x16b3b: {
-		refs: []string{
-			`U+0025 percent sign`,
-		},
+		refs: []rune{0x0025},
 	},
 	0x16b5b: {
-		aliases: []string{
-			`caum`,
-		},
+		aliases: []string{`caum`},
 	},
 	0x16b5c: {
-		aliases: []string{
-			`pua`,
-		},
+		aliases: []string{`pua`},
 	},
 	0x16b5d: {
-		aliases: []string{
-			`vam`,
-		},
+		aliases: []string{`vam`},
 	},
 	0x16b5e: {
-		aliases: []string{
-			`roob`,
-		},
+		aliases: []string{`roob`},
 	},
 	0x16b5f: {
-		aliases: []string{
-			`neev`,
-		},
+		aliases: []string{`neev`},
 	},
 	0x16b60: {
-		aliases: []string{
-			`ruav`,
-		},
+		aliases: []string{`ruav`},
 	},
 	0x16b61: {
-		aliases: []string{
-			`tas`,
-		},
+		aliases: []string{`tas`},
 	},
 	0x16b64: {
-		aliases: []string{
-			`year`,
-		},
+		aliases: []string{`year`},
 	},
 	0x16b65: {
-		aliases: []string{
-			`month`,
-		},
+		aliases: []string{`month`},
 	},
 	0x16b66: {
-		aliases: []string{
-			`month`,
-		},
+		aliases: []string{`month`},
 	},
 	0x16b67: {
-		aliases: []string{
-			`date`,
-		},
+		aliases: []string{`date`},
 	},
 	0x16b68: {
-		aliases: []string{
-			`day`,
-		},
+		aliases: []string{`day`},
 	},
 	0x16b69: {
-		aliases: []string{
-			`waning moon`,
-		},
+		aliases: []string{`waning moon`},
 	},
 	0x16b6a: {
-		aliases: []string{
-			`waxing moon`,
-		},
+		aliases: []string{`waxing moon`},
 	},
 	0x16b6b: {
-		aliases: []string{
-			`season`,
-		},
+		aliases: []string{`season`},
 	},
 	0x16b6c: {
-		aliases: []string{
-			`earth`,
-		},
+		aliases: []string{`earth`},
 	},
 	0x16b6d: {
-		aliases: []string{
-			`urgent`,
-		},
+		aliases: []string{`urgent`},
 	},
 	0x16b6e: {
-		aliases: []string{
-			`facts`,
-		},
+		aliases: []string{`facts`},
 	},
 	0x16b6f: {
-		aliases: []string{
-			`received`,
-		},
+		aliases: []string{`received`},
 	},
 	0x16b70: {
-		aliases: []string{
-			`come`,
-		},
+		aliases: []string{`come`},
 	},
 	0x16b71: {
-		aliases: []string{
-			`go`,
-		},
+		aliases: []string{`go`},
 	},
 	0x16b72: {
-		aliases: []string{
-			`smooth`,
-		},
+		aliases: []string{`smooth`},
 	},
 	0x16b73: {
-		aliases: []string{
-			`fraction`,
-		},
+		aliases: []string{`fraction`},
 	},
 	0x16b74: {
-		aliases: []string{
-			`do not open`,
-		},
+		aliases: []string{`do not open`},
 	},
 	0x16b75: {
-		aliases: []string{
-			`do not touch`,
-		},
+		aliases: []string{`do not touch`},
 	},
 	0x16b76: {
-		aliases: []string{
-			`give freely`,
-		},
+		aliases: []string{`give freely`},
 	},
 	0x16b77: {
-		aliases: []string{
-			`stop`,
-		},
+		aliases: []string{`stop`},
 	},
 	0x16b7d: {
-		aliases: []string{
-			`Cheng`,
-		},
+		aliases: []string{`Cheng`},
 	},
 	0x16b7e: {
-		aliases: []string{
-			`Yeng`,
-		},
+		aliases: []string{`Yeng`},
 	},
 	0x16b7f: {
-		aliases: []string{
-			`Lee`,
-		},
+		aliases: []string{`Lee`},
 	},
 	0x16b80: {
-		aliases: []string{
-			`Lor`,
-		},
+		aliases: []string{`Lor`},
 	},
 	0x16b81: {
-		aliases: []string{
-			`Xiong`,
-		},
+		aliases: []string{`Xiong`},
 	},
 	0x16b82: {
-		aliases: []string{
-			`Kong`,
-		},
+		aliases: []string{`Kong`},
 	},
 	0x16b83: {
-		aliases: []string{
-			`Her`,
-		},
+		aliases: []string{`Her`},
 	},
 	0x16b84: {
-		aliases: []string{
-			`Moua`,
-		},
+		aliases: []string{`Moua`},
 	},
 	0x16b85: {
-		aliases: []string{
-			`Thao`,
-		},
+		aliases: []string{`Thao`},
 	},
 	0x16b86: {
-		aliases: []string{
-			`Chang`,
-		},
+		aliases: []string{`Chang`},
 	},
 	0x16b87: {
-		aliases: []string{
-			`Pha`,
-		},
+		aliases: []string{`Pha`},
 	},
 	0x16b88: {
-		aliases: []string{
-			`Khang`,
-		},
+		aliases: []string{`Khang`},
 	},
 	0x16b89: {
-		aliases: []string{
-			`Hang`,
-		},
+		aliases: []string{`Hang`},
 	},
 	0x16b8a: {
-		aliases: []string{
-			`Vang`,
-		},
+		aliases: []string{`Vang`},
 	},
 	0x16b8b: {
-		aliases: []string{
-			`Fang`,
-		},
+		aliases: []string{`Fang`},
 	},
 	0x16b8c: {
-		aliases: []string{
-			`Yang`,
-		},
+		aliases: []string{`Yang`},
 	},
 	0x16b8d: {
-		aliases: []string{
-			`Chue`,
-		},
+		aliases: []string{`Chue`},
 	},
 	0x16b8e: {
-		aliases: []string{
-			`Kw`,
-		},
+		aliases: []string{`Kw`},
 	},
 	0x16b8f: {
-		aliases: []string{
-			`Vue`,
-		},
+		aliases: []string{`Vue`},
 	},
 	0x16e56: {
-		aliases: []string{
-			`MEDEFAIDRIN CAPITAL LETTER H`,
-		},
+		aliases: []string{`MEDEFAIDRIN CAPITAL LETTER H`},
 	},
 	0x16e57: {
-		aliases: []string{
-			`MEDEFAIDRIN CAPITAL LETTER NG`,
-		},
+		aliases: []string{`MEDEFAIDRIN CAPITAL LETTER NG`},
 	},
 	0x16e76: {
-		aliases: []string{
-			`MEDEFAIDRIN SMALL LETTER H`,
-		},
+		aliases: []string{`MEDEFAIDRIN SMALL LETTER H`},
 	},
 	0x16e77: {
-		aliases: []string{
-			`MEDEFAIDRIN SMALL LETTER NG`,
-		},
+		aliases: []string{`MEDEFAIDRIN SMALL LETTER NG`},
 	},
 	0x16fe0: {
-		refs: []string{
-			`U+3005 ideographic iteration mark`,
-		},
+		refs: []rune{0x3005},
 	},
 	0x16fe3: {
-		refs: []string{
-			`U+3005 ideographic iteration mark`,
-			`U+303B vertical ideographic iteration mark`,
-		},
+		refs: []rune{0x3005, 0x303B},
 	},
 	0x16ff0: {
-		refs: []string{
-			`4E2A`,
-			`4E87`,
-		},
+		refs: []rune{0x4E2A, 0x4E87},
 	},
 	0x16ff1: {
-		refs: []string{
-			`21FE8`,
-		},
+		refs: []rune{0x21FE8},
 	},
 	0x18bde: {
-		refs: []string{
-			`U+18CCA khitan small script character-18cca`,
-		},
+		refs: []rune{0x18CCA},
 	},
 	0x18cca: {
-		refs: []string{
-			`U+18BDE khitan small script character-18bde`,
-		},
+		refs: []rune{0x18BDE},
 	},
 	0x1b001: {
-		aliases: []string{
-			`HENTAIGANA LETTER E-1`,
-		},
+		aliases: []string{`HENTAIGANA LETTER E-1`},
 	},
 	0x1b170: {
-		refs: []string{
-			`4E00`,
-		},
+		refs: []rune{0x4E00},
 	},
 	0x1b171: {
-		refs: []string{
-			`4E8C`,
-		},
+		refs: []rune{0x4E8C},
 	},
 	0x1b178: {
-		refs: []string{
-			`6C34`,
-		},
+		refs: []rune{0x6C34},
 	},
 	0x1b180: {
-		refs: []string{
-			`571F`,
-		},
+		refs: []rune{0x571F},
 	},
 	0x1b183: {
-		refs: []string{
-			`5DE5`,
-		},
+		refs: []rune{0x5DE5},
 	},
 	0x1b185: {
-		refs: []string{
-			`4E2A`,
-		},
+		refs: []rune{0x4E2A},
 	},
 	0x1b18a: {
-		refs: []string{
-			`4E09`,
-		},
+		refs: []rune{0x4E09},
 	},
 	0x1b194: {
-		refs: []string{
-			`592B`,
-		},
+		refs: []rune{0x592B},
 	},
 	0x1b195: {
-		refs: []string{
-			`706B`,
-		},
+		refs: []rune{0x706B},
 	},
 	0x1b1a1: {
-		refs: []string{
-			`4EA1`,
-		},
+		refs: []rune{0x4EA1},
 	},
 	0x1b1a7: {
-		refs: []string{
-			`738B`,
-		},
+		refs: []rune{0x738B},
 	},
 	0x1b1a8: {
-		refs: []string{
-			`672A`,
-		},
+		refs: []rune{0x672A},
 	},
 	0x1b1ab: {
-		refs: []string{
-			`5185`,
-		},
+		refs: []rune{0x5185},
 	},
 	0x1b1cc: {
-		refs: []string{
-			`540E`,
-		},
+		refs: []rune{0x540E},
 	},
 	0x1b1f0: {
-		refs: []string{
-			`53E4`,
-		},
+		refs: []rune{0x53E4},
 	},
 	0x1b201: {
-		refs: []string{
-			`591A`,
-		},
+		refs: []rune{0x591A},
 	},
 	0x1b205: {
-		refs: []string{
-			`7532`,
-		},
+		refs: []rune{0x7532},
 	},
 	0x1b20a: {
-		refs: []string{
-			`53CC`,
-		},
+		refs: []rune{0x53CC},
 	},
 	0x1b20e: {
-		refs: []string{
-			`7530`,
-		},
+		refs: []rune{0x7530},
 	},
 	0x1b213: {
-		refs: []string{
-			`5723`,
-		},
+		refs: []rune{0x5723},
 	},
 	0x1b216: {
-		refs: []string{
-			`65E9`,
-		},
+		refs: []rune{0x65E9},
 	},
 	0x1b22e: {
-		refs: []string{
-			`6286`,
-		},
+		refs: []rune{0x6286},
 	},
 	0x1b244: {
-		refs: []string{
-			`91CC`,
-		},
+		refs: []rune{0x91CC},
 	},
 	0x1b265: {
-		refs: []string{
-			`53F7`,
-		},
+		refs: []rune{0x53F7},
 	},
 	0x1b2a3: {
-		refs: []string{
-			`82F1`,
-		},
+		refs: []rune{0x82F1},
 	},
 	0x1b2c1: {
-		refs: []string{
-			`9580`,
-		},
+		refs: []rune{0x9580},
 	},
 	0x1b2d1: {
-		refs: []string{
-			`57CB`,
-		},
+		refs: []rune{0x57CB},
 	},
 	0x1b2d6: {
-		refs: []string{
-			`83AB`,
-		},
+		refs: []rune{0x83AB},
 	},
 	0x1bc07: {
-		refs: []string{
-			`U+1BC73 duployan affix low vertical secant`,
-			`U+1BC74 duployan affix mid vertical secant`,
-			`U+1BC75 duployan affix high vertical secant`,
-		},
+		refs: []rune{0x1BC73, 0x1BC74, 0x1BC75},
 	},
 	0x1bc08: {
-		refs: []string{
-			`U+1BC70 duployan affix left horizontal secant`,
-			`U+1BC71 duployan affix mid horizontal secant`,
-			`U+1BC72 duployan affix right horizontal secant`,
-		},
+		refs: []rune{0x1BC70, 0x1BC71, 0x1BC72},
 	},
 	0x1bc0c: {
-		refs: []string{
-			`U+1BC02 duployan letter p`,
-			`U+1BC1A duployan letter n`,
-		},
+		refs: []rune{0x1BC02, 0x1BC1A},
 	},
 	0x1bc0d: {
-		refs: []string{
-			`U+1BC08 duployan letter d`,
-			`U+1BC1C duployan letter s`,
-		},
+		refs: []rune{0x1BC08, 0x1BC1C},
 	},
 	0x1bc0e: {
-		refs: []string{
-			`U+1BC04 duployan letter f`,
-			`U+1BC1A duployan letter n`,
-		},
+		refs: []rune{0x1BC04, 0x1BC1A},
 	},
 	0x1bc0f: {
-		refs: []string{
-			`U+1BC05 duployan letter k`,
-			`U+1BC19 duployan letter m`,
-		},
+		refs: []rune{0x1BC05, 0x1BC19},
 	},
 	0x1bc10: {
-		refs: []string{
-			`U+1BC0B duployan letter r`,
-			`U+1BC1C duployan letter s`,
-		},
+		refs: []rune{0x1BC0B, 0x1BC1C},
 	},
 	0x1bc13: {
-		refs: []string{
-			`U+1BC08 duployan letter d`,
-		},
+		refs: []rune{0x1BC08},
 	},
 	0x1bc47: {
-		refs: []string{
-			`U+1BC7A duployan affix attached e hook`,
-		},
+		refs: []rune{0x1BC7A},
 	},
 	0x1bc51: {
-		refs: []string{
-			`U+1BC38 duployan letter w`,
-			`U+1BC56 duployan letter romanian u`,
-			`U+1BC55 duployan letter long u`,
-		},
+		refs: []rune{0x1BC38, 0x1BC56, 0x1BC55},
 	},
 	0x1bc54: {
-		refs: []string{
-			`U+1BC1A duployan letter n`,
-		},
+		refs: []rune{0x1BC1A},
 	},
 	0x1bc70: {
-		refs: []string{
-			`U+1BC08 duployan letter d`,
-		},
+		refs: []rune{0x1BC08},
 	},
 	0x1bc73: {
-		refs: []string{
-			`U+1BC07 duployan letter b`,
-		},
+		refs: []rune{0x1BC07},
 	},
 	0x1bc7a: {
-		refs: []string{
-			`U+1BC47 duployan letter e`,
-		},
+		refs: []rune{0x1BC47},
 	},
 	0x1bc7b: {
-		refs: []string{
-			`U+1BC46 duployan letter i`,
-		},
+		refs: []rune{0x1BC46},
 	},
 	0x1bc80: {
-		refs: []string{
-			`U+02CA modifier letter acute accent`,
-		},
+		refs: []rune{0x02CA},
 	},
 	0x1bc82: {
-		refs: []string{
-			`U+02CB modifier letter grave accent`,
-		},
+		refs: []rune{0x02CB},
 	},
 	0x1bc84: {
-		refs: []string{
-			`U+02D9 dot above`,
-		},
+		refs: []rune{0x02D9},
 	},
 	0x1bc85: {
-		refs: []string{
-			`U+00B0 degree sign`,
-			`U+02DA ring above`,
-		},
+		refs: []rune{0x00B0, 0x02DA},
 	},
 	0x1bc86: {
-		refs: []string{
-			`U+02C9 modifier letter macron`,
-		},
+		refs: []rune{0x02C9},
 	},
 	0x1bc87: {
-		refs: []string{
-			`U+02DC small tilde`,
-		},
+		refs: []rune{0x02DC},
 	},
 	0x1bc88: {
-		refs: []string{
-			`U+1BC02 duployan letter p`,
-		},
+		refs: []rune{0x1BC02},
 	},
 	0x1bc90: {
-		refs: []string{
-			`U+02CF modifier letter low acute accent`,
-		},
+		refs: []rune{0x02CF},
 	},
 	0x1bc92: {
-		refs: []string{
-			`U+02CE modifier letter low grave accent`,
-		},
+		refs: []rune{0x02CE},
 	},
 	0x1bc95: {
-		refs: []string{
-			`U+02F3 modifier letter low ring`,
-		},
+		refs: []rune{0x02F3},
 	},
 	0x1bc96: {
-		refs: []string{
-			`U+02D7 modifier letter minus sign`,
-		},
+		refs: []rune{0x02D7},
 	},
 	0x1bc97: {
-		refs: []string{
-			`U+02F7 modifier letter low tilde`,
-		},
+		refs: []rune{0x02F7},
 	},
 	0x1bc98: {
-		refs: []string{
-			`U+1BC02 duployan letter p`,
-		},
+		refs: []rune{0x1BC02},
 	},
 	0x1bca2: {
-		aliases: []string{
-			`Romanian affix -tsion-`,
-			`Sloan contracted ending oo/o + ZWSP`,
-		},
+		aliases: []string{`Romanian affix -tsion-`, `Sloan contracted ending oo/o + ZWSP`},
 	},
 	0x1bca3: {
-		aliases: []string{
-			`Sloan contracted ending uh/au/aui + ZWSP`,
-		},
+		aliases: []string{`Sloan contracted ending uh/au/aui + ZWSP`},
 	},
 	0x1cf33: {
-		aliases: []string{
-			`ottyazhka`,
-		},
+		aliases: []string{`ottyazhka`},
 	},
 	0x1cf3b: {
-		aliases: []string{
-			`sokolik`,
-		},
+		aliases: []string{`sokolik`},
 	},
 	0x1cf54: {
-		aliases: []string{
-			`kryuk klyuchevoy`,
-		},
+		aliases: []string{`kryuk klyuchevoy`},
 	},
 	0x1cf62: {
-		aliases: []string{
-			`golubchik nepostoyanny`,
-		},
+		aliases: []string{`golubchik nepostoyanny`},
 	},
 	0x1cf66: {
-		aliases: []string{
-			`vrakhia nepostoyannaya`,
-		},
+		aliases: []string{`vrakhia nepostoyannaya`},
 	},
 	0x1cf6a: {
-		aliases: []string{
-			`vrakhia klyuchevaya nepostoyannaya`,
-		},
+		aliases: []string{`vrakhia klyuchevaya nepostoyannaya`},
 	},
 	0x1cf75: {
-		aliases: []string{
-			`skameytsa klyuchevaya`,
-		},
+		aliases: []string{`skameytsa klyuchevaya`},
 	},
 	0x1cf85: {
-		aliases: []string{
-			`litso`,
-		},
+		aliases: []string{`litso`},
 	},
 	0x1cf94: {
-		aliases: []string{
-			`strela polukryzhevaya`,
-		},
+		aliases: []string{`strela polukryzhevaya`},
 	},
 	0x1cfa6: {
-		aliases: []string{
-			`strela gromomrachnaya s kryzhem`,
-		},
+		aliases: []string{`strela gromomrachnaya s kryzhem`},
 	},
 	0x1cfb1: {
-		aliases: []string{
-			`osoka nepostoyannaya`,
-		},
+		aliases: []string{`osoka nepostoyannaya`},
 	},
 	0x1cfbd: {
-		aliases: []string{
-			`strela kryukovaya gromomrachnaya s kryzhem`,
-		},
+		aliases: []string{`strela kryukovaya gromomrachnaya s kryzhem`},
 	},
 	0x1d0b4: {
-		refs: []string{
-			`U+03BD greek small letter nu`,
-		},
+		refs: []rune{0x03BD},
 	},
 	0x1d0b5: {
-		refs: []string{
-			`U+03BD greek small letter nu`,
-		},
+		refs: []rune{0x03BD},
 	},
 	0x1d0c5: {
-		aliases: []string{
-			`BYZANTINE MUSICAL SYMBOL FTHORA SKLIRON CHROMA VASIS`,
-		},
+		aliases: []string{`BYZANTINE MUSICAL SYMBOL FTHORA SKLIRON CHROMA VASIS`},
 	},
 	0x1d0da: {
-		refs: []string{
-			`U+1D105 musical symbol short barline`,
-		},
+		refs: []rune{0x1D105},
 	},
 	0x1d0db: {
-		refs: []string{
-			`U+1D100 musical symbol single barline`,
-		},
+		refs: []rune{0x1D100},
 	},
 	0x1d0e7: {
-		refs: []string{
-			`U+0223 latin small letter ou`,
-		},
+		refs: []rune{0x0223},
 	},
 	0x1d0e8: {
-		refs: []string{
-			`U+03DB greek small letter stigma`,
-		},
+		refs: []rune{0x03DB},
 	},
 	0x1d11e: {
-		refs: []string{
-			`U+1F3BC musical score`,
-		},
+		refs: []rune{0x1F3BC},
 	},
 	0x1d129: {
-		refs: []string{
-			`U+1D13A musical symbol multi rest`,
-		},
+		refs: []rune{0x1D13A},
 	},
 	0x1d13a: {
-		aliases: []string{
-			`double whole-rest`,
-			`breve rest`,
-		},
-		refs: []string{
-			`U+1D129 musical symbol multiple measure rest`,
-		},
+		aliases: []string{`double whole-rest`, `breve rest`},
+		refs:    []rune{0x1D129},
 	},
 	0x1d13b: {
-		aliases: []string{
-			`semibreve rest`,
-		},
+		aliases: []string{`semibreve rest`},
 	},
 	0x1d13c: {
-		aliases: []string{
-			`minim rest`,
-		},
+		aliases: []string{`minim rest`},
 	},
 	0x1d13d: {
-		aliases: []string{
-			`crochet rest`,
-		},
+		aliases: []string{`crochet rest`},
 	},
 	0x1d13e: {
-		aliases: []string{
-			`quaver rest`,
-		},
+		aliases: []string{`quaver rest`},
 	},
 	0x1d13f: {
-		aliases: []string{
-			`semiquaver rest`,
-		},
+		aliases: []string{`semiquaver rest`},
 	},
 	0x1d140: {
-		aliases: []string{
-			`demisemiquaver rest`,
-		},
+		aliases: []string{`demisemiquaver rest`},
 	},
 	0x1d141: {
-		aliases: []string{
-			`hemidemisemiquaver rest`,
-			`semidemisemiquaver rest`,
-		},
+		aliases: []string{`hemidemisemiquaver rest`, `semidemisemiquaver rest`},
 	},
 	0x1d142: {
-		aliases: []string{
-			`semihemidemisemiquaver rest`,
-			`quasihemidemisemiquaver rest`,
-		},
+		aliases: []string{`semihemidemisemiquaver rest`, `quasihemidemisemiquaver rest`},
 	},
 	0x1d15d: {
-		aliases: []string{
-			`semibreve`,
-		},
+		aliases: []string{`semibreve`},
 	},
 	0x1d15e: {
-		aliases: []string{
-			`minim`,
-		},
+		aliases: []string{`minim`},
 	},
 	0x1d15f: {
-		aliases: []string{
-			`crotchet`,
-		},
-		refs: []string{
-			`U+2669 quarter note`,
-		},
+		aliases: []string{`crotchet`},
+		refs:    []rune{0x2669},
 	},
 	0x1d160: {
-		aliases: []string{
-			`quaver`,
-		},
-		refs: []string{
-			`U+266A eighth note`,
-		},
+		aliases: []string{`quaver`},
+		refs:    []rune{0x266A},
 	},
 	0x1d161: {
-		aliases: []string{
-			`semiquaver`,
-		},
+		aliases: []string{`semiquaver`},
 	},
 	0x1d162: {
-		aliases: []string{
-			`demisemiquaver`,
-		},
+		aliases: []string{`demisemiquaver`},
 	},
 	0x1d163: {
-		aliases: []string{
-			`hemidemisemiquaver`,
-			`semidemisemiquaver`,
-		},
+		aliases: []string{`hemidemisemiquaver`, `semidemisemiquaver`},
 	},
 	0x1d164: {
-		aliases: []string{
-			`semihemidemisemiquaver`,
-			`quasihemidemisemiquaver`,
-		},
+		aliases: []string{`semihemidemisemiquaver`, `quasihemidemisemiquaver`},
 	},
 	0x1d202: {
-		aliases: []string{
-			`Greek instrumental notation symbol-3`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-3`},
 	},
 	0x1d205: {
-		aliases: []string{
-			`Greek instrumental notation symbol-21`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-21`},
 	},
 	0x1d206: {
-		aliases: []string{
-			`Greek instrumental notation symbol-9`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-9`},
 	},
 	0x1d208: {
-		aliases: []string{
-			`Greek instrumental notation symbol-44`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-44`},
 	},
 	0x1d20d: {
-		aliases: []string{
-			`Greek instrumental notation symbol-41`,
-		},
-		refs: []string{
-			`U+0056 latin capital letter v`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-41`},
+		refs:    []rune{0x0056},
 	},
 	0x1d20e: {
-		aliases: []string{
-			`Greek instrumental notation symbol-35`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-35`},
 	},
 	0x1d211: {
-		aliases: []string{
-			`Greek instrumental notation symbol-15`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-15`},
 	},
 	0x1d213: {
-		aliases: []string{
-			`Greek instrumental notation symbol-28`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-28`},
 	},
 	0x1d21c: {
-		aliases: []string{
-			`Greek instrumental notation symbol-20`,
-		},
+		aliases: []string{`Greek instrumental notation symbol-20`},
 	},
 	0x1d242: {
-		refs: []string{
-			`U+23D7 metrical triseme`,
-		},
+		refs: []rune{0x23D7},
 	},
 	0x1d243: {
-		refs: []string{
-			`U+23D8 metrical tetraseme`,
-		},
+		refs: []rune{0x23D8},
 	},
 	0x1d244: {
-		refs: []string{
-			`U+23D9 metrical pentaseme`,
-		},
+		refs: []rune{0x23D9},
 	},
 	0x1d300: {
-		aliases: []string{
-			`ren`,
-		},
-		refs: []string{
-			`U+268A monogram for yang`,
-			`U+268B monogram for yin`,
-		},
+		aliases: []string{`ren`},
+		refs:    []rune{0x268A, 0x268B},
 	},
 	0x1d301: {
-		aliases: []string{
-			`tian ren`,
-		},
+		aliases: []string{`tian ren`},
 	},
 	0x1d302: {
-		aliases: []string{
-			`di ren`,
-		},
+		aliases: []string{`di ren`},
 	},
 	0x1d303: {
-		aliases: []string{
-			`ren tian`,
-		},
+		aliases: []string{`ren tian`},
 	},
 	0x1d304: {
-		aliases: []string{
-			`ren di`,
-		},
+		aliases: []string{`ren di`},
 	},
 	0x1d305: {
-		aliases: []string{
-			`ren ren`,
-		},
+		aliases: []string{`ren ren`},
 	},
 	0x1d376: {
-		refs: []string{
-			`6B63`,
-		},
+		refs: []rune{0x6B63},
 	},
 	0x1d455: {
-		refs: []string{
-			`U+210E planck constant`,
-		},
+		refs: []rune{0x210E},
 	},
 	0x1d49d: {
-		refs: []string{
-			`U+212C script capital b`,
-		},
+		refs: []rune{0x212C},
 	},
 	0x1d4a0: {
-		refs: []string{
-			`U+2130 script capital e`,
-		},
+		refs: []rune{0x2130},
 	},
 	0x1d4a1: {
-		refs: []string{
-			`U+2131 script capital f`,
-		},
+		refs: []rune{0x2131},
 	},
 	0x1d4a3: {
-		refs: []string{
-			`U+210B script capital h`,
-		},
+		refs: []rune{0x210B},
 	},
 	0x1d4a4: {
-		refs: []string{
-			`U+2110 script capital i`,
-		},
+		refs: []rune{0x2110},
 	},
 	0x1d4a7: {
-		refs: []string{
-			`U+2112 script capital l`,
-		},
+		refs: []rune{0x2112},
 	},
 	0x1d4a8: {
-		refs: []string{
-			`U+2133 script capital m`,
-		},
+		refs: []rune{0x2133},
 	},
 	0x1d4ab: {
-		aliases: []string{
-			`power set`,
-		},
+		aliases: []string{`power set`},
 	},
 	0x1d4ad: {
-		refs: []string{
-			`U+211B script capital r`,
-		},
+		refs: []rune{0x211B},
 	},
 	0x1d4ba: {
-		refs: []string{
-			`U+212F script small e`,
-		},
+		refs: []rune{0x212F},
 	},
 	0x1d4bc: {
-		refs: []string{
-			`U+210A script small g`,
-		},
+		refs: []rune{0x210A},
 	},
 	0x1d4c1: {
-		refs: []string{
-			`U+2113 script small l`,
-		},
+		refs: []rune{0x2113},
 	},
 	0x1d4c4: {
-		refs: []string{
-			`U+2134 script small o`,
-		},
+		refs: []rune{0x2134},
 	},
 	0x1d506: {
-		refs: []string{
-			`U+212D black-letter capital c`,
-		},
+		refs: []rune{0x212D},
 	},
 	0x1d50b: {
-		refs: []string{
-			`U+210C black-letter capital h`,
-		},
+		refs: []rune{0x210C},
 	},
 	0x1d50c: {
-		refs: []string{
-			`U+2111 black-letter capital i`,
-		},
+		refs: []rune{0x2111},
 	},
 	0x1d510: {
-		aliases: []string{
-			`New Testament majority text`,
-		},
+		aliases: []string{`New Testament majority text`},
 	},
 	0x1d515: {
-		refs: []string{
-			`U+211C black-letter capital r`,
-		},
+		refs: []rune{0x211C},
 	},
 	0x1d516: {
-		aliases: []string{
-			`Septuagint`,
-			`Greek Old Testament`,
-		},
+		aliases: []string{`Septuagint`, `Greek Old Testament`},
 	},
 	0x1d51d: {
-		refs: []string{
-			`U+2128 black-letter capital z`,
-		},
+		refs: []rune{0x2128},
 	},
 	0x1d53a: {
-		refs: []string{
-			`U+2102 double-struck capital c`,
-		},
+		refs: []rune{0x2102},
 	},
 	0x1d53f: {
-		refs: []string{
-			`U+210D double-struck capital h`,
-		},
+		refs: []rune{0x210D},
 	},
 	0x1d545: {
-		refs: []string{
-			`U+2115 double-struck capital n`,
-		},
+		refs: []rune{0x2115},
 	},
 	0x1d547: {
-		refs: []string{
-			`U+2119 double-struck capital p`,
-		},
+		refs: []rune{0x2119},
 	},
 	0x1d548: {
-		refs: []string{
-			`U+211A double-struck capital q`,
-		},
+		refs: []rune{0x211A},
 	},
 	0x1d549: {
-		refs: []string{
-			`U+211D double-struck capital r`,
-		},
+		refs: []rune{0x211D},
 	},
 	0x1d551: {
-		refs: []string{
-			`U+2124 double-struck capital z`,
-		},
+		refs: []rune{0x2124},
 	},
 	0x1d6a4: {
-		aliases: []string{
-			`\imath`,
-		},
-		refs: []string{
-			`U+0131 latin small letter dotless i`,
-			`U+1D456 mathematical italic small i`,
-		},
+		aliases: []string{`\imath`},
+		refs:    []rune{0x0131, 0x1D456},
 	},
 	0x1d6a5: {
-		aliases: []string{
-			`\jmath`,
-		},
-		refs: []string{
-			`U+0237 latin small letter dotless j`,
-			`U+1D457 mathematical italic small j`,
-		},
+		aliases: []string{`\jmath`},
+		refs:    []rune{0x0237, 0x1D457},
 	},
 	0x1df00: {
-		refs: []string{
-			`U+02A9 latin small letter feng digraph`,
-		},
+		refs: []rune{0x02A9},
 	},
 	0x1df02: {
-		refs: []string{
-			`U+1D77 latin small letter turned g`,
-		},
+		refs: []rune{0x1D77},
 	},
 	0x1df04: {
-		refs: []string{
-			`U+A7AD latin capital letter l with belt`,
-		},
+		refs: []rune{0xA7AD},
 	},
 	0x1df09: {
-		refs: []string{
-			`U+01AD latin small letter t with hook`,
-		},
+		refs: []rune{0x01AD},
 	},
 	0x1df0b: {
-		refs: []string{
-			`U+2A0E integral with double stroke`,
-		},
+		refs: []rune{0x2A0E},
 	},
 	0x1df10: {
-		refs: []string{
-			`U+029E latin small letter turned k`,
-			`U+A7B0 latin capital letter turned k`,
-		},
+		refs: []rune{0x029E, 0xA7B0},
 	},
 	0x1e02a: {
-		refs: []string{
-			`U+1D78 modifier letter cyrillic en`,
-			`U+A69C modifier letter cyrillic hard sign`,
-			`U+A69D modifier letter cyrillic soft sign`,
-		},
+		refs: []rune{0x1D78, 0xA69C, 0xA69D},
 	},
 	0x1e100: {
-		refs: []string{
-			`U+05DE hebrew letter mem`,
-		},
+		refs: []rune{0x05DE},
 	},
 	0x1e103: {
-		refs: []string{
-			`U+05D8 hebrew letter tet`,
-		},
+		refs: []rune{0x05D8},
 	},
 	0x1e10a: {
-		refs: []string{
-			`U+05E9 hebrew letter shin`,
-		},
+		refs: []rune{0x05E9},
 	},
 	0x1e10e: {
-		refs: []string{
-			`U+05DB hebrew letter kaf`,
-		},
+		refs: []rune{0x05DB},
 	},
 	0x1e117: {
-		refs: []string{
-			`U+05E7 hebrew letter qof`,
-		},
+		refs: []rune{0x05E7},
 	},
 	0x1e11a: {
-		refs: []string{
-			`U+05E4 hebrew letter pe`,
-		},
+		refs: []rune{0x05E4},
 	},
 	0x1e130: {
-		aliases: []string{
-			`som thwb`,
-		},
+		aliases: []string{`som thwb`},
 	},
 	0x1e131: {
-		aliases: []string{
-			`som thwm`,
-		},
+		aliases: []string{`som thwm`},
 	},
 	0x1e132: {
-		aliases: []string{
-			`som thwj`,
-		},
+		aliases: []string{`som thwj`},
 	},
 	0x1e133: {
-		aliases: []string{
-			`som thwv`,
-		},
+		aliases: []string{`som thwv`},
 	},
 	0x1e134: {
-		aliases: []string{
-			`som thws`,
-		},
+		aliases: []string{`som thws`},
 	},
 	0x1e135: {
-		aliases: []string{
-			`som thwg`,
-		},
+		aliases: []string{`som thwg`},
 	},
 	0x1e136: {
-		aliases: []string{
-			`som thwd`,
-		},
+		aliases: []string{`som thwd`},
 	},
 	0x1e137: {
-		aliases: []string{
-			`oov`,
-		},
+		aliases: []string{`oov`},
 	},
 	0x1e138: {
-		aliases: []string{
-			`pes`,
-		},
+		aliases: []string{`pes`},
 	},
 	0x1e139: {
-		aliases: []string{
-			`khab theeb`,
-		},
+		aliases: []string{`khab theeb`},
 	},
 	0x1e13a: {
-		aliases: []string{
-			`khuam luas`,
-		},
+		aliases: []string{`khuam luas`},
 	},
 	0x1e13b: {
-		aliases: []string{
-			`poos`,
-		},
+		aliases: []string{`poos`},
 	},
 	0x1e13c: {
-		refs: []string{
-			`U+0E46 thai character maiyamok`,
-			`U+0EC6 lao ko la`,
-		},
+		refs: []rune{0x0E46, 0x0EC6},
 	},
 	0x1e13d: {
-		aliases: []string{
-			`khu saim`,
-		},
+		aliases: []string{`khu saim`},
 	},
 	0x1e14f: {
-		refs: []string{
-			`U+1E108 nyiakeng puachue hmong letter ca`,
-		},
+		refs: []rune{0x1E108},
 	},
 	0x1e2ff: {
-		aliases: []string{
-			`rupee`,
-		},
-		refs: []string{
-			`U+20B9 indian rupee sign`,
-		},
+		aliases: []string{`rupee`},
+		refs:    []rune{0x20B9},
 	},
 	0x1e7e0: {
-		refs: []string{
-			`U+2DD0 ethiopic syllable xya`,
-		},
+		refs: []rune{0x2DD0},
 	},
 	0x1e7e1: {
-		refs: []string{
-			`U+2DD1 ethiopic syllable xyu`,
-		},
+		refs: []rune{0x2DD1},
 	},
 	0x1e7e2: {
-		refs: []string{
-			`U+2DD2 ethiopic syllable xyi`,
-		},
+		refs: []rune{0x2DD2},
 	},
 	0x1e7e3: {
-		refs: []string{
-			`U+2DD3 ethiopic syllable xyaa`,
-		},
+		refs: []rune{0x2DD3},
 	},
 	0x1e7e4: {
-		refs: []string{
-			`U+2DD4 ethiopic syllable xyee`,
-		},
+		refs: []rune{0x2DD4},
 	},
 	0x1e7e5: {
-		refs: []string{
-			`U+2DD5 ethiopic syllable xye`,
-		},
+		refs: []rune{0x2DD5},
 	},
 	0x1e7e6: {
-		refs: []string{
-			`U+2DD6 ethiopic syllable xyo`,
-		},
+		refs: []rune{0x2DD6},
 	},
 	0x1e7e8: {
-		refs: []string{
-			`U+12C0 ethiopic syllable kxwa`,
-		},
+		refs: []rune{0x12C0},
 	},
 	0x1e7e9: {
-		refs: []string{
-			`U+12C2 ethiopic syllable kxwi`,
-		},
+		refs: []rune{0x12C2},
 	},
 	0x1e7ea: {
-		refs: []string{
-			`U+12C4 ethiopic syllable kxwee`,
-		},
+		refs: []rune{0x12C4},
 	},
 	0x1e7eb: {
-		refs: []string{
-			`U+12C5 ethiopic syllable kxwe`,
-		},
+		refs: []rune{0x12C5},
 	},
 	0x1e7ed: {
-		refs: []string{
-			`U+1381 ethiopic syllable mwi`,
-		},
+		refs: []rune{0x1381},
 	},
 	0x1e7ee: {
-		refs: []string{
-			`U+1382 ethiopic syllable mwee`,
-		},
+		refs: []rune{0x1382},
 	},
 	0x1e7f0: {
-		refs: []string{
-			`U+124A ethiopic syllable qwi`,
-		},
+		refs: []rune{0x124A},
 	},
 	0x1e7f1: {
-		refs: []string{
-			`U+124C ethiopic syllable qwee`,
-		},
+		refs: []rune{0x124C},
 	},
 	0x1e7f2: {
-		refs: []string{
-			`U+124D ethiopic syllable qwe`,
-		},
+		refs: []rune{0x124D},
 	},
 	0x1e7f3: {
-		refs: []string{
-			`U+1385 ethiopic syllable bwi`,
-		},
+		refs: []rune{0x1385},
 	},
 	0x1e7f4: {
-		refs: []string{
-			`U+1386 ethiopic syllable bwee`,
-		},
+		refs: []rune{0x1386},
 	},
 	0x1e7f5: {
-		refs: []string{
-			`U+12B2 ethiopic syllable kwi`,
-		},
+		refs: []rune{0x12B2},
 	},
 	0x1e7f6: {
-		refs: []string{
-			`U+12B4 ethiopic syllable kwee`,
-		},
+		refs: []rune{0x12B4},
 	},
 	0x1e7f7: {
-		refs: []string{
-			`U+12B5 ethiopic syllable kwe`,
-		},
+		refs: []rune{0x12B5},
 	},
 	0x1e7f8: {
-		refs: []string{
-			`U+1312 ethiopic syllable gwi`,
-		},
+		refs: []rune{0x1312},
 	},
 	0x1e7f9: {
-		refs: []string{
-			`U+1314 ethiopic syllable gwee`,
-		},
+		refs: []rune{0x1314},
 	},
 	0x1e7fa: {
-		refs: []string{
-			`U+1315 ethiopic syllable gwe`,
-		},
+		refs: []rune{0x1315},
 	},
 	0x1e7fb: {
-		refs: []string{
-			`U+1389 ethiopic syllable fwi`,
-		},
+		refs: []rune{0x1389},
 	},
 	0x1e7fc: {
-		refs: []string{
-			`U+138A ethiopic syllable fwee`,
-		},
+		refs: []rune{0x138A},
 	},
 	0x1e7fd: {
-		refs: []string{
-			`U+138D ethiopic syllable pwi`,
-		},
+		refs: []rune{0x138D},
 	},
 	0x1e7fe: {
-		refs: []string{
-			`U+138E ethiopic syllable pwee`,
-		},
+		refs: []rune{0x138E},
 	},
 	0x1ec9e: {
-		aliases: []string{
-			`1 lakh`,
-			`100,000`,
-		},
+		aliases: []string{`1 lakh`, `100,000`},
 	},
 	0x1ec9f: {
-		aliases: []string{
-			`2 lakh`,
-			`200,000`,
-		},
+		aliases: []string{`2 lakh`, `200,000`},
 	},
 	0x1eca1: {
-		aliases: []string{
-			`1 crore`,
-			`10 million`,
-			`100 lakh`,
-		},
+		aliases: []string{`1 crore`, `10 million`, `100 lakh`},
 	},
 	0x1eca2: {
-		aliases: []string{
-			`2 crore`,
-			`20 million`,
-			`200 lakh`,
-		},
+		aliases: []string{`2 crore`, `20 million`, `200 lakh`},
 	},
 	0x1ed1c: {
-		aliases: []string{
-			`thousands multiplier`,
-		},
+		aliases: []string{`thousands multiplier`},
 	},
 	0x1ed2e: {
-		aliases: []string{
-			`meretten`,
-			`merre`,
-		},
+		aliases: []string{`meretten`, `merre`},
 	},
 	0x1ee00: {
-		refs: []string{
-			`U+FE8D arabic letter alef isolated form`,
-		},
+		refs: []rune{0xFE8D},
 	},
 	0x1ee01: {
-		refs: []string{
-			`U+FE8F arabic letter beh isolated form`,
-		},
+		refs: []rune{0xFE8F},
 	},
 	0x1ee02: {
-		refs: []string{
-			`U+FE9D arabic letter jeem isolated form`,
-		},
+		refs: []rune{0xFE9D},
 	},
 	0x1ee03: {
-		refs: []string{
-			`U+FEA9 arabic letter dal isolated form`,
-		},
+		refs: []rune{0xFEA9},
 	},
 	0x1ee05: {
-		refs: []string{
-			`U+FEED arabic letter waw isolated form`,
-		},
+		refs: []rune{0xFEED},
 	},
 	0x1ee06: {
-		refs: []string{
-			`U+FEAF arabic letter zain isolated form`,
-		},
+		refs: []rune{0xFEAF},
 	},
 	0x1ee07: {
-		refs: []string{
-			`U+FEA1 arabic letter hah isolated form`,
-		},
+		refs: []rune{0xFEA1},
 	},
 	0x1ee08: {
-		refs: []string{
-			`U+FEC1 arabic letter tah isolated form`,
-		},
+		refs: []rune{0xFEC1},
 	},
 	0x1ee09: {
-		refs: []string{
-			`U+FEF1 arabic letter yeh isolated form`,
-		},
+		refs: []rune{0xFEF1},
 	},
 	0x1ee0a: {
-		refs: []string{
-			`U+FED9 arabic letter kaf isolated form`,
-		},
+		refs: []rune{0xFED9},
 	},
 	0x1ee0b: {
-		refs: []string{
-			`U+FEDD arabic letter lam isolated form`,
-		},
+		refs: []rune{0xFEDD},
 	},
 	0x1ee0c: {
-		refs: []string{
-			`U+FEE1 arabic letter meem isolated form`,
-		},
+		refs: []rune{0xFEE1},
 	},
 	0x1ee0d: {
-		refs: []string{
-			`U+FEE5 arabic letter noon isolated form`,
-		},
+		refs: []rune{0xFEE5},
 	},
 	0x1ee0e: {
-		refs: []string{
-			`U+FEB1 arabic letter seen isolated form`,
-		},
+		refs: []rune{0xFEB1},
 	},
 	0x1ee0f: {
-		refs: []string{
-			`U+FEC9 arabic letter ain isolated form`,
-		},
+		refs: []rune{0xFEC9},
 	},
 	0x1ee10: {
-		refs: []string{
-			`U+FED1 arabic letter feh isolated form`,
-		},
+		refs: []rune{0xFED1},
 	},
 	0x1ee11: {
-		refs: []string{
-			`U+FEB9 arabic letter sad isolated form`,
-		},
+		refs: []rune{0xFEB9},
 	},
 	0x1ee12: {
-		refs: []string{
-			`U+FED5 arabic letter qaf isolated form`,
-		},
+		refs: []rune{0xFED5},
 	},
 	0x1ee13: {
-		refs: []string{
-			`U+FEAD arabic letter reh isolated form`,
-		},
+		refs: []rune{0xFEAD},
 	},
 	0x1ee14: {
-		refs: []string{
-			`U+FEB5 arabic letter sheen isolated form`,
-		},
+		refs: []rune{0xFEB5},
 	},
 	0x1ee15: {
-		refs: []string{
-			`U+FE95 arabic letter teh isolated form`,
-		},
+		refs: []rune{0xFE95},
 	},
 	0x1ee16: {
-		refs: []string{
-			`U+FE99 arabic letter theh isolated form`,
-		},
+		refs: []rune{0xFE99},
 	},
 	0x1ee17: {
-		refs: []string{
-			`U+FEA5 arabic letter khah isolated form`,
-		},
+		refs: []rune{0xFEA5},
 	},
 	0x1ee18: {
-		refs: []string{
-			`U+FEAB arabic letter thal isolated form`,
-		},
+		refs: []rune{0xFEAB},
 	},
 	0x1ee19: {
-		refs: []string{
-			`U+FEBD arabic letter dad isolated form`,
-		},
+		refs: []rune{0xFEBD},
 	},
 	0x1ee1a: {
-		refs: []string{
-			`U+FEC5 arabic letter zah isolated form`,
-		},
+		refs: []rune{0xFEC5},
 	},
 	0x1ee1b: {
-		refs: []string{
-			`U+FECD arabic letter ghain isolated form`,
-		},
+		refs: []rune{0xFECD},
 	},
 	0x1ee1c: {
-		refs: []string{
-			`U+066E arabic letter dotless beh`,
-		},
+		refs: []rune{0x066E},
 	},
 	0x1ee1d: {
-		refs: []string{
-			`U+FB9E arabic letter noon ghunna isolated form`,
-		},
+		refs: []rune{0xFB9E},
 	},
 	0x1ee1e: {
-		refs: []string{
-			`U+06A1 arabic letter dotless feh`,
-		},
+		refs: []rune{0x06A1},
 	},
 	0x1ee1f: {
-		refs: []string{
-			`U+066F arabic letter dotless qaf`,
-		},
+		refs: []rune{0x066F},
 	},
 	0x1ee21: {
-		refs: []string{
-			`U+FE91 arabic letter beh initial form`,
-		},
+		refs: []rune{0xFE91},
 	},
 	0x1ee22: {
-		refs: []string{
-			`U+FE9F arabic letter jeem initial form`,
-		},
+		refs: []rune{0xFE9F},
 	},
 	0x1ee24: {
-		refs: []string{
-			`U+FEEB arabic letter heh initial form`,
-		},
+		refs: []rune{0xFEEB},
 	},
 	0x1ee27: {
-		refs: []string{
-			`U+FEA3 arabic letter hah initial form`,
-		},
+		refs: []rune{0xFEA3},
 	},
 	0x1ee29: {
-		refs: []string{
-			`U+FEF3 arabic letter yeh initial form`,
-		},
+		refs: []rune{0xFEF3},
 	},
 	0x1ee2a: {
-		refs: []string{
-			`U+FEDB arabic letter kaf initial form`,
-		},
+		refs: []rune{0xFEDB},
 	},
 	0x1ee2b: {
-		refs: []string{
-			`U+FEDF arabic letter lam initial form`,
-		},
+		refs: []rune{0xFEDF},
 	},
 	0x1ee2c: {
-		refs: []string{
-			`U+FEE3 arabic letter meem initial form`,
-		},
+		refs: []rune{0xFEE3},
 	},
 	0x1ee2d: {
-		refs: []string{
-			`U+FEE7 arabic letter noon initial form`,
-		},
+		refs: []rune{0xFEE7},
 	},
 	0x1ee2e: {
-		refs: []string{
-			`U+FEB3 arabic letter seen initial form`,
-		},
+		refs: []rune{0xFEB3},
 	},
 	0x1ee2f: {
-		refs: []string{
-			`U+FECB arabic letter ain initial form`,
-		},
+		refs: []rune{0xFECB},
 	},
 	0x1ee30: {
-		refs: []string{
-			`U+FED3 arabic letter feh initial form`,
-		},
+		refs: []rune{0xFED3},
 	},
 	0x1ee31: {
-		refs: []string{
-			`U+FEBB arabic letter sad initial form`,
-		},
+		refs: []rune{0xFEBB},
 	},
 	0x1ee32: {
-		refs: []string{
-			`U+FED7 arabic letter qaf initial form`,
-		},
+		refs: []rune{0xFED7},
 	},
 	0x1ee34: {
-		refs: []string{
-			`U+FEB7 arabic letter sheen initial form`,
-		},
+		refs: []rune{0xFEB7},
 	},
 	0x1ee35: {
-		refs: []string{
-			`U+FE97 arabic letter teh initial form`,
-		},
+		refs: []rune{0xFE97},
 	},
 	0x1ee36: {
-		refs: []string{
-			`U+FE9B arabic letter theh initial form`,
-		},
+		refs: []rune{0xFE9B},
 	},
 	0x1ee37: {
-		refs: []string{
-			`U+FEA7 arabic letter khah initial form`,
-		},
+		refs: []rune{0xFEA7},
 	},
 	0x1ee39: {
-		refs: []string{
-			`U+FEBF arabic letter dad initial form`,
-		},
+		refs: []rune{0xFEBF},
 	},
 	0x1ee3b: {
-		refs: []string{
-			`U+FECF arabic letter ghain initial form`,
-		},
+		refs: []rune{0xFECF},
 	},
 	0x1eef0: {
-		refs: []string{
-			`U+2211 n-ary summation`,
-		},
+		refs: []rune{0x2211},
 	},
 	0x1f004: {
-		aliases: []string{
-			`hongzhong`,
-		},
+		aliases: []string{`hongzhong`},
 	},
 	0x1f005: {
-		aliases: []string{
-			`qingfa`,
-		},
+		aliases: []string{`qingfa`},
 	},
 	0x1f006: {
-		aliases: []string{
-			`baiban`,
-		},
+		aliases: []string{`baiban`},
 	},
 	0x1f007: {
-		aliases: []string{
-			`wan`,
-		},
+		aliases: []string{`wan`},
 	},
 	0x1f010: {
-		aliases: []string{
-			`tiao`,
-		},
+		aliases: []string{`tiao`},
 	},
 	0x1f019: {
-		aliases: []string{
-			`bing`,
-		},
+		aliases: []string{`bing`},
 	},
 	0x1f022: {
-		aliases: []string{
-			`mei`,
-		},
+		aliases: []string{`mei`},
 	},
 	0x1f023: {
-		aliases: []string{
-			`lan`,
-		},
+		aliases: []string{`lan`},
 	},
 	0x1f024: {
-		aliases: []string{
-			`zhu`,
-		},
+		aliases: []string{`zhu`},
 	},
 	0x1f025: {
-		aliases: []string{
-			`ju`,
-		},
+		aliases: []string{`ju`},
 	},
 	0x1f02a: {
-		aliases: []string{
-			`baida`,
-		},
+		aliases: []string{`baida`},
 	},
 	0x1f0ab: {
-		aliases: []string{
-			`valet`,
-			`Bube`,
-			`Unter`,
-			`Page`,
-			`fante`,
-			`page of swords`,
-		},
+		aliases: []string{`valet`, `Bube`, `Unter`, `Page`, `fante`, `page of swords`},
 	},
 	0x1f0ac: {
-		aliases: []string{
-			`chevalier`,
-			`Ober`,
-			`Ritter`,
-			`cavall`,
-			`cavaliere`,
-			`knight of swords`,
-		},
+		aliases: []string{`chevalier`, `Ober`, `Ritter`, `cavall`, `cavaliere`, `knight of swords`},
 	},
 	0x1f0ad: {
-		aliases: []string{
-			`dame`,
-			`Dame`,
-			`Königin`,
-			`regina`,
-			`queen of swords`,
-		},
+		aliases: []string{`dame`, `Dame`, `Königin`, `regina`, `queen of swords`},
 	},
 	0x1f0ae: {
-		aliases: []string{
-			`roi`,
-			`König`,
-			`re`,
-			`king of swords`,
-		},
+		aliases: []string{`roi`, `König`, `re`, `king of swords`},
 	},
 	0x1f10d: {
-		aliases: []string{
-			`no rights reserved`,
-		},
+		aliases: []string{`no rights reserved`},
 	},
 	0x1f10e: {
-		aliases: []string{
-			`share alike`,
-		},
+		aliases: []string{`share alike`},
 	},
 	0x1f10f: {
-		aliases: []string{
-			`non commercial`,
-		},
+		aliases: []string{`non commercial`},
 	},
 	0x1f12b: {
-		aliases: []string{
-			`compact disc`,
-			`single disc record`,
-		},
+		aliases: []string{`compact disc`, `single disc record`},
 	},
 	0x1f12c: {
-		aliases: []string{
-			`disc record`,
-		},
+		aliases: []string{`disc record`},
 	},
 	0x1f12d: {
-		refs: []string{
-			`U+33C5 square cd`,
-		},
+		refs: []rune{0x33C5},
 	},
 	0x1f12e: {
-		refs: []string{
-			`U+2122 trade mark sign`,
-		},
+		refs: []rune{0x2122},
 	},
 	0x1f12f: {
-		refs: []string{
-			`U+00A9 copyright sign`,
-			`U+2183 roman numeral reversed one hundred`,
-		},
+		refs: []rune{0x00A9, 0x2183},
 	},
 	0x1f130: {
-		aliases: []string{
-			`Anreisetag`,
-		},
+		aliases: []string{`Anreisetag`},
 	},
 	0x1f131: {
-		aliases: []string{
-			`bank`,
-			`b-mode stereo compression broadcasting service`,
-		},
+		aliases: []string{`bank`, `b-mode stereo compression broadcasting service`},
 	},
 	0x1f13d: {
-		aliases: []string{
-			`news`,
-		},
+		aliases: []string{`news`},
 	},
 	0x1f13f: {
-		aliases: []string{
-			`progressive broadcasting`,
-		},
+		aliases: []string{`progressive broadcasting`},
 	},
 	0x1f142: {
-		aliases: []string{
-			`stereo broadcasting service`,
-		},
+		aliases: []string{`stereo broadcasting service`},
 	},
 	0x1f143: {
-		aliases: []string{
-			`tobacconist`,
-		},
+		aliases: []string{`tobacconist`},
 	},
 	0x1f146: {
-		aliases: []string{
-			`wide-format 16:9 broadcasting service`,
-		},
+		aliases: []string{`wide-format 16:9 broadcasting service`},
 	},
 	0x1f14a: {
-		aliases: []string{
-			`hdtv`,
-		},
+		aliases: []string{`hdtv`},
 	},
 	0x1f14b: {
-		aliases: []string{
-			`multi-view television`,
-		},
+		aliases: []string{`multi-view television`},
 	},
 	0x1f14c: {
-		aliases: []string{
-			`sdtv`,
-		},
+		aliases: []string{`sdtv`},
 	},
 	0x1f14d: {
-		aliases: []string{
-			`surround stereo broadcasting service`,
-		},
+		aliases: []string{`surround stereo broadcasting service`},
 	},
 	0x1f14e: {
-		aliases: []string{
-			`pay-per-view`,
-		},
+		aliases: []string{`pay-per-view`},
 	},
 	0x1f14f: {
-		aliases: []string{
-			`water closet`,
-			`public toilet`,
-		},
-		refs: []string{
-			`U+1F6BE water closet`,
-		},
+		aliases: []string{`water closet`, `public toilet`},
+		refs:    []rune{0x1F6BE},
 	},
 	0x1f150: {
-		aliases: []string{
-			`airport`,
-		},
+		aliases: []string{`airport`},
 	},
 	0x1f155: {
-		aliases: []string{
-			`ferry`,
-		},
+		aliases: []string{`ferry`},
 	},
 	0x1f157: {
-		aliases: []string{
-			`hotel`,
-		},
+		aliases: []string{`hotel`},
 	},
 	0x1f15a: {
-		aliases: []string{
-			`Kurort`,
-		},
-		refs: []string{
-			`U+2668 hot springs`,
-		},
+		aliases: []string{`Kurort`},
+		refs:    []rune{0x2668},
 	},
 	0x1f15b: {
-		aliases: []string{
-			`light rail`,
-		},
-		refs: []string{
-			`U+1F688 light rail`,
-		},
+		aliases: []string{`light rail`},
+		refs:    []rune{0x1F688},
 	},
 	0x1f15c: {
-		aliases: []string{
-			`metro`,
-		},
-		refs: []string{
-			`U+1F687 metro`,
-		},
+		aliases: []string{`metro`},
+		refs:    []rune{0x1F687},
 	},
 	0x1f15f: {
-		aliases: []string{
-			`parking space`,
-		},
+		aliases: []string{`parking space`},
 	},
 	0x1f161: {
-		aliases: []string{
-			`Raststätte`,
-		},
+		aliases: []string{`Raststätte`},
 	},
 	0x1f162: {
-		aliases: []string{
-			`Stadtbahn`,
-		},
+		aliases: []string{`Stadtbahn`},
 	},
 	0x1f163: {
-		aliases: []string{
-			`Tankstelle`,
-		},
-		refs: []string{
-			`U+26FD fuel pump`,
-		},
+		aliases: []string{`Tankstelle`},
+		refs:    []rune{0x26FD},
 	},
 	0x1f164: {
-		aliases: []string{
-			`underground rail`,
-		},
-		refs: []string{
-			`U+1F687 metro`,
-		},
+		aliases: []string{`underground rail`},
+		refs:    []rune{0x1F687},
 	},
 	0x1f16a: {
-		aliases: []string{
-			`marque de commerce`,
-		},
-		refs: []string{
-			`U+2122 trade mark sign`,
-		},
+		aliases: []string{`marque de commerce`},
+		refs:    []rune{0x2122},
 	},
 	0x1f16b: {
-		aliases: []string{
-			`marque déposée`,
-		},
-		refs: []string{
-			`U+00AE registered sign`,
-		},
+		aliases: []string{`marque déposée`},
+		refs:    []rune{0x00AE},
 	},
 	0x1f16c: {
-		aliases: []string{
-			`marca registrada`,
-		},
-		refs: []string{
-			`U+00AE registered sign`,
-		},
+		aliases: []string{`marca registrada`},
+		refs:    []rune{0x00AE},
 	},
 	0x1f16d: {
-		aliases: []string{
-			`Creative Commons license`,
-		},
-		refs: []string{
-			`U+229C circled equals`,
-		},
+		aliases: []string{`Creative Commons license`},
+		refs:    []rune{0x229C},
 	},
 	0x1f16e: {
-		aliases: []string{
-			`public domain`,
-		},
+		aliases: []string{`public domain`},
 	},
 	0x1f16f: {
-		aliases: []string{
-			`attribution`,
-			`credit`,
-		},
+		aliases: []string{`attribution`, `credit`},
 	},
 	0x1f170: {
-		aliases: []string{
-			`blood type A`,
-		},
+		aliases: []string{`blood type A`},
 	},
 	0x1f171: {
-		aliases: []string{
-			`blood type B`,
-		},
+		aliases: []string{`blood type B`},
 	},
 	0x1f172: {
-		aliases: []string{
-			`centre`,
-			`city centre`,
-		},
+		aliases: []string{`centre`, `city centre`},
 	},
 	0x1f175: {
-		aliases: []string{
-			`Feuerwache`,
-		},
+		aliases: []string{`Feuerwache`},
 	},
 	0x1f177: {
-		aliases: []string{
-			`Haltestelle`,
-		},
-		refs: []string{
-			`U+1F68F bus stop`,
-		},
+		aliases: []string{`Haltestelle`},
+		refs:    []rune{0x1F68F},
 	},
 	0x1f179: {
-		aliases: []string{
-			`junction`,
-		},
+		aliases: []string{`junction`},
 	},
 	0x1f17b: {
-		aliases: []string{
-			`leisure center`,
-		},
+		aliases: []string{`leisure center`},
 	},
 	0x1f17c: {
-		aliases: []string{
-			`museum`,
-			`cultural center`,
-		},
+		aliases: []string{`museum`, `cultural center`},
 	},
 	0x1f17e: {
-		aliases: []string{
-			`blood type O`,
-		},
+		aliases: []string{`blood type O`},
 	},
 	0x1f17f: {
-		aliases: []string{
-			`parking space empty-full`,
-		},
+		aliases: []string{`parking space empty-full`},
 	},
 	0x1f18a: {
-		aliases: []string{
-			`parking space closed`,
-		},
+		aliases: []string{`parking space closed`},
 	},
 	0x1f18b: {
-		aliases: []string{
-			`interchange`,
-			`ramp`,
-		},
+		aliases: []string{`interchange`, `ramp`},
 	},
 	0x1f18c: {
-		aliases: []string{
-			`parking area`,
-		},
+		aliases: []string{`parking area`},
 	},
 	0x1f18d: {
-		aliases: []string{
-			`service area`,
-		},
+		aliases: []string{`service area`},
 	},
 	0x1f18e: {
-		aliases: []string{
-			`blood type AB`,
-		},
+		aliases: []string{`blood type AB`},
 	},
 	0x1f18f: {
-		aliases: []string{
-			`water closet`,
-			`public toilet`,
-		},
-		refs: []string{
-			`U+1F6BE water closet`,
-		},
+		aliases: []string{`water closet`, `public toilet`},
+		refs:    []rune{0x1F6BE},
 	},
 	0x1f190: {
-		aliases: []string{
-			`disc jockey`,
-		},
+		aliases: []string{`disc jockey`},
 	},
 	0x1f191: {
-		aliases: []string{
-			`clear`,
-		},
+		aliases: []string{`clear`},
 	},
 	0x1f193: {
-		aliases: []string{
-			`free postage`,
-		},
+		aliases: []string{`free postage`},
 	},
 	0x1f194: {
-		aliases: []string{
-			`identification`,
-			`ID`,
-		},
+		aliases: []string{`identification`, `ID`},
 	},
 	0x1f196: {
-		aliases: []string{
-			`no good`,
-		},
+		aliases: []string{`no good`},
 	},
 	0x1f198: {
-		aliases: []string{
-			`search`,
-			`hunt for missing person`,
-		},
+		aliases: []string{`search`, `hunt for missing person`},
 	},
 	0x1f199: {
-		aliases: []string{
-			`new information`,
-			`update`,
-		},
+		aliases: []string{`new information`, `update`},
 	},
 	0x1f19a: {
-		aliases: []string{
-			`versus`,
-		},
+		aliases: []string{`versus`},
 	},
 	0x1f1a5: {
-		aliases: []string{
-			`data`,
-		},
+		aliases: []string{`data`},
 	},
 	0x1f1a6: {
-		aliases: []string{
-			`hybrid cast`,
-		},
+		aliases: []string{`hybrid cast`},
 	},
 	0x1f1a7: {
-		aliases: []string{
-			`high dynamic range`,
-		},
+		aliases: []string{`high dynamic range`},
 	},
 	0x1f1a8: {
-		aliases: []string{
-			`high resolution`,
-		},
+		aliases: []string{`high resolution`},
 	},
 	0x1f1aa: {
-		aliases: []string{
-			`super high vision`,
-		},
+		aliases: []string{`super high vision`},
 	},
 	0x1f1ab: {
-		aliases: []string{
-			`ultra-high definition`,
-		},
+		aliases: []string{`ultra-high definition`},
 	},
 	0x1f1ac: {
-		aliases: []string{
-			`video on demand`,
-		},
+		aliases: []string{`video on demand`},
 	},
 	0x1f1ad: {
-		refs: []string{
-			`U+00A9 copyright sign`,
-			`U+24C2 circled latin capital letter m`,
-		},
+		refs: []rune{0x00A9, 0x24C2},
 	},
 	0x1f200: {
-		aliases: []string{
-			`and others`,
-		},
+		aliases: []string{`and others`},
 	},
 	0x1f201: {
-		aliases: []string{
-			`here sign`,
-		},
+		aliases: []string{`here sign`},
 	},
 	0x1f202: {
-		aliases: []string{
-			`service sign`,
-		},
-		refs: []string{
-			`U+32DA circled katakana sa`,
-		},
+		aliases: []string{`service sign`},
+		refs:    []rune{0x32DA},
 	},
 	0x1f210: {
-		aliases: []string{
-			`broadcasting service with sign language interpretation`,
-		},
+		aliases: []string{`broadcasting service with sign language interpretation`},
 	},
 	0x1f211: {
-		aliases: []string{
-			`close-captioned broadcasting`,
-		},
+		aliases: []string{`close-captioned broadcasting`},
 	},
 	0x1f212: {
-		aliases: []string{
-			`two-way broadcasting service`,
-		},
+		aliases: []string{`two-way broadcasting service`},
 	},
 	0x1f213: {
-		aliases: []string{
-			`data broadcasting service linked with a main program`,
-		},
+		aliases: []string{`data broadcasting service linked with a main program`},
 	},
 	0x1f214: {
-		aliases: []string{
-			`bilingual broadcasting service`,
-			`second base`,
-		},
+		aliases: []string{`bilingual broadcasting service`, `second base`},
 	},
 	0x1f215: {
-		aliases: []string{
-			`sound-multiplex broadcasting service`,
-		},
+		aliases: []string{`sound-multiplex broadcasting service`},
 	},
 	0x1f216: {
-		aliases: []string{
-			`commentary broadcasting`,
-		},
+		aliases: []string{`commentary broadcasting`},
 	},
 	0x1f217: {
-		aliases: []string{
-			`weather forecast`,
-		},
+		aliases: []string{`weather forecast`},
 	},
 	0x1f218: {
-		aliases: []string{
-			`traffic information`,
-		},
+		aliases: []string{`traffic information`},
 	},
 	0x1f219: {
-		aliases: []string{
-			`drama film`,
-		},
+		aliases: []string{`drama film`},
 	},
 	0x1f21a: {
-		aliases: []string{
-			`free broadcasting service`,
-			`non-existence sign`,
-		},
+		aliases: []string{`free broadcasting service`, `non-existence sign`},
 	},
 	0x1f21b: {
-		aliases: []string{
-			`pay broadcasting service`,
-		},
+		aliases: []string{`pay broadcasting service`},
 	},
 	0x1f21c: {
-		aliases: []string{
-			`the first part`,
-		},
+		aliases: []string{`the first part`},
 	},
 	0x1f21d: {
-		aliases: []string{
-			`the latter part`,
-		},
+		aliases: []string{`the latter part`},
 	},
 	0x1f21e: {
-		aliases: []string{
-			`rebroadcast`,
-		},
+		aliases: []string{`rebroadcast`},
 	},
 	0x1f21f: {
-		aliases: []string{
-			`new series of programs`,
-		},
+		aliases: []string{`new series of programs`},
 	},
 	0x1f220: {
-		aliases: []string{
-			`first released program`,
-		},
+		aliases: []string{`first released program`},
 	},
 	0x1f221: {
-		aliases: []string{
-			`the last episode`,
-		},
+		aliases: []string{`the last episode`},
 	},
 	0x1f222: {
-		aliases: []string{
-			`live broadcast`,
-		},
+		aliases: []string{`live broadcast`},
 	},
 	0x1f223: {
-		aliases: []string{
-			`mail-order`,
-		},
+		aliases: []string{`mail-order`},
 	},
 	0x1f224: {
-		aliases: []string{
-			`voice actors`,
-		},
+		aliases: []string{`voice actors`},
 	},
 	0x1f225: {
-		aliases: []string{
-			`dubbed version`,
-		},
+		aliases: []string{`dubbed version`},
 	},
 	0x1f226: {
-		aliases: []string{
-			`performed by`,
-		},
+		aliases: []string{`performed by`},
 	},
 	0x1f227: {
-		aliases: []string{
-			`pitcher`,
-		},
+		aliases: []string{`pitcher`},
 	},
 	0x1f228: {
-		aliases: []string{
-			`catcher`,
-		},
+		aliases: []string{`catcher`},
 	},
 	0x1f229: {
-		aliases: []string{
-			`first base`,
-		},
+		aliases: []string{`first base`},
 	},
 	0x1f22a: {
-		aliases: []string{
-			`third base`,
-		},
+		aliases: []string{`third base`},
 	},
 	0x1f22b: {
-		aliases: []string{
-			`short stop`,
-		},
+		aliases: []string{`short stop`},
 	},
 	0x1f22c: {
-		aliases: []string{
-			`left field`,
-		},
+		aliases: []string{`left field`},
 	},
 	0x1f22d: {
-		aliases: []string{
-			`center field`,
-		},
+		aliases: []string{`center field`},
 	},
 	0x1f22e: {
-		aliases: []string{
-			`right field`,
-		},
+		aliases: []string{`right field`},
 	},
 	0x1f22f: {
-		aliases: []string{
-			`designated hitter`,
-			`reserved sign`,
-		},
+		aliases: []string{`designated hitter`, `reserved sign`},
 	},
 	0x1f230: {
-		aliases: []string{
-			`runner`,
-		},
+		aliases: []string{`runner`},
 	},
 	0x1f231: {
-		aliases: []string{
-			`batter`,
-		},
+		aliases: []string{`batter`},
 	},
 	0x1f232: {
-		aliases: []string{
-			`prohibited sign`,
-		},
+		aliases: []string{`prohibited sign`},
 	},
 	0x1f233: {
-		aliases: []string{
-			`empty sign`,
-		},
+		aliases: []string{`empty sign`},
 	},
 	0x1f234: {
-		aliases: []string{
-			`passed sign`,
-		},
+		aliases: []string{`passed sign`},
 	},
 	0x1f235: {
-		aliases: []string{
-			`full sign`,
-		},
+		aliases: []string{`full sign`},
 	},
 	0x1f236: {
-		aliases: []string{
-			`existence sign`,
-		},
-		refs: []string{
-			`U+3292 circled ideograph have`,
-		},
+		aliases: []string{`existence sign`},
+		refs:    []rune{0x3292},
 	},
 	0x1f237: {
-		aliases: []string{
-			`monthly sign`,
-		},
-		refs: []string{
-			`U+328A circled ideograph moon`,
-		},
+		aliases: []string{`monthly sign`},
+		refs:    []rune{0x328A},
 	},
 	0x1f238: {
-		aliases: []string{
-			`application sign`,
-		},
+		aliases: []string{`application sign`},
 	},
 	0x1f239: {
-		aliases: []string{
-			`discount sign`,
-		},
+		aliases: []string{`discount sign`},
 	},
 	0x1f23a: {
-		aliases: []string{
-			`in business sign`,
-		},
+		aliases: []string{`in business sign`},
 	},
 	0x1f23b: {
-		aliases: []string{
-			`program delivery over network`,
-		},
+		aliases: []string{`program delivery over network`},
 	},
 	0x1f240: {
-		aliases: []string{
-			`home run`,
-		},
+		aliases: []string{`home run`},
 	},
 	0x1f241: {
-		aliases: []string{
-			`triple`,
-		},
+		aliases: []string{`triple`},
 	},
 	0x1f242: {
-		aliases: []string{
-			`double`,
-		},
+		aliases: []string{`double`},
 	},
 	0x1f243: {
-		aliases: []string{
-			`safe`,
-		},
+		aliases: []string{`safe`},
 	},
 	0x1f244: {
-		aliases: []string{
-			`run`,
-		},
+		aliases: []string{`run`},
 	},
 	0x1f245: {
-		aliases: []string{
-			`hit`,
-		},
+		aliases: []string{`hit`},
 	},
 	0x1f246: {
-		aliases: []string{
-			`steal`,
-		},
+		aliases: []string{`steal`},
 	},
 	0x1f247: {
-		aliases: []string{
-			`win`,
-		},
+		aliases: []string{`win`},
 	},
 	0x1f248: {
-		aliases: []string{
-			`loss`,
-		},
+		aliases: []string{`loss`},
 	},
 	0x1f250: {
-		aliases: []string{
-			`advantage sign`,
-		},
+		aliases: []string{`advantage sign`},
 	},
 	0x1f251: {
-		aliases: []string{
-			`accept sign`,
-		},
+		aliases: []string{`accept sign`},
 	},
 	0x1f260: {
-		refs: []string{
-			`798F`,
-		},
+		refs: []rune{0x798F},
 	},
 	0x1f261: {
-		refs: []string{
-			`797F`,
-			`7984`,
-		},
+		refs: []rune{0x797F, 0x7984},
 	},
 	0x1f262: {
-		refs: []string{
-			`58FD`,
-			`5BFF`,
-		},
+		refs: []rune{0x58FD, 0x5BFF},
 	},
 	0x1f263: {
-		refs: []string{
-			`559C`,
-		},
+		refs: []rune{0x559C},
 	},
 	0x1f264: {
-		refs: []string{
-			`56CD`,
-		},
+		refs: []rune{0x56CD},
 	},
 	0x1f265: {
-		refs: []string{
-			`8CA1`,
-			`8D22`,
-		},
+		refs: []rune{0x8CA1, 0x8D22},
 	},
 	0x1f300: {
-		aliases: []string{
-			`typhoon`,
-			`hurricane`,
-		},
+		aliases: []string{`typhoon`, `hurricane`},
 	},
 	0x1f301: {
-		refs: []string{
-			`U+1F32B fog`,
-		},
+		refs: []rune{0x1F32B},
 	},
 	0x1f306: {
-		refs: []string{
-			`U+1F3D9 cityscape`,
-		},
+		refs: []rune{0x1F3D9},
 	},
 	0x1f30a: {
-		aliases: []string{
-			`tsunami`,
-			`tidal wave`,
-		},
+		aliases: []string{`tsunami`, `tidal wave`},
 	},
 	0x1f311: {
-		refs: []string{
-			`U+25CF black circle`,
-		},
+		refs: []rune{0x25CF},
 	},
 	0x1f313: {
-		aliases: []string{
-			`half moon`,
-		},
-		refs: []string{
-			`U+25D0 circle with left half black`,
-			`U+263D first quarter moon`,
-		},
+		aliases: []string{`half moon`},
+		refs:    []rune{0x25D0, 0x263D},
 	},
 	0x1f314: {
-		aliases: []string{
-			`waxing moon`,
-		},
+		aliases: []string{`waxing moon`},
 	},
 	0x1f315: {
-		refs: []string{
-			`U+25CB white circle`,
-		},
+		refs: []rune{0x25CB},
 	},
 	0x1f317: {
-		refs: []string{
-			`U+25D1 circle with right half black`,
-			`U+263E last quarter moon`,
-		},
+		refs: []rune{0x25D1, 0x263E},
 	},
 	0x1f319: {
-		refs: []string{
-			`U+263D first quarter moon`,
-			`U+263E last quarter moon`,
-		},
+		refs: []rune{0x263D, 0x263E},
 	},
 	0x1f31f: {
-		refs: []string{
-			`U+2606 white star`,
-		},
+		refs: []rune{0x2606},
 	},
 	0x1f321: {
-		aliases: []string{
-			`temperature`,
-			`warm`,
-		},
+		aliases: []string{`temperature`, `warm`},
 	},
 	0x1f322: {
-		aliases: []string{
-			`droplet`,
-		},
-		refs: []string{
-			`U+1F4A7 droplet`,
-		},
+		aliases: []string{`droplet`},
+		refs:    []rune{0x1F4A7},
 	},
 	0x1f323: {
-		aliases: []string{
-			`sunny`,
-		},
-		refs: []string{
-			`U+2600 black sun with rays`,
-			`U+263C white sun with rays`,
-		},
+		aliases: []string{`sunny`},
+		refs:    []rune{0x2600, 0x263C},
 	},
 	0x1f324: {
-		aliases: []string{
-			`mostly sunny`,
-		},
-		refs: []string{
-			`U+26C5 sun behind cloud`,
-		},
+		aliases: []string{`mostly sunny`},
+		refs:    []rune{0x26C5},
 	},
 	0x1f325: {
-		aliases: []string{
-			`mostly cloudy`,
-		},
+		aliases: []string{`mostly cloudy`},
 	},
 	0x1f326: {
-		aliases: []string{
-			`showers`,
-		},
+		aliases: []string{`showers`},
 	},
 	0x1f327: {
-		aliases: []string{
-			`rain`,
-		},
-		refs: []string{
-			`U+2602 umbrella`,
-		},
+		aliases: []string{`rain`},
+		refs:    []rune{0x2602},
 	},
 	0x1f328: {
-		aliases: []string{
-			`snow`,
-			`snow showers`,
-		},
+		aliases: []string{`snow`, `snow showers`},
 	},
 	0x1f329: {
-		aliases: []string{
-			`lightning`,
-			`thunderstorm`,
-		},
-		refs: []string{
-			`U+26C8 thunder cloud and rain`,
-		},
+		aliases: []string{`lightning`, `thunderstorm`},
+		refs:    []rune{0x26C8},
 	},
 	0x1f32a: {
-		aliases: []string{
-			`tornado`,
-			`twister`,
-		},
+		aliases: []string{`tornado`, `twister`},
 	},
 	0x1f32b: {
-		refs: []string{
-			`U+1F301 foggy`,
-		},
+		refs: []rune{0x1F301},
 	},
 	0x1f32c: {
-		aliases: []string{
-			`wind`,
-		},
+		aliases: []string{`wind`},
 	},
 	0x1f332: {
-		refs: []string{
-			`U+1F3DE national park`,
-		},
+		refs: []rune{0x1F3DE},
 	},
 	0x1f334: {
-		refs: []string{
-			`U+1F3DD desert island`,
-		},
+		refs: []rune{0x1F3DD},
 	},
 	0x1f335: {
-		refs: []string{
-			`U+1F3DC desert`,
-		},
+		refs: []rune{0x1F3DC},
 	},
 	0x1f336: {
-		aliases: []string{
-			`hot`,
-			`spicy`,
-		},
+		aliases: []string{`hot`, `spicy`},
 	},
 	0x1f337: {
-		refs: []string{
-			`U+2698 flower`,
-		},
+		refs: []rune{0x2698},
 	},
 	0x1f339: {
-		refs: []string{
-			`U+1F940 wilted flower`,
-		},
+		refs: []rune{0x1F940},
 	},
 	0x1f33c: {
-		aliases: []string{
-			`daisy`,
-		},
+		aliases: []string{`daisy`},
 	},
 	0x1f340: {
-		refs: []string{
-			`U+2618 shamrock`,
-		},
+		refs: []rune{0x2618},
 	},
 	0x1f346: {
-		aliases: []string{
-			`eggplant`,
-		},
+		aliases: []string{`eggplant`},
 	},
 	0x1f354: {
-		aliases: []string{
-			`fast food place`,
-		},
+		aliases: []string{`fast food place`},
 	},
 	0x1f35a: {
-		aliases: []string{
-			`bowl of rice`,
-		},
+		aliases: []string{`bowl of rice`},
 	},
 	0x1f35b: {
-		aliases: []string{
-			`Japanese style curry`,
-		},
+		aliases: []string{`Japanese style curry`},
 	},
 	0x1f35c: {
-		aliases: []string{
-			`ramen noodles`,
-		},
+		aliases: []string{`ramen noodles`},
 	},
 	0x1f361: {
-		aliases: []string{
-			`mochi balls on skewer`,
-		},
+		aliases: []string{`mochi balls on skewer`},
 	},
 	0x1f362: {
-		aliases: []string{
-			`seafood on skewer`,
-		},
+		aliases: []string{`seafood on skewer`},
 	},
 	0x1f36a: {
-		aliases: []string{
-			`biscuit`,
-		},
+		aliases: []string{`biscuit`},
 	},
 	0x1f373: {
-		aliases: []string{
-			`frying pan`,
-			`cooking utensil`,
-		},
+		aliases: []string{`frying pan`, `cooking utensil`},
 	},
 	0x1f374: {
-		aliases: []string{
-			`restaurant`,
-			`meal`,
-		},
-		refs: []string{
-			`U+1F37D fork and knife with plate`,
-			`U+1F944 spoon`,
-		},
+		aliases: []string{`restaurant`, `meal`},
+		refs:    []rune{0x1F37D, 0x1F944},
 	},
 	0x1f375: {
-		refs: []string{
-			`U+2615 hot beverage`,
-			`U+26FE cup on black square`,
-		},
+		refs: []rune{0x2615, 0x26FE},
 	},
 	0x1f378: {
-		aliases: []string{
-			`lounge`,
-		},
-		refs: []string{
-			`U+1F6CB couch and lamp`,
-			`U+1F943 tumbler glass`,
-		},
+		aliases: []string{`lounge`},
+		refs:    []rune{0x1F6CB, 0x1F943},
 	},
 	0x1f37b: {
-		aliases: []string{
-			`cheers`,
-		},
-		refs: []string{
-			`U+1F942 clinking glasses`,
-		},
+		aliases: []string{`cheers`},
+		refs:    []rune{0x1F942},
 	},
 	0x1f37d: {
-		aliases: []string{
-			`dining`,
-		},
-		refs: []string{
-			`U+1F374 fork and knife`,
-		},
+		aliases: []string{`dining`},
+		refs:    []rune{0x1F374},
 	},
 	0x1f381: {
-		refs: []string{
-			`U+1F4E6 package`,
-		},
+		refs: []rune{0x1F4E6},
 	},
 	0x1f383: {
-		aliases: []string{
-			`Hallowe'en`,
-		},
+		aliases: []string{`Hallowe'en`},
 	},
 	0x1f385: {
-		aliases: []string{
-			`Santa Claus`,
-		},
-		refs: []string{
-			`U+1F936 mother christmas`,
-		},
+		aliases: []string{`Santa Claus`},
+		refs:    []rune{0x1F936},
 	},
 	0x1f38a: {
-		aliases: []string{
-			`congratulations`,
-		},
+		aliases: []string{`congratulations`},
 	},
 	0x1f38b: {
-		aliases: []string{
-			`tanabata tree with wishing papers`,
-		},
+		aliases: []string{`tanabata tree with wishing papers`},
 	},
 	0x1f393: {
-		aliases: []string{
-			`mortarboard`,
-			`education`,
-		},
+		aliases: []string{`mortarboard`, `education`},
 	},
 	0x1f394: {
-		aliases: []string{
-			`favorite`,
-		},
-		refs: []string{
-			`U+2665 black heart suit`,
-		},
+		aliases: []string{`favorite`},
+		refs:    []rune{0x2665},
 	},
 	0x1f395: {
-		aliases: []string{
-			`occasion`,
-		},
-		refs: []string{
-			`U+1F490 bouquet`,
-		},
+		aliases: []string{`occasion`},
+		refs:    []rune{0x1F490},
 	},
 	0x1f398: {
-		aliases: []string{
-			`midi`,
-			`midi keyboard`,
-			`master keyboard with plugs`,
-		},
-		refs: []string{
-			`U+1F3B9 musical keyboard`,
-		},
+		aliases: []string{`midi`, `midi keyboard`, `master keyboard with plugs`},
+		refs:    []rune{0x1F3B9},
 	},
 	0x1f399: {
-		aliases: []string{
-			`microphone`,
-		},
-		refs: []string{
-			`U+1F3A4 microphone`,
-		},
+		aliases: []string{`microphone`},
+		refs:    []rune{0x1F3A4},
 	},
 	0x1f39a: {
-		aliases: []string{
-			`level control`,
-		},
+		aliases: []string{`level control`},
 	},
 	0x1f39b: {
-		aliases: []string{
-			`audio control`,
-		},
+		aliases: []string{`audio control`},
 	},
 	0x1f39c: {
-		aliases: []string{
-			`musical performance`,
-			`music`,
-			`musical background`,
-		},
-		refs: []string{
-			`U+266C beamed sixteenth notes`,
-		},
+		aliases: []string{`musical performance`, `music`, `musical background`},
+		refs:    []rune{0x266C},
 	},
 	0x1f39d: {
-		refs: []string{
-			`U+266B beamed eighth notes`,
-		},
+		refs: []rune{0x266B},
 	},
 	0x1f39e: {
-		aliases: []string{
-			`film clip`,
-		},
-		refs: []string{
-			`U+1F3A5 movie camera`,
-		},
+		aliases: []string{`film clip`},
+		refs:    []rune{0x1F3A5},
 	},
 	0x1f39f: {
-		aliases: []string{
-			`ticket`,
-		},
-		refs: []string{
-			`U+1F3AB ticket`,
-		},
+		aliases: []string{`ticket`},
+		refs:    []rune{0x1F3AB},
 	},
 	0x1f3a0: {
-		aliases: []string{
-			`amusement park`,
-		},
+		aliases: []string{`amusement park`},
 	},
 	0x1f3a1: {
-		aliases: []string{
-			`amusement park`,
-		},
+		aliases: []string{`amusement park`},
 	},
 	0x1f3a3: {
-		aliases: []string{
-			`fishing`,
-		},
+		aliases: []string{`fishing`},
 	},
 	0x1f3a4: {
-		aliases: []string{
-			`karaoke`,
-		},
-		refs: []string{
-			`U+1F399 studio microphone`,
-		},
+		aliases: []string{`karaoke`},
+		refs:    []rune{0x1F399},
 	},
 	0x1f3a5: {
-		aliases: []string{
-			`film`,
-			`movies`,
-		},
-		refs: []string{
-			`U+1F39E film frames`,
-		},
+		aliases: []string{`film`, `movies`},
+		refs:    []rune{0x1F39E},
 	},
 	0x1f3a6: {
-		aliases: []string{
-			`movie theater`,
-			`movie projector`,
-		},
-		refs: []string{
-			`U+1F4FD film projector`,
-		},
+		aliases: []string{`movie theater`, `movie projector`},
+		refs:    []rune{0x1F4FD},
 	},
 	0x1f3a7: {
-		aliases: []string{
-			`music`,
-		},
+		aliases: []string{`music`},
 	},
 	0x1f3a8: {
-		aliases: []string{
-			`art`,
-		},
+		aliases: []string{`art`},
 	},
 	0x1f3a9: {
-		aliases: []string{
-			`drama`,
-			`performing arts`,
-			`theater`,
-		},
+		aliases: []string{`drama`, `performing arts`, `theater`},
 	},
 	0x1f3aa: {
-		aliases: []string{
-			`event`,
-		},
+		aliases: []string{`event`},
 	},
 	0x1f3ab: {
-		refs: []string{
-			`U+1F39F admission tickets`,
-		},
+		refs: []rune{0x1F39F},
 	},
 	0x1f3ac: {
-		aliases: []string{
-			`film`,
-		},
+		aliases: []string{`film`},
 	},
 	0x1f3ad: {
-		aliases: []string{
-			`theater masks`,
-			`theater`,
-		},
+		aliases: []string{`theater masks`, `theater`},
 	},
 	0x1f3ae: {
-		aliases: []string{
-			`video game controller`,
-		},
+		aliases: []string{`video game controller`},
 	},
 	0x1f3af: {
-		aliases: []string{
-			`archery target`,
-			`hitting the target`,
-		},
-		refs: []string{
-			`U+25CE bullseye`,
-		},
+		aliases: []string{`archery target`, `hitting the target`},
+		refs:    []rune{0x25CE},
 	},
 	0x1f3b1: {
-		aliases: []string{
-			`magic 8-ball`,
-		},
+		aliases: []string{`magic 8-ball`},
 	},
 	0x1f3b4: {
-		aliases: []string{
-			`flower cards`,
-		},
+		aliases: []string{`flower cards`},
 	},
 	0x1f3b5: {
-		aliases: []string{
-			`music`,
-			`being in good mood`,
-		},
-		refs: []string{
-			`U+266A eighth note`,
-		},
+		aliases: []string{`music`, `being in good mood`},
+		refs:    []rune{0x266A},
 	},
 	0x1f3b6: {
-		aliases: []string{
-			`dancing notes`,
-			`mood`,
-			`melody`,
-		},
-		refs: []string{
-			`U+266B beamed eighth notes`,
-		},
+		aliases: []string{`dancing notes`, `mood`, `melody`},
+		refs:    []rune{0x266B},
 	},
 	0x1f3b9: {
-		refs: []string{
-			`U+1F398 musical keyboard with jacks`,
-		},
+		refs: []rune{0x1F398},
 	},
 	0x1f3bc: {
-		refs: []string{
-			`U+1D11E musical symbol g clef`,
-		},
+		refs: []rune{0x1D11E},
 	},
 	0x1f3bd: {
-		aliases: []string{
-			`ekiden`,
-		},
+		aliases: []string{`ekiden`},
 	},
 	0x1f3be: {
-		aliases: []string{
-			`tennis`,
-		},
+		aliases: []string{`tennis`},
 	},
 	0x1f3bf: {
-		aliases: []string{
-			`skiing`,
-		},
-		refs: []string{
-			`U+26F7 skier`,
-		},
+		aliases: []string{`skiing`},
+		refs:    []rune{0x26F7},
 	},
 	0x1f3c0: {
-		aliases: []string{
-			`basketball`,
-		},
+		aliases: []string{`basketball`},
 	},
 	0x1f3c1: {
-		aliases: []string{
-			`motor sports`,
-		},
+		aliases: []string{`motor sports`},
 	},
 	0x1f3c3: {
-		aliases: []string{
-			`running`,
-			`marathon`,
-			`track and fields`,
-		},
-		refs: []string{
-			`U+1FBB2 left half running man`,
-		},
+		aliases: []string{`running`, `marathon`, `track and fields`},
+		refs:    []rune{0x1FBB2},
 	},
 	0x1f3c4: {
-		aliases: []string{
-			`surfing`,
-		},
+		aliases: []string{`surfing`},
 	},
 	0x1f3c5: {
-		refs: []string{
-			`U+1F947 first place medal`,
-		},
+		refs: []rune{0x1F947},
 	},
 	0x1f3cb: {
-		aliases: []string{
-			`health`,
-		},
+		aliases: []string{`health`},
 	},
 	0x1f3cd: {
-		aliases: []string{
-			`motorcycle`,
-		},
+		aliases: []string{`motorcycle`},
 	},
 	0x1f3ce: {
-		aliases: []string{
-			`race car`,
-		},
+		aliases: []string{`race car`},
 	},
 	0x1f3d4: {
-		refs: []string{
-			`U+26F0 mountain`,
-		},
+		refs: []rune{0x26F0},
 	},
 	0x1f3d5: {
-		aliases: []string{
-			`camping site`,
-		},
-		refs: []string{
-			`U+26FA tent`,
-		},
+		aliases: []string{`camping site`},
+		refs:    []rune{0x26FA},
 	},
 	0x1f3d6: {
-		refs: []string{
-			`U+26F1 umbrella on ground`,
-		},
+		refs: []rune{0x26F1},
 	},
 	0x1f3d7: {
-		aliases: []string{
-			`under construction`,
-		},
-		refs: []string{
-			`U+1F6A7 construction sign`,
-		},
+		aliases: []string{`under construction`},
+		refs:    []rune{0x1F6A7},
 	},
 	0x1f3d8: {
-		aliases: []string{
-			`town`,
-		},
-		refs: []string{
-			`U+1F3E1 house with garden`,
-		},
+		aliases: []string{`town`},
+		refs:    []rune{0x1F3E1},
 	},
 	0x1f3d9: {
-		aliases: []string{
-			`skyline`,
-			`city`,
-		},
-		refs: []string{
-			`U+1F306 cityscape at dusk`,
-		},
+		aliases: []string{`skyline`, `city`},
+		refs:    []rune{0x1F306},
 	},
 	0x1f3da: {
-		aliases: []string{
-			`derelict site`,
-		},
+		aliases: []string{`derelict site`},
 	},
 	0x1f3db: {
-		aliases: []string{
-			`public building`,
-		},
+		aliases: []string{`public building`},
 	},
 	0x1f3dc: {
-		refs: []string{
-			`U+1F335 cactus`,
-		},
+		refs: []rune{0x1F335},
 	},
 	0x1f3dd: {
-		aliases: []string{
-			`island`,
-		},
-		refs: []string{
-			`U+1F334 palm tree`,
-		},
+		aliases: []string{`island`},
+		refs:    []rune{0x1F334},
 	},
 	0x1f3de: {
-		refs: []string{
-			`U+1F332 evergreen tree`,
-		},
+		refs: []rune{0x1F332},
 	},
 	0x1f3e1: {
-		aliases: []string{
-			`home`,
-			`house with yard`,
-		},
-		refs: []string{
-			`U+1F3D8 house buildings`,
-		},
+		aliases: []string{`home`, `house with yard`},
+		refs:    []rune{0x1F3D8},
 	},
 	0x1f3e3: {
-		refs: []string{
-			`U+3012 postal mark`,
-		},
+		refs: []rune{0x3012},
 	},
 	0x1f3e5: {
-		refs: []string{
-			`U+26E8 black cross on shield`,
-		},
+		refs: []rune{0x26E8},
 	},
 	0x1f3e6: {
-		refs: []string{
-			`U+1F131 squared latin capital letter b`,
-		},
+		refs: []rune{0x1F131},
 	},
 	0x1f3e7: {
-		aliases: []string{
-			`ATM`,
-		},
+		aliases: []string{`ATM`},
 	},
 	0x1f3e8: {
-		refs: []string{
-			`U+1F157 negative circled latin capital letter h`,
-			`U+1F6CC sleeping accommodation`,
-		},
+		refs: []rune{0x1F157, 0x1F6CC},
 	},
 	0x1f3ed: {
-		aliases: []string{
-			`industrial production site`,
-			`date of production`,
-		},
-		refs: []string{
-			`U+26ED gear without hub`,
-		},
+		aliases: []string{`industrial production site`, `date of production`},
+		refs:    []rune{0x26ED},
 	},
 	0x1f3ee: {
-		aliases: []string{
-			`japanese izakaya restaurant`,
-		},
+		aliases: []string{`japanese izakaya restaurant`},
 	},
 	0x1f3f0: {
-		refs: []string{
-			`U+26EB castle`,
-		},
+		refs: []rune{0x26EB},
 	},
 	0x1f3f1: {
-		refs: []string{
-			`U+1F6A9 triangular flag on post`,
-		},
+		refs: []rune{0x1F6A9},
 	},
 	0x1f3f3: {
-		aliases: []string{
-			`flag`,
-		},
-		refs: []string{
-			`U+2690 white flag`,
-		},
+		aliases: []string{`flag`},
+		refs:    []rune{0x2690},
 	},
 	0x1f3f5: {
-		refs: []string{
-			`U+2740 white florette`,
-		},
+		refs: []rune{0x2740},
 	},
 	0x1f3f6: {
-		refs: []string{
-			`U+2741 eight petalled outlined black florette`,
-		},
+		refs: []rune{0x2741},
 	},
 	0x1f3f7: {
-		aliases: []string{
-			`price`,
-			`price tag`,
-		},
-		refs: []string{
-			`U+1F516 bookmark`,
-		},
+		aliases: []string{`price`, `price tag`},
+		refs:    []rune{0x1F516},
 	},
 	0x1f3f9: {
-		aliases: []string{
-			`archery`,
-		},
-		refs: []string{
-			`U+2650 sagittarius`,
-		},
+		aliases: []string{`archery`},
+		refs:    []rune{0x2650},
 	},
 	0x1f3fa: {
-		refs: []string{
-			`U+2652 aquarius`,
-			`U+100E8 linear b ideogram vessel b209`,
-		},
+		refs: []rune{0x2652, 0x100E8},
 	},
 	0x1f404: {
-		aliases: []string{
-			`beef`,
-		},
+		aliases: []string{`beef`},
 	},
 	0x1f40e: {
-		aliases: []string{
-			`equestrian sports`,
-		},
+		aliases: []string{`equestrian sports`},
 	},
 	0x1f40f: {
-		refs: []string{
-			`U+2648 aries`,
-		},
+		refs: []rune{0x2648},
 	},
 	0x1f413: {
-		aliases: []string{
-			`cock`,
-		},
+		aliases: []string{`cock`},
 	},
 	0x1f414: {
-		aliases: []string{
-			`hen`,
-			`poultry`,
-		},
+		aliases: []string{`hen`, `poultry`},
 	},
 	0x1f416: {
-		aliases: []string{
-			`pork`,
-		},
+		aliases: []string{`pork`},
 	},
 	0x1f41e: {
-		aliases: []string{
-			`ladybird`,
-			`ladybug`,
-			`coccinellids`,
-		},
+		aliases: []string{`ladybird`, `ladybug`, `coccinellids`},
 	},
 	0x1f422: {
-		aliases: []string{
-			`tortoise`,
-			`terrapin`,
-		},
+		aliases: []string{`tortoise`, `terrapin`},
 	},
 	0x1f431: {
-		refs: []string{
-			`U+1F63A smiling cat face with open mouth`,
-		},
+		refs: []rune{0x1F63A},
 	},
 	0x1f43e: {
-		refs: []string{
-			`U+1F463 footprints`,
-		},
+		refs: []rune{0x1F463},
 	},
 	0x1f43f: {
-		aliases: []string{
-			`animal`,
-			`critter`,
-		},
+		aliases: []string{`animal`, `critter`},
 	},
 	0x1f441: {
-		aliases: []string{
-			`sight`,
-		},
+		aliases: []string{`sight`},
 	},
 	0x1f446: {
-		refs: []string{
-			`U+261D white up pointing index`,
-			`U+1F5A2 black up pointing backhand index`,
-		},
+		refs: []rune{0x261D, 0x1F5A2},
 	},
 	0x1f447: {
-		refs: []string{
-			`U+261F white down pointing index`,
-			`U+1F597 white down pointing left hand index`,
-			`U+1F5A3 black down pointing backhand index`,
-		},
+		refs: []rune{0x261F, 0x1F597, 0x1F5A3},
 	},
 	0x1f448: {
-		refs: []string{
-			`U+261C white left pointing index`,
-			`U+1F59C black left pointing backhand index`,
-			`U+1FAF2 leftwards hand`,
-		},
+		refs: []rune{0x261C, 0x1F59C, 0x1FAF2},
 	},
 	0x1f449: {
-		refs: []string{
-			`U+261E white right pointing index`,
-			`U+1F59D black right pointing backhand index`,
-			`U+1FAF1 rightwards hand`,
-		},
+		refs: []rune{0x261E, 0x1F59D, 0x1FAF1},
 	},
 	0x1f44a: {
-		aliases: []string{
-			`punch`,
-		},
-		refs: []string{
-			`U+270A raised fist`,
-		},
+		aliases: []string{`punch`},
+		refs:    []rune{0x270A},
 	},
 	0x1f44b: {
-		refs: []string{
-			`U+270B raised hand`,
-		},
+		refs: []rune{0x270B},
 	},
 	0x1f44c: {
-		refs: []string{
-			`U+1F58F turned ok hand sign`,
-		},
+		refs: []rune{0x1F58F},
 	},
 	0x1f44d: {
-		refs: []string{
-			`U+1F592 reversed thumbs up sign`,
-		},
+		refs: []rune{0x1F592},
 	},
 	0x1f44e: {
-		refs: []string{
-			`U+1F593 reversed thumbs down sign`,
-		},
+		refs: []rune{0x1F593},
 	},
 	0x1f45f: {
-		aliases: []string{
-			`runner`,
-			`sneaker`,
-			`tennis shoe`,
-		},
+		aliases: []string{`runner`, `sneaker`, `tennis shoe`},
 	},
 	0x1f463: {
-		refs: []string{
-			`U+1F43E paw prints`,
-		},
+		refs: []rune{0x1F43E},
 	},
 	0x1f464: {
-		aliases: []string{
-			`guest account`,
-		},
+		aliases: []string{`guest account`},
 	},
 	0x1f465: {
-		aliases: []string{
-			`accounts`,
-		},
+		aliases: []string{`accounts`},
 	},
 	0x1f467: {
-		refs: []string{
-			`U+1F9D2 child`,
-		},
+		refs: []rune{0x1F9D2},
 	},
 	0x1f469: {
-		refs: []string{
-			`U+1F9D1 adult`,
-		},
+		refs: []rune{0x1F9D1},
 	},
 	0x1f46a: {
-		aliases: []string{
-			`rated for family`,
-		},
+		aliases: []string{`rated for family`},
 	},
 	0x1f46b: {
-		refs: []string{
-			`U+1F6BB restroom`,
-		},
+		refs: []rune{0x1F6BB},
 	},
 	0x1f470: {
-		refs: []string{
-			`U+1F935 man in tuxedo`,
-		},
+		refs: []rune{0x1F935},
 	},
 	0x1f475: {
-		refs: []string{
-			`U+1F9D3 older adult`,
-		},
+		refs: []rune{0x1F9D3},
 	},
 	0x1f477: {
-		refs: []string{
-			`U+26D1 helmet with white cross`,
-		},
+		refs: []rune{0x26D1},
 	},
 	0x1f478: {
-		refs: []string{
-			`U+1F934 prince`,
-			`U+1FAC5 person with crown`,
-		},
+		refs: []rune{0x1F934, 0x1FAC5},
 	},
 	0x1f47d: {
-		refs: []string{
-			`U+1F6F8 flying saucer`,
-		},
+		refs: []rune{0x1F6F8},
 	},
 	0x1f47e: {
-		refs: []string{
-			`U+1F916 robot face`,
-		},
+		refs: []rune{0x1F916},
 	},
 	0x1f483: {
-		refs: []string{
-			`U+1F57A man dancing`,
-		},
+		refs: []rune{0x1F57A},
 	},
 	0x1f485: {
-		aliases: []string{
-			`manicure`,
-			`nail care`,
-		},
+		aliases: []string{`manicure`, `nail care`},
 	},
 	0x1f48b: {
-		aliases: []string{
-			`lips`,
-		},
-		refs: []string{
-			`U+1F5E2 lips`,
-		},
+		aliases: []string{`lips`},
+		refs:    []rune{0x1F5E2},
 	},
 	0x1f48d: {
-		aliases: []string{
-			`jewelry`,
-		},
+		aliases: []string{`jewelry`},
 	},
 	0x1f48f: {
-		aliases: []string{
-			`two people kissing`,
-		},
+		aliases: []string{`two people kissing`},
 	},
 	0x1f490: {
-		refs: []string{
-			`U+1F395 bouquet of flowers`,
-		},
+		refs: []rune{0x1F395},
 	},
 	0x1f492: {
-		aliases: []string{
-			`wedding chapel`,
-		},
-		refs: []string{
-			`U+26AD marriage symbol`,
-		},
+		aliases: []string{`wedding chapel`},
+		refs:    []rune{0x26AD},
 	},
 	0x1f499: {
-		refs: []string{
-			`U+2661 white heart suit`,
-			`U+2665 black heart suit`,
-			`U+2764 heavy black heart`,
-			`U+1F90D white heart`,
-			`U+1F9E1 orange heart`,
-			`U+1FA75 light blue heart`,
-		},
+		refs: []rune{0x2661, 0x2665, 0x2764, 0x1F90D, 0x1F9E1, 0x1FA75},
 	},
 	0x1f4a0: {
-		aliases: []string{
-			`kawaii`,
-			`cute`,
-		},
-		refs: []string{
-			`U+27D0 white diamond with centred dot`,
-		},
+		aliases: []string{`kawaii`, `cute`},
+		refs:    []rune{0x27D0},
 	},
 	0x1f4a1: {
-		aliases: []string{
-			`idea`,
-		},
+		aliases: []string{`idea`},
 	},
 	0x1f4a5: {
-		refs: []string{
-			`U+1F5F0 mood bubble`,
-		},
+		refs: []rune{0x1F5F0},
 	},
 	0x1f4a6: {
-		aliases: []string{
-			`plewds`,
-		},
+		aliases: []string{`plewds`},
 	},
 	0x1f4a7: {
-		refs: []string{
-			`U+1F322 black droplet`,
-			`U+1FA78 drop of blood`,
-		},
+		refs: []rune{0x1F322, 0x1FA78},
 	},
 	0x1f4a8: {
-		aliases: []string{
-			`running dash`,
-			`briffits`,
-		},
+		aliases: []string{`running dash`, `briffits`},
 	},
 	0x1f4a9: {
-		aliases: []string{
-			`dog dirt`,
-		},
+		aliases: []string{`dog dirt`},
 	},
 	0x1f4aa: {
-		aliases: []string{
-			`strong`,
-			`muscled`,
-		},
+		aliases: []string{`strong`, `muscled`},
 	},
 	0x1f4ab: {
-		aliases: []string{
-			`circling stars`,
-			`squeans`,
-		},
+		aliases: []string{`circling stars`, `squeans`},
 	},
 	0x1f4ac: {
-		aliases: []string{
-			`comic book conversation bubble`,
-		},
+		aliases: []string{`comic book conversation bubble`},
 	},
 	0x1f4ad: {
-		refs: []string{
-			`U+1F5ED right thought bubble`,
-		},
+		refs: []rune{0x1F5ED},
 	},
 	0x1f4ae: {
-		aliases: []string{
-			`brilliant homework`,
-		},
-		refs: []string{
-			`U+2740 white florette`,
-		},
+		aliases: []string{`brilliant homework`},
+		refs:    []rune{0x2740},
 	},
 	0x1f4af: {
-		aliases: []string{
-			`perfect score`,
-		},
+		aliases: []string{`perfect score`},
 	},
 	0x1f4b2: {
-		refs: []string{
-			`U+0024 dollar sign`,
-		},
+		refs: []rune{0x0024},
 	},
 	0x1f4bb: {
-		refs: []string{
-			`U+1F5B3 old personal computer`,
-		},
+		refs: []rune{0x1F5B3},
 	},
 	0x1f4be: {
-		aliases: []string{
-			`flexible disk cartridge`,
-			`floppy disc`,
-			`floppy`,
-			`diskette`,
-		},
-		refs: []string{
-			`U+1F5AA black hard shell floppy disk`,
-		},
+		aliases: []string{`flexible disk cartridge`, `floppy disc`, `floppy`, `diskette`},
+		refs:    []rune{0x1F5AA},
 	},
 	0x1f4bf: {
-		refs: []string{
-			`U+1F5B8 optical disc icon`,
-		},
+		refs: []rune{0x1F5B8},
 	},
 	0x1f4c0: {
-		aliases: []string{
-			`digital video/versatile disc`,
-		},
+		aliases: []string{`digital video/versatile disc`},
 	},
 	0x1f4c1: {
-		refs: []string{
-			`U+1F5C0 folder`,
-		},
+		refs: []rune{0x1F5C0},
 	},
 	0x1f4c2: {
-		refs: []string{
-			`U+1F5C1 open folder`,
-		},
+		refs: []rune{0x1F5C1},
 	},
 	0x1f4c3: {
-		refs: []string{
-			`U+1F5CF page`,
-		},
+		refs: []rune{0x1F5CF},
 	},
 	0x1f4c4: {
-		refs: []string{
-			`U+1F5CE document`,
-		},
+		refs: []rune{0x1F5CE},
 	},
 	0x1f4c5: {
-		refs: []string{
-			`U+1F5D2 spiral note pad`,
-		},
+		refs: []rune{0x1F5D2},
 	},
 	0x1f4c6: {
-		refs: []string{
-			`U+1F5D3 spiral calendar pad`,
-		},
+		refs: []rune{0x1F5D3},
 	},
 	0x1f4c7: {
-		refs: []string{
-			`U+1F5C2 card index dividers`,
-		},
+		refs: []rune{0x1F5C2},
 	},
 	0x1f4c8: {
-		refs: []string{
-			`U+1F5E0 stock chart`,
-		},
+		refs: []rune{0x1F5E0},
 	},
 	0x1f4cc: {
-		refs: []string{
-			`U+1F588 black pushpin`,
-		},
+		refs: []rune{0x1F588},
 	},
 	0x1f4ce: {
-		refs: []string{
-			`U+1F587 linked paperclips`,
-		},
+		refs: []rune{0x1F587},
 	},
 	0x1f4d6: {
-		aliases: []string{
-			`read operator's manual`,
-		},
-		refs: []string{
-			`U+1F56E book`,
-		},
+		aliases: []string{`read operator's manual`},
+		refs:    []rune{0x1F56E},
 	},
 	0x1f4de: {
-		refs: []string{
-			`U+1F57B left hand telephone receiver`,
-			`U+1F57D right hand telephone receiver`,
-		},
+		refs: []rune{0x1F57B, 0x1F57D},
 	},
 	0x1f4e0: {
-		refs: []string{
-			`U+213B facsimile sign`,
-			`U+1F57C telephone receiver with page`,
-			`U+1F5A8 printer`,
-			`U+1F5B7 fax icon`,
-		},
+		refs: []rune{0x213B, 0x1F57C, 0x1F5A8, 0x1F5B7},
 	},
 	0x1f4e1: {
-		aliases: []string{
-			`position indicator`,
-			`news`,
-		},
+		aliases: []string{`position indicator`, `news`},
 	},
 	0x1f4e3: {
-		refs: []string{
-			`U+1F56C bullhorn with sound waves`,
-		},
+		refs: []rune{0x1F56C},
 	},
 	0x1f4e6: {
-		refs: []string{
-			`U+1F381 wrapped present`,
-		},
+		refs: []rune{0x1F381},
 	},
 	0x1f4e7: {
-		refs: []string{
-			`U+1F584 envelope with lightning`,
-		},
+		refs: []rune{0x1F584},
 	},
 	0x1f4e8: {
-		refs: []string{
-			`U+2709 envelope`,
-		},
+		refs: []rune{0x2709},
 	},
 	0x1f4e9: {
-		refs: []string{
-			`U+1F585 flying envelope`,
-		},
+		refs: []rune{0x1F585},
 	},
 	0x1f4ea: {
-		aliases: []string{
-			`letter box`,
-			`mail reception`,
-			`empty mailbox`,
-		},
+		aliases: []string{`letter box`, `mail reception`, `empty mailbox`},
 	},
 	0x1f4eb: {
-		aliases: []string{
-			`mailbox containing mail`,
-		},
+		aliases: []string{`mailbox containing mail`},
 	},
 	0x1f4ee: {
-		aliases: []string{
-			`mailbox for sending mail`,
-		},
+		aliases: []string{`mailbox for sending mail`},
 	},
 	0x1f4f0: {
-		refs: []string{
-			`U+1F5DE rolled-up newspaper`,
-		},
+		refs: []rune{0x1F5DE},
 	},
 	0x1f4f1: {
-		refs: []string{
-			`U+1F581 clamshell mobile phone`,
-		},
+		refs: []rune{0x1F581},
 	},
 	0x1f4f6: {
-		aliases: []string{
-			`cellular reception`,
-		},
+		aliases: []string{`cellular reception`},
 	},
 	0x1f4f9: {
-		aliases: []string{
-			`video`,
-		},
+		aliases: []string{`video`},
 	},
 	0x1f4fd: {
-		aliases: []string{
-			`movies`,
-		},
-		refs: []string{
-			`U+1F3A6 cinema`,
-		},
+		aliases: []string{`movies`},
+		refs:    []rune{0x1F3A6},
 	},
 	0x1f4fe: {
-		aliases: []string{
-			`stereo`,
-		},
+		aliases: []string{`stereo`},
 	},
 	0x1f500: {
-		aliases: []string{
-			`shuffle`,
-		},
+		aliases: []string{`shuffle`},
 	},
 	0x1f501: {
-		aliases: []string{
-			`repeat`,
-		},
-		refs: []string{
-			`U+267B black universal recycling symbol`,
-		},
+		aliases: []string{`repeat`},
+		refs:    []rune{0x267B},
 	},
 	0x1f502: {
-		aliases: []string{
-			`repeat one item over`,
-		},
+		aliases: []string{`repeat one item over`},
 	},
 	0x1f503: {
-		aliases: []string{
-			`reload`,
-		},
-		refs: []string{
-			`U+1F5D8 clockwise right and left semicircle arrows`,
-		},
+		aliases: []string{`reload`},
+		refs:    []rune{0x1F5D8},
 	},
 	0x1f504: {
-		aliases: []string{
-			`reload`,
-		},
+		aliases: []string{`reload`},
 	},
 	0x1f506: {
-		refs: []string{
-			`U+2600 black sun with rays`,
-			`U+263C white sun with rays`,
-			`U+26ED gear without hub`,
-		},
+		refs: []rune{0x2600, 0x263C, 0x26ED},
 	},
 	0x1f508: {
-		aliases: []string{
-			`left speaker`,
-		},
-		refs: []string{
-			`U+1F568 right speaker`,
-			`U+1F56B bullhorn`,
-		},
+		aliases: []string{`left speaker`},
+		refs:    []rune{0x1F568, 0x1F56B},
 	},
 	0x1f50a: {
-		aliases: []string{
-			`sound`,
-		},
+		aliases: []string{`sound`},
 	},
 	0x1f50b: {
-		refs: []string{
-			`U+1FAAB low battery`,
-		},
+		refs: []rune{0x1FAAB},
 	},
 	0x1f50d: {
-		aliases: []string{
-			`search`,
-		},
-		refs: []string{
-			`U+1F56C bullhorn with sound waves`,
-		},
+		aliases: []string{`search`},
+		refs:    []rune{0x1F56C},
 	},
 	0x1f50e: {
-		aliases: []string{
-			`get more details`,
-		},
+		aliases: []string{`get more details`},
 	},
 	0x1f50f: {
-		aliases: []string{
-			`privacy`,
-		},
+		aliases: []string{`privacy`},
 	},
 	0x1f510: {
-		aliases: []string{
-			`secure`,
-		},
+		aliases: []string{`secure`},
 	},
 	0x1f511: {
-		refs: []string{
-			`U+26BF squared key`,
-			`U+1F5DD old key`,
-		},
+		refs: []rune{0x26BF, 0x1F5DD},
 	},
 	0x1f512: {
-		aliases: []string{
-			`padlock in locked position`,
-		},
+		aliases: []string{`padlock in locked position`},
 	},
 	0x1f514: {
-		refs: []string{
-			`U+0FC4 tibetan symbol dril bu`,
-			`U+2407 symbol for bell`,
-			`U+1F56D ringing bell`,
-		},
+		refs: []rune{0x0FC4, 0x2407, 0x1F56D},
 	},
 	0x1f516: {
-		refs: []string{
-			`U+1F3F7 label`,
-		},
+		refs: []rune{0x1F3F7},
 	},
 	0x1f518: {
-		refs: []string{
-			`U+2299 circled dot operator`,
-			`U+25C9 fisheye`,
-			`U+25CE bullseye`,
-		},
+		refs: []rune{0x2299, 0x25C9, 0x25CE},
 	},
 	0x1f519: {
-		refs: []string{
-			`U+2397 previous page`,
-		},
+		refs: []rune{0x2397},
 	},
 	0x1f51d: {
-		aliases: []string{
-			`top of page`,
-		},
+		aliases: []string{`top of page`},
 	},
 	0x1f51f: {
-		refs: []string{
-			`U+20E3 combining enclosing keycap`,
-		},
+		refs: []rune{0x20E3},
 	},
 	0x1f524: {
-		aliases: []string{
-			`English input`,
-		},
+		aliases: []string{`English input`},
 	},
 	0x1f526: {
-		aliases: []string{
-			`flashlight`,
-		},
+		aliases: []string{`flashlight`},
 	},
 	0x1f52a: {
-		aliases: []string{
-			`Japanese kitchen knife`,
-		},
-		refs: []string{
-			`U+1F5E1 dagger knife`,
-		},
+		aliases: []string{`Japanese kitchen knife`},
+		refs:    []rune{0x1F5E1},
 	},
 	0x1f52b: {
-		aliases: []string{
-			`handgun`,
-			`revolver`,
-		},
+		aliases: []string{`handgun`, `revolver`},
 	},
 	0x1f52f: {
-		refs: []string{
-			`U+2721 star of david`,
-		},
+		refs: []rune{0x2721},
 	},
 	0x1f534: {
-		refs: []string{
-			`U+23FA black circle for record`,
-			`U+25CF black circle`,
-			`U+25EF large circle`,
-			`U+2B24 black large circle`,
-			`U+2B55 heavy large circle`,
-			`U+1F7E0 large orange circle`,
-		},
+		refs: []rune{0x23FA, 0x25CF, 0x25EF, 0x2B24, 0x2B55, 0x1F7E0},
 	},
 	0x1f536: {
-		refs: []string{
-			`U+25C6 black diamond`,
-		},
+		refs: []rune{0x25C6},
 	},
 	0x1f538: {
-		refs: []string{
-			`U+2B29 black small diamond`,
-		},
+		refs: []rune{0x2B29},
 	},
 	0x1f53a: {
-		refs: []string{
-			`U+25B2 black up-pointing triangle`,
-		},
+		refs: []rune{0x25B2},
 	},
 	0x1f53b: {
-		refs: []string{
-			`U+25BC black down-pointing triangle`,
-		},
+		refs: []rune{0x25BC},
 	},
 	0x1f53c: {
-		aliases: []string{
-			`play arrow up`,
-		},
-		refs: []string{
-			`U+25B4 black up-pointing small triangle`,
-		},
+		aliases: []string{`play arrow up`},
+		refs:    []rune{0x25B4},
 	},
 	0x1f53d: {
-		aliases: []string{
-			`play arrow down`,
-		},
-		refs: []string{
-			`U+25BE black down-pointing small triangle`,
-		},
+		aliases: []string{`play arrow down`},
+		refs:    []rune{0x25BE},
 	},
 	0x1f53e: {
-		aliases: []string{
-			`circle shadow down`,
-		},
-		refs: []string{
-			`U+274D shadowed white circle`,
-		},
+		aliases: []string{`circle shadow down`},
+		refs:    []rune{0x274D},
 	},
 	0x1f542: {
-		refs: []string{
-			`U+2722 four teardrop-spoked asterisk`,
-		},
+		refs: []rune{0x2722},
 	},
 	0x1f546: {
-		aliases: []string{
-			`cross outline`,
-		},
-		refs: []string{
-			`U+271E shadowed white latin cross`,
-		},
+		aliases: []string{`cross outline`},
+		refs:    []rune{0x271E},
 	},
 	0x1f549: {
-		refs: []string{
-			`U+0950 devanagari om`,
-		},
+		refs: []rune{0x0950},
 	},
 	0x1f54a: {
-		aliases: []string{
-			`peace`,
-		},
+		aliases: []string{`peace`},
 	},
 	0x1f54e: {
-		aliases: []string{
-			`hanukiah`,
-		},
+		aliases: []string{`hanukiah`},
 	},
 	0x1f54f: {
-		refs: []string{
-			`U+2695 staff of aesculapius`,
-		},
+		refs: []rune{0x2695},
 	},
 	0x1f550: {
-		refs: []string{
-			`U+231A watch`,
-			`U+23F0 alarm clock`,
-		},
+		refs: []rune{0x231A, 0x23F0},
 	},
 	0x1f568: {
-		refs: []string{
-			`U+1F508 speaker`,
-		},
+		refs: []rune{0x1F508},
 	},
 	0x1f56b: {
-		aliases: []string{
-			`sound off`,
-		},
-		refs: []string{
-			`U+1F508 speaker`,
-		},
+		aliases: []string{`sound off`},
+		refs:    []rune{0x1F508},
 	},
 	0x1f56c: {
-		aliases: []string{
-			`sound on`,
-		},
-		refs: []string{
-			`U+1F4E3 cheering megaphone`,
-			`U+1F50A speaker with three sound waves`,
-		},
+		aliases: []string{`sound on`},
+		refs:    []rune{0x1F4E3, 0x1F50A},
 	},
 	0x1f56d: {
-		refs: []string{
-			`U+1F514 bell`,
-		},
+		refs: []rune{0x1F514},
 	},
 	0x1f56e: {
-		refs: []string{
-			`U+1F4D6 open book`,
-		},
+		refs: []rune{0x1F4D6},
 	},
 	0x1f570: {
-		aliases: []string{
-			`clock`,
-		},
-		refs: []string{
-			`U+23F0 alarm clock`,
-		},
+		aliases: []string{`clock`},
+		refs:    []rune{0x23F0},
 	},
 	0x1f571: {
-		refs: []string{
-			`U+2620 skull and crossbones`,
-		},
+		refs: []rune{0x2620},
 	},
 	0x1f573: {
-		aliases: []string{
-			`portable hole`,
-		},
+		aliases: []string{`portable hole`},
 	},
 	0x1f574: {
-		aliases: []string{
-			`jump`,
-		},
+		aliases: []string{`jump`},
 	},
 	0x1f575: {
-		aliases: []string{
-			`investigate`,
-		},
+		aliases: []string{`investigate`},
 	},
 	0x1f576: {
-		aliases: []string{
-			`cool`,
-		},
+		aliases: []string{`cool`},
 	},
 	0x1f57a: {
-		refs: []string{
-			`U+1F483 dancer`,
-		},
+		refs: []rune{0x1F483},
 	},
 	0x1f57b: {
-		refs: []string{
-			`U+1F4DE telephone receiver`,
-		},
+		refs: []rune{0x1F4DE},
 	},
 	0x1f57c: {
-		aliases: []string{
-			`fax`,
-		},
-		refs: []string{
-			`U+1F4E0 fax machine`,
-		},
+		aliases: []string{`fax`},
+		refs:    []rune{0x1F4E0},
 	},
 	0x1f57d: {
-		aliases: []string{
-			`telephone handset`,
-		},
+		aliases: []string{`telephone handset`},
 	},
 	0x1f57e: {
-		refs: []string{
-			`U+260F white telephone`,
-		},
+		refs: []rune{0x260F},
 	},
 	0x1f57f: {
-		refs: []string{
-			`U+260E black telephone`,
-		},
+		refs: []rune{0x260E},
 	},
 	0x1f580: {
-		aliases: []string{
-			`modem`,
-		},
+		aliases: []string{`modem`},
 	},
 	0x1f581: {
-		aliases: []string{
-			`cellular phone`,
-		},
-		refs: []string{
-			`U+1F4F1 mobile phone`,
-		},
+		aliases: []string{`cellular phone`},
+		refs:    []rune{0x1F4F1},
 	},
 	0x1f582: {
-		refs: []string{
-			`U+2709 envelope`,
-		},
+		refs: []rune{0x2709},
 	},
 	0x1f583: {
-		aliases: []string{
-			`mail`,
-		},
+		aliases: []string{`mail`},
 	},
 	0x1f584: {
-		aliases: []string{
-			`e-mail`,
-		},
-		refs: []string{
-			`U+1F4E7 e-mail symbol`,
-		},
+		aliases: []string{`e-mail`},
+		refs:    []rune{0x1F4E7},
 	},
 	0x1f585: {
-		aliases: []string{
-			`send message`,
-		},
-		refs: []string{
-			`U+1F4E9 envelope with downwards arrow above`,
-		},
+		aliases: []string{`send message`},
+		refs:    []rune{0x1F4E9},
 	},
 	0x1f587: {
-		aliases: []string{
-			`links`,
-		},
-		refs: []string{
-			`U+1F4CE paperclip`,
-		},
+		aliases: []string{`links`},
+		refs:    []rune{0x1F4CE},
 	},
 	0x1f588: {
-		aliases: []string{
-			`marker`,
-		},
-		refs: []string{
-			`U+1F4CC pushpin`,
-		},
+		aliases: []string{`marker`},
+		refs:    []rune{0x1F4CC},
 	},
 	0x1f589: {
-		aliases: []string{
-			`pencil`,
-		},
-		refs: []string{
-			`U+270E lower right pencil`,
-		},
+		aliases: []string{`pencil`},
+		refs:    []rune{0x270E},
 	},
 	0x1f58a: {
-		aliases: []string{
-			`ballpoint pen`,
-		},
+		aliases: []string{`ballpoint pen`},
 	},
 	0x1f58b: {
-		aliases: []string{
-			`fountain pen`,
-		},
-		refs: []string{
-			`U+2711 white nib`,
-		},
+		aliases: []string{`fountain pen`},
+		refs:    []rune{0x2711},
 	},
 	0x1f58c: {
-		aliases: []string{
-			`brush`,
-		},
+		aliases: []string{`brush`},
 	},
 	0x1f58d: {
-		aliases: []string{
-			`crayon`,
-		},
+		aliases: []string{`crayon`},
 	},
 	0x1f58e: {
-		refs: []string{
-			`U+270D writing hand`,
-		},
+		refs: []rune{0x270D},
 	},
 	0x1f58f: {
-		refs: []string{
-			`U+1F44C ok hand sign`,
-		},
+		refs: []rune{0x1F44C},
 	},
 	0x1f590: {
-		aliases: []string{
-			`halt`,
-		},
-		refs: []string{
-			`U+270B raised hand`,
-		},
+		aliases: []string{`halt`},
+		refs:    []rune{0x270B},
 	},
 	0x1f592: {
-		refs: []string{
-			`U+1F44D thumbs up sign`,
-		},
+		refs: []rune{0x1F44D},
 	},
 	0x1f593: {
-		refs: []string{
-			`U+1F44E thumbs down sign`,
-		},
+		refs: []rune{0x1F44E},
 	},
 	0x1f594: {
-		refs: []string{
-			`U+270C victory hand`,
-		},
+		refs: []rune{0x270C},
 	},
 	0x1f596: {
-		aliases: []string{
-			`Vulcan salute`,
-		},
+		aliases: []string{`Vulcan salute`},
 	},
 	0x1f597: {
-		refs: []string{
-			`U+261F white down pointing index`,
-			`U+1F447 white down pointing backhand index`,
-		},
+		refs: []rune{0x261F, 0x1F447},
 	},
 	0x1f598: {
-		refs: []string{
-			`U+261C white left pointing index`,
-		},
+		refs: []rune{0x261C},
 	},
 	0x1f599: {
-		refs: []string{
-			`U+261E white right pointing index`,
-		},
+		refs: []rune{0x261E},
 	},
 	0x1f59c: {
-		refs: []string{
-			`U+1F448 white left pointing backhand index`,
-		},
+		refs: []rune{0x1F448},
 	},
 	0x1f59d: {
-		refs: []string{
-			`U+1F449 white right pointing backhand index`,
-		},
+		refs: []rune{0x1F449},
 	},
 	0x1f59e: {
-		refs: []string{
-			`U+261D white up pointing index`,
-		},
+		refs: []rune{0x261D},
 	},
 	0x1f59f: {
-		refs: []string{
-			`U+261F white down pointing index`,
-		},
+		refs: []rune{0x261F},
 	},
 	0x1f5a2: {
-		refs: []string{
-			`U+1F446 white up pointing backhand index`,
-		},
+		refs: []rune{0x1F446},
 	},
 	0x1f5a3: {
-		refs: []string{
-			`U+1F447 white down pointing backhand index`,
-		},
+		refs: []rune{0x1F447},
 	},
 	0x1f5a4: {
-		refs: []string{
-			`U+2665 black heart suit`,
-			`U+1F90D white heart`,
-		},
+		refs: []rune{0x2665, 0x1F90D},
 	},
 	0x1f5a5: {
-		aliases: []string{
-			`tower computer`,
-		},
+		aliases: []string{`tower computer`},
 	},
 	0x1f5a6: {
-		refs: []string{
-			`U+2328 keyboard`,
-		},
+		refs: []rune{0x2328},
 	},
 	0x1f5a7: {
-		aliases: []string{
-			`computer network`,
-		},
+		aliases: []string{`computer network`},
 	},
 	0x1f5a8: {
-		refs: []string{
-			`U+1F4E0 fax machine`,
-		},
+		refs: []rune{0x1F4E0},
 	},
 	0x1f5a9: {
-		aliases: []string{
-			`calculator`,
-		},
+		aliases: []string{`calculator`},
 	},
 	0x1f5aa: {
-		aliases: []string{
-			`disk`,
-		},
-		refs: []string{
-			`U+1F4BE floppy disk`,
-		},
+		aliases: []string{`disk`},
+		refs:    []rune{0x1F4BE},
 	},
 	0x1f5ae: {
-		aliases: []string{
-			`keyboard`,
-		},
-		refs: []string{
-			`U+2328 keyboard`,
-		},
+		aliases: []string{`keyboard`},
+		refs:    []rune{0x2328},
 	},
 	0x1f5b2: {
-		aliases: []string{
-			`ballpoint`,
-		},
+		aliases: []string{`ballpoint`},
 	},
 	0x1f5b3: {
-		aliases: []string{
-			`personal computer`,
-		},
-		refs: []string{
-			`U+1F4BB personal computer`,
-		},
+		aliases: []string{`personal computer`},
+		refs:    []rune{0x1F4BB},
 	},
 	0x1f5b5: {
-		aliases: []string{
-			`monitor`,
-		},
-		refs: []string{
-			`U+20E2 combining enclosing screen`,
-		},
+		aliases: []string{`monitor`},
+		refs:    []rune{0x20E2},
 	},
 	0x1f5b6: {
-		refs: []string{
-			`U+1F5A8 printer`,
-		},
+		refs: []rune{0x1F5A8},
 	},
 	0x1f5b7: {
-		refs: []string{
-			`U+1F4E0 fax machine`,
-		},
+		refs: []rune{0x1F4E0},
 	},
 	0x1f5b8: {
-		aliases: []string{
-			`compact disc`,
-		},
-		refs: []string{
-			`U+1F4BF optical disc`,
-		},
+		aliases: []string{`compact disc`},
+		refs:    []rune{0x1F4BF},
 	},
 	0x1f5bb: {
-		aliases: []string{
-			`graphic document`,
-		},
+		aliases: []string{`graphic document`},
 	},
 	0x1f5bc: {
-		aliases: []string{
-			`art`,
-		},
+		aliases: []string{`art`},
 	},
 	0x1f5bd: {
-		aliases: []string{
-			`frames`,
-		},
+		aliases: []string{`frames`},
 	},
 	0x1f5be: {
-		aliases: []string{
-			`no frames`,
-			`no picture`,
-		},
+		aliases: []string{`no frames`, `no picture`},
 	},
 	0x1f5c0: {
-		aliases: []string{
-			`directory`,
-		},
-		refs: []string{
-			`U+1F4C1 file folder`,
-			`U+1FBB9 left half folder`,
-		},
+		aliases: []string{`directory`},
+		refs:    []rune{0x1F4C1, 0x1FBB9},
 	},
 	0x1f5c1: {
-		refs: []string{
-			`U+1F4C2 open file folder`,
-		},
+		refs: []rune{0x1F4C2},
 	},
 	0x1f5c2: {
-		aliases: []string{
-			`index`,
-		},
-		refs: []string{
-			`U+1F4C7 card index`,
-		},
+		aliases: []string{`index`},
+		refs:    []rune{0x1F4C7},
 	},
 	0x1f5c3: {
-		aliases: []string{
-			`archive`,
-		},
+		aliases: []string{`archive`},
 	},
 	0x1f5ce: {
-		refs: []string{
-			`U+1F4C4 page facing up`,
-		},
+		refs: []rune{0x1F4C4},
 	},
 	0x1f5cf: {
-		refs: []string{
-			`U+1F4C3 page with curl`,
-		},
+		refs: []rune{0x1F4C3},
 	},
 	0x1f5d1: {
-		aliases: []string{
-			`trashcan`,
-		},
+		aliases: []string{`trashcan`},
 	},
 	0x1f5d2: {
-		aliases: []string{
-			`note`,
-			`empty calendar`,
-		},
-		refs: []string{
-			`U+1F4C5 calendar`,
-		},
+		aliases: []string{`note`, `empty calendar`},
+		refs:    []rune{0x1F4C5},
 	},
 	0x1f5d3: {
-		aliases: []string{
-			`calendar`,
-			`day 1`,
-		},
-		refs: []string{
-			`U+1F4C6 tear-off calendar`,
-		},
+		aliases: []string{`calendar`, `day 1`},
+		refs:    []rune{0x1F4C6},
 	},
 	0x1f5d7: {
-		aliases: []string{
-			`overlapping offset windows`,
-		},
+		aliases: []string{`overlapping offset windows`},
 	},
 	0x1f5d8: {
-		aliases: []string{
-			`refresh`,
-		},
-		refs: []string{
-			`U+1F503 clockwise downwards and upwards open circle arrows`,
-		},
+		aliases: []string{`refresh`},
+		refs:    []rune{0x1F503},
 	},
 	0x1f5d9: {
-		aliases: []string{
-			`close`,
-		},
-		refs: []string{
-			`U+274C cross mark`,
-		},
+		aliases: []string{`close`},
+		refs:    []rune{0x274C},
 	},
 	0x1f5dd: {
-		aliases: []string{
-			`encryption`,
-		},
-		refs: []string{
-			`U+1F511 key`,
-		},
+		aliases: []string{`encryption`},
+		refs:    []rune{0x1F511},
 	},
 	0x1f5de: {
-		aliases: []string{
-			`news`,
-		},
-		refs: []string{
-			`U+1F4F0 newspaper`,
-		},
+		aliases: []string{`news`},
+		refs:    []rune{0x1F4F0},
 	},
 	0x1f5df: {
-		aliases: []string{
-			`classified`,
-		},
+		aliases: []string{`classified`},
 	},
 	0x1f5e0: {
-		aliases: []string{
-			`finance`,
-		},
-		refs: []string{
-			`U+1F4C8 chart with upwards trend`,
-		},
+		aliases: []string{`finance`},
+		refs:    []rune{0x1F4C8},
 	},
 	0x1f5e1: {
-		aliases: []string{
-			`rated for violence`,
-			`hate`,
-		},
-		refs: []string{
-			`U+1F52A hocho`,
-		},
+		aliases: []string{`rated for violence`, `hate`},
+		refs:    []rune{0x1F52A},
 	},
 	0x1f5e2: {
-		aliases: []string{
-			`rated for sex`,
-			`kiss`,
-		},
-		refs: []string{
-			`U+1F48B kiss mark`,
-			`U+1FAE6 biting lip`,
-		},
+		aliases: []string{`rated for sex`, `kiss`},
+		refs:    []rune{0x1F48B, 0x1FAE6},
 	},
 	0x1f5e3: {
-		aliases: []string{
-			`rated for strong language`,
-		},
+		aliases: []string{`rated for strong language`},
 	},
 	0x1f5e6: {
-		refs: []string{
-			`U+269E three lines converging right`,
-		},
+		refs: []rune{0x269E},
 	},
 	0x1f5e7: {
-		refs: []string{
-			`U+269F three lines converging left`,
-		},
+		refs: []rune{0x269F},
 	},
 	0x1f5ea: {
-		aliases: []string{
-			`chat`,
-		},
+		aliases: []string{`chat`},
 	},
 	0x1f5eb: {
-		aliases: []string{
-			`conference`,
-		},
+		aliases: []string{`conference`},
 	},
 	0x1f5ed: {
-		refs: []string{
-			`U+1F4AD thought balloon`,
-		},
+		refs: []rune{0x1F4AD},
 	},
 	0x1f5ee: {
-		aliases: []string{
-			`shout left`,
-		},
+		aliases: []string{`shout left`},
 	},
 	0x1f5ef: {
-		aliases: []string{
-			`shout right`,
-		},
+		aliases: []string{`shout right`},
 	},
 	0x1f5f0: {
-		aliases: []string{
-			`new`,
-		},
-		refs: []string{
-			`U+1F4A5 collision symbol`,
-		},
+		aliases: []string{`new`},
+		refs:    []rune{0x1F4A5},
 	},
 	0x1f5f1: {
-		aliases: []string{
-			`updated`,
-		},
+		aliases: []string{`updated`},
 	},
 	0x1f5f2: {
-		aliases: []string{
-			`lightning bolt`,
-		},
-		refs: []string{
-			`U+26A1 high voltage sign`,
-		},
+		aliases: []string{`lightning bolt`},
+		refs:    []rune{0x26A1},
 	},
 	0x1f5f3: {
-		aliases: []string{
-			`vote`,
-		},
-		refs: []string{
-			`U+2612 ballot box with x`,
-		},
+		aliases: []string{`vote`},
+		refs:    []rune{0x2612},
 	},
 	0x1f5f4: {
-		aliases: []string{
-			`x mark`,
-		},
-		refs: []string{
-			`U+2717 ballot x`,
-		},
+		aliases: []string{`x mark`},
+		refs:    []rune{0x2717},
 	},
 	0x1f5f5: {
-		refs: []string{
-			`U+2612 ballot box with x`,
-		},
+		refs: []rune{0x2612},
 	},
 	0x1f5f6: {
-		refs: []string{
-			`U+2718 heavy ballot x`,
-		},
+		refs: []rune{0x2718},
 	},
 	0x1f5f8: {
-		aliases: []string{
-			`check`,
-		},
-		refs: []string{
-			`U+2713 check mark`,
-		},
+		aliases: []string{`check`},
+		refs:    []rune{0x2713},
 	},
 	0x1f5f9: {
-		refs: []string{
-			`U+2611 ballot box with check`,
-		},
+		refs: []rune{0x2611},
 	},
 	0x1f603: {
-		refs: []string{
-			`U+263A white smiling face`,
-		},
+		refs: []rune{0x263A},
 	},
 	0x1f61e: {
-		refs: []string{
-			`U+2639 white frowning face`,
-		},
+		refs: []rune{0x2639},
 	},
 	0x1f62c: {
-		refs: []string{
-			`U+1F910 zipper-mouth face`,
-		},
+		refs: []rune{0x1F910},
 	},
 	0x1f636: {
-		refs: []string{
-			`U+2687 white circle with two dots`,
-		},
+		refs: []rune{0x2687},
 	},
 	0x1f641: {
-		refs: []string{
-			`U+2639 white frowning face`,
-		},
+		refs: []rune{0x2639},
 	},
 	0x1f642: {
-		refs: []string{
-			`U+263A white smiling face`,
-		},
+		refs: []rune{0x263A},
 	},
 	0x1f64c: {
-		aliases: []string{
-			`banzai!`,
-		},
+		aliases: []string{`banzai!`},
 	},
 	0x1f659: {
-		refs: []string{
-			`U+2619 reversed rotated floral heart bullet`,
-		},
+		refs: []rune{0x2619},
 	},
 	0x1f65b: {
-		refs: []string{
-			`U+2767 rotated floral heart bullet`,
-		},
+		refs: []rune{0x2767},
 	},
 	0x1f66a: {
-		aliases: []string{
-			`fourfold knot ornament`,
-		},
+		aliases: []string{`fourfold knot ornament`},
 	},
 	0x1f66b: {
-		aliases: []string{
-			`inverse fourfold knot ornament`,
-		},
+		aliases: []string{`inverse fourfold knot ornament`},
 	},
 	0x1f66c: {
-		refs: []string{
-			`U+1F680 rocket`,
-		},
+		refs: []rune{0x1F680},
 	},
 	0x1f670: {
-		aliases: []string{
-			`italic ampersand lowercase`,
-		},
-		refs: []string{
-			`U+204A tironian sign et`,
-		},
+		aliases: []string{`italic ampersand lowercase`},
+		refs:    []rune{0x204A},
 	},
 	0x1f674: {
-		refs: []string{
-			`U+0026 ampersand`,
-		},
+		refs: []rune{0x0026},
 	},
 	0x1f675: {
-		aliases: []string{
-			`italic ampersand`,
-		},
+		aliases: []string{`italic ampersand`},
 	},
 	0x1f676: {
-		refs: []string{
-			`U+275D heavy double turned comma quotation mark ornament`,
-		},
+		refs: []rune{0x275D},
 	},
 	0x1f677: {
-		refs: []string{
-			`U+275E heavy double comma quotation mark ornament`,
-		},
+		refs: []rune{0x275E},
 	},
 	0x1f678: {
-		refs: []string{
-			`U+2760 heavy low double comma quotation mark ornament`,
-		},
+		refs: []rune{0x2760},
 	},
 	0x1f679: {
-		refs: []string{
-			`U+203D interrobang`,
-		},
+		refs: []rune{0x203D},
 	},
 	0x1f67e: {
-		refs: []string{
-			`U+259E quadrant upper right and lower left`,
-		},
+		refs: []rune{0x259E},
 	},
 	0x1f67f: {
-		refs: []string{
-			`U+259A quadrant upper left and lower right`,
-		},
+		refs: []rune{0x259A},
 	},
 	0x1f680: {
-		refs: []string{
-			`U+1F66C leftwards rocket`,
-		},
+		refs: []rune{0x1F66C},
 	},
 	0x1f681: {
-		refs: []string{
-			`U+2708 airplane`,
-		},
+		refs: []rune{0x2708},
 	},
 	0x1f682: {
-		refs: []string{
-			`U+1F6F2 diesel locomotive`,
-		},
+		refs: []rune{0x1F6F2},
 	},
 	0x1f686: {
-		aliases: []string{
-			`intercity train`,
-		},
+		aliases: []string{`intercity train`},
 	},
 	0x1f687: {
-		aliases: []string{
-			`subway`,
-			`underground train`,
-		},
+		aliases: []string{`subway`, `underground train`},
 	},
 	0x1f689: {
-		aliases: []string{
-			`train`,
-			`subway station`,
-		},
+		aliases: []string{`train`, `subway station`},
 	},
 	0x1f692: {
-		refs: []string{
-			`U+1F6F1 oncoming fire engine`,
-		},
+		refs: []rune{0x1F6F1},
 	},
 	0x1f69a: {
-		refs: []string{
-			`U+26DF black truck`,
-		},
+		refs: []rune{0x26DF},
 	},
 	0x1f6a2: {
-		aliases: []string{
-			`cruise line vacation`,
-		},
-		refs: []string{
-			`U+26F4 ferry`,
-			`U+1F6F3 passenger ship`,
-		},
+		aliases: []string{`cruise line vacation`},
+		refs:    []rune{0x26F4, 0x1F6F3},
 	},
 	0x1f6a3: {
-		refs: []string{
-			`U+26F5 sailboat`,
-		},
+		refs: []rune{0x26F5},
 	},
 	0x1f6a4: {
-		refs: []string{
-			`U+1F6E5 motor boat`,
-		},
+		refs: []rune{0x1F6E5},
 	},
 	0x1f6a7: {
-		refs: []string{
-			`U+26CF pick`,
-			`U+1F3D7 building construction`,
-		},
+		refs: []rune{0x26CF, 0x1F3D7},
 	},
 	0x1f6a8: {
-		aliases: []string{
-			`rotating beacon`,
-		},
+		aliases: []string{`rotating beacon`},
 	},
 	0x1f6a9: {
-		aliases: []string{
-			`location information`,
-		},
-		refs: []string{
-			`U+26F3 flag in hole`,
-			`U+1F3F1 white pennant`,
-		},
+		aliases: []string{`location information`},
+		refs:    []rune{0x26F3, 0x1F3F1},
 	},
 	0x1f6ab: {
-		refs: []string{
-			`U+20E0 combining enclosing circle backslash`,
-			`U+26D4 no entry`,
-			`U+1F6C7 prohibited sign`,
-		},
+		refs: []rune{0x20E0, 0x26D4, 0x1F6C7},
 	},
 	0x1f6b6: {
-		aliases: []string{
-			`walking`,
-		},
+		aliases: []string{`walking`},
 	},
 	0x1f6b9: {
-		aliases: []string{
-			`man symbol`,
-			`men's restroom`,
-		},
-		refs: []string{
-			`U+1FBC5 stick figure`,
-		},
+		aliases: []string{`man symbol`, `men's restroom`},
+		refs:    []rune{0x1FBC5},
 	},
 	0x1f6ba: {
-		aliases: []string{
-			`woman symbol`,
-			`women's restroom`,
-		},
-		refs: []string{
-			`U+1FBC9 stick figure with dress`,
-		},
+		aliases: []string{`woman symbol`, `women's restroom`},
+		refs:    []rune{0x1FBC9},
 	},
 	0x1f6bb: {
-		aliases: []string{
-			`man and woman symbol with divider`,
-			`unisex restroom`,
-		},
-		refs: []string{
-			`U+1F46B man and woman holding hands`,
-		},
+		aliases: []string{`man and woman symbol with divider`, `unisex restroom`},
+		refs:    []rune{0x1F46B},
 	},
 	0x1f6bc: {
-		aliases: []string{
-			`baby on board`,
-			`baby changing station`,
-		},
+		aliases: []string{`baby on board`, `baby changing station`},
 	},
 	0x1f6be: {
-		refs: []string{
-			`U+1F14F squared wc`,
-			`U+1F18F negative squared wc`,
-		},
+		refs: []rune{0x1F14F, 0x1F18F},
 	},
 	0x1f6c6: {
-		aliases: []string{
-			`caution`,
-		},
-		refs: []string{
-			`U+25B3 white up-pointing triangle`,
-		},
+		aliases: []string{`caution`},
+		refs:    []rune{0x25B3},
 	},
 	0x1f6c7: {
-		refs: []string{
-			`U+20E0 combining enclosing circle backslash`,
-			`U+1F6AB no entry sign`,
-		},
+		refs: []rune{0x20E0, 0x1F6AB},
 	},
 	0x1f6c8: {
-		aliases: []string{
-			`information`,
-		},
-		refs: []string{
-			`U+2139 information source`,
-		},
+		aliases: []string{`information`},
+		refs:    []rune{0x2139},
 	},
 	0x1f6cb: {
-		aliases: []string{
-			`furniture`,
-			`lifestyles`,
-		},
+		aliases: []string{`furniture`, `lifestyles`},
 	},
 	0x1f6cc: {
-		aliases: []string{
-			`hotel`,
-			`guestrooms`,
-		},
-		refs: []string{
-			`U+1F3E8 hotel`,
-		},
+		aliases: []string{`hotel`, `guestrooms`},
+		refs:    []rune{0x1F3E8},
 	},
 	0x1f6cd: {
-		aliases: []string{
-			`shopping`,
-		},
+		aliases: []string{`shopping`},
 	},
 	0x1f6ce: {
-		aliases: []string{
-			`reception`,
-			`services`,
-		},
+		aliases: []string{`reception`, `services`},
 	},
 	0x1f6d1: {
-		aliases: []string{
-			`stop sign`,
-		},
-		refs: []string{
-			`U+26A0 warning sign`,
-			`U+26DB heavy white down-pointing triangle`,
-			`U+2BC3 horizontal black octagon`,
-		},
+		aliases: []string{`stop sign`},
+		refs:    []rune{0x26A0, 0x26DB, 0x2BC3},
 	},
 	0x1f6d2: {
-		aliases: []string{
-			`shopping cart`,
-		},
+		aliases: []string{`shopping cart`},
 	},
 	0x1f6e0: {
-		aliases: []string{
-			`tools`,
-			`repair facility`,
-		},
-		refs: []string{
-			`U+2692 hammer and pick`,
-		},
+		aliases: []string{`tools`, `repair facility`},
+		refs:    []rune{0x2692},
 	},
 	0x1f6e1: {
-		aliases: []string{
-			`US road interstate highway`,
-		},
+		aliases: []string{`US road interstate highway`},
 	},
 	0x1f6e2: {
-		aliases: []string{
-			`commodities`,
-		},
+		aliases: []string{`commodities`},
 	},
 	0x1f6e4: {
-		aliases: []string{
-			`railroad`,
-		},
+		aliases: []string{`railroad`},
 	},
 	0x1f6e5: {
-		aliases: []string{
-			`boat`,
-		},
-		refs: []string{
-			`U+1F6A4 speedboat`,
-		},
+		aliases: []string{`boat`},
+		refs:    []rune{0x1F6A4},
 	},
 	0x1f6e6: {
-		aliases: []string{
-			`military airport`,
-		},
+		aliases: []string{`military airport`},
 	},
 	0x1f6e7: {
-		aliases: []string{
-			`commercial airport`,
-		},
-		refs: []string{
-			`U+2708 airplane`,
-		},
+		aliases: []string{`commercial airport`},
+		refs:    []rune{0x2708},
 	},
 	0x1f6e8: {
-		aliases: []string{
-			`airfield`,
-		},
+		aliases: []string{`airfield`},
 	},
 	0x1f6eb: {
-		aliases: []string{
-			`departures`,
-		},
+		aliases: []string{`departures`},
 	},
 	0x1f6ec: {
-		aliases: []string{
-			`arrivals`,
-		},
+		aliases: []string{`arrivals`},
 	},
 	0x1f6f1: {
-		aliases: []string{
-			`fire`,
-		},
-		refs: []string{
-			`U+1F692 fire engine`,
-		},
+		aliases: []string{`fire`},
+		refs:    []rune{0x1F692},
 	},
 	0x1f6f2: {
-		aliases: []string{
-			`train`,
-		},
-		refs: []string{
-			`U+1F682 steam locomotive`,
-			`U+1F686 train`,
-		},
+		aliases: []string{`train`},
+		refs:    []rune{0x1F682, 0x1F686},
 	},
 	0x1f6f3: {
-		aliases: []string{
-			`cruise line vacation`,
-		},
-		refs: []string{
-			`U+1F6A2 ship`,
-		},
+		aliases: []string{`cruise line vacation`},
+		refs:    []rune{0x1F6A2},
 	},
 	0x1f6f7: {
-		aliases: []string{
-			`sledge`,
-			`toboggan`,
-		},
+		aliases: []string{`sledge`, `toboggan`},
 	},
 	0x1f6f8: {
-		aliases: []string{
-			`UFO`,
-		},
-		refs: []string{
-			`U+1F47D extraterrestrial alien`,
-		},
+		aliases: []string{`UFO`},
+		refs:    []rune{0x1F47D},
 	},
 	0x1f6fa: {
-		aliases: []string{
-			`tuk-tuk`,
-			`remorque`,
-		},
+		aliases: []string{`tuk-tuk`, `remorque`},
 	},
 	0x1f702: {
-		refs: []string{
-			`U+25B3 white up-pointing triangle`,
-		},
+		refs: []rune{0x25B3},
 	},
 	0x1f703: {
-		refs: []string{
-			`U+2641 earth`,
-		},
+		refs: []rune{0x2641},
 	},
 	0x1f704: {
-		refs: []string{
-			`U+25BD white down-pointing triangle`,
-		},
+		refs: []rune{0x25BD},
 	},
 	0x1f707: {
-		aliases: []string{
-			`balneum arenae (sand bath)`,
-			`lapis armenus`,
-		},
+		aliases: []string{`balneum arenae (sand bath)`, `lapis armenus`},
 	},
 	0x1f708: {
-		aliases: []string{
-			`spiritus vini`,
-		},
+		aliases: []string{`spiritus vini`},
 	},
 	0x1f70a: {
-		aliases: []string{
-			`crucible; acid; distill; atrament; vitriol; red sulfur; borax; wine; alkali salt; mercurius vivus`,
-			`quick silver`,
-		},
-		refs: []string{
-			`U+2629 cross of jerusalem`,
-		},
+		aliases: []string{`crucible; acid; distill; atrament; vitriol; red sulfur; borax; wine; alkali salt; mercurius vivus`, `quick silver`},
+		refs:    []rune{0x2629},
 	},
 	0x1f70b: {
-		aliases: []string{
-			`distilled vinegar`,
-		},
+		aliases: []string{`distilled vinegar`},
 	},
 	0x1f70d: {
-		aliases: []string{
-			`brimstone`,
-		},
+		aliases: []string{`brimstone`},
 	},
 	0x1f70f: {
-		aliases: []string{
-			`sulfur nigra`,
-			`dye`,
-		},
+		aliases: []string{`sulfur nigra`, `dye`},
 	},
 	0x1f710: {
-		refs: []string{
-			`U+263F mercury`,
-			`U+1F75E alchemical symbol for sublimation`,
-		},
+		refs: []rune{0x263F, 0x1F75E},
 	},
 	0x1f714: {
-		refs: []string{
-			`U+25A1 white square`,
-			`U+2296 circled minus`,
-		},
+		refs: []rune{0x25A1, 0x2296},
 	},
 	0x1f715: {
-		refs: []string{
-			`U+29B6 circled vertical bar`,
-		},
+		refs: []rune{0x29B6},
 	},
 	0x1f718: {
-		aliases: []string{
-			`sal gemmae`,
-		},
+		aliases: []string{`sal gemmae`},
 	},
 	0x1f71a: {
-		refs: []string{
-			`U+2609 sun`,
-		},
+		refs: []rune{0x2609},
 	},
 	0x1f71b: {
-		refs: []string{
-			`U+263D first quarter moon`,
-			`U+263E last quarter moon`,
-		},
+		refs: []rune{0x263D, 0x263E},
 	},
 	0x1f71c: {
-		refs: []string{
-			`U+2642 male sign`,
-		},
+		refs: []rune{0x2642},
 	},
 	0x1f71e: {
-		aliases: []string{
-			`crocus martis`,
-			`red or yellow calcined powder of iron`,
-		},
+		aliases: []string{`crocus martis`, `red or yellow calcined powder of iron`},
 	},
 	0x1f71f: {
-		aliases: []string{
-			`regulus martis`,
-			`scoria from refining stibnite/antimony with iron`,
-		},
+		aliases: []string{`regulus martis`, `scoria from refining stibnite/antimony with iron`},
 	},
 	0x1f720: {
-		refs: []string{
-			`U+2640 female sign`,
-		},
+		refs: []rune{0x2640},
 	},
 	0x1f721: {
-		refs: []string{
-			`U+26A5 male and female sign`,
-		},
+		refs: []rune{0x26A5},
 	},
 	0x1f722: {
-		refs: []string{
-			`U+1F739 alchemical symbol for sal-ammoniac`,
-		},
+		refs: []rune{0x1F739},
 	},
 	0x1f723: {
-		aliases: []string{
-			`crocus veneris`,
-			`aes ustum`,
-		},
+		aliases: []string{`crocus veneris`, `aes ustum`},
 	},
 	0x1f725: {
-		aliases: []string{
-			`crocus of copper`,
-			`crocus veneris`,
-			`lapis haematites`,
-		},
-		refs: []string{
-			`U+2641 earth`,
-		},
+		aliases: []string{`crocus of copper`, `crocus veneris`, `lapis haematites`},
+		refs:    []rune{0x2641},
 	},
 	0x1f726: {
-		refs: []string{
-			`U+1F714 alchemical symbol for salt`,
-		},
+		refs: []rune{0x1F714},
 	},
 	0x1f727: {
-		refs: []string{
-			`U+1F739 alchemical symbol for sal-ammoniac`,
-		},
+		refs: []rune{0x1F739},
 	},
 	0x1f728: {
-		aliases: []string{
-			`aes viride`,
-			`copper subacetate`,
-			`astronomical symbol for earth`,
-		},
-		refs: []string{
-			`U+2295 circled plus`,
-			`U+2641 earth`,
-		},
+		aliases: []string{`aes viride`, `copper subacetate`, `astronomical symbol for earth`},
+		refs:    []rune{0x2295, 0x2641},
 	},
 	0x1f729: {
-		refs: []string{
-			`U+2643 jupiter`,
-		},
+		refs: []rune{0x2643},
 	},
 	0x1f72a: {
-		refs: []string{
-			`U+2644 saturn`,
-		},
+		refs: []rune{0x2644},
 	},
 	0x1f72b: {
-		aliases: []string{
-			`stibnite`,
-		},
-		refs: []string{
-			`U+2641 earth`,
-		},
+		aliases: []string{`stibnite`},
+		refs:    []rune{0x2641},
 	},
 	0x1f72c: {
-		refs: []string{
-			`U+1F739 alchemical symbol for sal-ammoniac`,
-		},
+		refs: []rune{0x1F739},
 	},
 	0x1f72d: {
-		aliases: []string{
-			`cinnabar`,
-		},
-		refs: []string{
-			`U+1F714 alchemical symbol for salt`,
-		},
+		aliases: []string{`cinnabar`},
+		refs:    []rune{0x1F714},
 	},
 	0x1f730: {
-		aliases: []string{
-			`antimony metal`,
-		},
+		aliases: []string{`antimony metal`},
 	},
 	0x1f736: {
-		aliases: []string{
-			`sal alkali`,
-		},
+		aliases: []string{`sal alkali`},
 	},
 	0x1f738: {
-		aliases: []string{
-			`iron pyrite`,
-			`iron sulfide`,
-		},
+		aliases: []string{`iron pyrite`, `iron sulfide`},
 	},
 	0x1f739: {
-		aliases: []string{
-			`ammonium chloride`,
-		},
-		refs: []string{
-			`U+002A asterisk`,
-			`U+26B9 sextile`,
-			`U+2733 eight spoked asterisk`,
-		},
+		aliases: []string{`ammonium chloride`},
+		refs:    []rune{0x002A, 0x26B9, 0x2733},
 	},
 	0x1f73a: {
-		refs: []string{
-			`U+29DF double-ended multimap`,
-		},
+		refs: []rune{0x29DF},
 	},
 	0x1f73b: {
-		aliases: []string{
-			`arsenic sulfide`,
-		},
+		aliases: []string{`arsenic sulfide`},
 	},
 	0x1f73c: {
-		aliases: []string{
-			`arsenic sulfide`,
-		},
+		aliases: []string{`arsenic sulfide`},
 	},
 	0x1f73d: {
-		aliases: []string{
-			`orpiment`,
-			`arsenic trisulfide`,
-		},
+		aliases: []string{`orpiment`, `arsenic trisulfide`},
 	},
 	0x1f73e: {
-		aliases: []string{
-			`tinglass`,
-		},
-		refs: []string{
-			`U+2646 neptune`,
-		},
+		aliases: []string{`tinglass`},
+		refs:    []rune{0x2646},
 	},
 	0x1f73f: {
-		aliases: []string{
-			`impure potassium tartrate`,
-		},
+		aliases: []string{`impure potassium tartrate`},
 	},
 	0x1f740: {
-		aliases: []string{
-			`impure potassium tartrate`,
-		},
+		aliases: []string{`impure potassium tartrate`},
 	},
 	0x1f741: {
-		aliases: []string{
-			`calx viva`,
-			`calcium oxide`,
-		},
+		aliases: []string{`calx viva`, `calcium oxide`},
 	},
 	0x1f746: {
-		refs: []string{
-			`U+0F1C tibetan sign rdel dkar gsum`,
-		},
+		refs: []rune{0x0F1C},
 	},
 	0x1f74a: {
-		aliases: []string{
-			`cera`,
-		},
+		aliases: []string{`cera`},
 	},
 	0x1f74b: {
-		aliases: []string{
-			`pulvis`,
-		},
+		aliases: []string{`pulvis`},
 	},
 	0x1f74c: {
-		aliases: []string{
-			`calcinare`,
-			`oxide residue`,
-			`calcium oxide`,
-		},
+		aliases: []string{`calcinare`, `oxide residue`, `calcium oxide`},
 	},
 	0x1f74d: {
-		aliases: []string{
-			`tutia`,
-			`crude zinc oxide sublimate`,
-			`aes viride`,
-		},
+		aliases: []string{`tutia`, `crude zinc oxide sublimate`, `aes viride`},
 	},
 	0x1f74e: {
-		aliases: []string{
-			`worthless residue of sublimation or distillation`,
-		},
+		aliases: []string{`worthless residue of sublimation or distillation`},
 	},
 	0x1f750: {
-		refs: []string{
-			`U+2624 caduceus`,
-		},
+		refs: []rune{0x2624},
 	},
 	0x1f753: {
-		aliases: []string{
-			`magnes`,
-		},
+		aliases: []string{`magnes`},
 	},
 	0x1f754: {
-		refs: []string{
-			`U+25CA lozenge`,
-			`U+2B26 white medium diamond`,
-		},
+		refs: []rune{0x25CA, 0x2B26},
 	},
 	0x1f755: {
-		refs: []string{
-			`U+22A1 squared dot operator`,
-		},
+		refs: []rune{0x22A1},
 	},
 	0x1f756: {
-		aliases: []string{
-			`fimus equinus`,
-		},
+		aliases: []string{`fimus equinus`},
 	},
 	0x1f757: {
-		aliases: []string{
-			`cineres`,
-		},
+		aliases: []string{`cineres`},
 	},
 	0x1f758: {
-		aliases: []string{
-			`cineres clavellati`,
-			`alumen`,
-		},
+		aliases: []string{`cineres clavellati`, `alumen`},
 	},
 	0x1f75a: {
-		aliases: []string{
-			`later cibratus`,
-			`farina laterum`,
-		},
+		aliases: []string{`later cibratus`, `farina laterum`},
 	},
 	0x1f75e: {
-		refs: []string{
-			`U+260A ascending node`,
-			`U+264E libra`,
-		},
+		refs: []rune{0x260A, 0x264E},
 	},
 	0x1f760: {
-		aliases: []string{
-			`sublimate`,
-		},
+		aliases: []string{`sublimate`},
 	},
 	0x1f762: {
-		aliases: []string{
-			`water`,
-			`aqua`,
-		},
+		aliases: []string{`water`, `aqua`},
 	},
 	0x1f763: {
-		refs: []string{
-			`U+260B descending node`,
-		},
+		refs: []rune{0x260B},
 	},
 	0x1f765: {
-		aliases: []string{
-			`tigellum`,
-		},
-		refs: []string{
-			`U+1F70A alchemical symbol for vinegar`,
-		},
+		aliases: []string{`tigellum`},
+		refs:    []rune{0x1F70A},
 	},
 	0x1f768: {
-		refs: []string{
-			`U+22A4 down tack`,
-		},
+		refs: []rune{0x22A4},
 	},
 	0x1f76b: {
-		aliases: []string{
-			`balneum mariae`,
-		},
+		aliases: []string{`balneum mariae`},
 	},
 	0x1f76c: {
-		aliases: []string{
-			`balneum vaporis`,
-		},
+		aliases: []string{`balneum vaporis`},
 	},
 	0x1f76d: {
-		refs: []string{
-			`U+2697 alembic`,
-		},
+		refs: []rune{0x2697},
 	},
 	0x1f76e: {
-		refs: []string{
-			`U+231B hourglass`,
-		},
+		refs: []rune{0x231B},
 	},
 	0x1f771: {
-		aliases: []string{
-			`mensis`,
-		},
-		refs: []string{
-			`U+22A0 squared times`,
-		},
+		aliases: []string{`mensis`},
+		refs:    []rune{0x22A0},
 	},
 	0x1f772: {
-		aliases: []string{
-			`drachma semis`,
-		},
-		refs: []string{
-			`U+0292 latin small letter ezh`,
-		},
+		aliases: []string{`drachma semis`},
+		refs:    []rune{0x0292},
 	},
 	0x1f773: {
-		aliases: []string{
-			`uncia semis`,
-		},
-		refs: []string{
-			`U+2125 ounce sign`,
-		},
+		aliases: []string{`uncia semis`},
+		refs:    []rune{0x2125},
 	},
 	0x1f774: {
-		aliases: []string{
-			`pars fortunae`,
-		},
-		refs: []string{
-			`U+2297 circled times`,
-		},
+		aliases: []string{`pars fortunae`},
+		refs:    []rune{0x2297},
 	},
 	0x1f775: {
-		refs: []string{
-			`U+260C conjunction`,
-		},
+		refs: []rune{0x260C},
 	},
 	0x1f776: {
-		refs: []string{
-			`U+260D opposition`,
-		},
+		refs: []rune{0x260D},
 	},
 	0x1f780: {
-		refs: []string{
-			`U+23F4 black medium left-pointing triangle`,
-		},
+		refs: []rune{0x23F4},
 	},
 	0x1f781: {
-		refs: []string{
-			`U+23F6 black medium up-pointing triangle`,
-		},
+		refs: []rune{0x23F6},
 	},
 	0x1f782: {
-		refs: []string{
-			`U+23F5 black medium right-pointing triangle`,
-		},
+		refs: []rune{0x23F5},
 	},
 	0x1f783: {
-		refs: []string{
-			`U+23F7 black medium down-pointing triangle`,
-		},
+		refs: []rune{0x23F7},
 	},
 	0x1f785: {
-		refs: []string{
-			`U+26AA medium white circle`,
-		},
+		refs: []rune{0x26AA},
 	},
 	0x1f78b: {
-		refs: []string{
-			`U+25CE bullseye`,
-			`U+29BE circled white bullet`,
-			`U+2B57 heavy circle with circle inside`,
-		},
+		refs: []rune{0x25CE, 0x29BE, 0x2B57},
 	},
 	0x1f790: {
-		aliases: []string{
-			`heavy white square`,
-		},
+		aliases: []string{`heavy white square`},
 	},
 	0x1f7a5: {
-		refs: []string{
-			`U+271A heavy greek cross`,
-		},
+		refs: []rune{0x271A},
 	},
 	0x1f7a8: {
-		refs: []string{
-			`U+2715 multiplication x`,
-		},
+		refs: []rune{0x2715},
 	},
 	0x1f7a9: {
-		refs: []string{
-			`U+2613 saltire`,
-		},
+		refs: []rune{0x2613},
 	},
 	0x1f7ae: {
-		refs: []string{
-			`U+2716 heavy multiplication x`,
-		},
+		refs: []rune{0x2716},
 	},
 	0x1f7b8: {
-		refs: []string{
-			`U+2731 heavy asterisk`,
-		},
+		refs: []rune{0x2731},
 	},
 	0x1f7bb: {
-		refs: []string{
-			`U+2733 eight spoked asterisk`,
-		},
+		refs: []rune{0x2733},
 	},
 	0x1f7c6: {
-		refs: []string{
-			`U+2726 black four pointed star`,
-		},
+		refs: []rune{0x2726},
 	},
 	0x1f7c8: {
-		aliases: []string{
-			`navigate`,
-		},
+		aliases: []string{`navigate`},
 	},
 	0x1f7ce: {
-		refs: []string{
-			`U+2737 eight pointed rectilinear black star`,
-		},
+		refs: []rune{0x2737},
 	},
 	0x1f7cf: {
-		refs: []string{
-			`U+2738 heavy eight pointed rectilinear black star`,
-		},
+		refs: []rune{0x2738},
 	},
 	0x1f7d1: {
-		refs: []string{
-			`U+2735 eight pointed pinwheel star`,
-		},
+		refs: []rune{0x2735},
 	},
 	0x1f7f0: {
-		refs: []string{
-			`U+003D equals sign`,
-			`U+2716 heavy multiplication x`,
-			`U+2795 heavy plus sign`,
-			`U+3013 geta mark`,
-			`U+10190 roman sextans sign`,
-		},
+		refs: []rune{0x003D, 0x2716, 0x2795, 0x3013, 0x10190},
 	},
 	0x1f842: {
-		refs: []string{
-			`U+27A7 squat black rightwards arrow`,
-		},
+		refs: []rune{0x27A7},
 	},
 	0x1f850: {
-		refs: []string{
-			`U+2190 leftwards arrow`,
-		},
+		refs: []rune{0x2190},
 	},
 	0x1f851: {
-		refs: []string{
-			`U+2191 upwards arrow`,
-		},
+		refs: []rune{0x2191},
 	},
 	0x1f852: {
-		refs: []string{
-			`U+2192 rightwards arrow`,
-		},
+		refs: []rune{0x2192},
 	},
 	0x1f853: {
-		refs: []string{
-			`U+2193 downwards arrow`,
-		},
+		refs: []rune{0x2193},
 	},
 	0x1f854: {
-		refs: []string{
-			`U+2196 north west arrow`,
-		},
+		refs: []rune{0x2196},
 	},
 	0x1f855: {
-		refs: []string{
-			`U+2197 north east arrow`,
-		},
+		refs: []rune{0x2197},
 	},
 	0x1f856: {
-		refs: []string{
-			`U+2198 south east arrow`,
-		},
+		refs: []rune{0x2198},
 	},
 	0x1f857: {
-		refs: []string{
-			`U+2199 south west arrow`,
-		},
+		refs: []rune{0x2199},
 	},
 	0x1f858: {
-		refs: []string{
-			`U+2194 left right arrow`,
-		},
+		refs: []rune{0x2194},
 	},
 	0x1f859: {
-		refs: []string{
-			`U+2195 up down arrow`,
-		},
+		refs: []rune{0x2195},
 	},
 	0x1f872: {
-		refs: []string{
-			`U+2794 heavy wide-headed rightwards arrow`,
-		},
+		refs: []rune{0x2794},
 	},
 	0x1f89a: {
-		refs: []string{
-			`U+27AF notched lower right-shadowed white rightwards arrow`,
-		},
+		refs: []rune{0x27AF},
 	},
 	0x1f8a5: {
-		refs: []string{
-			`U+27A9 right-shaded white rightwards arrow`,
-		},
+		refs: []rune{0x27A9},
 	},
 	0x1f8a7: {
-		refs: []string{
-			`U+27AA left-shaded white rightwards arrow`,
-		},
+		refs: []rune{0x27AA},
 	},
 	0x1f8a9: {
-		refs: []string{
-			`U+27AB back-tilted shadowed white rightwards arrow`,
-		},
+		refs: []rune{0x27AB},
 	},
 	0x1f8ab: {
-		refs: []string{
-			`U+27AC front-tilted shadowed white rightwards arrow`,
-		},
+		refs: []rune{0x27AC},
 	},
 	0x1f902: {
-		refs: []string{
-			`U+2720 maltese cross`,
-		},
+		refs: []rune{0x2720},
 	},
 	0x1f916: {
-		refs: []string{
-			`U+1F47E alien monster`,
-		},
+		refs: []rune{0x1F47E},
 	},
 	0x1f91b: {
-		refs: []string{
-			`U+1FAF2 leftwards hand`,
-		},
+		refs: []rune{0x1FAF2},
 	},
 	0x1f91c: {
-		refs: []string{
-			`U+1FAF1 rightwards hand`,
-		},
+		refs: []rune{0x1FAF1},
 	},
 	0x1f91e: {
-		refs: []string{
-			`U+1FAF0 hand with index finger and thumb crossed`,
-		},
+		refs: []rune{0x1FAF0},
 	},
 	0x1f923: {
-		aliases: []string{
-			`rofl`,
-			`rotfl`,
-		},
+		aliases: []string{`rofl`, `rotfl`},
 	},
 	0x1f926: {
-		aliases: []string{
-			`frustration`,
-			`disbelief`,
-		},
+		aliases: []string{`frustration`, `disbelief`},
 	},
 	0x1f927: {
-		aliases: []string{
-			`Gesundheit`,
-		},
+		aliases: []string{`Gesundheit`},
 	},
 	0x1f930: {
-		refs: []string{
-			`U+1FAC4 pregnant person`,
-		},
+		refs: []rune{0x1FAC4},
 	},
 	0x1f934: {
-		refs: []string{
-			`U+1F478 princess`,
-		},
+		refs: []rune{0x1F478},
 	},
 	0x1f935: {
-		refs: []string{
-			`U+1F470 bride with veil`,
-		},
+		refs: []rune{0x1F470},
 	},
 	0x1f936: {
-		aliases: []string{
-			`Mrs. Claus`,
-		},
-		refs: []string{
-			`U+1F385 father christmas`,
-		},
+		aliases: []string{`Mrs. Claus`},
+		refs:    []rune{0x1F385},
 	},
 	0x1f938: {
-		aliases: []string{
-			`gymnastics`,
-		},
+		aliases: []string{`gymnastics`},
 	},
 	0x1f93a: {
-		aliases: []string{
-			`fencing`,
-		},
-		refs: []string{
-			`U+2694 crossed swords`,
-		},
+		aliases: []string{`fencing`},
+		refs:    []rune{0x2694},
 	},
 	0x1f93c: {
-		aliases: []string{
-			`wrestling`,
-		},
+		aliases: []string{`wrestling`},
 	},
 	0x1f940: {
-		refs: []string{
-			`U+1F339 rose`,
-		},
+		refs: []rune{0x1F339},
 	},
 	0x1f942: {
-		aliases: []string{
-			`celebration`,
-			`formal toasting`,
-		},
-		refs: []string{
-			`U+1F37B clinking beer mugs`,
-		},
+		aliases: []string{`celebration`, `formal toasting`},
+		refs:    []rune{0x1F37B},
 	},
 	0x1f943: {
-		aliases: []string{
-			`whisky`,
-		},
-		refs: []string{
-			`U+1F378 cocktail glass`,
-		},
+		aliases: []string{`whisky`},
+		refs:    []rune{0x1F378},
 	},
 	0x1f944: {
-		refs: []string{
-			`U+1F374 fork and knife`,
-		},
+		refs: []rune{0x1F374},
 	},
 	0x1f946: {
-		aliases: []string{
-			`marksmanship`,
-			`shooting`,
-			`hunting`,
-		},
+		aliases: []string{`marksmanship`, `shooting`, `hunting`},
 	},
 	0x1f947: {
-		aliases: []string{
-			`gold medal`,
-		},
-		refs: []string{
-			`U+1F3C5 sports medal`,
-		},
+		aliases: []string{`gold medal`},
+		refs:    []rune{0x1F3C5},
 	},
 	0x1f948: {
-		aliases: []string{
-			`silver medal`,
-		},
+		aliases: []string{`silver medal`},
 	},
 	0x1f949: {
-		aliases: []string{
-			`bronze medal`,
-		},
+		aliases: []string{`bronze medal`},
 	},
 	0x1f94a: {
-		aliases: []string{
-			`boxing`,
-		},
+		aliases: []string{`boxing`},
 	},
 	0x1f94b: {
-		aliases: []string{
-			`judo`,
-			`karate`,
-			`taekwondo`,
-		},
+		aliases: []string{`judo`, `karate`, `taekwondo`},
 	},
 	0x1f952: {
-		aliases: []string{
-			`pickle`,
-		},
+		aliases: []string{`pickle`},
 	},
 	0x1f956: {
-		aliases: []string{
-			`French bread`,
-		},
+		aliases: []string{`French bread`},
 	},
 	0x1f958: {
-		aliases: []string{
-			`paella`,
-			`casserole`,
-		},
+		aliases: []string{`paella`, `casserole`},
 	},
 	0x1f959: {
-		aliases: []string{
-			`döner kebab`,
-			`falafel`,
-			`gyro`,
-			`shawarma`,
-		},
+		aliases: []string{`döner kebab`, `falafel`, `gyro`, `shawarma`},
 	},
 	0x1f95a: {
-		aliases: []string{
-			`chicken egg`,
-		},
+		aliases: []string{`chicken egg`},
 	},
 	0x1f95b: {
-		aliases: []string{
-			`milk`,
-		},
-		refs: []string{
-			`U+1FAD7 pouring liquid`,
-		},
+		aliases: []string{`milk`},
+		refs:    []rune{0x1FAD7},
 	},
 	0x1f95e: {
-		aliases: []string{
-			`hotcakes`,
-			`crêpes`,
-			`blini`,
-		},
+		aliases: []string{`hotcakes`, `crêpes`, `blini`},
 	},
 	0x1f95f: {
-		aliases: []string{
-			`potsticker`,
-			`gyooza`,
-			`jiaozi`,
-			`pierogi`,
-			`empanada`,
-		},
+		aliases: []string{`potsticker`, `gyooza`, `jiaozi`, `pierogi`, `empanada`},
 	},
 	0x1f961: {
-		aliases: []string{
-			`take-away box`,
-			`oyster pail`,
-		},
+		aliases: []string{`take-away box`, `oyster pail`},
 	},
 	0x1f962: {
-		aliases: []string{
-			`kuaizi`,
-			`hashi`,
-			`jeotgarak`,
-		},
+		aliases: []string{`kuaizi`, `hashi`, `jeotgarak`},
 	},
 	0x1f969: {
-		aliases: []string{
-			`porkchop`,
-			`chop`,
-			`steak`,
-		},
+		aliases: []string{`porkchop`, `chop`, `steak`},
 	},
 	0x1f980: {
-		refs: []string{
-			`U+264B cancer`,
-		},
+		refs: []rune{0x264B},
 	},
 	0x1f981: {
-		refs: []string{
-			`U+264C leo`,
-		},
+		refs: []rune{0x264C},
 	},
 	0x1f982: {
-		refs: []string{
-			`U+264F scorpius`,
-		},
+		refs: []rune{0x264F},
 	},
 	0x1f996: {
-		aliases: []string{
-			`Tyrannosaurus rex`,
-		},
+		aliases: []string{`Tyrannosaurus rex`},
 	},
 	0x1f9d1: {
-		refs: []string{
-			`U+1F468 man`,
-			`U+1F469 woman`,
-		},
+		refs: []rune{0x1F468, 0x1F469},
 	},
 	0x1f9d2: {
-		refs: []string{
-			`U+1F466 boy`,
-			`U+1F467 girl`,
-		},
+		refs: []rune{0x1F466, 0x1F467},
 	},
 	0x1f9d3: {
-		refs: []string{
-			`U+1F474 older man`,
-			`U+1F475 older woman`,
-		},
+		refs: []rune{0x1F474, 0x1F475},
 	},
 	0x1f9d5: {
-		aliases: []string{
-			`woman's headscarf`,
-			`hijab`,
-		},
+		aliases: []string{`woman's headscarf`, `hijab`},
 	},
 	0x1f9d6: {
-		aliases: []string{
-			`sauna`,
-			`steam room`,
-		},
+		aliases: []string{`sauna`, `steam room`},
 	},
 	0x1f9d8: {
-		aliases: []string{
-			`yoga`,
-			`meditation`,
-		},
+		aliases: []string{`yoga`, `meditation`},
 	},
 	0x1f9d9: {
-		aliases: []string{
-			`wizard`,
-			`witch`,
-			`sorcerer`,
-			`sorceress`,
-		},
+		aliases: []string{`wizard`, `witch`, `sorcerer`, `sorceress`},
 	},
 	0x1f9dc: {
-		aliases: []string{
-			`mermaid`,
-			`merman`,
-		},
+		aliases: []string{`mermaid`, `merman`},
 	},
 	0x1f9e1: {
-		refs: []string{
-			`U+1F499 blue heart`,
-			`U+1F90D white heart`,
-		},
+		refs: []rune{0x1F499, 0x1F90D},
 	},
 	0x1f9e2: {
-		aliases: []string{
-			`baseball cap`,
-		},
+		aliases: []string{`baseball cap`},
 	},
 	0x1fa00: {
-		refs: []string{
-			`U+2654 white chess king`,
-		},
+		refs: []rune{0x2654},
 	},
 	0x1fa1f: {
-		aliases: []string{
-			`white grasshopper`,
-		},
+		aliases: []string{`white grasshopper`},
 	},
 	0x1fa22: {
-		aliases: []string{
-			`white nightrider`,
-		},
+		aliases: []string{`white nightrider`},
 	},
 	0x1fa25: {
-		aliases: []string{
-			`black grasshopper`,
-		},
+		aliases: []string{`black grasshopper`},
 	},
 	0x1fa28: {
-		aliases: []string{
-			`black nightrider`,
-		},
+		aliases: []string{`black nightrider`},
 	},
 	0x1fa2b: {
-		aliases: []string{
-			`neutral grasshopper`,
-		},
+		aliases: []string{`neutral grasshopper`},
 	},
 	0x1fa2e: {
-		aliases: []string{
-			`neutral nightrider`,
-		},
+		aliases: []string{`neutral nightrider`},
 	},
 	0x1fa4b: {
-		refs: []string{
-			`U+231B hourglass`,
-		},
+		refs: []rune{0x231B},
 	},
 	0x1fa4e: {
-		aliases: []string{
-			`amazon`,
-			`terror`,
-			`omnipotent queen`,
-			`superqueen`,
-		},
+		aliases: []string{`amazon`, `terror`, `omnipotent queen`, `superqueen`},
 	},
 	0x1fa4f: {
-		aliases: []string{
-			`chancellor`,
-			`marshall`,
-			`empress`,
-		},
+		aliases: []string{`chancellor`, `marshall`, `empress`},
 	},
 	0x1fa50: {
-		aliases: []string{
-			`cardinal`,
-			`princess`,
-		},
+		aliases: []string{`cardinal`, `princess`},
 	},
 	0x1fa60: {
-		aliases: []string{
-			`hóng shuài`,
-		},
+		aliases: []string{`hóng shuài`},
 	},
 	0x1fa61: {
-		aliases: []string{
-			`hóng shì`,
-		},
+		aliases: []string{`hóng shì`},
 	},
 	0x1fa62: {
-		aliases: []string{
-			`hóng xiàng`,
-		},
+		aliases: []string{`hóng xiàng`},
 	},
 	0x1fa63: {
-		aliases: []string{
-			`hóng mǎ`,
-		},
+		aliases: []string{`hóng mǎ`},
 	},
 	0x1fa64: {
-		aliases: []string{
-			`hóng jū`,
-		},
+		aliases: []string{`hóng jū`},
 	},
 	0x1fa65: {
-		aliases: []string{
-			`hóng pào`,
-		},
+		aliases: []string{`hóng pào`},
 	},
 	0x1fa66: {
-		aliases: []string{
-			`hóng bīng`,
-		},
+		aliases: []string{`hóng bīng`},
 	},
 	0x1fa67: {
-		aliases: []string{
-			`hēi jiàng`,
-		},
+		aliases: []string{`hēi jiàng`},
 	},
 	0x1fa68: {
-		aliases: []string{
-			`hēi shì`,
-		},
+		aliases: []string{`hēi shì`},
 	},
 	0x1fa69: {
-		aliases: []string{
-			`hēi xiàng`,
-		},
+		aliases: []string{`hēi xiàng`},
 	},
 	0x1fa6a: {
-		aliases: []string{
-			`hēi mǎ`,
-		},
+		aliases: []string{`hēi mǎ`},
 	},
 	0x1fa6b: {
-		aliases: []string{
-			`hēi jū`,
-		},
+		aliases: []string{`hēi jū`},
 	},
 	0x1fa6c: {
-		aliases: []string{
-			`hēi pào`,
-		},
+		aliases: []string{`hēi pào`},
 	},
 	0x1fa6d: {
-		aliases: []string{
-			`hēi zú`,
-		},
+		aliases: []string{`hēi zú`},
 	},
 	0x1fa74: {
-		aliases: []string{
-			`flip flop`,
-		},
+		aliases: []string{`flip flop`},
 	},
 	0x1fa78: {
-		refs: []string{
-			`U+1F4A7 droplet`,
-		},
+		refs: []rune{0x1F4A7},
 	},
 	0x1faaa: {
-		aliases: []string{
-			`ID`,
-		},
+		aliases: []string{`ID`},
 	},
 	0x1faab: {
-		refs: []string{
-			`U+1F50B battery`,
-		},
+		refs: []rune{0x1F50B},
 	},
 	0x1faaf: {
-		refs: []string{
-			`U+262C adi shakti`,
-		},
+		refs: []rune{0x262C},
 	},
 	0x1fac4: {
-		refs: []string{
-			`U+1F930 pregnant woman`,
-		},
+		refs: []rune{0x1F930},
 	},
 	0x1fac5: {
-		refs: []string{
-			`U+1F478 princess`,
-		},
+		refs: []rune{0x1F478},
 	},
 	0x1fad7: {
-		refs: []string{
-			`U+1F95B glass of milk`,
-		},
+		refs: []rune{0x1F95B},
 	},
 	0x1fae6: {
-		refs: []string{
-			`U+1F5E2 lips`,
-		},
+		refs: []rune{0x1F5E2},
 	},
 	0x1faf0: {
-		refs: []string{
-			`U+1F91E hand with index and middle fingers crossed`,
-		},
+		refs: []rune{0x1F91E},
 	},
 	0x1fb70: {
-		refs: []string{
-			`U+258F left one eighth block`,
-		},
+		refs: []rune{0x258F},
 	},
 	0x1fb75: {
-		refs: []string{
-			`U+2595 right one eighth block`,
-		},
+		refs: []rune{0x2595},
 	},
 	0x1fb76: {
-		refs: []string{
-			`U+2594 upper one eighth block`,
-		},
+		refs: []rune{0x2594},
 	},
 	0x1fb7b: {
-		refs: []string{
-			`U+2581 lower one eighth block`,
-		},
+		refs: []rune{0x2581},
 	},
 	0x1fb82: {
-		refs: []string{
-			`U+2582 lower one quarter block`,
-		},
+		refs: []rune{0x2582},
 	},
 	0x1fb83: {
-		refs: []string{
-			`U+2583 lower three eighths block`,
-		},
+		refs: []rune{0x2583},
 	},
 	0x1fb84: {
-		refs: []string{
-			`U+2585 lower five eighths block`,
-		},
+		refs: []rune{0x2585},
 	},
 	0x1fb85: {
-		refs: []string{
-			`U+2586 lower three quarters block`,
-		},
+		refs: []rune{0x2586},
 	},
 	0x1fb86: {
-		refs: []string{
-			`U+2587 lower seven eighths block`,
-		},
+		refs: []rune{0x2587},
 	},
 	0x1fb87: {
-		refs: []string{
-			`U+258E left one quarter block`,
-		},
+		refs: []rune{0x258E},
 	},
 	0x1fb88: {
-		refs: []string{
-			`U+258D left three eighths block`,
-		},
+		refs: []rune{0x258D},
 	},
 	0x1fb89: {
-		refs: []string{
-			`U+258B left five eighths block`,
-		},
+		refs: []rune{0x258B},
 	},
 	0x1fb8a: {
-		refs: []string{
-			`U+258A left three quarters block`,
-		},
+		refs: []rune{0x258A},
 	},
 	0x1fb8b: {
-		refs: []string{
-			`U+2589 left seven eighths block`,
-		},
+		refs: []rune{0x2589},
 	},
 	0x1fb90: {
-		refs: []string{
-			`U+2592 medium shade`,
-		},
+		refs: []rune{0x2592},
 	},
 	0x1fb95: {
-		refs: []string{
-			`U+259A quadrant upper left and lower right`,
-			`U+1F67F reverse checker board`,
-		},
+		refs: []rune{0x259A, 0x1F67F},
 	},
 	0x1fb96: {
-		refs: []string{
-			`U+259E quadrant upper right and lower left`,
-			`U+1F67E checker board`,
-		},
+		refs: []rune{0x259E, 0x1F67E},
 	},
 	0x1fb97: {
-		refs: []string{
-			`U+3013 geta mark`,
-		},
+		refs: []rune{0x3013},
 	},
 	0x1fb98: {
-		refs: []string{
-			`U+25A7 square with upper left to lower right fill`,
-		},
+		refs: []rune{0x25A7},
 	},
 	0x1fb99: {
-		refs: []string{
-			`U+25A8 square with upper right to lower left fill`,
-		},
+		refs: []rune{0x25A8},
 	},
 	0x1fb9a: {
-		refs: []string{
-			`U+29D7 black hourglass`,
-		},
+		refs: []rune{0x29D7},
 	},
 	0x1fb9b: {
-		refs: []string{
-			`U+29D3 black bowtie`,
-		},
+		refs: []rune{0x29D3},
 	},
 	0x1fb9c: {
-		refs: []string{
-			`U+25E4 black upper left triangle`,
-		},
+		refs: []rune{0x25E4},
 	},
 	0x1fb9d: {
-		refs: []string{
-			`U+25E5 black upper right triangle`,
-		},
+		refs: []rune{0x25E5},
 	},
 	0x1fb9e: {
-		refs: []string{
-			`U+25E2 black lower right triangle`,
-		},
+		refs: []rune{0x25E2},
 	},
 	0x1fb9f: {
-		refs: []string{
-			`U+25E3 black lower left triangle`,
-		},
+		refs: []rune{0x25E3},
 	},
 	0x1fbae: {
-		refs: []string{
-			`U+25C7 white diamond`,
-		},
+		refs: []rune{0x25C7},
 	},
 	0x1fbaf: {
-		refs: []string{
-			`U+2500 box drawings light horizontal`,
-		},
+		refs: []rune{0x2500},
 	},
 	0x1fbb0: {
-		refs: []string{
-			`U+27A4 black rightwards arrowhead`,
-		},
+		refs: []rune{0x27A4},
 	},
 	0x1fbb1: {
-		refs: []string{
-			`U+2713 check mark`,
-		},
+		refs: []rune{0x2713},
 	},
 	0x1fbb2: {
-		refs: []string{
-			`U+1F3C3 runner`,
-		},
+		refs: []rune{0x1F3C3},
 	},
 	0x1fbb4: {
-		refs: []string{
-			`U+21B2 downwards arrow with tip leftwards`,
-			`U+21B5 downwards arrow with corner leftwards`,
-		},
+		refs: []rune{0x21B2, 0x21B5},
 	},
 	0x1fbb9: {
-		refs: []string{
-			`U+1F4C1 file folder`,
-			`U+1F5C0 folder`,
-		},
+		refs: []rune{0x1F4C1, 0x1F5C0},
 	},
 	0x1fbbb: {
-		refs: []string{
-			`U+0023 number sign`,
-			`U+256C box drawings double vertical and horizontal`,
-			`U+2719 outlined greek cross`,
-			`U+271A heavy greek cross`,
-			`U+1F7A3 medium greek cross`,
-		},
+		refs: []rune{0x0023, 0x256C, 0x2719, 0x271A, 0x1F7A3},
 	},
 	0x1fbbc: {
-		refs: []string{
-			`U+22A1 squared dot operator`,
-		},
+		refs: []rune{0x22A1},
 	},
 	0x1fbbd: {
-		refs: []string{
-			`U+2573 box drawings light diagonal cross`,
-			`U+274E negative squared cross mark`,
-		},
+		refs: []rune{0x2573, 0x274E},
 	},
 	0x1fbc0: {
-		refs: []string{
-			`U+274C cross mark`,
-			`U+1F5D9 cancellation x`,
-			`U+1F7AC heavy saltire`,
-		},
+		refs: []rune{0x274C, 0x1F5D9, 0x1F7AC},
 	},
 	0x1fbc1: {
-		refs: []string{
-			`U+261E white right pointing index`,
-		},
+		refs: []rune{0x261E},
 	},
 	0x1fbc4: {
-		refs: []string{
-			`U+003F question mark`,
-			`U+2BD1 uncertainty sign`,
-			`U+FFFD replacement character`,
-		},
+		refs: []rune{0x003F, 0x2BD1, 0xFFFD},
 	},
 	0x1fbc5: {
-		refs: []string{
-			`U+1F6B9 mens symbol`,
-		},
+		refs: []rune{0x1F6B9},
 	},
 	0x1fbc9: {
-		refs: []string{
-			`U+1F6BA womens symbol`,
-		},
+		refs: []rune{0x1F6BA},
 	},
 	0x1fbca: {
-		refs: []string{
-			`U+21E7 upwards white arrow`,
-			`U+2302 house`,
-			`U+1F835 upwards finger-post arrow`,
-		},
+		refs: []rune{0x21E7, 0x2302, 0x1F835},
 	},
 	0x2f80d: {
-		refs: []string{
-			`5145`,
-		},
+		refs: []rune{0x5145},
 	},
 	0x2f814: {
-		refs: []string{
-			`5185`,
-		},
+		refs: []rune{0x5185},
 	},
 	0x2f82c: {
-		refs: []string{
-			`20984`,
-		},
+		refs: []rune{0x20984},
 	},
 	0x2f83b: {
-		refs: []string{
-			`4DB8`,
-		},
+		refs: []rune{0x4DB8},
 	},
 	0x2f85a: {
-		refs: []string{
-			`58F3`,
-		},
+		refs: []rune{0x58F3},
 	},
 	0x2f85b: {
-		refs: []string{
-			`21533`,
-		},
+		refs: []rune{0x21533},
 	},
 	0x2f860: {
-		refs: []string{
-			`216A7`,
-		},
+		refs: []rune{0x216A7},
 	},
 	0x2f874: {
-		refs: []string{
-			`22450`,
-		},
+		refs: []rune{0x22450},
 	},
 	0x2f878: {
-		refs: []string{
-			`4DB9`,
-		},
+		refs: []rune{0x4DB9},
 	},
 	0x2f89c: {
-		refs: []string{
-			`22505`,
-		},
+		refs: []rune{0x22505},
 	},
 	0x2f8f0: {
-		refs: []string{
-			`4DBE`,
-		},
+		refs: []rune{0x4DBE},
 	},
 	0x2f8fd: {
-		refs: []string{
-			`2DC09`,
-		},
+		refs: []rune{0x2DC09},
 	},
 	0x2f905: {
-		refs: []string{
-			`23D40`,
-		},
+		refs: []rune{0x23D40},
 	},
 	0x2f90e: {
-		refs: []string{
-			`23F1C`,
-		},
+		refs: []rune{0x23F1C},
 	},
 	0x2f91c: {
-		refs: []string{
-			`242B3`,
-		},
+		refs: []rune{0x242B3},
 	},
 	0x2f927: {
-		refs: []string{
-			`2AEC5`,
-		},
+		refs: []rune{0x2AEC5},
 	},
 	0x2f943: {
-		refs: []string{
-			`2511A`,
-		},
+		refs: []rune{0x2511A},
 	},
 	0x2f94b: {
-		refs: []string{
-			`25271`,
-		},
+		refs: []rune{0x25271},
 	},
 	0x2f9b2: {
-		refs: []string{
-			`5914`,
-			`270CD`,
-			`270F0`,
-		},
+		refs: []rune{0x5914, 0x270CD, 0x270F0},
 	},
 	0x2f9b6: {
-		refs: []string{
-			`27205`,
-		},
+		refs: []rune{0x27205},
 	},
 	0x2f9cb: {
-		refs: []string{
-			`4695`,
-		},
+		refs: []rune{0x4695},
 	},
 	0x2f9d6: {
-		refs: []string{
-			`25AD4`,
-		},
+		refs: []rune{0x25AD4},
 	},
 }

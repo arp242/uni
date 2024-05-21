@@ -390,7 +390,7 @@ func TestJSON(t *testing.T) {
 	"oct": "20254",
 	"plane": "Basic Multilingual Plane",
 	"props": "",
-	"refs": "U+20A0 euro-currency sign",
+	"refs": "U+20A0",
 	"script": "Common",
 	"unicode": "2.1",
 	"utf16be": "20 ac",

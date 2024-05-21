@@ -376,7 +376,7 @@ all columns:
     	"oct": "150",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
-    	"refs": "U+04BB cyrillic small letter shha, U+210E planck constant",
+    	"refs": "U+04BB, U+210E",
     	"script": "Latin",
     	"unicode": "1.1",
     	"utf16be": "00 68",
@@ -401,7 +401,7 @@ all columns:
     	"oct": "20254",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
-    	"refs": "U+20A0 euro-currency sign",
+    	"refs": "U+20A0",
     	"script": "Common",
     	"unicode": "2.1",
     	"utf16be": "20 ac",
@@ -456,6 +456,30 @@ some other tool if you want to process the data further.
 
 ChangeLog
 ---------
+
+### unreleased
+
+- Add `aliases` column, which lists the alias names. Also add this to the
+  default output:
+
+      % uni s factorial
+           CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+      '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang] (Other_Punctuation)
+
+- Add `refs` columns, which references other related/similar codepoints:
+
+      % uni p -q U+46 -f '%(name): %(refs)'
+      LATIN CAPITAL LETTER F: U+2109, U+2131, U+2132
+
+      % uni p -q U+46 -f '%(refs)' | uni p
+           CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+      '℉'  U+2109  8457   e2 84 89    &#x2109;   DEGREE FAHRENHEIT  (Other_Symbol)
+      'ℱ'  U+2131  8497   e2 84 b1    &Fscr;     SCRIPT CAPITAL F [Fourier transform] (Uppercase_Letter)
+      'Ⅎ'  U+2132  8498   e2 84 b2    &#x2132;   TURNED CAPITAL F [Claudian digamma inversum] (Uppercase_Letter)
+
+- Allow arguments to `print` end with a comma. This comes up when copy/pasting
+  some list of codepoints from another source; there's no real reason to error
+  out on this.
 
 ### v2.6.0 (2023-11-24)
 
