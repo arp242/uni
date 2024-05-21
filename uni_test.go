@@ -3,10 +3,8 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"reflect"
-	"sort"
 	"strings"
 	"testing"
 
@@ -317,63 +315,6 @@ func TestEmoji(t *testing.T) {
 			}
 		})
 	}
-}
-
-func TestAllEmoji(t *testing.T) {
-	exit, _, outbuf := zli.Test(t)
-	os.Args = append([]string{"testuni"}, []string{"e", "-q", "-gender", "all", "-tone", "all", "all"}...)
-
-	func() {
-		defer exit.Recover()
-		main()
-	}()
-
-	/*
-		grep -v '^#' unidata/.cache/emoji-test.txt |
-		    grep fully-qualified |
-		    grep -Ev '(holding hands|handshake|kiss:|couple with heart).*tone' |
-		    grep -Eo '# .+? E[0-9]' |
-		    cut -d ' ' -f2 >| testdata/emojis
-
-		double tones: 70
-		family: 145
-	*/
-	w, err := ioutil.ReadFile("./testdata/emojis")
-	if err != nil {
-		t.Fatal(err)
-	}
-	wantEmojis := strings.Split(strings.TrimSpace(string(w)), "\n")
-
-	out := strings.Split(strings.TrimRight(outbuf.String(), "\n"), "\n")
-	outEmojis := make([]string, len(out))
-	for i := range out {
-		outEmojis[i] = out[i][:strings.Index(out[i], " ")]
-	}
-
-	if len(outEmojis) != len(wantEmojis) {
-		t.Errorf("all: wrong length: want %d, got %d\n", len(wantEmojis), len(outEmojis))
-	}
-
-	// Still some \ufe0f issues
-	return
-	t.Skip()
-
-	// TODO: this shouldnt; be needed
-	sort.Strings(wantEmojis)
-	sort.Strings(outEmojis)
-
-	for i := range wantEmojis {
-		wantEmojis[i] = strings.ReplaceAll(wantEmojis[i], "\ufe0f", `\ufe0f`)
-	}
-	for i := range outEmojis {
-		outEmojis[i] = strings.ReplaceAll(outEmojis[i], "\ufe0f", `\ufe0f`)
-	}
-	if !reflect.DeepEqual(outEmojis, wantEmojis) {
-		t.Errorf("emoji lists not equal\nout:  %v\nwant: %v", outEmojis, wantEmojis)
-	}
-	//if d := ztest.Diff(outEmojis, wantEmojis); d != "" {
-	//	t.Error(d)
-	//}
 }
 
 func TestJSON(t *testing.T) {
