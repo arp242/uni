@@ -38,7 +38,7 @@ Flags:
     -o, -or        Use "or" when searching instead of "and".
 
 Commands:
-    list           List blocks, categories, properties, or unicode versions.
+    list           List Unicode data such as blocks, categories, etc.
     identify       Identify all the characters in the given strings.
     search         Search description for any of the words.
     print          Print characters by codepoint, category, or block.
@@ -84,7 +84,7 @@ Flags:
 
 Commands:
     list [query]     Show an overview of blocks, categories, scripts,
-                     properties, or unicode versions. Every name can be
+                     properties, planes, or unicode versions. Every name can be
                      abbreviated (i.e. "b" for "block"). Use "all" to show
                      everything.
 
@@ -505,14 +505,14 @@ func list(ls []string, as printAs) error {
 	}
 
 	if len(ls) == 0 {
-		return errors.New("need at least property to list: blocks, categories, scripts, properties, unicode, or all")
+		return errors.New("need at least property to list: blocks, categories, scripts, properties, planes, unicode, or all")
 	}
 	if slices.Contains(ls, "all") {
-		ls = []string{"blocks", "categories", "scripts", "properties", "unicode"}
+		ls = []string{"blocks", "categories", "scripts", "properties", "planes", "unicode"}
 	}
 
 	for i, l := range ls {
-		cmd, err := match(l, "blocks", "categories", "scripts", "properties", "unicode")
+		cmd, err := match(l, "blocks", "categories", "scripts", "properties", "unicode", "planes")
 		if cmd != "" && len(ls) > 0 && as == printAsList {
 			if i > 0 {
 				fmt.Fprintln(zli.Stdout)
@@ -530,6 +530,13 @@ func list(ls []string, as printAs) error {
 			for _, k := range zmap.KeysOrdered(unidata.Unicodes)[1:] {
 				u := unidata.Unicodes[k]
 				fmt.Fprintf(zli.Stdout, "%-6s %s\n", u.Name, u.Released)
+			}
+
+		case "planes":
+			for _, k := range zmap.KeysOrdered(unidata.Planes) {
+				p := unidata.Planes[k]
+				s, e := fmt.Sprintf("U+%04X", p.Range[0]), fmt.Sprintf("U+%04X", p.Range[1])
+				fmt.Fprintf(zli.Stdout, "%-7s - %-8s  %s\n", s, e, p.Name)
 			}
 
 		case "blocks":

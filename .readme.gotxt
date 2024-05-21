@@ -227,7 +227,8 @@ ChangeLog
   some list of codepoints from another source; there's no real reason to error
   out on this.
 
-- Allow listing unicode versions with "list unicode".
+- Allow listing unicode versions with "list unicode" and planes with "list
+  planes".
 
 - list without arguments errors, instead of listing all.
 
