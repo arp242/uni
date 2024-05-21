@@ -329,7 +329,10 @@ func main() {
 		raw   = rawF.Set()
 		args  = flag.Args
 	)
-	if cmd != "list" {
+	if cmd == "print" {
+		args, err = zli.InputOrArgs(args, " \t\n", quiet)
+		zli.F(err)
+	} else if cmd != "list" {
 		args, err = zli.InputOrArgs(args, "", quiet)
 		zli.F(err)
 	}
