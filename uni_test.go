@@ -12,6 +12,10 @@ import (
 	"zgo.at/zstd/ztest"
 )
 
+func init() {
+	isTerm = false
+}
+
 func TestCLI(t *testing.T) {
 	tests := []struct {
 		in   []string
@@ -331,13 +335,13 @@ func TestFormat(t *testing.T) {
 		// -f q:
 		// TODO: using %(col q:()) doesn't work, as it parses that ) as the
 		// closing of the column.
-		{[]string{"e", "-q", "-f", "%(cldr q:[])", "orange heart"},
+		{[]string{"e", "-q", "-f", "%(cldr q:[:])", "orange heart"},
 			[]string{"[]"}},
-		{[]string{"e", "-q", "-f", "%(cldr Q:[])", "orange heart"},
+		{[]string{"e", "-q", "-f", "%(cldr Q:[:])", "orange heart"},
 			[]string{""}},
-		{[]string{"e", "-q", "-f", "%(cldr q:[])", "red heart"},
+		{[]string{"e", "-q", "-f", "%(cldr q:[:])", "red heart"},
 			[]string{"[emotion, love]"}},
-		{[]string{"e", "-q", "-f", "%(cldr Q:[])", "red heart"},
+		{[]string{"e", "-q", "-f", "%(cldr Q:[:])", "red heart"},
 			[]string{"[emotion, love]"}},
 	}
 	for _, tt := range tests {

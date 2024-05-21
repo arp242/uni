@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"regexp"
 	"slices"
 	"sort"
 	"strconv"
@@ -191,6 +192,13 @@ Format:
     are in the form of %(name) or %(name flags), where "name" is a column name
     and "flags" are some flags to control how it's printed.
 
+    %name is a shortcut for %(name l:auto).
+
+    If the format string starts with "+" it will prepend the format string with
+    the character, codepoint, and name. This is an easy way to quickly list
+    properties yo're interested in. For example, "-f +%unicode to quickly get
+    the Unicode version it was introduced. Otherwise it works exactly as below.
+
     The special value "all" includes all columns; this is useful especially
     with json if you want to get all information uni knows about a codepoint
     or emoji.
@@ -200,9 +208,10 @@ Format:
         %(name l:auto)  Left-align and pad to the longest value
         %(name r:5)     Right-align and pad with 5 spaces (also supports auto)
         %(name q)       Quote with single quotes, excluding any padding
-        %(name q:[])    Quote with the given characters, excluding any padding
+        %(name q:")     Quote with "
+        %(name q:[:],)  Quote with [ at the start, and ], at the end
         %(name Q)       Quote like q, but omit the quotes if the value is empty
-        %(name Q:[])
+        %(name Q:[:])
         %(name t)       Trim this column if it's longer than the screen width
         %(name f:C)     Fill this column with character C instead of space when
                         aligning; useful for numbers: %(bin r:auto f:0)
@@ -263,15 +272,15 @@ Format:
 `)
 
 const (
-	defaultFormat = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[])"
-	allFormat     = "%(char q h l:3)%(wide_padding) %(cpoint h l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
-		" %(oct l:auto) %(bin l:auto)" +
-		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
-		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
-		" %(script l:auto) %(props l:auto) %(unicode l:auto) %(aliases l:auto) %(refs l:auto)"
+	defaultFormat  = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[:])"
+	defaultCompact = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(name t l:auto)"
+	allFormat      = "%(char q h l:3)%(wide_padding) %(cpoint h l:auto) %width %dec %hex %oct %bin" +
+		" %utf8 %utf16le %utf16be %html %xml %json %keysym %digraph %name %plane %cat %block" +
+		" %script %props %unicode %aliases %refs"
 
-	defaultEmojiFormat = "%(emoji h)%(tab)%(name l:auto)  %(cldr t Q:[])"
-	allEmojiFormat     = "%(emoji h)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
+	defaultEmojiFormat  = "%(emoji h)%(tab)%name  %(cldr t Q:[:])"
+	defaultEmojiCompact = "%(emoji h)%(tab)%name"
+	allEmojiFormat      = "%(emoji h)%(tab)%name %group %subgroup %cpoint %cldr %(cldr_full)"
 )
 
 func main() {
@@ -346,6 +355,17 @@ func main() {
 			format = allEmojiFormat
 		}
 	}
+	if strings.HasPrefix(formatF.String(), "+") {
+		format = defaultCompact
+		if cmd == "emoji" {
+			format = defaultEmojiCompact
+		}
+		format += " " + formatF.String()[1:]
+	}
+	// Replace %name shortcut with %(name l:auto)
+	format = regexp.MustCompile(`%[a-z0-9-]+`).ReplaceAllStringFunc(format, func(s string) string {
+		return "%(" + s[1:] + " l:auto)"
+	})
 
 	switch cmd {
 	case "list":

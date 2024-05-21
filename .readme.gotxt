@@ -73,10 +73,19 @@ It reads from stdin:
     'ሴ'  U+1234  4660   e1 88 b4    &#x1234;   ETHIOPIC SYLLABLE SEE
 
 You can use `-compact` (or `-c`) to suppress the header, and `-format` (or `-f`)
-to control the output format, for example you may want to generate a codepoint
-to X11 keysym mapping:
+to control the output format:
 
-{{example "i" "-c" "-f" "0x%(hex l:auto f:0): \"%(keysym)\", // %(name)" "h€ý"}}
+{{example "i" "-f" "%unicode %name" "a€🧟"}}
+
+If the format string starts with `+` it will automatically be prepended with the
+character, codepoint, and name:
+
+{{example "i" "-f" "+%unicode" "a€🧟"}}
+
+You can add more advanced options with `%(name flags)`; for example to generate
+an aligned codepoint to X11 keysym mapping:
+
+{{example "i" "-c" "-f" "0x%(hex l:auto f:0): %(keysym l:auto q:\":\",) // %name" "h€ý"}}
 
 See `uni help` for more details on the `-format` flag; this flag can also be
 added to other commands.
@@ -209,6 +218,22 @@ ChangeLog
 ---------
 
 ### unreleased
+
+- Improve -format:
+
+  - `%name` is an alias for `%(name l:auto)`; this is a lot less typing and
+    requires less shell quoting, and >90% of the time this is what you want.
+
+  - Automatically prepend character, codepoint, and name if it starts with a
+    `+`; for example:
+
+        % uni identify -f +'%unicode %plane' a
+                     Name                 Unicode Plane
+        'a'  U+0061  LATIN SMALL LETTER A 1.1     Basic Multilingual Plane
+
+  This should make quickly printing some property a lot quicker.
+
+- Align and colourize JSON output.
 
 - Update CLDR information, adding significantly more aliases for emojis.
 

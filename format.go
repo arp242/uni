@@ -47,8 +47,8 @@ type column struct {
 	width     int
 	align     int
 	trim      bool
-	quote     uint8
-	quoteChar [2]rune
+	quote     uint8 // q=1, Q=2
+	quoteChar [2]string
 	fill      rune
 	noHeader  bool
 }
@@ -163,41 +163,21 @@ func (f *Format) processColumn(line string) error {
 			return fmt.Errorf("unknown flag %q in %q", flag, line)
 		case flag == "":
 			continue
-		case flag[0] == 'q':
+		case flag[0] == 'q' || flag[0] == 'Q':
 			col.quote = 1
-			col.quoteChar = [2]rune{'\'', '\''}
-			if len(flag) > 1 {
-				if flag[1] != ':' {
-					return fmt.Errorf("need exactly two characters after q: for %q", line)
-				}
-				for i, r := range flag[2:] {
-					switch i {
-					case 0:
-						col.quoteChar[0] = r
-					case 1:
-						col.quoteChar[1] = r
-					default:
-						return fmt.Errorf("need exactly two characters after q: for %q", line)
-					}
-				}
+			if flag[0] == 'Q' {
+				col.quote = 2
 			}
-		case flag[0] == 'Q':
-			col.quote = 2
-			col.quoteChar = [2]rune{'\'', '\''}
-			if len(flag) > 1 {
-				if flag[1] != ':' {
-					return fmt.Errorf("need exactly two characters after Q: for %q", line)
-				}
-				for i, r := range flag[2:] {
-					switch i {
-					case 0:
-						col.quoteChar[0] = r
-					case 1:
-						col.quoteChar[1] = r
-					default:
-						return fmt.Errorf("need exactly two characters after Q: for %q", line)
-					}
-				}
+			s := strings.Split(flag[1:], ":")
+			switch len(s) {
+			case 1:
+				col.quoteChar = [2]string{"'", "'"}
+			case 2:
+				col.quoteChar = [2]string{s[1], s[1]}
+			case 3:
+				col.quoteChar = [2]string{s[1], s[2]}
+			default:
+				return fmt.Errorf("invalid: %q", flag)
 			}
 		case flag[0] == 'f':
 			if utf8.RuneCountInString(flag) != 3 {
@@ -250,7 +230,11 @@ func (f *Format) Line(columns map[string]string) error {
 	for i, c := range f.cols {
 		line[i] = columns[c.name]
 		if c.width == alignAuto {
-			if l := termtext.Width(columns[c.name]); l > f.autoalign[i] {
+			l := termtext.Width(columns[c.name])
+			if c.quote > 0 {
+				l += len(c.quoteChar[0]) + len(c.quoteChar[1])
+			}
+			if l > f.autoalign[i] {
 				f.autoalign[i] = l
 			}
 		}
@@ -519,7 +503,7 @@ func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) strin
 		} else if f.as != printAsListCompact && lineno == 0 {
 			text = " " + text + "  " // TODO: why two spaces?
 		} else {
-			text = string(f.cols[i].quoteChar[0]) + text + string(f.cols[i].quoteChar[1])
+			text = f.cols[i].quoteChar[0] + text + f.cols[i].quoteChar[1]
 		}
 	}
 
