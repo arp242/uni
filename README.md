@@ -483,6 +483,8 @@ ChangeLog
   some list of codepoints from another source; there's no real reason to error
   out on this.
 
+- Allow listing unicode versions with "list unicode".
+
 - list without arguments errors, instead of listing all.
 
 ### v2.6.0 (2023-11-24)

@@ -15,6 +15,7 @@ import (
 
 	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
+	"zgo.at/zstd/zmap"
 	"zgo.at/zstd/zstring"
 )
 
@@ -37,7 +38,7 @@ Flags:
     -o, -or        Use "or" when searching instead of "and".
 
 Commands:
-    list           List blocks, categories, or properties.
+    list           List blocks, categories, properties, or unicode versions.
     identify       Identify all the characters in the given strings.
     search         Search description for any of the words.
     print          Print characters by codepoint, category, or block.
@@ -82,9 +83,10 @@ Flags:
     -j, -json      Backwards-compatible alias for -as json
 
 Commands:
-    list [query]     Show an overview of blocks, categories, scripts, or
-                     properties. Every name can be abbreviated (i.e. "b" for
-                     "block"). Use "all" to show everything.
+    list [query]     Show an overview of blocks, categories, scripts,
+                     properties, or unicode versions. Every name can be
+                     abbreviated (i.e. "b" for "block"). Use "all" to show
+                     everything.
 
     identify [text]  Identify all the characters in the given arguments.
 
@@ -503,14 +505,14 @@ func list(ls []string, as printAs) error {
 	}
 
 	if len(ls) == 0 {
-		return errors.New("need at least property to list: blocks, categories, scripts, properties, or all")
+		return errors.New("need at least property to list: blocks, categories, scripts, properties, unicode, or all")
 	}
 	if slices.Contains(ls, "all") {
-		ls = []string{"blocks", "categories", "scripts", "properties"}
+		ls = []string{"blocks", "categories", "scripts", "properties", "unicode"}
 	}
 
 	for i, l := range ls {
-		cmd, err := match(l, "blocks", "categories", "scripts", "properties")
+		cmd, err := match(l, "blocks", "categories", "scripts", "properties", "unicode")
 		if cmd != "" && len(ls) > 0 && as == printAsList {
 			if i > 0 {
 				fmt.Fprintln(zli.Stdout)
@@ -523,6 +525,12 @@ func list(ls []string, as printAs) error {
 		switch cmd {
 		case "":
 			zli.Fatalf("list: %s", err)
+
+		case "unicode":
+			for _, k := range zmap.KeysOrdered(unidata.Unicodes)[1:] {
+				u := unidata.Unicodes[k]
+				fmt.Fprintf(zli.Stdout, "%-6s %s\n", u.Name, u.Released)
+			}
 
 		case "blocks":
 			order := make([]struct {
