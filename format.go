@@ -292,10 +292,32 @@ func (f *Format) SortNum(col string) {
 	})
 }
 
+var (
+	hlKey = zli.ColorHex("af5f00").String()
+	hlStr = zli.ColorHex("cd0000").String()
+	reset = zli.Reset.String()
+)
+
 func (f *Format) printJSON(out io.Writer) {
 	buf := new(bytes.Buffer)
 	enc := json.NewEncoder(buf)
 	enc.SetEscapeHTML(false)
+
+	prKey := func(k string) string {
+		if isTerm {
+			return `"` + hlKey + k + reset + `"`
+		}
+		return `"` + k + `"`
+	}
+	prStr := func(s string) string {
+		defer buf.Reset()
+		enc.Encode(s)
+		if isTerm {
+			b := bytes.TrimSpace(buf.Bytes())
+			return `"` + hlStr + string(b[1:len(b)-1]) + reset + `"`
+		}
+		return string(bytes.TrimSpace(buf.Bytes()))
+	}
 
 	w := 0
 	out.Write([]byte("["))
@@ -320,9 +342,7 @@ func (f *Format) printJSON(out io.Writer) {
 				if j > 0 {
 					out.Write([]byte(","))
 				}
-				enc.Encode(m[k])
-				fmt.Fprintf(out, "%q:%s", k, bytes.TrimSpace(buf.Bytes()))
-				buf.Reset()
+				fmt.Fprintf(out, "%s:%s", prKey(k), prStr(m[k]))
 			}
 			fmt.Fprintf(out, "}")
 			if i != len(f.lines)-1 {
@@ -334,9 +354,7 @@ func (f *Format) printJSON(out io.Writer) {
 				if j > 0 {
 					out.Write([]byte(",\n"))
 				}
-				enc.Encode(m[k])
-				fmt.Fprintf(out, "\t%q: %s%s", k, strings.Repeat(" ", w-len(k)), bytes.TrimSpace(buf.Bytes()))
-				buf.Reset()
+				fmt.Fprintf(out, "\t%s: %s%s", prKey(k), strings.Repeat(" ", w-len(k)), prStr(m[k]))
 			}
 			fmt.Fprintf(out, "\n}")
 			if i != len(f.lines)-1 {
