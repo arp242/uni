@@ -277,24 +277,18 @@ const (
 func main() {
 	flag := zli.NewFlags(os.Args)
 	var (
-		compact  = flag.Bool(false, "c", "compact", "q", "quiet")
-		help     = flag.Bool(false, "h", "help")
-		versionF = flag.Bool(false, "v", "version")
-		rawF     = flag.Bool(false, "r", "raw")
-		pager    = flag.Bool(false, "p", "pager")
-		or       = flag.Bool(false, "o", "or")
-		formatF  = flag.String(defaultFormat, "format", "f")
-		tone     = flag.String("", "t", "tone", "tones")
-		gender   = flag.String("person", "g", "gender", "genders")
-		asF      = flag.String("list", "a", "as")
-		jsonF    = flag.Bool(false, "json", "j")
+		compact = flag.Bool(false, "c", "compact", "q", "quiet")
+		help    = flag.Bool(false, "h", "help")
+		rawF    = flag.Bool(false, "r", "raw")
+		pager   = flag.Bool(false, "p", "pager")
+		or      = flag.Bool(false, "o", "or")
+		formatF = flag.String(defaultFormat, "format", "f")
+		tone    = flag.String("", "t", "tone", "tones")
+		gender  = flag.String("person", "g", "gender", "genders")
+		asF     = flag.String("list", "a", "as")
+		jsonF   = flag.Bool(false, "json", "j")
 	)
 	zli.F(flag.Parse())
-
-	if versionF.Set() {
-		fmt.Println(version)
-		return
-	}
 
 	if pager.Set() {
 		defer zli.PagerStdout()()
@@ -322,7 +316,8 @@ func main() {
 		fmt.Fprint(zli.Stdout, usage)
 		return
 	case "version":
-		fmt.Println(version)
+		u := unidata.Unicodes[unidata.UnicodeLatest]
+		fmt.Printf("%s; Unicode %s (%s)\n", version, u.Name, u.Released)
 		return
 	}
 
