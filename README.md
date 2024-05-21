@@ -459,6 +459,8 @@ ChangeLog
 
 ### unreleased
 
+- Update CLDR information, adding significantly more aliases for emojis.
+
 - Add `aliases` column, which lists the alias names. Also add this to the
   default output:
 
@@ -480,6 +482,8 @@ ChangeLog
 - Allow arguments to `print` end with a comma. This comes up when copy/pasting
   some list of codepoints from another source; there's no real reason to error
   out on this.
+
+- list without arguments errors, instead of listing all.
 
 ### v2.6.0 (2023-11-24)
 
@@ -691,6 +695,9 @@ This requires zsh and GNU awk (gawk).
 
 Alternatives
 ------------
+Note this is from ~2017/2018 when I first wrote this; I don't re-evaluate every
+program every year, and I don't go finding newly created tools every year
+either.
 
 ### CLI/TUI
 

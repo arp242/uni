@@ -502,7 +502,10 @@ func list(ls []string, as printAs) error {
 		zli.Fatalf("can't use -as table with the list command")
 	}
 
-	if len(ls) == 0 || slices.Contains(ls, "all") {
+	if len(ls) == 0 {
+		return errors.New("need at least property to list: blocks, categories, scripts, properties, or all")
+	}
+	if slices.Contains(ls, "all") {
 		ls = []string{"blocks", "categories", "scripts", "properties"}
 	}
 
@@ -512,7 +515,9 @@ func list(ls []string, as printAs) error {
 			if i > 0 {
 				fmt.Fprintln(zli.Stdout)
 			}
-			fmt.Fprintf(zli.Stdout, "%s:\n", zstring.UpperFirst(cmd))
+			if len(ls) > 1 {
+				fmt.Fprintf(zli.Stdout, "%s:\n", zstring.UpperFirst(cmd))
+			}
 		}
 
 		switch cmd {
