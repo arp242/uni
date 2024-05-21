@@ -51,6 +51,7 @@ type column struct {
 	quote     uint8
 	quoteChar [2]rune
 	fill      rune
+	noHeader  bool
 }
 
 // TODO: much of this can be removed/replaced if we replace this with
@@ -123,15 +124,13 @@ func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) 
 
 		if f.json() {
 			h[c.name] = c.name
-		} else {
+		} else if !c.noHeader {
 			h[c.name] = header(c.name)
 		}
 	}
 
-	h["emoji"] = ""
-	h["char"] = ""
-	h["tab"] = tabOrSpace()
 	h["wide_padding"] = " "
+	h["tab"] = tabOrSpace()
 
 	if as == printAsList {
 		f.Line(h)
@@ -203,6 +202,8 @@ func (f *Format) processColumn(line string) error {
 				return fmt.Errorf("need exactly one character after f: for %q", line)
 			}
 			col.fill = []rune(flag[2:])[0]
+		case flag == "h":
+			col.noHeader = true
 		case flag == "t":
 			f.ntrim++
 			col.trim = true
@@ -412,9 +413,6 @@ func (f *Format) Print(out io.Writer) {
 	for lineno, l := range f.lines {
 		line := f.format
 
-		// TODO: we can probably make this a bit faster by getting the text
-		// between the placeholders once; this is kind of slow for large sets
-		// (1.5s for "uni p all"), partly because we do all of this twice.
 		for i, text := range l {
 			m := f.re.FindAllString(line, 1)
 			line = strings.Replace(line, m[0], f.fmtPlaceholder(i, lineno, text, 0), 1)

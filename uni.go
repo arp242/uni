@@ -204,8 +204,9 @@ Format:
         %(name Q)       Quote like q, but omit the quotes if the value is empty
         %(name Q:[])
         %(name t)       Trim this column if it's longer than the screen width
-        %(name f:C)     Fill this column with character C; especially useful
-                        for numbers: %(bin r:auto f:0)
+        %(name f:C)     Fill this column with character C instead of space when
+                        aligning; useful for numbers: %(bin r:auto f:0)
+        %(name h)       Don't include in header.
 
     Placeholders that work for all commands:
         %(tab)           A literal tab when outputting to a terminal, or four
@@ -262,15 +263,15 @@ Format:
 `)
 
 const (
-	defaultFormat = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t Q:[]) (%(cat t))"
-	allFormat     = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
+	defaultFormat = "%(char q h l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[])"
+	allFormat     = "%(char q h l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
 		" %(script l:auto) %(props l:auto) %(unicode l:auto) %(aliases l:auto) %(refs l:auto)"
 
-	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  %(cldr t Q:[])"
-	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
+	defaultEmojiFormat = "%(emoji h)%(tab)%(name l:auto)  %(cldr t Q:[])"
+	allEmojiFormat     = "%(emoji h)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
 )
 
 func main() {

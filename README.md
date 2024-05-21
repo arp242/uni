@@ -52,16 +52,16 @@ renders wide characters; in terminals it should be aligned correctly.*
 Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
     $ uni identify €
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
 
 `i` is a shortcut for `identify`:
 
     $ uni i h€ý
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H  (Lowercase_Letter)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
-    'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE  (Lowercase_Letter)
+         CPoint  Dec    UTF8        HTML       Name
+    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
+    'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE
 
 It reads from stdin:
 
@@ -87,63 +87,63 @@ added to other commands.
 Search description:
 
     $ uni search euro
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN  (Currency_Symbol)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
-    '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON  (Other_Symbol)
-    '𐡸'  U+10878 67704  f0 90 a1 b8 &#x10878;  PALMYRENE RIGHT-POINTING FLEURON  (Other_Symbol)
-    '𐫱'  U+10AF1 68337  f0 90 ab b1 &#x10af1;  MANICHAEAN PUNCTUATION FLEURON  (Other_Punctuation)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
-    '🏤' U+1F3E4 127972 f0 9f 8f a4 &#x1f3e4;  EUROPEAN POST OFFICE  (Other_Symbol)
-    '🏰' U+1F3F0 127984 f0 9f 8f b0 &#x1f3f0;  EUROPEAN CASTLE  (Other_Symbol)
-    '💶' U+1F4B6 128182 f0 9f 92 b6 &#x1f4b6;  BANKNOTE WITH EURO SIGN  (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
+    '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON
+    '𐡸'  U+10878 67704  f0 90 a1 b8 &#x10878;  PALMYRENE RIGHT-POINTING FLEURON
+    '𐫱'  U+10AF1 68337  f0 90 ab b1 &#x10af1;  MANICHAEAN PUNCTUATION FLEURON
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
+    '🏤' U+1F3E4 127972 f0 9f 8f a4 &#x1f3e4;  EUROPEAN POST OFFICE
+    '🏰' U+1F3F0 127984 f0 9f 8f b0 &#x1f3f0;  EUROPEAN CASTLE
+    '💶' U+1F4B6 128182 f0 9f 92 b6 &#x1f4b6;  BANKNOTE WITH EURO SIGN
 
 The `s` command is a shortcut for `search`. Multiple words are matched
 individually:
 
     $ uni s globe earth
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
-    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS  (Other_Symbol)
-    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA  (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
+    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS
+    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA
 
 Use shell quoting for more literal matches:
 
     $ uni s rightwards black arrow
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW  (Other_Symbol)
-    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD  (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW
+    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD
     …
 
     $ uni s 'rightwards black arrow'
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW  (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
     $ uni s -o globe milky
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY  (Other_Symbol)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
-    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS  (Other_Symbol)
-    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA  (Other_Symbol)
-    '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS  (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
+    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS
+    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA
+    '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS
 
 ### Print
 
 Print specific codepoints or groups of codepoints:
 
     $ uni print U+2042
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM  (Other_Punctuation)
+         CPoint  Dec    UTF8        HTML       Name
+    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM
 
 Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
 
     $ uni print 2042..2044
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM  (Other_Punctuation)
-    '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET  (Other_Punctuation)
-    '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH [solidus] (Math_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM
+    '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET
+    '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH [solidus]
 
 You can also use hex, octal, and binary numbers: `0x2024`, `0o20102`, or
 `0b10000001000010`.
@@ -152,8 +152,8 @@ General category:
 
     $ uni p Po
     Showing category Po (Other_Punctuation)
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang] (Other_Punctuation)
+         CPoint  Dec    UTF8        HTML       Name
+    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang]
     …
 
 Blocks:
@@ -161,9 +161,9 @@ Blocks:
     $ uni p arrows 'box drawing'
     Showing block Arrows
     Showing block Box Drawing
-         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-    '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW  (Math_Symbol)
-    '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW  (Math_Symbol)
+         CPoint  Dec    UTF8        HTML       Name
+    '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW
+    '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW
     …
 
 Print as table, and with a shorter name:
@@ -172,21 +172,21 @@ Print as table, and with a shorter name:
     Showing block Box Drawing
              0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
            ┌────────────────────────────────────────────────────────────────
-    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏  
+    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏
            │
-    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟  
+    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟
            │
-    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯  
+    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯
            │
-    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿  
+    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿
            │
-    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏  
+    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏
            │
-    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟  
+    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟
            │
-    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯  
+    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯
            │
-    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿  
+    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿
            │
 
 Or more compact table:
@@ -194,20 +194,20 @@ Or more compact table:
     $ uni p -as table box -compact
              0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
            ┌────────────────────────────────────────────────────────────────
-    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏  
-    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟  
-    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯  
-    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿  
-    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏  
-    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟  
-    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯  
-    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿  
+    U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏
+    U+251x │ ┐   ┑   ┒   ┓   └   ┕   ┖   ┗   ┘   ┙   ┚   ┛   ├   ┝   ┞   ┟
+    U+252x │ ┠   ┡   ┢   ┣   ┤   ┥   ┦   ┧   ┨   ┩   ┪   ┫   ┬   ┭   ┮   ┯
+    U+253x │ ┰   ┱   ┲   ┳   ┴   ┵   ┶   ┷   ┸   ┹   ┺   ┻   ┼   ┽   ┾   ┿
+    U+254x │ ╀   ╁   ╂   ╃   ╄   ╅   ╆   ╇   ╈   ╉   ╊   ╋   ╌   ╍   ╎   ╏
+    U+255x │ ═   ║   ╒   ╓   ╔   ╕   ╖   ╗   ╘   ╙   ╚   ╛   ╜   ╝   ╞   ╟
+    U+256x │ ╠   ╡   ╢   ╣   ╤   ╥   ╦   ╧   ╨   ╩   ╪   ╫   ╬   ╭   ╮   ╯
+    U+257x │ ╰   ╱   ╲   ╳   ╴   ╵   ╶   ╷   ╸   ╹   ╺   ╻   ╼   ╽   ╾   ╿
 
 ### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
-    	Name                      Cldr  
+    	Name                      Cldr
     🥹	face holding back tears  [admiration, angry, aw, aww, cry, embarrassed, feelings, grateful, gratitude, please, proud, resist, sad, sadness, tears of joy]
     😢	crying face              [awful, feels, miss, sad, tear, triste, unhappy]
     😭	loudly crying face       [bawling, sad, sob, tear, tears, unhappy]
@@ -218,13 +218,13 @@ By default both the name and CLDR data are searched; the CLDR data is a list of
 keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
 
     $ uni e smile
-    	Name                              Cldr  
+    	Name                              Cldr
     😀	grinning face                    [cheerful, cheery, happy, laugh, nice, smile, smiling, teeth]
     😃	grinning face with big eyes      [awesome, happy, mouth, open, smile, smiling, smiling face with open mouth, teeth, yay]
     …
 
     $ uni e name:smile
-    	Name                 Cldr  
+    	Name                 Cldr
     😼	cat with wry smile  [animal, cat face with wry smile, face, ironic]
 
 As you can see, the CLDR is pretty useful, as "smile" only gives one result as
@@ -233,7 +233,7 @@ most emojis use "smiling".
 Prefix with `group:` to search by group:
 
     $ uni e group:hands
-    	Name                Cldr  
+    	Name                Cldr
     👏	clapping hands     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
     🙌	raising hands      [celebration, gesture, hooray, praise, raised]
     🫶	heart hands        [&lt;3, love, love you]
@@ -245,14 +245,14 @@ Prefix with `group:` to search by group:
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
     $ uni e g:cat-face grin
-    	Name                             Cldr  
+    	Name                             Cldr
     😺	grinning cat                    [animal, face, mouth, open, smile, smiling cat face with open mouth]
     😸	grinning cat with smiling eyes  [animal, face, grinning cat face with smiling eyes, smile]
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
     $ uni e -or g:face-glasses g:face-hat
-    	Name                           Cldr  
+    	Name                           Cldr
     🤠	cowboy hat face               [cowgirl]
     🥳	partying face                 [birthday, celebrate, celebration, excited, happy bday, happy birthday, hat, hooray, horn]
     🥸	disguised face                [eyebrow, glasses, incognito, moustache, mustache, nose, person, spy, tache, tash]
@@ -263,7 +263,7 @@ Like with `search`, use `-or` to OR the parameters together instead of AND:
 Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark g:hands
-    	Name                                Cldr  
+    	Name                                Cldr
     👏🏿	clapping hands: dark skin tone     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
     🙌🏿	raising hands: dark skin tone      [celebration, gesture, hooray, praise, raised]
     🫶🏿	heart hands: dark skin tone        [&lt;3, love, love you]
@@ -283,7 +283,7 @@ The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
     $ uni e -gender man g:person-gesture
-    	Name               Cldr  
+    	Name               Cldr
     🙍‍♂️	man frowning      [annoyed, disappoint, disgruntled, disturbed, frustrated, gesture, irritated, not happy, person frowning, upset, woman frowning]
     🙎‍♂️	man pouting       [disappoint, downtrodden, frown, gesture, grimace, person pouting, scowl, sulk, upset, whine, woman pouting]
     🙅‍♂️	man gesturing NO  [exclude, forbidden, gesture, hand, no, nope, not, not a chance, person gesturing NO, prohibit, prohibited, woman gesturing NO]
@@ -300,7 +300,7 @@ display both the female and male variants, and `-tone light,dark` will display
 both a light and dark skin tone; use `all` to display all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-    	Name                               Cldr  
+    	Name                               Cldr
     🤷🏻‍♂️	man shrugging: light skin tone    [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
     🤷🏻‍♀️	woman shrugging: light skin tone  [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
     🤷🏿‍♂️	man shrugging: dark skin tone     [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
@@ -328,7 +328,6 @@ With `-as json` or `-as j` you can output the data as JSON:
     $ uni i -as json h€ý
     [{
     	"aliases": "",
-    	"cat": "Lowercase_Letter",
     	"char": "h",
     	"cpoint": "U+0068",
     	"dec": "104",
@@ -337,7 +336,6 @@ With `-as json` or `-as j` you can output the data as JSON:
     	"utf8": "68"
     }, {
     	"aliases": "",
-    	"cat": "Currency_Symbol",
     	"char": "€",
     	"cpoint": "U+20AC",
     	"dec": "8364",
@@ -346,7 +344,6 @@ With `-as json` or `-as j` you can output the data as JSON:
     	"utf8": "e2 82 ac"
     }, {
     	"aliases": "",
-    	"cat": "Lowercase_Letter",
     	"char": "ý",
     	"cpoint": "U+00FD",
     	"dec": "253",
@@ -488,6 +485,8 @@ ChangeLog
 
 - list without arguments errors, instead of listing all.
 
+- Add `h` format flag to not print the header for this column.
+
 ### v2.6.0 (2023-11-24)
 
 - Update to Unicode 15.1.
@@ -507,7 +506,7 @@ ChangeLog
       Ahom                          54
       Anatolian Hieroglyphs        582
       …
-      
+
       % uni print 'script:linear a'
       Showing script Linear A
            CPoint  Dec    UTF8        HTML       Name (Cat)

@@ -232,6 +232,8 @@ ChangeLog
 
 - list without arguments errors, instead of listing all.
 
+- Add `h` format flag to not print the header for this column.
+
 ### v2.6.0 (2023-11-24)
 
 - Update to Unicode 15.1.
