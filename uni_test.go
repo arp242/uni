@@ -317,6 +317,50 @@ func TestEmoji(t *testing.T) {
 	}
 }
 
+func TestFormat(t *testing.T) {
+	tests := []struct {
+		in   []string
+		want []string
+	}{
+		// -f q:
+		// TODO: using %(col q:()) doesn't work, as it parses that ) as the
+		// closing of the column.
+		{[]string{"e", "-q", "-f", "%(cldr q:[])", "orange heart"},
+			[]string{"[]"}},
+		{[]string{"e", "-q", "-f", "%(cldr Q:[])", "orange heart"},
+			[]string{""}},
+		{[]string{"e", "-q", "-f", "%(cldr q:[])", "red heart"},
+			[]string{"[emotion, love]"}},
+		{[]string{"e", "-q", "-f", "%(cldr Q:[])", "red heart"},
+			[]string{"[emotion, love]"}},
+	}
+	for _, tt := range tests {
+		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
+			_, _, outbuf := zli.Test(t)
+			os.Args = append([]string{"testuni"}, tt.in...)
+
+			main()
+
+			var out []string
+			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
+				line = strings.ReplaceAll(line, "\t", " ")
+				out = append(out, line)
+			}
+
+			for i := range tt.want {
+				tt.want[i] = strings.Replace(tt.want[i], "Z", "\u200d", -1)
+				tt.want[i] = strings.Replace(tt.want[i], "S", "\ufe0f", -1)
+			}
+
+			if !reflect.DeepEqual(out, tt.want) {
+				a := strings.ReplaceAll(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`)
+				b := strings.ReplaceAll(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`)
+				t.Errorf("wrong output\nout:  %s\nwant: %s", a, b)
+			}
+		})
+	}
+}
+
 func TestJSON(t *testing.T) {
 	_, _, outbuf := zli.Test(t)
 

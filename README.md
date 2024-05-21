@@ -207,25 +207,25 @@ Or more compact table:
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
     $ uni e cry
-    	Name                     (Cldr)
-    🥹	face holding back tears  (admiration, angry, aw, aww, cry, embarrassed, feelings, grateful, gratitude, please, proud, resist, sad, sadness, tears of joy)
-    😢	crying face              (awful, feels, miss, sad, tear, triste, unhappy)
-    😭	loudly crying face       (bawling, sad, sob, tear, tears, unhappy)
-    😿	crying cat               (animal, crying cat face, face, sad, tear)
-    🔮	crystal ball             (fairy tale, fairytale, fantasy, fortune, future, magic, tool)
+    	Name                      Cldr  
+    🥹	face holding back tears  [admiration, angry, aw, aww, cry, embarrassed, feelings, grateful, gratitude, please, proud, resist, sad, sadness, tears of joy]
+    😢	crying face              [awful, feels, miss, sad, tear, triste, unhappy]
+    😭	loudly crying face       [bawling, sad, sob, tear, tears, unhappy]
+    😿	crying cat               [animal, crying cat face, face, sad, tear]
+    🔮	crystal ball             [fairy tale, fairytale, fantasy, fortune, future, magic, tool]
 
 By default both the name and CLDR data are searched; the CLDR data is a list of
 keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
 
     $ uni e smile
-    	Name                             (Cldr)
-    😀	grinning face                    (cheerful, cheery, happy, laugh, nice, smile, smiling, teeth)
-    😃	grinning face with big eyes      (awesome, happy, mouth, open, smile, smiling, smiling face with open mouth, teeth, yay)
+    	Name                              Cldr  
+    😀	grinning face                    [cheerful, cheery, happy, laugh, nice, smile, smiling, teeth]
+    😃	grinning face with big eyes      [awesome, happy, mouth, open, smile, smiling, smiling face with open mouth, teeth, yay]
     …
 
     $ uni e name:smile
-    	Name                (Cldr)
-    😼	cat with wry smile  (animal, cat face with wry smile, face, ironic)
+    	Name                 Cldr  
+    😼	cat with wry smile  [animal, cat face with wry smile, face, ironic]
 
 As you can see, the CLDR is pretty useful, as "smile" only gives one result as
 most emojis use "smiling".
@@ -233,44 +233,44 @@ most emojis use "smiling".
 Prefix with `group:` to search by group:
 
     $ uni e group:hands
-    	Name               (Cldr)
-    👏	clapping hands     (applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay)
-    🙌	raising hands      (celebration, gesture, hooray, praise, raised)
-    🫶	heart hands        (&lt;3, love, love you)
-    👐	open hands         (hug, jazz hands, swerve)
-    🤲	palms up together  (cupped hands, dua, pray, prayer, wish)
-    🤝	handshake          (agreement, deal, meeting)
-    🙏	folded hands       (appreciate, ask, beg, blessed, bow, cmon, five, gesture, high 5, high five, please, pray, thank, thank you, thanks, thx)
+    	Name                Cldr  
+    👏	clapping hands     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
+    🙌	raising hands      [celebration, gesture, hooray, praise, raised]
+    🫶	heart hands        [&lt;3, love, love you]
+    👐	open hands         [hug, jazz hands, swerve]
+    🤲	palms up together  [cupped hands, dua, pray, prayer, wish]
+    🤝	handshake          [agreement, deal, meeting]
+    🙏	folded hands       [appreciate, ask, beg, blessed, bow, cmon, five, gesture, high 5, high five, please, pray, thank, thank you, thanks, thx]
 
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
     $ uni e g:cat-face grin
-    	Name                            (Cldr)
-    😺	grinning cat                    (animal, face, mouth, open, smile, smiling cat face with open mouth)
-    😸	grinning cat with smiling eyes  (animal, face, grinning cat face with smiling eyes, smile)
+    	Name                             Cldr  
+    😺	grinning cat                    [animal, face, mouth, open, smile, smiling cat face with open mouth]
+    😸	grinning cat with smiling eyes  [animal, face, grinning cat face with smiling eyes, smile]
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
     $ uni e -or g:face-glasses g:face-hat
-    	Name                          (Cldr)
-    🤠	cowboy hat face               (cowgirl)
-    🥳	partying face                 (birthday, celebrate, celebration, excited, happy bday, happy birthday, hat, hooray, horn)
-    🥸	disguised face                (eyebrow, glasses, incognito, moustache, mustache, nose, person, spy, tache, tash)
-    😎	smiling face with sunglasses  (awesome, beach, bright, bro, chillin, cool, eye, eyewear, fly, rad, relaxed, shades, slay, smile, stunner, style, swag, swagger, win, winning, yeah)
-    🤓	nerd face                     (brainy, clever, expert, geek, gifted, glasses, intelligent, smart)
-    🧐	face with monocle             (classy, fancy, rich, stuffy, wealthy)
+    	Name                           Cldr  
+    🤠	cowboy hat face               [cowgirl]
+    🥳	partying face                 [birthday, celebrate, celebration, excited, happy bday, happy birthday, hat, hooray, horn]
+    🥸	disguised face                [eyebrow, glasses, incognito, moustache, mustache, nose, person, spy, tache, tash]
+    😎	smiling face with sunglasses  [awesome, beach, bright, bro, chillin, cool, eye, eyewear, fly, rad, relaxed, shades, slay, smile, stunner, style, swag, swagger, win, winning, yeah]
+    🤓	nerd face                     [brainy, clever, expert, geek, gifted, glasses, intelligent, smart]
+    🧐	face with monocle             [classy, fancy, rich, stuffy, wealthy]
 
 Apply skin tone modifiers with `-tone`:
 
     $ uni e -tone dark g:hands
-    	Name                               (Cldr)
-    👏🏿	clapping hands: dark skin tone     (applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay)
-    🙌🏿	raising hands: dark skin tone      (celebration, gesture, hooray, praise, raised)
-    🫶🏿	heart hands: dark skin tone        (&lt;3, love, love you)
-    👐🏿	open hands: dark skin tone         (hug, jazz hands, swerve)
-    🤲🏿	palms up together: dark skin tone  (cupped hands, dua, pray, prayer, wish)
-    🤝🏿	handshake: dark skin tone          (agreement, deal, meeting)
-    🙏🏿	folded hands: dark skin tone       (appreciate, ask, beg, blessed, bow, cmon, five, gesture, high 5, high five, please, pray, thank, thank you, thanks, thx)
+    	Name                                Cldr  
+    👏🏿	clapping hands: dark skin tone     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
+    🙌🏿	raising hands: dark skin tone      [celebration, gesture, hooray, praise, raised]
+    🫶🏿	heart hands: dark skin tone        [&lt;3, love, love you]
+    👐🏿	open hands: dark skin tone         [hug, jazz hands, swerve]
+    🤲🏿	palms up together: dark skin tone  [cupped hands, dua, pray, prayer, wish]
+    🤝🏿	handshake: dark skin tone          [agreement, deal, meeting]
+    🙏🏿	folded hands: dark skin tone       [appreciate, ask, beg, blessed, bow, cmon, five, gesture, high 5, high five, please, pray, thank, thank you, thanks, thx]
 
 The "heart hands" may not show as it's very recent. The handshake emoji supports
 setting individual skin tones per hand since Unicode 14, but this isn't
@@ -283,28 +283,28 @@ The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
     $ uni e -gender man g:person-gesture
-    	Name              (Cldr)
-    🙍‍♂️	man frowning      (annoyed, disappoint, disgruntled, disturbed, frustrated, gesture, irritated, not happy, person frowning, upset, woman frowning)
-    🙎‍♂️	man pouting       (disappoint, downtrodden, frown, gesture, grimace, person pouting, scowl, sulk, upset, whine, woman pouting)
-    🙅‍♂️	man gesturing NO  (exclude, forbidden, gesture, hand, no, nope, not, not a chance, person gesturing NO, prohibit, prohibited, woman gesturing NO)
-    🙆‍♂️	man gesturing OK  (exercise, gesture, hand, omg, person gesturing OK, woman gesturing OK)
-    💁‍♂️	man tipping hand  (fetch, gossip, hair flick, hair flip, help, information, person tipping hand, sarcasm, sarcastic, sassy, seriously, whatever, woman tipping hand)
-    🙋‍♂️	man raising hand  (gesture, hands, happy, I can help, i know, me, over here, person raising hand, pick me, question, raised, right here, woman raising hand)
-    🧏‍♂️	deaf man          (accessibility, deaf person, ear, hear)
-    🙇‍♂️	man bowing        (apology, beg, forgive, gesture, meditate, meditation, person bowing, pity, regret, sorry)
-    🤦‍♂️	man facepalming   (disbelief, exasperation, not again, oh no, omg, person, person facepalming, shock, smh)
-    🤷‍♂️	man shrugging     (doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows)
+    	Name               Cldr  
+    🙍‍♂️	man frowning      [annoyed, disappoint, disgruntled, disturbed, frustrated, gesture, irritated, not happy, person frowning, upset, woman frowning]
+    🙎‍♂️	man pouting       [disappoint, downtrodden, frown, gesture, grimace, person pouting, scowl, sulk, upset, whine, woman pouting]
+    🙅‍♂️	man gesturing NO  [exclude, forbidden, gesture, hand, no, nope, not, not a chance, person gesturing NO, prohibit, prohibited, woman gesturing NO]
+    🙆‍♂️	man gesturing OK  [exercise, gesture, hand, omg, person gesturing OK, woman gesturing OK]
+    💁‍♂️	man tipping hand  [fetch, gossip, hair flick, hair flip, help, information, person tipping hand, sarcasm, sarcastic, sassy, seriously, whatever, woman tipping hand]
+    🙋‍♂️	man raising hand  [gesture, hands, happy, I can help, i know, me, over here, person raising hand, pick me, question, raised, right here, woman raising hand]
+    🧏‍♂️	deaf man          [accessibility, deaf person, ear, hear]
+    🙇‍♂️	man bowing        [apology, beg, forgive, gesture, meditate, meditation, person bowing, pity, regret, sorry]
+    🤦‍♂️	man facepalming   [disbelief, exasperation, not again, oh no, omg, person, person facepalming, shock, smh]
+    🤷‍♂️	man shrugging     [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
 
 Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants, and `-tone light,dark` will display
 both a light and dark skin tone; use `all` to display all skin tones or genders:
 
     $ uni e -tone light,dark -gender f,m shrug
-    	Name                              (Cldr)
-    🤷🏻‍♂️	man shrugging: light skin tone    (doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows)
-    🤷🏻‍♀️	woman shrugging: light skin tone  (doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows)
-    🤷🏿‍♂️	man shrugging: dark skin tone     (doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows)
-    🤷🏿‍♀️	woman shrugging: dark skin tone   (doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows)
+    	Name                               Cldr  
+    🤷🏻‍♂️	man shrugging: light skin tone    [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
+    🤷🏻‍♀️	woman shrugging: light skin tone  [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
+    🤷🏿‍♂️	man shrugging: dark skin tone     [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
+    🤷🏿‍♀️	woman shrugging: dark skin tone   [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
 
 Like `print` and `identify`, you can use `-format`:
 

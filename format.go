@@ -44,12 +44,13 @@ const (
 )
 
 type column struct {
-	name  string
-	width int
-	align int
-	trim  bool
-	quote bool
-	fill  rune
+	name      string
+	width     int
+	align     int
+	trim      bool
+	quote     uint8
+	quoteChar [2]rune
+	fill      rune
 }
 
 // TODO: much of this can be removed/replaced if we replace this with
@@ -161,8 +162,42 @@ func (f *Format) processColumn(line string) error {
 			return fmt.Errorf("unknown flag %q in %q", flag, line)
 		case flag == "":
 			continue
-		case flag == "q":
-			col.quote = true
+		case flag[0] == 'q':
+			col.quote = 1
+			col.quoteChar = [2]rune{'\'', '\''}
+			if len(flag) > 1 {
+				if flag[1] != ':' {
+					return fmt.Errorf("need exactly two characters after q: for %q", line)
+				}
+				for i, r := range flag[2:] {
+					switch i {
+					case 0:
+						col.quoteChar[0] = r
+					case 1:
+						col.quoteChar[1] = r
+					default:
+						return fmt.Errorf("need exactly two characters after q: for %q", line)
+					}
+				}
+			}
+		case flag[0] == 'Q':
+			col.quote = 2
+			col.quoteChar = [2]rune{'\'', '\''}
+			if len(flag) > 1 {
+				if flag[1] != ':' {
+					return fmt.Errorf("need exactly two characters after Q: for %q", line)
+				}
+				for i, r := range flag[2:] {
+					switch i {
+					case 0:
+						col.quoteChar[0] = r
+					case 1:
+						col.quoteChar[1] = r
+					default:
+						return fmt.Errorf("need exactly two characters after Q: for %q", line)
+					}
+				}
+			}
 		case flag[0] == 'f':
 			if utf8.RuneCountInString(flag) != 3 {
 				return fmt.Errorf("need exactly one character after f: for %q", line)
@@ -432,11 +467,13 @@ func nratio(sub int, nums ...int) []int {
 func (f *Format) fmtPlaceholder(i, lineno int, text string, applyTrim int) string {
 	c := f.cols[i]
 
-	if c.quote {
-		if f.as != printAsListCompact && lineno == 0 {
+	if c.quote > 0 {
+		if c.quote == 2 && text == "" {
+			// Do nothing
+		} else if f.as != printAsListCompact && lineno == 0 {
 			text = " " + text + "  " // TODO: why two spaces?
 		} else {
-			text = "'" + text + "'"
+			text = string(f.cols[i].quoteChar[0]) + text + string(f.cols[i].quoteChar[1])
 		}
 	}
 

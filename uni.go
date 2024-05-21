@@ -47,7 +47,7 @@ Use "%(prog) help" or "%(prog) -h" for a more detailed help.
 `)
 
 var usage = zli.Usage(zli.UsageHeaders|zli.UsageProgram|zli.UsageTrim, `
-Usage: %(prog) [command] [flags] 
+Usage: %(prog) [command] [flags]
 
 uni queries the unicode database. https://github.com/arp242/uni
 
@@ -64,8 +64,7 @@ Flags:
                              ignoring formatting flags. Use "-format all" to
                              include all columns.
                      table   Output as table; instead of listing the codepoints
-                             on every line use a table. This ignores the
-                             -format flag.
+                             on every line. This ignores the -format flag.
 
     -c, -compact   More compact output; don't print header, "no matches", etc.
                    For json output it uses minified output, and for table it
@@ -76,14 +75,14 @@ Flags:
 
     -p, -pager     Output to $PAGER.
 
-    -o, -or        Use "or" when searching: print if at least one parameter
+    -o, -or        Use "or" when searching: match if at least one parameter
                    matches, instead of only when all parameters match.
 
     -q, -quiet     Backwards-compatible alias for -c/-compact.
     -j, -json      Backwards-compatible alias for -as json
 
 Commands:
-    list [query]     List an overview of blocks, categories, scripts, or
+    list [query]     Show an overview of blocks, categories, scripts, or
                      properties. Every name can be abbreviated (i.e. "b" for
                      "block"). Use "all" to show everything.
 
@@ -94,17 +93,19 @@ Commands:
     print [query]    Print characters. The query can be any of the following:
 
                        Codepoint   Specific codepoint, in number formats:
-                                     hexadecimal   U+20, U20, 0x20, x20
+                                     hexadecimal   U+20, U20, 0x20, x20, 20
                                      decimal       0d32
                                      octal         0o40, o40
                                      binary        0b100000
 
                        Range       Range of codepoints, as "start-end" or
                                    "start..end", using the same notation as
-                                   Codepoints. For example:
+                                   Codepoints. These are all identical:
 
                                       U+2042..U+2050
-                                      '0o101 - 0x5a'
+                                      U+2042-U+2050
+                                      2042..2050
+                                      '0o20102 - 0d8272'
 
                        UTF-8       UTF-8 byte sequence, optionally separated by
                                    any combination of '0x', '-', '_', or spaces.
@@ -181,7 +182,7 @@ Commands:
 
                      Note: emojis may not be accurately copied by select & copy
                      in terminals. It's recommended to copy to the clipboard
-                     directly with e.g. xclip.
+                     directly by piping to e.g. xclip.
 
 Format:
     You can use the -format or -f flag to control what to print; placeholders
@@ -195,8 +196,11 @@ Format:
     Flags:
         %(name l:5)     Left-align and pad with 5 spaces
         %(name l:auto)  Left-align and pad to the longest value
-        %(name r:5)     Right-align and pad with 5 spaces
+        %(name r:5)     Right-align and pad with 5 spaces (also supports auto)
         %(name q)       Quote with single quotes, excluding any padding
+        %(name q:[])    Quote with the given characters, excluding any padding
+        %(name Q)       Quote like q, but omit the quotes if the value is empty
+        %(name Q:[])
         %(name t)       Trim this column if it's longer than the screen width
         %(name f:C)     Fill this column with character C; especially useful
                         for numbers: %(bin r:auto f:0)
@@ -208,6 +212,8 @@ Format:
                          with tabs.
 
     Placeholders for identify, search, and print:
+        Placeholder      Description                   Example
+        -----------      -----------                   -------
         %(char)          The literal character         ✓
                          (also see -raw flag)
         %(cpoint)        As codepoint                  U+2713
@@ -218,7 +224,7 @@ Format:
         %(utf8)          As UTF-8                      e2 9c 93
         %(utf16le)       As UTF-16 LE (Windows)        13 27
         %(utf16be)       As UTF-16 BE                  27 13
-        %(html)          HTML entity                   &check;
+        %(html)          HTML entity (name or hex)     &check;
         %(xml)           XML entity                    &#x2713;
         %(json)          JSON escape                   \u2713
         %(keysym)        X11 keysym; can be blank      checkmark
@@ -258,7 +264,7 @@ const (
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
 		" %(script l:auto) %(props l:auto) %(unicode l:auto)"
 
-	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  (%(cldr t))"
+	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  %(cldr t Q:[])"
 	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
 )
 
