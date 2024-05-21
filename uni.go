@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -490,7 +491,7 @@ func list(ls []string, as printAs) error {
 		zli.Fatalf("can't use -as table with the list command")
 	}
 
-	if len(ls) == 0 || zstring.Contains(ls, "all") {
+	if len(ls) == 0 || slices.Contains(ls, "all") {
 		ls = []string{"blocks", "categories", "scripts", "properties"}
 	}
 
@@ -964,7 +965,7 @@ func emoji(args []string, format string, raw bool, as printAs, or bool, tones, g
 		text  string
 	}
 	var (
-		all       = zstring.Contains(args, "all")
+		all       = slices.Contains(args, "all")
 		matchArgs = make([]matchArg, 0, len(args))
 	)
 	if !all {
@@ -995,7 +996,7 @@ func emoji(args []string, format string, raw bool, as printAs, or bool, tones, g
 				match = strings.Contains(strings.ToLower(e.Name), a.text)
 			default:
 				match = strings.Contains(strings.ToLower(e.Name), a.text) ||
-					zstring.Contains(e.CLDR, a.text)
+					slices.Contains(e.CLDR, a.text)
 			}
 			if match {
 				m++

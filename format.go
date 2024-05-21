@@ -8,6 +8,7 @@ import (
 	"math"
 	"os"
 	"regexp"
+	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -110,7 +111,7 @@ func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) 
 	cols := make([]string, 0, len(f.cols))
 	h := map[string]string{}
 	for _, c := range f.cols {
-		if !zstring.Contains(knownCols, c.name) {
+		if !slices.Contains(knownCols, c.name) {
 			return nil, fmt.Errorf("-format flag: unknown placeholder: %q", c.name)
 		}
 		cols = append(cols, c.name)
@@ -510,73 +511,73 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	}
 
 	cols := make(map[string]string)
-	if zstring.Contains(f.colNames, "char") {
+	if slices.Contains(f.colNames, "char") {
 		cols["char"] = map[bool]string{false: info.Display(), true: string(info.Codepoint)}[raw]
 	}
-	if zstring.Contains(f.colNames, "wide_padding") {
+	if slices.Contains(f.colNames, "wide_padding") {
 		cols["wide_padding"] = widePadding(info)
 	}
-	if zstring.Contains(f.colNames, "cpoint") {
+	if slices.Contains(f.colNames, "cpoint") {
 		cols["cpoint"] = info.FormatCodepoint()
 	}
-	if zstring.Contains(f.colNames, "dec") {
+	if slices.Contains(f.colNames, "dec") {
 		cols["dec"] = info.Format(10)
 	}
-	if zstring.Contains(f.colNames, "hex") {
+	if slices.Contains(f.colNames, "hex") {
 		cols["hex"] = info.Format(16)
 	}
-	if zstring.Contains(f.colNames, "oct") {
+	if slices.Contains(f.colNames, "oct") {
 		cols["oct"] = info.Format(8)
 	}
-	if zstring.Contains(f.colNames, "bin") {
+	if slices.Contains(f.colNames, "bin") {
 		cols["bin"] = info.Format(2)
 	}
-	if zstring.Contains(f.colNames, "utf8") {
+	if slices.Contains(f.colNames, "utf8") {
 		cols["utf8"] = fmt.Sprintf("% x", info.UTF8())
 	}
-	if zstring.Contains(f.colNames, "utf16be") {
+	if slices.Contains(f.colNames, "utf16be") {
 		cols["utf16be"] = fmt.Sprintf("% x", info.UTF16(true))
 	}
-	if zstring.Contains(f.colNames, "utf16le") {
+	if slices.Contains(f.colNames, "utf16le") {
 		cols["utf16le"] = fmt.Sprintf("% x", info.UTF16(false))
 	}
-	if zstring.Contains(f.colNames, "html") {
+	if slices.Contains(f.colNames, "html") {
 		cols["html"] = info.HTML()
 	}
-	if zstring.Contains(f.colNames, "xml") {
+	if slices.Contains(f.colNames, "xml") {
 		cols["xml"] = info.XML()
 	}
-	if zstring.Contains(f.colNames, "json") {
+	if slices.Contains(f.colNames, "json") {
 		cols["json"] = info.JSON()
 	}
-	if zstring.Contains(f.colNames, "keysym") {
+	if slices.Contains(f.colNames, "keysym") {
 		cols["keysym"] = info.KeySym()
 	}
-	if zstring.Contains(f.colNames, "digraph") {
+	if slices.Contains(f.colNames, "digraph") {
 		cols["digraph"] = info.Digraph()
 	}
-	if zstring.Contains(f.colNames, "name") {
+	if slices.Contains(f.colNames, "name") {
 		cols["name"] = info.Name()
 	}
-	if zstring.Contains(f.colNames, "cat") {
+	if slices.Contains(f.colNames, "cat") {
 		cols["cat"] = info.Category().String()
 	}
-	if zstring.Contains(f.colNames, "block") {
+	if slices.Contains(f.colNames, "block") {
 		cols["block"] = info.Block().String()
 	}
-	if zstring.Contains(f.colNames, "script") {
+	if slices.Contains(f.colNames, "script") {
 		cols["script"] = info.Script().String()
 	}
-	if zstring.Contains(f.colNames, "plane") {
+	if slices.Contains(f.colNames, "plane") {
 		cols["plane"] = info.Plane().String()
 	}
-	if zstring.Contains(f.colNames, "width") {
+	if slices.Contains(f.colNames, "width") {
 		cols["width"] = info.Width().String()
 	}
-	if zstring.Contains(f.colNames, "props") {
+	if slices.Contains(f.colNames, "props") {
 		cols["props"] = info.Properties().String()
 	}
-	if zstring.Contains(f.colNames, "unicode") {
+	if slices.Contains(f.colNames, "unicode") {
 		cols["unicode"] = info.Unicode().String()
 	}
 	return cols

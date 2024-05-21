@@ -6,7 +6,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.15
 	zgo.at/termtext v1.4.0
 	zgo.at/zli v0.0.0-20240517053106-e77926aab499
-	zgo.at/zstd v0.0.0-20240425000522-78bcf900e0a4
+	zgo.at/zstd v0.0.0-20240521013615-10baa641d7d0
 )
 
 require github.com/rivo/uniseg v0.4.7 // indirect
