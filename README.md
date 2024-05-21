@@ -51,33 +51,41 @@ renders wide characters; in terminals it should be aligned correctly.*
 
 Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
-    $ uni identify €
-         CPoint  Dec    UTF8        HTML       Name
+    % uni identify €
+                 Dec    UTF8        HTML       Name
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
 
 `i` is a shortcut for `identify`:
 
-    $ uni i h€ý
-         CPoint  Dec    UTF8        HTML       Name
+    % uni i h€ý
+                 Dec    UTF8        HTML       Name
     'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
     'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE
 
 It reads from stdin:
 
-    $ head -c2 README.markdown | uni i
-         cpoint  dec    utf-8       html       name (cat)
-    '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
-    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
+     % head -c5 README.md | uni i
+          CPoint  Dec    UTF8        HTML       Name
+     '`'  U+0060  96     60          &grave;    GRAVE ACCENT [backtick, backquote]
+     'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U
+     'n'  U+006E  110    6e          &#x6e;     LATIN SMALL LETTER N
+     'i'  U+0069  105    69          &#x69;     LATIN SMALL LETTER I
+     '`'  U+0060  96     60          &grave;    GRAVE ACCENT [backtick, backquote]
+
+    % echo 'U+1234 U+1111' | uni p
+         CPoint  Dec    UTF8        HTML       Name
+    'ᄑ' U+1111  4369   e1 84 91    &#x1111;   HANGUL CHOSEONG PHIEUPH [P]
+    'ሴ'  U+1234  4660   e1 88 b4    &#x1234;   ETHIOPIC SYLLABLE SEE
 
 You can use `-compact` (or `-c`) to suppress the header, and `-format` (or `-f`)
 to control the output format, for example you may want to generate a codepoint
 to X11 keysym mapping:
 
-    $ uni i -c -f '0x%(hex): "%(keysym)", // %(name)' h€ý
-    0x68: "h", // LATIN SMALL LETTER H
+    % uni i -c -f '0x%(hex l:auto f:0): "%(keysym)", // %(name)' h€ý
+    0x6800: "h", // LATIN SMALL LETTER H
     0x20ac: "EuroSign", // EURO SIGN
-    0xfd: "yacute", // LATIN SMALL LETTER Y WITH ACUTE
+    0xfd00: "yacute", // LATIN SMALL LETTER Y WITH ACUTE
 
 See `uni help` for more details on the `-format` flag; this flag can also be
 added to other commands.
@@ -86,8 +94,8 @@ added to other commands.
 
 Search description:
 
-    $ uni search euro
-         CPoint  Dec    UTF8        HTML       Name
+    % uni search euro
+                 Dec    UTF8        HTML       Name
     '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN
     '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN
     '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON
@@ -101,28 +109,28 @@ Search description:
 The `s` command is a shortcut for `search`. Multiple words are matched
 individually:
 
-    $ uni s globe earth
-         CPoint  Dec    UTF8        HTML       Name
+    % uni s globe earth
+                 Dec    UTF8        HTML       Name
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS
     '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA
 
 Use shell quoting for more literal matches:
 
-    $ uni s rightwards black arrow
-         CPoint  Dec    UTF8        HTML       Name
+    % uni s rightwards black arrow
+                 Dec    UTF8        HTML       Name
     '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW
     '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD
     …
 
-    $ uni s 'rightwards black arrow'
-         CPoint  Dec    UTF8        HTML       Name
+    % uni s 'rightwards black arrow'
+                 Dec    UTF8        HTML       Name
     '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
-    $ uni s -o globe milky
-         CPoint  Dec    UTF8        HTML       Name
+    % uni s -o globe milky
+                 Dec    UTF8        HTML       Name
     '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY
     '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA
     '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS
@@ -133,14 +141,14 @@ Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
 Print specific codepoints or groups of codepoints:
 
-    $ uni print U+2042
-         CPoint  Dec    UTF8        HTML       Name
+    % uni print U+2042
+                 Dec    UTF8        HTML       Name
     '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM
 
 Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
 
-    $ uni print 2042..2044
-         CPoint  Dec    UTF8        HTML       Name
+    % uni print 2042..2044
+                 Dec    UTF8        HTML       Name
     '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM
     '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET
     '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH [solidus]
@@ -150,25 +158,25 @@ You can also use hex, octal, and binary numbers: `0x2024`, `0o20102`, or
 
 General category:
 
-    $ uni p Po
+    % uni p Po
     Showing category Po (Other_Punctuation)
-         CPoint  Dec    UTF8        HTML       Name
+                 Dec    UTF8        HTML       Name
     '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang]
     …
 
 Blocks:
 
-    $ uni p arrows 'box drawing'
+    % uni p arrows 'box drawing'
     Showing block Arrows
     Showing block Box Drawing
-         CPoint  Dec    UTF8        HTML       Name
+                 Dec    UTF8        HTML       Name
     '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW
     '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW
     …
 
 Print as table, and with a shorter name:
 
-    $ uni p -as table box
+    % uni p -as table box
     Showing block Box Drawing
              0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
            ┌────────────────────────────────────────────────────────────────
@@ -191,7 +199,7 @@ Print as table, and with a shorter name:
 
 Or more compact table:
 
-    $ uni p -as table box -compact
+    % uni p -as table box -compact
              0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F
            ┌────────────────────────────────────────────────────────────────
     U+250x │ ─   ━   │   ┃   ┄   ┅   ┆   ┇   ┈   ┉   ┊   ┋   ┌   ┍   ┎   ┏
@@ -206,8 +214,8 @@ Or more compact table:
 ### Emoji
 The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 
-    $ uni e cry
-    	Name                      Cldr
+    % uni e cry
+    	Name                      CLDR
     🥹	face holding back tears  [admiration, angry, aw, aww, cry, embarrassed, feelings, grateful, gratitude, please, proud, resist, sad, sadness, tears of joy]
     😢	crying face              [awful, feels, miss, sad, tear, triste, unhappy]
     😭	loudly crying face       [bawling, sad, sob, tear, tears, unhappy]
@@ -217,14 +225,14 @@ The `emoji` command (shortcut: `e`) is is the real reason I wrote this:
 By default both the name and CLDR data are searched; the CLDR data is a list of
 keywords for an emoji; prefix with `name:` or `n:` to search on the name only:
 
-    $ uni e smile
-    	Name                              Cldr
+    % uni e smile
+    	Name                              CLDR
     😀	grinning face                    [cheerful, cheery, happy, laugh, nice, smile, smiling, teeth]
     😃	grinning face with big eyes      [awesome, happy, mouth, open, smile, smiling, smiling face with open mouth, teeth, yay]
     …
 
-    $ uni e name:smile
-    	Name                 Cldr
+    % uni e name:smile
+    	Name                 CLDR
     😼	cat with wry smile  [animal, cat face with wry smile, face, ironic]
 
 As you can see, the CLDR is pretty useful, as "smile" only gives one result as
@@ -232,8 +240,8 @@ most emojis use "smiling".
 
 Prefix with `group:` to search by group:
 
-    $ uni e group:hands
-    	Name                Cldr
+    % uni e group:hands
+    	Name                CLDR
     👏	clapping hands     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
     🙌	raising hands      [celebration, gesture, hooray, praise, raised]
     🫶	heart hands        [&lt;3, love, love you]
@@ -244,15 +252,15 @@ Prefix with `group:` to search by group:
 
 Group and search can be combined, and `group:` can be abbreviated to `g:`:
 
-    $ uni e g:cat-face grin
-    	Name                             Cldr
+    % uni e g:cat-face grin
+    	Name                             CLDR
     😺	grinning cat                    [animal, face, mouth, open, smile, smiling cat face with open mouth]
     😸	grinning cat with smiling eyes  [animal, face, grinning cat face with smiling eyes, smile]
 
 Like with `search`, use `-or` to OR the parameters together instead of AND:
 
-    $ uni e -or g:face-glasses g:face-hat
-    	Name                           Cldr
+    % uni e -or g:face-glasses g:face-hat
+    	Name                           CLDR
     🤠	cowboy hat face               [cowgirl]
     🥳	partying face                 [birthday, celebrate, celebration, excited, happy bday, happy birthday, hat, hooray, horn]
     🥸	disguised face                [eyebrow, glasses, incognito, moustache, mustache, nose, person, spy, tache, tash]
@@ -262,8 +270,8 @@ Like with `search`, use `-or` to OR the parameters together instead of AND:
 
 Apply skin tone modifiers with `-tone`:
 
-    $ uni e -tone dark g:hands
-    	Name                                Cldr
+    % uni e -tone dark g:hands
+    	Name                                CLDR
     👏🏿	clapping hands: dark skin tone     [applause, approval, awesome, congrats, congratulations, excited, good job, great, homie, nice, prayed, well done, yay]
     🙌🏿	raising hands: dark skin tone      [celebration, gesture, hooray, praise, raised]
     🫶🏿	heart hands: dark skin tone        [&lt;3, love, love you]
@@ -272,18 +280,17 @@ Apply skin tone modifiers with `-tone`:
     🤝🏿	handshake: dark skin tone          [agreement, deal, meeting]
     🙏🏿	folded hands: dark skin tone       [appreciate, ask, beg, blessed, bow, cmon, five, gesture, high 5, high five, please, pray, thank, thank you, thanks, thx]
 
-The "heart hands" may not show as it's very recent. The handshake emoji supports
-setting individual skin tones per hand since Unicode 14, but this isn't
-supported, mostly because I can't really really think a good CLI interface for
-setting this without breaking compatibility (there are some other emojis too,
-like "holding hands" and "kissing" where you can set both the gender and skin
-tone of both sides individually). Maybe for uni v3 someday.
+The handshake emoji supports setting individual skin tones per hand since
+Unicode 14, but this isn't supported, mostly because I can't really really think
+a good CLI interface for setting this without breaking compatibility (there are
+some other emojis too, like "holding hands" and "kissing" where you can set both
+the gender and skin tone of both sides individually). Maybe for uni v3 someday.
 
 The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
 
-    $ uni e -gender man g:person-gesture
-    	Name               Cldr
+    % uni e -gender man g:person-gesture
+    	Name               CLDR
     🙍‍♂️	man frowning      [annoyed, disappoint, disgruntled, disturbed, frustrated, gesture, irritated, not happy, person frowning, upset, woman frowning]
     🙎‍♂️	man pouting       [disappoint, downtrodden, frown, gesture, grimace, person pouting, scowl, sulk, upset, whine, woman pouting]
     🙅‍♂️	man gesturing NO  [exclude, forbidden, gesture, hand, no, nope, not, not a chance, person gesturing NO, prohibit, prohibited, woman gesturing NO]
@@ -299,8 +306,8 @@ Both `-tone` and `-gender` accept multiple values. `-gender women,man` will
 display both the female and male variants, and `-tone light,dark` will display
 both a light and dark skin tone; use `all` to display all skin tones or genders:
 
-    $ uni e -tone light,dark -gender f,m shrug
-    	Name                               Cldr
+    % uni e -tone light,dark -gender f,m shrug
+    	Name                               CLDR
     🤷🏻‍♂️	man shrugging: light skin tone    [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
     🤷🏻‍♀️	woman shrugging: light skin tone  [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
     🤷🏿‍♂️	man shrugging: dark skin tone     [doubt, dunno, i dunno, I guess, idk, ignorance, indifference, maybe, person, person shrugging, whatever, who knows]
@@ -308,7 +315,7 @@ both a light and dark skin tone; use `all` to display all skin tones or genders:
 
 Like `print` and `identify`, you can use `-format`:
 
-    $ uni e g:cat-face -c -format '%(name): %(emoji)'
+    % uni e g:cat-face -c -format '%(name): %(emoji)'
     grinning cat: 😺
     grinning cat with smiling eyes: 😸
     cat with tears of joy: 😹
@@ -325,7 +332,7 @@ See `uni help` for more details on the `-format` flag.
 
 With `-as json` or `-as j` you can output the data as JSON:
 
-    $ uni i -as json h€ý
+    % uni i -as json h€ý
     [{
     	"aliases": "",
     	"char": "h",
@@ -355,7 +362,7 @@ With `-as json` or `-as j` you can output the data as JSON:
 All the columns listed in `-f` will be included; you can use `-f all` to include
 all columns:
 
-    $ uni i -as json -f all h€ý
+    % uni i -as json -f all h€ý
     [{
     	"aliases": "",
     	"bin": "1101000",
@@ -435,7 +442,7 @@ all columns:
 
 This also works for the `emoji` command:
 
-    $ uni e -as json -f all 'kissing cat'
+    % uni e -as json -f all 'kissing cat'
     [{
     	"cldr": "animal, eye, face, kissing cat face with closed eyes",
     	"cldr_full": "animal, cat, eye, face, kiss, kissing cat, kissing cat face with closed eyes",

@@ -263,8 +263,8 @@ Format:
 `)
 
 const (
-	defaultFormat = "%(char q h l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[])"
-	allFormat     = "%(char q h l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
+	defaultFormat = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[])"
+	allFormat     = "%(char q h l:3)%(wide_padding) %(cpoint h l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +

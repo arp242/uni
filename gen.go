@@ -32,7 +32,7 @@ func main() {
 				}
 			}
 
-			out := "    $ uni " + strings.Join(args, " ") + "\n"
+			out := "    % uni " + strings.Join(args, " ") + "\n"
 			for _, line := range bytes.Split(bytes.TrimRight(o, "\n"), []byte{'\n'}) {
 				out += "    " + string(line) + "\n"
 			}

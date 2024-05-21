@@ -59,16 +59,24 @@ Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
 It reads from stdin:
 
-    $ head -c2 README.markdown | uni i
-         cpoint  dec    utf-8       html       name (cat)
-    '['  U+005B  91     5b          &lsqb;     LEFT SQUARE BRACKET (Open_Punctuation)
-    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
+     % head -c5 README.md | uni i
+          CPoint  Dec    UTF8        HTML       Name
+     '`'  U+0060  96     60          &grave;    GRAVE ACCENT [backtick, backquote]
+     'u'  U+0075  117    75          &#x75;     LATIN SMALL LETTER U
+     'n'  U+006E  110    6e          &#x6e;     LATIN SMALL LETTER N
+     'i'  U+0069  105    69          &#x69;     LATIN SMALL LETTER I
+     '`'  U+0060  96     60          &grave;    GRAVE ACCENT [backtick, backquote]
+
+    % echo 'U+1234 U+1111' | uni p
+         CPoint  Dec    UTF8        HTML       Name
+    'ᄑ' U+1111  4369   e1 84 91    &#x1111;   HANGUL CHOSEONG PHIEUPH [P]
+    'ሴ'  U+1234  4660   e1 88 b4    &#x1234;   ETHIOPIC SYLLABLE SEE
 
 You can use `-compact` (or `-c`) to suppress the header, and `-format` (or `-f`)
 to control the output format, for example you may want to generate a codepoint
 to X11 keysym mapping:
 
-{{example "i" "-c" "-f" "0x%(hex): \"%(keysym)\", // %(name)" "h€ý"}}
+{{example "i" "-c" "-f" "0x%(hex l:auto f:0): \"%(keysym)\", // %(name)" "h€ý"}}
 
 See `uni help` for more details on the `-format` flag; this flag can also be
 added to other commands.
@@ -154,12 +162,11 @@ Apply skin tone modifiers with `-tone`:
 
 {{example "e" "-tone" "dark" "g:hands"}}
 
-The "heart hands" may not show as it's very recent. The handshake emoji supports
-setting individual skin tones per hand since Unicode 14, but this isn't
-supported, mostly because I can't really really think a good CLI interface for
-setting this without breaking compatibility (there are some other emojis too,
-like "holding hands" and "kissing" where you can set both the gender and skin
-tone of both sides individually). Maybe for uni v3 someday.
+The handshake emoji supports setting individual skin tones per hand since
+Unicode 14, but this isn't supported, mostly because I can't really really think
+a good CLI interface for setting this without breaking compatibility (there are
+some other emojis too, like "holding hands" and "kissing" where you can set both
+the gender and skin tone of both sides individually). Maybe for uni v3 someday.
 
 The default is to display only the gender-neutral "person", but this can be
 changed with the `-gender` option:
@@ -253,7 +260,7 @@ ChangeLog
       Ahom                          54
       Anatolian Hieroglyphs        582
       …
-      
+
       % uni print 'script:linear a'
       Showing script Linear A
            CPoint  Dec    UTF8        HTML       Name (Cat)

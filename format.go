@@ -14,7 +14,6 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"github.com/mattn/go-runewidth"
 	"zgo.at/termtext"
 	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
@@ -27,7 +26,6 @@ var (
 		if !isTerm {
 			return 0
 		}
-
 		w, _, err := zli.TerminalSize(os.Stdout.Fd())
 		if err != nil || w < 50 {
 			return 0
@@ -88,7 +86,7 @@ const (
 func header(h string) string {
 	h = strings.ReplaceAll(h, "-", " ")
 	switch h {
-	case "utf8", "utf16", "utf16le", "utf16be", "html", "xml", "json":
+	case "utf8", "utf16", "utf16le", "utf16be", "html", "xml", "json", "cldr":
 		return strings.ToUpper(h)
 	case "cpoint":
 		return "CPoint"
@@ -147,6 +145,9 @@ func (f *Format) json() bool { return f.as == printAsJSON || f.as == printAsJSON
 
 func (f *Format) processColumn(line string) error {
 	s := zstring.Fields(line[2:len(line)-1], " ") // name, flags
+	if len(s) == 0 {
+		return fmt.Errorf("empty name: %q", line)
+	}
 	name := s[0]
 	col := column{name: name}
 
@@ -341,11 +342,11 @@ func (f *Format) printTbl(out io.Writer) {
 
 	h := strings.Repeat(" ", head)
 	if wide {
-		fmt.Println(h + "     0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F")
-		fmt.Println(h + "   ┌" + strings.Repeat("─", 64))
+		fmt.Fprintln(out, h+"     0   1   2   3   4   5   6   7   8   9   A   B   C   D   E   F")
+		fmt.Fprintln(out, h+"   ┌"+strings.Repeat("─", 64))
 	} else {
-		fmt.Println(h + "     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F")
-		fmt.Println(h + "   ┌" + strings.Repeat("─", 48))
+		fmt.Fprintln(out, h+"     0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F")
+		fmt.Fprintln(out, h+"   ┌"+strings.Repeat("─", 48))
 	}
 
 	start, end := f.tblData[0].Codepoint, f.tblData[len(f.tblData)-1].Codepoint
@@ -378,19 +379,20 @@ func (f *Format) printTbl(out io.Writer) {
 		// Need to add space for alignment if some codepoints are wide but this
 		// one isn't.
 		row += fmt.Sprintf(" %s ", char)
-		if wide && runewidth.RuneWidth([]rune(char)[0]) == 1 {
+		if wide && termtext.Width(char) == 1 {
 			row += " "
 		}
 		if strings.HasSuffix(cp, "F") || i == end {
 			if blank < 16 {
-				fmt.Print(row)
-				fmt.Print("\n")
+				row = strings.TrimRight(row, " ")
+				fmt.Fprint(out, row)
+				fmt.Fprint(out, "\n")
 				if f.as != printAsTableCompact {
-					fmt.Println(h + "   │")
+					fmt.Fprintln(out, h+"   │")
 				}
 				didel = false
 			} else if !didel {
-				fmt.Println(h + " … │")
+				fmt.Fprintln(out, h+" … │")
 				didel = true
 			}
 
@@ -439,6 +441,7 @@ func (f *Format) Print(out io.Writer) {
 			}
 		}
 
+		line = strings.TrimRight(line, " ")
 		out.Write(append([]byte(line), '\n'))
 	}
 }
