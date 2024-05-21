@@ -26,6 +26,12 @@ type (
 		name     string
 	}
 
+	name struct {
+		aliases   []string
+		refs      []string
+		decompose []rune
+	}
+
 	Width        uint8      // Unicode width
 	Plane        uint8      // Unicode plane
 	Category     uint8      // Unicode category
@@ -331,6 +337,14 @@ func (c Codepoint) Script() Script {
 
 func (c Codepoint) Unicode() Unicode {
 	return c.unicode
+}
+
+func (c Codepoint) Aliases() []string {
+	return names[c.Codepoint].aliases
+}
+
+func (c Codepoint) Refs() []string {
+	return names[c.Codepoint].refs
 }
 
 // FormatCodepoint formats the codepoint in Unicode notation.

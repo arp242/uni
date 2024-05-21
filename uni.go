@@ -238,6 +238,9 @@ Format:
         %(unicode)       First assigned in Unicode     1.1
         %(wide_padding)  Blank for wide characters,
                          space otherwise; for alignment
+        %(aliases)       Alias names                   factorial, bang
+        %(refs)          Reference other codepoints,   U+221A square root,
+                         usually similar/alternatives. U+1F5F8 light check mark
 
         The default is:
         `+defaultFormat+`
@@ -257,12 +260,12 @@ Format:
 `)
 
 const (
-	defaultFormat = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) (%(cat t))"
+	defaultFormat = "%(char q l:3)%(wide_padding) %(cpoint l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t Q:[]) (%(cat t))"
 	allFormat     = "%(char q l:3)%(wide_padding) %(cpoint l:auto) %(width l:auto) %(dec l:auto) %(hex l:auto)" +
 		" %(oct l:auto) %(bin l:auto)" +
 		" %(utf8 l:auto) %(utf16le l:auto) %(utf16be l:auto) %(html l:auto) %(xml l:auto) %(json l:auto)" +
 		" %(keysym l:auto) %(digraph l:auto) %(name l:auto) %(plane l:auto) %(cat l:auto) %(block l:auto)" +
-		" %(script l:auto) %(props l:auto) %(unicode l:auto)"
+		" %(script l:auto) %(props l:auto) %(unicode l:auto) %(aliases l:auto) %(refs l:auto)"
 
 	defaultEmojiFormat = "%(emoji)%(tab)%(name l:auto)  %(cldr t Q:[])"
 	allEmojiFormat     = "%(emoji)%(tab)%(name l:auto) %(group l:auto) %(subgroup l:auto) %(cpoint l:auto) %(cldr l:auto) %(cldr_full)"
@@ -693,17 +696,10 @@ func identify(ins []string, format string, raw bool, as printAs) error {
 }
 
 func search(args []string, format string, raw bool, as printAs, or bool) error {
-	var na []string
-	for _, a := range args {
-		if a != "" {
-			na = append(na, a)
-		}
-	}
-	args = na
+	args = slices.DeleteFunc(args, func(s string) bool { return s == "" })
 	if len(args) == 0 {
 		return errors.New("search: need search term")
 	}
-
 	for i := range args {
 		args[i] = strings.ToUpper(args[i])
 	}
@@ -715,9 +711,18 @@ func search(args []string, format string, raw bool, as printAs, or bool) error {
 	}
 
 	for _, info := range unidata.Codepoints {
+		hasAlias := func(upperS string) bool {
+			for _, a := range info.Aliases() {
+				if strings.Contains(strings.ToUpper(a), upperS) {
+					return true
+				}
+			}
+			return false
+		}
+
 		m := 0
 		for _, a := range args {
-			if strings.Contains(info.Name(), a) {
+			if strings.Contains(info.Name(), a) || hasAlias(a) {
 				if or {
 					found = true
 					f.Line(f.toLine(info, raw))

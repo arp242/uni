@@ -121,10 +121,13 @@ func TestSearch(t *testing.T) {
 		{[]string{"-q", "s", "floral", "bullet"}, "HEART", 2, -1},
 		{[]string{"-q", "s", "rightwards arrow", "heavy"}, "HEAVY", 16, -1},
 
-		{[]string{"-qo", "s", "floral", "bullet"}, "WHITE BULLET", 15, -1},
+		{[]string{"-qo", "s", "floral", "bullet"}, "WHITE BULLET", 16, -1},
 
 		{[]string{"s", "nomatch_nomatch"}, "no matches", 1, 1},
 		{[]string{"-q", "s", "nomatch_nomatch"}, "", 0, 1},
+
+		// factorial from aliases
+		{[]string{"-q", "s", "factorial"}, "EXCLAMATION MARK", 1, -1},
 	}
 
 	for _, tt := range tests {
@@ -368,6 +371,7 @@ func TestJSON(t *testing.T) {
 	main()
 
 	want := ` [{
+	"aliases": "",
 	"bin": "10000010101100",
 	"block": "Currency Symbols",
 	"cat": "Currency_Symbol",
@@ -383,6 +387,7 @@ func TestJSON(t *testing.T) {
 	"oct": "20254",
 	"plane": "Basic Multilingual Plane",
 	"props": "",
+	"refs": "U+20A0 euro-currency sign",
 	"script": "Common",
 	"unicode": "2.1",
 	"utf16be": "20 ac",

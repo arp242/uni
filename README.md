@@ -52,16 +52,16 @@ renders wide characters; in terminals it should be aligned correctly.*
 Identify characters in a string, as a kind of a unicode-aware `hexdump`:
 
     $ uni identify €
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
 
 `i` is a shortcut for `identify`:
 
     $ uni i h€ý
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H (Lowercase_Letter)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
-    'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE (Lowercase_Letter)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    'h'  U+0068  104    68          &#x68;     LATIN SMALL LETTER H  (Lowercase_Letter)
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
+    'ý'  U+00FD  253    c3 bd       &yacute;   LATIN SMALL LETTER Y WITH ACUTE  (Lowercase_Letter)
 
 It reads from stdin:
 
@@ -87,63 +87,63 @@ added to other commands.
 Search description:
 
     $ uni search euro
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN (Currency_Symbol)
-    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN (Currency_Symbol)
-    '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON (Other_Symbol)
-    '𐡸'  U+10878 67704  f0 90 a1 b8 &#x10878;  PALMYRENE RIGHT-POINTING FLEURON (Other_Symbol)
-    '𐫱'  U+10AF1 68337  f0 90 ab b1 &#x10af1;  MANICHAEAN PUNCTUATION FLEURON (Other_Punctuation)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
-    '🏤' U+1F3E4 127972 f0 9f 8f a4 &#x1f3e4;  EUROPEAN POST OFFICE (Other_Symbol)
-    '🏰' U+1F3F0 127984 f0 9f 8f b0 &#x1f3f0;  EUROPEAN CASTLE (Other_Symbol)
-    '💶' U+1F4B6 128182 f0 9f 92 b6 &#x1f4b6;  BANKNOTE WITH EURO SIGN (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '₠'  U+20A0  8352   e2 82 a0    &#x20a0;   EURO-CURRENCY SIGN  (Currency_Symbol)
+    '€'  U+20AC  8364   e2 82 ac    &euro;     EURO SIGN  (Currency_Symbol)
+    '𐡷'  U+10877 67703  f0 90 a1 b7 &#x10877;  PALMYRENE LEFT-POINTING FLEURON  (Other_Symbol)
+    '𐡸'  U+10878 67704  f0 90 a1 b8 &#x10878;  PALMYRENE RIGHT-POINTING FLEURON  (Other_Symbol)
+    '𐫱'  U+10AF1 68337  f0 90 ab b1 &#x10af1;  MANICHAEAN PUNCTUATION FLEURON  (Other_Punctuation)
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
+    '🏤' U+1F3E4 127972 f0 9f 8f a4 &#x1f3e4;  EUROPEAN POST OFFICE  (Other_Symbol)
+    '🏰' U+1F3F0 127984 f0 9f 8f b0 &#x1f3f0;  EUROPEAN CASTLE  (Other_Symbol)
+    '💶' U+1F4B6 128182 f0 9f 92 b6 &#x1f4b6;  BANKNOTE WITH EURO SIGN  (Other_Symbol)
 
 The `s` command is a shortcut for `search`. Multiple words are matched
 individually:
 
     $ uni s globe earth
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
-    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
-    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
+    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS  (Other_Symbol)
+    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA  (Other_Symbol)
 
 Use shell quoting for more literal matches:
 
     $ uni s rightwards black arrow
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW (Other_Symbol)
-    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '➡'  U+27A1  10145  e2 9e a1    &#x27a1;   BLACK RIGHTWARDS ARROW  (Other_Symbol)
+    '➤'  U+27A4  10148  e2 9e a4    &#x27a4;   BLACK RIGHTWARDS ARROWHEAD  (Other_Symbol)
     …
 
     $ uni s 'rightwards black arrow'
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '⮕'  U+2B95  11157  e2 ae 95    &#x2b95;   RIGHTWARDS BLACK ARROW  (Other_Symbol)
 
 Add `-or` or `-o` to combine the search terms with "OR" instead of "AND":
 
     $ uni s -o globe milky
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY (Other_Symbol)
-    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA (Other_Symbol)
-    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS (Other_Symbol)
-    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA (Other_Symbol)
-    '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS (Other_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '🌌' U+1F30C 127756 f0 9f 8c 8c &#x1f30c;  MILKY WAY  (Other_Symbol)
+    '🌍' U+1F30D 127757 f0 9f 8c 8d &#x1f30d;  EARTH GLOBE EUROPE-AFRICA  (Other_Symbol)
+    '🌎' U+1F30E 127758 f0 9f 8c 8e &#x1f30e;  EARTH GLOBE AMERICAS  (Other_Symbol)
+    '🌏' U+1F30F 127759 f0 9f 8c 8f &#x1f30f;  EARTH GLOBE ASIA-AUSTRALIA  (Other_Symbol)
+    '🌐' U+1F310 127760 f0 9f 8c 90 &#x1f310;  GLOBE WITH MERIDIANS  (Other_Symbol)
 
 ### Print
 
 Print specific codepoints or groups of codepoints:
 
     $ uni print U+2042
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM  (Other_Punctuation)
 
 Print a custom range; `U+2042`, `U2042`, and `2042` are all identical:
 
     $ uni print 2042..2044
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM (Other_Punctuation)
-    '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET (Other_Punctuation)
-    '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH (Math_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '⁂'  U+2042  8258   e2 81 82    &#x2042;   ASTERISM  (Other_Punctuation)
+    '⁃'  U+2043  8259   e2 81 83    &hybull;   HYPHEN BULLET  (Other_Punctuation)
+    '⁄'  U+2044  8260   e2 81 84    &frasl;    FRACTION SLASH [solidus] (Math_Symbol)
 
 You can also use hex, octal, and binary numbers: `0x2024`, `0o20102`, or
 `0b10000001000010`.
@@ -152,8 +152,8 @@ General category:
 
     $ uni p Po
     Showing category Po (Other_Punctuation)
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK (Other_Punctuation)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang] (Other_Punctuation)
     …
 
 Blocks:
@@ -161,9 +161,9 @@ Blocks:
     $ uni p arrows 'box drawing'
     Showing block Arrows
     Showing block Box Drawing
-         CPoint  Dec    UTF8        HTML       Name (Cat)
-    '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW (Math_Symbol)
-    '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW (Math_Symbol)
+         CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
+    '←'  U+2190  8592   e2 86 90    &larr;     LEFTWARDS ARROW  (Math_Symbol)
+    '↑'  U+2191  8593   e2 86 91    &uarr;     UPWARDS ARROW  (Math_Symbol)
     …
 
 Print as table, and with a shorter name:
@@ -327,6 +327,7 @@ With `-as json` or `-as j` you can output the data as JSON:
 
     $ uni i -as json h€ý
     [{
+    	"aliases": "",
     	"cat": "Lowercase_Letter",
     	"char": "h",
     	"cpoint": "U+0068",
@@ -335,6 +336,7 @@ With `-as json` or `-as j` you can output the data as JSON:
     	"name": "LATIN SMALL LETTER H",
     	"utf8": "68"
     }, {
+    	"aliases": "",
     	"cat": "Currency_Symbol",
     	"char": "€",
     	"cpoint": "U+20AC",
@@ -343,6 +345,7 @@ With `-as json` or `-as j` you can output the data as JSON:
     	"name": "EURO SIGN",
     	"utf8": "e2 82 ac"
     }, {
+    	"aliases": "",
     	"cat": "Lowercase_Letter",
     	"char": "ý",
     	"cpoint": "U+00FD",
@@ -357,6 +360,7 @@ all columns:
 
     $ uni i -as json -f all h€ý
     [{
+    	"aliases": "",
     	"bin": "1101000",
     	"block": "Basic Latin",
     	"cat": "Lowercase_Letter",
@@ -372,6 +376,7 @@ all columns:
     	"oct": "150",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"refs": "U+04BB cyrillic small letter shha, U+210E planck constant",
     	"script": "Latin",
     	"unicode": "1.1",
     	"utf16be": "00 68",
@@ -380,6 +385,7 @@ all columns:
     	"width": "neutral",
     	"xml": "&#x68;"
     }, {
+    	"aliases": "",
     	"bin": "10000010101100",
     	"block": "Currency Symbols",
     	"cat": "Currency_Symbol",
@@ -395,6 +401,7 @@ all columns:
     	"oct": "20254",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"refs": "U+20A0 euro-currency sign",
     	"script": "Common",
     	"unicode": "2.1",
     	"utf16be": "20 ac",
@@ -403,6 +410,7 @@ all columns:
     	"width": "ambiguous",
     	"xml": "&#x20ac;"
     }, {
+    	"aliases": "",
     	"bin": "11111101",
     	"block": "Latin-1 Supplement",
     	"cat": "Lowercase_Letter",
@@ -418,6 +426,7 @@ all columns:
     	"oct": "375",
     	"plane": "Basic Multilingual Plane",
     	"props": "",
+    	"refs": "",
     	"script": "Latin",
     	"unicode": "1.1",
     	"utf16be": "00 fd",

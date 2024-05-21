@@ -7,41 +7,6 @@ cd $0:P:h:h
 # https://www.unicode.org/Public/security/13.0.0/
 # https://www.unicode.org/reports/tr39/
 
-# TODO: add "alias" information from
-# https://www.unicode.org/Public/UCD/latest/ucd/NamesList.txt
-# https://www.unicode.org/Public/UCD/latest/ucd/NamesList.html
-# https://www.unicode.org/versions/Unicode14.0.0/ch24.pdf
-#
-# Format:
-#    <codepoint>\t<description>
-#    \t= alias
-#    \t* comments/see also
-#    \tx cross-reference
-#    \t# comment(?)
-#
-# Example:
-#
-#   00B2 SUPERSCRIPT TWO
-#       = squared
-#       * other superscript digit characters: 2070-2079
-#       x (superscript one - 00B9)
-#       # <super> 0032
-#
-#   0027 APOSTROPHE
-#       = apostrophe-quote (1.0)
-#       = APL quote
-#       * neutral (vertical) glyph with mixed usage
-#       * 2019 is preferred for apostrophe
-#       * preferred characters in English for paired quotation marks are 2018 & 2019
-#       * 05F3 is preferred for geresh when writing Hebrew
-#       x (modifier letter prime - 02B9)
-#       x (modifier letter apostrophe - 02BC)
-#       x (modifier letter vertical line - 02C8)
-#       x (combining acute accent - 0301)
-#       x (hebrew punctuation geresh - 05F3)
-#       x (prime - 2032)
-#       x (latin small letter saltillo - A78C)
-
 get() {
 	if [[ ! -f .cache/$1:t ]]; then
 		print "Fetching $1"
@@ -89,6 +54,7 @@ mkdir -p .cache
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/DerivedAge.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/EastAsianWidth.txt'
+get 'https://www.unicode.org/Public/UCD/latest/ucd/NamesList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Scripts.txt'
@@ -99,12 +65,12 @@ get 'https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/raw/master/include/X1
 get 'https://tools.ietf.org/rfc/rfc1345.txt'
 get 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotations/en.xml'
 
-
 1=${1:-all}
 [[ $1 =~ "all|props?"      ]] && mk props      '.cache/PropList.txt'
 [[ $1 =~ "all|blocks?"     ]] && mk blocks     '.cache/Blocks.txt'
 [[ $1 =~ "all|cats?"       ]] && mk cats       '.cache/PropertyValueAliases.txt'
 [[ $1 =~ "all|codepoints?" ]] && mk codepoints '.cache/UnicodeData.txt'
+[[ $1 =~ "all|names?"      ]] && mk names      '.cache/NamesList.txt'
 [[ $1 =~ "all|scripts?"    ]] && mk scripts    '.cache/Scripts.txt'
 [[ $1 =~ "all|emojis?"     ]] && mkgo emojis   '.cache/emoji-test.txt' '.cache/en.xml'
 
