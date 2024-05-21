@@ -53,11 +53,11 @@ mk() {
 	print "Generating $go"
 
 	if [[ ${PRINT:-} -eq 1 ]]; then
-		gawk -f gen/$1.awk $2 || exit $?
+		gawk -f gen/$1.awk $argv[2,-1] || exit $?
 		return 0
 	fi
 
-	gawk -f gen/$1.awk $2 >$go || exit $?
+	gawk -f gen/$1.awk $argv[2,-1] >$go || exit $?
 	err=$(gofmt -w $go 2>&1)
 	if [[ $? -ne 0 ]]; then
 		for line in ${(ps:\n:)err}; \
@@ -65,6 +65,25 @@ mk() {
 		exit 1
 	fi
 }
+mkgo() {
+	local go=gen_$1.go
+	print "Generating $go"
+
+	if [[ ${PRINT:-} -eq 1 ]]; then
+		go run gen/$1.go $argv[2,-1] || exit $?
+		return 0
+	fi
+
+	go run gen/$1.go $argv[2,-1] >$go || exit $?
+	err=$(gofmt -w $go 2>&1)
+	if [[ $? -ne 0 ]]; then
+		for line in ${(ps:\n:)err}; \
+			printf "%s\n\t%s\n\n" "$line" "$(head -n ${${(s/:/)line}[2]} $go | tail -n1)"
+		exit 1
+	fi
+}
+
+# go run ./gen/emojis2.go .cache/emoji-test.txt .cache/en.xml |gofmt >!x
 
 mkdir -p .cache
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
@@ -74,7 +93,7 @@ get 'https://www.unicode.org/Public/UCD/latest/ucd/PropList.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Scripts.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/UnicodeData.txt'
-get 'https://www.unicode.org/Public/emoji/14.0/emoji-test.txt'
+get 'https://www.unicode.org/Public/emoji/latest/emoji-test.txt'
 get 'https://html.spec.whatwg.org/entities.json'
 get 'https://gitlab.freedesktop.org/xorg/proto/xorgproto/-/raw/master/include/X11/keysymdef.h'
 get 'https://tools.ietf.org/rfc/rfc1345.txt'
@@ -87,7 +106,6 @@ get 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotation
 [[ $1 =~ "all|cats?"       ]] && mk cats       '.cache/PropertyValueAliases.txt'
 [[ $1 =~ "all|codepoints?" ]] && mk codepoints '.cache/UnicodeData.txt'
 [[ $1 =~ "all|scripts?"    ]] && mk scripts    '.cache/Scripts.txt'
-# TODO: broken
-#[[ $1 =~ "all|emojis?"     ]] && mk emojis     '.cache/emoji-test.txt'
+[[ $1 =~ "all|emojis?"     ]] && mkgo emojis   '.cache/emoji-test.txt' '.cache/en.xml'
 
 exit 0

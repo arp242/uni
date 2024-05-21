@@ -5,16 +5,14 @@ There are four commands: `identify` codepoints in a string, `search` for
 codepoints, `print` codepoints by class, block, or range, and `emoji` to find
 emojis.
 
-There are binaries on the [releases][release] page, and [packages][pkg] for a
-number of platforms. You can also [run it in your browser][uni-wasm].
+There are binaries on the [releases] page, and [packages] for a number of
+platforms. You can also [run it in your browser][uni-wasm].
 
 Compile from source with:
 
-    $ git clone https://github.com/arp242/uni
-    $ cd uni
-    $ go build
+	% go install module zgo.at/uni/v2@latest
 
-which will give you a `uni` binary.
+which will give you a `uni` binary in `~/go/bin`.
 
 README index:
 - [Integrations](#integrations)
@@ -29,15 +27,14 @@ README index:
 - [Alternatives](#alternatives)
 
 [uni-wasm]: https://arp242.github.io/uni-wasm/
-[release]: https://github.com/arp242/uni/releases
-[pkg]: https://repology.org/project/uni/versions
+[releases]: https://github.com/arp242/uni/releases
+[packages]: https://repology.org/project/uni/versions
 
 Integrations
 ------------
 
-- [dmenu][dmenu], [rofi][rofi], and [fzf][fzf] script at
-  [`dmenu-uni`](/dmenu-uni). See the top of the script for some options you may
-  want to frob with.
+- [dmenu], [rofi], and [fzf] script at [`dmenu-uni`](/dmenu-uni). See the top of
+  the script for some options you may want to frob with.
 
 - For a Vim command see [`uni.vim`](/uni.vim); just copy/paste it in your vimrc.
 

@@ -183,7 +183,7 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 628, -1},
 		{[]string{"-q", "p", "Po"}, "ASTERISM", 628, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 34924, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 34931, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 
@@ -257,7 +257,7 @@ func TestEmoji(t *testing.T) {
 		{[]string{"e", "-q", "group:hands"},
 			[]string{"👏", "🙌", "🫶", "👐", "🤲", "🤝", "🙏"}},
 		{[]string{"e", "-q", "-tone", "dark", "g:hands"},
-			[]string{"👏🏿", "🙌🏿", "🫶🏿", "👐🏿", "🤲🏿", "🤝", "🙏🏿"}},
+			[]string{"👏🏿", "🙌🏿", "🫶🏿", "👐🏿", "🤲🏿", "🤝🏿", "🙏🏿"}},
 
 		{[]string{"e", "-q", "shrug"},
 			[]string{"🤷"}},

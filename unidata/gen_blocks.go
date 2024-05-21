@@ -325,6 +325,7 @@ const (
 	BlockCJKUnifiedIdeographsExtensionD
 	BlockCJKUnifiedIdeographsExtensionE
 	BlockCJKUnifiedIdeographsExtensionF
+	BlockCJKUnifiedIdeographsExtensionI
 	BlockCJKCompatibilityIdeographsSupplement
 	BlockCJKUnifiedIdeographsExtensionG
 	BlockCJKUnifiedIdeographsExtensionH
@@ -659,6 +660,7 @@ var Blocks = map[Block]struct {
 	BlockCJKUnifiedIdeographsExtensionD:       {[2]rune{0x02B740, 0x02B81F}, "CJK Unified Ideographs Extension D"},
 	BlockCJKUnifiedIdeographsExtensionE:       {[2]rune{0x02B820, 0x02CEAF}, "CJK Unified Ideographs Extension E"},
 	BlockCJKUnifiedIdeographsExtensionF:       {[2]rune{0x02CEB0, 0x02EBEF}, "CJK Unified Ideographs Extension F"},
+	BlockCJKUnifiedIdeographsExtensionI:       {[2]rune{0x02EBF0, 0x02EE5F}, "CJK Unified Ideographs Extension I"},
 	BlockCJKCompatibilityIdeographsSupplement: {[2]rune{0x02F800, 0x02FA1F}, "CJK Compatibility Ideographs Supplement"},
 	BlockCJKUnifiedIdeographsExtensionG:       {[2]rune{0x030000, 0x03134F}, "CJK Unified Ideographs Extension G"},
 	BlockCJKUnifiedIdeographsExtensionH:       {[2]rune{0x031350, 0x0323AF}, "CJK Unified Ideographs Extension H"},
