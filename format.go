@@ -52,6 +52,10 @@ type column struct {
 	fill  rune
 }
 
+// TODO: much of this can be removed/replaced if we replace this with
+// https://github.com/arp242/acidtab, which is basically a much nicer version of
+// all of this.
+
 type Format struct {
 	format    string         // Format string: %(..)
 	as        printAs        // How to print (list, table, json)

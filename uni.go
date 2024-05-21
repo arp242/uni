@@ -277,8 +277,7 @@ func main() {
 		asF      = flag.String("list", "a", "as")
 		jsonF    = flag.Bool(false, "json", "j")
 	)
-	err := flag.Parse()
-	zli.F(err)
+	zli.F(flag.Parse())
 
 	if versionF.Set() {
 		fmt.Println(version)
