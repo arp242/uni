@@ -219,6 +219,9 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "U+DB80"}, "<Private Use High Surrogate, First>", 1, -1},     // <Private Use High Surrogate> (First)
 		{[]string{"-q", "p", "U+DB81"}, "<Private Use High Surrogate>", 1, -1},            // <Private Use High Surrogate>
 		{[]string{"-q", "p", "U+DBFF"}, "<Private Use High Surrogate, Last>", 1, -1},      // <Private Use High Surrogate> (Last)
+
+		// Allow trailing commas
+		{[]string{"-q", "p", "U+2109,", "U+2131,"}, "SCRIPT CAPITAL F", 2, -1},
 	}
 
 	for _, tt := range tests {

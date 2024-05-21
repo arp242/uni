@@ -763,7 +763,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 		return err
 	}
 	for _, a := range args {
-		a = strings.ToLower(a)
+		a = strings.TrimRight(strings.ToLower(a), ",")
 
 		// UTF-8
 		if strings.HasPrefix(a, "utf8:") {
