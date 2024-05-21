@@ -17,6 +17,7 @@ import (
 	"zgo.at/termtext"
 	"zgo.at/uni/v2/unidata"
 	"zgo.at/zli"
+	"zgo.at/zstd/zmap"
 	"zgo.at/zstd/zstring"
 )
 
@@ -295,10 +296,8 @@ func (f *Format) printJSON(out io.Writer) {
 	buf := new(bytes.Buffer)
 	enc := json.NewEncoder(buf)
 	enc.SetEscapeHTML(false)
-	if f.as != printAsJSONCompact {
-		enc.SetIndent("", "\t")
-	}
 
+	w := 0
 	out.Write([]byte("["))
 	for i, l := range f.lines {
 		m := make(map[string]string, len(f.cols))
@@ -307,14 +306,42 @@ func (f *Format) printJSON(out io.Writer) {
 				continue
 			}
 			m[c.name] = l[j]
+			if i == 0 && len(c.name) > w {
+				w = len(c.name)
+			}
 		}
 
-		enc.Encode(m)
-		out.Write(bytes.TrimSpace(buf.Bytes())) // Adds \n at end.
-		buf.Reset()
-
-		if i != len(f.lines)-1 {
-			out.Write([]byte(", "))
+		if f.as == printAsJSONCompact {
+			if i > 0 {
+				fmt.Fprint(out, " ")
+			}
+			fmt.Fprint(out, "{")
+			for j, k := range zmap.KeysOrdered(m) {
+				if j > 0 {
+					out.Write([]byte(","))
+				}
+				enc.Encode(m[k])
+				fmt.Fprintf(out, "%q:%s", k, bytes.TrimSpace(buf.Bytes()))
+				buf.Reset()
+			}
+			fmt.Fprintf(out, "}")
+			if i != len(f.lines)-1 {
+				out.Write([]byte(",\n"))
+			}
+		} else {
+			fmt.Fprint(out, "{\n")
+			for j, k := range zmap.KeysOrdered(m) {
+				if j > 0 {
+					out.Write([]byte(",\n"))
+				}
+				enc.Encode(m[k])
+				fmt.Fprintf(out, "\t%q: %s%s", k, strings.Repeat(" ", w-len(k)), bytes.TrimSpace(buf.Bytes()))
+				buf.Reset()
+			}
+			fmt.Fprintf(out, "\n}")
+			if i != len(f.lines)-1 {
+				out.Write([]byte(", "))
+			}
 		}
 	}
 	out.Write([]byte("]\n"))
