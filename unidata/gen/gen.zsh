@@ -7,11 +7,26 @@ cd $0:P:h:h
 # https://www.unicode.org/Public/security/13.0.0/
 # https://www.unicode.org/reports/tr39/
 
+use_cache=0
+use_beta=0
+for a in $argv; do
+	case $a in
+		cache) use_cache=1; shift ;;
+		beta)  use_beta=1;  shift ;;
+	esac
+done
+
 get() {
-	if [[ ! -f .cache/$1:t ]]; then
-		print "Fetching $1"
-		curl -sL $1 >.cache/$1:t
+	if [[ $use_beta = 1 && $1 =~ '^https://www.unicode.org/Public/UCD/latest/' ]] then
+		1=${1/UCD\/latest/draft\/UCD}
 	fi
+
+	if [[ $use_cache = 1 && -f .cache/$1:t ]] then
+		print "Using cache at .cache/$1:t"
+		return
+	fi
+	print "Fetching $1"
+	curl -sL $1 >.cache/$1:t
 }
 mk() {
 	local go=gen_$1.go
