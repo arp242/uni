@@ -385,6 +385,7 @@ all columns:
     	"bin":     "1101000",
     	"block":   "Basic Latin",
     	"cat":     "Lowercase_Letter",
+    	"cells":   "1",
     	"char":    "h",
     	"cpoint":  "U+0068",
     	"dec":     "104",
@@ -410,6 +411,7 @@ all columns:
     	"bin":     "10000010101100",
     	"block":   "Currency Symbols",
     	"cat":     "Currency_Symbol",
+    	"cells":   "1",
     	"char":    "€",
     	"cpoint":  "U+20AC",
     	"dec":     "8364",
@@ -435,6 +437,7 @@ all columns:
     	"bin":     "11111101",
     	"block":   "Latin-1 Supplement",
     	"cat":     "Lowercase_Letter",
+    	"cells":   "1",
     	"char":    "ý",
     	"cpoint":  "U+00FD",
     	"dec":     "253",
@@ -497,6 +500,9 @@ ChangeLog
 - Align and colourize JSON output.
 
 - Update CLDR information, adding significantly more aliases for emojis.
+
+- Add `cells` column, which returns how many cells a codepoint will display at
+  (0, 1, or 2).
 
 - Add `aliases` column, which lists the alias names. Also add this to the
   default output:

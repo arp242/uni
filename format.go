@@ -538,8 +538,8 @@ func (f *Format) String() string {
 
 var knownColumns = []string{"char", "wide_padding", "cpoint", "dec", "hex",
 	"oct", "bin", "utf8", "utf16be", "utf16le", "html", "xml", "json", "keysym",
-	"digraph", "name", "cat", "block", "plane", "width", "props", "script", "unicode",
-	"aliases", "refs"}
+	"digraph", "name", "cat", "block", "plane", "width", "cells", "props", "script",
+	"unicode", "aliases", "refs"}
 
 func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	if f.tbl() {
@@ -569,6 +569,7 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 			"block":        info.Block().String(),
 			"plane":        info.Plane().String(),
 			"width":        info.Width().String(),
+			"cells":        strconv.Itoa(int(info.Cells())),
 			"props":        info.Properties().String(),
 			"script":       info.Script().String(),
 			"unicode":      info.Unicode().String(),
@@ -647,6 +648,9 @@ func (f *Format) toLine(info unidata.Codepoint, raw bool) map[string]string {
 	}
 	if slices.Contains(f.colNames, "width") {
 		cols["width"] = info.Width().String()
+	}
+	if slices.Contains(f.colNames, "cells") {
+		cols["cells"] = strconv.Itoa(int(info.Cells()))
 	}
 	if slices.Contains(f.colNames, "props") {
 		cols["props"] = info.Properties().String()

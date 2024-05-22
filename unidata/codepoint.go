@@ -7,6 +7,8 @@ import (
 	"strings"
 	"unicode/utf16"
 	"unicode/utf8"
+
+	"zgo.at/runewidth"
 )
 
 type (
@@ -282,6 +284,9 @@ func (c Codepoint) Name() string { return c.name }
 
 // Width gets this codepoint's width.
 func (c Codepoint) Width() Width { return c.width }
+
+// Cells gets the number of cells this codepoint will display as; 0, 1, or 2.
+func (c Codepoint) Cells() uint8 { return uint8(runewidth.RuneWidth(c.Codepoint)) }
 
 // Category gets this codepoint's category.
 func (c Codepoint) Category() Category { return c.category }

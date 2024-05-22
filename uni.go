@@ -247,12 +247,14 @@ Format:
         %(props)         Properties, separated by ,    Pattern Syntax
         %(plane)         Plane name                    Basic Multilingual Plane
         %(width)         Character width               Narrow
+        %(cells)         Number of cells it display    1
+                         as, 0, 1, or 2
         %(unicode)       First assigned in Unicode     1.1
         %(wide_padding)  Blank for wide characters,
                          space otherwise; for alignment
         %(aliases)       Alias names                   factorial, bang
-        %(refs)          Reference other codepoints,   U+221A square root,
-                         usually similar/alternatives. U+1F5F8 light check mark
+        %(refs)          Reference other codepoints,   U+221A, U+1F5F8, U+1FBB1
+                         usually similar/alternatives
 
         The default is:
         `+defaultFormat+`
@@ -274,7 +276,7 @@ Format:
 const (
 	defaultFormat  = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(dec l:6) %(utf8 l:11) %(html l:10) %(name t) %(aliases t h Q:[:])"
 	defaultCompact = "%(char q h l:3)%(wide_padding) %(cpoint h l:7) %(name t l:auto)"
-	allFormat      = "%(char q h l:3)%(wide_padding) %(cpoint h l:auto) %width %dec %hex %oct %bin" +
+	allFormat      = "%(char q h l:3)%(wide_padding) %(cpoint h l:auto) %width %cells %dec %hex %oct %bin" +
 		" %utf8 %utf16le %utf16be %html %xml %json %keysym %digraph %name %plane %cat %block" +
 		" %script %props %unicode %aliases %refs"
 

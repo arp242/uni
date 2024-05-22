@@ -382,6 +382,7 @@ func TestJSON(t *testing.T) {
 	"bin":     "10000010101100",
 	"block":   "Currency Symbols",
 	"cat":     "Currency_Symbol",
+	"cells":   "1",
 	"char":    "€",
 	"cpoint":  "U+20AC",
 	"dec":     "8364",
