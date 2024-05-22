@@ -1,12 +1,12 @@
-### unreleased
+### v2.7.0 (2024-05-22)
 
 - Improve `-format` flag:
 
   - Add `%name` as an alias for `%(name l:auto)`; this is a lot less typing and
     requires less shell quoting, and >90% of the time this is what you want.
 
-  - Automatically prepend character, codepoint, and name if it starts with a
-    `+`; for example:
+  - Automatically prepend character, codepoint, and name if the format flag
+    starts with `+`; for example:
 
         % uni identify -f +'%unicode %plane' a
                      Name                 Unicode Plane
@@ -39,9 +39,9 @@
       'ℱ'  U+2131  8497   e2 84 b1    &Fscr;     SCRIPT CAPITAL F [Fourier transform]
       'Ⅎ'  U+2132  8498   e2 84 b2    &#x2132;   TURNED CAPITAL F [Claudian digamma inversum]
 
-- Allow arguments to `print` end with a comma. This comes up when copy/pasting
-  some list of codepoints from another source; there's no real reason to error
-  out on this.
+- Allow arguments to `print`to start or end with a comma or slash. This comes up
+  when copy/pasting some list of codepoints from another source; there's no real
+  reason to error out on this.
 
 - Allow listing unicode versions with `uni list unicode` and planes with `uni
   list planes`.
