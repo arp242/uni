@@ -171,6 +171,7 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "U+2042..2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "2042..U+2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "0x2042..0o20104"}, "ASTERISM", 3, -1},
+		{[]string{"-q", "p", "%x2042..%x2044"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "0b10000001000010..0o20104"}, "ASTERISM", 3, -1},
 		{[]string{"-q", "p", "0b10000001000010-0o20104"}, "ASTERISM", 3, -1},
 		{[]string{"p", "9999999999"}, `out of range: "9999999999"`, 1, 1},
@@ -179,7 +180,7 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "0d90"}, "CAPITAL LETTER Z", 1, -1},
 		{[]string{"-q", "p", "0D90"}, "CAPITAL LETTER Z", 1, -1},
 
-		{[]string{"p", ""}, `invalid codepoint: not a number or codepoint: ""`, 1, 1},
+		{[]string{"p", "lol"}, `invalid codepoint: not a number or codepoint: "lol"`, 1, 1},
 		{[]string{"p", "nonsense"}, `invalid codepoint: not a number or codepoint: "nonsense"`, 1, 1},
 		{[]string{"p", "2042..xxx"}, `invalid codepoint: not a number or codepoint: "xxx"`, 1, 1},
 		{[]string{"p", "xxx..xxx"}, `invalid codepoint: not a number or codepoint: "xxx"`, 1, 1},
@@ -224,8 +225,8 @@ func TestPrint(t *testing.T) {
 		{[]string{"-q", "p", "U+DB81"}, "<Private Use High Surrogate>", 1, -1},            // <Private Use High Surrogate>
 		{[]string{"-q", "p", "U+DBFF"}, "<Private Use High Surrogate, Last>", 1, -1},      // <Private Use High Surrogate> (Last)
 
-		// Allow trailing commas
-		{[]string{"-q", "p", "U+2109,", "U+2131,"}, "SCRIPT CAPITAL F", 2, -1},
+		// Allow trailing commas, slashes.
+		{[]string{"-q", "p", "/U+2109,", ",", "/", ",U+2131/"}, "SCRIPT CAPITAL F", 2, -1},
 	}
 
 	for _, tt := range tests {

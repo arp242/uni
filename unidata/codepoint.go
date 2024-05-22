@@ -212,7 +212,7 @@ func FromString(s string) (Codepoint, error) {
 	s = strings.ToUpper(s)
 	var base = 16
 	switch {
-	case strings.HasPrefix(s, "0X") || strings.HasPrefix(s, "U+"):
+	case strings.HasPrefix(s, "0X") || strings.HasPrefix(s, "U+") || strings.HasPrefix(s, "%X"):
 		s = s[2:]
 	case strings.HasPrefix(s, "0D"):
 		s = s[2:]

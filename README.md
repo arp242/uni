@@ -10,7 +10,7 @@ platforms. You can also [run it in your browser][uni-wasm].
 
 Compile from source with:
 
-	% go install module zgo.at/uni/v2@latest
+    % go install module zgo.at/uni/v2@latest
 
 which will give you a `uni` binary in `~/go/bin`.
 
@@ -483,9 +483,9 @@ ChangeLog
 
 ### unreleased
 
-- Improve -format:
+- Improve `-format` flag:
 
-  - `%name` is an alias for `%(name l:auto)`; this is a lot less typing and
+  - Add `%name` as an alias for `%(name l:auto)`; this is a lot less typing and
     requires less shell quoting, and >90% of the time this is what you want.
 
   - Automatically prepend character, codepoint, and name if it starts with a
@@ -508,8 +508,8 @@ ChangeLog
   default output:
 
       % uni s factorial
-           CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-      '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang] (Other_Punctuation)
+           CPoint  Dec    UTF8        HTML       Name  Aliases
+      '!'  U+0021  33     21          &excl;     EXCLAMATION MARK [factorial, bang]
 
 - Add `refs` columns, which references other related/similar codepoints:
 
@@ -517,19 +517,19 @@ ChangeLog
       LATIN CAPITAL LETTER F: U+2109, U+2131, U+2132
 
       % uni p -q U+46 -f '%(refs)' | uni p
-           CPoint  Dec    UTF8        HTML       Name  Aliases   (Cat)
-      '℉'  U+2109  8457   e2 84 89    &#x2109;   DEGREE FAHRENHEIT  (Other_Symbol)
-      'ℱ'  U+2131  8497   e2 84 b1    &Fscr;     SCRIPT CAPITAL F [Fourier transform] (Uppercase_Letter)
-      'Ⅎ'  U+2132  8498   e2 84 b2    &#x2132;   TURNED CAPITAL F [Claudian digamma inversum] (Uppercase_Letter)
+           CPoint  Dec    UTF8        HTML       Name  Aliases
+      '℉'  U+2109  8457   e2 84 89    &#x2109;   DEGREE FAHRENHEIT
+      'ℱ'  U+2131  8497   e2 84 b1    &Fscr;     SCRIPT CAPITAL F [Fourier transform]
+      'Ⅎ'  U+2132  8498   e2 84 b2    &#x2132;   TURNED CAPITAL F [Claudian digamma inversum]
 
 - Allow arguments to `print` end with a comma. This comes up when copy/pasting
   some list of codepoints from another source; there's no real reason to error
   out on this.
 
-- Allow listing unicode versions with "list unicode" and planes with "list
-  planes".
+- Allow listing unicode versions with `uni list unicode` and planes with `uni
+  list planes`.
 
-- list without arguments errors, instead of listing all.
+- `uni list` without arguments errors, instead of listing all.
 
 - Add `h` format flag to not print the header for this column.
 

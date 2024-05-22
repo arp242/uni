@@ -804,7 +804,10 @@ func print(args []string, format string, raw bool, as printAs) error {
 		return err
 	}
 	for _, a := range args {
-		a = strings.TrimRight(strings.ToLower(a), ",")
+		a = strings.Trim(strings.ToLower(a), ",/")
+		if a == "" {
+			continue
+		}
 
 		// UTF-8
 		if strings.HasPrefix(a, "utf8:") {
