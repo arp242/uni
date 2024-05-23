@@ -3,6 +3,15 @@
 setopt no_unset pipefail
 cd $0:P:h:h
 
+need=()
+for c in curl gawk go gofmt; do
+	(( ! $+commands[$c] )) && need+=($c)
+done
+if (( $#need )); then
+	print >&2 "missing tools in \$PATH: $need"
+	exit 1
+fi
+
 # TODO: add "confusable" information from
 # https://www.unicode.org/Public/security/13.0.0/
 # https://www.unicode.org/reports/tr39/
@@ -63,8 +72,6 @@ mkgo() {
 	fi
 }
 
-# go run ./gen/emojis2.go .cache/emoji-test.txt .cache/en.xml |gofmt >!x
-
 mkdir -p .cache
 get 'https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt'
 get 'https://www.unicode.org/Public/UCD/latest/ucd/DerivedAge.txt'
@@ -88,5 +95,4 @@ get 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/annotation
 [[ $1 =~ "all|names?"      ]] && mk names      '.cache/NamesList.txt'
 [[ $1 =~ "all|scripts?"    ]] && mk scripts    '.cache/Scripts.txt'
 [[ $1 =~ "all|emojis?"     ]] && mkgo emojis   '.cache/emoji-test.txt' '.cache/en.xml'
-
 exit 0
