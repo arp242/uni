@@ -108,6 +108,6 @@ var Unicodes = map[Unicode]struct {
 	Unicode14:     {"14.0", "September, 2021"},
 	Unicode15:     {"15.0", "September, 2022"},
 	Unicode15_1:   {"15.1", "September, 2023"},
-	Unicode16:     {"16", "Unreleased beta"},
+	Unicode16:     {"16.0", "Unreleased beta"},
 	UnicodeLatest: {"15.1", "September, 2024"},
 }
