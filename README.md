@@ -10,7 +10,7 @@ platforms. You can also [run it in your browser][uni-wasm].
 
 Compile from source with:
 
-    % go install module zgo.at/uni/v2@latest
+    % go install zgo.at/uni/v2@latest
 
 which will give you a `uni` binary in `~/go/bin`.
 
