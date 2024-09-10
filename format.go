@@ -220,7 +220,7 @@ func (f *Format) processColumn(line string) error {
 	return nil
 }
 
-// Add a new line.
+// Line adds a new line.
 func (f *Format) Line(columns map[string]string) error {
 	if f.tbl() { // Don't need to do anything.
 		return nil

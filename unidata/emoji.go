@@ -178,9 +178,9 @@ func (e Emoji) With(mod EmojiModifier, selmod ...EmojiModifier) Emoji {
 	//   1F469 200D 2764 FE0F 200D 1F48B 200D 1F468                kiss: woman, man
 	//   👩    🏼         ❤️              💋         👨    🏽
 	//   1F469 1F3FC 200D 2764 FE0F 200D 1F48B 200D 1F468 1F3FD    kiss: woman, man, medium-light skin tone, medium skin tone
-	if isEmoji(e, 0x1F48F) {
-		// TODO
-	}
+	//if isEmoji(e, 0x1F48F) {
+	//	// TODO
+	//}
 
 	// And finally with a heart:
 	//
@@ -190,9 +190,9 @@ func (e Emoji) With(mod EmojiModifier, selmod ...EmojiModifier) Emoji {
 	//   1F491 1F3FB                                       couple with heart: light skin tone
 	//   🧑    🏾         ❤              🧑    🏻
 	//   1F9D1 1F3FE 200D 2764 FE0F 200D 1F9D1 1F3FB       couple with heart: person, person, medium-dark skin tone, light skin tone
-	if isEmoji(e, 0x1F491) {
-		// TODO
-	}
+	//if isEmoji(e, 0x1F491) {
+	//	// TODO
+	//}
 
 	// "Family" supports settings the four family members' gender (no skintone
 	// support):
@@ -207,9 +207,9 @@ func (e Emoji) With(mod EmojiModifier, selmod ...EmojiModifier) Emoji {
 	//   1F468 200D 1F467                          family: man, girl
 	//   👨         👧         👦
 	//   1F468 200D 1F467 200D 1F466               family: man, girl, boy
-	if isEmoji(e, 0x1F46A) {
-		// TODO
-	}
+	//if isEmoji(e, 0x1F46A) {
+	//	// TODO
+	//}
 
 	e = e.applyGender(mod & (ModPerson | ModMale | ModFemale))
 	e = e.applyTone(mod &^ (ModPerson | ModMale | ModFemale))
