@@ -24,9 +24,9 @@ func TestCLI(t *testing.T) {
 		{[]string{"xxx"}, "uni: unknown command"},
 		//{[]string{""}, "uni: unknown command"},
 		//{[]string{}, "Show this help"},
-		{[]string{"e", "-tone"}, "testuni: -tone: needs an argument"},
-		{[]string{"e", "-tone", "g"}, `testuni: invalid skin tone: "g"`},
-		{[]string{"e", "-x"}, `testuni: unknown flag: "-x"`},
+		{[]string{"e", "-tone"}, "uni: -tone: needs an argument"},
+		{[]string{"e", "-tone", "g"}, `uni: invalid skin tone: "g"`},
+		{[]string{"e", "-x"}, `uni: unknown flag: "-x"`},
 		{[]string{"e", "-tone", "xx"}, "invalid skin"},
 		{[]string{"e", "-gender", "xx"}, "invalid gender"},
 		{[]string{"e", "-g", "xxsxxxx"}, `invalid gender: "xxsxxxx"`},
@@ -35,7 +35,7 @@ func TestCLI(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, out := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			func() {
 				defer exit.Recover()
@@ -94,7 +94,7 @@ func TestIdentify(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, out := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			func() {
 				defer exit.Recover()
@@ -102,7 +102,8 @@ func TestIdentify(t *testing.T) {
 			}()
 
 			if !strings.Contains(out.String(), tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out.String(), tt.want)
+				t.Errorf("wrong output\nhave: %q\nwant: %q\ncmd:  %s",
+					out.String(), tt.want, strings.Join(os.Args, " "))
 			}
 			if *exit != -1 {
 				t.Errorf("wrong exit: %d", *exit)
@@ -137,7 +138,7 @@ func TestSearch(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, outbuf := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			func() {
 				defer exit.Recover()
@@ -149,10 +150,12 @@ func TestSearch(t *testing.T) {
 
 			out := outbuf.String()
 			if lines := strings.Count(out, "\n"); lines != tt.wantLines {
-				t.Errorf("wrong # of lines\nout:  %d\nwant: %d", lines, tt.wantLines)
+				t.Errorf("wrong # of lines\nhave: %d\nwant: %d\ncmd:  %s",
+					lines, tt.wantLines, strings.Join(os.Args, " "))
 			}
 			if !strings.Contains(out, tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+				t.Errorf("wrong output\nhave: %q\nwant: %q\ncmd:  %s",
+					out, tt.want, strings.Join(os.Args, " "))
 			}
 		})
 	}
@@ -188,10 +191,10 @@ func TestPrint(t *testing.T) {
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 628, -1},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 628, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 640, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 640, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 34931, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 40116, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 
@@ -232,7 +235,7 @@ func TestPrint(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			exit, _, outbuf := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			func() {
 				defer exit.Recover()
@@ -248,7 +251,8 @@ func TestPrint(t *testing.T) {
 				t.Errorf("wrong # of lines\nout:  %d\nwant: %d", lines, tt.wantLines)
 			}
 			if !strings.Contains(out, tt.want) {
-				t.Errorf("wrong output\nout:  %q\nwant: %q", out, tt.want)
+				t.Errorf("wrong output\nhave: %q\nwant: %q\ncmd:  %s",
+					out, tt.want, strings.Join(os.Args, " "))
 			}
 		})
 	}
@@ -288,13 +292,13 @@ func TestEmoji(t *testing.T) {
 		{[]string{"e", "-q", "-gender", "f", "-t", "medium", "farmer"},
 			[]string{"👩🏽Z🌾"}},
 
-		{[]string{"e", "-q", "-gender", "p", "detective"},
+		{[]string{"e", "-q", "-gender", "p", "sleuth"},
 			[]string{"🕵S"}},
-		{[]string{"e", "-q", "-gender", "p", "-tone", "mediumdark", "detective"},
+		{[]string{"e", "-q", "-gender", "p", "-tone", "mediumdark", "sleuth"},
 			[]string{"🕵🏾"}},
-		{[]string{"e", "-q", "-gender", "m", "detective"},
+		{[]string{"e", "-q", "-gender", "m", "sleuth"},
 			[]string{"🕵SZ♂S"}},
-		{[]string{"e", "-q", "-gender", "m", "-tone", "mediumdark", "detective"},
+		{[]string{"e", "-q", "-gender", "m", "-tone", "mediumdark", "sleuth"},
 			[]string{"🕵🏾Z♂S"}},
 
 		{[]string{"e", "-qo", "zimbabwe", "#", "england"},
@@ -304,7 +308,7 @@ func TestEmoji(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			_, _, outbuf := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			main()
 
@@ -322,7 +326,8 @@ func TestEmoji(t *testing.T) {
 			if !reflect.DeepEqual(out, tt.want) {
 				a := strings.ReplaceAll(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`)
 				b := strings.ReplaceAll(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`)
-				t.Errorf("wrong output\nout:  %s\nwant: %s", a, b)
+				t.Errorf("wrong output\nhave: %s\nwant: %s\ncmd:  %s",
+					a, b, strings.Join(os.Args, " "))
 			}
 		})
 	}
@@ -336,9 +341,9 @@ func TestFormat(t *testing.T) {
 		// -f q:
 		// TODO: using %(col q:()) doesn't work, as it parses that ) as the
 		// closing of the column.
-		{[]string{"e", "-q", "-f", "%(cldr q:[:])", "orange heart"},
+		{[]string{"e", "-q", "-f", "%(cldr q:[:])", "person standing"},
 			[]string{"[]"}},
-		{[]string{"e", "-q", "-f", "%(cldr Q:[:])", "orange heart"},
+		{[]string{"e", "-q", "-f", "%(cldr Q:[:])", "person standing"},
 			[]string{""}},
 		{[]string{"e", "-q", "-f", "%(cldr q:[:])", "red heart"},
 			[]string{"[emotion, love]"}},
@@ -348,7 +353,7 @@ func TestFormat(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(strings.Join(tt.in, "_"), func(t *testing.T) {
 			_, _, outbuf := zli.Test(t)
-			os.Args = append([]string{"testuni"}, tt.in...)
+			os.Args = append([]string{"uni"}, tt.in...)
 
 			main()
 
@@ -366,7 +371,8 @@ func TestFormat(t *testing.T) {
 			if !reflect.DeepEqual(out, tt.want) {
 				a := strings.ReplaceAll(fmt.Sprintf("%#v", out), "\ufe0f", `\ufe0f`)
 				b := strings.ReplaceAll(fmt.Sprintf("%#v", tt.want), "\ufe0f", `\ufe0f`)
-				t.Errorf("wrong output\nout:  %s\nwant: %s", a, b)
+				t.Errorf("wrong output\nhave: %s\nwant: %s\ncmd:  %s",
+					a, b, strings.Join(os.Args, " "))
 			}
 		})
 	}

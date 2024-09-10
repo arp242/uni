@@ -1,3 +1,7 @@
+### Unreleased
+
+- Update to Unicode 16.0.
+
 ### v2.7.0 (2024-05-22)
 
 - Improve `-format` flag:

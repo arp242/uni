@@ -568,7 +568,7 @@ var names = map[rune]name{
 	},
 	0x1c3: {
 		aliases: []string{`latin letter exclamation mark`},
-		refs:    []rune{0x0021, 0x0297, 0x1DF0A},
+		refs:    []rune{0x0021, 0x0297, 0xA71D, 0x1DF0A},
 	},
 	0x1c6: {
 		refs: []rune{0x045F},
@@ -1182,6 +1182,7 @@ var names = map[rune]name{
 	},
 	0x3bb: {
 		aliases: []string{`lambda`},
+		refs:    []rune{0xA7DB},
 	},
 	0x3bc: {
 		refs: []rune{0x00B5},
@@ -1363,6 +1364,9 @@ var names = map[rune]name{
 	},
 	0x4e9: {
 		refs: []rune{0x0275},
+	},
+	0x50f: {
+		refs: []rune{0x1C8A},
 	},
 	0x515: {
 		aliases: []string{`voiceless l`},
@@ -1560,7 +1564,7 @@ var names = map[rune]name{
 		refs: []rune{0x06E1},
 	},
 	0x653: {
-		refs: []rune{0x089C, 0x089E, 0x089F},
+		refs: []rune{0x0897, 0x089C, 0x089E, 0x089F},
 	},
 	0x657: {
 		aliases: []string{`ulta pesh`},
@@ -1585,6 +1589,9 @@ var names = map[rune]name{
 	},
 	0x6cc: {
 		refs: []rune{0x0649, 0x064A},
+	},
+	0x6cd: {
+		refs: []rune{0x0620},
 	},
 	0x6e1: {
 		aliases: []string{`Arabic jazm`},
@@ -1757,6 +1764,9 @@ var names = map[rune]name{
 	},
 	0x86a: {
 		refs: []rune{0x0D37},
+	},
+	0x897: {
+		refs: []rune{0x0653},
 	},
 	0x89c: {
 		refs: []rune{0x0653},
@@ -3363,6 +3373,9 @@ var names = map[rune]name{
 	0x1b7e: {
 		aliases: []string{`end of text`},
 	},
+	0x1b7f: {
+		refs: []rune{0x1B5A},
+	},
 	0x1b80: {
 		aliases: []string{`anusvara`},
 	},
@@ -3476,6 +3489,9 @@ var names = map[rune]name{
 	},
 	0x1c88: {
 		refs: []rune{0x0479, 0xA64B},
+	},
+	0x1c8a: {
+		refs: []rune{0x050F},
 	},
 	0x1c90: {
 		refs: []rune{0x10D0},
@@ -4210,6 +4226,9 @@ var names = map[rune]name{
 	},
 	0x2192: {
 		aliases: []string{`z notation total function`},
+	},
+	0x2193: {
+		refs: []rune{0x1F8C0},
 	},
 	0x2194: {
 		aliases: []string{`z notation relation`},
@@ -7112,7 +7131,7 @@ var names = map[rune]name{
 	},
 	0x2bfa: {
 		aliases: []string{`united pawns`},
-		refs:    []rune{0x26AE},
+		refs:    []rune{0x26AE, 0x1CC88},
 	},
 	0x2bfb: {
 		aliases: []string{`separated pawns`},
@@ -8017,6 +8036,9 @@ var names = map[rune]name{
 	0xa67f: {
 		refs: []rune{0x2E2F},
 	},
+	0xa71d: {
+		refs: []rune{0x01C3, 0x107B9},
+	},
 	0xa723: {
 		refs: []rune{0x05D0, 0x0623},
 	},
@@ -8185,6 +8207,9 @@ var names = map[rune]name{
 	},
 	0xa7d7: {
 		refs: []rune{0x00DF},
+	},
+	0xa7db: {
+		refs: []rune{0x03BB},
 	},
 	0xa7f4: {
 		refs: []rune{0xA7AF},
@@ -8864,6 +8889,18 @@ var names = map[rune]name{
 	0xfbc2: {
 		refs: []rune{0x0671},
 	},
+	0xfbf9: {
+		refs: []rune{0xFC03},
+	},
+	0xfbfa: {
+		refs: []rune{0xFC68},
+	},
+	0xfc03: {
+		refs: []rune{0xFBF9},
+	},
+	0xfc68: {
+		refs: []rune{0xFBFA},
+	},
 	0xfd40: {
 		refs: []rune{0x0612},
 	},
@@ -9171,6 +9208,9 @@ var names = map[rune]name{
 	},
 	0x10780: {
 		refs: []rune{0xA732},
+	},
+	0x107b9: {
+		refs: []rune{0xA71D},
 	},
 	0x10900: {
 		refs: []rune{0x05D0},
@@ -9808,6 +9848,9 @@ var names = map[rune]name{
 	0x1133b: {
 		aliases: []string{`vindu`},
 	},
+	0x113d3: {
+		refs: []rune{0x1135D},
+	},
 	0x11442: {
 		aliases: []string{`tutisaalaa`},
 	},
@@ -10108,6 +10151,12 @@ var names = map[rune]name{
 	0x122d5: {
 		aliases: []string{`CUNEIFORM SIGN NU11 OVER NU11 BUR OVER BUR`},
 	},
+	0x12326: {
+		aliases: []string{`kalam gunû`},
+	},
+	0x12327: {
+		aliases: []string{`CUNEIFORM SIGN KALAM`},
+	},
 	0x12470: {
 		refs: []rune{0x1039F, 0x103D0},
 	},
@@ -10116,6 +10165,9 @@ var names = map[rune]name{
 	},
 	0x1313f: {
 		refs: []rune{0x05D0, 0x0623},
+	},
+	0x131a6: {
+		refs: []rune{0x13DEE},
 	},
 	0x131cb: {
 		refs: []rune{0x05D9, 0x064A},
@@ -10164,6 +10216,9 @@ var names = map[rune]name{
 	},
 	0x13431: {
 		aliases: []string{`sign separator: juxtaposition`},
+	},
+	0x13dee: {
+		refs: []rune{0x131A6},
 	},
 	0x14400: {
 		aliases: []string{`ego`},
@@ -11179,6 +11234,9 @@ var names = map[rune]name{
 	0x14645: {
 		aliases: []string{`lingua+x`},
 	},
+	0x1680b: {
+		aliases: []string{`BAMUM LETTER PHASE-A MAEMGBIEE`},
+	},
 	0x16a4a: {
 		aliases: []string{`i`},
 	},
@@ -11596,6 +11654,12 @@ var names = map[rune]name{
 	0x1bca3: {
 		aliases: []string{`Sloan contracted ending uh/au/aui + ZWSP`},
 	},
+	0x1cc88: {
+		refs: []rune{0x2BFA},
+	},
+	0x1cdb7: {
+		refs: []rune{0x1FB97},
+	},
 	0x1cf33: {
 		aliases: []string{`ottyazhka`},
 	},
@@ -11876,6 +11940,9 @@ var names = map[rune]name{
 	0x1df09: {
 		refs: []rune{0x01AD},
 	},
+	0x1df0a: {
+		refs: []rune{0xA71D, 0x107B9},
+	},
 	0x1df0b: {
 		refs: []rune{0x2A0E},
 	},
@@ -12035,6 +12102,12 @@ var names = map[rune]name{
 	},
 	0x1e7fe: {
 		refs: []rune{0x138E},
+	},
+	0x1e899: {
+		aliases: []string{`MENDE KIKAKUI SYLLABLE M172 MBO`},
+	},
+	0x1e89a: {
+		aliases: []string{`MENDE KIKAKUI SYLLABLE M174 MBOO`},
 	},
 	0x1ec9e: {
 		aliases: []string{`1 lakh`, `100,000`},
@@ -14675,7 +14748,7 @@ var names = map[rune]name{
 		refs: []rune{0x259E, 0x1F67E},
 	},
 	0x1fb97: {
-		refs: []rune{0x3013},
+		refs: []rune{0x3013, 0x1CDB7},
 	},
 	0x1fb98: {
 		refs: []rune{0x25A7},

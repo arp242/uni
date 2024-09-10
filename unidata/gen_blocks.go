@@ -190,6 +190,7 @@ const (
 	BlockElbasan
 	BlockCaucasianAlbanian
 	BlockVithkuqi
+	BlockTodhri
 	BlockLinearA
 	BlockLatinExtendedF
 	BlockCypriotSyllabary
@@ -212,6 +213,7 @@ const (
 	BlockOldTurkic
 	BlockOldHungarian
 	BlockHanifiRohingya
+	BlockGaray
 	BlockRumiNumeralSymbols
 	BlockYezidi
 	BlockArabicExtendedC
@@ -231,12 +233,14 @@ const (
 	BlockMultani
 	BlockKhudawadi
 	BlockGrantha
+	BlockTuluTigalari
 	BlockNewa
 	BlockTirhuta
 	BlockSiddham
 	BlockModi
 	BlockMongolianSupplement
 	BlockTakri
+	BlockMyanmarExtendedC
 	BlockAhom
 	BlockDogra
 	BlockWarangCiti
@@ -247,6 +251,7 @@ const (
 	BlockUnifiedCanadianAboriginalSyllabicsExtendedA
 	BlockPauCinHau
 	BlockDevanagariExtendedA
+	BlockSunuwar
 	BlockBhaiksuki
 	BlockMarchen
 	BlockMasaramGondi
@@ -261,12 +266,15 @@ const (
 	BlockCyproMinoan
 	BlockEgyptianHieroglyphs
 	BlockEgyptianHieroglyphFormatControls
+	BlockEgyptianHieroglyphsExtendedA
 	BlockAnatolianHieroglyphs
+	BlockGurungKhema
 	BlockBamumSupplement
 	BlockMro
 	BlockTangsa
 	BlockBassaVah
 	BlockPahawhHmong
+	BlockKiratRai
 	BlockMedefaidrin
 	BlockMiao
 	BlockIdeographicSymbolsandPunctuation
@@ -281,6 +289,7 @@ const (
 	BlockNushu
 	BlockDuployan
 	BlockShorthandFormatControls
+	BlockSymbolsforLegacyComputingSupplement
 	BlockZnamennyMusicalNotation
 	BlockByzantineMusicalSymbols
 	BlockMusicalSymbols
@@ -298,6 +307,7 @@ const (
 	BlockToto
 	BlockWancho
 	BlockNagMundari
+	BlockOlOnal
 	BlockEthiopicExtendedB
 	BlockMendeKikakui
 	BlockAdlam
@@ -525,6 +535,7 @@ var Blocks = map[Block]struct {
 	BlockElbasan:                             {[2]rune{0x010500, 0x01052F}, "Elbasan"},
 	BlockCaucasianAlbanian:                   {[2]rune{0x010530, 0x01056F}, "Caucasian Albanian"},
 	BlockVithkuqi:                            {[2]rune{0x010570, 0x0105BF}, "Vithkuqi"},
+	BlockTodhri:                              {[2]rune{0x0105C0, 0x0105FF}, "Todhri"},
 	BlockLinearA:                             {[2]rune{0x010600, 0x01077F}, "Linear A"},
 	BlockLatinExtendedF:                      {[2]rune{0x010780, 0x0107BF}, "Latin Extended-F"},
 	BlockCypriotSyllabary:                    {[2]rune{0x010800, 0x01083F}, "Cypriot Syllabary"},
@@ -547,6 +558,7 @@ var Blocks = map[Block]struct {
 	BlockOldTurkic:                           {[2]rune{0x010C00, 0x010C4F}, "Old Turkic"},
 	BlockOldHungarian:                        {[2]rune{0x010C80, 0x010CFF}, "Old Hungarian"},
 	BlockHanifiRohingya:                      {[2]rune{0x010D00, 0x010D3F}, "Hanifi Rohingya"},
+	BlockGaray:                               {[2]rune{0x010D40, 0x010D8F}, "Garay"},
 	BlockRumiNumeralSymbols:                  {[2]rune{0x010E60, 0x010E7F}, "Rumi Numeral Symbols"},
 	BlockYezidi:                              {[2]rune{0x010E80, 0x010EBF}, "Yezidi"},
 	BlockArabicExtendedC:                     {[2]rune{0x010EC0, 0x010EFF}, "Arabic Extended-C"},
@@ -566,12 +578,14 @@ var Blocks = map[Block]struct {
 	BlockMultani:                             {[2]rune{0x011280, 0x0112AF}, "Multani"},
 	BlockKhudawadi:                           {[2]rune{0x0112B0, 0x0112FF}, "Khudawadi"},
 	BlockGrantha:                             {[2]rune{0x011300, 0x01137F}, "Grantha"},
+	BlockTuluTigalari:                        {[2]rune{0x011380, 0x0113FF}, "Tulu-Tigalari"},
 	BlockNewa:                                {[2]rune{0x011400, 0x01147F}, "Newa"},
 	BlockTirhuta:                             {[2]rune{0x011480, 0x0114DF}, "Tirhuta"},
 	BlockSiddham:                             {[2]rune{0x011580, 0x0115FF}, "Siddham"},
 	BlockModi:                                {[2]rune{0x011600, 0x01165F}, "Modi"},
 	BlockMongolianSupplement:                 {[2]rune{0x011660, 0x01167F}, "Mongolian Supplement"},
 	BlockTakri:                               {[2]rune{0x011680, 0x0116CF}, "Takri"},
+	BlockMyanmarExtendedC:                    {[2]rune{0x0116D0, 0x0116FF}, "Myanmar Extended-C"},
 	BlockAhom:                                {[2]rune{0x011700, 0x01174F}, "Ahom"},
 	BlockDogra:                               {[2]rune{0x011800, 0x01184F}, "Dogra"},
 	BlockWarangCiti:                          {[2]rune{0x0118A0, 0x0118FF}, "Warang Citi"},
@@ -582,6 +596,7 @@ var Blocks = map[Block]struct {
 	BlockUnifiedCanadianAboriginalSyllabicsExtendedA: {[2]rune{0x011AB0, 0x011ABF}, "Unified Canadian Aboriginal Syllabics Extended-A"},
 	BlockPauCinHau:                            {[2]rune{0x011AC0, 0x011AFF}, "Pau Cin Hau"},
 	BlockDevanagariExtendedA:                  {[2]rune{0x011B00, 0x011B5F}, "Devanagari Extended-A"},
+	BlockSunuwar:                              {[2]rune{0x011BC0, 0x011BFF}, "Sunuwar"},
 	BlockBhaiksuki:                            {[2]rune{0x011C00, 0x011C6F}, "Bhaiksuki"},
 	BlockMarchen:                              {[2]rune{0x011C70, 0x011CBF}, "Marchen"},
 	BlockMasaramGondi:                         {[2]rune{0x011D00, 0x011D5F}, "Masaram Gondi"},
@@ -596,12 +611,15 @@ var Blocks = map[Block]struct {
 	BlockCyproMinoan:                          {[2]rune{0x012F90, 0x012FFF}, "Cypro-Minoan"},
 	BlockEgyptianHieroglyphs:                  {[2]rune{0x013000, 0x01342F}, "Egyptian Hieroglyphs"},
 	BlockEgyptianHieroglyphFormatControls:     {[2]rune{0x013430, 0x01345F}, "Egyptian Hieroglyph Format Controls"},
+	BlockEgyptianHieroglyphsExtendedA:         {[2]rune{0x013460, 0x0143FF}, "Egyptian Hieroglyphs Extended-A"},
 	BlockAnatolianHieroglyphs:                 {[2]rune{0x014400, 0x01467F}, "Anatolian Hieroglyphs"},
+	BlockGurungKhema:                          {[2]rune{0x016100, 0x01613F}, "Gurung Khema"},
 	BlockBamumSupplement:                      {[2]rune{0x016800, 0x016A3F}, "Bamum Supplement"},
 	BlockMro:                                  {[2]rune{0x016A40, 0x016A6F}, "Mro"},
 	BlockTangsa:                               {[2]rune{0x016A70, 0x016ACF}, "Tangsa"},
 	BlockBassaVah:                             {[2]rune{0x016AD0, 0x016AFF}, "Bassa Vah"},
 	BlockPahawhHmong:                          {[2]rune{0x016B00, 0x016B8F}, "Pahawh Hmong"},
+	BlockKiratRai:                             {[2]rune{0x016D40, 0x016D7F}, "Kirat Rai"},
 	BlockMedefaidrin:                          {[2]rune{0x016E40, 0x016E9F}, "Medefaidrin"},
 	BlockMiao:                                 {[2]rune{0x016F00, 0x016F9F}, "Miao"},
 	BlockIdeographicSymbolsandPunctuation:     {[2]rune{0x016FE0, 0x016FFF}, "Ideographic Symbols and Punctuation"},
@@ -616,6 +634,7 @@ var Blocks = map[Block]struct {
 	BlockNushu:                                {[2]rune{0x01B170, 0x01B2FF}, "Nushu"},
 	BlockDuployan:                             {[2]rune{0x01BC00, 0x01BC9F}, "Duployan"},
 	BlockShorthandFormatControls:              {[2]rune{0x01BCA0, 0x01BCAF}, "Shorthand Format Controls"},
+	BlockSymbolsforLegacyComputingSupplement:  {[2]rune{0x01CC00, 0x01CEBF}, "Symbols for Legacy Computing Supplement"},
 	BlockZnamennyMusicalNotation:              {[2]rune{0x01CF00, 0x01CFCF}, "Znamenny Musical Notation"},
 	BlockByzantineMusicalSymbols:              {[2]rune{0x01D000, 0x01D0FF}, "Byzantine Musical Symbols"},
 	BlockMusicalSymbols:                       {[2]rune{0x01D100, 0x01D1FF}, "Musical Symbols"},
@@ -633,6 +652,7 @@ var Blocks = map[Block]struct {
 	BlockToto:                                 {[2]rune{0x01E290, 0x01E2BF}, "Toto"},
 	BlockWancho:                               {[2]rune{0x01E2C0, 0x01E2FF}, "Wancho"},
 	BlockNagMundari:                           {[2]rune{0x01E4D0, 0x01E4FF}, "Nag Mundari"},
+	BlockOlOnal:                               {[2]rune{0x01E5D0, 0x01E5FF}, "Ol Onal"},
 	BlockEthiopicExtendedB:                    {[2]rune{0x01E7E0, 0x01E7FF}, "Ethiopic Extended-B"},
 	BlockMendeKikakui:                         {[2]rune{0x01E800, 0x01E8DF}, "Mende Kikakui"},
 	BlockAdlam:                                {[2]rune{0x01E900, 0x01E95F}, "Adlam"},
