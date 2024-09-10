@@ -1,0 +1,23 @@
+name: 'test'
+on:   ['push', 'pull_request']
+
+jobs:
+  # Uncomment to get a debug shell.
+  # debug: {runs-on: 'ubuntu-latest', steps: [{uses: 'actions/checkout@v4'}, {uses: 'mxschmitt/action-tmate@v3'}]}
+
+  test:
+    name:    'test (linux)'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - name: 'test (linux)'
+        run: |
+          go test -race ./...
+
+  staticcheck:
+    name:    'staticcheck'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - uses: 'dominikh/staticcheck-action@v1.3.1'
+        with: {version: '2024.1'}

@@ -1,6 +1,6 @@
 module zgo.at/uni/v2
 
-go 1.21
+go 1.21.13
 
 require (
 	zgo.at/runewidth v0.1.0
