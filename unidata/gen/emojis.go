@@ -49,11 +49,15 @@ func readCLDR(f string) map[string][]string {
 	}
 	zli.F(xml.Unmarshal(d, &cldr))
 
-	out := make(map[string][]string)
+	var (
+		// "Good enough" XML entity removal.
+		tr  = strings.NewReplacer("&lt;", "<", "&gt;", ">", "&amp;", "&")
+		out = make(map[string][]string)
+	)
 	for _, a := range cldr.Annotations {
 		if a.Type != "tts" {
 			a.CP = strings.ReplaceAll(a.CP, "\u200d", "")
-			out[a.CP] = strings.Split(a.Names, " | ")
+			out[a.CP] = strings.Split(tr.Replace(a.Names), " | ")
 		}
 	}
 	return out
