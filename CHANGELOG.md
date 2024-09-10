@@ -1,4 +1,4 @@
-### Unreleased
+### v2.8.0 (2024-09-11)
 
 - Update to Unicode 16.0.
 
