@@ -29,9 +29,9 @@ type (
 	}
 
 	name struct {
-		aliases   []string
-		refs      []rune
-		decompose []rune
+		aliases []string
+		refs    []rune
+		//decompose []rune
 	}
 
 	Width        uint8      // Unicode width
