@@ -3,6 +3,9 @@
 - Fix sorting of `print` and `search` with a custom `-format` flag which didn't
   include `%(dec)`.
 
+- Sometimes the would be printed on the second line instead of the first when
+  printing everything or control characters.
+
 - Recognize `c:[cat-name]` to print a category.
 
 ### v2.8.0 (2024-09-11)

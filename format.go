@@ -138,7 +138,7 @@ func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) 
 	h["tab"] = tabOrSpace()
 
 	if as == printAsList {
-		f.Line(0, h)
+		f.Line(-1, h)
 	}
 
 	// TODO: is this actually faster than just .*?
