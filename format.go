@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"cmp"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -63,11 +64,16 @@ type Format struct {
 	re        *regexp.Regexp // Cached regexp for format.
 	cols      []column       // Columns we know about.
 	colNames  []string
-	lines     [][]string // Processed lines, to be printed.
-	autoalign []int      // Max line lengths for autoalign.
-	ntrim     int        // Number of columns with "trim"
+	lines     []line // Processed lines, to be printed.
+	autoalign []int  // Max line lengths for autoalign.
+	ntrim     int    // Number of columns with "trim"
 
 	tblData []unidata.Codepoint
+}
+
+type line struct {
+	cp   rune
+	cols []string
 }
 
 var reFindCols = regexp.MustCompile(`%\((.*?)(?: .+?)?\)`)
@@ -132,7 +138,7 @@ func NewFormat(format string, as printAs, knownCols ...string) (*Format, error) 
 	h["tab"] = tabOrSpace()
 
 	if as == printAsList {
-		f.Line(h)
+		f.Line(0, h)
 	}
 
 	// TODO: is this actually faster than just .*?
@@ -221,14 +227,14 @@ func (f *Format) processColumn(line string) error {
 }
 
 // Line adds a new line.
-func (f *Format) Line(columns map[string]string) error {
+func (f *Format) Line(cp rune, columns map[string]string) error {
 	if f.tbl() { // Don't need to do anything.
 		return nil
 	}
 
-	line := make([]string, len(f.cols))
+	cols := line{cp: cp, cols: make([]string, len(f.cols))}
 	for i, c := range f.cols {
-		line[i] = columns[c.name]
+		cols.cols[i] = columns[c.name]
 		if c.width == alignAuto {
 			l := termtext.Width(columns[c.name])
 			if c.quote > 0 {
@@ -239,41 +245,14 @@ func (f *Format) Line(columns map[string]string) error {
 			}
 		}
 	}
-	f.lines = append(f.lines, line)
+	f.lines = append(f.lines, cols)
 	return nil
 }
 
-// Sort by column.
-func (f *Format) Sort(col string) {
-	coli := 0
-	for i, c := range f.cols {
-		if c.name == col {
-			coli = i
-			break
-		}
-	}
-	sort.Slice(f.lines, func(i, j int) bool {
-		return f.lines[i][coli] < f.lines[j][coli]
-	})
-}
-
-func (f *Format) SortNum(col string) {
-	if len(f.cols) == 0 {
-		return
-	}
-
-	coli := 0
-	for i, c := range f.cols {
-		if c.name == col {
-			coli = i
-			break
-		}
-	}
-	sort.Slice(f.lines, func(i, j int) bool {
-		a, _ := strconv.Atoi(f.lines[i][coli])
-		b, _ := strconv.Atoi(f.lines[j][coli])
-		return a < b
-	})
+// SortCodepoint sorts by codepoint. When this is not called it prints in the
+// order they were added to Format.
+func (f *Format) SortCodepoint() {
+	slices.SortFunc(f.lines, func(a, b line) int { return cmp.Compare(a.cp, b.cp) })
 }
 
 var (
@@ -311,7 +290,7 @@ func (f *Format) printJSON(out io.Writer) {
 			if c.name == "wide_padding" || c.name == "tab" {
 				continue
 			}
-			m[c.name] = l[j]
+			m[c.name] = l.cols[j]
 			if i == 0 && len(c.name) > w {
 				w = len(c.name)
 			}
@@ -444,7 +423,7 @@ func (f *Format) Print(out io.Writer) {
 	for lineno, l := range f.lines {
 		line := f.format
 
-		for i, text := range l {
+		for i, text := range l.cols {
 			m := f.re.FindAllString(line, 1)
 			line = strings.Replace(line, m[0], f.fmtPlaceholder(i, lineno, text, 0), 1)
 		}
@@ -456,7 +435,7 @@ func (f *Format) Print(out io.Writer) {
 		if f.ntrim > 0 && w > termWidth {
 			tooLongBy := w - termWidth
 			var t = make([]int, len(f.cols))
-			for i, text := range l {
+			for i, text := range l.cols {
 				if f.cols[i].trim {
 					t[i] = termtext.Width(text)
 				}
@@ -464,7 +443,7 @@ func (f *Format) Print(out io.Writer) {
 			trim := nratio(tooLongBy, t...)
 
 			line = f.format
-			for i, text := range l {
+			for i, text := range l.cols {
 				m := f.re.FindAllString(line, 1)
 				line = strings.Replace(line, m[0], f.fmtPlaceholder(i, lineno, text, trim[i]-1), 1)
 			}

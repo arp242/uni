@@ -585,7 +585,7 @@ func list(ls []string, as printAs) error {
 
 			fmtCp := map[bool]string{true: "%X", false: "% 7X"}[f.json()]
 			for _, b := range order {
-				f.Line(map[string]string{
+				f.Line(0, map[string]string{
 					"from":     fmt.Sprintf(fmtCp, b.Range[0]),
 					"to":       fmt.Sprintf(fmtCp, b.Range[1]),
 					"assigned": strconv.Itoa(assign[b.Name]),
@@ -620,7 +620,7 @@ func list(ls []string, as printAs) error {
 			sort.Slice(order, func(i, j int) bool { return order[i].Const < order[j].Const })
 
 			for _, s := range order {
-				f.Line(map[string]string{
+				f.Line(0, map[string]string{
 					"name":     s.Name,
 					"assigned": strconv.Itoa(assign[s.Const]),
 				})
@@ -670,7 +670,7 @@ func list(ls []string, as printAs) error {
 					comp = strings.Join(in, " | ")
 				}
 
-				f.Line(map[string]string{
+				f.Line(0, map[string]string{
 					"short":       b.ShortName,
 					"name":        b.Name,
 					"assigned":    strconv.Itoa(assign[b.Const]),
@@ -705,7 +705,7 @@ func list(ls []string, as printAs) error {
 			zli.F(err)
 
 			for _, b := range order {
-				f.Line(map[string]string{
+				f.Line(0, map[string]string{
 					"assigned": strconv.Itoa(assign[b.Name]),
 					"name":     b.Name,
 				})
@@ -732,8 +732,7 @@ func identify(ins []string, format string, raw bool, as printAs) error {
 		if !ok {
 			return fmt.Errorf("unknown codepoint: U+%.4X", c) // Should never happen.
 		}
-
-		f.Line(f.toLine(info, raw))
+		f.Line(info.Codepoint, f.toLine(info, raw))
 	}
 	f.Print(zli.Stdout)
 	return nil
@@ -769,7 +768,7 @@ func search(args []string, format string, raw bool, as printAs, or bool) error {
 			if strings.Contains(info.Name(), a) || hasAlias(a) {
 				if or {
 					found = true
-					f.Line(f.toLine(info, raw))
+					f.Line(info.Codepoint, f.toLine(info, raw))
 					break
 				}
 				m++
@@ -777,14 +776,14 @@ func search(args []string, format string, raw bool, as printAs, or bool) error {
 		}
 		if !or && m == len(args) {
 			found = true
-			f.Line(f.toLine(info, raw))
+			f.Line(info.Codepoint, f.toLine(info, raw))
 		}
 	}
 
 	if !found {
 		return errNoMatches
 	}
-	f.SortNum("dec")
+	f.SortCodepoint()
 	f.Print(zli.Stdout)
 	return nil
 }
@@ -839,14 +838,14 @@ func print(args []string, format string, raw bool, as printAs) error {
 				return fmt.Errorf("multiple characters in sequence %q", a)
 			}
 
-			f.Line(f.toLine(unidata.Codepoints[r], raw))
+			f.Line(r, f.toLine(unidata.Codepoints[r], raw))
 			continue
 		}
 
 		// Print everything.
 		if strings.ToLower(a) == "all" {
 			for _, info := range unidata.Codepoints {
-				f.Line(f.toLine(info, raw))
+				f.Line(info.Codepoint, f.toLine(info, raw))
 			}
 			continue
 		}
@@ -913,11 +912,11 @@ func print(args []string, format string, raw bool, as printAs) error {
 
 			for _, info := range unidata.Codepoints {
 				if info.Category() == cat {
-					f.Line(f.toLine(info, raw))
+					f.Line(info.Codepoint, f.toLine(info, raw))
 				}
 				for _, incl := range cc.Include {
 					if info.Category() == incl {
-						f.Line(f.toLine(info, raw))
+						f.Line(info.Codepoint, f.toLine(info, raw))
 					}
 				}
 			}
@@ -934,7 +933,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 				for cp := pp[0]; cp <= pp[1]; cp++ {
 					s, ok := unidata.Codepoints[cp]
 					if ok {
-						f.Line(f.toLine(s, raw))
+						f.Line(cp, f.toLine(s, raw))
 					}
 				}
 			}
@@ -951,7 +950,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 			for cp := unidata.Blocks[bl].Range[0]; cp <= unidata.Blocks[bl].Range[1]; cp++ {
 				s, ok := unidata.Codepoints[cp]
 				if ok {
-					f.Line(f.toLine(s, raw))
+					f.Line(cp, f.toLine(s, raw))
 				}
 			}
 			continue
@@ -966,7 +965,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 				for cp := pp[0]; cp <= pp[1]; cp++ {
 					s, ok := unidata.Codepoints[cp]
 					if ok {
-						f.Line(f.toLine(s, raw))
+						f.Line(cp, f.toLine(s, raw))
 					}
 				}
 			}
@@ -999,10 +998,10 @@ func print(args []string, format string, raw bool, as printAs) error {
 
 		for i := start.Codepoint; i <= end.Codepoint; i++ {
 			info, _ := unidata.Find(i)
-			f.Line(f.toLine(info, raw))
+			f.Line(info.Codepoint, f.toLine(info, raw))
 		}
 	}
-	f.SortNum("dec")
+	f.SortCodepoint()
 	f.Print(zli.Stdout)
 	return nil
 }
@@ -1078,7 +1077,7 @@ func emoji(args []string, format string, raw bool, as printAs, or bool, tones, g
 		return err
 	}
 	for _, e := range out {
-		f.Line(map[string]string{
+		f.Line(0, map[string]string{
 			"emoji":    e.String(),
 			"name":     e.Name,
 			"group":    e.Group().String(),

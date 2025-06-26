@@ -1,3 +1,10 @@
+### Unreleased
+
+- Fix sorting of `print` and `search` with a custom `-format` flag which didn't
+  include `%(dec)`.
+
+- Recognize `c:[cat-name]` to print a category.
+
 ### v2.8.0 (2024-09-11)
 
 - Update to Unicode 16.0.
