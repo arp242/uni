@@ -872,7 +872,7 @@ func print(args []string, format string, raw bool, as printAs) error {
 			if !scOk {
 				zli.Fatalf("unknown or ambiguous script: %q", a)
 			}
-		case zstring.HasPrefixes(a, "category:", "cat:"):
+		case zstring.HasPrefixes(a, "category:", "cat:", "c:"):
 			a = a[strings.IndexByte(a, ':')+1:]
 			cat, catOk = unidata.FindCategory(a)
 			if !catOk {
