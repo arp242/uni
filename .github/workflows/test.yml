@@ -11,8 +11,7 @@ jobs:
     steps:
       - uses: 'actions/checkout@v4'
       - name: 'test (linux)'
-        run: |
-          go test -race ./...
+        run:  'go test -race ./...'
 
   staticcheck:
     name:    'staticcheck'
@@ -20,4 +19,4 @@ jobs:
     steps:
       - uses: 'actions/checkout@v4'
       - uses: 'dominikh/staticcheck-action@v1.3.1'
-        with: {version: '2024.1'}
+        with: {version: '2025.1'}
