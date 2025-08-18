@@ -368,7 +368,7 @@ func (f *Format) printTbl(out io.Writer) {
 	for i := start; i <= end; i++ {
 		cp := fmt.Sprintf("U+%0"+strconv.Itoa(head)+"X", i)
 		char, ok := tblMap[i]
-		if _, has := unidata.Codepoints[i]; !has { /// Not assigned
+		if _, has := unidata.Find(i); !has { /// Not assigned
 			if isTerm {
 				char = zli.Colorize(" ", zli.Color256(254).Bg())
 			} else {
@@ -433,8 +433,10 @@ func (f *Format) Print(out io.Writer) {
 		// text already, but this is easier.
 		w := termtext.Width(line)
 		if f.ntrim > 0 && w > termWidth {
-			tooLongBy := w - termWidth
-			var t = make([]int, len(f.cols))
+			var (
+				tooLongBy = w - termWidth
+				t         = make([]int, len(f.cols))
+			)
 			for i, text := range l.cols {
 				if f.cols[i].trim {
 					t[i] = termtext.Width(text)
