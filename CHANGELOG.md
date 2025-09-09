@@ -1,5 +1,7 @@
 ### Unreleased
 
+- Update to Unicode 17.0.
+
 - Fix sorting of `print` and `search` with a custom `-format` flag which didn't
   include `%(dec)`.
 
