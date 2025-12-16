@@ -1,14 +1,14 @@
-### Unreleased
+### v2.9.0 (2025-12-16)
 
 - Update to Unicode 17.0.
 
-- Fix sorting of `print` and `search` with a custom `-format` flag which didn't
-  include `%(dec)`.
+- Fix sorting of `print` and `search` with a custom `-format` flag (it sorted
+  randomly if `%(dec)` wasn't included).
 
-- Sometimes the would be printed on the second line instead of the first when
-  printing everything or control characters.
+- Sometimes the header would be printed on the second line when U+00 was
+  included in the output
 
-- Recognize `c:[cat-name]` to print a category.
+- Recognize `c:[cat-name]` to print a category in addition to `cat:[cat-name]`.
 
 ### v2.8.0 (2024-09-11)
 

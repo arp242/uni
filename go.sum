@@ -6,5 +6,5 @@ zgo.at/termtext v1.5.0 h1:4p9GVUDYUR8oWvpxOZsO5ZrNSkA99bp8gXNKxKj+Kl0=
 zgo.at/termtext v1.5.0/go.mod h1:AcdAAiydkqSFadljJaEj9jv7bpyJxfQqGtPWyZCLenQ=
 zgo.at/zli v0.0.0-20250704045222-08cb210424f2 h1:pD5v/8xKNvr4teFDhn9rSA5xFEze8uFEe8Ib3ALD67Y=
 zgo.at/zli v0.0.0-20250704045222-08cb210424f2/go.mod h1:0jjx+AGEkWOOQ0NtzbMnpko+H2G+aTg8mfCKqoc/BuA=
-zgo.at/zstd v0.0.0-20250710181612-da3b12d1a381 h1:BCwp3P5LPyGHxPmzIKj/yqt8KGuAiFCgeBWM7lduOsM=
-zgo.at/zstd v0.0.0-20250710181612-da3b12d1a381/go.mod h1:iM1Z8Uk7YwHuvDGG3AmeFT+5F9taplO/dnLiVUP1F/s=
+zgo.at/zstd v0.0.0-20251128053228-ec259dea6715 h1:WGhTl8paofaxx17xbLm05p7YHJOtKQYZGMFWazihlbI=
+zgo.at/zstd v0.0.0-20251128053228-ec259dea6715/go.mod h1:dyNG54iOA/2VkhABg0GsVOZImH35iLeJ0OpVjHUKbyA=
