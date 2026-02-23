@@ -1,3 +1,8 @@
+### unreleased
+
+- Accept hex codepoints starting with a `%` for the `print` command (e.g. `%25`
+  or `%5C`).
+
 ### v2.9.0 (2025-12-16)
 
 - Update to Unicode 17.0.

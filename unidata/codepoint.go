@@ -203,7 +203,7 @@ func Find(cp rune) (Codepoint, bool) {
 // The input can be as (case-insensitive):
 //
 //	U+F1, U+00F1, UF1, F1   Unicode codepoint notation (hex)
-//	0xF1, xF1               Hex number
+//	0xF1, xF1, %F1          Hex number
 //	0d241                   Decimal number
 //	0o361, o361             Octal number
 //	0b11110001              Binary number
@@ -224,7 +224,7 @@ func FromString(s string) (Codepoint, error) {
 		s = s[2:]
 		base = 2
 
-	case strings.HasPrefix(s, "X") || strings.HasPrefix(s, "U"):
+	case strings.HasPrefix(s, "X") || strings.HasPrefix(s, "U") || strings.HasPrefix(s, "%"):
 		s = s[1:]
 	case strings.HasPrefix(s, "O"):
 		s = s[1:]

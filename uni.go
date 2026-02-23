@@ -96,10 +96,10 @@ Commands:
     print [query]    Print characters. The query can be any of the following:
 
                        Codepoint   Specific codepoint, in number formats:
-                                     hexadecimal   U+20, U20, 0x20, x20, 20
-                                     decimal       0d32
-                                     octal         0o40, o40
-                                     binary        0b100000
+                                     hex      U+20, U20, 0x20, x20, 20, %20
+                                     decimal  0d32
+                                     octal    0o40, o40
+                                     binary   0b100000
 
                        Range       Range of codepoints, as "start-end" or
                                    "start..end", using the same notation as
