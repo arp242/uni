@@ -313,7 +313,7 @@ func TestEmoji(t *testing.T) {
 			main()
 
 			var out []string
-			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
+			for line := range strings.SplitSeq(strings.TrimSpace(outbuf.String()), "\n") {
 				line = strings.ReplaceAll(line, "\t", " ")
 				out = append(out, strings.Split(line, " ")[0])
 			}
@@ -358,7 +358,7 @@ func TestFormat(t *testing.T) {
 			main()
 
 			var out []string
-			for _, line := range strings.Split(strings.TrimSpace(outbuf.String()), "\n") {
+			for line := range strings.SplitSeq(strings.TrimSpace(outbuf.String()), "\n") {
 				line = strings.ReplaceAll(line, "\t", " ")
 				out = append(out, line)
 			}

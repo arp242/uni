@@ -1,5 +1,4 @@
 //go:build go_run_only
-// +build go_run_only
 
 package main
 

@@ -380,8 +380,8 @@ func (f *Format) printTbl(out io.Writer) {
 			char = zli.Colorize("·", zli.Color256(249))
 		}
 
-		if strings.HasSuffix(cp, "0") {
-			row += fmt.Sprintf("%sx │", strings.TrimSuffix(cp, "0"))
+		if before, ok := strings.CutSuffix(cp, "0"); ok {
+			row += fmt.Sprintf("%sx │", before)
 		}
 
 		// Need to add space for alignment if some codepoints are wide but this
