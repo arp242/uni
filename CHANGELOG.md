@@ -5,6 +5,8 @@
 
 - Fix Neutral and Narrow widths being reversed.
 
+- X11 keysym names weren't included for many characters.
+
 ### v2.9.0 (2025-12-16)
 
 - Update to Unicode 17.0.

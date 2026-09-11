@@ -61,12 +61,23 @@ END {
     for (k in all_ent) printf("\t0x%02x: \"%s\",\n", k, all_ent[k])
     print("}\n")
 
+    # Only include values with a codepoint in the comments, such as:
+    #
+    #   #define XK_exclam                        0x0021  /* U+0021 EXCLAMATION MARK */
+    #   #define XK_checkmark                     0x0af3  /* U+2713 CHECK MARK */
+    #
+    # As the value isn't always the codepoint. And we also want to skip things like:
+    #
+    #   #define XK_F1                            0xffbe
+    #   #define XK_KP_Equal                      0xffbd  /*<U+003D EQUALS SIGN>*/
     print("var keysyms = map[rune]string{")
     while (getline line <".cache/keysymdef.h" > 0) {
         if (match(line, "^#define XK") == 0)
             continue
         split(line, fields, " ")
-        all_sym[strtonum(fields[3])] = gensub("^XK_", "", 1, fields[2])
+        if (match(fields[5], "^U\\+[0-9A-Z]{4}$") == 0)
+            continue
+        all_sym[strtonum("0x" substr(fields[5], 3))] = gensub("^XK_", "", 1, fields[2])
     }
     for (k in all_sym) printf("\t0x%02x: \"%s\",\n", k, all_sym[k])
     print("}\n")
