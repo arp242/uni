@@ -404,7 +404,7 @@ all columns:
     	"utf16be": "00 68",
     	"utf16le": "68 00",
     	"utf8":    "68",
-    	"width":   "neutral",
+    	"width":   "narrow",
     	"xml":     "&#x68;"
     }, {
     	"aliases": "",
@@ -456,7 +456,7 @@ all columns:
     	"utf16be": "00 fd",
     	"utf16le": "fd 00",
     	"utf8":    "c3 bd",
-    	"width":   "narrow",
+    	"width":   "neutral",
     	"xml":     "&#xfd;"
     }]
 

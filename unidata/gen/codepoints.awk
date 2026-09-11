@@ -116,8 +116,8 @@ function loadwidths(      fields, width, cp, start, end, i) {
         case "A":  width = "WidthAmbiguous"; break
         case "F":  width = "WidthFullWidth"; break
         case "H":  width = "WidthHalfWidth"; break
-        case "N":  width = "WidthNarrow";    break
-        case "Na": width = "WidthNeutral";   break
+        case "N":  width = "WidthNeutral";   break
+        case "Na": width = "WidthNarrow";    break
         case "W":  width = "WidthWide";      break
         default:
             print("unknown width" width)
