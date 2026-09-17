@@ -196,7 +196,7 @@ Format:
 
     If the format string starts with "+" it will prepend the format string with
     the character, codepoint, and name. This is an easy way to quickly list
-    properties yo're interested in. For example, "-f +%unicode to quickly get
+    properties you're interested in. For example, "-f +%unicode to quickly get
     the Unicode version it was introduced. Otherwise it works exactly as below.
 
     The special value "all" includes all columns; this is useful especially

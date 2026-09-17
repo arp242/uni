@@ -90,7 +90,7 @@ const (
 	ModLight                                  // Light skin tone
 	ModMediumLight                            // Medium light skin tone
 	ModMedium                                 // Medium skin tone
-	ModMediumDark                             // Mediun dark skin tone
+	ModMediumDark                             // Medium dark skin tone
 	ModDark                                   // Dark skin tone
 )
 
@@ -260,7 +260,7 @@ var tonenames = map[EmojiModifier]string{
 	ModNone:        "",
 	ModLight:       "light",
 	ModMediumLight: "medium-light",
-	ModMedium:      "mediun",
+	ModMedium:      "medium",
 	ModMediumDark:  "medium-dark",
 	ModDark:        "dark",
 }
