@@ -478,6 +478,9 @@ var names = map[rune]name{
 	0x192: {
 		aliases: []string{`script f`, `Florin currency symbol`, `function symbol`},
 	},
+	0x194: {
+		refs: []rune{0xA7E2},
+	},
 	0x195: {
 		aliases: []string{`hwair`},
 		refs:    []rune{0x10348},
@@ -512,6 +515,7 @@ var names = map[rune]name{
 	},
 	0x1a3: {
 		aliases: []string{`LATIN SMALL LETTER GHA`},
+		refs:    []rune{0x1DF5E},
 	},
 	0x1a7: {
 		refs: []rune{0x1D24, 0xA644, 0x10193},
@@ -610,7 +614,7 @@ var names = map[rune]name{
 		refs: []rune{0x1D15},
 	},
 	0x223: {
-		refs: []rune{0x0038},
+		refs: []rune{0x0038, 0x1DF5F},
 	},
 	0x224: {
 		refs: []rune{0x2C6B},
@@ -724,7 +728,7 @@ var names = map[rune]name{
 		refs: []rune{0x0153},
 	},
 	0x277: {
-		refs: []rune{0xA7B7, 0xAB65},
+		refs: []rune{0xA7B7, 0xAB65, 0x1DF75},
 	},
 	0x278: {
 		refs: []rune{0x03C6, 0x03D5, 0x2C77},
@@ -824,6 +828,7 @@ var names = map[rune]name{
 	},
 	0x2ae: {
 		aliases: []string{`turned h with left hook`},
+		refs:    []rune{0x0265},
 	},
 	0x2af: {
 		aliases: []string{`turned h with left hook and tail`},
@@ -886,7 +891,7 @@ var names = map[rune]name{
 		refs:    []rune{0x030C},
 	},
 	0x2c8: {
-		refs: []rune{0x0027, 0x030D},
+		refs: []rune{0x0027, 0x030D, 0x208F},
 	},
 	0x2c9: {
 		refs: []rune{0x00AF, 0x0304},
@@ -1513,6 +1518,12 @@ var names = map[rune]name{
 	0x5c7: {
 		refs: []rune{0x05B8},
 	},
+	0x5c8: {
+		refs: []rune{0x05B0},
+	},
+	0x5c9: {
+		refs: []rune{0x05BC},
+	},
 	0x5d0: {
 		aliases: []string{`aleph`},
 		refs:    []rune{0x2135},
@@ -1622,11 +1633,17 @@ var names = map[rune]name{
 	0x6c0: {
 		aliases: []string{`arabic letter hamzah on ha`},
 	},
+	0x6c4: {
+		refs: []rune{0x1EE85},
+	},
 	0x6cc: {
 		refs: []rune{0x0649, 0x064A},
 	},
 	0x6cd: {
 		refs: []rune{0x0620},
+	},
+	0x6e0: {
+		refs: []rune{0x10EF0},
 	},
 	0x6e1: {
 		aliases: []string{`Arabic jazm`},
@@ -1847,6 +1864,9 @@ var names = map[rune]name{
 	},
 	0x8cc: {
 		aliases: []string{`sign of waqf`},
+	},
+	0x8d1: {
+		refs: []rune{0x10ECF},
 	},
 	0x8d9: {
 		refs: []rune{0x10EFB},
@@ -3272,6 +3292,9 @@ var names = map[rune]name{
 	0x1aeb: {
 		refs: []rune{0x0362},
 	},
+	0x1af0: {
+		refs: []rune{0x0313, 0x02EE, 0x1AB8},
+	},
 	0x1b00: {
 		aliases: []string{`ardhacandra`},
 	},
@@ -3757,6 +3780,9 @@ var names = map[rune]name{
 	0x1d7f: {
 		refs: []rune{0x01AB},
 	},
+	0x1d83: {
+		refs: []rune{0x0261},
+	},
 	0x1d86: {
 		refs: []rune{0x0271},
 	},
@@ -4056,6 +4082,9 @@ var names = map[rune]name{
 	0x2073: {
 		refs: []rune{0x00B3},
 	},
+	0x208f: {
+		refs: []rune{0x02C8, 0x02CC},
+	},
 	0x20a0: {
 		refs: []rune{0x20AC},
 	},
@@ -4076,6 +4105,9 @@ var names = map[rune]name{
 	},
 	0x20ac: {
 		refs: []rune{0x20A0},
+	},
+	0x20ad: {
+		refs: []rune{0x1DF48},
 	},
 	0x20b1: {
 		aliases: []string{`Filipino peso sign`},
@@ -4305,6 +4337,9 @@ var names = map[rune]name{
 	0x2186: {
 		refs: []rune{0x16CE, 0x2193},
 	},
+	0x218a: {
+		refs: []rune{0xAB6C},
+	},
 	0x218b: {
 		refs: []rune{0x0190, 0x2107, 0xA72B},
 	},
@@ -4532,6 +4567,9 @@ var names = map[rune]name{
 	0x2220: {
 		refs: []rune{0x299F},
 	},
+	0x2221: {
+		refs: []rune{0x1CEF9},
+	},
 	0x2222: {
 		aliases: []string{`angle arc`},
 	},
@@ -4591,6 +4629,10 @@ var names = map[rune]name{
 	},
 	0x223f: {
 		aliases: []string{`alternating current`},
+		refs:    []rune{0x23E6},
+	},
+	0x2240: {
+		refs: []rune{0x2E2F},
 	},
 	0x2245: {
 		refs: []rune{0x2A70},
@@ -4614,10 +4656,10 @@ var names = map[rune]name{
 		refs: []rune{0x003D, 0x01C2},
 	},
 	0x2264: {
-		refs: []rune{0x003C},
+		refs: []rune{0x003C, 0x29A4},
 	},
 	0x2265: {
-		refs: []rune{0x003E},
+		refs: []rune{0x003E, 0x29A5},
 	},
 	0x2268: {
 		refs: []rune{0x2A87},
@@ -4641,6 +4683,18 @@ var names = map[rune]name{
 	0x227b: {
 		aliases: []string{`higher rank than`},
 		refs:    []rune{0x22B1},
+	},
+	0x227c: {
+		refs: []rune{0x2AAF, 0x2AB3},
+	},
+	0x227d: {
+		refs: []rune{0x2AB0, 0x2AB4},
+	},
+	0x227e: {
+		refs: []rune{0x2AB7},
+	},
+	0x227f: {
+		refs: []rune{0x2AB8},
 	},
 	0x2282: {
 		aliases: []string{`included in set`},
@@ -4771,6 +4825,12 @@ var names = map[rune]name{
 	0x22d5: {
 		refs: []rune{0x2317},
 	},
+	0x22dc: {
+		refs: []rune{0x2A95},
+	},
+	0x22dd: {
+		refs: []rune{0x2A96},
+	},
 	0x22ee: {
 		refs: []rune{0x205D, 0x2026, 0xFE19},
 	},
@@ -4818,6 +4878,9 @@ var names = map[rune]name{
 	0x2313: {
 		aliases: []string{`position of a surface`},
 	},
+	0x2314: {
+		refs: []rune{0x1CEF6},
+	},
 	0x2316: {
 		aliases: []string{`true position`},
 		refs:    []rune{0x2BD0},
@@ -4835,7 +4898,7 @@ var names = map[rune]name{
 		refs: []rune{0x23F0, 0x1F550},
 	},
 	0x231b: {
-		aliases: []string{`alchemical symbol for hour`},
+		refs: []rune{0x29D6},
 	},
 	0x231c: {
 		refs: []rune{0x2E00, 0x2E22},
@@ -4948,6 +5011,9 @@ var names = map[rune]name{
 	0x2370: {
 		refs: []rune{0x2BD1},
 	},
+	0x237c: {
+		aliases: []string{`azimuth`},
+	},
 	0x237d: {
 		refs: []rune{0x2423},
 	},
@@ -4969,6 +5035,9 @@ var names = map[rune]name{
 	},
 	0x238b: {
 		aliases: []string{`escape`},
+	},
+	0x2393: {
+		refs: []rune{0x23E4},
 	},
 	0x2394: {
 		refs: []rune{0x2B21},
@@ -5053,6 +5122,13 @@ var names = map[rune]name{
 	},
 	0x23e1: {
 		refs: []rune{0xFE3A},
+	},
+	0x23e4: {
+		aliases: []string{`direct current symbol form one`},
+		refs:    []rune{0x2393},
+	},
+	0x23e6: {
+		refs: []rune{0x223F},
 	},
 	0x23e9: {
 		aliases: []string{`fast forward`},
@@ -5305,7 +5381,7 @@ var names = map[rune]name{
 		refs: []rune{0x2662},
 	},
 	0x25cb: {
-		refs: []rune{0x20DD, 0x25EF, 0x2B58, 0x3007, 0x1F315},
+		refs: []rune{0x20DD, 0x25EF, 0x2B58, 0x3007, 0x1F1AE, 0x1F315},
 	},
 	0x25ce: {
 		refs: []rune{0x229A, 0x2B57, 0x1F3AF, 0x1F78B},
@@ -5537,6 +5613,7 @@ var names = map[rune]name{
 	},
 	0x2643: {
 		aliases: []string{`alchemical symbol for tin`},
+		refs:    []rune{0x1CED3},
 	},
 	0x2644: {
 		aliases: []string{`alchemical symbol for lead`},
@@ -6430,6 +6507,12 @@ var names = map[rune]name{
 	0x29a2: {
 		refs: []rune{0x2220},
 	},
+	0x29a4: {
+		refs: []rune{0x2264},
+	},
+	0x29a5: {
+		refs: []rune{0x2265},
+	},
 	0x29b0: {
 		refs: []rune{0x2205, 0x2349},
 	},
@@ -6742,6 +6825,12 @@ var names = map[rune]name{
 	},
 	0x2ab0: {
 		refs: []rune{0x227D},
+	},
+	0x2ab7: {
+		refs: []rune{0x227E},
+	},
+	0x2ab8: {
+		refs: []rune{0x227F},
 	},
 	0x2acf: {
 		refs: []rune{0x2282},
@@ -7429,7 +7518,7 @@ var names = map[rune]name{
 		refs:    []rune{0x003F, 0x00BF, 0x061F},
 	},
 	0x2e2f: {
-		refs: []rune{0x033E, 0xA67F},
+		refs: []rune{0x033E, 0x2240, 0xA67F},
 	},
 	0x2e30: {
 		refs: []rune{0x2218, 0x25E6},
@@ -7515,6 +7604,12 @@ var names = map[rune]name{
 	},
 	0x2e5d: {
 		refs: []rune{0x2010, 0x2E17},
+	},
+	0x2e60: {
+		aliases: []string{`smile mark`, `mirth mark`, `laughter mark`},
+	},
+	0x2e62: {
+		refs: []rune{0xFD3E},
 	},
 	0x2e81: {
 		refs: []rune{0x5382, 0x20086},
@@ -8217,6 +8312,9 @@ var names = map[rune]name{
 	0xa76b: {
 		refs: []rune{0x021D},
 	},
+	0xa76d: {
+		refs: []rune{0x1DF92},
+	},
 	0xa76e: {
 		refs: []rune{0x0039},
 	},
@@ -8224,7 +8322,8 @@ var names = map[rune]name{
 		refs: []rune{0x2079},
 	},
 	0xa77a: {
-		refs: []rune{0x00F0, 0x1E9F},
+		aliases: []string{`d rotunda`},
+		refs:    []rune{0x00F0, 0x1E9F, 0x1DF93},
 	},
 	0xa77d: {
 		refs: []rune{0xA7D0},
@@ -8235,8 +8334,11 @@ var names = map[rune]name{
 	0xa783: {
 		refs: []rune{0x027C},
 	},
+	0xa784: {
+		refs: []rune{0xA7E2},
+	},
 	0xa785: {
-		refs: []rune{0x017F},
+		refs: []rune{0x017F, 0x027C},
 	},
 	0xa788: {
 		refs: []rune{0x02C6, 0x02F0, 0x2038},
@@ -8326,10 +8428,13 @@ var names = map[rune]name{
 		refs: []rune{0x01BF},
 	},
 	0xa7d7: {
-		refs: []rune{0x00DF},
+		refs: []rune{0x00DF, 0x1DF95},
 	},
 	0xa7db: {
 		refs: []rune{0x03BB},
+	},
+	0xa7e2: {
+		refs: []rune{0x0194, 0x0393, 0xA784},
 	},
 	0xa7f4: {
 		refs: []rune{0xA7AF},
@@ -8840,6 +8945,9 @@ var names = map[rune]name{
 	0xab6b: {
 		refs: []rune{0x0319},
 	},
+	0xab6c: {
+		refs: []rune{0x218A},
+	},
 	0xabc0: {
 		aliases: []string{`ka`},
 	},
@@ -9330,6 +9438,9 @@ var names = map[rune]name{
 		refs: []rune{0xA732},
 	},
 	0x107b9: {
+		refs: []rune{0xA71D},
+	},
+	0x107bd: {
 		refs: []rune{0xA71D},
 	},
 	0x10900: {
@@ -9922,6 +10033,12 @@ var names = map[rune]name{
 	0x10ec5: {
 		refs: []rune{0x06E6, 0x08CB},
 	},
+	0x10ecf: {
+		refs: []rune{0x08D1},
+	},
+	0x10ef0: {
+		refs: []rune{0x06E0},
+	},
 	0x10efa: {
 		refs: []rune{0x064D},
 	},
@@ -10145,6 +10262,9 @@ var names = map[rune]name{
 	0x11b09: {
 		refs: []rune{0x0966},
 	},
+	0x11b0a: {
+		refs: []rune{0x0926},
+	},
 	0x11b60: {
 		refs: []rune{0x093A},
 	},
@@ -10306,33 +10426,33 @@ var names = map[rune]name{
 	},
 	0x12038: {
 		aliases: []string{`1 aš`},
-		refs:    []rune{0x12400},
+		refs:    []rune{0x12400, 0x12550, 0x1264C},
 	},
 	0x12039: {
 		aliases: []string{`1 aš tenû`, `1 diš tenû`, `1/2 iku`},
-		refs:    []rune{0x1244A},
+		refs:    []rune{0x1244A, 0x12559, 0x1258B},
 	},
 	0x1203e: {
 		refs: []rune{0x12453},
 	},
 	0x12079: {
 		aliases: []string{`1 diš`, `1 bariga`},
-		refs:    []rune{0x12408, 0x12456, 0x12457},
+		refs:    []rune{0x12408, 0x12456, 0x12457, 0x12550, 0x12559},
 	},
 	0x12226: {
 		aliases: []string{`1/2 diš`},
-		refs:    []rune{0x1244F},
+		refs:    []rune{0x1244F, 0x12593},
 	},
 	0x1222b: {
 		aliases: []string{`2 diš`},
-		refs:    []rune{0x12408},
+		refs:    []rune{0x12408, 0x1255A},
 	},
 	0x1227a: {
 		refs: []rune{0x12450},
 	},
 	0x122b9: {
 		aliases: []string{`1 šar₂`},
-		refs:    []rune{0x12423},
+		refs:    []rune{0x12423, 0x12579},
 	},
 	0x122d4: {
 		aliases: []string{`CUNEIFORM SIGN NU11 TENU`},
@@ -10342,11 +10462,11 @@ var names = map[rune]name{
 	},
 	0x1230b: {
 		aliases: []string{`1 u`, `1 bur₃`},
-		refs:    []rune{0x1240F},
+		refs:    []rune{0x1240F, 0x12562, 0x12656},
 	},
 	0x1230d: {
 		aliases: []string{`3 u`, `3 bur₃`},
-		refs:    []rune{0x1240F},
+		refs:    []rune{0x1240F, 0x12564, 0x12658},
 	},
 	0x12326: {
 		aliases: []string{`kalam gunû`},
@@ -10362,50 +10482,69 @@ var names = map[rune]name{
 	},
 	0x12399: {
 		aliases: []string{`2 u`, `2 bur₃`},
-		refs:    []rune{0x1240F},
+		refs:    []rune{0x1240F, 0x12563, 0x12657},
 	},
 	0x12400: {
 		aliases: []string{`2 iku`},
-		refs:    []rune{0x12038},
+		refs:    []rune{0x12038, 0x12551, 0x1264D},
 	},
 	0x12408: {
-		refs: []rune{0x12079, 0x1222B},
+		refs: []rune{0x12079, 0x1222B, 0x1255B},
 	},
 	0x12409: {
 		aliases: []string{`4 bariga`},
 	},
 	0x1240f: {
 		aliases: []string{`4 bur₃`},
-		refs:    []rune{0x1230B, 0x12399, 0x1230D},
+		refs:    []rune{0x1230B, 0x12399, 0x1230D, 0x12565, 0x12659},
+	},
+	0x12415: {
+		refs: []rune{0x1256B},
+	},
+	0x1241e: {
+		refs: []rune{0x12574},
 	},
 	0x12423: {
-		refs: []rune{0x122B9},
+		refs: []rune{0x122B9, 0x1257A},
+	},
+	0x1242c: {
+		refs: []rune{0x12582},
+	},
+	0x12434: {
+		refs: []rune{0x1258E, 0x12582},
 	},
 	0x1244a: {
 		aliases: []string{`2 diš tenû`},
 		refs:    []rune{0x12039},
 	},
 	0x1244f: {
-		refs: []rune{0x12226},
+		refs: []rune{0x12226, 0x12593},
 	},
 	0x12456: {
 		aliases: []string{`2 bariga`},
-		refs:    []rune{0x12079},
+		refs:    []rune{0x12079, 0x1255A},
 	},
 	0x12457: {
 		aliases: []string{`3 bariga`},
 	},
+	0x12458: {
+		refs: []rune{0x1258C},
+	},
 	0x1245d: {
 		aliases: []string{`1/3 aš curved`, `1/3 diš curved`},
+		refs:    []rune{0x12598},
 	},
 	0x1245e: {
 		aliases: []string{`2/3 aš curved`, `2/3 diš curved`},
+		refs:    []rune{0x12599},
 	},
 	0x1245f: {
 		aliases: []string{`1/8 iku`},
+		refs:    []rune{0x12587, 0x12588},
 	},
 	0x12460: {
 		aliases: []string{`1/4 iku`},
+		refs:    []rune{0x12589, 0x1258A},
 	},
 	0x12463: {
 		aliases: []string{`1 bariga variant form`},
@@ -10415,6 +10554,103 @@ var names = map[rune]name{
 	},
 	0x12470: {
 		refs: []rune{0x1039F, 0x103D0},
+	},
+	0x12541: {
+		refs: []rune{0x1255A},
+	},
+	0x12550: {
+		aliases: []string{`1 aš curved`},
+		refs:    []rune{0x12038, 0x12079},
+	},
+	0x12551: {
+		refs: []rune{0x12400},
+	},
+	0x12559: {
+		aliases: []string{`1 diš curved`, `1/2 iku curved`, `1 bariga curved`},
+		refs:    []rune{0x12039, 0x12079, 0x12226},
+	},
+	0x1255a: {
+		aliases: []string{`2 bariga curved`},
+		refs:    []rune{0x1222B, 0x12456},
+	},
+	0x1255b: {
+		aliases: []string{`3 bariga curved`},
+		refs:    []rune{0x12408, 0x12457},
+	},
+	0x12562: {
+		aliases: []string{`1 u curved`, `1 bur₃ curved`},
+		refs:    []rune{0x1230B},
+	},
+	0x12563: {
+		refs: []rune{0x12399},
+	},
+	0x12564: {
+		refs: []rune{0x1230D},
+	},
+	0x12565: {
+		refs: []rune{0x1240F},
+	},
+	0x1256b: {
+		aliases: []string{`1 ŋeš₂ curved`},
+		refs:    []rune{0x12415},
+	},
+	0x12574: {
+		aliases: []string{`1 ŋešʾu curved`},
+		refs:    []rune{0x1241E},
+	},
+	0x12579: {
+		aliases: []string{`1 šar₂ curved`},
+		refs:    []rune{0x122B9},
+	},
+	0x12582: {
+		aliases: []string{`1 šarʾu curved`},
+		refs:    []rune{0x1242C, 0x12434},
+	},
+	0x12587: {
+		refs: []rune{0x1245F},
+	},
+	0x12589: {
+		aliases: []string{`1/4 iku curved`},
+		refs:    []rune{0x12460},
+	},
+	0x1258b: {
+		refs: []rune{0x12039},
+	},
+	0x1258c: {
+		aliases: []string{`1 eše₃ curved`},
+		refs:    []rune{0x12458},
+	},
+	0x1258e: {
+		refs: []rune{0x12434},
+	},
+	0x12593: {
+		aliases: []string{`1/2 aš curved`},
+		refs:    []rune{0x12226, 0x1244F},
+	},
+	0x12598: {
+		aliases: []string{`1/3 aš curved variant form`},
+		refs:    []rune{0x1245A, 0x1245D},
+	},
+	0x12599: {
+		aliases: []string{`2/3 aš curved variant form`},
+		refs:    []rune{0x1245B, 0x1245E},
+	},
+	0x1259a: {
+		aliases: []string{`1 ŋeš₂ curved doubled`, `1 ŋešmin curved`},
+	},
+	0x125a3: {
+		aliases: []string{`1 ŋešʾu curved doubled`, `1 ŋešminʾu curved`},
+	},
+	0x1264c: {
+		aliases: []string{`1 aš flat`},
+		refs:    []rune{0x12038},
+	},
+	0x12656: {
+		aliases: []string{`1 u flat`},
+		refs:    []rune{0x1230B},
+	},
+	0x12675: {
+		aliases: []string{`1 n39a flat`},
 	},
 	0x1309d: {
 		refs: []rune{0x05E2, 0x0639},
@@ -11757,6 +11993,9 @@ var names = map[rune]name{
 	0x1b001: {
 		aliases: []string{`HENTAIGANA LETTER E-1`},
 	},
+	0x1b168: {
+		refs: []rune{0x1B121},
+	},
 	0x1b170: {
 		refs: []rune{0x4E00},
 	},
@@ -11970,8 +12209,46 @@ var names = map[rune]name{
 	0x1cecd: {
 		refs: []rune{0x2BD8},
 	},
+	0x1ced2: {
+		refs: []rune{0x1F746},
+	},
+	0x1ced3: {
+		refs: []rune{0x2643},
+	},
+	0x1ced4: {
+		refs: []rune{0x1F73F},
+	},
+	0x1cedd: {
+		refs: []rune{0x221A},
+	},
 	0x1cef0: {
 		refs: []rune{0x29B5},
+	},
+	0x1cef1: {
+		aliases: []string{`division`},
+		refs:    []rune{0x00F7, 0x2215, 0x23D1, 0x25E1},
+	},
+	0x1cef2: {
+		aliases: []string{`multiplication`},
+		refs:    []rune{0x00D7, 0x2312, 0x25E0},
+	},
+	0x1cef3: {
+		refs: []rune{0x00B1, 0x2050, 0x22C7},
+	},
+	0x1cef4: {
+		aliases: []string{`division`},
+	},
+	0x1cef5: {
+		aliases: []string{`division`},
+	},
+	0x1cef6: {
+		refs: []rune{0x2314},
+	},
+	0x1cef9: {
+		refs: []rune{0x2221},
+	},
+	0x1cefc: {
+		refs: []rune{0x29A6},
 	},
 	0x1cf33: {
 		aliases: []string{`ottyazhka`},
@@ -12033,8 +12310,17 @@ var names = map[rune]name{
 	0x1d11e: {
 		refs: []rune{0x1F3BC},
 	},
+	0x1d127: {
+		refs: []rune{0x0301},
+	},
+	0x1d128: {
+		refs: []rune{0x0306},
+	},
 	0x1d129: {
 		refs: []rune{0x1D13A},
+	},
+	0x1d12b: {
+		refs: []rune{0x1D260},
 	},
 	0x1d13a: {
 		aliases: []string{`double whole-rest`, `breve rest`},
@@ -12090,6 +12376,57 @@ var names = map[rune]name{
 	0x1d164: {
 		aliases: []string{`semihemidemisemiquaver`, `quasihemidemisemiquaver`},
 	},
+	0x1d169: {
+		refs: []rune{0x1D25B},
+	},
+	0x1d16c: {
+		refs: []rune{0x1D25D},
+	},
+	0x1d1d2: {
+		aliases: []string{`b quadratum`, `b durum`},
+		refs:    []rune{0x266E, 0x266F},
+	},
+	0x1d1eb: {
+		aliases: []string{`quarter tone sharp`},
+	},
+	0x1d1ec: {
+		aliases: []string{`three-quarter tone sharp`},
+	},
+	0x1d1ed: {
+		aliases: []string{`quarter tone flat`},
+	},
+	0x1d1ee: {
+		aliases: []string{`three-quarter tone flat`},
+	},
+	0x1d1f7: {
+		aliases: []string{`raised 2nd`},
+		refs:    []rune{0xA75C},
+	},
+	0x1d1f8: {
+		aliases: []string{`raised 4th`},
+	},
+	0x1d1f9: {
+		aliases: []string{`raised 5th`},
+	},
+	0x1d1fa: {
+		aliases: []string{`raised 6th`},
+	},
+	0x1d1fb: {
+		aliases: []string{`raised 7th`},
+	},
+	0x1d1fc: {
+		aliases: []string{`raised 9th`},
+	},
+	0x1d1fd: {
+		aliases: []string{`diminished 5th`},
+	},
+	0x1d1fe: {
+		aliases: []string{`lowered 7th`},
+	},
+	0x1d1ff: {
+		aliases: []string{`quadruple whole-rest`},
+		refs:    []rune{0x1D1C2},
+	},
 	0x1d202: {
 		aliases: []string{`Greek instrumental notation symbol-3`},
 	},
@@ -12126,6 +12463,30 @@ var names = map[rune]name{
 	},
 	0x1d244: {
 		refs: []rune{0x23D9},
+	},
+	0x1d256: {
+		aliases: []string{`bakiye flat`, `Arabic quarter-tone flat`},
+	},
+	0x1d257: {
+		aliases: []string{`büyük mücenneb flat`},
+	},
+	0x1d258: {
+		aliases: []string{`Arabic three-quarter-tone flat`},
+	},
+	0x1d259: {
+		aliases: []string{`küçük mücenneb sharp`},
+	},
+	0x1d25a: {
+		aliases: []string{`büyük mücenneb sharp`},
+	},
+	0x1d25b: {
+		refs: []rune{0x1D169},
+	},
+	0x1d25d: {
+		refs: []rune{0x1D16C},
+	},
+	0x1d260: {
+		refs: []rune{0x1D12B},
 	},
 	0x1d300: {
 		aliases: []string{`ren`},
@@ -12241,6 +12602,10 @@ var names = map[rune]name{
 		aliases: []string{`\jmath`},
 		refs:    []rune{0x0237, 0x1D457},
 	},
+	0x1d6a6: {
+		aliases: []string{`sursolidum`},
+		refs:    []rune{0x1DF95},
+	},
 	0x1df00: {
 		refs: []rune{0x02A9},
 	},
@@ -12261,6 +12626,78 @@ var names = map[rune]name{
 	},
 	0x1df10: {
 		refs: []rune{0x029E, 0xA7B0},
+	},
+	0x1df57: {
+		refs: []rune{0x1DF28},
+	},
+	0x1df58: {
+		refs: []rune{0x1D16, 0x1D17},
+	},
+	0x1df5e: {
+		refs: []rune{0x01A3},
+	},
+	0x1df5f: {
+		refs: []rune{0x0223},
+	},
+	0x1df60: {
+		refs: []rune{0xA74F},
+	},
+	0x1df69: {
+		aliases: []string{`latin small letter a with hook tail`},
+		refs:    []rune{0x1D8F},
+	},
+	0x1df6c: {
+		refs: []rune{0x0404, 0x2108, 0xA792},
+	},
+	0x1df6d: {
+		refs: []rune{0x03F5},
+	},
+	0x1df6e: {
+		refs: []rune{0x0197, 0x2629, 0x2720},
+	},
+	0x1df70: {
+		refs: []rune{0x0279},
+	},
+	0x1df74: {
+		refs: []rune{0xA74E, 0xA7DD},
+	},
+	0x1df75: {
+		refs: []rune{0x0277},
+	},
+	0x1df7b: {
+		refs: []rune{0x1D99},
+	},
+	0x1df7d: {
+		refs: []rune{0xAB50},
+	},
+	0x1df90: {
+		aliases: []string{`cubus`},
+	},
+	0x1df91: {
+		aliases: []string{`census`},
+	},
+	0x1df92: {
+		aliases: []string{`cubus`},
+		refs:    []rune{0xA76D},
+	},
+	0x1df93: {
+		aliases: []string{`dragma`},
+		refs:    []rune{0x1E9F, 0x20B0, 0xA77A},
+	},
+	0x1df94: {
+		aliases: []string{`res`, `radix`},
+		refs:    []rune{0x221A, 0xA75B, 0xA75D, 0xA776},
+	},
+	0x1df95: {
+		aliases: []string{`sursolidum`},
+		refs:    []rune{0x00DF, 0x017F, 0xA7D7, 0x1D6A6},
+	},
+	0x1df96: {
+		aliases: []string{`sursolidum`},
+		refs:    []rune{0x017F, 0x1E9C, 0x1E9D},
+	},
+	0x1dff3: {
+		refs: []rune{0x107B9},
 	},
 	0x1e02a: {
 		refs: []rune{0x1D78, 0xA69C, 0xA69D},
@@ -12646,6 +13083,9 @@ var names = map[rune]name{
 	},
 	0x1ee3b: {
 		refs: []rune{0xFECF},
+	},
+	0x1ee85: {
+		refs: []rune{0x06C4},
 	},
 	0x1eef0: {
 		refs: []rune{0x2211},
@@ -14617,6 +15057,7 @@ var names = map[rune]name{
 	},
 	0x1f73f: {
 		aliases: []string{`impure potassium tartrate`},
+		refs:    []rune{0x1CED4},
 	},
 	0x1f740: {
 		aliases: []string{`impure potassium tartrate`},
@@ -14625,7 +15066,7 @@ var names = map[rune]name{
 		aliases: []string{`calx viva`, `calcium oxide`},
 	},
 	0x1f746: {
-		refs: []rune{0x0F1C},
+		refs: []rune{0x0F1C, 0x1CED2},
 	},
 	0x1f74a: {
 		aliases: []string{`cera`},
@@ -14975,6 +15416,9 @@ var names = map[rune]name{
 	0x1f982: {
 		refs: []rune{0x264F},
 	},
+	0x1f98b: {
+		refs: []rune{0x1FACC},
+	},
 	0x1f996: {
 		aliases: []string{`Tyrannosaurus rex`},
 	},
@@ -15109,6 +15553,9 @@ var names = map[rune]name{
 	},
 	0x1fac5: {
 		refs: []rune{0x1F478},
+	},
+	0x1facc: {
+		refs: []rune{0x1F98B},
 	},
 	0x1fad7: {
 		refs: []rune{0x1F95B},
@@ -15254,8 +15701,14 @@ var names = map[rune]name{
 	0x2f814: {
 		refs: []rune{0x5185},
 	},
+	0x2f81d: {
+		refs: []rune{0x20674},
+	},
 	0x2f82c: {
 		refs: []rune{0x20984},
+	},
+	0x2f82d: {
+		refs: []rune{0x2D161},
 	},
 	0x2f83b: {
 		refs: []rune{0x4DB8},
@@ -15265,6 +15718,9 @@ var names = map[rune]name{
 	},
 	0x2f85b: {
 		refs: []rune{0x21533},
+	},
+	0x2f85d: {
+		refs: []rune{0x21587},
 	},
 	0x2f860: {
 		refs: []rune{0x216A7},
@@ -15296,11 +15752,20 @@ var names = map[rune]name{
 	0x2f927: {
 		refs: []rune{0x2AEC5},
 	},
+	0x2f92b: {
+		refs: []rune{0x248FD},
+	},
 	0x2f943: {
 		refs: []rune{0x2511A},
 	},
 	0x2f94b: {
 		refs: []rune{0x25271},
+	},
+	0x2f97e: {
+		refs: []rune{0x2659D},
+	},
+	0x2f9a4: {
+		refs: []rune{0x26D06},
 	},
 	0x2f9b2: {
 		refs: []rune{0x5914, 0x270CD, 0x270F0},

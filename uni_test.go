@@ -126,7 +126,7 @@ func TestSearch(t *testing.T) {
 		{[]string{"-q", "s", "floral", "bullet"}, "HEART", 2, -1},
 		{[]string{"-q", "s", "rightwards arrow", "heavy"}, "HEAVY", 16, -1},
 
-		{[]string{"-qo", "s", "floral", "bullet"}, "WHITE BULLET", 16, -1},
+		{[]string{"-qo", "s", "floral", "bullet"}, "WHITE BULLET", 17, -1},
 
 		{[]string{"s", "nomatch_nomatch"}, "no matches", 1, 1},
 		{[]string{"-q", "s", "nomatch_nomatch"}, "", 0, 1},
@@ -191,10 +191,10 @@ func TestPrint(t *testing.T) {
 
 		{[]string{"-q", "p", "U+3402"}, "'㐂'", 1, -1},
 		{[]string{"-q", "p", "U+3402..U+3404"}, "<CJK Ideograph Extension A>", 3, -1},
-		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 641, -1},
-		{[]string{"-q", "p", "Po"}, "ASTERISM", 641, -1},
+		{[]string{"-q", "p", "OtherPunctuation"}, "ASTERISM", 643, -1},
+		{[]string{"-q", "p", "Po"}, "ASTERISM", 643, -1},
 		{[]string{"-q", "p", "GeneralPunctuation"}, "ASTERISM", 111, -1},
-		{[]string{"-q", "p", "all"}, "ASTERISM", 40575, -1},
+		{[]string{"-q", "p", "all"}, "ASTERISM", 41341, -1},
 
 		{[]string{"-q", "-r", "p", "U9"}, "'\t'", 1, -1},
 

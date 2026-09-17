@@ -77,6 +77,7 @@ const (
 	Unicode15_1
 	Unicode16
 	Unicode17
+	Unicode18
 )
 
 // Unicodes is a list of all Unicode versions since 1.1.
@@ -111,5 +112,6 @@ var Unicodes = map[Unicode]struct {
 	Unicode15_1:   {"15.1", "September, 2023"},
 	Unicode16:     {"16.0", "September, 2024"},
 	Unicode17:     {"17.0", "September, 2025"},
-	UnicodeLatest: {"17.0", "September, 2025"},
+	Unicode18:     {"18.0", "September, 2026"},
+	UnicodeLatest: {"18.0", "September, 2026"},
 }
